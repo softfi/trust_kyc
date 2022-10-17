@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trust_money/screens/animated_screens/record_demo.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/home/profile_page.dart';
+import 'package:trust_money/screens/order/my_order.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
@@ -251,11 +252,16 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               endIndent: 5,
             ),
             _space,
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: Text(
-                "Orders",
-                style: ConstStyle.quickMedium,
+            InkWell(onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Order()));
+            },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text(
+                  "Orders",
+                  style: ConstStyle.quickMedium,
+                ),
               ),
             ),
             _space1,
