@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
+import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/screens/bond/explore_all_bond.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
@@ -322,7 +323,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     InkWell(onTap: (){
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const ExploreAllBond()));
+                          MaterialPageRoute(builder: (context) => const Bonds()));
                     },
                       child: Align(
                         alignment: Alignment.topRight,

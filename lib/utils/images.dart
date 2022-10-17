@@ -12,6 +12,8 @@ class ConstantImage {
   static const String sunglasses = 'assets/images/sunglasses.svg';
   static const String cap = 'assets/images/cap.svg';
   static const String bulb = 'assets/images/bulb.svg';
+  static const String filter = 'assets/images/filter.svg';
+  static const String sorting = 'assets/images/sorting.svg';
   static const String profile_pic = 'assets/images/profile_pic.svg';
 
   //png & Jpg images
