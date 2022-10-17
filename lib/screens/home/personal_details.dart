@@ -22,7 +22,8 @@ import 'package:trust_money/screens/animated_screens/continue_animation.dart';
 import 'package:trust_money/screens/animated_screens/invalid_pan_animation.dart';
 import 'package:trust_money/screens/animated_screens/verify_email_id_animation.dart';
 import 'package:trust_money/screens/animated_screens/verify_pan_animation.dart';
-import 'package:trust_money/screens/home/bank_details.dart';
+import 'package:trust_money/screens/bank_screen/bank_details.dart';
+
 import 'package:trust_money/screens/home/vedio_page.dart';
 import 'package:video_player/video_player.dart';
 import '../../api/url_constant.dart';
@@ -40,7 +41,7 @@ import '../../utils/images.dart';
 import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 import '../animated_screens/complete_profile_animation.dart';
-import '../auths/sharedPreference.dart';
+import '../../utils/sharedPreference.dart';
 import 'digilocker_page.dart';
 
 class PersonalDetails extends StatefulWidget {

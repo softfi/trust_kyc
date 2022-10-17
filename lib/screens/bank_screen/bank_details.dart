@@ -6,15 +6,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/get_ifsc_code_response_data.dart';
 import 'package:trust_money/screens/animated_screens/complete_bank_detail_animation.dart';
-import 'package:trust_money/screens/home/demat_details.dart';
-import 'package:trust_money/screens/home/ifsc_code.dart';
+import 'package:trust_money/screens/bank_screen/ifsc_code.dart';
+import 'package:trust_money/screens/demat_screen/demat_details.dart';
 
 import '../../model/get_bank_detail_response_data.dart';
 import '../../repositories/bank_detail_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
-import '../auths/sharedPreference.dart';
+import '../../utils/sharedPreference.dart';
 
 class BankDetails extends StatefulWidget {
   BankDetails({Key? key, required this.addBankView, required this.cardView})

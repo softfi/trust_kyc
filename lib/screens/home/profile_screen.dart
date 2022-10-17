@@ -20,8 +20,8 @@ import 'package:trust_money/model/get_demate_account_response_data.dart';
 import 'package:trust_money/model/wealth_dropdown_response_data.dart';
 import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/repositories/login_repository.dart';
-import 'package:trust_money/screens/home/continue.dart';
-import 'package:trust_money/screens/home/google_sign_in.dart';
+import 'package:trust_money/screens/Congratulations/continue.dart';
+import 'package:trust_money/utils/google_sign_in.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/strings.dart';
@@ -40,7 +40,7 @@ import '../../model/sendOtpEmailModel.dart';
 import '../../model/state_response_data.dart';
 import '../../repositories/bank_detail_repository.dart';
 import '../../repositories/profile_repository.dart';
-import '../auths/sharedPreference.dart';
+import '../../utils/sharedPreference.dart';
 import 'digilocker_page.dart';
 
 class Profile extends StatefulWidget {

@@ -27,8 +27,7 @@ import '../../repositories/profile_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
-import '../auths/sharedPreference.dart';
-import 'continue.dart';
+import '../../utils/sharedPreference.dart';
 
 class DematDetails extends StatefulWidget {
   DematDetails({Key? key, required this.addNewDematAccounts}) : super(key: key);

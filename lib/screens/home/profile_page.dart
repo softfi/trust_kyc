@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/screens/bank_screen/bank_details.dart';
 import 'package:trust_money/screens/home/personal_details.dart';
-import 'package:trust_money/utils/colorsConstant.dart';
 import '../../utils/styles.dart';
-import '../auths/sharedPreference.dart';
-import 'bank_details.dart';
-import 'demat_details.dart';
+import '../../utils/sharedPreference.dart';
+import '../demat_screen/demat_details.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);

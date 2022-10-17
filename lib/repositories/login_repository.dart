@@ -6,7 +6,7 @@ import '../api/trust_kyc_url.dart';
 import '../model/otp_verify_response_data.dart';
 import '../model/sendOtpEmailModel.dart';
 import '../model/sign_up_response.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 class LoginRepository {
   final logger = Logger("LoginRepository");

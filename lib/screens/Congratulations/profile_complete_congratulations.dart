@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/auths/sharedPreference.dart';
+import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../utils/images.dart';

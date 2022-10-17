@@ -9,7 +9,7 @@ import 'package:http/http.dart';
 import 'package:trust_money/api/url_constant.dart';
 
 import '../model/get_personal_detail_response.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 
 class APiProvider extends GetConnect {

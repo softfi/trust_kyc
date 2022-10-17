@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:trust_money/screens/auths/sharedPreference.dart';
+import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/auths/verify_login_otp.dart';
 import 'package:trust_money/utils/colorsConstant.dart';

@@ -8,7 +8,7 @@ import '../api/trust_kyc_dio_client.dart';
 import '../api/trust_kyc_url.dart';
 import '../model/add_bank_detail_response_data.dart';
 import '../model/delete_bank_details_response_data.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 class BankDetailRepository {
   final logger = Logger("BankDetailRepository");

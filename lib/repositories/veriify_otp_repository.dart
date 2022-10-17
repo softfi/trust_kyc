@@ -4,7 +4,7 @@ import '../api/network_utility.dart';
 import '../api/trust_kyc_dio_client.dart';
 import '../api/trust_kyc_url.dart';
 import '../model/verify_login_otp.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 class verifyOtps {
   Future<VeryotpLoginModule?> verifyOtpLogin(

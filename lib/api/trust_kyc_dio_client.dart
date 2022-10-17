@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logging/logging.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 import 'network_exception.dart';
 
 class TrustKycDioClient {

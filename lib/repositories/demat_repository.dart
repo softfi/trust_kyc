@@ -15,7 +15,7 @@ import '../model/born_dropdown_response_data.dart';
 import '../model/get_demat_response_data.dart';
 import '../model/nominee_identify_dropdown_response_data.dart';
 import '../model/relationship_dropdown_response_data.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 class DematDetailRepository {
   final logger = Logger("DematDetailRepository");

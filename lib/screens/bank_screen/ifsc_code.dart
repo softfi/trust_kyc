@@ -1,9 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:trust_money/screens/home/bank_details.dart';
 
 import '../../utils/colorsConstant.dart';
 import '../../utils/styles.dart';

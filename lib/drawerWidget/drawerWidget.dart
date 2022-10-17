@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trust_money/screens/animated_screens/record_demo.dart';
@@ -9,7 +8,7 @@ import 'package:trust_money/screens/home/profile_page.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);

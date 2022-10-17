@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/profile_complete_congratulations.dart';
-import 'package:trust_money/screens/home/bank_details.dart';
 import 'package:video_player/video_player.dart';
 
 class ProfileAnimation extends StatefulWidget {

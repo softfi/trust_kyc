@@ -16,7 +16,7 @@ import '../model/get_digilocker_response_data.dart';
 import '../model/get_pan_response_data.dart';
 import '../model/get_personal_detail_response.dart';
 import '../model/state_response_data.dart';
-import '../screens/auths/sharedPreference.dart';
+import '../utils/sharedPreference.dart';
 import 'package:http_parser/http_parser.dart';
 
 class ProfileRepository {
