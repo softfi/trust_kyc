@@ -42,8 +42,7 @@ class _OrderState extends State<Order> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
+                          icon: const Icon(Icons.arrow_back, color: Colors.white),
                           onPressed: () => Navigator.of(context).pop(),
                         ),
                         Text(
@@ -320,6 +319,7 @@ class _OrderState extends State<Order> {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ExpansionTile(
+              backgroundColor: Colors.white,
               title: Text("Sovereign Gold Bonds Scheme 2021-22 - Series X",
                   style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(

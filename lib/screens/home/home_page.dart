@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/drawerWidget/left_drawer.dart';
+import 'package:trust_money/screens/bond/explore_all_bond.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../drawerWidget/drawerWidget.dart';
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
         exit(0);
       },
       child: Scaffold(
+        drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
         appBar: AppBar(
           leading: Builder(
@@ -317,39 +320,44 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        height: 55,
-                        width: 220,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              bottomLeft: Radius.circular(50)),
-                          color: Color(0xffEC515F),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Explore All Bonds",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                  color: Color(0xffFfffff),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15,
+                    InkWell(onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const ExploreAllBond()));
+                    },
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          height: 55,
+                          width: 220,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                bottomLeft: Radius.circular(50)),
+                            color: Color(0xffEC515F),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Explore All Bonds",
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFfffff),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
