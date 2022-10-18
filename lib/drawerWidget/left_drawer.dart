@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
+import '../screens/bond/learn_bond.dart';
 
 var bg_color = Colors.white;
 var divider_color = Colors.black;
@@ -69,18 +71,26 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Explore Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
+                                    InkWell(onTap: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const Bonds()));
+                                    },
+                                      child: Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Explore Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                    ),
                                     Container(
                                         padding: EdgeInsets.only(top: 10),
                                         child: Column(
@@ -117,23 +127,36 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                             )
                                           ],
                                         )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                "Learn,from Bonds, Trust Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    InkWell(onTap: (){
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => const BuyingBonds()));
-                                    },
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LearnBond()));
+                                      },
+                                      child: Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  "Learn,from Bonds, Trust Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const BuyingBonds()));
+                                      },
                                       child: Container(
                                           padding: EdgeInsets.only(top: 10),
                                           child: Column(
