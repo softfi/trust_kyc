@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
+import '../screens/bond/buying_bonds.dart';
+
 var bg_color = Colors.white;
 var divider_color = Colors.black;
 var text_style = GoogleFonts.quicksand(
@@ -49,7 +51,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     Column(
                       children: [
                         ExpansionTile(
-
                             iconColor: Colors.black,
                             collapsedIconColor: Colors.black,
                             textColor: text_color,
@@ -129,18 +130,23 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                             )
                                           ],
                                         )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Bonds Ki Khaberin"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
+                                    InkWell(onTap: (){
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) => const BuyingBonds()));
+                                    },
+                                      child: Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Bond Ki Khaberin"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                    ),
                                   ],
                                 ),
                               ),
