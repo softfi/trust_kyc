@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/about_us/about_us.dart';
 import 'package:trust_money/screens/contactUs/contact_us.dart';
 import 'package:trust_money/screens/disclimar/disclamer.dart';
+import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
@@ -514,12 +515,14 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: Text("News and Insights",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xff22263D),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))),
+                          title: InkWell(onTap:(){Navigator.push(context,MaterialPageRoute(builder: (context)=>NewsAndInsights()));},
+                            child: Text("News and Insights",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))),
+                          ),
                           // theme: const ExpandedTileThemeData(
                           //   headerColor: Colors.white,
                           //   // headerRadius: 24.0,

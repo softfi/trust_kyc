@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/images.dart';
+import 'package:trust_money/utils/styles.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ContactUs extends StatelessWidget {
@@ -13,25 +15,155 @@ class ContactUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Color(0xffffFFFFFF)),
-        backgroundColor: Color(0xff00C6D8),
-        title: Text("CONTACT US",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: Color(0xffffFFFFFF),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 19),
-            )),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.notifications_none,
-                color: Color(0xffffFFFFFF),
-              ))
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80.0),
+        child: Column(
+          children: [
+            Container(
+              height: 80,
+              color: Color(0xff00C6D8),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 25.0),
+                child: Stack(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon:
+                          const Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                        Text(
+                          "CONTACT US",
+                          style: ConstStyle.quickStandSmall11,
+                        ),
+
+                        IconButton(
+                          icon:
+                          const Icon(Icons.notifications_none, color: Colors.white),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                        // Container(
+                        //   width: 50,
+                        // )
+                      ],
+                    ),
+                    Positioned(
+                      left: 0,
+                      bottom: -1,
+                      child: RotatedBox(
+                        quarterTurns: 2,
+                        child: Material(
+                          elevation: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: const BoxDecoration(
+                              color: Color(0xff00C6D8),
+                            ),
+                            foregroundDecoration: const RotatedCornerDecoration(
+                              color: Colors.redAccent,
+                              geometry: BadgeGeometry(
+                                  width: 20, height: 20, cornerRadius: 0),
+                            ),
+                            child: Container(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      bottom: -1,
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Material(
+                          elevation: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: const BoxDecoration(
+                              color: Color(0xff00C6D8),
+                            ),
+                            foregroundDecoration: const RotatedCornerDecoration(
+                              color: Colors.redAccent,
+                              geometry: BadgeGeometry(
+                                  width: 20, height: 20, cornerRadius: 0),
+                            ),
+                            child: Container(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              color: Color(0xffE8E8E8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RotatedBox(
+                    quarterTurns: 1,
+                    child: Material(
+                      elevation: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: const BoxDecoration(
+                          color: Colors.redAccent,
+                        ),
+                        foregroundDecoration: const RotatedCornerDecoration(
+                          color: Color(0xffE8E8E8),
+                          geometry: BadgeGeometry(
+                              width: 30, height: 28, cornerRadius: 0),
+                        ),
+                        child: Container(),
+                      ),
+                    ),
+                  ),
+                  RotatedBox(
+                    quarterTurns: 2,
+                    child: Material(
+                      elevation: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: const BoxDecoration(
+                          color: Colors.redAccent,
+                        ),
+                        foregroundDecoration: const RotatedCornerDecoration(
+                          color: Color(0xffE8E8E8),
+                          geometry: BadgeGeometry(
+                              width: 28, height: 30, cornerRadius: 0),
+                        ),
+                        child: Container(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
+
+      // AppBar(
+      //   iconTheme: IconThemeData(color: Color(0xffffFFFFFF)),
+      //   backgroundColor: Color(0xff00C6D8),
+      //   title: Text("CONTACT US",
+      //       style: GoogleFonts.quicksand(
+      //         textStyle: const TextStyle(
+      //             color: Color(0xffffFFFFFF),
+      //             fontWeight: FontWeight.w500,
+      //             fontSize: 19),
+      //       )),
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {},
+      //         icon: Icon(
+      //           Icons.notifications_none,
+      //           color: Color(0xffffFFFFFF),
+      //         ))
+      //   ],
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
