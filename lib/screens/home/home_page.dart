@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
+import 'package:trust_money/profile_ui.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/screens/bond/explore_all_bond.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           //     onPressed: () => Scaffold.of(context).openDrawer(),
           //   ),
           // ),
-          title: Image.asset(ConstantImage.white_logo, height: 60, width: 60,),
+          title: InkWell(onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileCardUi()));},child: Image.asset(ConstantImage.white_logo, height: 60, width: 60,)),
           elevation: 0.0,
           toolbarHeight: 55,
           foregroundColor: Colors.black,

@@ -12,8 +12,9 @@ import '../screens/bond/buying_bonds.dart';
 var bg_color = Colors.white;
 var divider_color = Colors.black;
 var text_style = GoogleFonts.quicksand(
-    textStyle: const TextStyle(
-        color: Color(0xff22263D), fontSize: 20, fontWeight: FontWeight.bold));
+  textStyle: const TextStyle(
+      color: Color(0xff22263DD), fontWeight: FontWeight.w500, fontSize: 15),
+);
 var trailing_icon = Icon(
   Icons.keyboard_arrow_down_outlined,
   color: AppColors.primaryColor,
@@ -55,107 +56,108 @@ class _LeftDrawerState extends State<LeftDrawer> {
                   children: [
                     Column(
                       children: [
-                        ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-                            trailing: trailing_icon,
-                            title: Text("BONDS",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(left: 15),
-                                color: bg_color,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Explore Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Collection of Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("How it works"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Frequently Asked Questions"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                "Learn,from Bonds, Trust Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    InkWell(onTap: (){
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => const BuyingBonds()));
-                                    },
-                                      child: Container(
-                                          padding: EdgeInsets.only(top: 10),
+                        Theme(
+                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              trailing: trailing_icon,
+                              title: Text("BONDS",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 0,right:MediaQuery.of(context).size .width/12,left: 15),
+                                  color: bg_color,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text("Bond Ki Khaberin"),
+                                              Text("Explore Bonds"),
                                               Divider(
                                                 color: divider_color,
                                               )
                                             ],
                                           )),
-                                    ),
-                                  ],
+                                      Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Collection of Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                      Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("How it works"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                      Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Frequently Asked Questions"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                      Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  "Learn,from Bonds, Trust Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                      InkWell(onTap: (){
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) => const BuyingBonds()));
+                                      },
+                                        child: Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Bond Ki Khaberin"),
+
+                                              ],
+                                            )),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ]),
+                              ]),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
                           child: Divider(
@@ -167,31 +169,26 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        ExpansionTile(
-                          iconColor: Colors.black,
-                          collapsedIconColor: Colors.black,
-                          textColor: text_color,
 
-                          trailing: trailing_icon,
-                          title: Text("Mutual Funds",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xff22263D),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                       Container(
+                         height: 58,
+
+                         child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+
+                              trailing: trailing_icon,
+                              title: Text("Mutual Funds",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
+                       ),
+
+                        Container(padding: const EdgeInsets.only(left: 15.0, right: 19),
                           child: Divider(
                             color: divider_color,
                             thickness: 1.2,
@@ -213,16 +210,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -247,16 +234,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -281,16 +258,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -315,16 +282,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -349,16 +306,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -383,16 +330,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -417,16 +354,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -451,16 +378,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -487,16 +404,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold))),
                           ),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -523,16 +430,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold))),
                           ),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -560,16 +457,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold))),
                           ),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
