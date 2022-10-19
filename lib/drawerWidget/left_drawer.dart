@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/about_us/about_us.dart';
-import 'package:trust_money/screens/bond/collection_of_bonds.dart';
-import 'package:trust_money/screens/contactUs/contact_us.dart';
-import 'package:trust_money/screens/disclimar/disclamer.dart';
-import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
-import '../screens/terms_and_conditions/termsAndConditions.dart';
 
 var bg_color = Colors.white;
 var divider_color = Colors.black;
@@ -87,22 +81,18 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                             )
                                           ],
                                         )),
-                                    InkWell(
-                                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>CollectionOfBonds()));},
-                                      child: Container(
-                                        // color: Colors.pink,
-                                          padding: EdgeInsets.only(top: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text("Collection of Bonds"),
-                                              Divider(
-                                                color: divider_color,
-                                              )
-                                            ],
-                                          )),
-                                    ),
+                                    Container(
+                                        padding: EdgeInsets.only(top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Collection of Bonds"),
+                                            Divider(
+                                              color: divider_color,
+                                            )
+                                          ],
+                                        )),
                                     Container(
                                         padding: EdgeInsets.only(top: 10),
                                         child: Column(
@@ -484,15 +474,12 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: InkWell(
-                            onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>AboutUs()));},
-                            child: Text("About Us",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                          ),
+                          title: Text("About Us",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))),
                           // theme: const ExpandedTileThemeData(
                           //   headerColor: Colors.white,
                           //   // headerRadius: 24.0,
@@ -547,60 +534,42 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         )
                       ],
                     ),
-                    InkWell(
-                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));},
-                      child: Container(
-                        child: Column(
-                          children: [
-                            ExpansionTile(
+                    Column(
+                      children: [
+                        ExpansionTile(
+                          iconColor: Colors.black,
+                          collapsedIconColor: Colors.black,
+                          textColor: text_color,
 
-                              iconColor: Colors.black,
-                              collapsedIconColor: Colors.black,
-                              textColor: text_color,
-
-                              trailing: trailing_icon,
-                              title: InkWell(
-                                onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ContactUs()));},
-                                child: Text("Contact Us",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
-                              ),
-                              // theme: const ExpandedTileThemeData(
-                              //   headerColor: Colors.white,
-                              //   // headerRadius: 24.0,
-                              //   // headerPadding: EdgeInsets.all(24.0),
-                              //   headerSplashColor: Colors.red,
-                              //   contentBackgroundColor: Colors.white,
-                              //   // contentPadding: EdgeInsets.all(24.0),
-                              //   // contentRadius: 12.0,
-                              // ),
-                              // controller: _controller_bonds,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0, right: 19),
-                              child: Divider(
-                                color: divider_color,
-                                thickness: 1.2,
-                              ),
-                            )
-                          ],
+                          trailing: trailing_icon,
+                          title: Text("Contact Us",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))),
+                          // theme: const ExpandedTileThemeData(
+                          //   headerColor: Colors.white,
+                          //   // headerRadius: 24.0,
+                          //   // headerPadding: EdgeInsets.all(24.0),
+                          //   headerSplashColor: Colors.red,
+                          //   contentBackgroundColor: Colors.white,
+                          //   // contentPadding: EdgeInsets.all(24.0),
+                          //   // contentRadius: 12.0,
+                          // ),
+                          // controller: _controller_bonds,
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                          child: Divider(
+                            color: divider_color,
+                            thickness: 1.2,
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),
-
-                InkWell(
-                    onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>Disclamer()));},
-                    child: Container(
-                      height: 30,
-                      child: Text("Disclimar"),)),
-                InkWell(
-                    onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>TermsConditons()));},
-                    child: Container(   height: 30,child: Text("Terms and conditions"),))
               ],
             ),
           ),

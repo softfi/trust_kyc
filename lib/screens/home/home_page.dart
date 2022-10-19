@@ -24,7 +24,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return WillPopScope(
       onWillPop: () async {
         exit(0);
@@ -33,25 +36,30 @@ class _HomePageState extends State<HomePage> {
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
         appBar: AppBar(
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(
-                Icons.clear_all_sharp,
-                size: 30,
-                color: AppColors.primaryColor,
-              ),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
-          title: Text(
-            "Trust Money",
-            style: ConstStyle.quickMedium,
-          ),
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.white),
+          // leading: Builder(
+          //   builder: (context) => IconButton(
+          //     icon: const Icon(
+          //       Icons.clear_all_sharp,
+          //       size: 30,
+          //       color: AppColors.primaryColor,
+          //     ),
+          //     onPressed: () => Scaffold.of(context).openDrawer(),
+          //   ),
+          // ),
+          title: Image.asset(ConstantImage.white_logo, height: 60, width: 60,),
           elevation: 0.0,
           toolbarHeight: 55,
           foregroundColor: Colors.black,
           backgroundColor: const Color(0xffF2A9B0),
-          actions: [],
+          actions: [
+            //Icon(Icons.person_pin,size: 35,)
+            //IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            // IconButton(onPressed: () {
+            //   //Scaffold.of(context).openEndDrawer();
+            // }, icon: Icon(Icons.person_pin,size: 35,))
+          ],
         ),
         body: SingleChildScrollView(
           child: Stack(
@@ -61,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               Column(
                 children: [
                   Container(
-                    height: 300,
+                    height: 400,
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -96,16 +104,16 @@ class _HomePageState extends State<HomePage> {
                   height: 400,
                 ),
               ),
-              Positioned(
-                bottom: 1180,
-                right: 0,
-                child: Image.asset(
-                  ConstantImage.leaf,
-                  height: 400,
-                ),
-              ),
+              // Positioned(
+              //   bottom: 1180,
+              //   right: 0,
+              //   child: Image.asset(
+              //     ConstantImage.leaf,
+              //     height: 400,
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(top: 80.0, left: 10, right: 10),
+                padding: const EdgeInsets.only(top: 50.0, left: 10, right: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -180,7 +188,15 @@ class _HomePageState extends State<HomePage> {
                           )),
                     ),
                     const SizedBox(
-                      height: 80,
+                      height: 20,
+                    ),
+                    Align(alignment: Alignment.centerRight,
+                      child: Image.asset(ConstantImage.quick, fit: BoxFit.cover,
+                        height: 400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
                     ),
                     Container(
                       height: 60,
@@ -210,12 +226,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Center(
                                     child: Text(
-                                  "Search",
-                                  style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white, fontSize: 15),
-                                  ),
-                                )),
+                                      "Search",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white, fontSize: 15),
+                                      ),
+                                    )),
                               ),
                             )),
                       ),
@@ -247,20 +263,20 @@ class _HomePageState extends State<HomePage> {
                                     : Colors.white),
                             child: Center(
                                 child: Padding(
-                              padding:
+                                  padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Text(
-                                "Current IPOs",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: currentIPOs == 1
-                                          ? Colors.white
-                                          : const Color(0xff22263D),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13),
-                                ),
-                              ),
-                            )),
+                                  child: Text(
+                                    "Current IPOs",
+                                    style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                          color: currentIPOs == 1
+                                              ? Colors.white
+                                              : const Color(0xff22263D),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13),
+                                    ),
+                                  ),
+                                )),
                           ),
                         ),
                         InkWell(
@@ -284,20 +300,20 @@ class _HomePageState extends State<HomePage> {
                                     : Colors.white),
                             child: Center(
                                 child: Padding(
-                              padding:
+                                  padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Text(
-                                "Bond in Spotlight",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: currentIPOs == 2
-                                          ? Colors.white
-                                          : const Color(0xff22263D),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13),
-                                ),
-                              ),
-                            )),
+                                  child: Text(
+                                    "Bond in Spotlight",
+                                    style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                          color: currentIPOs == 2
+                                              ? Colors.white
+                                              : const Color(0xff22263D),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13),
+                                    ),
+                                  ),
+                                )),
                           ),
                         ),
                       ],
@@ -321,9 +337,10 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    InkWell(onTap: (){
+                    InkWell(onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Bonds()));
+                          MaterialPageRoute(builder: (
+                              context) => const Bonds()));
                     },
                       child: Align(
                         alignment: Alignment.topRight,
@@ -527,15 +544,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                              "1",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            )),
+                                  "1",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                )),
                           ),
                         ),
                         Positioned(
@@ -549,15 +566,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                              "2",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            )),
+                                  "2",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                )),
                           ),
                         ),
                         Positioned(
@@ -571,15 +588,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                              "3",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            )),
+                                  "3",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                )),
                           ),
                         ),
                         Positioned(
@@ -734,92 +751,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Subscribe To",
-                      style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20)),
-                    ),
-
-                    Text(
-                      "Bond Updates",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Color(0xffFF405A),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 25),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Subscribe to get regular updates on the latest on Bonds from Trust Money",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 60,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          fillColor: Colors.white54,
-                          filled: true,
-                          border: InputBorder.none,
-                          hintText: "Enter your email here ",
-                          contentPadding: EdgeInsets.only(left: 13, top: 10),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        height: 55,
-                        width: 160,
-                        decoration: const BoxDecoration(
-                          color: AppColors.btnColor,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              bottomLeft: Radius.circular(50)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Subscribe",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16)),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 20,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                    subscribe(),
 
                     const SizedBox(
                       height: 20,
@@ -937,7 +869,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
+                    /* Container(
                       width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.symmetric(vertical: 30),
                       color: AppColors.textColor,
@@ -1142,7 +1074,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               )
@@ -1164,7 +1096,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding:
-                const EdgeInsets.only(right: 20.0, top: 2, bottom: 2, left: 2),
+            const EdgeInsets.only(right: 20.0, top: 2, bottom: 2, left: 2),
             child: Container(
               width: 270,
               decoration: BoxDecoration(boxShadow: const [
@@ -1374,11 +1306,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: Center(
                               child: Padding(
-                            padding:
+                                padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Text("Read More",
-                                style: ConstStyle.quickStandSmall),
-                          )),
+                                child: Text("Read More",
+                                    style: ConstStyle.quickStandSmall),
+                              )),
                         )
                       ],
                     ),
@@ -1567,7 +1499,10 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.50,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.50,
                         child: Text(
                           "Rain matter invests Rs 3.5 Cr nin Trust Money",
                           style: GoogleFonts.quicksand(
@@ -1620,6 +1555,128 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       },
+    );
+  }
+
+  Widget subscribe() {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xffB2EEF8).withOpacity(0.5),
+                const Color(0xffFFFFFF),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Subscribe To",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20)),
+                ),
+                Text(
+                  "Bond Updates",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: Color(0xffFF405A),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Subscribe to get regular updates on the latest on Bonds from Trust Money",
+                  style: GoogleFonts.sourceSansPro(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: InputBorder.none,
+                      hintText: "Enter your email here ",
+                      contentPadding: EdgeInsets.only(left: 13, top: 10),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    height: 55,
+                    width: 160,
+                    decoration: const BoxDecoration(
+                      color: AppColors.btnColor,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          bottomLeft: Radius.circular(50)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Subscribe",
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16)),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 20,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          top: 8,
+          right: 8,
+          child: Image.asset(
+            ConstantImage.leaf,
+            color: Colors.black26,
+            height: 300,
+          ),
+        )
+
+      ],
     );
   }
 }
