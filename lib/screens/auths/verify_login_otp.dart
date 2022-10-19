@@ -133,11 +133,10 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                   child: Image.asset(
                     ConstantImage.TrustIcon,
                     height: 100,
-                    width: 100,
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.038,
+                  height: height * 0.035,
                 ),
                 Center(
                   child: Text(

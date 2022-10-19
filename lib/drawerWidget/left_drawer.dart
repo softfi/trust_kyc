@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/about_us/about_us.dart';
-import 'package:trust_money/screens/contactUs/contact_us.dart';
-import 'package:trust_money/screens/disclimar/disclamer.dart';
-import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
-import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
+import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
+import '../screens/bond/learn_bond.dart';
 
 var bg_color = Colors.white;
 var divider_color = Colors.black;
@@ -74,23 +71,31 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    InkWell(onTap: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              const Bonds()));
+                                    },
+                                      child: Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Explore Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                    ),
                                     Container(
                                         padding: EdgeInsets.only(top: 10),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Explore Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text("Collection of Bonds"),
                                             Divider(
@@ -102,7 +107,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         padding: EdgeInsets.only(top: 10),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text("How it works"),
                                             Divider(
@@ -114,7 +119,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         padding: EdgeInsets.only(top: 10),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text("Frequently Asked Questions"),
                                             Divider(
@@ -122,28 +127,41 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                             )
                                           ],
                                         )),
-                                    Container(
-                                        padding: EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                                "Learn,from Bonds, Trust Bonds"),
-                                            Divider(
-                                              color: divider_color,
-                                            )
-                                          ],
-                                        )),
-                                    InkWell(onTap: (){
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) => const BuyingBonds()));
-                                    },
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                const LearnBond()));
+                                      },
                                       child: Container(
                                           padding: EdgeInsets.only(top: 10),
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  "Learn,from Bonds, Trust Bonds"),
+                                              Divider(
+                                                color: divider_color,
+                                              )
+                                            ],
+                                          )),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                const BuyingBonds()));
+                                      },
+                                      child: Container(
+                                          padding: EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Text("Bond Ki Khaberin"),
                                               Divider(
@@ -479,14 +497,12 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: InkWell(onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>AboutUs()));},
-                            child: Text("About Us",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                          ),
+                          title: Text("About Us",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))),
                           // theme: const ExpandedTileThemeData(
                           //   headerColor: Colors.white,
                           //   // headerRadius: 24.0,
@@ -515,24 +531,13 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: InkWell(onTap:(){Navigator.push(context,MaterialPageRoute(builder: (context)=>NewsAndInsights()));},
-                            child: Text("News and Insights",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                          ),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
+                          title: Text("News and Insights",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))),
+
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -549,27 +554,14 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           iconColor: Colors.black,
                           collapsedIconColor: Colors.black,
                           textColor: text_color,
-
                           trailing: trailing_icon,
-                          title: InkWell(
-                            onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>ContactUs()));},
-                            child: Text("Contact Us",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                          ),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
+                          title: Text("Contact Us",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold))),
+
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -580,29 +572,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         )
                       ],
                     ),
-
-
-
-
-
-                    InkWell(
-                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>TermsConditons()));},
-                      child: Container(
-                      height: 30,
-                      alignment: Alignment.center,
-                      child: Text("Terms And Conditions"),
-                    ),),
-
-
-
-
-                    InkWell(
-                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>Disclamer()));},
-                      child: Container(
-                      height: 30,
-                      alignment: Alignment.center,
-                      child: Text("Disclamer"),
-                    ),)
                   ],
                 ),
               ],

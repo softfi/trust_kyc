@@ -22,6 +22,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool isChecked = false;
   bool isChecked1 = false;
+  bool isChecked2 = false;
   bool isResendOtp = false;
   bool isButtonClick = false;
   late Map resopnsmap;
@@ -42,7 +43,7 @@ class _SignUpState extends State<SignUp> {
     } else if (phoneNumber.text.toString().length < 10) {
       Fluttertoast.showToast(msg: 'Enter 10 digit mobile number');
       return;
-    } else if (isChecked != true && isChecked1 != true) {
+    } else if (isChecked != true && isChecked2 != true) {
       Fluttertoast.showToast(msg: 'Check term & conditions!');
     } else {
       final signUpModel = await LoginRepository().sendOtp(
@@ -78,15 +79,14 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _space,
-                  _space1,
-                  const SizedBox(height: 20),
+                  _space,
                   Center(
                     child: Image.asset(
                       ConstantImage.TrustIcon,
                       height: 100,
                     ),
                   ),
-                  _space,
+                  _space1,
                   Center(
                     child: Text(
                       "Sign Up",
@@ -198,7 +198,7 @@ class _SignUpState extends State<SignUp> {
                           color: Colors.grey,
                         ),
                         validator: (value) {
-                          if (value == null || phoneNumber.text.length<10) {
+                          if (value == null || phoneNumber.text.length < 10) {
                             return 'Enter 10 Digit mobile number.';
                           }
                           return null;
@@ -262,7 +262,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SizedBox(
-                    height: height / 6.3,
+                    height: height * 0.092,
                   ),
                   Container(
                     alignment: Alignment.topLeft,
@@ -316,6 +316,54 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
                   ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Checkbox(
+                          checkColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          // color of tick Mark
+                          activeColor: AppColors.primaryColor,
+                          value: isChecked1,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked1 = value!;
+                            });
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: SizedBox(
+                            width: width / 1.3,
+                            child: RichText(
+                              text: const TextSpan(children: [
+                                TextSpan(
+                                    text:
+                                        "I Give Consent To Share My Details With Partner Companies, ",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff22263D))),
+                                TextSpan(
+                                    text:
+                                        "“Trust Capital Services India Pvt Ltd”, “Trust Financial Consultancy Services Pvt. Ltd”, “Trust Investment Advisors Pvt. Ltd”.",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xffFF405A))),
+                              ]),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     children: [
                       Checkbox(
@@ -324,10 +372,10 @@ class _SignUpState extends State<SignUp> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        value: isChecked1,
+                        value: isChecked2,
                         onChanged: (bool? value) {
                           setState(() {
-                            isChecked1 = value!;
+                            isChecked2 = value!;
                           });
                         },
                       ),
@@ -357,69 +405,65 @@ class _SignUpState extends State<SignUp> {
                 ],
               ),
               _space,
-              _space1,
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: InkWell(
-                  onTap: () {
-                    if (isChecked == true &&
-                        isChecked1 == true &&
-                        firstName.text.isNotEmpty &&
-                        lastName.text.isNotEmpty &&
-                        phoneNumber.text.isNotEmpty) {
-                      signUpValidation();
-                      setState(() {
-                        isButtonClick = true;
-                      });
-                    }
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0,
+              InkWell(
+                onTap: () {
+                  if (isChecked == true &&
+                      isChecked2 == true &&
+                      firstName.text.isNotEmpty &&
+                      lastName.text.isNotEmpty &&
+                      phoneNumber.text.isNotEmpty) {
+                    signUpValidation();
+                    setState(() {
+                      isButtonClick = true;
+                    });
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0,
+                  ),
+                  child: Container(
+                    height: 45,
+                    decoration: BoxDecoration(
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x29000000),
+                          blurRadius: 3.0,
+                        ),
+                      ],
+                      border: Border.all(
+                          width: 2,
+                          color: isButtonClick == false
+                              ? (isChecked &&
+                                      isChecked2 &&
+                                      firstName.text.isNotEmpty &&
+                                      lastName.text.isNotEmpty &&
+                                      phoneNumber.text.isNotEmpty)
+                                  ? AppColors.textColor
+                                  : Color(0xffE1E0E6)
+                              : Color(0xffFF405A)),
+                      color: isButtonClick == false
+                          ? Colors.white
+                          : Color(0xffFF405A),
                     ),
-                    child: Container(
-                      height: 45,
-                      decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x29000000),
-                            blurRadius: 3.0,
-                          ),
-                        ],
-                        border: Border.all(
-                            width: 2,
+                    child: Center(
+                        child: Text(
+                      "Continue",
+                      style: GoogleFonts.quicksand(
+                        textStyle: TextStyle(
                             color: isButtonClick == false
                                 ? (isChecked &&
-                                        isChecked1 &&
+                                        isChecked2 &&
                                         firstName.text.isNotEmpty &&
                                         lastName.text.isNotEmpty &&
                                         phoneNumber.text.isNotEmpty)
                                     ? AppColors.textColor
                                     : Color(0xffE1E0E6)
-                                : Color(0xffFF405A)),
-                        color: isButtonClick == false
-                            ? Colors.white
-                            : Color(0xffFF405A),
+                                : Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15),
                       ),
-                      child: Center(
-                          child: Text(
-                        "Continue",
-                        style: GoogleFonts.quicksand(
-                          textStyle: TextStyle(
-                              color: isButtonClick == false
-                                  ? (isChecked &&
-                                          isChecked1 &&
-                                          firstName.text.isNotEmpty &&
-                                          lastName.text.isNotEmpty &&
-                                          phoneNumber.text.isNotEmpty)
-                                      ? AppColors.textColor
-                                      : Color(0xffE1E0E6)
-                                  : Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15),
-                        ),
-                      )),
-                    ),
+                    )),
                   ),
                 ),
               ),
@@ -429,7 +473,7 @@ class _SignUpState extends State<SignUp> {
                       MaterialPageRoute(builder: (context) => SignIn()));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30.0),
+                  padding: const EdgeInsets.only(top: 10.0,bottom: 30),
                   child: Center(
                     child: RichText(
                       text: const TextSpan(children: [
@@ -452,6 +496,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
+
             ],
           ),
         ),

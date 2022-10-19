@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
-import 'package:trust_money/screens/bond/explore_all_bond.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../drawerWidget/drawerWidget.dart';
@@ -24,10 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async {
         exit(0);
@@ -48,7 +44,11 @@ class _HomePageState extends State<HomePage> {
           //     onPressed: () => Scaffold.of(context).openDrawer(),
           //   ),
           // ),
-          title: Image.asset(ConstantImage.white_logo, height: 60, width: 60,),
+          title: Image.asset(
+            ConstantImage.white_logo,
+            height: 60,
+            width: 60,
+          ),
           elevation: 0.0,
           toolbarHeight: 55,
           foregroundColor: Colors.black,
@@ -190,8 +190,11 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Align(alignment: Alignment.centerRight,
-                      child: Image.asset(ConstantImage.quick, fit: BoxFit.cover,
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Image.asset(
+                        ConstantImage.quick,
+                        fit: BoxFit.cover,
                         height: 400,
                       ),
                     ),
@@ -226,12 +229,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 child: Center(
                                     child: Text(
-                                      "Search",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                    )),
+                                  "Search",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white, fontSize: 15),
+                                  ),
+                                )),
                               ),
                             )),
                       ),
@@ -263,20 +266,20 @@ class _HomePageState extends State<HomePage> {
                                     : Colors.white),
                             child: Center(
                                 child: Padding(
-                                  padding:
+                              padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: Text(
-                                    "Current IPOs",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: TextStyle(
-                                          color: currentIPOs == 1
-                                              ? Colors.white
-                                              : const Color(0xff22263D),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13),
-                                    ),
-                                  ),
-                                )),
+                              child: Text(
+                                "Current IPOs",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: TextStyle(
+                                      color: currentIPOs == 1
+                                          ? Colors.white
+                                          : const Color(0xff22263D),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13),
+                                ),
+                              ),
+                            )),
                           ),
                         ),
                         InkWell(
@@ -300,20 +303,20 @@ class _HomePageState extends State<HomePage> {
                                     : Colors.white),
                             child: Center(
                                 child: Padding(
-                                  padding:
+                              padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: Text(
-                                    "Bond in Spotlight",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: TextStyle(
-                                          color: currentIPOs == 2
-                                              ? Colors.white
-                                              : const Color(0xff22263D),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13),
-                                    ),
-                                  ),
-                                )),
+                              child: Text(
+                                "Bond in Spotlight",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: TextStyle(
+                                      color: currentIPOs == 2
+                                          ? Colors.white
+                                          : const Color(0xff22263D),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13),
+                                ),
+                              ),
+                            )),
                           ),
                         ),
                       ],
@@ -337,11 +340,13 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    InkWell(onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (
-                              context) => const Bonds()));
-                    },
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Bonds()));
+                      },
                       child: Align(
                         alignment: Alignment.topRight,
                         child: Container(
@@ -544,15 +549,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                                  "1",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                )),
+                              "1",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            )),
                           ),
                         ),
                         Positioned(
@@ -566,15 +571,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                                  "2",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                )),
+                              "2",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            )),
                           ),
                         ),
                         Positioned(
@@ -588,15 +593,15 @@ class _HomePageState extends State<HomePage> {
                             height: 25,
                             child: Center(
                                 child: Text(
-                                  "3",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                )),
+                              "3",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            )),
                           ),
                         ),
                         Positioned(
@@ -609,7 +614,6 @@ class _HomePageState extends State<HomePage> {
                             )),
                       ],
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
@@ -752,11 +756,9 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                     ),
                     subscribe(),
-
                     const SizedBox(
                       height: 20,
                     ),
-
                     Text(
                       "Need Help?",
                       style: GoogleFonts.quicksand(
@@ -865,7 +867,6 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 8,
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
@@ -1096,7 +1097,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding:
-            const EdgeInsets.only(right: 20.0, top: 2, bottom: 2, left: 2),
+                const EdgeInsets.only(right: 20.0, top: 2, bottom: 2, left: 2),
             child: Container(
               width: 270,
               decoration: BoxDecoration(boxShadow: const [
@@ -1306,11 +1307,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: Center(
                               child: Padding(
-                                padding:
+                            padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
-                                child: Text("Read More",
-                                    style: ConstStyle.quickStandSmall),
-                              )),
+                            child: Text("Read More",
+                                style: ConstStyle.quickStandSmall),
+                          )),
                         )
                       ],
                     ),
@@ -1346,88 +1347,76 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 60,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xffEC515F).withOpacity(0.99),
-                          const Color(0xff58C3D5).withOpacity(0.89),
-                        ],
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListTile(
+                leading: Container(
+                  height: 60,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xffEC515F).withOpacity(0.29),
+                        const Color(0xff58C3D5).withOpacity(0.29),
+                      ],
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft,
                     ),
-                    child: Center(
-                      child: Text(
-                        "54EC \nBonds",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20)),
-                      ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "54EC \nBonds",
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18)),
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "What are 54EC Bonds or \nCapital Gain Bonds",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14)),
+                ),
+                title: Text(
+                  "What are 54EC Bonds or Capital Gain Bonds",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      "Jan 24, 2022",
+                      style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.btnColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12)),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 16,
+                      width: 65,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE1E0E7),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Jan 24, 2022",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.btnColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12)),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            height: 16,
-                            width: 65,
-                            decoration: const BoxDecoration(
-                              color: Color(0xffE1E0E7),
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  bottomLeft: Radius.circular(15)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "5 min read",
-                                style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                        color: AppColors.primaryColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 9)),
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: Center(
+                        child: Text(
+                          "5 min read",
+                          style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 9)),
+                        ),
                       ),
-                    ],
-                  )
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1455,101 +1444,83 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 60,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xffEC515F).withOpacity(0.29),
-                          const Color(0xff58C3D5).withOpacity(0.29),
-                        ],
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListTile(
+                leading: Container(
+                  height: 60,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xffEC515F).withOpacity(0.29),
+                        const Color(0xff58C3D5).withOpacity(0.29),
+                      ],
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
                     ),
-                    child: Center(
-                      child: Container(
-                        height: 30,
-                        width: 100,
-                        color: Colors.red,
-                        child: Center(
-                          child: Text(
-                            "YOURSTORY",
-                            style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13)),
-                          ),
-                        ),
-                      ),
-                    ),
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.50,
+                  child: Center(
+                    child: Container(
+                      height: 30,
+                      width: 100,
+                      color: Colors.red,
+                      child: Center(
                         child: Text(
-                          "Rain matter invests Rs 3.5 Cr nin Trust Money",
+                          "YOURSTORY",
                           style: GoogleFonts.quicksand(
                               textStyle: const TextStyle(
-                                  color: AppColors.textColor,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14)),
+                                  fontSize: 13)),
                         ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Jan 24, 2022",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.btnColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12)),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            height: 16,
-                            width: 65,
-                            decoration: const BoxDecoration(
-                              color: Color(0xffE1E0E7),
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  bottomLeft: Radius.circular(15)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "5 min read",
-                                style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                        color: AppColors.primaryColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 9)),
-                              ),
-                            ),
-                          ),
-                        ],
+                    ),
+                  ),
+                ),
+                title: Text(
+                  "Rain matter invests Rs 3.5 Cr nin Trust Money",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      "Jan 24, 2022",
+                      style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.btnColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12)),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 16,
+                      width: 65,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE1E0E7),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
                       ),
-                    ],
-                  )
-                ],
+                      child: Center(
+                        child: Text(
+                          "5 min read",
+                          style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 9)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1675,7 +1646,6 @@ class _HomePageState extends State<HomePage> {
             height: 300,
           ),
         )
-
       ],
     );
   }
