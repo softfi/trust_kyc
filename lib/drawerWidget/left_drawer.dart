@@ -537,16 +537,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
+
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),
@@ -563,7 +554,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           iconColor: Colors.black,
                           collapsedIconColor: Colors.black,
                           textColor: text_color,
-
                           trailing: trailing_icon,
                           title: Text("Contact Us",
                               style: GoogleFonts.quicksand(
@@ -571,16 +561,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       color: Color(0xff22263D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold))),
-                          // theme: const ExpandedTileThemeData(
-                          //   headerColor: Colors.white,
-                          //   // headerRadius: 24.0,
-                          //   // headerPadding: EdgeInsets.all(24.0),
-                          //   headerSplashColor: Colors.red,
-                          //   contentBackgroundColor: Colors.white,
-                          //   // contentPadding: EdgeInsets.all(24.0),
-                          //   // contentRadius: 12.0,
-                          // ),
-                          // controller: _controller_bonds,
+
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 19),

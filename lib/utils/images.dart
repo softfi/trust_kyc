@@ -37,6 +37,7 @@ class ConstantImage {
   static const String thumb = 'assets/images/thumb.gif';
   static const String email = 'assets/images/email.gif';
   static const String profile = 'assets/images/pro.gif';
+  static const String profileError = 'assets/images/prfile_error.gif';
   static const String card = 'assets/images/card.gif';
   static const String splash = 'assets/images/splash1.gif';
   static const String fileError = 'assets/images/file_error.gif';

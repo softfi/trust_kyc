@@ -1423,7 +1423,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 width: 5,
                               ),
                               Text(
-                                getPersonalDetail!.isEmailVerified == 1
+                                (getPersonalDetail!.isEmailVerified ?? 0) == 1
                                     ? "Verified"
                                     : "Not-Verified",
                                 style: GoogleFonts.sourceSansPro(
@@ -1438,7 +1438,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         ),
                       ),
                       Visibility(
-                        visible: getPersonalDetail!.isEmailVerified == 1
+                        visible: (getPersonalDetail!.isEmailVerified ?? 0) == 1
                             ? true
                             : false,
                         child: InkWell(
@@ -1504,12 +1504,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   Row(
                     children: [
                       Text(
-                          getPersonalDetail!.isPanVerified == 1
+                          (getPersonalDetail!.isPanVerified ?? 0)== 1
                               ? getPersonalDetail!.panNumber.toString()
                               : "PAN NUMBER",
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
-                                color: getPersonalDetail!.isPanVerified == 1
+                                color: (getPersonalDetail!.isPanVerified ?? 0)== 1
                                     ? Color(0xff22263D)
                                     : Color(0xffC8C7CE),
                                 fontWeight: FontWeight.w400,
@@ -1523,7 +1523,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         height: 30,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: getPersonalDetail!.isPanVerified == 1
+                            color: (getPersonalDetail!.isPanVerified ?? 0) == 1
                                 ? Color(0xff00E152)
                                 : Color(0xffC8C7CE)),
                         child: Padding(
@@ -1537,7 +1537,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 width: 5,
                               ),
                               Text(
-                                getPersonalDetail!.isPanVerified == 1
+                                (getPersonalDetail!.isPanVerified ?? 0) == 1
                                     ? "Verified"
                                     : "Not-Verified",
                                 style: GoogleFonts.sourceSansPro(
@@ -1560,12 +1560,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   Row(
                     children: [
                       Text(
-                          getPersonalDetail!.isAadharVerified == 1
+                          (getPersonalDetail!.isAadharVerified ?? 0) == 1
                               ? getPersonalDetail!.aadharNumber.toString()
                               : "AADHAAR NUMBER",
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
-                                color: getPersonalDetail!.isAadharVerified == 1
+                                color: (getPersonalDetail!.isAadharVerified ?? 0) == 1
                                     ? Color(0xff22263D)
                                     : Color(0xffC8C7CE),
                                 fontWeight: FontWeight.w400,
@@ -1579,7 +1579,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         height: 30,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: getPersonalDetail!.isAadharVerified == 1
+                            color: (getPersonalDetail!.isAadharVerified ?? 0) == 1
                                 ? Color(0xff00E152)
                                 : Color(0xffC8C7CE)),
                         child: Padding(
@@ -1593,7 +1593,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 width: 5,
                               ),
                               Text(
-                                getPersonalDetail!.isAadharVerified == 1
+                                (getPersonalDetail!.isAadharVerified ?? 0) == 1
                                     ? "Verified"
                                     : "Not-Verified",
                                 style: GoogleFonts.sourceSansPro(
@@ -1621,10 +1621,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         decoration: BoxDecoration(
                             border: Border.all(
                                 width: 1,
-                                color: getPersonalDetail!.gender == 1
+                                color: (getPersonalDetail!.gender ?? 0) == 1
                                     ? Color(0xff23263B)
                                     : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.gender == 1
+                            color: (getPersonalDetail!.gender ?? 0) == 1
                                 ? Color(0xff22263D)
                                 : Colors.white),
                         child: Center(
@@ -1635,7 +1635,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 "Male",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: TextStyle(
-                                      color: getPersonalDetail!.gender == 1
+                                      color: (getPersonalDetail!.gender ?? 0) == 1
                                           ? Colors.white
                                           : Color(0xffC8C7CD),
                                       fontWeight: FontWeight.w500,
@@ -8374,7 +8374,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         height: height * 0.04,
                       ),
                       Image.asset(
-                        ConstantImage.profile,
+                        ConstantImage.profileError,
                         width: 75,
                         height: 75,
                       ),
@@ -8402,25 +8402,51 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 20.0, right: 20, bottom: 30),
-                        child: InkWell(
-                          onTap: () {
-                            exit(0);
-                          },
-                          child: Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.5, color: Colors.white)),
-                            child: Center(
-                                child: Text(
-                                  "Close Application",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
-                          ),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                exit(0);
+                              },
+                              child: Container(
+                                height: 45,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 1.5, color: Colors.white)),
+                                child: Center(
+                                    child: Text(
+                                      "Close Application",
+                                      style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500)),
+                                    )),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                height: 45,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 1.5, color: Colors.white)),
+                                child: Center(
+                                    child: Text(
+                                      "Close Option",
+                                      style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500)),
+                                    )),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
