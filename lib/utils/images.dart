@@ -17,6 +17,20 @@ class ConstantImage {
   static const String profile_pic = 'assets/images/profile_pic.svg';
 
   //png & Jpg images
+  static const String aboutUs_pageView1='assets/images/aboutUs_pageView1.png';
+  static const String aboutUs_pageView2='assets/images/aboutUs_pageView2.png';
+  static const String aboutUs_pageView3='assets/images/aboutUs_pageView3.png';
+  static const String aboutUs6='assets/images/aboutUs6.png';
+  static const String collection_container_bg = 'assets/images/collection_bg.png';
+  static const String contact_us = 'assets/images/contact_us.png';
+  static const String email_icon = 'assets/images/email_icon.png';
+  static const String get_in_touch = 'assets/images/get_in_touch.png';
+  static const String location_icon = 'assets/images/location_icon.png';
+  static const String aboutUs1 = 'assets/images/aboutUs1.png';
+  static const String aboutUs2= 'assets/images/aboutUs2.png';
+  static const String aboutUs3 = 'assets/images/aboutUs3.png';
+  static const String aboutUs5 = 'assets/images/aboutUs5.png';
+  static const String aboutUs4 = 'assets/images/aboutUs4.png';
   static const String edit = 'assets/images/edit.png';
   static const String google = 'assets/images/google.png';
   static const String leaf = 'assets/images/leaf.png';
