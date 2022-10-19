@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/bond/bond_advantages.dart';
+import 'package:trust_money/screens/bond/view_all.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
@@ -24,7 +25,7 @@ class _LearnBondState extends State<LearnBond> {
           children: [
             Container(
               height: 80,
-              color: Color(0xff00C6D8),
+              color: const Color(0xff00C6D8),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Stack(
@@ -155,6 +156,10 @@ class _LearnBondState extends State<LearnBond> {
                   ),
                   subscribe(),
                   const SizedBox(
+                    height: 20,
+                  ),
+                  needHelp(),
+                  const SizedBox(
                     height: 40,
                   ),
                 ],
@@ -253,7 +258,7 @@ class _LearnBondState extends State<LearnBond> {
                     TextSpan(
                         text: "Bond, Trust Bond ",
                         style: GoogleFonts.quicksand(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 color: AppColors.btnColor,
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600))),
@@ -383,37 +388,45 @@ class _LearnBondState extends State<LearnBond> {
           const SizedBox(
             height: 20,
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              height: 55,
-              width: 150,
-              decoration: const BoxDecoration(
-                color: AppColors.btnColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    bottomLeft: Radius.circular(50)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "View All",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                ],
+          InkWell(onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                    const ViewAll()));
+          },
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                height: 55,
+                width: 150,
+                decoration: const BoxDecoration(
+                  color: AppColors.btnColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      bottomLeft: Radius.circular(50)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "View All",
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16)),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                      size: 20,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -576,7 +589,6 @@ class _LearnBondState extends State<LearnBond> {
               ),
             ),
           ),
-
         ],
       ),
     );
@@ -603,30 +615,8 @@ class _LearnBondState extends State<LearnBond> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
-                leading: Container(
-                  height: 65,
-                  width: 110,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xff58C3D5).withOpacity(0.10),
-                        const Color(0xffEC515F).withOpacity(0.10),
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "54EC \nBonds",
-                      style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                    ),
-                  ),
+                leading: Image.asset(
+                  ConstantImage.dummy_pic,
                 ),
                 title: Text(
                   "What are 54EC Bonds or Capital Gain Bonds",
@@ -682,11 +672,11 @@ class _LearnBondState extends State<LearnBond> {
   Widget investIndiaList() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 2,
+      itemCount: 5,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: InkWell(onTap: (){
             Navigator.push(
                 context,
@@ -694,66 +684,66 @@ class _LearnBondState extends State<LearnBond> {
                     builder: (context) =>
                     const BondAdvantage()));
           },
-            child: Container(
-              height: 220,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xff58C3D5).withOpacity(0.10),
-                    const Color(0xffEC515F).withOpacity(0.15),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
+            child: ListTile(
+              visualDensity: const VisualDensity(vertical: 4),
+              trailing: Image.asset(
+                ConstantImage.dummy_bond,
+                fit: BoxFit.fill,
+                height: 200,
+                width: 100,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Jan 24, 2022",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 10),
-                          ),
+              dense: true,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 23,
+                        width: 80,
+                        color: AppColors.btnColor,
+                        child: Center(
+                          child: Text("Trading",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 12))),
                         ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 10),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: 200,
-                      child: Text(
-                        "WHAT ARE ADVANTAGES OF INVESTING IN BOND IPO",
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        "Jan 24, 2022",
                         style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontSize: 21,
-                                fontWeight: FontWeight.bold)),
+                                color: AppColors.textColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12)),
                       ),
-                    )
-                  ],
-                ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "New ideas for a Equity Trading",
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_rounded,
+                    color: AppColors.textColor,
+                    size: 30,
+                  )
+                ],
               ),
             ),
           ),
@@ -765,71 +755,70 @@ class _LearnBondState extends State<LearnBond> {
   Widget debtBondList() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 2,
+      itemCount: 5,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            height: 220,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xff58C3D5).withOpacity(0.10),
-                  const Color(0xffEC515F).withOpacity(0.15),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: ListTile(
+            trailing: Image.asset(
+              ConstantImage.dummy_bond,
+              fit: BoxFit.fill,
+              height: 200,
+              width: 100,
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10),
-                        ),
+            visualDensity: const VisualDensity(vertical: 4),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 23,
+                      width: 80,
+                      color: AppColors.btnColor,
+                      child: Center(
+                        child: Text("Trading",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12))),
                       ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "5 min read",
-                        style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: Text(
-                      "IS BONDS GOOD INVESTMENT COMPARED WITH MUTUAL FUNDS?",
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Jan 24, 2022",
                       style: GoogleFonts.quicksand(
                           textStyle: const TextStyle(
-                              color: Color(0xff22263D),
-                              fontSize: 21,
-                              fontWeight: FontWeight.bold)),
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12)),
                     ),
-                  )
-                ],
-              ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Is Bonds Good Investment Compared With Mutual..",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16)),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: AppColors.textColor,
+                  size: 30,
+                )
+              ],
             ),
           ),
         );
@@ -846,88 +835,67 @@ class _LearnBondState extends State<LearnBond> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    blurRadius: 1.0,
-                  ),
-                ],
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: ListTile(
-                  leading: Container(
-                    height: 65,
-                    width: 110,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xff58C3D5).withOpacity(0.10),
-                          const Color(0xffEC515F).withOpacity(0.10),
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "BANK \nFD’S",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18)),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    "Bank FD’s vs Nothing Safer",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14)),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: AppColors.btnColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        height: 16,
-                        width: 65,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffE1E0E7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "5 min read",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 9)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x29000000),
+                  blurRadius: 1.0,
                 ),
-              )),
+              ],
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Image.asset(
+                  ConstantImage.dummy_pic,
+                ),
+                title: Text(
+                  "Bank FD’s vs Nothing Safer",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      "Jan 24, 2022",
+                      style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.btnColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12)),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 16,
+                      width: 65,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE1E0E7),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "5 min read",
+                          style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 9)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         );
       },
     );
@@ -942,88 +910,67 @@ class _LearnBondState extends State<LearnBond> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    blurRadius: 1.0,
-                  ),
-                ],
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: ListTile(
-                  leading: Container(
-                    height: 65,
-                    width: 110,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xff58C3D5).withOpacity(0.10),
-                          const Color(0xffEC515F).withOpacity(0.10),
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "DEBIT / \nEQUITY",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18)),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    "Debt Or Equity? Or A Combination Of Both!",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14)),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: AppColors.btnColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        height: 16,
-                        width: 65,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffE1E0E7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "5 min read",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 9)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x29000000),
+                  blurRadius: 1.0,
                 ),
-              )),
+              ],
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Image.asset(
+                  ConstantImage.dummy_pic,
+                ),
+                title: Text(
+                  "DEBT OR EQUITY? OR A COMBINATION OF BOTH!",
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      "Jan 24, 2022",
+                      style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.btnColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12)),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      height: 16,
+                      width: 65,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE1E0E7),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            bottomLeft: Radius.circular(15)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "5 min read",
+                          style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 9)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         );
       },
     );
@@ -1147,6 +1094,122 @@ class _LearnBondState extends State<LearnBond> {
           ),
         )
       ],
+    );
+  }
+
+  Widget needHelp() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Need Help?",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 50,
+            color: AppColors.textColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Speak to us",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
+                      )),
+                  const Icon(Icons.arrow_forward_rounded,
+                      size: 22, color: Colors.white)
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            height: 50,
+            color: AppColors.textColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Assisted Buying / Spelling of Bond",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
+                      )),
+                  const Icon(Icons.arrow_forward_rounded,
+                      size: 22, color: Colors.white)
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            height: 50,
+            color: AppColors.textColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("FAQ's",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
+                      )),
+                  const Icon(Icons.arrow_forward_rounded,
+                      size: 22, color: Colors.white)
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Container(
+            height: 50,
+            color: AppColors.textColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Learn from, Bond, Trust Bond",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
+                      )),
+                  const Icon(Icons.arrow_forward_rounded,
+                      size: 22, color: Colors.white)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
