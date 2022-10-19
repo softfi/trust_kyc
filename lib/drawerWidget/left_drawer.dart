@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/about_us/about_us.dart';
+import 'package:trust_money/screens/contactUs/contact_us.dart';
+import 'package:trust_money/screens/disclimar/disclamer.dart';
+import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
@@ -474,12 +478,14 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: Text("About Us",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xff22263D),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))),
+                          title: InkWell(onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>AboutUs()));},
+                            child: Text("About Us",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))),
+                          ),
                           // theme: const ExpandedTileThemeData(
                           //   headerColor: Colors.white,
                           //   // headerRadius: 24.0,
@@ -542,12 +548,15 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           textColor: text_color,
 
                           trailing: trailing_icon,
-                          title: Text("Contact Us",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xff22263D),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold))),
+                          title: InkWell(
+                            onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>ContactUs()));},
+                            child: Text("Contact Us",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold))),
+                          ),
                           // theme: const ExpandedTileThemeData(
                           //   headerColor: Colors.white,
                           //   // headerRadius: 24.0,
@@ -568,6 +577,29 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         )
                       ],
                     ),
+
+
+
+
+
+                    InkWell(
+                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>TermsConditons()));},
+                      child: Container(
+                      height: 30,
+                      alignment: Alignment.center,
+                      child: Text("Terms And Conditions"),
+                    ),),
+
+
+
+
+                    InkWell(
+                      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context)=>Disclamer()));},
+                      child: Container(
+                      height: 30,
+                      alignment: Alignment.center,
+                      child: Text("Disclamer"),
+                    ),)
                   ],
                 ),
               ],
