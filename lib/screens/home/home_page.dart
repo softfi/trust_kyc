@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/bottom_navigation/bottom_navigation.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         exit(0);
       },
       child: Scaffold(
+       // bottomNavigationBar: CustomBottomNavigation(),
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
         appBar: AppBar(

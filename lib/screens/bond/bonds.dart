@@ -28,7 +28,7 @@ class _BondsState extends State<Bonds> {
               height: 80,
               color: Color(0xff00C6D8),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Stack(
                   children: [
                     Row(
@@ -43,9 +43,11 @@ class _BondsState extends State<Bonds> {
                           "EXPLORE BONDS",
                           style: ConstStyle.quickStandSmall11,
                         ),
-                        Container(
-                          width: 50,
-                        )
+                        IconButton(
+                          icon:
+                          const Icon(Icons.notifications_none, color: Colors.white),
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                     Positioned(
@@ -204,12 +206,12 @@ class _BondsState extends State<Bonds> {
             ),
           ),
           Positioned(
-            top: 30,
-            right: 8,
+            top: 2,
+            right: 0,
             child: Image.asset(
               ConstantImage.leaf,
-              color: Colors.black12,
-              height: 400,
+              color: Colors.black26,
+              height: 300,
             ),
           )
         ],
@@ -239,7 +241,11 @@ class _BondsState extends State<Bonds> {
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(vertical: 20),
                 hintText: "Bond name, issuer and bond type",
-                prefixIcon: const Icon(Icons.search),
+                hintStyle: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                      color: Color(0xff1D2B84), fontWeight: FontWeight.w400, fontSize: 16),
+                ),
+                prefixIcon: const Icon(Icons.search,color: Color(0xff1D2B84),),
                 suffixIcon: InkWell(
                   onTap: () {},
                   child: Container(
@@ -280,7 +286,10 @@ class _BondsState extends State<Bonds> {
                   children: [
                     Text(
                       "Filter",
-                      style: ConstStyle.quickStandBtn,
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D), fontWeight: FontWeight.w600, fontSize: 15),
+                      ),
                     ),
                     const SizedBox(
                       width: 6,
@@ -289,6 +298,8 @@ class _BondsState extends State<Bonds> {
                       ConstantImage.filter,
                       width: 20,
                       height: 20,
+                        color: Color(0xff22263D)
+
                     ),
                   ],
                 ),
@@ -298,11 +309,13 @@ class _BondsState extends State<Bonds> {
                         onTap: () async{
                      // AppBottomSheet.showSortingBottomSheet(context);
 
-                      print("nskdjfhytyudg");
                         },
                         child: Text(
                           "Sort by ",
-                          style: ConstStyle.quickStandBtn,
+                          style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Color(0xff22263D), fontWeight: FontWeight.w600, fontSize: 15),
+                          ),
                         )),
                     const SizedBox(
                       width: 6,
@@ -311,6 +324,7 @@ class _BondsState extends State<Bonds> {
                       ConstantImage.sorting,
                       width: 20,
                       height: 20,
+                      color: Color(0xff22263D),
                     ),
                   ],
                 )
@@ -318,6 +332,7 @@ class _BondsState extends State<Bonds> {
             ),
           ),
         ),
+        const SizedBox(height: 5,),
         bondList(),
       ],
     );
@@ -325,7 +340,7 @@ class _BondsState extends State<Bonds> {
 
   Widget bondList() {
     return ListView.builder(
-        itemCount: 15,
+        itemCount: 10,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -540,18 +555,18 @@ class _BondsState extends State<Bonds> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "IPO",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: Color(0xffFF405A),
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold),
+                        SizedBox(width: 35,
+                          child: Text(
+                            "IPO",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: Color(0xffFF405A),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 108,
                         ),
                         InkWell(
                           onTap: () {
@@ -562,20 +577,40 @@ class _BondsState extends State<Bonds> {
                                         const ReadMoreBonds()));
                           },
                           child: Container(
-                            height: 30,
+                            height: 35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
-                              color: const Color(0xffC4414D),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x29000000),
+                                  blurRadius: 5.0,
+                                ),
+                              ],
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xffEC515F),
+                                  Color(0xffC4414D),
+                                ],
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                              ),
                             ),
                             child: Center(
                                 child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                                  const EdgeInsets.symmetric(horizontal: 40.0),
                               child: Text("Read More",
-                                  style: ConstStyle.quickStandSmall),
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                      color:Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12,
+                                    ),
+                                  )),
                             )),
                           ),
-                        )
+                        ),
+                        Container(width: 35,)
                       ],
                     ),
                   ),

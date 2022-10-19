@@ -30,6 +30,12 @@ class ConstantImage {
   static const String white_logo  = 'assets/images/white_logo.png';
   static const String dummy_bond  = 'assets/images/dummy_bond.png';
   static const String dummy_pic  = 'assets/images/dummy_pic.png';
+  static const String chat  = 'assets/images/chat.png';
+  static const String dashboard  = 'assets/images/dashboard.png';
+  static const String account  = 'assets/images/account.png';
+  static const String home  = 'assets/images/home.png';
+  static const String portfolio  = 'assets/images/portfolio.png';
+  static const String person  = 'assets/images/person.png';
 
   // gif
   static const String error = 'assets/images/error.gif';
