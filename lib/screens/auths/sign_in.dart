@@ -42,26 +42,6 @@ class _SignInState extends State<SignIn> {
         }),
       );
 
-      print(
-          '//////////////////////////print resp/////////////////////////////////');
-      print(response.toString());
-
-      print(
-          '//////////////////////////print body/////////////////////////////////');
-      print(response.body.toString());
-
-      print(
-          '//////////////////////////print code/////////////////////////////////');
-      print(response.statusCode.toString());
-
-      print(
-          '//////////////////////////print request/////////////////////////////////');
-      print(response.request.toString());
-
-      setState(() {
-        //loader = false;
-      });
-
       JsonDecoder _decoder = new JsonDecoder();
       dynamic collectUseData = _decoder.convert(response.body);
 
@@ -127,14 +107,13 @@ class _SignInState extends State<SignIn> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _space,
-                _space1,
-                const SizedBox(height: 20),
+                _space,
                 Center(
                   child: Image.asset(ConstantImage.TrustIcon,
                     height: 100,
                   ),
                 ),
-                _space,
+                _space1,
                 Center(
                   child: Text(
                     "Welcome Back, Sign In",
@@ -142,10 +121,8 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.052,
+                  height: height * 0.060,
                 ),
-                _space,
-                _space1,
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15.0,
@@ -238,13 +215,11 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: height / 2.4,
-                ),
               ],
             ),
-            _space,
-            _space1,
+            SizedBox(
+              height: height / 2.2,
+            ),
             Padding(
               padding: const EdgeInsets.only(bottom: 18.0,left: 12,right: 12),
               child: InkWell(
@@ -319,7 +294,7 @@ class _SignInState extends State<SignIn> {
                     context, MaterialPageRoute(builder: (context) => SignUp()));
               },
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
+                padding: const EdgeInsets.only(bottom: 30.0),
                 child: Center(
                   child: RichText(
                     text: const TextSpan(children: [

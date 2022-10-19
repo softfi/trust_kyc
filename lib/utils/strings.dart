@@ -41,7 +41,6 @@ class Strings {
       "I provide my consent to share my Aadhaar Number,"
       " Date of Birth and Name from my Aadhaar eKYC information with the Income Tax "
       "Department,Govt of India, All States for the purpose of fetching my  PAN Verification record into DigiLocker.";
-
   static const String advantage =
       "The stock market is the first thing that comes to most people’s minds when they think of investments. True, stock markets are exciting, and there are numerous stories of people making fortunes and becoming wealthy overnight. Bonds, while commonly thought to be a viable investment option, do not hold the same allure. To the average person, the jargon appears obscure, and many people find it uninteresting; this is especially true during exhilarating bull markets.";
   static const String advantage1 =
