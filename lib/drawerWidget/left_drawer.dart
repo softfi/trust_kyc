@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/about_us/about_us.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
+import 'package:trust_money/screens/contactUs/contact_us.dart';
+import 'package:trust_money/screens/disclimar/disclamer.dart';
+import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
+import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
+import '../screens/bond/collection_of_bonds.dart';
 import '../screens/bond/learn_bond.dart';
 
 var bg_color = Colors.white;
-var divider_color = Colors.black;
+var divider_color = AppColors.textColor;
 var text_style = GoogleFonts.quicksand(
     textStyle: const TextStyle(
         color: Color(0xff22263D), fontSize: 20, fontWeight: FontWeight.bold));
-var trailing_icon = Icon(
-  Icons.keyboard_arrow_down_outlined,
-  color: AppColors.primaryColor,
-);
+
 var text_color = Colors.black;
 
 class LeftDrawer extends StatefulWidget {
@@ -43,7 +46,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.clear))
+                        icon: const Icon(Icons.clear))
                   ],
                 ),
                 Column(
@@ -52,161 +55,147 @@ class _LeftDrawerState extends State<LeftDrawer> {
                   children: [
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                              iconColor: Colors.black,
-                              collapsedIconColor: Colors.black,
-                              textColor: text_color,
-                              trailing: trailing_icon,
-                              title: Text("BONDS",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Color(0xff22263D),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(top: 0,right:MediaQuery.of(context).size .width/12,left: 15),
-                                  color: bg_color,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      InkWell(onTap: (){
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                const Bonds()));
-                                      },
-                                        child: Container(
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                                iconColor: Colors.black,
+                                collapsedIconColor: Colors.black,
+                                textColor: text_color,
+                                title: Text("BONDS",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        top: 0,
+                                        right: MediaQuery.of(context).size.width /
+                                            12,
+                                        left: 15),
+                                    color: bg_color,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const Bonds()));
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Explore Bonds"),
+                                                  Divider(
+                                                    color: divider_color,
+                                                  )
+                                                ],
+                                              )),
+                                        ),
+                                        InkWell(  onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                  const CollectionOfBonds()));
+                                        },
+                                          child: Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Collection of Bonds"),
+                                                  Divider(
+                                                    color: divider_color,
+                                                  )
+                                                ],
+                                              )),
+                                        ),
+                                        Container(
                                             padding: EdgeInsets.only(top: 10),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text("Explore Bonds"),
+                                                Text("How it works"),
                                                 Divider(
                                                   color: divider_color,
                                                 )
                                               ],
                                             )),
-                                      ),
-                                      Container(
-                                          padding: EdgeInsets.only(top: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text("Collection of Bonds"),
-                                              Divider(
-                                                color: divider_color,
-                                              )
-                                            ],
-                                          )),
-                                      Container(
-                                          padding: EdgeInsets.only(top: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text("How it works"),
-                                              Divider(
-                                                color: divider_color,
-                                              )
-                                            ],
-                                          )),
-                                      Container(
-                                          padding: EdgeInsets.only(top: 10),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text("Frequently Asked Questions"),
-                                              Divider(
-                                                color: divider_color,
-                                              )
-                                            ],
-                                          )),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const LearnBond()));
-                                        },
-                                        child: Container(
+                                        Container(
                                             padding: EdgeInsets.only(top: 10),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                    "Learn,from Bonds, Trust Bonds"),
+                                                    "Frequently Asked Questions"),
                                                 Divider(
                                                   color: divider_color,
                                                 )
                                               ],
                                             )),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const BuyingBonds()));
-                                        },
-                                        child: Container(
-                                            padding: EdgeInsets.only(top: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Bond Ki Khaberin"),
-                                              ],
-                                            )),
-                                      ),
-                                    ],
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const LearnBond()));
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      "Learn,from Bonds, Trust Bonds"),
+                                                  Divider(
+                                                    color: divider_color,
+                                                  )
+                                                ],
+                                              )),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const BuyingBonds()));
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text("Bond Ki Khaberin"),
+                                                ],
+                                              )),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0, right: 19),
-                          child: Divider(
-                            color: divider_color,
-                            thickness: 1.2,
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                          Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Mutual Funds",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                                ]),
                           ),
                         ),
                         Padding(
@@ -220,29 +209,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Equity Trading",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Mutual Funds",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -256,29 +241,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("F&Q Trading",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Equity Trading",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -292,29 +273,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Wealth Management",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child:ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("F&Q Trading",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -328,29 +305,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Insutance",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Wealth Management",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -364,29 +337,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Fixed Deposits",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Insutance",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -400,29 +369,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Small Deposits",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child:ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Fixed Deposits",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -436,29 +401,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("NPS",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Small Deposits",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -472,29 +433,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("Talk to expert",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child:ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("NPS",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -508,29 +465,25 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("About Us",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-                            // theme: const ExpandedTileThemeData(
-                            //   headerColor: Colors.white,
-                            //   // headerRadius: 24.0,
-                            //   // headerPadding: EdgeInsets.all(24.0),
-                            //   headerSplashColor: Colors.red,
-                            //   contentBackgroundColor: Colors.white,
-                            //   // contentPadding: EdgeInsets.all(24.0),
-                            //   // contentRadius: 12.0,
-                            // ),
-                            // controller: _controller_bonds,
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: Text("Talk to expert",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold))),
+                            ),
                           ),
                         ),
                         Padding(
@@ -544,20 +497,33 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-
-                            trailing: trailing_icon,
-                            title: Text("News and Insights",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AboutUs()));
+                                },
+                                child: Text("About Us",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -571,19 +537,34 @@ class _LeftDrawerState extends State<LeftDrawer> {
                     ),
                     Column(
                       children: [
-                        Theme(data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            iconColor: Colors.black,
-                            collapsedIconColor: Colors.black,
-                            textColor: text_color,
-                            trailing: trailing_icon,
-                            title: Text("Contact Us",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold))),
-
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NewsAndInsights()));
+                                },
+                                child: Text("News and Insights",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                              ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -593,6 +574,119 @@ class _LeftDrawerState extends State<LeftDrawer> {
                             thickness: 1.2,
                           ),
                         )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child:  ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ContactUs()));
+                                },
+                                child: Text("Contact Us",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                          child: Divider(
+                            color: divider_color,
+                            thickness: 1.2,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TermsConditons()));
+                                },
+                                child: Text("Term & Conditions",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                          child: Divider(
+                            color: divider_color,
+                            thickness: 1.2,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Disclamer()));
+                                },
+                                child: Text("Disclaimer",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold))),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],

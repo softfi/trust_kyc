@@ -243,7 +243,6 @@ class _LearnBondState extends State<LearnBond> {
                     color: Colors.white),
                 child: Image.asset(
                   ConstantImage.learnBond,
-                  //width: 400,
                 ),
               ),
               Positioned(
@@ -707,7 +706,6 @@ class _LearnBondState extends State<LearnBond> {
 
 
           child: ListTile(
-
                 visualDensity: const VisualDensity(vertical: 4),
                 trailing: Image.asset(
                   ConstantImage.dummy_bond,
@@ -1018,18 +1016,18 @@ class _LearnBondState extends State<LearnBond> {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xffB2EEF8),
-                Color(0xffFFFFFF),
+                const Color(0xffB2EEF8).withOpacity(0.5),
+                const Color(0xffFFFFFF),
               ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

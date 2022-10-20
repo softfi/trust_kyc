@@ -392,7 +392,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text("Transferability",
                                   style: TextStyle(
                                       fontSize: 20,
@@ -411,113 +411,6 @@ class _BuyingBondsState extends State<BuyingBonds> {
                   SizedBox(
                     height: 20,
                   ),
-                  // Container(
-                  //   child: Column(
-                  //     children: [
-                  //       Container(
-                  //         child: Row(
-                  //           children: [
-                  //             Icon(
-                  //               Icons.account_balance,
-                  //               size: 40,
-                  //             ),
-                  //             Expanded(
-                  //               child: Text(
-                  //                 "Sovereign Gold Bonds Scheme 2021-22 - Series X",
-                  //                 softWrap: true,
-                  //                 style: ConstStyle.quickStandBold,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //       SizedBox(
-                  //         height: 20,
-                  //       ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Container(
-                  //               alignment: Alignment.center,
-                  //               height: 40,
-                  //               width: MediaQuery.of(context).size.width / 2,
-                  //               child: Text("Retuen Based On Gold Pickers"),
-                  //               decoration: BoxDecoration(
-                  //                   color: Colors.green,
-                  //                   borderRadius: BorderRadius.only(
-                  //                       bottomRight: Radius.circular(12))),
-                  //             ),
-                  //             Container(
-                  //               alignment: Alignment.center,
-                  //               height: 40,
-                  //               width: MediaQuery.of(context).size.width / 2.5,
-                  //               child: Text("ISIN: INE146O08118"),
-                  //               decoration: BoxDecoration(
-                  //                   color: Colors.grey,
-                  //                   borderRadius: BorderRadius.only(
-                  //                       bottomRight: Radius.circular(12))),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //       Row(
-                  //         children: [
-                  //           Container(
-                  //             alignment: Alignment.center,
-                  //             height: 30,
-                  //             decoration: BoxDecoration(
-                  //                 color: Colors.black,
-                  //                 borderRadius: BorderRadius.only(
-                  //                     topRight: Radius.circular(9),
-                  //                     bottomRight: Radius.circular(9))),
-                  //             child: Text(
-                  //               "Eligible Inverstor",
-                  //               style: TextStyle(color: Colors.white),
-                  //             ),
-                  //           ),
-                  //
-                  //
-                  //
-                  //
-                  //           Container(
-                  //             alignment: Alignment.center,
-                  //             height: 30,
-                  //             decoration: BoxDecoration(
-                  //                 color: Colors.black,
-                  //                 borderRadius: BorderRadius.only(
-                  //                     topRight: Radius.circular(9),
-                  //                     bottomRight: Radius.circular(9))),
-                  //             child: Text(
-                  //               "Individual",
-                  //               style: TextStyle(color: Colors.white),
-                  //             ),
-                  //           ),
-                  //
-                  //
-                  //
-                  //
-                  //
-                  //           Container(
-                  //             alignment: Alignment.center,
-                  //             height: 30,
-                  //             decoration: BoxDecoration(
-                  //                 color: Colors.black,
-                  //                 borderRadius: BorderRadius.only(
-                  //                     topRight: Radius.circular(9),
-                  //                     bottomRight: Radius.circular(9))),
-                  //             child: Text(
-                  //               "HUF",
-                  //               style: TextStyle(color: Colors.white),
-                  //             ),
-                  //           )
-                  //         ],
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
-
                   Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -557,10 +450,10 @@ class _BuyingBondsState extends State<BuyingBonds> {
                                   Text(
                                     "Mode Of Investment",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w400, fontSize: 20),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20),
                                   ),
                                   Switch(
-
                                     value: is_switch_on,
                                     onChanged: (value) {
                                       setState(() {
@@ -570,58 +463,72 @@ class _BuyingBondsState extends State<BuyingBonds> {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     children: [
-                                      Text("Enter gold quantity(A)" ,style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 20)),
-                                      Text("Range: 1gm-4000gm", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 14))
+                                      Text("Enter gold quantity(A)",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20)),
+                                      Text("Range: 1gm-4000gm",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14))
                                     ],
                                   ),
-Row(
-           children:[                 Container(
-                                    height: 30,
-                                    width: 30,
-                                    color: Colors.white,
-                                    child:Text("2"),
-                                  ),
-
-SizedBox(width: 10,),
-                                  Container(
-                                    height: 30,
-                                    color: Colors.white,
-                                    child: Text("Gram "),
-                                  )
-                      ]
-)
+                                  Row(children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      color: Colors.white,
+                                      child: Text("2"),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 30,
+                                      color: Colors.white,
+                                      child: Text("Gram "),
+                                    )
+                                  ])
                                 ],
                               ),
-
-
-                              SizedBox(height: 20,),
-
+                              SizedBox(
+                                height: 20,
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text("Issue Price(B)", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 20)),
-                                      Text("Price o f1 gram of gold -₹50 ", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 13)),
-                                      Text("Discount for online Transaction", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 13))
+                                      Text("Issue Price(B)",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20)),
+                                      Text("Price o f1 gram of gold -₹50 ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13)),
+                                      Text("Discount for online Transaction",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13))
                                     ],
                                   ),
-                                  SizedBox(width: 10,),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                   Container(
                                     height: 30,
                                     color: Colors.white,
@@ -629,27 +536,32 @@ SizedBox(width: 10,),
                                   )
                                 ],
                               ),
-
-
-                              SizedBox(height: 30,),
-
-
+                              SizedBox(
+                                height: 30,
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text("Total Insvestment", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 20)),
+                                      Text("Total Insvestment",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20)),
                                       // Text("Price o f1 gram of gold -₹50 "),
-                                      Text("Gold Quantity(A) x Issue Price(B)", style: TextStyle(
-                                          fontWeight: FontWeight.w400, fontSize: 13))
+                                      Text("Gold Quantity(A) x Issue Price(B)",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 13))
                                     ],
                                   ),
-                                  SizedBox(width: 10,),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                   Container(
                                     height: 30,
                                     color: Colors.white,
@@ -660,8 +572,9 @@ SizedBox(width: 10,),
                             ],
                           ),
                         ),
-
-                        SizedBox(height: 15,),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           height: 30,
                           width: MediaQuery.of(context).size.width / 2,
@@ -677,62 +590,65 @@ SizedBox(width: 10,),
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-
-SizedBox(height: 30,),
-
+                        SizedBox(
+                          height: 30,
+                        ),
                         Container(
                           height: 50,
                           color: Colors.black,
                           child: Center(
-                            child: Text("WHAT WILL I LEARN ",style: TextStyle(color: Colors.white),),
+                            child: Text(
+                              "WHAT WILL I LEARN ",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         )
-
                       ],
                     ),
                   ),
-
-
-
-SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Container(
                     color: Colors.red.shade400,
                     child: Row(
                       children: [
-                        Icon(Icons.account_balance,size: 50,),
+                        Icon(
+                          Icons.account_balance,
+                          size: 50,
+                        ),
                         Column(
                           children: [
-                            Text("Download Issue Documnet",style: TextStyle(
-                              color: Colors.white,fontSize: 20,
-                            ),),
-                          Text("The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.")
-                           
+                            Text(
+                              "Download Issue Documnet",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                            Text(
+                                "The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.")
                           ],
                         )
                       ],
                     ),
                   ),
-                  
-                  
-                  
-                  
-                  
                   Container(
                     padding: EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        Text("Upcoming issues",style:ConstStyle.quickStandBold,),
-                        SizedBox(height: 12,),
-                        Text("As declared by RBI, Gold bonds are issued every month. You can also easily plan your gold investments.")
+                        Text(
+                          "Upcoming issues",
+                          style: ConstStyle.quickStandBold,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                            "As declared by RBI, Gold bonds are issued every month. You can also easily plan your gold investments.")
                       ],
                     ),
                   ),
-
-
-
-
-
-
                   SizedBox(
                     height: 200,
                   )

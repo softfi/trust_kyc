@@ -4,14 +4,13 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import '../utils/images.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
-
   const CustomBottomNavigation({Key? key}) : super(key: key);
+
   @override
   State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
 }
 
 class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
-
   int _currentIndex = 0;
 
   @override
@@ -19,8 +18,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     return Scaffold(
       // backgroundColor: Colors.white,
       // bottomNavigationBar:
-      body:
-      BottomNavigationBar(
+      body: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.btnColor,

@@ -417,6 +417,7 @@ class _BondsState extends State<Bonds> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.55,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -426,8 +427,7 @@ class _BondsState extends State<Bonds> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Coupon",

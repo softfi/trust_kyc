@@ -98,7 +98,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               ),
             ),
             Container(
-              color: Color(0xffE8E8E8),
+              color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -112,7 +112,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 30, height: 28, cornerRadius: 0),
                         ),
@@ -130,7 +130,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 28, height: 30, cornerRadius: 0),
                         ),
@@ -153,7 +153,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
@@ -170,7 +170,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                     height: 20,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: investment(),
                   ),
                   const SizedBox(
@@ -200,7 +200,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
+                    color: Colors.white,
                   ),
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
@@ -222,7 +222,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
+                    color: Colors.white,
                   ),
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
@@ -2226,14 +2226,14 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     );
   }
 
-  Widget subscribe(){
+  Widget subscribe() {
     return Stack(
       children: [
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xffB2EEF8).withOpacity(0.10),
+                const Color(0xffB2EEF8).withOpacity(0.5),
                 const Color(0xffFFFFFF),
               ],
               begin: Alignment.topCenter,
@@ -2241,7 +2241,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0,horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -2343,7 +2343,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             height: 300,
           ),
         )
-
       ],
     );
   }

@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/styles.dart';
 
-
-
 class Disclamer extends StatelessWidget {
   const Disclamer({Key? key}) : super(key: key);
 

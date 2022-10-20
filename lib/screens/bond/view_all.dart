@@ -324,7 +324,7 @@ class _ViewAllState extends State<ViewAll> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xffB2EEF8).withOpacity(0.10),
+                const Color(0xffB2EEF8).withOpacity(0.5),
                 const Color(0xffFFFFFF),
               ],
               begin: Alignment.topCenter,
@@ -332,7 +332,7 @@ class _ViewAllState extends State<ViewAll> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

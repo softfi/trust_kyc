@@ -214,7 +214,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         currentStartDate = pickedStartDate;
         dob = DateFormat('dd-MM-yyyy').format(pickedStartDate);
         if (dob != date2) {
-          Fluttertoast.showToast(msg: "Your Age should be minimum 18 years!");
+          //Fluttertoast.showToast(msg: "Your Age should be minimum 18 years!");
         }
         print("dob " + dob.toString());
       });

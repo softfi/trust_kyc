@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/bottom_navigation/bottom_navigation.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
+import 'package:trust_money/screens/bond/read_more_bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../drawerWidget/drawerWidget.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         exit(0);
       },
       child: Scaffold(
-       // bottomNavigationBar: CustomBottomNavigation(),
+        // bottomNavigationBar: CustomBottomNavigation(),
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
         appBar: AppBar(
@@ -220,7 +221,14 @@ class _HomePageState extends State<HomePage> {
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.symmetric(vertical: 20),
                             hintText: "Bond name, issuer and bond type",
-                            prefixIcon: const Icon(Icons.search),
+                            hintStyle: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: Color(0xff1D2B84),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16),
+                            ),
+                            prefixIcon: const Icon(Icons.search,
+                                color: Color(0xff1D2B84)),
                             suffixIcon: InkWell(
                               onTap: () {},
                               child: Container(
@@ -451,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                                     height: 30,
                                   ),
                                   Text(
-                                    "Choose Bonds",
+                                    "CHOOSE BOND",
                                     style: GoogleFonts.quicksand(
                                       textStyle: const TextStyle(
                                         color: Color(0xff22263D),
@@ -474,7 +482,7 @@ class _HomePageState extends State<HomePage> {
                                     height: 30,
                                   ),
                                   Text(
-                                    "Make Investment",
+                                    "MAKE Investment",
                                     style: GoogleFonts.quicksand(
                                       textStyle: const TextStyle(
                                         color: Color(0xff22263D),
@@ -1090,7 +1098,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget myList() {
     return SizedBox(
-      height: 405,
+      height: 400,
       width: double.infinity,
       child: ListView.builder(
         itemCount: 5,
@@ -1110,43 +1118,58 @@ class _HomePageState extends State<HomePage> {
               ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: const Color(0xff58C3D5).withOpacity(0.35)),
-                          child: Center(
-                            child: Text(
-                              "M",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: 30,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                          borderRadius:
+                              BorderRadius.only(topRight: Radius.circular(5)),
+                          color: AppColors.textColor),
+                      child: const Center(
+                        child: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: const Color(0xff58C3D5).withOpacity(0.35)),
+                        child: Center(
+                          child: Text(
+                            "M",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xff22263D),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 160,
-                          child: Text("MAHINDRA & MAHINDRA FINANCIAL",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              )),
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        width: 160,
+                        child: Text("MAHINDRA & MAHINDRA FINANCIAL",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xff22263D),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            )),
+                      )
+                    ],
                   ),
                   Container(
                     color: const Color(0xffD67278).withOpacity(0.10),
@@ -1279,7 +1302,7 @@ class _HomePageState extends State<HomePage> {
                   Image.asset(
                     "assets/images/meter.png",
                     fit: BoxFit.fill,
-                    height: 125,
+                    height: 115,
                     width: 240,
                   ),
                   const SizedBox(
@@ -1287,19 +1310,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Row(
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "IPO",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: Color(0xffFF405A),
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold),
+                        SizedBox(
+                          width: 35,
+                          child: Text(
+                            "IPO",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: Color(0xffFF405A),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 38,
                         ),
                         Container(
                           height: 30,
@@ -1314,6 +1337,9 @@ class _HomePageState extends State<HomePage> {
                             child: Text("Read More",
                                 style: ConstStyle.quickStandSmall),
                           )),
+                        ),
+                        const SizedBox(
+                          width: 35,
                         )
                       ],
                     ),
@@ -1339,42 +1365,22 @@ class _HomePageState extends State<HomePage> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x29000000),
-                  blurRadius: 4.0,
-                ),
-              ],
-              color: Colors.white,
+            decoration:  BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.25),
+                    spreadRadius: 2,
+                    blurRadius: 11,
+                    offset: Offset(0, 3),
+                  ),],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8)
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
-                leading: Container(
-                  height: 60,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xffEC515F).withOpacity(0.29),
-                        const Color(0xff58C3D5).withOpacity(0.29),
-                      ],
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "54EC \nBonds",
-                      style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18)),
-                    ),
-                  ),
+                leading: Image.asset(
+                  ConstantImage.dummy_pic,
                 ),
                 title: Text(
                   "What are 54EC Bonds or Capital Gain Bonds",
@@ -1436,49 +1442,22 @@ class _HomePageState extends State<HomePage> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x29000000),
-                  blurRadius: 4.0,
-                ),
-              ],
+                  color: Colors.grey.withOpacity(0.25),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),],
               color: Colors.white,
+              borderRadius: BorderRadius.circular(8)
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
-                leading: Container(
-                  height: 60,
-                  width: 120,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color(0xffEC515F).withOpacity(0.29),
-                        const Color(0xff58C3D5).withOpacity(0.29),
-                      ],
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: Container(
-                      height: 30,
-                      width: 100,
-                      color: Colors.red,
-                      child: Center(
-                        child: Text(
-                          "YOURSTORY",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13)),
-                        ),
-                      ),
-                    ),
-                  ),
+                leading: Image.asset(
+                  ConstantImage.dummy_pic,
                 ),
                 title: Text(
                   "Rain matter invests Rs 3.5 Cr nin Trust Money",
