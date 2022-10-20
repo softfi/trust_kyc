@@ -46,6 +46,13 @@ class ConstantImage {
   static const String white_logo  = 'assets/images/white_logo.png';
   static const String dummy_bond  = 'assets/images/dummy_bond.png';
   static const String dummy_pic  = 'assets/images/dummy_pic.png';
+  static const String chat  = 'assets/images/chat.png';
+  static const String dashboard  = 'assets/images/dashboard.png';
+  static const String account  = 'assets/images/account.png';
+  static const String home  = 'assets/images/home.png';
+  static const String portfolio  = 'assets/images/portfolio.png';
+  static const String person  = 'assets/images/person.png';
+  static const String bg  = 'assets/images/bg.png';
 
   // gif
   static const String error = 'assets/images/error.gif';
@@ -53,6 +60,7 @@ class ConstantImage {
   static const String thumb = 'assets/images/thumb.gif';
   static const String email = 'assets/images/email.gif';
   static const String profile = 'assets/images/pro.gif';
+  static const String profileError = 'assets/images/prfile_error.gif';
   static const String card = 'assets/images/card.gif';
   static const String splash = 'assets/images/splash1.gif';
   static const String fileError = 'assets/images/file_error.gif';

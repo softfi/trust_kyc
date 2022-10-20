@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/images.dart';
-import 'package:trust_money/utils/styles.dart';
+
+import '../../bottom_navigation/bottom_navigation.dart';
+import '../../utils/colorsConstant.dart';
 
 late final TabController? _controller;
 var first_list = [
@@ -37,11 +38,18 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Collection_ofBonds_AppBar(),
+      bottomNavigationBar: CustomBottomNavigation(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            children: [Card_ui(), Tab_Bar_View()],
+            children: [
+              Card_ui(),
+              const SizedBox(
+                height: 20,
+              ),
+              Tab_Bar_View()
+            ],
           ),
         ),
       ),
@@ -73,208 +81,224 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   Card_ui() {
     return Card(
       child: Stack(children: [
-
-
-        Container(
-
-
-          height: 220,
-          alignment: Alignment(10, 98),
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage( ConstantImage.collection_container_bg))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                    top: 40,
-                    left: 15,
-                    right: MediaQuery.of(context).size.width / 3),
+        Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x29000000),
+                      blurRadius: 1.0,
+                    ),
+                  ],
+                  color: Colors.white),
+              child: Image.asset(
+                ConstantImage.collection_container_bg,
+              ),
+            ),
+            Positioned(
+              top: 38,
+              left: 10,
+              child: SizedBox(
+                width: 200,
                 child: Text(
                   "Bonds curated based on our expert’s insights and your needs",
                   style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500)),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 15),
-                child: Text(
-                  "BOND, sirf aapake liye!",
-                  style: GoogleFonts.quicksand(
+            ),
+            Positioned(
+              bottom: 78,
+              left: 10,
+              child: Text(
+                "BOND, sirf aapake liye!",
+                softWrap: true,
+                style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
                         color: Color(0xff22263D),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20),
-                  ),
-                ),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500)),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-
-        // Image.asset(
-        //   ConstantImage.collection_container_bg,
-        //   height: 220,
-        //   width: MediaQuery.of(context).size.width,
-        // ),
       ]),
     );
   }
 
   Tab_Bar_View() {
     return DefaultTabController(
-        length: 3, // length of tabs
+        length: 3,
         initialIndex: 0,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Card(
-                child: Container(
-                  height: 39,
-                  margin: EdgeInsets.only(top: 2),
-                  child: TabBar(
-                    onTap: (int index) {
-                      setState(() {
-                        selectedIndex = index;
-                        tabController?.animateTo(index);
-                      });
-                    },
-                    indicatorPadding: EdgeInsets.symmetric(horizontal: 15),
-                    indicatorWeight: 3.5,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.blue,
-                    labelColor: Colors.white,
-                    unselectedLabelColor: Colors.grey,
-                    automaticIndicatorColorAdjustment: true,
-                    isScrollable: true,
-                    indicator: BoxDecoration(color: Colors.black),
-                    tabs: [
-                      Tab(text: ' Trending '),
-                      Tab(text: ' Popular '),
-                      Tab(text: ' Entire Collection '),
-                    ],
+              TabBar(
+                onTap: (int index) {
+                  setState(() {
+                    selectedIndex = index;
+                    tabController?.animateTo(index);
+                  });
+                },
+                padding: EdgeInsets.zero,
+                indicatorPadding: EdgeInsets.zero,
+                labelPadding: EdgeInsets.zero,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorColor: Colors.transparent,
+                automaticIndicatorColorAdjustment: false,
+                isScrollable: false,
+                tabs: [
+                  Tab(
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.25),
+                            spreadRadius: 2,
+                            blurRadius: 11,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        color: selectedIndex == 0
+                            ? Colors.white
+                            : AppColors.textColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Trending",
+                          style: GoogleFonts.quicksand(
+                              textStyle: TextStyle(
+                                  color: selectedIndex == 0
+                                      ? AppColors.textColor
+                                      : Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Tab(
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.25),
+                            spreadRadius: 2,
+                            blurRadius: 11,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        color: selectedIndex == 1
+                            ? Colors.white
+                            : AppColors.textColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Popular",
+                          style: GoogleFonts.quicksand(
+                              textStyle: TextStyle(
+                                  color: selectedIndex == 1
+                                      ? AppColors.textColor
+                                      : Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.25),
+                            spreadRadius: 2,
+                            blurRadius: 11,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                        color: selectedIndex == 2
+                            ? Colors.white
+                            : AppColors.textColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Entire Collection",
+                          style: GoogleFonts.quicksand(
+                              textStyle: TextStyle(
+                                  color: selectedIndex == 2
+                                      ? AppColors.textColor
+                                      : Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              const SizedBox(height: 20,),
               IndexedStack(
+                index: selectedIndex,
                 children: <Widget>[
                   Visibility(
-                    child: Container(
-                      height: 800,
-                      child: First_listView(),
-                    ),
                     maintainState: true,
                     visible: selectedIndex == 0,
+                    child: First_listView(),
                   ),
                   Visibility(
-                    child: Container(
-                      height: 800,
-                      child: Second_listView(),
-                    ),
+                    child: Second_listView(),
                     maintainState: true,
                     visible: selectedIndex == 1,
                   ),
                   Visibility(
-                    child: Container(
-                      height: 800,
-                      child: Third_listView(),
-                    ),
+                    child: Third_listView(),
                     maintainState: true,
                     visible: selectedIndex == 2,
                   ),
                 ],
-                index: selectedIndex,
               ),
             ]));
-
-    // DefaultTabController(
-    //   initialIndex: 0,
-    //   length: 3,
-    //   child:Column(
-    //     children: [
-    //       Container(
-    //         child: TabBar(
-    //           onTap: (int index)
-    //           {
-    //             setState((){
-    //               print(index);
-    //               selectedIndex =index;
-    //               print(selectedIndex);
-    //               tabController?.animateTo(index);
-    //             });
-    //           },
-    //           // isScrollable: true,
-    //           indicatorPadding: EdgeInsets.symmetric(horizontal: 15),
-    //           indicatorWeight: 4,
-    //           tabs: [
-    //             Tab(text: "Trending",),
-    //             Tab(text: "Popular",),
-    //             Tab(text: "Entire Collection",)
-    //           ],
-    //         ),
-    //       ),
-    //       IndexedStack(
-    //
-    //         children: [
-    //           Visibility(
-    //             child: Container(
-    //               height: 100,
-    //               color: Colors.black,
-    //             ),
-    //             visible: selectedIndex==0,
-    //           ),
-    //
-    //
-    //
-    //           Visibility(
-    //             child: Container(
-    //               height: 100,
-    //               color: Colors.blue,
-    //             ),
-    //             visible: selectedIndex==1,
-    //           ),
-    //
-    //
-    //
-    //           Visibility(
-    //             child: Container(
-    //               height: 100,
-    //               color: Colors.yellow,
-    //             ),
-    //             visible: selectedIndex==2,
-    //           ),
-    //
-    //
-    //         ],
-    //         index: selectedIndex,
-    //       )
-    //     ],
-    //   ));
   }
 
   First_listView() {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: first_list.length,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
-        return Card(
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Container(
-            alignment: Alignment.center,
-            height: 80,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: ListTile(
-              title: Text(first_list[index]),
-              trailing: Icon(Icons.icecream_outlined),
+                gradient: LinearGradient(colors: [
+              Color(0xffEAF8FA).withOpacity(0.4),
+              Color(0xffF9EEEE).withOpacity(0.4)
+            ], begin: Alignment.topCenter, end: Alignment.topRight)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListTile(
+                title: Text(
+                  first_list[index],
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500)),
+                ),
+                trailing: Image.asset(
+                  ConstantImage.aboutUs6,
+                  height: 100,
+                ),
+              ),
             ),
           ),
         );
@@ -284,20 +308,33 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
 
   Second_listView() {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: first_list.length,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
-        return Card(
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Container(
-            alignment: Alignment.center,
-            height: 80,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: ListTile(
-              title: Text(first_list[index]),
-              trailing: Icon(Icons.icecream_outlined),
+                gradient: LinearGradient(colors: [
+              Color(0xffEAF8FA).withOpacity(0.4),
+              Color(0xffF9EEEE).withOpacity(0.4)
+            ], begin: Alignment.topCenter, end: Alignment.topRight)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListTile(
+                  title: Text(
+                    first_list[index],
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  trailing: Image.asset(
+                    ConstantImage.aboutUs6,
+                    height: 100,
+                  )),
             ),
           ),
         );
@@ -307,22 +344,35 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
 
   Third_listView() {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: first_list.length,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
-        return Card(
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Container(
-            alignment: Alignment.center,
-            height: 80,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: ListTile(
-              title: Text(first_list[index]),
-              trailing: Icon(Icons.icecream_outlined),
-            ),
-          ),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                Color(0xffEAF8FA).withOpacity(0.4),
+                Color(0xffF9EEEE).withOpacity(0.4)
+              ], begin: Alignment.topCenter, end: Alignment.topRight)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: ListTile(
+                  title: Text(
+                    first_list[index],
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  trailing: Image.asset(
+                    ConstantImage.aboutUs6,
+                    height: 100,
+                  ),
+                ),
+              )),
         );
       },
     );

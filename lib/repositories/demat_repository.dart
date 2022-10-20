@@ -257,14 +257,14 @@ class DematDetailRepository {
     }
   }
 
-  Future<Map<String, dynamic>?> deleteDematDetails() async {
+  Future<Map<String, dynamic>?> deleteDematDetails(int accountID) async {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
-        .delete(endpoint: TrustKycUrl.deleteDemat);
+        .delete(endpoint: "${TrustKycUrl.deleteDemat}?id=$accountID");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
-      Fluttertoast.showToast(msg: 'demat details deleted');
+      Fluttertoast.showToast(msg: 'Demat account deleted successfully');
     }
     return data;
   }

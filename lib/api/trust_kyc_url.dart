@@ -41,8 +41,8 @@ class TrustKycUrl {
   //demat detail
   static const dematDetail = 'api/v1/new_demat_account_details';
   static const getdematDetail = 'api/v1/new_demat_account_details';
+  static const deleteDemat = 'api/v1/new_demat_account_details';
   static const existingDemat = 'api/v1/existing_demat_account_details';
-  static const deleteDemat = 'api/v1/existing_demat_account_details';
   static const addNomineeDetail = 'api/v1/nominee_details';
 
   //upload images

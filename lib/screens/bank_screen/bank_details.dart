@@ -404,9 +404,7 @@ class _BankDetailsState extends State<BankDetails> {
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          setState(() {
-                                            enableDisableBottomSheet();
-                                          });
+                                          enableDisableBottomSheet();
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
@@ -1245,7 +1243,7 @@ class _BankDetailsState extends State<BankDetails> {
           return BottomSheet(
             builder: (BuildContext context) {
               return StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setate) {
+                  builder: (BuildContext context, StateSetter State) {
                 return Wrap(
                   children: [
                     Container(
@@ -1333,8 +1331,8 @@ class _BankDetailsState extends State<BankDetails> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  setate(() {
-                                    Navigator.pop(context);
+                                  Navigator.pop(context);
+                                  State(() {
                                     isToggle = !isToggle;
                                     print("isToggle $isToggle");
                                   });

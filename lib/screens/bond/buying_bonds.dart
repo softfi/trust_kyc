@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,21 @@ import 'dart:math' as math;
 bool itrValue = true;
 List <String> items=["Gram","Kilo","Mili"];
 String? selectedItem="Gram";
+=======
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/images.dart';
+import 'dart:math' as math;
+
+import '../../bottom_navigation/bottom_navigation.dart';
+
+bool itrValue = true;
+List<String> items = ["Gram", "Kilo", "Mili"];
+String? selectedItem = "Gram";
+>>>>>>> master
 bool is_switch_on = true;
 bool _customTileExpanded = false;
 int itrValueInt = 0;
@@ -28,7 +44,11 @@ class _BuyingBondsState extends State<BuyingBonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
 
+=======
+      bottomNavigationBar: CustomBottomNavigation(),
+>>>>>>> master
       appBar: AppBar(
         title: Text(
           "SOVEREIGN GOLD BONDS…",
@@ -538,6 +558,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
 
                   // sovereign_bond_scheme_seriesX(),
                   Card(child: readBondWidget()),
+<<<<<<< HEAD
 
                   SizedBox(
                     height: 30,
@@ -604,10 +625,77 @@ class _BuyingBondsState extends State<BuyingBonds> {
                     height: 30,
                   ),
                   needHelp(),
+=======
+>>>>>>> master
 
                   SizedBox(
-                    height: 200,
-                  )
+                    height: 30,
+                  ),
+
+                  investment(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+
+                  ///we need to add the widet here
+                  download_document(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  upcoming_issue(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: 55,
+                      width: 160,
+                      decoration: const BoxDecoration(
+                        color: AppColors.btnColor,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            bottomLeft: Radius.circular(50)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Subscribe",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16)),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  treeWiddget(),
+                  SizedBox(
+                    height: 30,
+                  ),
+
+                  subscribe(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  needHelp(),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             )
@@ -1025,7 +1113,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+<<<<<<< HEAD
                 Container( width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1090,7 +1183,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Container( width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1122,7 +1220,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+<<<<<<< HEAD
                       "Issue Opening-Closing\n Dates",overflow: TextOverflow.ellipsis,
+=======
+                      "Issue Opening-Closing\n Dates",
+                      overflow: TextOverflow.ellipsis,
+>>>>>>> master
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.primaryColor,
@@ -1155,7 +1258,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Container(width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1220,7 +1328,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Container(width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1280,7 +1393,10 @@ class _BuyingBondsState extends State<BuyingBonds> {
                             fontWeight: FontWeight.bold,
                             fontSize: 13),
                       ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
                     ),
                     Text(
                       "During each financial\nyear",
@@ -1304,7 +1420,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Container(width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1369,7 +1490,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+<<<<<<< HEAD
                 Container(width: MediaQuery.of(context).size.width*0.50,
+=======
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.50,
+>>>>>>> master
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -1421,7 +1547,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
                             fontSize: 13),
                       ),
                     ),
+<<<<<<< HEAD
                     Text("After the 5th year.\nInvestors can \nexercise it on \nthe next interest\npayment dates.")
+=======
+                    Text(
+                        "After the 5th year.\nInvestors can \nexercise it on \nthe next interest\npayment dates.")
+>>>>>>> master
                   ],
                 )
               ],
@@ -1432,6 +1563,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
     );
   }
 
+<<<<<<< HEAD
   // Widget cardWidget() {
   //   return Column(
   //     children: [
@@ -1549,6 +1681,8 @@ class _BuyingBondsState extends State<BuyingBonds> {
   //   );
   // }
 
+=======
+>>>>>>> master
   Widget investment() {
     return Container(
         decoration: BoxDecoration(
@@ -1585,10 +1719,23 @@ class _BuyingBondsState extends State<BuyingBonds> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15.0, vertical: 20),
+<<<<<<< HEAD
                     child: Text("The maximum limit of subscription shall be 4 kg for individuals, 4 kg for Hindu Undivided Family (HUF) and 20 kg for trusts and similar entities notified by the government from time to time",style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D), fontWeight: FontWeight.w400, fontSize: 12,letterSpacing: 0),
                     ),),
+=======
+                    child: Text(
+                      "The maximum limit of subscription shall be 4 kg for individuals, 4 kg for Hindu Undivided Family (HUF) and 20 kg for trusts and similar entities notified by the government from time to time",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            letterSpacing: 0),
+                      ),
+                    ),
+>>>>>>> master
                   ),
                 ),
                 Padding(
@@ -1610,7 +1757,11 @@ class _BuyingBondsState extends State<BuyingBonds> {
 
                           ///add button here
 // RadioListTile(value: "Gold Oty", groupValue:button_value, onChanged:(value){})
+<<<<<<< HEAD
                        Text("Radio Button to be shown here")
+=======
+                          Text("Radio Button to be shown here")
+>>>>>>> master
                         ],
                       ),
                       const SizedBox(
@@ -1682,8 +1833,12 @@ class _BuyingBondsState extends State<BuyingBonds> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
+<<<<<<< HEAD
                               child:
                               Row(
+=======
+                              child: Row(
+>>>>>>> master
                                 children: [
                                   Text(
                                     "",
@@ -1694,6 +1849,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                                             fontWeight: FontWeight.bold)),
                                   ),
 
+<<<<<<< HEAD
 
 
                                   /////drop down butyton here
@@ -1720,6 +1876,24 @@ Container(
 
 
 
+=======
+                                  /////drop down butyton here
+
+                                  Container(
+                                    child: DropdownButton<String>(
+                                      onChanged: (value) {
+                                        setState(() => selectedItem = value);
+                                      },
+                                      value: selectedItem,
+                                      items: items
+                                          .map((item) => DropdownMenuItem(
+                                                value: item,
+                                                child: Text(item),
+                                              ))
+                                          .toList(),
+                                    ),
+                                  )
+>>>>>>> master
                                 ],
                               ),
                             ),
@@ -1801,8 +1975,12 @@ Container(
                                       fontSize: 16,
                                     ),
                                   )),
+<<<<<<< HEAD
                               Text(
                                   "Gold Quantity (A) x Issue Price (B)",
+=======
+                              Text("Gold Quantity (A) x Issue Price (B)",
+>>>>>>> master
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: const TextStyle(
                                       color: Color(0xff22263D),
@@ -1862,6 +2040,7 @@ Container(
                           ),
                           child: Center(
                               child: Padding(
+<<<<<<< HEAD
                                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                                 child: Text("Buy this BOND now!",
                                     style: GoogleFonts.quicksand(
@@ -1872,6 +2051,19 @@ Container(
                                       ),
                                     )),
                               )),
+=======
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Text("Buy this BOND now!",
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFfffff),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                )),
+                          )),
+>>>>>>> master
                         ),
                       ),
                     ],
@@ -2873,12 +3065,15 @@ Container(
               ),
             ),
           ),
+<<<<<<< HEAD
           const SizedBox(
             height: 8,
           ),
           const SizedBox(
             height: 20,
           ),
+=======
+>>>>>>> master
         ],
       ),
     );
@@ -2893,6 +3088,7 @@ Container(
                 end: Alignment.centerRight)),
         child: ListTile(
           minLeadingWidth: 0,
+<<<<<<< HEAD
             leading: SvgPicture.asset(
               ConstantImage.issue_doc,
               height: 60,
@@ -2913,10 +3109,37 @@ Container(
           )),
         )
     );
+=======
+          leading: SvgPicture.asset(
+            ConstantImage.issue_doc,
+            height: 60,
+            width: 60,
+          ),
+          title: Text(
+            "DOWNLOAD ISSUE DOCUMENTS",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: Color(0xffFFFFFF),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20),
+            ),
+          ),
+          subtitle: Text(
+              "The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.",
+              style: GoogleFonts.sourceSansPro(
+                textStyle: const TextStyle(
+                  color: Color(0xffFFFFFF),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                ),
+              )),
+        ));
+>>>>>>> master
   }
 
   upcoming_issue() {
     return Column(
+<<<<<<< HEAD
         children: [
           ListTile(
             title: Text("Upcoming issues",style: GoogleFonts.quicksand(
@@ -3109,6 +3332,266 @@ Container(
             ],
           )
         ],
+=======
+      children: [
+        ListTile(
+          title: Text(
+            "Upcoming issues",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: Color(0xff22263D),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+          ),
+          subtitle: Text(
+            "As declared by RBI, Gold bonds are issued every month. You can also easily plan your gold investments.",
+            style: GoogleFonts.sourceSansPro(
+              textStyle: const TextStyle(
+                  color: Color(0xff1C1C1C),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  letterSpacing: 0),
+            ),
+          ),
+        ),
+        Table(
+          columnWidths: {0: FixedColumnWidth(60)},
+          border: TableBorder.all(color: Colors.grey.shade400),
+          children: [
+            TableRow(children: [
+              Container(
+                width: MediaQuery.of(context).size.width / 9,
+                decoration: BoxDecoration(color: Color(0xff2F2648)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "S.no",
+                    style: GoogleFonts.sourceSansPro(
+                      textStyle: const TextStyle(
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
+                          letterSpacing: 0),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(color: Color(0xff2F2648)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Issue Name*",
+                    style: GoogleFonts.sourceSansPro(
+                      textStyle: const TextStyle(
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
+                          letterSpacing: 0),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(color: Color(0xff2F2648)),
+                child: Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Subscription Dates",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xffFFFFFF),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+            TableRow(children: [
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("1",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("2020-21 Series X|",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Oct 12, 2020 - Oct 16, 2020",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+            ]),
+            TableRow(children: [
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("2",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("2020-21 Series X|",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Oct 12, 2020 - Oct 16, 2020",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+            ]),
+            TableRow(children: [
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("3",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("2020-21 Series X|",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Oct 12, 2020 - Oct 16, 2020",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+            ]),
+            TableRow(children: [
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("4",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("2020-21 Series X|",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Oct 12, 2020 - Oct 16, 2020",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            letterSpacing: 0),
+                      )),
+                ),
+              ),
+            ])
+          ],
+        )
+      ],
+>>>>>>> master
     );
   }
 }

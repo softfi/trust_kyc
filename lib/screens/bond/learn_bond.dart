@@ -7,6 +7,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
+
 class LearnBond extends StatefulWidget {
   const LearnBond({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class _LearnBondState extends State<LearnBond> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
@@ -27,7 +30,7 @@ class _LearnBondState extends State<LearnBond> {
               height: 80,
               color: const Color(0xff00C6D8),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Stack(
                   children: [
                     Row(
@@ -38,13 +41,21 @@ class _LearnBondState extends State<LearnBond> {
                               const Icon(Icons.arrow_back, color: Colors.white),
                           onPressed: () => Navigator.of(context).pop(),
                         ),
-                        Text(
-                          "LEARN, FROM BOND",
-                          style: ConstStyle.quickStandSmall11,
+                        Flexible(
+                          child: Container(
+                            child: Text(
+                              "LEARN, FROM BOND,TRUST BOND",
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: ConstStyle.quickStandSmall11,
+                            ),
+                          ),
                         ),
-                        Container(
-                          width: 50,
-                        )
+                        IconButton(
+                          icon:
+                          const Icon(Icons.notifications_none, color: Colors.white),
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                     Positioned(
@@ -166,7 +177,7 @@ class _LearnBondState extends State<LearnBond> {
               ),
             ),
           ),
-          Positioned(
+        /*  Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -209,7 +220,7 @@ class _LearnBondState extends State<LearnBond> {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -225,17 +236,16 @@ class _LearnBondState extends State<LearnBond> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(8),
                     boxShadow: const [
                       BoxShadow(
                         color: Color(0x29000000),
-                        blurRadius: 3.0,
+                        blurRadius: 9.0,
                       ),
                     ],
                     color: Colors.white),
                 child: Image.asset(
                   ConstantImage.learnBond,
-                  width: 400,
                 ),
               ),
               Positioned(
@@ -602,16 +612,17 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration: const BoxDecoration(
+          child: Container(decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x29000000),
-                  blurRadius: 1.0,
-                ),
-              ],
+                  color: Colors.grey.withOpacity(0.35),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),],
               color: Colors.white,
-            ),
+              borderRadius: BorderRadius.circular(6)
+          ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -684,15 +695,115 @@ class _LearnBondState extends State<LearnBond> {
                     builder: (context) =>
                     const BondAdvantage()));
           },
+            child: Container(decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.35),
+                    spreadRadius: 2,
+                    blurRadius: 11,
+                    offset: Offset(0, 3),
+                  ),],
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6)
+            ),
+
+
+          child: ListTile(
+                visualDensity: const VisualDensity(vertical: 4),
+                trailing: Image.asset(
+                  ConstantImage.dummy_bond,
+                  fit: BoxFit.fill,
+                  height: 200,
+                  width: 100,
+                ),
+                dense: true,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 23,
+                          width: 80,
+                          color: AppColors.btnColor,
+                          child: Center(
+                            child: Text("Trading",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12))),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "Jan 24, 2022",
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "New ideas for a Equity Trading",
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_rounded,
+                      color: AppColors.textColor,
+                      size: 30,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget debtBondList() {
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child:Container(decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.11),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),],
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6)
+          ),
             child: ListTile(
-              visualDensity: const VisualDensity(vertical: 4),
               trailing: Image.asset(
                 ConstantImage.dummy_bond,
                 fit: BoxFit.fill,
                 height: 200,
                 width: 100,
               ),
-              dense: true,
+              visualDensity: const VisualDensity(vertical: 4),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -728,7 +839,7 @@ class _LearnBondState extends State<LearnBond> {
                     height: 10,
                   ),
                   Text(
-                    "New ideas for a Equity Trading",
+                    "Is Bonds Good Investment Compared With Mutual..",
                     style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -752,80 +863,6 @@ class _LearnBondState extends State<LearnBond> {
     );
   }
 
-  Widget debtBondList() {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: ListTile(
-            trailing: Image.asset(
-              ConstantImage.dummy_bond,
-              fit: BoxFit.fill,
-              height: 200,
-              width: 100,
-            ),
-            visualDensity: const VisualDensity(vertical: 4),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 23,
-                      width: 80,
-                      color: AppColors.btnColor,
-                      child: Center(
-                        child: Text("Trading",
-                            style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12))),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Jan 24, 2022",
-                      style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12)),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Is Bonds Good Investment Compared With Mutual..",
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16)),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Icon(
-                  Icons.arrow_forward_rounded,
-                  color: AppColors.textColor,
-                  size: 30,
-                )
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget taxBondList() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
@@ -834,16 +871,17 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration: const BoxDecoration(
+          child: Container(decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x29000000),
-                  blurRadius: 1.0,
-                ),
-              ],
+                  color: Colors.grey.withOpacity(0.35),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),],
               color: Colors.white,
-            ),
+              borderRadius: BorderRadius.circular(6)
+          ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -909,16 +947,17 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration: const BoxDecoration(
+          child: Container(decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x29000000),
-                  blurRadius: 1.0,
-                ),
-              ],
+                  color: Colors.grey.withOpacity(0.35),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),],
               color: Colors.white,
-            ),
+              borderRadius: BorderRadius.circular(6)
+          ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -983,11 +1022,11 @@ class _LearnBondState extends State<LearnBond> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color(0xffB2EEF8).withOpacity(0.10),
+                const Color(0xffB2EEF8).withOpacity(0.5),
                 const Color(0xffFFFFFF),
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
             ),
           ),
           child: Padding(
