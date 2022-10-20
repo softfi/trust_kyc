@@ -123,6 +123,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             )),
                         Container(height: 100,
+                          width: MediaQuery.of(context).size.width,
                           child: Stack(
                             children: [
                               Column(crossAxisAlignment: CrossAxisAlignment.start,
