@@ -327,12 +327,12 @@ class _ViewAllState extends State<ViewAll> {
                 const Color(0xffB2EEF8).withOpacity(0.5),
                 const Color(0xffFFFFFF),
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

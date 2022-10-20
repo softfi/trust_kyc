@@ -187,8 +187,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     panStatusModel = await ProfileRepository().getPanCard(pNumber);
     if (panStatusModel != "") {
       print(
-          "============PANIPV ${panStatusModel
-              ?.personVideoVerificationStatus}");
+          "============PANIPV ${panStatusModel?.personVideoVerificationStatus}");
     }
   }
 
@@ -226,7 +225,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -275,7 +274,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 
   sendOtp_toEmail(String mobnumber, String emailid, bool boolvalue) async {
     var res1 =
-    await LoginRepository().sentOtpToEmail(mobnumber, emailid, boolvalue);
+        await LoginRepository().sentOtpToEmail(mobnumber, emailid, boolvalue);
     if (res1 != "") {
       sendotptoemail = res1;
       Navigator.pop(context);
@@ -325,8 +324,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     }
   }
 
-  void _resendOTPEmail(String mobnumber, String emailid,
-      isemailResendOTPt) async {
+  void _resendOTPEmail(
+      String mobnumber, String emailid, isemailResendOTPt) async {
     String token = await HelperFunctions.getToken();
     try {
       Response response = await post(
@@ -398,7 +397,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   _initCamera() async {
     final cameras = await availableCameras();
     final front = cameras.firstWhere(
-            (camera) => camera.lensDirection == CameraLensDirection.front);
+        (camera) => camera.lensDirection == CameraLensDirection.front);
     _cameraController = CameraController(front, ResolutionPreset.low);
     await _cameraController.initialize();
     setState(() => _isLoading = false);
@@ -444,28 +443,28 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   Widget build(BuildContext context) {
     return isPersonalDataFetch
         ? Column(
-      children: [
-        Visibility(
-            visible: profileprofilevisbileTab1,
-            child: updatedPersonalDetails()),
-        Visibility(
-            visible: profilevisbileTab2,
-            child: editPersonalDetails(context)),
-        Visibility(
-            visible: inPersonVerifications,
-            child: inPersonVerification()),
-        Visibility(visible: profilevisbileTab3, child: editPersonalPic()),
-        Visibility(
-            visible: isBankShowing,
-            child: BankDetails(
-              cardView: false,
-              addBankView: true,
-            )),
-      ],
-    )
+            children: [
+              Visibility(
+                  visible: profileprofilevisbileTab1,
+                  child: updatedPersonalDetails(),),
+              Visibility(
+                  visible: profilevisbileTab2,
+                  child: editPersonalDetails(context)),
+              Visibility(
+                  visible: inPersonVerifications,
+                  child: inPersonVerification()),
+              Visibility(visible: profilevisbileTab3, child: editPersonalPic()),
+              Visibility(
+                  visible: isBankShowing,
+                  child: BankDetails(
+                    cardView: false,
+                    addBankView: true,
+                  )),
+            ],
+          )
         : Center(
-        heightFactor: 18,
-        child: CircularProgressIndicator(color: Color(0xff00C6D8)));
+            heightFactor: 18,
+            child: CircularProgressIndicator(color: Color(0xff00C6D8)));
   }
 
   Widget personalDetails() {
@@ -474,10 +473,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: const Color(0xffF7F7FA).withOpacity(0.35),
@@ -515,25 +511,25 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: AppColors.textColor),
                         child: Center(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Image.asset(
-                                    "assets/images/edit.png",
-                                    scale: 0.7,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const Text(
-                                  "Edit",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            )),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Image.asset(
+                                "assets/images/edit.png",
+                                scale: 0.7,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Text(
+                              "Edit",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        )),
                       ),
                     ),
                   ),
@@ -763,9 +759,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Male",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Male",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -779,9 +775,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Female",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Female",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -795,9 +791,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Trans.",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Trans.",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                     ],
                   ),
@@ -819,9 +815,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Single",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Single",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -831,13 +827,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         width: 80,
                         decoration: BoxDecoration(
                             border:
-                            Border.all(width: 1, color: Color(0xffC8C7CE)),
+                                Border.all(width: 1, color: Color(0xffC8C7CE)),
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Married",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Married",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -851,9 +847,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Text(
-                              "Others",
-                              style: ConstStyle.sourceSansDisable,
-                            )),
+                          "Others",
+                          style: ConstStyle.sourceSansDisable,
+                        )),
                       ),
                     ],
                   ),
@@ -889,11 +885,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("Below 1 Lakh",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("Below 1 Lakh",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -906,11 +901,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("1-5 Lakh",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("1-5 Lakh",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -923,11 +917,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("5-10 Lakh",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("5-10 Lakh",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                     ],
                   ),
@@ -944,11 +937,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("10-25 Lakh",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("10-25 Lakh",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -961,11 +953,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("Above 25 Lakh",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("Above 25 Lakh",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                     ],
                   ),
@@ -988,11 +979,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("Less Than 1 Year",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("Less Than 1 Year",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -1005,11 +995,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("1-2 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("1-2 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -1022,11 +1011,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("2-5 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("2-5 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                     ],
                   ),
@@ -1043,11 +1031,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("5-10 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("5-10 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -1060,11 +1047,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("10-20 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("10-20 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
@@ -1077,11 +1063,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("20-25 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("20-25 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                     ],
                   ),
@@ -1098,11 +1083,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
-                              child: Text("Above 25 Years",
-                                  style: ConstStyle.sourceSansDisable),
-                            )),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text("Above 25 Years",
+                              style: ConstStyle.sourceSansDisable),
+                        )),
                       ),
                     ],
                   ),
@@ -1141,10 +1125,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1.5,
+                        width: MediaQuery.of(context).size.width / 1.5,
                         child: Text(
                           Strings.active_check,
                           style: ConstStyle.sourceSansDisable,
@@ -1235,10 +1216,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
       child: Column(
         children: [
           Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: const Color(0xffF7F7FA).withOpacity(0.35),
@@ -1248,59 +1226,63 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        profileprofilevisbileTab1 = false;
-                        profilevisbileTab2 = true;
-                        profilevisbileTab3 = false;
-                        isAdditional = false;
-                        isEditStep1 = true;
-                        isEditStep2 = false;
-                        isEditStep12 = false;
-                        isAadhaarVerified = false;
-                        inPersonVerifications = false;
-                        isSignInDemat = false;
-                        isAddressAdd = false;
-                        isPanVerify = false;
-                      });
-                    },
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        height: 25,
-                        width: 70,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(5),
-                                bottomRight: Radius.circular(5)),
-                            color: AppColors.textColor),
-                        child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Image.asset(
-                                    "assets/images/edit.png",
-                                    scale: 0.7,
-                                    color: Colors.white,
+                  getPersonalDetail!.marriedStatus == null
+                      ? GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              profileprofilevisbileTab1 = false;
+                              profilevisbileTab2 = true;
+                              profilevisbileTab3 = false;
+                              isAdditional = false;
+                              isEditStep1 = true;
+                              isEditStep2 = false;
+                              isEditStep12 = false;
+                              isAadhaarVerified = false;
+                              inPersonVerifications = false;
+                              isSignInDemat = false;
+                              isAddressAdd = false;
+                              isPanVerify = false;
+                            });
+                          },
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              height: 25,
+                              width: 70,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(5),
+                                      bottomRight: Radius.circular(5)),
+                                  color: AppColors.textColor),
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Image.asset(
+                                      "assets/images/edit.png",
+                                      scale: 0.7,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                const Text(
-                                  "Edit",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                  ),
+                                  const Text(
+                                    "Edit",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              )),
+                            ),
+                          ),
+                        )
+                      : Container(),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding: getPersonalDetail!.marriedStatus == null
+                        ? EdgeInsets.only(left: 8.0)
+                        : EdgeInsets.only(left: 8.0, bottom: 8, top: 12),
                     child: Text(
                       "Personal Details",
                       style: ConstStyle.quickMedium,
@@ -1350,7 +1332,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         height: 30,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: Color(0xff00E152)),
+                            color: Colors.green),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
@@ -1386,10 +1368,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 2.4,
+                        width: MediaQuery.of(context).size.width / 2.4,
                         child: Text(
                             getPersonalDetail!.isEmailVerified == 1
                                 ? getPersonalDetail!.emailId.toString()
@@ -1410,7 +1389,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: getPersonalDetail!.isEmailVerified == 1
-                                ? Color(0xff00E152)
+                                ? Colors.green
                                 : Color(0xffC8C7CE)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -1452,7 +1431,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 color: Color(0xff00C6D8)),
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -1504,14 +1483,15 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   Row(
                     children: [
                       Text(
-                          (getPersonalDetail!.isPanVerified ?? 0)== 1
+                          (getPersonalDetail!.isPanVerified ?? 0) == 1
                               ? getPersonalDetail!.panNumber.toString()
                               : "PAN NUMBER",
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
-                                color: (getPersonalDetail!.isPanVerified ?? 0)== 1
-                                    ? Color(0xff22263D)
-                                    : Color(0xffC8C7CE),
+                                color:
+                                    (getPersonalDetail!.isPanVerified ?? 0) == 1
+                                        ? Color(0xff22263D)
+                                        : Color(0xffC8C7CE),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
                                 letterSpacing: 2),
@@ -1524,7 +1504,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: (getPersonalDetail!.isPanVerified ?? 0) == 1
-                                ? Color(0xff00E152)
+                                ? Colors.green
                                 : Color(0xffC8C7CE)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -1565,7 +1545,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               : "AADHAAR NUMBER",
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
-                                color: (getPersonalDetail!.isAadharVerified ?? 0) == 1
+                                color: (getPersonalDetail!.isAadharVerified ??
+                                            0) ==
+                                        1
                                     ? Color(0xff22263D)
                                     : Color(0xffC8C7CE),
                                 fontWeight: FontWeight.w400,
@@ -1579,9 +1561,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         height: 30,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: (getPersonalDetail!.isAadharVerified ?? 0) == 1
-                                ? Color(0xff00E152)
-                                : Color(0xffC8C7CE)),
+                            color:
+                                (getPersonalDetail!.isAadharVerified ?? 0) == 1
+                                    ? Colors.green
+                                    : Color(0xffC8C7CE)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Row(
@@ -1613,294 +1596,290 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   Text("What is your gender? ",
                       style: ConstStyle.sourceSansProDisable),
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: (getPersonalDetail!.gender ?? 0) == 1
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: (getPersonalDetail!.gender ?? 0) == 1
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Male",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: (getPersonalDetail!.gender ?? 0) == 1
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: (getPersonalDetail!.gender ?? 0) == 1
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: (getPersonalDetail!.gender ?? 0) == 1
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Male",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: (getPersonalDetail!.gender ?? 0) == 1
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.gender == 2
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.gender == 2
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Female",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.gender == 2
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.gender == 2
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.gender == 2
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Female",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.gender == 2
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.gender == 3
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.gender == 3
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Trans",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.gender == 3
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.gender == 3
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.gender == 3
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Trans",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.gender == 3
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Visibility(
-                        visible: getPersonalDetail!.mothersMaidenName != "" &&
-                            getPersonalDetail!.mothersMaidenName != null
-                            ? true
-                            : false,
-                        child: InkWell(
-                          onTap: () {
-                            updateGenderBottomSheet();
-                          },
-                          child: Container(
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xff00C6D8)),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/edit.png",
-                                    scale: 6,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "Update",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Visibility(
+                          visible: getPersonalDetail!.mothersMaidenName != "" &&
+                                  getPersonalDetail!.mothersMaidenName != null
+                              ? true
+                              : false,
+                          child: InkWell(
+                            onTap: () {
+                              updateGenderBottomSheet();
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xff00C6D8)),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/edit.png",
+                                      scale: 6,
+                                      color: Colors.white,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Update",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   _space,
                   Text("What is your marital status?",
                       style: ConstStyle.sourceSansProDisable),
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.marriedStatus == 1
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.marriedStatus == 1
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Single",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.marriedStatus ==
-                                          1
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.marriedStatus == 1
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.marriedStatus == 1
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Single",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.marriedStatus == 1
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.marriedStatus == 2
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.marriedStatus == 2
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Married",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.marriedStatus ==
-                                          2
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.marriedStatus == 2
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.marriedStatus == 2
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Married",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.marriedStatus == 2
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.marriedStatus == 3
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.marriedStatus == 3
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Others",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.marriedStatus ==
-                                          3
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.marriedStatus == 3
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.marriedStatus == 3
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Others",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.marriedStatus == 3
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Visibility(
-                        visible: getPersonalDetail!.mothersMaidenName != "" &&
-                            getPersonalDetail!.mothersMaidenName != null
-                            ? true
-                            : false,
-                        child: InkWell(
-                          onTap: () {
-                            updateMaritalBottomSheet();
-                          },
-                          child: Container(
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xff00C6D8)),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/edit.png",
-                                    scale: 6,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "Update",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Visibility(
+                          visible: getPersonalDetail!.mothersMaidenName != "" &&
+                                  getPersonalDetail!.mothersMaidenName != null
+                              ? true
+                              : false,
+                          child: InkWell(
+                            onTap: () {
+                              updateMaritalBottomSheet();
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xff00C6D8)),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/edit.png",
+                                      scale: 6,
+                                      color: Colors.white,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Update",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   _space,
                   Visibility(
@@ -1912,10 +1891,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             style: ConstStyle.sourceSansProDisable),
                         _space1,
                         Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1.2, color: Color(0xffC8C7CD)),
@@ -1925,17 +1901,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             padding: EdgeInsets.all(10.0),
                             child: Text(
                                 isAddressUpdated
-                                    ? "${getPersonalDetail!
-                                    .addressLine1}, ${getPersonalDetail!
-                                    .addressLine2}, ${getPersonalDetail!
-                                    .addressState}"
+                                    ? "${getPersonalDetail!.addressLine1}, ${getPersonalDetail!.addressLine2}, ${getPersonalDetail!.addressState}"
                                     : digiLockerDetailModel != null
-                                    ? "${digiLockerDetailModel!
-                                    .location}, ${digiLockerDetailModel!
-                                    .villageTownCity}, ${digiLockerDetailModel!
-                                    .district}, ${digiLockerDetailModel!
-                                    .state}, ${digiLockerDetailModel!.country}"
-                                    : "",
+                                        ? "${digiLockerDetailModel!.location}, ${digiLockerDetailModel!.villageTownCity}, ${digiLockerDetailModel!.district}, ${digiLockerDetailModel!.state}, ${digiLockerDetailModel!.country}"
+                                        : "",
                                 textAlign: TextAlign.start,
                                 style: ConstStyle.sourceSans1),
                           ),
@@ -2009,217 +1978,211 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     style: ConstStyle.sourceSansProDisable,
                   ),
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.annualIncome == 1
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.annualIncome == 1
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Below 1 Lakh",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.annualIncome ==
-                                          1
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.annualIncome == 1
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.annualIncome == 1
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Below 1 Lakh",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.annualIncome == 1
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.annualIncome == 2
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.annualIncome == 2
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "1-5 Lakh",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.annualIncome ==
-                                          2
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.annualIncome == 2
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.annualIncome == 2
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "1-5 Lakh",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.annualIncome == 2
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.annualIncome == 3
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.annualIncome == 3
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "5-10 Lakh",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.annualIncome ==
-                                          3
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.annualIncome == 3
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.annualIncome == 3
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "5-10 Lakh",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.annualIncome == 3
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                    ],
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
                   ),
                   _space1,
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.annualIncome == 4
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.annualIncome == 4
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "10-20 Lakh",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.annualIncome ==
-                                          4
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.annualIncome == 4
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.annualIncome == 4
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "10-20 Lakh",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.annualIncome == 4
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.annualIncome == 5
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.annualIncome == 5
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Above 25 Lakh",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color: getPersonalDetail!.annualIncome ==
-                                          5
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.annualIncome == 5
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.annualIncome == 5
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Above 25 Lakh",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color: getPersonalDetail!.annualIncome == 5
+                                        ? Colors.white
+                                        : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Visibility(
-                        visible: getPersonalDetail!.mothersMaidenName != "" &&
-                            getPersonalDetail!.mothersMaidenName != null
-                            ? true
-                            : false,
-                        child: InkWell(
-                          onTap: () {
-                            updateAnnualBottomSheet();
-                          },
-                          child: Container(
-                            height: 30,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xff00C6D8)),
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/edit.png",
-                                    scale: 6,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "Update",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Visibility(
+                          visible: getPersonalDetail!.mothersMaidenName != "" &&
+                                  getPersonalDetail!.mothersMaidenName != null
+                              ? true
+                              : false,
+                          child: InkWell(
+                            onTap: () {
+                              updateAnnualBottomSheet();
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xff00C6D8)),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/edit.png",
+                                      scale: 6,
+                                      color: Colors.white,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Update",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   _space,
                   Text(
@@ -2227,203 +2190,201 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     style: ConstStyle.sourceSansProDisable,
                   ),
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 1
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 1
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Less than 1 Year",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 1
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 1
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 1
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Less than 1 Year",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 1
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 2
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 2
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "1-2 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 2
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 2
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 2
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "1-2 Years",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 2
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 3
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 3
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "2-5 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 3
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 3
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 3
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "2-5 Years",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 3
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                    ],
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
                   ),
                   _space1,
                   _space1,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 4
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 4
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "5-10 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 4
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 4
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 4
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "5-10 Years",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 4
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 5
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 5
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "10-20 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 5
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 5
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 5
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "10-20 Years",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 5
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Container(
-                        height: 34,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 1,
-                                color: getPersonalDetail!.tradingExperience == 6
-                                    ? Color(0xff23263B)
-                                    : Color(0xffC8C7CD)),
-                            color: getPersonalDetail!.tradingExperience == 6
-                                ? Color(0xff22263D)
-                                : Colors.white),
-                        child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "20-25 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
-                                      getPersonalDetail!.tradingExperience == 6
-                                          ? Colors.white
-                                          : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
+                            ),
+                          )),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          height: 34,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: getPersonalDetail!.tradingExperience == 6
+                                      ? Color(0xff23263B)
+                                      : Color(0xffC8C7CD)),
+                              color: getPersonalDetail!.tradingExperience == 6
+                                  ? Color(0xff22263D)
+                                  : Colors.white),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "20-25 Years",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: TextStyle(
+                                    color:
+                                        getPersonalDetail!.tradingExperience == 6
+                                            ? Colors.white
+                                            : Color(0xffC8C7CD),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
                               ),
-                            )),
-                      ),
-                    ],
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
                   ),
                   _space1,
                   _space1,
@@ -2443,28 +2404,27 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 : Colors.white),
                         child: Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Above 25 Years",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: TextStyle(
-                                      color:
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            "Above 25 Years",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: TextStyle(
+                                  color:
                                       getPersonalDetail!.tradingExperience == 7
                                           ? Colors.white
                                           : Color(0xffC8C7CD),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15),
-                                ),
-                              ),
-                            )),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15),
+                            ),
+                          ),
+                        )),
                       ),
                       const SizedBox(
                         width: 15,
                       ),
                       Visibility(
                         visible: getPersonalDetail!.mothersMaidenName != "" &&
-                            getPersonalDetail!.mothersMaidenName != null
+                                getPersonalDetail!.mothersMaidenName != null
                             ? true
                             : false,
                         child: InkWell(
@@ -2478,7 +2438,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 color: Color(0xff00C6D8)),
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -2517,15 +2477,15 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     children: [
                       Text(
                           getPersonalDetail!.mothersMaidenName != "" &&
-                              getPersonalDetail!.mothersMaidenName != null
+                                  getPersonalDetail!.mothersMaidenName != null
                               ? getPersonalDetail!.mothersMaidenName.toString()
                               : "Maiden Name",
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
                                 color: getPersonalDetail!.mothersMaidenName !=
-                                    "" &&
-                                    getPersonalDetail!.mothersMaidenName !=
-                                        null
+                                            "" &&
+                                        getPersonalDetail!.mothersMaidenName !=
+                                            null
                                     ? Color(0xff22263D)
                                     : Color(0xffC8C7CE),
                                 fontWeight: FontWeight.w400,
@@ -2537,7 +2497,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       ),
                       Visibility(
                         visible: getPersonalDetail!.mothersMaidenName != "" &&
-                            getPersonalDetail!.mothersMaidenName != null
+                                getPersonalDetail!.mothersMaidenName != null
                             ? true
                             : false,
                         child: InkWell(
@@ -2551,7 +2511,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 color: Color(0xff00C6D8)),
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 12.0),
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -2589,7 +2549,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             color: getPersonalDetail!.mothersMaidenName != "" &&
-                                getPersonalDetail!.mothersMaidenName != null
+                                    getPersonalDetail!.mothersMaidenName != null
                                 ? Color(0xff22263D)
                                 : Color(0xffC8C7CE),
                             fontWeight: FontWeight.w400,
@@ -2605,20 +2565,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             color: getPersonalDetail!.isPoliticallyExposed == 1
                                 ? Colors.green
                                 : getPersonalDetail!.mothersMaidenName != "" &&
-                                getPersonalDetail!.mothersMaidenName !=
-                                    null
-                                ? Colors.red
-                                : Color(0xffC8C7CD),
+                                        getPersonalDetail!.mothersMaidenName !=
+                                            null
+                                    ? Colors.red
+                                    : Color(0xffC8C7CD),
                             borderRadius: BorderRadius.circular(25)),
                         child: Row(
                           children: [
                             getPersonalDetail!.isPoliticallyExposed == 1
                                 ? Container()
                                 : Icon(
-                              size: 25,
-                              Icons.circle,
-                              color: Colors.white,
-                            ),
+                                    size: 25,
+                                    Icons.circle,
+                                    color: Colors.white,
+                                  ),
                             SizedBox(width: 3),
                             Text(
                               getPersonalDetail!.isPoliticallyExposed == 1
@@ -2634,10 +2594,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             SizedBox(width: 3),
                             getPersonalDetail!.isPoliticallyExposed == 1
                                 ? Icon(
-                              size: 25,
-                              Icons.circle,
-                              color: Colors.white,
-                            )
+                                    size: 25,
+                                    Icons.circle,
+                                    color: Colors.white,
+                                  )
                                 : Container(),
                           ],
                         ),
@@ -2649,18 +2609,15 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1.5,
+                        width: MediaQuery.of(context).size.width / 1.5,
                         child: Text(
                           Strings.active_check,
                           style: GoogleFonts.sourceSansPro(
                             textStyle: TextStyle(
                               color: getPersonalDetail!.mothersMaidenName !=
-                                  "" &&
-                                  getPersonalDetail!.mothersMaidenName !=
-                                      null
+                                          "" &&
+                                      getPersonalDetail!.mothersMaidenName !=
+                                          null
                                   ? Color(0xff22263D)
                                   : Color(0xffC8C7CE),
                               fontWeight: FontWeight.w400,
@@ -2675,23 +2632,23 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         width: 70,
                         decoration: BoxDecoration(
                             color: getPersonalDetail!.wouldYouLikeToActivate ==
-                                1
+                                    1
                                 ? Colors.green
                                 : getPersonalDetail!.mothersMaidenName != "" &&
-                                getPersonalDetail!.mothersMaidenName !=
-                                    null
-                                ? Colors.red
-                                : Color(0xffC8C7CD),
+                                        getPersonalDetail!.mothersMaidenName !=
+                                            null
+                                    ? Colors.red
+                                    : Color(0xffC8C7CD),
                             borderRadius: BorderRadius.circular(25)),
                         child: Row(
                           children: [
                             getPersonalDetail!.wouldYouLikeToActivate == 1
                                 ? Container()
                                 : Icon(
-                              size: 25,
-                              Icons.circle,
-                              color: Colors.white,
-                            ),
+                                    size: 25,
+                                    Icons.circle,
+                                    color: Colors.white,
+                                  ),
                             SizedBox(width: 3),
                             Text(
                               getPersonalDetail!.wouldYouLikeToActivate == 1
@@ -2707,10 +2664,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             SizedBox(width: 3),
                             getPersonalDetail!.wouldYouLikeToActivate == 1
                                 ? Icon(
-                              size: 25,
-                              Icons.circle,
-                              color: Colors.white,
-                            )
+                                    size: 25,
+                                    Icons.circle,
+                                    color: Colors.white,
+                                  )
                                 : Container(),
                           ],
                         ),
@@ -2740,7 +2697,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: getPersonalDetail!.inPersonVerification == 1
-                                ? Color(0xff00E152)
+                                ? Colors.green
                                 : Color(0xffC8C7CE)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -2785,10 +2742,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: const Color(0xffF7F7FA).withOpacity(0.35),
@@ -2825,25 +2779,25 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           color: AppColors.textColor),
                       child: Center(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
-                                Icons.highlight_remove,
-                                color: Colors.white,
-                                size: 14,
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Close",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white),
-                              ),
-                            ],
-                          )),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.highlight_remove,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "Close",
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
+                          ),
+                        ],
+                      )),
                     ),
                   ),
                 ),
@@ -2939,7 +2893,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child:
-                      Text("Last Name* ", style: ConstStyle.sourceSansPro),
+                          Text("Last Name* ", style: ConstStyle.sourceSansPro),
                     ),
                     _space1,
                     Padding(
@@ -3048,15 +3002,15 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     horizontal: 14.0),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       getPersonalDetail!.dob != null
                                           ? DateFormat('dd-MM-yyyy').format(
-                                          DateTime.parse(getPersonalDetail!
-                                              .dob
-                                              .toString()))
+                                              DateTime.parse(getPersonalDetail!
+                                                  .dob
+                                                  .toString()))
                                           : dob.toString(),
                                       style: ConstStyle.sourceSans5,
                                     ),
@@ -3110,10 +3064,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.5,
+                            width: MediaQuery.of(context).size.width / 1.5,
                             child: Text(
                               Strings.active_check,
                               style: GoogleFonts.sourceSansPro(
@@ -3170,10 +3121,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         Padding(
                           padding: const EdgeInsets.only(top: 15.0),
                           child: SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.3,
+                            width: MediaQuery.of(context).size.width / 1.3,
                             child: const Text(
                                 "I understand and agree to allow Trust Money to share my data with its group companies.",
                                 style: TextStyle(
@@ -3209,10 +3157,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.3,
+                            width: MediaQuery.of(context).size.width / 1.3,
                             child: const Text(
                                 "I understand and agree to allow Trust Money to share my data with companies mandated by the Govt.",
                                 style: TextStyle(
@@ -3258,8 +3203,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 width: 2,
                                 color: isButtonClick == false
                                     ? (isChecked && isChecked1)
-                                    ? AppColors.textColor
-                                    : Color(0xffE1E0E6)
+                                        ? AppColors.textColor
+                                        : Color(0xffE1E0E6)
                                     : Color(0xffFF405A)),
                             color: isButtonClick == false
                                 ? Colors.white
@@ -3267,16 +3212,16 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           ),
                           child: Center(
                               child: Text(
-                                "Continue",
-                                style: TextStyle(
-                                    color: isButtonClick == false
-                                        ? (isChecked && isChecked1)
+                            "Continue",
+                            style: TextStyle(
+                                color: isButtonClick == false
+                                    ? (isChecked && isChecked1)
                                         ? AppColors.textColor
                                         : Color(0xffE1E0E6)
-                                        : Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15),
-                              )),
+                                    : Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                          )),
                         ),
                       ),
                     ),
@@ -3361,7 +3306,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             _space,
                             Center(
                                 child:
-                                Text("Or", style: ConstStyle.quickMedium)),
+                                    Text("Or", style: ConstStyle.quickMedium)),
                             _space,
                             InkWell(
                               onTap: () {
@@ -3388,10 +3333,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   )),
                             ),
                             SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.20,
+                              height: MediaQuery.of(context).size.height * 0.20,
                             ),
                             /*Padding(
                               padding: const EdgeInsets.only(bottom: 20.0),
@@ -3440,15 +3382,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     color: Color(0xffF7F7FA)),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
                                         width:
-                                        MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width *
-                                            0.70,
+                                            MediaQuery.of(context).size.width *
+                                                0.70,
                                         child: Text(
                                           mail.toString(),
                                           overflow: TextOverflow.ellipsis,
@@ -3462,10 +3401,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ],
                                 )),
                             SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.30,
+                              height: MediaQuery.of(context).size.height * 0.30,
                             ),
                             InkWell(
                               onTap: () {
@@ -3475,14 +3411,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   isEditStep2 = false;
                                   getPersonalDetail?.isAadharVerified != 1
                                       ? getPersonalDetail?.isPanVerified != 1
-                                      ? isPanVerify = true
-                                      : isAadhaarVerified = true
+                                          ? isPanVerify = true
+                                          : isAadhaarVerified = true
                                       : isEditStep12 = true;
                                 });
                               },
                               child: Padding(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 30),
+                                    const EdgeInsets.symmetric(vertical: 30),
                                 child: Container(
                                   height: 45,
                                   decoration: BoxDecoration(
@@ -3491,9 +3427,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                           color: AppColors.textColor)),
                                   child: Center(
                                       child: Text(
-                                        "Continue",
-                                        style: ConstStyle.quickStandBtn,
-                                      )),
+                                    "Continue",
+                                    style: ConstStyle.quickStandBtn,
+                                  )),
                                 ),
                               ),
                             ),
@@ -3687,19 +3623,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       if (panStatusModel?.panStatus == "E") {
                                         setState(() async {
                                           panName =
-                                          "${panStatusModel!
-                                              .panFname} ${panStatusModel!
-                                              .panMname} ${panStatusModel!
-                                              .panLname}";
+                                              "${panStatusModel!.panFname} ${panStatusModel!.panMname} ${panStatusModel!.panLname}";
                                           await HelperFunctions.savePanName(
-                                              "${panStatusModel!
-                                                  .panFname} ${panStatusModel!
-                                                  .panMname} ${panStatusModel!
-                                                  .panLname}");
+                                              "${panStatusModel!.panFname} ${panStatusModel!.panMname} ${panStatusModel!.panLname}");
                                           await HelperFunctions.saveFirstName(
-                                              "${panStatusModel!
-                                                  .panFname} ${panStatusModel!
-                                                  .panMname}");
+                                              "${panStatusModel!.panFname} ${panStatusModel!.panMname}");
                                           await HelperFunctions.saveLastName(
                                               "${panStatusModel!.panLname}");
                                           getPreferences();
@@ -3707,11 +3635,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                  const VerifyPANAnimation()));
+                                                      const VerifyPANAnimation()));
                                           setState(() {
                                             getPersonalDetail
-                                                ?.isAadharVerified !=
-                                                1
+                                                        ?.isAadharVerified !=
+                                                    1
                                                 ? isAadhaarVerified = true
                                                 : isEditStep12 = true;
                                             isEditStep1 = false;
@@ -3727,9 +3655,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                  const InvalidPANAnimation(
-                                                    msg: "DEACTIVATED",
-                                                  )));
+                                                      const InvalidPANAnimation(
+                                                        msg: "DEACTIVATED",
+                                                      )));
                                           //ReEnterPanNumberBottomSheet("DEACTIVATED");
                                         });
                                       } else if (panStatusModel?.panStatus ==
@@ -3739,13 +3667,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                  const InvalidPANAnimation(
-                                                    msg: "INOPERATIVE",
-                                                  )));
+                                                      const InvalidPANAnimation(
+                                                        msg: "INOPERATIVE",
+                                                      )));
                                           // ReEnterPanNumberBottomSheet("INOPERATIVE");
                                         });
                                       } else if (panStatusModel?.panStatus ==
-                                          "N" ||
+                                              "N" ||
                                           panStatusModel?.panStatus == "F" ||
                                           panStatusModel?.panStatus == "ED" ||
                                           panStatusModel?.panStatus == "D") {
@@ -3754,9 +3682,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                  const InvalidPANAnimation(
-                                                    msg: "INVALID",
-                                                  )));
+                                                      const InvalidPANAnimation(
+                                                        msg: "INVALID",
+                                                      )));
                                           // ReEnterPanNumberBottomSheet("INVALID ");
                                         });
                                       }
@@ -3793,10 +3721,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.40,
+                        height: MediaQuery.of(context).size.height * 0.40,
                       ),
                     ],
                   ),
@@ -3818,8 +3743,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return Digilocker();
-                              })).then((value) {
+                            return Digilocker();
+                          })).then((value) {
                             geteDigiLocker();
                             setState(() {
                               isEditStep12 = true;
@@ -3836,16 +3761,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   width: 2, color: AppColors.textColor)),
                           child: Center(
                               child: Text(
-                                "Authenticate Aadhaar",
-                                style: ConstStyle.quickStandBtn,
-                              )),
+                            "Authenticate Aadhaar",
+                            style: ConstStyle.quickStandBtn,
+                          )),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height / 2.8,
+                        height: MediaQuery.of(context).size.height / 2.8,
                       ),
                       /*InkWell(
                         onTap: () {
@@ -3906,7 +3828,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               Text(
                                 digiLockerDetailModel != null
                                     ? digiLockerDetailModel!.aadharNumber
-                                    .toString()
+                                        .toString()
                                     : "",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
@@ -3930,10 +3852,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           style: ConstStyle.sourceSansPro),
                       _space1,
                       Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
+                        width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -3945,10 +3864,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               horizontal: 12.0, vertical: 8),
                           child: Text(
                             digiLockerDetailModel != null
-                                ? "${digiLockerDetailModel!
-                                .location}, ${digiLockerDetailModel!
-                                .villageTownCity}, ${digiLockerDetailModel!
-                                .district}, ${digiLockerDetailModel!.state}"
+                                ? "${digiLockerDetailModel!.location}, ${digiLockerDetailModel!.villageTownCity}, ${digiLockerDetailModel!.district}, ${digiLockerDetailModel!.state}"
                                 : "",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
@@ -3991,21 +3907,21 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Male",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: digiLockerDetailModel
-                                                ?.gender == "M"
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Male",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color:
+                                            digiLockerDetailModel?.gender == "M"
                                                 ? Colors.white
                                                 : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4033,21 +3949,21 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Female",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: digiLockerDetailModel
-                                                ?.gender == "F"
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Female",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color:
+                                            digiLockerDetailModel?.gender == "F"
                                                 ? Colors.white
                                                 : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4075,21 +3991,21 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Trans",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: digiLockerDetailModel
-                                                ?.gender == "O"
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Trans",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color:
+                                            digiLockerDetailModel?.gender == "O"
                                                 ? Colors.white
                                                 : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4126,20 +4042,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Single",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Single",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -4168,20 +4084,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Married",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Married",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -4210,20 +4126,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Others",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Others",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4236,10 +4152,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       ),
                       Container(
                           height: 45,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
@@ -4247,7 +4160,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           ),
                           child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 14.0),
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton2(
                                   hint: const Text(
@@ -4304,20 +4217,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Below 1 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Below 1 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4345,20 +4258,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-5 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-5 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4387,20 +4300,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4433,20 +4346,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-25 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 4
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-25 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 4
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4475,20 +4388,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 5
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 5
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4525,20 +4438,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Less than 1 Year",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Less than 1 Year",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4567,20 +4480,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-2 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-2 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4609,20 +4522,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "2-5 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "2-5 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4655,20 +4568,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 4
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 4
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4697,20 +4610,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-20 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 5
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-20 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 5
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -4739,20 +4652,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "20-25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 6
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "20-25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 6
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4785,20 +4698,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 7
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 7
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -4880,10 +4793,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             _space1,
                             Container(
                                 height: 45,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width,
+                                width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
@@ -4902,7 +4812,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         items: address_data.map((item) {
                                           return DropdownMenuItem(
                                               value:
-                                              item.addressProof.toString(),
+                                                  item.addressProof.toString(),
                                               child: Text(
                                                 item.addressProof,
                                                 style: const TextStyle(
@@ -4945,9 +4855,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                           color: AppColors.textColor)),
                                   child: Center(
                                       child: Text(
-                                        "Upload Passport Scans",
-                                        style: ConstStyle.quickStandBtn,
-                                      )),
+                                    "Upload Passport Scans",
+                                    style: ConstStyle.quickStandBtn,
+                                  )),
                                 ),
                               ),
                             ),
@@ -4975,7 +4885,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                     child: Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -5028,7 +4938,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                     child: Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -5089,7 +4999,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 decoration: const InputDecoration(
                                   hintText: "ADDRESS LINE 1",
                                   hintStyle:
-                                  TextStyle(color: Color(0xffC8C7CE)),
+                                      TextStyle(color: Color(0xffC8C7CE)),
                                   border: InputBorder.none,
                                   fillColor: Colors.white,
                                   contentPadding: EdgeInsets.only(
@@ -5112,7 +5022,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 decoration: const InputDecoration(
                                   hintText: "ADDRESS LINE 2",
                                   hintStyle:
-                                  TextStyle(color: Color(0xffC8C7CE)),
+                                      TextStyle(color: Color(0xffC8C7CE)),
                                   border: InputBorder.none,
                                   fillColor: Colors.white,
                                   contentPadding: EdgeInsets.only(
@@ -5149,7 +5059,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 decoration: InputDecoration(
                                   hintText: "Enter 6 digit zip code",
                                   hintStyle:
-                                  const TextStyle(color: Color(0xffC8C7CE)),
+                                      const TextStyle(color: Color(0xffC8C7CE)),
                                   border: InputBorder.none,
                                   fillColor: Colors.white,
                                   contentPadding: const EdgeInsets.only(
@@ -5170,10 +5080,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             _space1,
                             Container(
                                 height: 45,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width,
+                                width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
@@ -5199,7 +5106,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                                   fontSize: 17.0,
                                                 ),
                                               ) //Id that has to be passed that the dropdo  //e.g   India (Name)    and   its   ID (55fgf5f6frf56f) somethimg like that....
-                                          );
+                                              );
                                         }).toList(),
                                         onChanged: (String? newVal) {
                                           setState(() {
@@ -5223,10 +5130,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             _space1,
                             Container(
                                 height: 45,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width,
+                                width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
@@ -5248,7 +5152,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                                 child: Text(
                                                   item.cityName,
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   //Names that the api dropdown contains
                                                   style: const TextStyle(
                                                     fontSize: 17.0,
@@ -5274,10 +5178,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       InkWell(
                         onTap: () async {
                           if (isMaiden == true) {
-                            if (genderIndex == 0) {
-                              Fluttertoast.showToast(
-                                  msg: 'Choose your gender!');
-                            } else if (maritalIndex == 0) {
+                            if (maritalIndex == 0) {
                               Fluttertoast.showToast(
                                   msg: 'Choose your marital status!');
                             } else if (professionID == null) {
@@ -5286,30 +5187,34 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             } else if (incomeIndex == 0) {
                               Fluttertoast.showToast(
                                   msg: 'Choose your annual income! ');
-                            }else if (experienceIndex == 0) {
+                            } else if (experienceIndex == 0) {
                               Fluttertoast.showToast(
                                   msg: 'Choose your trading experience!');
-                            }else if (maidenName.text.isEmpty) {
+                            } else if (maidenName.text.isEmpty) {
                               Fluttertoast.showToast(
                                   msg: 'Enter Your Maiden Name');
                             } else {
                               if (panStatusModel
-                                  ?.personVideoVerificationStatus ==
+                                      ?.personVideoVerificationStatus ==
                                   1) {
                                 var updateProfileData1 =
-                                await ProfileRepository()
-                                    .addPersonalDetails(
+                                    await ProfileRepository()
+                                        .addPersonalDetails(
                                   firstName: userfName.toString(),
                                   lastName: userlName.toString(),
-                                  addressLine1: addressLine1.text.toString(),
-                                  addressLine2: addressLine2.text.toString(),
-                                  addressLine3: addressLine2.text.toString(),
-                                  addressZip: addressZip.text.toString(),
+                                  addressLine1:
+                                      "${digiLockerDetailModel?.houseNo} ${digiLockerDetailModel?.location}",
+                                  addressLine2:
+                                      "${digiLockerDetailModel?.villageTownCity}",
+                                  addressLine3:
+                                      "${digiLockerDetailModel?.landmark} ${digiLockerDetailModel?.country}",
+                                  addressZip:
+                                      "${digiLockerDetailModel?.pincode}",
                                   maidenName: maidenName.text.toString(),
                                   professionID: professionID.toString(),
                                   proof: addressProof.toString(),
-                                  stateId: stateid.toString(),
-                                  cityID: cityid.toString(),
+                                  stateId: "${digiLockerDetailModel?.state}",
+                                  cityID: "${digiLockerDetailModel?.district}",
                                   genderIndex: genderIndex,
                                   maritalIndex: maritalIndex,
                                   incomeIndex: incomeIndex,
@@ -5317,10 +5222,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   dob: dob != ""
                                       ? dob.toString()
                                       : DateFormat('dd-MM-yyyy').format(
-                                      DateTime.parse(getPersonalDetail!.dob
-                                          .toString())),
+                                          DateTime.parse(getPersonalDetail!.dob
+                                              .toString())),
                                   politicallyexposed:
-                                  potentially_exposed_statusInt,
+                                      potentially_exposed_statusInt,
                                   wouldyouliketoActivate: activate_futureInt,
                                   chekbox1: isCheckedInt,
                                   chekbox2: isChecked1Int,
@@ -5331,7 +5236,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                          const ContinueAnimation()));
+                                              const ContinueAnimation()));
                                 }
                                 setState(() {
                                   inPersonVerifications = false;
@@ -5374,8 +5279,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   width: 2,
                                   color: isButtonClickMaiden == false
                                       ? isMaiden
-                                      ? AppColors.textColor
-                                      : Color(0xffE1E0E6)
+                                          ? AppColors.textColor
+                                          : Color(0xffE1E0E6)
                                       : Color(0xffFF405A)),
                               color: isButtonClickMaiden == false
                                   ? Colors.white
@@ -5383,18 +5288,18 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             ),
                             child: Center(
                                 child: Text(
-                                  "Continue",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: TextStyle(
-                                        color: isButtonClickMaiden == false
-                                            ? isMaiden
+                              "Continue",
+                              style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: isButtonClickMaiden == false
+                                        ? isMaiden
                                             ? AppColors.textColor
                                             : Color(0xffE1E0E6)
-                                            : Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15),
-                                  ),
-                                )),
+                                        : Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
+                              ),
+                            )),
                           ),
                         ),
                       ),
@@ -5526,20 +5431,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Male",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Male",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -5567,20 +5472,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Female",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Female",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -5608,20 +5513,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Trans",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Trans",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -5658,20 +5563,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Single",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Single",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -5700,20 +5605,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Married",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Married",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -5742,20 +5647,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Others",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Others",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -5768,10 +5673,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       ),
                       Container(
                           height: 45,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
@@ -5779,7 +5681,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           ),
                           child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 14.0),
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton2(
                                   hint: Text(
@@ -5836,20 +5738,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Below 1 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Below 1 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -5877,20 +5779,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       : Colors.white),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-5 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-5 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -5919,20 +5821,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -5965,20 +5867,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-25 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 4
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-25 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 4
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -6007,20 +5909,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 5
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 5
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -6057,20 +5959,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Less than 1 Year",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Less than 1 Year",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -6099,20 +6001,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-2 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-2 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -6141,20 +6043,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "2-5 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "2-5 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -6187,20 +6089,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 4
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 4
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -6229,20 +6131,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-20 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 5
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-20 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 5
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           SizedBox(
@@ -6271,20 +6173,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "20-25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 6
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "20-25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 6
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -6317,20 +6219,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               ),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 7
-                                                ? Colors.white
-                                                : Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 7
+                                            ? Colors.white
+                                            : Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -6411,8 +6313,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   width: 2,
                                   color: isButtonClickMaiden == false
                                       ? isMaiden
-                                      ? AppColors.textColor
-                                      : Color(0xffE1E0E6)
+                                          ? AppColors.textColor
+                                          : Color(0xffE1E0E6)
                                       : Color(0xffFF405A)),
                               color: isButtonClickMaiden == false
                                   ? Colors.white
@@ -6420,18 +6322,18 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             ),
                             child: Center(
                                 child: Text(
-                                  "Continue",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: TextStyle(
-                                        color: isButtonClickMaiden == false
-                                            ? isMaiden
+                              "Continue",
+                              style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: isButtonClickMaiden == false
+                                        ? isMaiden
                                             ? AppColors.textColor
                                             : Color(0xffE1E0E6)
-                                            : Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15),
-                                  ),
-                                )),
+                                        : Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
+                              ),
+                            )),
                           ),
                         ),
                       ),
@@ -6452,10 +6354,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         bottom: 20.0,
       ),
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(0),
           color: const Color(0xffEFFBFF),
@@ -6537,14 +6436,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![0]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![0]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -6563,14 +6462,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![1]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![1]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -6589,14 +6488,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![2]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![2]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -6615,14 +6514,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![3]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![3]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                 ],
               ),
@@ -6826,9 +6725,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       color: Colors.white),
                   child: Center(
                       child: Text(
-                        "Continue",
-                        style: ConstStyle.quickStandBtn,
-                      )),
+                    "Continue",
+                    style: ConstStyle.quickStandBtn,
+                  )),
                 ),
               ),
               _space,
@@ -6844,10 +6743,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: Color(0xffF7F7FA),
@@ -6881,25 +6777,25 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: AppColors.textColor),
                     child: Center(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.highlight_remove,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "Close",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.highlight_remove,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Close",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                      ],
+                    )),
                   ),
                 ),
               ),
@@ -7050,186 +6946,186 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   ),
                   child: _isLoading == false
                       ? ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(28.0),
-                      child: SvgPicture.asset(
-                        ConstantImage.profile_pic,
-                      ),
-                    ),
-                  )
-                      : _isRecordingPlay == false
-                      ? ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: CameraPreview(_cameraController),
-                  )
-                      : ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Stack(
-                      children: [
-                        FutureBuilder(
-                          future: _initVideoPlayer(),
-                          builder: (context, state) {
-                            // return VideoPlayer(_videoPlayerController!);
-                            if (state.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            } else {
-                              return VideoPlayer(
-                                  _videoPlayerController);
-                            }
-                          },
-                        ),
-                        Positioned(
-                          top: 105,
-                          left: 95,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0.5, color: Colors.white),
-                              borderRadius: BorderRadius.circular(35),
-                              color:
-                              Color(0xffffffff).withOpacity(0.20),
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(28.0),
+                            child: SvgPicture.asset(
+                              ConstantImage.profile_pic,
                             ),
-                            child: const Center(
-                                child: Icon(
-                                  Icons.play_arrow,
-                                  size: 30,
-                                  color: Colors.white,
-                                )),
                           ),
                         )
-                      ],
-                    ),
-                  )),
+                      : _isRecordingPlay == false
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: CameraPreview(_cameraController),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Stack(
+                                children: [
+                                  FutureBuilder(
+                                    future: _initVideoPlayer(),
+                                    builder: (context, state) {
+                                      // return VideoPlayer(_videoPlayerController!);
+                                      if (state.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      } else {
+                                        return VideoPlayer(
+                                            _videoPlayerController);
+                                      }
+                                    },
+                                  ),
+                                  Positioned(
+                                    top: 105,
+                                    left: 95,
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 0.5, color: Colors.white),
+                                        borderRadius: BorderRadius.circular(35),
+                                        color:
+                                            Color(0xffffffff).withOpacity(0.20),
+                                      ),
+                                      child: const Center(
+                                          child: Icon(
+                                        Icons.play_arrow,
+                                        size: 30,
+                                        color: Colors.white,
+                                      )),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
               _space,
               _isLoading == false
                   ? InkWell(
-                onTap: () async {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                },
-                child: Container(
-                  height: 30,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
-                      color: AppColors.primaryColor),
-                  child: Center(
-                      child: Text(
-                        "Capture",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10),
-                        ),
-                      )),
-                ),
-              )
+                      onTap: () async {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            color: AppColors.primaryColor),
+                        child: Center(
+                            child: Text(
+                          "Capture",
+                          style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 10),
+                          ),
+                        )),
+                      ),
+                    )
                   : _isRecordingStop == false
-                  ? InkWell(
-                onTap: () async {
-                  setState(() {
-                    _recordVideo();
-                    Future.delayed(Duration(seconds: 15), () async {
-                      _isRecordingPlay = true;
-                      file = await _cameraController
-                          .stopVideoRecording();
-                      setState(() {
-                        _isRecording = false;
-                        isCapture = true;
-                      });
-                    });
-                    setState(() {
-                      _isRecordingStop = true;
-                    });
-                  });
-                },
-                child: Container(
-                  height: 30,
-                  width: 140,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
-                      color: Color(0xff02AD41)),
-                  child: Center(
-                      child: Text(
-                        "Start Recording",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10),
-                        ),
-                      )),
-                ),
-              )
-                  : _isRecordingPlay == false
-                  ? InkWell(
-                onTap: () async {
-                  file = await _cameraController
-                      .stopVideoRecording();
-                  setState(() {
-                    isCapture = true;
-                    _isRecording = false;
-                    _isRecordingPlay = true;
-                  });
-                },
-                child: Container(
-                  height: 30,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
-                      color: Color(0xffFF0023)),
-                  child: Center(
-                      child: Text(
-                        "Stop",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10),
-                        ),
-                      )),
-                ),
-              )
-                  : InkWell(
-                onTap: () async {
-                  final route = MaterialPageRoute(
-                    fullscreenDialog: true,
-                    builder: (_) =>
-                        VideoPage(filePath: file.path),
-                  );
-                  Navigator.push(context, route);
-                  setState(() {
-                    // _isLoading = false;
-                    // _isRecordingPlay = false;
-                    // _isRecording = false;
-                    // _isRecordingStop = false;
-                  });
-                },
-                child: Container(
-                  height: 30,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
-                      color: AppColors.primaryColor),
-                  child: Center(
-                      child: Text(
-                        "Preview",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10),
-                        ),
-                      )),
-                ),
-              ),
+                      ? InkWell(
+                          onTap: () async {
+                            setState(() {
+                              _recordVideo();
+                              Future.delayed(Duration(seconds: 15), () async {
+                                _isRecordingPlay = true;
+                                file = await _cameraController
+                                    .stopVideoRecording();
+                                setState(() {
+                                  _isRecording = false;
+                                  isCapture = true;
+                                });
+                              });
+                              setState(() {
+                                _isRecordingStop = true;
+                              });
+                            });
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 140,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(13),
+                                color: Color(0xff02AD41)),
+                            child: Center(
+                                child: Text(
+                              "Start Recording",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10),
+                              ),
+                            )),
+                          ),
+                        )
+                      : _isRecordingPlay == false
+                          ? InkWell(
+                              onTap: () async {
+                                file = await _cameraController
+                                    .stopVideoRecording();
+                                setState(() {
+                                  isCapture = true;
+                                  _isRecording = false;
+                                  _isRecordingPlay = true;
+                                });
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(13),
+                                    color: Color(0xffFF0023)),
+                                child: Center(
+                                    child: Text(
+                                  "Stop",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10),
+                                  ),
+                                )),
+                              ),
+                            )
+                          : InkWell(
+                              onTap: () async {
+                                final route = MaterialPageRoute(
+                                  fullscreenDialog: true,
+                                  builder: (_) =>
+                                      VideoPage(filePath: file.path),
+                                );
+                                Navigator.push(context, route);
+                                setState(() {
+                                  // _isLoading = false;
+                                  // _isRecordingPlay = false;
+                                  // _isRecording = false;
+                                  // _isRecordingStop = false;
+                                });
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(13),
+                                    color: AppColors.primaryColor),
+                                child: Center(
+                                    child: Text(
+                                  "Preview",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10),
+                                  ),
+                                )),
+                              ),
+                            ),
               _space,
               _space,
               Row(
@@ -7249,14 +7145,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![0]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![0]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -7275,14 +7171,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![1]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![1]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -7301,14 +7197,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![2]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![2]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                   const SizedBox(
                     width: 20,
@@ -7327,14 +7223,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                          "${randumNumber![3]}",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25),
-                          ),
-                        )),
+                      "${randumNumber![3]}",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25),
+                      ),
+                    )),
                   ),
                 ],
               ),
@@ -7485,32 +7381,30 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   if (res != "") {
                     var updateProfileData = await ProfileRepository()
                         .addPersonalDetails(
-                        firstName: userfName.toString(),
-                        lastName: userlName.toString(),
-                        addressLine1:
-                        "${digiLockerDetailModel
-                            ?.houseNo} ${digiLockerDetailModel?.location}",
-                        addressLine2:
-                        "${digiLockerDetailModel?.villageTownCity}",
-                        addressLine3:
-                        "${digiLockerDetailModel
-                            ?.landmark} ${digiLockerDetailModel?.country}",
-                        addressZip: "${digiLockerDetailModel?.pincode}",
-                        maidenName: maidenName.text.toString(),
-                        professionID: professionID.toString(),
-                        proof: addressProof.toString(),
-                        stateId: "${digiLockerDetailModel?.state}",
-                        cityID: "${digiLockerDetailModel?.district}",
-                        genderIndex: genderIndex,
-                        maritalIndex: maritalIndex,
-                        incomeIndex: incomeIndex,
-                        experienceIndex: experienceIndex,
-                        dob: dob.toString(),
-                        politicallyexposed: potentially_exposed_statusInt,
-                        wouldyouliketoActivate: activate_futureInt,
-                        chekbox1: isCheckedInt,
-                        chekbox2: isChecked1Int,
-                        itrFiled: itrValueInt);
+                            firstName: userfName.toString(),
+                            lastName: userlName.toString(),
+                            addressLine1:
+                                "${digiLockerDetailModel?.houseNo} ${digiLockerDetailModel?.location}",
+                            addressLine2:
+                                "${digiLockerDetailModel?.villageTownCity}",
+                            addressLine3:
+                                "${digiLockerDetailModel?.landmark} ${digiLockerDetailModel?.country}",
+                            addressZip: "${digiLockerDetailModel?.pincode}",
+                            maidenName: maidenName.text.toString(),
+                            professionID: professionID.toString(),
+                            proof: addressProof.toString(),
+                            stateId: "${digiLockerDetailModel?.state}",
+                            cityID: "${digiLockerDetailModel?.district}",
+                            genderIndex: genderIndex,
+                            maritalIndex: maritalIndex,
+                            incomeIndex: incomeIndex,
+                            experienceIndex: experienceIndex,
+                            dob: dob.toString(),
+                            politicallyexposed: potentially_exposed_statusInt,
+                            wouldyouliketoActivate: activate_futureInt,
+                            chekbox1: isCheckedInt,
+                            chekbox2: isChecked1Int,
+                            itrFiled: itrValueInt);
                     if (updateProfileData != "") {
                       await Navigator.push(
                           context,
@@ -7551,16 +7445,16 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       color: Colors.white),
                   child: Center(
                       child: Text(
-                        "Continue",
-                        style: GoogleFonts.quicksand(
-                          textStyle: TextStyle(
-                              color: isCapture
-                                  ? AppColors.textColor
-                                  : Color(0xffE1E0E6),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15),
-                        ),
-                      )),
+                    "Continue",
+                    style: GoogleFonts.quicksand(
+                      textStyle: TextStyle(
+                          color: isCapture
+                              ? AppColors.textColor
+                              : Color(0xffE1E0E6),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15),
+                    ),
+                  )),
                 ),
               ),
               _space,
@@ -8128,10 +8022,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     });
                   },
                   child: Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.30,
+                    height: MediaQuery.of(context).size.height * 0.30,
                     decoration: const BoxDecoration(
                       color: AppColors.primaryColor,
                       borderRadius: BorderRadius.only(
@@ -8154,7 +8045,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         Center(
                           child: Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 28.0),
+                                const EdgeInsets.symmetric(horizontal: 28.0),
                             child: Text(
                               "Congratulations! $panName Identity Verification completed Successfully",
                               textAlign: TextAlign.center,
@@ -8189,154 +8080,146 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: (context) =>
-          Padding(
-            padding: EdgeInsets.only(
-                top: 0,
-                right: 0,
-                left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
-            child: Wrap(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: AppColors.primaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Wrap(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              color: AppColors.primaryColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 35,
-                          ),
-                          RichText(
-                            text: TextSpan(children: [
-                              const TextSpan(
-                                  text:
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      RichText(
+                        text: TextSpan(children: [
+                          const TextSpan(
+                              text:
                                   "Enter the 4 to 6 digits, One Time Password sent on your Email ",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16,
-                                      color: Colors.white)),
-                              TextSpan(
-                                  text: "${email_id.text}  ",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      color: AppColors.btnColor)),
-                              const WidgetSpan(
-                                child: Image(
-                                  image: AssetImage(
-                                    ConstantImage.edit,
-                                  ),
-                                  color: AppColors.btnColor,
-                                  height: 20,
-                                  width: 20,
-                                ),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          TextSpan(
+                              text: "${email_id.text}  ",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18,
+                                  color: AppColors.btnColor)),
+                          const WidgetSpan(
+                            child: Image(
+                              image: AssetImage(
+                                ConstantImage.edit,
                               ),
-                            ]),
-                          ),
-                          _space,
-                          _space1,
-                          Container(
-                            alignment: Alignment.center,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(width: 1, color: Colors.white),
-                            ),
-                            child: TextField(
-                              controller: otpdata,
-                              keyboardType: TextInputType.number,
-                              autofocus: false,
-                              style: ConstStyle.sourceSans,
-                              decoration: const InputDecoration(
-                                labelStyle: TextStyle(
-                                    color: AppColors.textColor,
-                                    letterSpacing: 4),
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(
-                                    color: Color(0xff22263d), letterSpacing: 4),
-                                hintText: "******",
-                                fillColor: Colors.white,
-                                filled: true,
-                                contentPadding:
-                                EdgeInsets.only(left: 14.0, top: 0.0),
-                              ),
+                              color: AppColors.btnColor,
+                              height: 20,
+                              width: 20,
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 7,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            Strings.not_get,
-                            style: ConstStyle.sourceSans2,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              // Navigator.pop(context);
-                              _resendOTPEmail(
-                                  mobNo.toString(), email_id.text.toString(),
-                                  true);
-                            },
-                            child: Container(
-                              height: 23,
-                              width: 87,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  color: Colors.white),
-                              child: Center(
-                                  child: Text(
-                                    "Resend OTP",
-                                    style: ConstStyle.quickStandSmall1,
-                                  )),
-                            ),
-                          ),
-                        ],
+                        ]),
                       ),
                       _space,
-                      _space,
-                      InkWell(
-                        onTap: () async {
-                          _verifyOTPEmail(
-                              email_id.text.toString(),
-                              otpdata.text.toString());
-                          mail = await HelperFunctions.getEmailId();
-                        },
-                        child: Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1, color: Colors.white)),
-                          child: Center(
-                              child: Text(
-                                "Verify",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500)),
-                              )),
+                      _space1,
+                      Container(
+                        alignment: Alignment.center,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(width: 1, color: Colors.white),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
+                        child: TextField(
+                          controller: otpdata,
+                          keyboardType: TextInputType.number,
+                          autofocus: false,
+                          style: ConstStyle.sourceSans,
+                          decoration: const InputDecoration(
+                            labelStyle: TextStyle(
+                                color: AppColors.textColor, letterSpacing: 4),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                                color: Color(0xff22263d), letterSpacing: 4),
+                            hintText: "******",
+                            fillColor: Colors.white,
+                            filled: true,
+                            contentPadding:
+                                EdgeInsets.only(left: 14.0, top: 0.0),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        Strings.not_get,
+                        style: ConstStyle.sourceSans2,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          // Navigator.pop(context);
+                          _resendOTPEmail(
+                              mobNo.toString(), email_id.text.toString(), true);
+                        },
+                        child: Container(
+                          height: 23,
+                          width: 87,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              color: Colors.white),
+                          child: Center(
+                              child: Text(
+                            "Resend OTP",
+                            style: ConstStyle.quickStandSmall1,
+                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                  _space,
+                  _space,
+                  InkWell(
+                    onTap: () async {
+                      _verifyOTPEmail(
+                          email_id.text.toString(), otpdata.text.toString());
+                      mail = await HelperFunctions.getEmailId();
+                    },
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.white)),
+                      child: Center(
+                          child: Text(
+                        "Verify",
+                        style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500)),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -8353,10 +8236,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         builder: (context) {
           return BottomSheet(
             builder: (BuildContext context) {
-              var height = MediaQuery
-                  .of(context)
-                  .size
-                  .height;
+              var height = MediaQuery.of(context).size.height;
               return StatefulBuilder(builder: (BuildContext context, State) {
                 return Container(
                   height: height * 0.43,
@@ -8402,7 +8282,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 20.0, right: 20, bottom: 30),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             InkWell(
                               onTap: () {
@@ -8416,13 +8297,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         width: 1.5, color: Colors.white)),
                                 child: Center(
                                     child: Text(
-                                      "Close Application",
-                                      style: GoogleFonts.quicksand(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)),
-                                    )),
+                                  "Close Application",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500)),
+                                )),
                               ),
                             ),
                             InkWell(
@@ -8437,13 +8318,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         width: 1.5, color: Colors.white)),
                                 child: Center(
                                     child: Text(
-                                      "Close Option",
-                                      style: GoogleFonts.quicksand(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)),
-                                    )),
+                                  "Close Option",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500)),
+                                )),
                               ),
                             ),
                           ],
@@ -8472,136 +8353,129 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         ),
       ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      builder: (context) =>
-          Padding(
-            padding: EdgeInsets.only(
-                top: 0,
-                right: 0,
-                left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
-            child: Wrap(
-              children: [
-                Container(
-                  // height: MediaQuery.of(context).size.height / 3,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: AppColors.primaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: Wrap(
+          children: [
+            Container(
+              // height: MediaQuery.of(context).size.height / 3,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              color: AppColors.primaryColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 45,
-                          ),
-                          const Text("Please provide your email id",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18,
-                                  color: Colors.white)),
-                          _space,
-                          _space1,
-                          Form(
-                            autovalidateMode: AutovalidateMode.always,
-                            key: _formKey,
-                            child: TextFormField(
-                              validator: (input) =>
-                              input!.isValidEmail() ? null : "Invalid email",
-                              controller: email_id,
-                              keyboardType: TextInputType.emailAddress,
-                              autofocus: false,
-                              style: ConstStyle.sourceSans,
-                              decoration: const InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: AppColors.borderColor,
-                                      width: 1,
-                                    )),
-                                disabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: AppColors.borderColor,
-                                      width: 1,
-                                    )),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: AppColors.borderColor,
-                                    width: 1,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: AppColors.borderColor,
-                                    width: 1,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: AppColors.borderColor,
-                                    width: 1,
-                                  ),
-                                ),
-                                labelStyle: TextStyle(
-                                    color: AppColors.textColor,
-                                    letterSpacing: 4),
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(
-                                    color: Color(0xff22263d), letterSpacing: 4),
-                                hintText: "Enter Email id",
-                                contentPadding:
-                                EdgeInsets.only(left: 14.0, top: 0.0),
-                              ),
-                            ),
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 45,
                       ),
+                      const Text("Please provide your email id",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 18,
+                              color: Colors.white)),
                       _space,
                       _space1,
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 30.0),
-                        child: InkWell(
-                          onTap: () async {
-                            if (_formKey.currentState!.validate()) {
-                              if (email_id.text.isNotEmpty) {
-                                sendOtp_toEmail(mobNo.toString(),
-                                    email_id.text.toString(), false);
-                              } else {
-                                Fluttertoast.showToast(
-                                    msg: "Enter Email First!!");
-                              }
-                            } else {
-                              Fluttertoast.showToast(
-                                  msg: "Enter Valid Email ID");
-                            }
-                          },
-                          child: Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: Colors.white),
+                      Form(
+                        autovalidateMode: AutovalidateMode.always,
+                        key: _formKey,
+                        child: TextFormField(
+                          validator: (input) =>
+                              input!.isValidEmail() ? null : "Invalid email",
+                          controller: email_id,
+                          keyboardType: TextInputType.emailAddress,
+                          autofocus: false,
+                          style: ConstStyle.sourceSans,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                              width: 1,
+                            )),
+                            disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                              width: 1,
+                            )),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.borderColor,
+                                width: 1,
+                              ),
                             ),
-                            child: Center(
-                                child: Text(
-                                  "Submit",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.borderColor,
+                                width: 1,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.borderColor,
+                                width: 1,
+                              ),
+                            ),
+                            labelStyle: TextStyle(
+                                color: AppColors.textColor, letterSpacing: 4),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                                color: Color(0xff22263d), letterSpacing: 4),
+                            hintText: "Enter Email id",
+                            contentPadding:
+                                EdgeInsets.only(left: 14.0, top: 0.0),
                           ),
                         ),
                       ),
-                      _space,
                     ],
                   ),
-                ),
-              ],
+                  _space,
+                  _space1,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: InkWell(
+                      onTap: () async {
+                        if (_formKey.currentState!.validate()) {
+                          if (email_id.text.isNotEmpty) {
+                            sendOtp_toEmail(mobNo.toString(),
+                                email_id.text.toString(), false);
+                          } else {
+                            Fluttertoast.showToast(msg: "Enter Email First!!");
+                          }
+                        } else {
+                          Fluttertoast.showToast(msg: "Enter Valid Email ID");
+                        }
+                      },
+                      child: Container(
+                        height: 45,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.white),
+                        ),
+                        child: Center(
+                            child: Text(
+                          "Submit",
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500)),
+                        )),
+                      ),
+                    ),
+                  ),
+                  _space,
+                ],
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -8618,494 +8492,467 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         builder: (context) {
           return StatefulBuilder(
               builder: (BuildContext context, StateSetter State) {
-                return Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height / 1.3,
-                  decoration: const BoxDecoration(
-                    color: AppColors.textColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35.0),
-                      topRight: Radius.circular(35.0),
+            return Container(
+              height: MediaQuery.of(context).size.height / 1.3,
+              decoration: const BoxDecoration(
+                color: AppColors.textColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35.0),
+                  topRight: Radius.circular(35.0),
+                ),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 30,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Text(
+                        "Upload $addressProof Scans",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 18),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Text(
-                            "Upload $addressProof Scans",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Center(
-                          child: Container(
-                            height: 290,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.12,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Container(
+                        height: 290,
+                        width: MediaQuery.of(context).size.width / 1.12,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                                width: 0.5, color: Color(0xff707070))),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 45,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                ),
+                                color: Color(0xffE1E0E7),
                                 border: Border.all(
-                                    width: 0.5, color: Color(0xff707070))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 45,
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                    color: Color(0xffE1E0E7),
-                                    border: Border.all(
-                                        width: 0.5, color: Color(0xff707070)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "$addressProof Frontside Preview",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
+                                    width: 0.5, color: Color(0xff707070)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "$addressProof Frontside Preview",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
                                   ),
                                 ),
-                                _space,
-                                Stack(
-                                  children: [
-                                    Center(
-                                      child: Container(
-                                        height: 160,
-                                        width: 300,
-                                        child: frontImage != null
-                                            ? Image.file(
-                                          frontImage!,
-                                          fit: BoxFit.cover,
-                                        )
-                                            : InkWell(
-                                          onTap: () async {
-                                            final pickedFile =
-                                            await _picker.getImage(
-                                                source:
-                                                ImageSource.camera,
-                                                imageQuality: 50);
-                                            if (pickedFile != null) {
-                                              State(() {
-                                                frontImage =
-                                                    File(pickedFile.path);
-                                                isFrontImageClick = true;
-                                              });
-                                            }
-                                          },
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Center(
-                                                child: SvgPicture.asset(
-                                                  ConstantImage.upload,
-                                                  height: 50,
-                                                ),
-                                              ),
-                                              Center(
-                                                child: Text(
-                                                  "Upload Your $addressProof Frontside ",
-                                                  style: GoogleFonts
-                                                      .sourceSansPro(
-                                                    textStyle:
-                                                    const TextStyle(
-                                                        color: Color(
-                                                            0xff22263D),
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500,
-                                                        fontSize: 15),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      right: -5,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          final pickedFile = await _picker
-                                              .getImage(
-                                              source: ImageSource.camera);
-                                          if (pickedFile != null) {
-                                            State(() {
-                                              frontImage =
-                                                  File(pickedFile.path);
-                                            });
-                                          }
-                                        },
-                                        child: Visibility(
-                                          visible: isFrontImageClick,
-                                          child: Container(
-                                            height: 20,
-                                            width: 80,
-                                            color: AppColors.primaryColor,
-                                            child: Center(
-                                                child: Text(
-                                                  "Replace",
-                                                  style: ConstStyle
-                                                      .quickStandSmall,
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                _space,
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: RichText(
-                                    text: const TextSpan(children: [
-                                      TextSpan(
-                                          text: "upload your ",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "JPG, JPEG ",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                      TextSpan(
-                                          text: "or ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "PNG ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                      TextSpan(
-                                          text: "in less than ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "10 MB ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                    ]),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Center(
-                          child: Container(
-                            height: 290,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.12,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    width: 0.5, color: Color(0xff707070))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 45,
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                    color: Color(0xffE1E0E7),
-                                    border: Border.all(
-                                        width: 0.5, color: Color(0xff707070)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "$addressProof Backside Preview",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                _space,
-                                Stack(
-                                  children: [
-                                    Center(
-                                      child: Container(
-                                        height: 160,
-                                        width: 300,
-                                        child: backImage != null
-                                            ? Image.file(
-                                          backImage!,
-                                          fit: BoxFit.cover,
-                                        )
-                                            : InkWell(
-                                          onTap: () async {
-                                            final pickedFile =
-                                            await _picker.getImage(
-                                                source:
-                                                ImageSource.camera,
-                                                imageQuality: 50);
-                                            if (pickedFile != null) {
-                                              State(() {
-                                                backImage = File(
-                                                  pickedFile.path,
-                                                );
-                                                isBackImageClick = true;
-                                              });
-                                            }
-                                          },
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Center(
-                                                child: SvgPicture.asset(
-                                                  ConstantImage.upload,
-                                                  height: 50,
-                                                ),
-                                              ),
-                                              Center(
-                                                child: Text(
-                                                  "Upload Your $addressProof Backside ",
-                                                  style: GoogleFonts
-                                                      .sourceSansPro(
-                                                    textStyle:
-                                                    const TextStyle(
-                                                        color: Color(
-                                                            0xff22263D),
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500,
-                                                        fontSize: 15),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 0,
-                                      right: -5,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          final pickedFile = await _picker
-                                              .getImage(
-                                              source: ImageSource.camera);
-                                          if (pickedFile != null) {
-                                            State(() {
-                                              backImage = File(pickedFile.path);
-                                            });
-                                          }
-                                        },
-                                        child: Visibility(
-                                          visible: isBackImageClick,
-                                          child: Container(
-                                            height: 20,
-                                            width: 80,
-                                            color: AppColors.primaryColor,
-                                            child: Center(
-                                                child: Text(
-                                                  "Replace",
-                                                  style: ConstStyle
-                                                      .quickStandSmall,
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                _space,
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: RichText(
-                                    text: const TextSpan(children: [
-                                      TextSpan(
-                                          text: "upload your ",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "JPG, JPEG ",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                      TextSpan(
-                                          text: "or ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "PNG ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                      TextSpan(
-                                          text: "in less than ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff22263D))),
-                                      TextSpan(
-                                          text: "10 MB ",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xffFF405A))),
-                                    ]),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: 8.0, left: 20, right: 20),
-                          child: Container(
-                            height: 55,
-                            color: Color(0xffE1E0E7),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "TIP: Scan or take a photo of your passport on the white-coloured background to avoid rejection",
-                                style: ConstStyle.sourceSansPro,
                               ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, bottom: 20, top: 20),
-                          child: InkWell(
-                            onTap: () async {
-                              if (frontImage != null && backImage != null) {
-                                fileName1 = frontImage!
-                                    .path
-                                    .split('-')
-                                    .last;
-                                fileName2 = backImage!
-                                    .path
-                                    .split('-')
-                                    .last;
-                                var res = await ProfileRepository().uploadScans(
-                                    proofType: addressProof!,
-                                    file1: frontImage!,
-                                    file2: backImage!);
-                                print("resssssssssss  $res");
-                                if (res != "") {
-                                  setState(() {
-                                    Navigator.pop(context);
-                                    isScans = false;
-                                    isPassportImage = true;
-                                  });
-                                } else {
-                                  Fluttertoast.showToast(
-                                      msg: "Something went wrong!");
-                                }
-                              } else {
-                                Fluttertoast.showToast(
-                                    msg: "Capture Image First");
-                              }
-                            },
-                            child: Container(
-                              height: 45,
-                              decoration: BoxDecoration(
-                                  border:
-                                  Border.all(width: 1.5, color: Colors.white)),
-                              child: Center(
-                                  child: Text(
-                                    "Submit",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                  )),
+                            _space,
+                            Stack(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 160,
+                                    width: 300,
+                                    child: frontImage != null
+                                        ? Image.file(
+                                            frontImage!,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : InkWell(
+                                            onTap: () async {
+                                              final pickedFile =
+                                                  await _picker.getImage(
+                                                      source:
+                                                          ImageSource.camera,
+                                                      imageQuality: 50);
+                                              if (pickedFile != null) {
+                                                State(() {
+                                                  frontImage =
+                                                      File(pickedFile.path);
+                                                  isFrontImageClick = true;
+                                                });
+                                              }
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Center(
+                                                  child: SvgPicture.asset(
+                                                    ConstantImage.upload,
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Center(
+                                                  child: Text(
+                                                    "Upload Your $addressProof Frontside ",
+                                                    style: GoogleFonts
+                                                        .sourceSansPro(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: -5,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final pickedFile = await _picker.getImage(
+                                          source: ImageSource.camera);
+                                      if (pickedFile != null) {
+                                        State(() {
+                                          frontImage = File(pickedFile.path);
+                                        });
+                                      }
+                                    },
+                                    child: Visibility(
+                                      visible: isFrontImageClick,
+                                      child: Container(
+                                        height: 20,
+                                        width: 80,
+                                        color: AppColors.primaryColor,
+                                        child: Center(
+                                            child: Text(
+                                          "Replace",
+                                          style: ConstStyle.quickStandSmall,
+                                        )),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
+                            _space,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: RichText(
+                                text: const TextSpan(children: [
+                                  TextSpan(
+                                      text: "upload your ",
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "JPG, JPEG ",
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                  TextSpan(
+                                      text: "or ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "PNG ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                  TextSpan(
+                                      text: "in less than ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "10 MB ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                ]),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Center(
+                      child: Container(
+                        height: 290,
+                        width: MediaQuery.of(context).size.width / 1.12,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                                width: 0.5, color: Color(0xff707070))),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 45,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                ),
+                                color: Color(0xffE1E0E7),
+                                border: Border.all(
+                                    width: 0.5, color: Color(0xff707070)),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "$addressProof Backside Preview",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            _space,
+                            Stack(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 160,
+                                    width: 300,
+                                    child: backImage != null
+                                        ? Image.file(
+                                            backImage!,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : InkWell(
+                                            onTap: () async {
+                                              final pickedFile =
+                                                  await _picker.getImage(
+                                                      source:
+                                                          ImageSource.camera,
+                                                      imageQuality: 50);
+                                              if (pickedFile != null) {
+                                                State(() {
+                                                  backImage = File(
+                                                    pickedFile.path,
+                                                  );
+                                                  isBackImageClick = true;
+                                                });
+                                              }
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Center(
+                                                  child: SvgPicture.asset(
+                                                    ConstantImage.upload,
+                                                    height: 50,
+                                                  ),
+                                                ),
+                                                Center(
+                                                  child: Text(
+                                                    "Upload Your $addressProof Backside ",
+                                                    style: GoogleFonts
+                                                        .sourceSansPro(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: -5,
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final pickedFile = await _picker.getImage(
+                                          source: ImageSource.camera);
+                                      if (pickedFile != null) {
+                                        State(() {
+                                          backImage = File(pickedFile.path);
+                                        });
+                                      }
+                                    },
+                                    child: Visibility(
+                                      visible: isBackImageClick,
+                                      child: Container(
+                                        height: 20,
+                                        width: 80,
+                                        color: AppColors.primaryColor,
+                                        child: Center(
+                                            child: Text(
+                                          "Replace",
+                                          style: ConstStyle.quickStandSmall,
+                                        )),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            _space,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: RichText(
+                                text: const TextSpan(children: [
+                                  TextSpan(
+                                      text: "upload your ",
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "JPG, JPEG ",
+                                      style: TextStyle(
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                  TextSpan(
+                                      text: "or ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "PNG ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                  TextSpan(
+                                      text: "in less than ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff22263D))),
+                                  TextSpan(
+                                      text: "10 MB ",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xffFF405A))),
+                                ]),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 8.0, left: 20, right: 20),
+                      child: Container(
+                        height: 55,
+                        color: Color(0xffE1E0E7),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "TIP: Scan or take a photo of your passport on the white-coloured background to avoid rejection",
+                            style: ConstStyle.sourceSansPro,
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              });
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 20, top: 20),
+                      child: InkWell(
+                        onTap: () async {
+                          if (frontImage != null && backImage != null) {
+                            fileName1 = frontImage!.path.split('-').last;
+                            fileName2 = backImage!.path.split('-').last;
+                            var res = await ProfileRepository().uploadScans(
+                                proofType: addressProof!,
+                                file1: frontImage!,
+                                file2: backImage!);
+                            print("resssssssssss  $res");
+                            if (res != "") {
+                              setState(() {
+                                Navigator.pop(context);
+                                isScans = false;
+                                isPassportImage = true;
+                              });
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: "Something went wrong!");
+                            }
+                          } else {
+                            Fluttertoast.showToast(msg: "Capture Image First");
+                          }
+                        },
+                        child: Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(width: 1.5, color: Colors.white)),
+                          child: Center(
+                              child: Text(
+                            "Submit",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500)),
+                          )),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
         });
   }
 
@@ -9125,10 +8972,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               return StatefulBuilder(builder: (BuildContext context, State) {
                 return GestureDetector(
                   child: Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.85,
+                    height: MediaQuery.of(context).size.width * 0.85,
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     color: AppColors.primaryColor,
                     child: Column(
@@ -9206,16 +9050,16 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             height: 45,
                             decoration: BoxDecoration(
                                 border:
-                                Border.all(width: 1, color: Colors.white)),
+                                    Border.all(width: 1, color: Colors.white)),
                             child: Center(
                                 child: Text(
-                                  "Wrong name? -Re-enter PAN number",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
+                              "Wrong name? -Re-enter PAN number",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                            )),
                           ),
                         ),
                       ],
@@ -9244,10 +9088,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             builder: (BuildContext context) {
               return StatefulBuilder(builder: (BuildContext context, State) {
                 return Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   decoration: const BoxDecoration(
                     color: AppColors.textColor,
                     borderRadius: BorderRadius.only(
@@ -9310,16 +9151,16 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             height: 45,
                             decoration: BoxDecoration(
                                 border:
-                                Border.all(width: 1, color: Colors.white)),
+                                    Border.all(width: 1, color: Colors.white)),
                             child: Center(
                                 child: Text(
-                                  "Wrong name? -Re-enter PAN number",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
+                              "Wrong name? -Re-enter PAN number",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500)),
+                            )),
                           ),
                         ),
                       ),
@@ -9358,10 +9199,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     });
                   },
                   child: Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.80,
+                    height: MediaQuery.of(context).size.height * 0.80,
                     decoration: const BoxDecoration(
                       color: AppColors.textColor,
                       borderRadius: BorderRadius.only(
@@ -9408,13 +9246,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       width: 1.5, color: Colors.white)),
                               child: Center(
                                   child: Text(
-                                    "Close",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                  )),
+                                "Close",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500)),
+                              )),
                             ),
                           ),
                         ),
@@ -9449,10 +9287,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     });
                   },
                   child: Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.60,
+                    height: MediaQuery.of(context).size.height * 0.60,
                     decoration: const BoxDecoration(
                       color: AppColors.textColor,
                       borderRadius: BorderRadius.only(
@@ -9476,7 +9311,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         ),
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 15.0, right: 15.0),
+                              const EdgeInsets.only(left: 15.0, right: 15.0),
                           child: Center(
                             child: Text(
                               "Your Bank A/C number does not \n match with PAN name.",
@@ -9493,7 +9328,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         _space,
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 15.0, right: 15.0),
+                              const EdgeInsets.only(left: 15.0, right: 15.0),
                           child: Center(
                             child: Text(
                               "please upload the cancelled signed  cheque of your bank A/C.",
@@ -9512,7 +9347,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         _space,
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 15.0, right: 15.0),
+                              const EdgeInsets.only(left: 15.0, right: 15.0),
                           child: InkWell(
                             onTap: () {
                               Navigator.pop(context);
@@ -9525,13 +9360,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       width: 1.5, color: Colors.white)),
                               child: Center(
                                   child: Text(
-                                    "Proceed to upload Signed Cheque",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
-                                  )),
+                                "Proceed to upload Signed Cheque",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500)),
+                              )),
                             ),
                           ),
                         ),
@@ -9568,10 +9403,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     });
                   },
                   child: Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.90,
+                    height: MediaQuery.of(context).size.height * 0.90,
                     decoration: const BoxDecoration(
                       color: AppColors.textColor,
                       borderRadius: BorderRadius.only(
@@ -9602,10 +9434,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           Center(
                             child: Container(
                               height: 270,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 1.12,
+                              width: MediaQuery.of(context).size.width / 1.12,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15),
@@ -9616,10 +9445,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 children: [
                                   Container(
                                     height: 45,
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
+                                    width: MediaQuery.of(context).size.width,
                                     decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(15),
@@ -9742,7 +9568,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           ),
                           Padding(
                             padding:
-                            const EdgeInsets.only(left: 25.0, right: 25),
+                                const EdgeInsets.only(left: 25.0, right: 25),
                             child: InkWell(
                               onTap: () {
                                 setState(() {
@@ -9757,13 +9583,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         width: 1.5, color: Colors.white)),
                                 child: Center(
                                     child: Text(
-                                      "Submit",
-                                      style: GoogleFonts.quicksand(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500)),
-                                    )),
+                                  "Submit",
+                                  style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500)),
+                                )),
                               ),
                             ),
                           ),
@@ -9800,10 +9626,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
@@ -9847,26 +9670,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: genderIndex == 1
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Male",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 1
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Male",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 1
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -9888,26 +9711,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: genderIndex == 2
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Female",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 2
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Female",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 2
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -9929,26 +9752,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: genderIndex == 3
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Trans",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: genderIndex == 3
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Trans",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: genderIndex == 3
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -9965,10 +9788,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -9993,41 +9813,41 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               Navigator.pop(context);
                               var updateGender = await ProfileRepository()
                                   .addPersonalDetails(
-                                  firstName: getPersonalDetail!.firstname,
-                                  lastName: getPersonalDetail!.lastname,
-                                  addressLine1:
-                                  getPersonalDetail!.addressLine1,
-                                  addressLine2:
-                                  getPersonalDetail!.addressLine2,
-                                  addressLine3:
-                                  getPersonalDetail!.addressLine3,
-                                  addressZip: getPersonalDetail!.addressZip,
-                                  maidenName:
-                                  getPersonalDetail!.mothersMaidenName,
-                                  professionID:
-                                  getPersonalDetail!.occupation,
-                                  proof: getPersonalDetail!.proofType,
-                                  stateId: getPersonalDetail!.addressState,
-                                  cityID: getPersonalDetail!.addressCity,
-                                  genderIndex: genderIndex,
-                                  maritalIndex:
-                                  getPersonalDetail!.marriedStatus,
-                                  incomeIndex:
-                                  getPersonalDetail!.annualIncome,
-                                  experienceIndex:
-                                  getPersonalDetail!.tradingExperience,
-                                  dob: DateFormat('dd-MM-yyyy').format(
-                                      DateTime.parse(getPersonalDetail!.dob
-                                          .toString())),
-                                  politicallyexposed: getPersonalDetail!
-                                      .isPoliticallyExposed,
-                                  wouldyouliketoActivate: getPersonalDetail!
-                                      .wouldYouLikeToActivate,
-                                  chekbox1: getPersonalDetail!
-                                      .checkBoxShareDataWithCompany,
-                                  chekbox2: getPersonalDetail!
-                                      .checkBoxShareDataWithGovt,
-                                  itrFiled: 0);
+                                      firstName: getPersonalDetail!.firstname,
+                                      lastName: getPersonalDetail!.lastname,
+                                      addressLine1:
+                                          getPersonalDetail!.addressLine1,
+                                      addressLine2:
+                                          getPersonalDetail!.addressLine2,
+                                      addressLine3:
+                                          getPersonalDetail!.addressLine3,
+                                      addressZip: getPersonalDetail!.addressZip,
+                                      maidenName:
+                                          getPersonalDetail!.mothersMaidenName,
+                                      professionID:
+                                          getPersonalDetail!.occupation,
+                                      proof: getPersonalDetail!.proofType,
+                                      stateId: getPersonalDetail!.addressState,
+                                      cityID: getPersonalDetail!.addressCity,
+                                      genderIndex: genderIndex,
+                                      maritalIndex:
+                                          getPersonalDetail!.marriedStatus,
+                                      incomeIndex:
+                                          getPersonalDetail!.annualIncome,
+                                      experienceIndex:
+                                          getPersonalDetail!.tradingExperience,
+                                      dob: DateFormat('dd-MM-yyyy').format(
+                                          DateTime.parse(getPersonalDetail!.dob
+                                              .toString())),
+                                      politicallyexposed: getPersonalDetail!
+                                          .isPoliticallyExposed,
+                                      wouldyouliketoActivate: getPersonalDetail!
+                                          .wouldYouLikeToActivate,
+                                      chekbox1: getPersonalDetail!
+                                          .checkBoxShareDataWithCompany,
+                                      chekbox2: getPersonalDetail!
+                                          .checkBoxShareDataWithGovt,
+                                      itrFiled: 0);
                               if (updateGender != "") {
                                 getPersonalDetails();
                                 openConfirmBottomSheet();
@@ -10038,10 +9858,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -10092,10 +9909,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
@@ -10139,26 +9953,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: maritalIndex == 1
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Single",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 1
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Single",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 1
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -10180,26 +9994,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: maritalIndex == 2
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Married",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 2
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Married",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 2
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -10221,26 +10035,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: maritalIndex == 3
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Others",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: maritalIndex == 3
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Others",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: maritalIndex == 3
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -10257,10 +10071,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -10285,40 +10096,40 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               Navigator.pop(context);
                               var updateMarital = await ProfileRepository()
                                   .addPersonalDetails(
-                                  firstName: getPersonalDetail!.firstname,
-                                  lastName: getPersonalDetail!.lastname,
-                                  addressLine1:
-                                  getPersonalDetail?.addressLine1,
-                                  addressLine2:
-                                  getPersonalDetail?.addressLine2,
-                                  addressLine3:
-                                  getPersonalDetail?.addressLine3,
-                                  addressZip: getPersonalDetail!.addressZip,
-                                  maidenName:
-                                  getPersonalDetail!.mothersMaidenName,
-                                  professionID:
-                                  getPersonalDetail!.occupation,
-                                  proof: getPersonalDetail!.proofType,
-                                  stateId: getPersonalDetail!.addressState,
-                                  cityID: getPersonalDetail!.addressCity,
-                                  genderIndex: getPersonalDetail!.gender,
-                                  maritalIndex: maritalIndex,
-                                  incomeIndex:
-                                  getPersonalDetail!.annualIncome,
-                                  experienceIndex:
-                                  getPersonalDetail!.tradingExperience,
-                                  dob: DateFormat('dd-MM-yyyy').format(
-                                      DateTime.parse(getPersonalDetail!.dob
-                                          .toString())),
-                                  politicallyexposed: getPersonalDetail!
-                                      .isPoliticallyExposed,
-                                  wouldyouliketoActivate: getPersonalDetail!
-                                      .wouldYouLikeToActivate,
-                                  chekbox1: getPersonalDetail!
-                                      .checkBoxShareDataWithCompany,
-                                  chekbox2: getPersonalDetail!
-                                      .checkBoxShareDataWithGovt,
-                                  itrFiled: 0);
+                                      firstName: getPersonalDetail!.firstname,
+                                      lastName: getPersonalDetail!.lastname,
+                                      addressLine1:
+                                          getPersonalDetail?.addressLine1,
+                                      addressLine2:
+                                          getPersonalDetail?.addressLine2,
+                                      addressLine3:
+                                          getPersonalDetail?.addressLine3,
+                                      addressZip: getPersonalDetail!.addressZip,
+                                      maidenName:
+                                          getPersonalDetail!.mothersMaidenName,
+                                      professionID:
+                                          getPersonalDetail!.occupation,
+                                      proof: getPersonalDetail!.proofType,
+                                      stateId: getPersonalDetail!.addressState,
+                                      cityID: getPersonalDetail!.addressCity,
+                                      genderIndex: getPersonalDetail!.gender,
+                                      maritalIndex: maritalIndex,
+                                      incomeIndex:
+                                          getPersonalDetail!.annualIncome,
+                                      experienceIndex:
+                                          getPersonalDetail!.tradingExperience,
+                                      dob: DateFormat('dd-MM-yyyy').format(
+                                          DateTime.parse(getPersonalDetail!.dob
+                                              .toString())),
+                                      politicallyexposed: getPersonalDetail!
+                                          .isPoliticallyExposed,
+                                      wouldyouliketoActivate: getPersonalDetail!
+                                          .wouldYouLikeToActivate,
+                                      chekbox1: getPersonalDetail!
+                                          .checkBoxShareDataWithCompany,
+                                      chekbox2: getPersonalDetail!
+                                          .checkBoxShareDataWithGovt,
+                                      itrFiled: 0);
                               if (updateMarital != "") {
                                 getPersonalDetails();
                                 openConfirmBottomSheet();
@@ -10329,10 +10140,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -10383,10 +10191,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
@@ -10430,26 +10235,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: incomeIndex == 1
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Below 1 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 1
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Below 1 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 1
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -10471,26 +10276,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: incomeIndex == 2
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-5 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 2
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-5 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 2
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -10512,26 +10317,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: incomeIndex == 3
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 3
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 3
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -10558,26 +10363,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: incomeIndex == 4
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-20 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 4
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-20 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 4
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -10599,26 +10404,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: incomeIndex == 5
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Lakh",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: incomeIndex == 5
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Lakh",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: incomeIndex == 5
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -10635,10 +10440,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -10663,40 +10465,40 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               Navigator.pop(context);
                               var updateIncocme = await ProfileRepository()
                                   .addPersonalDetails(
-                                  firstName: getPersonalDetail!.firstname,
-                                  lastName: getPersonalDetail!.lastname,
-                                  addressLine1:
-                                  getPersonalDetail!.addressLine1,
-                                  addressLine2:
-                                  getPersonalDetail!.addressLine2,
-                                  addressLine3:
-                                  getPersonalDetail?.addressLine3,
-                                  addressZip: getPersonalDetail!.addressZip,
-                                  maidenName:
-                                  getPersonalDetail!.mothersMaidenName,
-                                  professionID:
-                                  getPersonalDetail!.occupation,
-                                  proof: getPersonalDetail!.proofType,
-                                  stateId: getPersonalDetail!.addressState,
-                                  cityID: getPersonalDetail!.addressCity,
-                                  genderIndex: getPersonalDetail!.gender,
-                                  maritalIndex:
-                                  getPersonalDetail!.marriedStatus,
-                                  incomeIndex: incomeIndex,
-                                  experienceIndex:
-                                  getPersonalDetail!.tradingExperience,
-                                  dob: DateFormat('dd-MM-yyyy').format(
-                                      DateTime.parse(getPersonalDetail!.dob
-                                          .toString())),
-                                  politicallyexposed: getPersonalDetail!
-                                      .isPoliticallyExposed,
-                                  wouldyouliketoActivate: getPersonalDetail!
-                                      .wouldYouLikeToActivate,
-                                  chekbox1: getPersonalDetail!
-                                      .checkBoxShareDataWithCompany,
-                                  chekbox2: getPersonalDetail!
-                                      .checkBoxShareDataWithGovt,
-                                  itrFiled: 0);
+                                      firstName: getPersonalDetail!.firstname,
+                                      lastName: getPersonalDetail!.lastname,
+                                      addressLine1:
+                                          getPersonalDetail!.addressLine1,
+                                      addressLine2:
+                                          getPersonalDetail!.addressLine2,
+                                      addressLine3:
+                                          getPersonalDetail?.addressLine3,
+                                      addressZip: getPersonalDetail!.addressZip,
+                                      maidenName:
+                                          getPersonalDetail!.mothersMaidenName,
+                                      professionID:
+                                          getPersonalDetail!.occupation,
+                                      proof: getPersonalDetail!.proofType,
+                                      stateId: getPersonalDetail!.addressState,
+                                      cityID: getPersonalDetail!.addressCity,
+                                      genderIndex: getPersonalDetail!.gender,
+                                      maritalIndex:
+                                          getPersonalDetail!.marriedStatus,
+                                      incomeIndex: incomeIndex,
+                                      experienceIndex:
+                                          getPersonalDetail!.tradingExperience,
+                                      dob: DateFormat('dd-MM-yyyy').format(
+                                          DateTime.parse(getPersonalDetail!.dob
+                                              .toString())),
+                                      politicallyexposed: getPersonalDetail!
+                                          .isPoliticallyExposed,
+                                      wouldyouliketoActivate: getPersonalDetail!
+                                          .wouldYouLikeToActivate,
+                                      chekbox1: getPersonalDetail!
+                                          .checkBoxShareDataWithCompany,
+                                      chekbox2: getPersonalDetail!
+                                          .checkBoxShareDataWithGovt,
+                                      itrFiled: 0);
                               if (updateIncocme != "") {
                                 getPersonalDetails();
                                 openConfirmBottomSheet();
@@ -10707,10 +10509,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -10761,17 +10560,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height / 1.5,
+                  height: MediaQuery.of(context).size.height / 1.5,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   color: AppColors.primaryColor,
                   child: SingleChildScrollView(
@@ -10804,14 +10597,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         _space1,
                         Container(
                             height: 45,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border:
-                                Border.all(width: 1.1, color: Colors.white),
+                                    Border.all(width: 1.1, color: Colors.white),
                                 color: Colors.white),
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -10821,7 +10611,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     hint: const Text(
                                       "Select Address Proof",
                                       style:
-                                      TextStyle(color: AppColors.textColor),
+                                          TextStyle(color: AppColors.textColor),
                                     ),
                                     items: address_data.map((item) {
                                       return DropdownMenuItem(
@@ -10954,14 +10744,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         _space1,
                         Container(
                             height: 45,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border:
-                                Border.all(width: 1.1, color: Colors.white),
+                                    Border.all(width: 1.1, color: Colors.white),
                                 color: Colors.white),
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -10971,7 +10758,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     hint: const Text(
                                       "Select State",
                                       style:
-                                      TextStyle(color: Color(0xff22263D)),
+                                          TextStyle(color: Color(0xff22263D)),
                                     ),
                                     items: state_data.map((item) {
                                       return DropdownMenuItem(
@@ -10983,7 +10770,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                               fontSize: 17.0,
                                             ),
                                           ) //Id that has to be passed that the dropdo  //e.g   India (Name)    and   its   ID (55fgf5f6frf56f) somethimg like that....
-                                      );
+                                          );
                                     }).toList(),
                                     onChanged: (String? newVal) {
                                       State(() {
@@ -11007,14 +10794,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         _space1,
                         Container(
                             height: 45,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border:
-                                Border.all(width: 1.1, color: Colors.white),
+                                    Border.all(width: 1.1, color: Colors.white),
                                 color: Colors.white),
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -11052,10 +10836,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         Center(
                           child: Container(
                             height: 290,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.12,
+                            width: MediaQuery.of(context).size.width / 1.12,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
@@ -11066,10 +10847,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               children: [
                                 Container(
                                   height: 45,
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
+                                  width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(15),
@@ -11100,53 +10878,53 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         width: 300,
                                         child: frontImage != null
                                             ? Image.file(
-                                          frontImage!,
-                                          fit: BoxFit.cover,
-                                        )
+                                                frontImage!,
+                                                fit: BoxFit.cover,
+                                              )
                                             : InkWell(
-                                          onTap: () async {
-                                            final pickedFile =
-                                            await _picker.getImage(
-                                                source: ImageSource
-                                                    .camera,
-                                                imageQuality: 50);
-                                            if (pickedFile != null) {
-                                              State(() {
-                                                frontImage =
-                                                    File(pickedFile.path);
-                                                isFrontImageClick = true;
-                                              });
-                                            }
-                                          },
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Center(
-                                                child: SvgPicture.asset(
-                                                  ConstantImage.upload,
-                                                  height: 50,
+                                                onTap: () async {
+                                                  final pickedFile =
+                                                      await _picker.getImage(
+                                                          source: ImageSource
+                                                              .camera,
+                                                          imageQuality: 50);
+                                                  if (pickedFile != null) {
+                                                    State(() {
+                                                      frontImage =
+                                                          File(pickedFile.path);
+                                                      isFrontImageClick = true;
+                                                    });
+                                                  }
+                                                },
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Center(
+                                                      child: SvgPicture.asset(
+                                                        ConstantImage.upload,
+                                                        height: 50,
+                                                      ),
+                                                    ),
+                                                    Center(
+                                                      child: Text(
+                                                        "Upload Your $addressProof Frontside ",
+                                                        style: GoogleFonts
+                                                            .sourceSansPro(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  color: Color(
+                                                                      0xff22263D),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              Center(
-                                                child: Text(
-                                                  "Upload Your $addressProof Frontside ",
-                                                  style: GoogleFonts
-                                                      .sourceSansPro(
-                                                    textStyle:
-                                                    const TextStyle(
-                                                        color: Color(
-                                                            0xff22263D),
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500,
-                                                        fontSize: 15),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ),
                                     ),
                                     Positioned(
@@ -11155,8 +10933,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       child: InkWell(
                                         onTap: () async {
                                           final pickedFile =
-                                          await _picker.getImage(
-                                              source: ImageSource.camera);
+                                              await _picker.getImage(
+                                                  source: ImageSource.camera);
                                           if (pickedFile != null) {
                                             State(() {
                                               frontImage =
@@ -11172,10 +10950,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                             color: AppColors.primaryColor,
                                             child: Center(
                                                 child: Text(
-                                                  "Replace",
-                                                  style: ConstStyle
-                                                      .quickStandSmall,
-                                                )),
+                                              "Replace",
+                                              style: ConstStyle.quickStandSmall,
+                                            )),
                                           ),
                                         ),
                                       ),
@@ -11243,10 +11020,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         Center(
                           child: Container(
                             height: 290,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width / 1.12,
+                            width: MediaQuery.of(context).size.width / 1.12,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
@@ -11257,10 +11031,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               children: [
                                 Container(
                                   height: 45,
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
+                                  width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(15),
@@ -11291,54 +11062,54 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         width: 300,
                                         child: backImage != null
                                             ? Image.file(
-                                          backImage!,
-                                          fit: BoxFit.cover,
-                                        )
+                                                backImage!,
+                                                fit: BoxFit.cover,
+                                              )
                                             : InkWell(
-                                          onTap: () async {
-                                            final pickedFile =
-                                            await _picker.getImage(
-                                                source: ImageSource
-                                                    .camera,
-                                                imageQuality: 50);
-                                            if (pickedFile != null) {
-                                              State(() {
-                                                backImage = File(
-                                                  pickedFile.path,
-                                                );
-                                                isBackImageClick = true;
-                                              });
-                                            }
-                                          },
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Center(
-                                                child: SvgPicture.asset(
-                                                  ConstantImage.upload,
-                                                  height: 50,
+                                                onTap: () async {
+                                                  final pickedFile =
+                                                      await _picker.getImage(
+                                                          source: ImageSource
+                                                              .camera,
+                                                          imageQuality: 50);
+                                                  if (pickedFile != null) {
+                                                    State(() {
+                                                      backImage = File(
+                                                        pickedFile.path,
+                                                      );
+                                                      isBackImageClick = true;
+                                                    });
+                                                  }
+                                                },
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Center(
+                                                      child: SvgPicture.asset(
+                                                        ConstantImage.upload,
+                                                        height: 50,
+                                                      ),
+                                                    ),
+                                                    Center(
+                                                      child: Text(
+                                                        "Upload Your $addressProof Backside ",
+                                                        style: GoogleFonts
+                                                            .sourceSansPro(
+                                                          textStyle:
+                                                              const TextStyle(
+                                                                  color: Color(
+                                                                      0xff22263D),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize: 15),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                              Center(
-                                                child: Text(
-                                                  "Upload Your $addressProof Backside ",
-                                                  style: GoogleFonts
-                                                      .sourceSansPro(
-                                                    textStyle:
-                                                    const TextStyle(
-                                                        color: Color(
-                                                            0xff22263D),
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500,
-                                                        fontSize: 15),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ),
                                     ),
                                     Positioned(
@@ -11347,8 +11118,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       child: InkWell(
                                         onTap: () async {
                                           final pickedFile =
-                                          await _picker.getImage(
-                                              source: ImageSource.camera);
+                                              await _picker.getImage(
+                                                  source: ImageSource.camera);
                                           if (pickedFile != null) {
                                             State(() {
                                               backImage = File(pickedFile.path);
@@ -11363,10 +11134,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                             color: AppColors.primaryColor,
                                             child: Center(
                                                 child: Text(
-                                                  "Replace",
-                                                  style: ConstStyle
-                                                      .quickStandSmall,
-                                                )),
+                                              "Replace",
+                                              style: ConstStyle.quickStandSmall,
+                                            )),
                                           ),
                                         ),
                                       ),
@@ -11454,10 +11224,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               },
                               child: Container(
                                 height: 45,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width / 2.4,
+                                width: MediaQuery.of(context).size.width / 2.4,
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1, color: Colors.white)),
@@ -11500,47 +11267,47 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 } else {
                                   Navigator.pop(context);
                                   var updatemaidenName =
-                                  await ProfileRepository().addPersonalDetails(
-                                      firstName:
-                                      getPersonalDetail!.firstname,
-                                      lastName: getPersonalDetail!.lastname,
-                                      addressLine1:
-                                      addressLine1.text.toString(),
-                                      addressLine2:
-                                      addressLine2.text.toString(),
-                                      addressLine3:
-                                      getPersonalDetail?.addressLine3,
-                                      addressZip:
-                                      addressZip.text.toString(),
-                                      maidenName: getPersonalDetail!
-                                          .mothersMaidenName,
-                                      professionID:
-                                      getPersonalDetail!.occupation,
-                                      proof: addressProof.toString(),
-                                      stateId: stateid.toString(),
-                                      cityID: cityid.toString(),
-                                      genderIndex:
-                                      getPersonalDetail!.gender,
-                                      maritalIndex:
-                                      getPersonalDetail!.marriedStatus,
-                                      incomeIndex:
-                                      getPersonalDetail!.annualIncome,
-                                      experienceIndex: getPersonalDetail!
-                                          .tradingExperience,
-                                      dob: DateFormat('dd-MM-yyyy').format(
-                                          DateTime.parse(getPersonalDetail!
-                                              .dob
-                                              .toString())),
-                                      politicallyexposed: getPersonalDetail!
-                                          .isPoliticallyExposed,
-                                      wouldyouliketoActivate:
-                                      getPersonalDetail!
-                                          .wouldYouLikeToActivate,
-                                      chekbox1: getPersonalDetail!
-                                          .checkBoxShareDataWithCompany,
-                                      chekbox2: getPersonalDetail!
-                                          .checkBoxShareDataWithGovt,
-                                      itrFiled: 0);
+                                      await ProfileRepository().addPersonalDetails(
+                                          firstName:
+                                              getPersonalDetail!.firstname,
+                                          lastName: getPersonalDetail!.lastname,
+                                          addressLine1:
+                                              addressLine1.text.toString(),
+                                          addressLine2:
+                                              addressLine2.text.toString(),
+                                          addressLine3:
+                                              getPersonalDetail?.addressLine3,
+                                          addressZip:
+                                              addressZip.text.toString(),
+                                          maidenName: getPersonalDetail!
+                                              .mothersMaidenName,
+                                          professionID:
+                                              getPersonalDetail!.occupation,
+                                          proof: addressProof.toString(),
+                                          stateId: stateid.toString(),
+                                          cityID: cityid.toString(),
+                                          genderIndex:
+                                              getPersonalDetail!.gender,
+                                          maritalIndex:
+                                              getPersonalDetail!.marriedStatus,
+                                          incomeIndex:
+                                              getPersonalDetail!.annualIncome,
+                                          experienceIndex: getPersonalDetail!
+                                              .tradingExperience,
+                                          dob: DateFormat('dd-MM-yyyy').format(
+                                              DateTime.parse(getPersonalDetail!
+                                                  .dob
+                                                  .toString())),
+                                          politicallyexposed: getPersonalDetail!
+                                              .isPoliticallyExposed,
+                                          wouldyouliketoActivate:
+                                              getPersonalDetail!
+                                                  .wouldYouLikeToActivate,
+                                          chekbox1: getPersonalDetail!
+                                              .checkBoxShareDataWithCompany,
+                                          chekbox2: getPersonalDetail!
+                                              .checkBoxShareDataWithGovt,
+                                          itrFiled: 0);
                                   print("===9856 $updatemaidenName");
                                   if (updatemaidenName != "") {
                                     getPersonalDetails();
@@ -11556,10 +11323,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               },
                               child: Container(
                                 height: 45,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width / 2.4,
+                                width: MediaQuery.of(context).size.width / 2.4,
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1, color: Colors.white)),
@@ -11611,10 +11375,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
@@ -11658,26 +11419,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 1
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Less than 1 Year",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 1
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Less than 1 Year",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 1
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -11699,26 +11460,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 2
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "1-2 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 2
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "1-2 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 2
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -11740,26 +11501,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 3
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "2-5 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 3
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "2-5 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 3
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -11786,26 +11547,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 4
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "5-10 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 4
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "5-10 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 4
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -11827,26 +11588,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 5
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "10-20 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 5
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "10-20 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 5
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                           const SizedBox(
@@ -11868,26 +11629,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 6
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "20-25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 6
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "20-25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 6
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -11914,26 +11675,26 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                   ],
                                   border:
-                                  Border.all(width: 1, color: Colors.white),
+                                      Border.all(width: 1, color: Colors.white),
                                   color: experienceIndex == 7
                                       ? Colors.white
                                       : Color(0xff22263D)),
                               child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "Above 25 Years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: experienceIndex == 7
-                                                ? Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
+                                child: Text(
+                                  "Above 25 Years",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: TextStyle(
+                                        color: experienceIndex == 7
+                                            ? Color(0xff22263D)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )),
                             ),
                           ),
                         ],
@@ -11950,10 +11711,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -11978,40 +11736,40 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               Navigator.pop(context);
                               var updateExperience = await ProfileRepository()
                                   .addPersonalDetails(
-                                  firstName: getPersonalDetail!.firstname,
-                                  lastName: getPersonalDetail!.lastname,
-                                  addressLine1:
-                                  getPersonalDetail!.addressLine1,
-                                  addressLine2:
-                                  getPersonalDetail!.addressLine2,
-                                  addressLine3:
-                                  getPersonalDetail?.addressLine3,
-                                  addressZip: getPersonalDetail!.addressZip,
-                                  maidenName:
-                                  getPersonalDetail!.mothersMaidenName,
-                                  professionID:
-                                  getPersonalDetail!.occupation,
-                                  proof: getPersonalDetail!.proofType,
-                                  stateId: getPersonalDetail!.addressState,
-                                  cityID: getPersonalDetail!.addressCity,
-                                  genderIndex: getPersonalDetail!.gender,
-                                  maritalIndex:
-                                  getPersonalDetail!.marriedStatus,
-                                  incomeIndex:
-                                  getPersonalDetail!.annualIncome,
-                                  experienceIndex: experienceIndex,
-                                  dob: DateFormat('dd-MM-yyyy').format(
-                                      DateTime.parse(getPersonalDetail!.dob
-                                          .toString())),
-                                  politicallyexposed: getPersonalDetail!
-                                      .isPoliticallyExposed,
-                                  wouldyouliketoActivate: getPersonalDetail!
-                                      .wouldYouLikeToActivate,
-                                  chekbox1: getPersonalDetail!
-                                      .checkBoxShareDataWithCompany,
-                                  chekbox2: getPersonalDetail!
-                                      .checkBoxShareDataWithGovt,
-                                  itrFiled: 0);
+                                      firstName: getPersonalDetail!.firstname,
+                                      lastName: getPersonalDetail!.lastname,
+                                      addressLine1:
+                                          getPersonalDetail!.addressLine1,
+                                      addressLine2:
+                                          getPersonalDetail!.addressLine2,
+                                      addressLine3:
+                                          getPersonalDetail?.addressLine3,
+                                      addressZip: getPersonalDetail!.addressZip,
+                                      maidenName:
+                                          getPersonalDetail!.mothersMaidenName,
+                                      professionID:
+                                          getPersonalDetail!.occupation,
+                                      proof: getPersonalDetail!.proofType,
+                                      stateId: getPersonalDetail!.addressState,
+                                      cityID: getPersonalDetail!.addressCity,
+                                      genderIndex: getPersonalDetail!.gender,
+                                      maritalIndex:
+                                          getPersonalDetail!.marriedStatus,
+                                      incomeIndex:
+                                          getPersonalDetail!.annualIncome,
+                                      experienceIndex: experienceIndex,
+                                      dob: DateFormat('dd-MM-yyyy').format(
+                                          DateTime.parse(getPersonalDetail!.dob
+                                              .toString())),
+                                      politicallyexposed: getPersonalDetail!
+                                          .isPoliticallyExposed,
+                                      wouldyouliketoActivate: getPersonalDetail!
+                                          .wouldYouLikeToActivate,
+                                      chekbox1: getPersonalDetail!
+                                          .checkBoxShareDataWithCompany,
+                                      chekbox2: getPersonalDetail!
+                                          .checkBoxShareDataWithGovt,
+                                      itrFiled: 0);
                               if (updateExperience != "") {
                                 getPersonalDetails();
                                 openConfirmBottomSheet();
@@ -12022,10 +11780,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -12076,10 +11831,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 top: 0,
                 right: 0,
                 left: 0,
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Wrap(
               children: [
                 Container(
@@ -12118,14 +11870,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             fillColor: Colors.white,
                             focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: AppColors.borderColor,
-                                  width: 1,
-                                )),
+                              color: AppColors.borderColor,
+                              width: 1,
+                            )),
                             disabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: AppColors.borderColor,
-                                  width: 1,
-                                )),
+                              color: AppColors.borderColor,
+                              width: 1,
+                            )),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: AppColors.borderColor,
@@ -12151,7 +11903,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 color: Color(0xffC8C7CE), letterSpacing: 3),
                             hintText: "Enter maiden name",
                             contentPadding:
-                            EdgeInsets.only(left: 14.0, top: 0.0),
+                                EdgeInsets.only(left: 14.0, top: 0.0),
                           ),
                         ),
                       ),
@@ -12167,10 +11919,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -12196,44 +11945,44 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 Navigator.pop(context);
                                 var updatemaidenName = await ProfileRepository()
                                     .addPersonalDetails(
-                                    firstName: getPersonalDetail!.firstname,
-                                    lastName: getPersonalDetail!.lastname,
-                                    addressLine1:
-                                    getPersonalDetail!.addressLine1,
-                                    addressLine2:
-                                    getPersonalDetail!.addressLine2,
-                                    addressLine3:
-                                    getPersonalDetail?.addressLine3,
-                                    addressZip:
-                                    getPersonalDetail!.addressZip,
-                                    maidenName: maidenName.text.toString(),
-                                    professionID:
-                                    getPersonalDetail!.occupation,
-                                    proof: getPersonalDetail!.proofType,
-                                    stateId:
-                                    getPersonalDetail!.addressState,
-                                    cityID: getPersonalDetail!.addressCity,
-                                    genderIndex: getPersonalDetail!.gender,
-                                    maritalIndex:
-                                    getPersonalDetail!.marriedStatus,
-                                    incomeIndex:
-                                    getPersonalDetail!.annualIncome,
-                                    experienceIndex: getPersonalDetail!
-                                        .tradingExperience,
-                                    dob: DateFormat('dd-MM-yyyy').format(
-                                        DateTime.parse(getPersonalDetail!
-                                            .dob
-                                            .toString())),
-                                    politicallyexposed: getPersonalDetail!
-                                        .isPoliticallyExposed,
-                                    wouldyouliketoActivate:
-                                    getPersonalDetail!
-                                        .wouldYouLikeToActivate,
-                                    chekbox1: getPersonalDetail!
-                                        .checkBoxShareDataWithCompany,
-                                    chekbox2: getPersonalDetail!
-                                        .checkBoxShareDataWithGovt,
-                                    itrFiled: 0);
+                                        firstName: getPersonalDetail!.firstname,
+                                        lastName: getPersonalDetail!.lastname,
+                                        addressLine1:
+                                            getPersonalDetail!.addressLine1,
+                                        addressLine2:
+                                            getPersonalDetail!.addressLine2,
+                                        addressLine3:
+                                            getPersonalDetail?.addressLine3,
+                                        addressZip:
+                                            getPersonalDetail!.addressZip,
+                                        maidenName: maidenName.text.toString(),
+                                        professionID:
+                                            getPersonalDetail!.occupation,
+                                        proof: getPersonalDetail!.proofType,
+                                        stateId:
+                                            getPersonalDetail!.addressState,
+                                        cityID: getPersonalDetail!.addressCity,
+                                        genderIndex: getPersonalDetail!.gender,
+                                        maritalIndex:
+                                            getPersonalDetail!.marriedStatus,
+                                        incomeIndex:
+                                            getPersonalDetail!.annualIncome,
+                                        experienceIndex: getPersonalDetail!
+                                            .tradingExperience,
+                                        dob: DateFormat('dd-MM-yyyy').format(
+                                            DateTime.parse(getPersonalDetail!
+                                                .dob
+                                                .toString())),
+                                        politicallyexposed: getPersonalDetail!
+                                            .isPoliticallyExposed,
+                                        wouldyouliketoActivate:
+                                            getPersonalDetail!
+                                                .wouldYouLikeToActivate,
+                                        chekbox1: getPersonalDetail!
+                                            .checkBoxShareDataWithCompany,
+                                        chekbox2: getPersonalDetail!
+                                            .checkBoxShareDataWithGovt,
+                                        itrFiled: 0);
                                 print("===9856 $updatemaidenName");
                                 if (updatemaidenName != "") {
                                   getPersonalDetails();
@@ -12246,10 +11995,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             },
                             child: Container(
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width / 2.4,
+                              width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 1, color: Colors.white)),
@@ -12300,10 +12046,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             builder: (BuildContext context) {
               return StatefulBuilder(builder: (BuildContext context, State) {
                 return Container(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.27,
+                  height: MediaQuery.of(context).size.height * 0.27,
                   decoration: const BoxDecoration(
                     color: AppColors.textColor,
                     borderRadius: BorderRadius.only(
@@ -12354,8 +12097,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}'
-        r'\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}'
+            r'\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
         .hasMatch(this);
   }
 }

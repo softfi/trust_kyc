@@ -424,33 +424,35 @@ class _BondsState extends State<Bonds> {
                                   horizontal: 15.0, vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Coupon",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xff1D2B84),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.30,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Coupon",
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                                color: Color(0xff1D2B84),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        "8.00%",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xffFF405A),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
+                                        const SizedBox(
+                                          height: 4,
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          "8.00%",
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                                color: Color(0xffFF405A),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Column(
                                     crossAxisAlignment:
@@ -487,34 +489,36 @@ class _BondsState extends State<Bonds> {
                                   horizontal: 15.0, vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Invest Payment",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xff1D2B84),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.30,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Invest Payment",
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                                color: Color(0xff1D2B84),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        "Annual",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xffFF405A),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
+                                        const SizedBox(
+                                          height: 4,
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          "Annual",
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                                color: Color(0xffFF405A),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 13),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Column(
                                     crossAxisAlignment:

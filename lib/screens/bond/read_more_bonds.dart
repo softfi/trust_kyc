@@ -517,33 +517,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Coupon",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Coupon",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "8.00%",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "8.00%",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -580,33 +582,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Coupon Rate (Returns)",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Coupon Rate (Returns)",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "8.00%",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "8.00%",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -643,33 +647,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Face Value",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Face Value",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "10,00,000.00",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "10,00,000.00",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -706,33 +712,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Interest Payment Frequency",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Interest Payment Frequency",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Annual",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "Annual",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -769,33 +777,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Tax Free",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Tax Free",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "NO",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "NO",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -832,33 +842,35 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Call Option",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Call Option",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "NO",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "NO",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -930,46 +942,82 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               child: Container(
                 margin: EdgeInsets.all(10),
                 child: Table(
-                  border: TableBorder.all(
-                      color: AppColors.textColor,
-                      style: BorderStyle.solid,
-                      width: 1),
+                  columnWidths: {0:FixedColumnWidth(60)},
+                  border: TableBorder.all(color: Colors.grey.shade400),
                   children: [
-                    TableRow(children: [
-                      Column(children: [
-                        Text('Rating Agency', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rating', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rationale', style: TextStyle(fontSize: 10.0))
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        Text('Rating Agency', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rating', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rationale', style: TextStyle(fontSize: 10.0))
-                      ]),
-                    ]),
-                    TableRow(children: [
-                      Column(children: [
-                        Text('Rating Agency', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rating', style: TextStyle(fontSize: 10.0))
-                      ]),
-                      Column(children: [
-                        Text('Rationale', style: TextStyle(fontSize: 10.0))
-                      ]),
-                    ]),
+                    TableRow(
+                      decoration: BoxDecoration(color: Color(0xffE1E0E7),),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Rating Agency",style: TextStyle(fontSize: 10.0) ,),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Rating",style: TextStyle(fontSize: 10.0) ,),
+                          ),
+
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Rationale",style: TextStyle(fontSize: 10.0)  ,),
+                            ),
+                          ),
+
+                        ]
+                    ),
+                    TableRow(decoration: BoxDecoration(color: Color(0xffFDFDEB)),
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("CRISIL",style: TextStyle(fontSize: 10.0)),
+                            ),
+
+                          ),
+                          Container( alignment: Alignment.center,
+                            child:const  Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("AA",style: TextStyle(fontSize: 10.0)),
+                            ),
+                          ),
+                          Container( alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.sim_card_download,size: 20,color: AppColors.btnColor,),
+
+                            ),
+                          ),
+                        ]
+                    ),
+                    TableRow(decoration: BoxDecoration(color: Color(0xffFDFDEB)),
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("CARE",style: TextStyle(fontSize: 10.0)),
+                            ),
+
+                          ),
+                          Container( alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("AA",style: TextStyle(fontSize: 10.0)),
+                            ),
+                          ),
+                          Container( alignment: Alignment.center,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.sim_card_download,size: 20,color: AppColors.btnColor,),
+                            ),
+                          ),
+                        ]
+                    ),
                   ],
-                ),
+                )
               ),
             ),
           ],
@@ -2236,12 +2284,12 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 const Color(0xffB2EEF8).withOpacity(0.5),
                 const Color(0xffFFFFFF),
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 2),
+            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

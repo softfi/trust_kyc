@@ -51,6 +51,7 @@ class ConstantImage {
   static const String home  = 'assets/images/home.png';
   static const String portfolio  = 'assets/images/portfolio.png';
   static const String person  = 'assets/images/person.png';
+  static const String bg  = 'assets/images/bg.png';
 
   // gif
   static const String error = 'assets/images/error.gif';

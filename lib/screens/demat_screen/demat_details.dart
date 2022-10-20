@@ -136,6 +136,7 @@ class _DematDetailsState extends State<DematDetails> {
         widget.addNewDematAccounts = false;
         dematDetails = true;
         loader = true;
+        print("=========65747 ${dematList[0].bornPlace}");
       }else{
         widget.addNewDematAccounts = true;
         dematDetails = false;
@@ -386,6 +387,256 @@ class _DematDetailsState extends State<DematDetails> {
                 ),
               ),
               _space,
+
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount:
+                dematList== null ? 0 : dematList.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: SizedBox(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.73,
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xffFFFCF4),
+                                  Color(0xffFCEAC4),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10)),
+                            ),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.only(left: 10.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 20.0),
+                                          child: Image.asset(
+                                              "assets/images/arrow.png",
+                                              height: 45,
+                                              width: 55),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Container(
+                                            height: 20,
+                                            width: 80,
+                                            decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    topRight: Radius.circular(8),
+                                                    topLeft: Radius.circular(8)),
+                                                color: Color(0xffffc440)),
+                                            child: Center(
+                                                child: Text(
+                                                  "PRIMARY",
+                                                  style: ConstStyle.sourceSansPro,
+                                                )),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                                0.30,
+                                            child: Text(
+                                              dematList[index]
+                                                  .primarySource,
+                                              style: ConstStyle
+                                                  .sourceSansbname,
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 16,
+                                            decoration: const BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.only(
+                                                  topLeft: Radius
+                                                      .circular(5),
+                                                  bottomRight:
+                                                  Radius.circular(
+                                                      5)),
+                                              color: AppColors.textColor,
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 8.0),
+                                              child: Center(
+                                                  child: Text("NSDL",
+                                                    style: TextStyle(
+                                                        fontSize: 8,
+                                                        fontWeight:
+                                                        FontWeight.w500,
+                                                        color: Colors.white),
+                                                  )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width*0.40,
+                                        child: Text(
+                                          "$userfName",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                              color: Color(0xff22263D),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 17,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width*0.40,
+                                        child: Text(
+                                          dematList!= null
+                                              ? dematList[index].dpAccountNumber
+                                              : " ",
+                                          style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                              color: Color(0xff22263D),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.16,
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xffFEFBF3),
+                                  Color(0xffFCE6B8),
+                                ],
+                                begin: Alignment.bottomLeft,
+                                end: Alignment.topRight,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      enableDisableBottomSheet();
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 3),
+                                      height: 25,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: isToggle
+                                              ? Colors.transparent
+                                              : const Color(0xffFF405A),
+                                          borderRadius:
+                                          BorderRadius.circular(25),
+                                          border: Border.all(
+                                              width: 2,
+                                              color: isToggle
+                                                  ? const Color(0xff22263D)
+                                                  : const Color(
+                                                  0xffFF405A))),
+                                      child: Row(
+                                        children: [
+                                          isToggle
+                                              ? Container()
+                                              :  Icon(
+                                            size: 20,
+                                            Icons.circle,
+                                            color: Colors.white,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          isToggle
+                                              ?  Icon(
+                                            size: 20,
+                                            Icons.circle,
+                                            color: Color(0xff22263D),
+                                          )
+                                              : Container(),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const Divider(
+                                    thickness: 1,
+                                    color: AppColors.textColor,
+                                    endIndent: 15,
+                                    indent: 15,
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      var res = await DematDetailRepository()
+                                          .deleteDematDetails(
+                                          dematList[index].id);
+                                      if (res != "") {
+                                        getDematDetails();
+                                      }
+                                    },
+                                    child: Image.asset(
+                                      "assets/images/delete.png",
+                                      scale: 3.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
              /* ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -1883,8 +2134,7 @@ class _DematDetailsState extends State<DematDetails> {
                                             onTap: () async {
                                               final pickedFile =
                                                   await _picker.getImage(
-                                                      source:
-                                                          ImageSource.camera);
+                                                      source: ImageSource.camera,imageQuality: 70);
                                               if (pickedFile != null) {
                                                 setState(() {
                                                   signatureImage =
@@ -3378,8 +3628,8 @@ class _DematDetailsState extends State<DematDetails> {
                               ),
                               GestureDetector(
                                 onTap: () {
+                                  Navigator.pop(context);
                                   setate(() {
-                                    Navigator.pop(context);
                                     isToggle = !isToggle;
                                     print("isToggle $isToggle");
                                   });
