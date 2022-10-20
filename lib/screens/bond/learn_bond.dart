@@ -7,6 +7,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
+
 class LearnBond extends StatefulWidget {
   const LearnBond({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class _LearnBondState extends State<LearnBond> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
@@ -174,7 +177,7 @@ class _LearnBondState extends State<LearnBond> {
               ),
             ),
           ),
-          Positioned(
+        /*  Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -217,7 +220,7 @@ class _LearnBondState extends State<LearnBond> {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );

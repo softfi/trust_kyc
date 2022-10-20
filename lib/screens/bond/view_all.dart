@@ -4,6 +4,7 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/bond/bond_advantages.dart';
 import 'package:trust_money/utils/images.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/styles.dart';
 
@@ -18,6 +19,7 @@ class _ViewAllState extends State<ViewAll> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Color(0xffE8E8E8),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
@@ -183,7 +185,7 @@ class _ViewAllState extends State<ViewAll> {
               ),
             ),
           ),
-          Positioned(
+       /*   Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -226,7 +228,7 @@ class _ViewAllState extends State<ViewAll> {
                 ),
               ),
             ),
-          ),
+          ),*/
 
         ],
       ),

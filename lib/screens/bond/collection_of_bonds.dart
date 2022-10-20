@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/images.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/colorsConstant.dart';
 
 late final TabController? _controller;
@@ -37,6 +38,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Collection_ofBonds_AppBar(),
+      bottomNavigationBar: CustomBottomNavigation(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(

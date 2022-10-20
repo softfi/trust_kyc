@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/strings.dart';
@@ -20,6 +21,7 @@ class _BondAdvantageState extends State<BondAdvantage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
@@ -164,7 +166,7 @@ class _BondAdvantageState extends State<BondAdvantage> {
               ),
             ),
           ),
-          Positioned(
+       /*   Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -207,7 +209,7 @@ class _BondAdvantageState extends State<BondAdvantage> {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );

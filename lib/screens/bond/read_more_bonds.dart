@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'dart:math' as math;
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
@@ -20,6 +21,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor:Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
@@ -190,7 +192,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               ),
             ),
           ),
-          Positioned(
+        /*  Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -233,7 +235,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -354,121 +356,123 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: 25,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(10),
-                      topRight: Radius.circular(10)),
-                  color: AppColors.textColor),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "Eligible Investors*",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+        child: SingleChildScrollView(scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: 25,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(10),
+                        topRight: Radius.circular(10)),
+                    color: AppColors.textColor),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(
+                    child: Text(
+                      "Eligible Investors*",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 25,
-              color: AppColors.greyColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "HUF",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 25,
+                color: AppColors.greyColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(
+                    child: Text(
+                      "HUF",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 25,
-              color: AppColors.greyColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "Corporate",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 25,
+                color: AppColors.greyColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(
+                    child: Text(
+                      "Corporate",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 25,
-              color: AppColors.greyColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "Trust",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 25,
+                color: AppColors.greyColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(
+                    child: Text(
+                      "Trust",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 25,
-              color: AppColors.greyColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "Minor",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 25,
+                color: AppColors.greyColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Center(
+                    child: Text(
+                      "Minor",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       const SizedBox(

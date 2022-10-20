@@ -8,6 +8,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../bottom_navigation/bottom_navigation.dart';
+
 class Bonds extends StatefulWidget {
   const Bonds({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class _BondsState extends State<Bonds> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffE8E8E8),
+      bottomNavigationBar: CustomBottomNavigation(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
@@ -170,7 +173,7 @@ class _BondsState extends State<Bonds> {
               ),
             ),
           ),
-          Positioned(
+        /*  Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -213,7 +216,7 @@ class _BondsState extends State<Bonds> {
                 ),
               ),
             ),
-          ),
+          ),*/
           Positioned(
             top: 2,
             right: 0,
@@ -426,7 +429,7 @@ class _BondsState extends State<Bonds> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.30,
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.28,
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -491,7 +494,7 @@ class _BondsState extends State<Bonds> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.30,
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.28,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

@@ -6,6 +6,7 @@ import 'package:trust_money/drawerWidget/left_drawer.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
+import '../../bottom_navigation/bottom_navigation.dart';
 import '../../drawerWidget/drawerWidget.dart';
 import '../../utils/images.dart';
 import '../../utils/strings.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         exit(0);
       },
       child: Scaffold(
-        // bottomNavigationBar: CustomBottomNavigation(),
+        bottomNavigationBar: CustomBottomNavigation(),
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
         appBar: AppBar(
