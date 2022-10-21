@@ -46,7 +46,7 @@ class ConstantImage {
   static const String dummy_bond  = 'assets/images/dummy_bond.png';
   static const String dummy_pic  = 'assets/images/dummy_pic.png';
   static const String chat  = 'assets/images/chat.png';
-  static const String dashboard  = 'assets/images/dashboard.png';
+  static const String dashboard  = 'assets/images/orders.png';
   static const String account  = 'assets/images/account.png';
   static const String home  = 'assets/images/home.png';
   static const String portfolio  = 'assets/images/portfolio.png';

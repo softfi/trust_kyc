@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
+import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../bottom_navigation/bottom_navigation.dart';
 import '../../drawerWidget/drawerWidget.dart';
@@ -21,7 +23,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIPOs = 1;
+  bool? userIsLoggedIn;
 
+  getLoggedInState() async {
+    await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
+      setState(() {
+        userIsLoggedIn = value;
+        print("====00001 $userIsLoggedIn");
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getLoggedInState();
+    super.initState();
+  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -30,39 +48,155 @@ class _HomePageState extends State<HomePage> {
         exit(0);
       },
       child: Scaffold(
-        bottomNavigationBar: CustomBottomNavigation(),
+        key: _scaffoldKey,
+        bottomNavigationBar: const CustomBottomNavigation(),
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
-        appBar: AppBar(
-          centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.white),
-          // leading: Builder(
-          //   builder: (context) => IconButton(
-          //     icon: const Icon(
-          //       Icons.clear_all_sharp,
-          //       size: 30,
-          //       color: AppColors.primaryColor,
-          //     ),
-          //     onPressed: () => Scaffold.of(context).openDrawer(),
-          //   ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(80.0),
+          child: Container(
+            height: 80,
+            color: const Color(0xffF2A9B0),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                      icon: const Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                      onPressed: () {
+                        _scaffoldKey.currentState?.openDrawer();
+print("asasdasddas");
+
+
+                      }),
+                  Image.asset(
+                    ConstantImage.white_logo,
+                    height: 60,
+                    width: 60,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        userIsLoggedIn == null
+                            ? InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignUp()));
+                                },
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.45),
+                                          spreadRadius: 5,
+                                          blurRadius: 11,
+                                          offset: const Offset(0, 3),
+                                        ),
+                                      ],
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0),
+                                      child: Text(
+                                        "Sign Up/In",
+                                        style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                            color: AppColors.textColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : IconButton(
+                                icon: const Icon(
+                                  Icons.person_pin,
+                                  color: Colors.white,
+                                  size: 25,
+                                ),
+                                onPressed: () {
+                                  _scaffoldKey.currentState?.openEndDrawer();
+                                  print("kldfh");
+                                },
+                              )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          // actions: [],
+          // elevation: 0.6,
+          // backgroundColor: const Color(0xff00C6D8),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+          //   onPressed: () => Navigator.of(context).pop(),
           // ),
+          // centerTitle: true,
+          // title: Text(
+          //   "Profile",
+          //   style: ConstStyle.quickStandSmall11,
+          // ),
+        ),
+        /* appBar: AppBar(
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.white), ,
           title: Image.asset(
             ConstantImage.white_logo,
             height: 60,
             width: 60,
-          ),
-          elevation: 0.0,
+          ),*/
+        /* elevation: 0.0,
           toolbarHeight: 55,
           foregroundColor: Colors.black,
           backgroundColor: const Color(0xffF2A9B0),
+
           actions: [
-            //Icon(Icons.person_pin,size: 35,)
-            //IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            Container(
+              height: 10,
+              width: 10,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.25),
+                        spreadRadius: 2,
+                        blurRadius: 11,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  color: Colors.white),
+            )
             // IconButton(onPressed: () {
-            //   //Scaffold.of(context).openEndDrawer();
+            //   Scaffold.of(context).openEndDrawer();
             // }, icon: Icon(Icons.person_pin,size: 35,))
-          ],
-        ),
+          ],*/
         body: SingleChildScrollView(
           child: Stack(
             alignment: AlignmentDirectional.topEnd,
@@ -71,7 +205,7 @@ class _HomePageState extends State<HomePage> {
               Column(
                 children: [
                   Container(
-                    height: 400,
+                    height: 600,
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -109,270 +243,299 @@ class _HomePageState extends State<HomePage> {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 50.0, left: 10, right: 10),
+                    padding: const EdgeInsets.only(
+                      top: 45.0,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                            "From the makers of the most \nTrusted Bonds Investment House.\n",
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                              ),
-                            )),
-                        Container(height: 100,
-                          width: MediaQuery.of(context).size.width,
-                          child: Stack(
-                            children: [
-                              Column(crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("Hello I am ",
-                                      style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 25,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                              "From the makers of the most \nTrusted Bonds Investment House.\n",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                ),
+                              )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Stack(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Hello I am ",
+                                        style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25,
+                                          ),
+                                        )),
+                                    Row(
+                                      children: [
+                                        Text("Bond, Trust Bond",
+                                            style: GoogleFonts.quicksand(
+                                              textStyle: const TextStyle(
+                                                color: AppColors.textColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 25,
+                                              ),
+                                            )),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 4.0),
+                                          child: SvgPicture.asset(
+                                            ConstantImage.spyMale,
+                                            height: 45,
+                                          ),
                                         ),
-                                      )),
-                                  Row(
-                                    children: [
-                                      Text("Bond, Trust Bond",
-                                          style: GoogleFonts.quicksand(
-                                            textStyle: const TextStyle(
-                                              color: AppColors.textColor,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 25,
-                                            ),
-                                          )),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 4.0),
-                                        child: SvgPicture.asset(
-                                          ConstantImage.spyMale,
-                                          height: 45,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Positioned(top: 23,left: 227,
-                                child: Container(
-                                  alignment: Alignment(-0.62, -1),
-                                  color: Colors.transparent,
-                                  height: 50,
-                                  child: Transform.rotate(
-                                    angle: -math.pi / 4,
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      color: Colors.white,
-                                      alignment: Alignment(-0.62, 1),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Positioned(
+                                  top: 23,
+                                  left: 227,
+                                  child: Container(
+                                    alignment: const Alignment(-0.62, -1),
+                                    color: Colors.transparent,
+                                    height: 50,
+                                    child: Transform.rotate(
+                                      angle: -math.pi / 4,
                                       child: Container(
                                         width: 20,
-                                        height: 60,
-
+                                        height: 20,
+                                        color: Colors.white,
+                                        alignment: const Alignment(-0.62, 1),
+                                        child: const SizedBox(
+                                          width: 20,
+                                          height: 60,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 5,
-                                left: 155,
-                                child: Container(
-                                  height: 33,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
+                                Positioned(
+                                  top: 5,
+                                  left: 155,
+                                  child: Container(
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    child: Center(
+                                        child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0),
+                                      child: Text(
+                                        "( Naam to suna hoga! )",
+                                        style: GoogleFonts.quicksand(
+                                            textStyle: const TextStyle(
+                                                color: Color(0xff22263D),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                    )),
                                   ),
-                                  child: Center(child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                                    child: Text("( Naam to suna hoga! )",style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D), fontSize: 13, fontWeight: FontWeight.w400)),),
-                                  )),
                                 ),
-                              ),
-
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                        Text(
-                          "Licensed to make\nmoney for you.",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                              color: Color(0xffFfffff),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 19,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            "Licensed to make\nmoney for you.",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                color: Color(0xffFfffff),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 19,
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 8),
-                          decoration: BoxDecoration(
-                              boxShadow: const [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 8),
+                            decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color(0x29000000),
+                                    blurRadius: 30.0,
+                                  ),
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Text("Let’s find the right BOND for you",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xff22263D),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Image.asset(
+                          ConstantImage.quick,
+                          fit: BoxFit.cover,
+                          height: 416,
+                          //width: MediaQuery.of(context).size.width,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Container(
+                            height: 60,
+                            decoration: const BoxDecoration(
+                              boxShadow: [
                                 BoxShadow(
                                   color: Color(0x29000000),
                                   blurRadius: 30.0,
                                 ),
                               ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Text("Let’s find the right BOND for you",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                ),
-                              )),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Image.asset(
-                            ConstantImage.quick,
-                            fit: BoxFit.cover,
-                            height: 400,
+                            ),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white54,
+                                  filled: true,
+                                  border: InputBorder.none,
+                                  contentPadding:
+                                      const EdgeInsets.symmetric(vertical: 20),
+                                  hintText: "Bond name, issuer and bond type",
+                                  hintStyle: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff1D2B84),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16),
+                                  ),
+                                  prefixIcon: const Icon(Icons.search,
+                                      color: Color(0xff1D2B84)),
+                                  suffixIcon: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: 100,
+                                      decoration: const BoxDecoration(
+                                        color: AppColors.textColor,
+                                        boxShadow: [],
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        "Search",
+                                        style: GoogleFonts.sourceSansPro(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15),
+                                        ),
+                                      )),
+                                    ),
+                                  )),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          height: 60,
-                          decoration: const BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x29000000),
-                                blurRadius: 30.0,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    currentIPOs = 1;
+                                  });
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width: width / 3,
+                                  decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(0x29000000),
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
+                                      color: currentIPOs == 1
+                                          ? const Color(0xff22263D)
+                                          : Colors.white),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Text(
+                                      "Current IPOs",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: TextStyle(
+                                            color: currentIPOs == 1
+                                                ? Colors.white
+                                                : const Color(0xff22263D),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13),
+                                      ),
+                                    ),
+                                  )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    currentIPOs = 2;
+                                  });
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width: width / 3,
+                                  decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(0x29000000),
+                                          blurRadius: 6.0,
+                                        ),
+                                      ],
+                                      color: currentIPOs == 2
+                                          ? const Color(0xff22263D)
+                                          : Colors.white),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0),
+                                    child: Text(
+                                      "Bond in Spotlight",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: TextStyle(
+                                            color: currentIPOs == 2
+                                                ? Colors.white
+                                                : const Color(0xff22263D),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13),
+                                      ),
+                                    ),
+                                  )),
+                                ),
                               ),
                             ],
                           ),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                fillColor: Colors.white54,
-                                filled: true,
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(vertical: 20),
-                                hintText: "Bond name, issuer and bond type",
-                                hintStyle: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xff1D2B84),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16),
-                                ),
-                                prefixIcon: const Icon(Icons.search,
-                                    color: Color(0xff1D2B84)),
-                                suffixIcon: InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: 100,
-                                    decoration: const BoxDecoration(
-                                      color: AppColors.textColor,
-                                      boxShadow: [],
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "Search",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white, fontSize: 15),
-                                      ),
-                                    )),
-                                  ),
-                                )),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  currentIPOs = 1;
-                                });
-                              },
-                              child: Container(
-                                height: 45,
-                                width: width / 3,
-                                decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Color(0x29000000),
-                                        blurRadius: 6.0,
-                                      ),
-                                    ],
-                                    color: currentIPOs == 1
-                                        ? const Color(0xff22263D)
-                                        : Colors.white),
-                                child: Center(
-                                    child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: Text(
-                                    "Current IPOs",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: TextStyle(
-                                          color: currentIPOs == 1
-                                              ? Colors.white
-                                              : const Color(0xff22263D),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13),
-                                    ),
-                                  ),
-                                )),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  currentIPOs = 2;
-                                });
-                              },
-                              child: Container(
-                                height: 45,
-                                width: width / 3,
-                                decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Color(0x29000000),
-                                        blurRadius: 6.0,
-                                      ),
-                                    ],
-                                    color: currentIPOs == 2
-                                        ? const Color(0xff22263D)
-                                        : Colors.white),
-                                child: Center(
-                                    child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 12.0),
-                                  child: Text(
-                                    "Bond in Spotlight",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: TextStyle(
-                                          color: currentIPOs == 2
-                                              ? Colors.white
-                                              : const Color(0xff22263D),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13),
-                                    ),
-                                  ),
-                                )),
-                              ),
-                            ),
-                          ],
                         ),
                         const SizedBox(
                           height: 20,
@@ -381,14 +544,17 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          Strings.home_note,
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FontStyle.italic)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            Strings.home_note,
+                            style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: Color(0xff22263D),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic)),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -400,86 +566,102 @@ class _HomePageState extends State<HomePage> {
                                 MaterialPageRoute(
                                     builder: (context) => const Bonds()));
                           },
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              height: 55,
-                              width: 220,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(50),
-                                    bottomLeft: Radius.circular(50)),
-                                color: Color(0xffEC515F),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Explore All Bonds",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                        color: Color(0xffFfffff),
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                height: 55,
+                                width: 220,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(50),
+                                      bottomLeft: Radius.circular(50)),
+                                  color: Color(0xffEC515F),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Explore All Bonds",
+                                      style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                          color: Color(0xffFfffff),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
-                        Image.asset("assets/images/text.png"),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Image.asset("assets/images/text.png"),
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
                         investWidget(),
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
-                        Text("Seekho toh sirf",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text("Seekho toh sirf",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20),
+                              )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            children: [
+                              Text("Bond, Trust Bond ",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xffFF405A),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 28),
+                                  )),
+                              Text("se",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: AppColors.textColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 23),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            "Learn your smart investment moves from the best so far…",
                             style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: AppColors.textColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20),
-                            )),
-                        Row(
-                          children: [
-                            Text("Bond, Trust Bond ",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xffFF405A),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 25),
-                                )),
-                            Text("se",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: AppColors.textColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                )),
-                          ],
-                        ),
-                        Text(
-                          "Learn your smart investment moves from the best so far…",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: AppColors.textColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15)),
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15)),
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -488,58 +670,67 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            height: 55,
-                            width: 150,
-                            decoration: const BoxDecoration(
-                              color: AppColors.btnColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  bottomLeft: Radius.circular(50)),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "View All",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16)),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                const Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 20,
-                                )
-                              ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              height: 55,
+                              width: 150,
+                              decoration:  BoxDecoration(
+                                color: Color(0xffEC515F),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(50),
+                                    bottomLeft: Radius.circular(50)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "View All",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16)),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 20,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        Text(
-                          "From around the market",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: AppColors.textColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 19)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            "From around the market",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 19)),
+                          ),
                         ),
-                        Text(
-                          "Bond ki khabaren",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xffFF405A),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 25),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Text(
+                            "Bond ki khabaren",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Color(0xffFF405A),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28),
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -549,41 +740,43 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            height: 55,
-                            width: 150,
-                            decoration: const BoxDecoration(
-                              color: AppColors.btnColor,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  bottomLeft: Radius.circular(50)),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "View All",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16)),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                const Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 20,
-                                )
-                              ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              height: 55,
+                              width: 150,
+                              decoration: const BoxDecoration(
+                                color: Color(0xffEC515F),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(50),
+                                    bottomLeft: Radius.circular(50)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "View All",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16)),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 20,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
-
 
                         /* Container(
                           width: MediaQuery.of(context).size.width,
@@ -807,8 +1000,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-
-              Positioned(right: 0,
+              Positioned(
+                right: 0,
                 bottom: 1100,
                 child: Image.asset(
                   ConstantImage.bg,
@@ -827,7 +1020,7 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -836,7 +1029,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 width: 5,
-                height: 390,
+                height: 460,
                 color: AppColors.textColor,
               ),
               const SizedBox(
@@ -851,7 +1044,7 @@ class _HomePageState extends State<HomePage> {
                       textStyle: const TextStyle(
                         color: Color(0xff00C6D8),
                         fontWeight: FontWeight.bold,
-                        fontSize: 19,
+                        fontSize: 22,
                       ),
                     ),
                   ),
@@ -938,7 +1131,7 @@ class _HomePageState extends State<HomePage> {
             right: 0,
             child: SvgPicture.asset("assets/images/line.svg")),
         Positioned(
-          left: 4.9,
+          left: 20.9,
           top: 15,
           child: Transform.rotate(
             angle: math.pi / 4,
@@ -955,7 +1148,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Positioned(
-          left: 14.7,
+          left: 30.7,
           top: 15,
           child: Transform.rotate(
             angle: -math.pi / 4,
@@ -972,7 +1165,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Positioned(
-          top: 120,
+          top: 156,
+          left: 15,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -982,19 +1176,20 @@ class _HomePageState extends State<HomePage> {
             height: 25,
             child: Center(
                 child: Text(
-                  "1",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "1",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
-          top: 198,
+          top: 235,
+          left: 15,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -1004,19 +1199,20 @@ class _HomePageState extends State<HomePage> {
             height: 25,
             child: Center(
                 child: Text(
-                  "2",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "2",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
-          bottom: 110,
+          bottom: 140,
+          left: 15,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -1026,15 +1222,15 @@ class _HomePageState extends State<HomePage> {
             height: 25,
             child: Center(
                 child: Text(
-                  "3",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "3",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -1048,9 +1244,10 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
   Widget myList() {
     return SizedBox(
-      height: 400,
+      height: 438,
       width: double.infinity,
       child: ListView.builder(
         itemCount: 5,
@@ -1059,7 +1256,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding:
-                const EdgeInsets.only(right: 20.0, top: 2, bottom: 2, left: 2),
+                const EdgeInsets.only(right: 12.0, top: 2, bottom: 2, left: 12),
             child: Container(
               width: 270,
               decoration: BoxDecoration(boxShadow: const [
@@ -1088,43 +1285,48 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: const Color(0xff58C3D5).withOpacity(0.35)),
-                        child: Center(
-                          child: Text(
-                            "M",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: const Color(0xff58C3D5).withOpacity(0.35)),
+                          child: Center(
+                            child: Text(
+                              "M",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 160,
-                        child: Text("MAHINDRA & MAHINDRA FINANCIAL",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            )),
-                      )
-                    ],
+                        const SizedBox(width: 12,),
+                        SizedBox(
+                          width: 160,
+                          child: Text("MAHINDRA & MAHINDRA FINANCIAL",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              )),
+                        )
+                      ],
+                    ),
                   ),
+                  const SizedBox(height: 8,),
                   Container(
-                    color: const Color(0xffD67278).withOpacity(0.10),
+                    color: const Color(0xffD67278).withOpacity(0.11),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15.0, vertical: 15),
@@ -1154,7 +1356,7 @@ class _HomePageState extends State<HomePage> {
                                     textStyle: const TextStyle(
                                         color: Color(0xffFF405A),
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 15),
                                   ),
                                 ),
                               ],
@@ -1181,7 +1383,7 @@ class _HomePageState extends State<HomePage> {
                                   textStyle: const TextStyle(
                                       color: Color(0xffFF405A),
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13),
+                                      fontSize: 15),
                                 ),
                               ),
                             ],
@@ -1191,14 +1393,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    color: const Color(0xff9BA9AD).withOpacity(0.10),
+                    color: const Color(0xff9BA9AD).withOpacity(0.11),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15.0, vertical: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(width: 150,
+                          SizedBox(
+                            width: 150,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -1220,7 +1423,7 @@ class _HomePageState extends State<HomePage> {
                                     textStyle: const TextStyle(
                                         color: Color(0xffFF405A),
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13),
+                                        fontSize: 15),
                                   ),
                                 ),
                               ],
@@ -1247,7 +1450,7 @@ class _HomePageState extends State<HomePage> {
                                   textStyle: const TextStyle(
                                       color: Color(0xffFF405A),
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 13),
+                                      fontSize: 15),
                                 ),
                               ),
                             ],
@@ -1259,14 +1462,14 @@ class _HomePageState extends State<HomePage> {
                   Image.asset(
                     "assets/images/meter.png",
                     fit: BoxFit.fill,
-                    height: 115,
+                    height: 130 ,
                     width: 240,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1283,17 +1486,36 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Container(
-                          height: 30,
+                          height: 33,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            color: const Color(0xffC4414D),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x29000000),
+                                blurRadius: 5.0,
+                              ),
+                            ],
+                            gradient: const LinearGradient(
+                              colors: [
+                                Color(0xffEC515F),
+                                Color(0xffC4414D),
+                              ],
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                            ),
                           ),
                           child: Center(
                               child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                                const EdgeInsets.symmetric(horizontal: 30.0),
                             child: Text("Read More",
-                                style: ConstStyle.quickStandSmall),
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                    color:Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  ),
+                                )),
                           )),
                         ),
                         const SizedBox(
@@ -1321,19 +1543,21 @@ class _HomePageState extends State<HomePage> {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
           child: Container(
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
                 spreadRadius: 2,
                 blurRadius: 11,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
+                dense: false,
+
                 leading: Image.asset(
                   ConstantImage.dummy_pic,
                 ),
@@ -1345,40 +1569,43 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                 ),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      "Jan 24, 2022",
-                      style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.btnColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12)),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 16,
-                      width: 65,
-                      decoration: const BoxDecoration(
-                        color: Color(0xffE1E0E7),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Jan 24, 2022",
+                        style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                                color: AppColors.btnColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12)),
                       ),
-                      child: Center(
-                        child: Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 9)),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        height: 16,
+                        width: 65,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffE1E0E7),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "5 min read",
+                            style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 9)),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -1395,14 +1622,14 @@ class _HomePageState extends State<HomePage> {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
           child: Container(
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
                 spreadRadius: 2,
                 blurRadius: 11,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
             child: Padding(
@@ -1419,40 +1646,43 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16)),
                 ),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      "Jan 24, 2022",
-                      style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.btnColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12)),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 16,
-                      width: 65,
-                      decoration: const BoxDecoration(
-                        color: Color(0xffE1E0E7),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 6.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Jan 24, 2022",
+                        style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                                color: AppColors.btnColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12)),
                       ),
-                      child: Center(
-                        child: Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 9)),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        height: 16,
+                        width: 65,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffE1E0E7),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomLeft: Radius.circular(15)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "5 min read",
+                            style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 9)),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -1463,20 +1693,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget subscribe() {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xffB2EEF8).withOpacity(0.5),
-                const Color(0xffFFFFFF),
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xffB2EEF8).withOpacity(0.5),
+            const Color(0xffFFFFFF),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: -8,
+            child: Image.asset(
+              ConstantImage.leaf,
+              color: Color(0xffFF405A),
+              height: 350,
             ),
           ),
-          child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1495,7 +1734,7 @@ class _HomePageState extends State<HomePage> {
                     textStyle: const TextStyle(
                         color: Color(0xffFF405A),
                         fontWeight: FontWeight.w600,
-                        fontSize: 25),
+                        fontSize: 28),
                   ),
                 ),
                 const SizedBox(
@@ -1538,7 +1777,7 @@ class _HomePageState extends State<HomePage> {
                     height: 55,
                     width: 160,
                     decoration: const BoxDecoration(
-                      color: AppColors.btnColor,
+                      color: Color(0xffEC515F),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           bottomLeft: Radius.circular(50)),
@@ -1569,24 +1808,17 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          top: 8,
-          right: 8,
-          child: Image.asset(
-            ConstantImage.leaf,
-            color: Colors.black26,
-            height: 300,
-          ),
-        )
-      ],
+
+        ],
+      ),
     );
   }
 
-  Widget needHelp(){
+  Widget needHelp() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Need Help?",
@@ -1696,7 +1928,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 8,
           ),
-
           const SizedBox(
             height: 20,
           ),

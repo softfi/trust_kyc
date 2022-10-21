@@ -15,79 +15,88 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: AppColors.btnColor,
-      selectedItemColor: Colors.white.withOpacity(.60),
-      selectedLabelStyle: GoogleFonts.quicksand(
-        textStyle: const TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 14,
+    return ClipRRect(
+
+      borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+      child: BottomNavigationBar(
+
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.btnColor,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white.withOpacity(0.65),
+        selectedLabelStyle: GoogleFonts.quicksand(
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
         ),
-      ),
-      unselectedLabelStyle: GoogleFonts.quicksand(
-        textStyle: const TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 14,
+        unselectedLabelStyle: GoogleFonts.quicksand(
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
         ),
+        onTap: (value) {
+          setState(() => _currentIndex = value);
+        },
+        items: [
+          BottomNavigationBarItem(
+              label: 'Home',
+              icon: InkWell(
+                onTap: (){print("home tapped");},
+                child: Image.asset(
+                  ConstantImage.home,
+                  height: 25,
+                  width: 25,
+                  color: _currentIndex == 0
+                      ?Colors.white
+                      : Colors.white.withOpacity(0.65),
+                ),
+              )),
+
+          BottomNavigationBarItem(
+              label: 'Portfolio',
+              icon: InkWell(
+              onTap: (){print("portfoloi tapped");},
+                child: Image.asset(
+                  ConstantImage.portfolio,
+                  height: 25,
+                  width: 25,
+                  color: _currentIndex == 1
+                      ?Colors.white
+                      : Colors.white.withOpacity(0.65),
+                ),
+              )),
+          BottomNavigationBarItem(
+              label: 'Orders',
+              icon: InkWell(
+                onTap: (){print("order tapped");},
+                child: Image.asset(
+                  ConstantImage.dashboard,
+                  height: 25,
+                  width: 25,
+                  color: _currentIndex == 2
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.65),
+                ),
+              )),
+          BottomNavigationBarItem(
+              label: 'Chat',
+              icon: InkWell(
+                onTap: (){print("Chat tapped");},
+                child: Image.asset(
+                  ConstantImage.chat,
+                  height: 25,
+                  width: 25,
+                  color: _currentIndex == 3
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.65),
+                ),
+              )),
+        ],
       ),
-      unselectedItemColor: AppColors.primaryColor,
-      onTap: (value) {
-        setState(() => _currentIndex = value);
-      },
-      items: [
-        BottomNavigationBarItem(
-            label: 'Home',
-            icon: Image.asset(
-              ConstantImage.home,
-              height: 30,
-              width: 30,
-              color: _currentIndex == 0
-                  ? Colors.white.withOpacity(.60)
-                  : AppColors.primaryColor,
-            )),
-        BottomNavigationBarItem(
-            label: 'Dashboard',
-            icon: Image.asset(
-              ConstantImage.dashboard,
-              height: 30,
-              width: 30,
-              color: _currentIndex == 1
-                  ? Colors.white.withOpacity(.60)
-                  : AppColors.primaryColor,
-            )),
-        BottomNavigationBarItem(
-            label: 'Portfolio',
-            icon: Image.asset(
-              ConstantImage.portfolio,
-              height: 30,
-              width: 30,
-              color: _currentIndex == 2
-                  ? Colors.white.withOpacity(.60)
-                  : AppColors.primaryColor,
-            )),
-        BottomNavigationBarItem(
-            label: 'Chat',
-            icon: Image.asset(
-              ConstantImage.chat,
-              height: 30,
-              width: 30,
-              color: _currentIndex == 3
-                  ? Colors.white.withOpacity(.60)
-                  : AppColors.primaryColor,
-            )),
-        BottomNavigationBarItem(
-            label: 'Account',
-            icon: Image.asset(
-              ConstantImage.account,
-              height: 30,
-              width: 30,
-              color: _currentIndex == 4
-                  ? Colors.white.withOpacity(.60)
-                  : AppColors.primaryColor,
-            )),
-      ],
     );
   }
 }

@@ -149,17 +149,18 @@ class _BondsState extends State<Bonds> {
         ),
       ),
 
-
-
-
-
-
-
-
-
       body: Stack(
         fit: StackFit.expand,
         children: [
+          Positioned(
+            top: 2,
+            right: 0,
+            child: Image.asset(
+              ConstantImage.leaf,
+              color: Color(0xffFF405A),
+              height: 300,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 35.0),
             child: SingleChildScrollView(
@@ -173,59 +174,6 @@ class _BondsState extends State<Bonds> {
               ),
             ),
           ),
-        /*  Positioned(
-            left: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 2,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 1,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),*/
-          Positioned(
-            top: 2,
-            right: 0,
-            child: Image.asset(
-              ConstantImage.leaf,
-              color: Colors.black26,
-              height: 300,
-            ),
-          )
         ],
       ),
     );
@@ -365,273 +313,294 @@ class _BondsState extends State<Bonds> {
                   blurRadius: 2.0,
                 ),
               ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: Column(
+              child: Stack(
                 children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      height: 30,
-                      width: 40,
-                      decoration: const BoxDecoration(
-                          borderRadius:
-                              BorderRadius.only(topRight: Radius.circular(5)),
-                          color: AppColors.textColor),
-                      child: const Center(
-                        child: Icon(
-                          Icons.share,
-                          color: Colors.white,
-                          size: 14,
-                        ),
-                      ),
+                  Positioned(
+                    top: 0,
+                    right: 8,
+                    child: Image.asset(
+                      ConstantImage.leaf,
+                      color: Color(0xffFF405A).withOpacity(0.35),
+                      height:300,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Text(
-                          "M",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                              color: Color(0xff22263D),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 22,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          height: 30,
+                          width: 40,
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.only(topRight: Radius.circular(5)),
+                              color: AppColors.textColor),
+                          child: const Center(
+                            child: Icon(
+                              Icons.share,
+                              color: Colors.white,
+                              size: 14,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 20,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: Text(
+                              "M",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Text("MAHINDRA & MAHINDRA FINANCIAL",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ))
+                        ],
                       ),
-                      Text("MAHINDRA & MAHINDRA FINANCIAL",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                              color: Color(0xff22263D),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                      const SizedBox(height: 8,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.55,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  color: const Color(0xffD67278).withOpacity(0.11),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.28,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Coupon",
+                                                style: GoogleFonts.sourceSansPro(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xff1D2B84),
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 4,
+                                              ),
+                                              Text(
+                                                "8.00%",
+                                                style: GoogleFonts.sourceSansPro(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xffFF405A),
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Yield",
+                                              style: GoogleFonts.sourceSansPro(
+                                                textStyle: const TextStyle(
+                                                    color: Color(0xff1D2B84),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 13),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 4,
+                                            ),
+                                            Text(
+                                              "10.60%",
+                                              style: GoogleFonts.sourceSansPro(
+                                                textStyle: const TextStyle(
+                                                    color: Color(0xffFF405A),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  color: const Color(0xff9BA9AD).withOpacity(0.11),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(width: MediaQuery.of(context).size.width * 0.28,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Interest Payment",
+                                                style: GoogleFonts.sourceSansPro(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xff1D2B84),
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 13),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 4,
+                                              ),
+                                              Text(
+                                                "Annual",
+                                                style: GoogleFonts.sourceSansPro(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xffFF405A),
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Min. Invest",
+                                              style: GoogleFonts.sourceSansPro(
+                                                textStyle: const TextStyle(
+                                                    color: Color(0xff1D2B84),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 13),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 4,
+                                            ),
+                                            Text(
+                                              "Annual",
+                                              style: GoogleFonts.sourceSansPro(
+                                                textStyle: const TextStyle(
+                                                    color: Color(0xffFF405A),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ))
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.55,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            child: Image.asset(
+                              "assets/images/meter.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.28,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Coupon",
-                                          style: GoogleFonts.sourceSansPro(
-                                            textStyle: const TextStyle(
-                                                color: Color(0xff1D2B84),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
-                                        Text(
-                                          "8.00%",
-                                          style: GoogleFonts.sourceSansPro(
-                                            textStyle: const TextStyle(
-                                                color: Color(0xffFF405A),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Yield",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xff1D2B84),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        "10.60%",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xffFF405A),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
+                            SizedBox(width: 35,
+                              child: Text(
+                                "IPO",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: Color(0xffFF405A),
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.28,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Invest Payment",
-                                          style: GoogleFonts.sourceSansPro(
-                                            textStyle: const TextStyle(
-                                                color: Color(0xff1D2B84),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 4,
-                                        ),
-                                        Text(
-                                          "Annual",
-                                          style: GoogleFonts.sourceSansPro(
-                                            textStyle: const TextStyle(
-                                                color: Color(0xffFF405A),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 13),
-                                          ),
-                                        ),
-                                      ],
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ReadMoreBonds()));
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color(0x29000000),
+                                      blurRadius: 5.0,
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Min. Invest",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xff1D2B84),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Text(
-                                        "Annual",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xffFF405A),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13),
-                                        ),
-                                      ),
+                                  ],
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xffEC515F),
+                                      Color(0xffC4414D),
                                     ],
-                                  )
-                                ],
+                                    begin: Alignment.centerRight,
+                                    end: Alignment.centerLeft,
+                                  ),
+                                ),
+                                child: Center(
+                                    child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 40.0),
+                                  child: Text("Read More",
+                                      style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                          color:Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                        ),
+                                      )),
+                                )),
                               ),
                             ),
+                            Container(width: 35,)
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.35,
-                        child: Image.asset(
-                          "assets/images/meter.png",
-                          fit: BoxFit.fill,
-                        ),
+                      const SizedBox(
+                        height: 10,
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(width: 35,
-                          child: Text(
-                            "IPO",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xffFF405A),
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ReadMoreBonds()));
-                          },
-                          child: Container(
-                            height: 35,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color(0x29000000),
-                                  blurRadius: 5.0,
-                                ),
-                              ],
-                              gradient: const LinearGradient(
-                                colors: [
-                                  Color(0xffEC515F),
-                                  Color(0xffC4414D),
-                                ],
-                                begin: Alignment.centerRight,
-                                end: Alignment.centerLeft,
-                              ),
-                            ),
-                            child: Center(
-                                child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 40.0),
-                              child: Text("Read More",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color:Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  )),
-                            )),
-                          ),
-                        ),
-                        Container(width: 35,)
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                 ],
               ),

@@ -37,6 +37,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: Collection_ofBonds_AppBar(),
       bottomNavigationBar: CustomBottomNavigation(),
       body: Padding(
@@ -98,6 +99,15 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
               ),
             ),
             Positioned(
+              top: 0,
+              right: -8,
+              child: Image.asset(
+                ConstantImage.leaf,
+                color: Color(0xffFF405A).withOpacity(0.35),
+                height: 350,
+              ),
+            ),
+            Positioned(
               top: 38,
               left: 10,
               child: SizedBox(
@@ -122,7 +132,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                     textStyle: const TextStyle(
                         color: Color(0xff22263D),
                         fontSize: 18,
-                        fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.bold)),
               ),
             ),
           ],
@@ -150,8 +160,8 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                 labelPadding: EdgeInsets.zero,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicatorColor: Colors.transparent,
-                automaticIndicatorColorAdjustment: false,
-                isScrollable: false,
+                automaticIndicatorColorAdjustment: true,
+                isScrollable: true,
                 tabs: [
                   Tab(
                     child: Container(
@@ -170,15 +180,18 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                             : AppColors.textColor,
                       ),
                       child: Center(
-                        child: Text(
-                          "Trending",
-                          style: GoogleFonts.quicksand(
-                              textStyle: TextStyle(
-                                  color: selectedIndex == 0
-                                      ? AppColors.textColor
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal:12.0),
+                          child: Text(
+                            "Trending",
+                            style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: selectedIndex == 0
+                                        ? AppColors.textColor
+                                        : Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
                         ),
                       ),
                     ),
@@ -200,15 +213,18 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                             : AppColors.textColor,
                       ),
                       child: Center(
-                        child: Text(
-                          "Popular",
-                          style: GoogleFonts.quicksand(
-                              textStyle: TextStyle(
-                                  color: selectedIndex == 1
-                                      ? AppColors.textColor
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal:12.0),
+                          child: Text(
+                            "Popular",
+                            style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: selectedIndex == 1
+                                        ? AppColors.textColor
+                                        : Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
                         ),
                       ),
                     ),
@@ -230,15 +246,17 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                             : AppColors.textColor,
                       ),
                       child: Center(
-                        child: Text(
-                          "Entire Collection",
-                          style: GoogleFonts.quicksand(
-                              textStyle: TextStyle(
-                                  color: selectedIndex == 2
-                                      ? AppColors.textColor
-                                      : Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold)),
+                        child: Padding(padding: const EdgeInsets.symmetric(horizontal:12.0),
+                          child: Text(
+                            "Entire Collection",
+                            style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: selectedIndex == 2
+                                        ? AppColors.textColor
+                                        : Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold)),
+                          ),
                         ),
                       ),
                     ),
@@ -276,12 +294,12 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-              Color(0xffEAF8FA).withOpacity(0.4),
-              Color(0xffF9EEEE).withOpacity(0.4)
+              Color(0xffEAF8FA),
+              Color(0xffF9EEEE)
             ], begin: Alignment.topCenter, end: Alignment.topRight)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
@@ -292,7 +310,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
                           fontSize: 17,
-                          fontWeight: FontWeight.w500)),
+                          fontWeight: FontWeight.bold)),
                 ),
                 trailing: Image.asset(
                   ConstantImage.aboutUs6,
@@ -313,7 +331,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
@@ -329,7 +347,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
                             fontSize: 17,
-                            fontWeight: FontWeight.w500)),
+                            fontWeight: FontWeight.bold)),
                   ),
                   trailing: Image.asset(
                     ConstantImage.aboutUs6,
@@ -349,7 +367,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
@@ -365,7 +383,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
                             fontSize: 17,
-                            fontWeight: FontWeight.w500)),
+                            fontWeight: FontWeight.bold)),
                   ),
                   trailing: Image.asset(
                     ConstantImage.aboutUs6,

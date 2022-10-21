@@ -82,19 +82,22 @@ class SplashScreenState extends State<MyPage> {
     });
 
     Future.delayed(const Duration(seconds: 7), () {
-      Navigator.pushAndRemoveUntil(
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) =>
+      //       userIsLoggedIn != null
+      //           ? userIsLoggedIn!
+      //           ? const HomePage()
+      //           : HomePage()
+      //           : const Center(
+      //         child: HomePage(),
+      //       ),
+      //     ), (e) => false);
+      Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-            userIsLoggedIn != null
-                ? userIsLoggedIn!
-                ? const HomePage()
-                : const SignUp()
-                : const Center(
-              child: SignUp(),
-            ),
-          ),
-              (e) => false);
+              builder: (context) => const HomePage()));
     });
   }
 

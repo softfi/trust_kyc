@@ -320,20 +320,29 @@ class _ViewAllState extends State<ViewAll> {
   }
 
   Widget subscribe() {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xffB2EEF8).withOpacity(0.5),
-                const Color(0xffFFFFFF),
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xffB2EEF8).withOpacity(0.5),
+            const Color(0xffFFFFFF),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: -8,
+            child: Image.asset(
+              ConstantImage.leaf,
+              color: Color(0xffFF405A),
+              height: 350,
             ),
           ),
-          child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -352,7 +361,7 @@ class _ViewAllState extends State<ViewAll> {
                     textStyle: const TextStyle(
                         color: Color(0xffFF405A),
                         fontWeight: FontWeight.w600,
-                        fontSize: 25),
+                        fontSize: 28),
                   ),
                 ),
                 const SizedBox(
@@ -395,7 +404,7 @@ class _ViewAllState extends State<ViewAll> {
                     height: 55,
                     width: 160,
                     decoration: const BoxDecoration(
-                      color: AppColors.btnColor,
+                      color: Color(0xffEC515F),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           bottomLeft: Radius.circular(50)),
@@ -426,17 +435,9 @@ class _ViewAllState extends State<ViewAll> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          top: 8,
-          right: 8,
-          child: Image.asset(
-            ConstantImage.leaf,
-            color: Colors.black26,
-            height: 300,
-          ),
-        )
-      ],
+
+        ],
+      ),
     );
   }
 
