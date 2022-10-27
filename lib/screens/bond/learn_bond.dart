@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
@@ -52,8 +53,8 @@ class _LearnBondState extends State<LearnBond> {
                           ),
                         ),
                         IconButton(
-                          icon:
-                          const Icon(Icons.notifications_none, color: Colors.white),
+                          icon: const Icon(Icons.notifications_none,
+                              color: Colors.white),
                           onPressed: () {},
                         ),
                       ],
@@ -174,7 +175,7 @@ class _LearnBondState extends State<LearnBond> {
               ),
             ),
           ),
-        /*  Positioned(
+          /*  Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -229,15 +230,20 @@ class _LearnBondState extends State<LearnBond> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           Stack(
             children: [
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
-                        color: Color(0x29000000),
-                        blurRadius: 9.0,
+                        color: Colors.grey.withOpacity(0.35),
+                        spreadRadius: 2,
+                        blurRadius: 11,
+                        offset: const Offset(0, 3),
                       ),
                     ],
                     color: Colors.white),
@@ -246,19 +252,19 @@ class _LearnBondState extends State<LearnBond> {
                 ),
               ),
               Positioned(
-                top: 15,
+                top: 13,
                 left: 10,
                 child: Text(
                   "Seekho toh sirf",
                   style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400)),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500)),
                 ),
               ),
               Positioned(
-                top: 36,
+                top: 39,
                 left: 10,
                 child: RichText(
                   text: TextSpan(children: [
@@ -267,20 +273,20 @@ class _LearnBondState extends State<LearnBond> {
                         style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
                                 color: AppColors.btnColor,
-                                fontSize: 22,
+                                fontSize: 25,
                                 fontWeight: FontWeight.w600))),
                     TextSpan(
                         text: "se",
                         style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
                                 color: Color(0xff22263D),
-                                fontSize: 22,
+                                fontSize: 25,
                                 fontWeight: FontWeight.w600))),
                   ]),
                 ),
               ),
               Positioned(
-                top: 68,
+                top: 72,
                 left: 10,
                 child: SizedBox(
                   width: 250,
@@ -290,13 +296,13 @@ class _LearnBondState extends State<LearnBond> {
                     style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400)),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600)),
                   ),
                 ),
               ),
               Positioned(
-                bottom: 20,
+                bottom: 15,
                 left: 10,
                 child: Container(
                   height: 35,
@@ -326,14 +332,14 @@ class _LearnBondState extends State<LearnBond> {
             ],
           ),
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           Text(
             "Editors Top Picks",
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
@@ -378,30 +384,28 @@ class _LearnBondState extends State<LearnBond> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 23,
           ),
           Text(
             "Invest In India",
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600)),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           investIndiaList(),
           const SizedBox(
             height: 20,
           ),
-          InkWell(onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                    const ViewAll()));
-          },
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ViewAll()));
+            },
             child: Align(
               alignment: Alignment.topRight,
               child: Container(
@@ -448,7 +452,7 @@ class _LearnBondState extends State<LearnBond> {
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
@@ -496,11 +500,11 @@ class _LearnBondState extends State<LearnBond> {
             height: 20,
           ),
           Text(
-            "Tax Savings",
+            "TAX Savings",
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
@@ -552,7 +556,7 @@ class _LearnBondState extends State<LearnBond> {
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600)),
           ),
           const SizedBox(
@@ -609,17 +613,15 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.35),
-                  spreadRadius: 2,
-                  blurRadius: 11,
-                  offset: Offset(0, 3),
-                ),],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6)
-          ),
+          child: Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.35),
+                spreadRadius: 2,
+                blurRadius: 11,
+                offset: Offset(0, 3),
+              ),
+            ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -685,38 +687,36 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: InkWell(onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                    const BondAdvantage()));
-          },
-            child: Container(decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.35),
-                    spreadRadius: 2,
-                    blurRadius: 11,
-                    offset: Offset(0, 3),
-                  ),],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6)
-            ),
-
-
-          child: ListTile(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BondAdvantage()));
+            },
+            child: Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.35),
+                  spreadRadius: 2,
+                  blurRadius: 11,
+                  offset: Offset(0, 3),
+                ),
+              ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
+              child: ListTile(
                 visualDensity: const VisualDensity(vertical: 4),
                 trailing: Image.asset(
                   ConstantImage.dummy_bond,
-                  fit: BoxFit.fill,
-                  height: 200,
-                  width: 100,
+                  // fit: BoxFit.fill,
+                  // width: 100,
                 ),
-                dense: true,
+                dense: false,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Row(
                       children: [
                         Container(
@@ -760,9 +760,8 @@ class _LearnBondState extends State<LearnBond> {
                       height: 10,
                     ),
                     const Icon(
-                      Icons.arrow_forward_rounded,
-                      color: AppColors.textColor,
-                      size: 30,
+                      CupertinoIcons.arrow_right,
+                      color: AppColors.primaryColor,
                     )
                   ],
                 ),
@@ -782,17 +781,15 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child:Container(decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.11),
-                  spreadRadius: 2,
-                  blurRadius: 11,
-                  offset: Offset(0, 3),
-                ),],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6)
-          ),
+          child: Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.11),
+                spreadRadius: 2,
+                blurRadius: 11,
+                offset: Offset(0, 3),
+              ),
+            ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
             child: ListTile(
               trailing: Image.asset(
                 ConstantImage.dummy_bond,
@@ -868,17 +865,15 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.35),
-                  spreadRadius: 2,
-                  blurRadius: 11,
-                  offset: Offset(0, 3),
-                ),],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6)
-          ),
+          child: Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.35),
+                spreadRadius: 2,
+                blurRadius: 11,
+                offset: Offset(0, 3),
+              ),
+            ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -944,17 +939,15 @@ class _LearnBondState extends State<LearnBond> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.35),
-                  spreadRadius: 2,
-                  blurRadius: 11,
-                  offset: Offset(0, 3),
-                ),],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6)
-          ),
+          child: Container(
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.35),
+                spreadRadius: 2,
+                blurRadius: 11,
+                offset: Offset(0, 3),
+              ),
+            ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ListTile(
@@ -1128,7 +1121,6 @@ class _LearnBondState extends State<LearnBond> {
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -1250,3 +1242,5 @@ class _LearnBondState extends State<LearnBond> {
     );
   }
 }
+
+

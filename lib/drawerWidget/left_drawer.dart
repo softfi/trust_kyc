@@ -675,7 +675,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Disclamer()));
+                                          builder: (context) => Disclaimer()));
                                 },
                                 child: Text("Disclaimer",
                                     style: GoogleFonts.quicksand(

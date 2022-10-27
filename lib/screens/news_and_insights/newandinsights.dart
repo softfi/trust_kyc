@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:trust_money/screens/bond/bond_advantages.dart';
 import 'package:trust_money/screens/news_and_insights/explore.dart';
 import 'package:trust_money/utils/images.dart';
-
 import '../../utils/colorsConstant.dart';
 import '../../utils/styles.dart';
 
@@ -19,7 +17,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE8E8E8),
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
@@ -28,7 +26,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
               height: 80,
               color: Color(0xff00C6D8),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 25.0),
                 child: Stack(
                   children: [
                     Row(
@@ -43,9 +41,11 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                           "NEWS AND INSIGHTS",
                           style: ConstStyle.quickStandSmall11,
                         ),
-                        Container(
-                          width: 50,
-                        )
+                        IconButton(
+                          icon:
+                          const Icon(Icons.person_pin, color: Colors.white),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
                       ],
                     ),
                     Positioned(
@@ -97,7 +97,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
               ),
             ),
             Container(
-              color: Color(0xffE8E8E8),
+              color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -111,7 +111,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 30, height: 28, cornerRadius: 0),
                         ),
@@ -129,7 +129,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 28, height: 30, cornerRadius: 0),
                         ),
@@ -146,102 +146,56 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Column(
-                  children: [
-                    viewAllWidget(),
-                    const SizedBox(height: 20,),
-                    Container(
-                      height: 35,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: AppColors.btnColor
-                      ),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Load More",style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                              color: Color(0xffFfffff),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                            ),
-                          )),
-                          const Icon(Icons.refresh,size: 25,color: Colors.white,)
-                        ],
-                      ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                newsListWidget(),
+                const SizedBox(height: 30,),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Container(
+                    height: 50,
+                    width: 180,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.btnColor
                     ),
-                    const SizedBox(height: 20,),
-                    subscribe(),
-                    const SizedBox(height: 20,),
-                    needHelp(),
-                  ],
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Load More",style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                            color: Color(0xffFfffff),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
+                        )),
+                        const Icon(Icons.refresh,size: 25,color: Colors.white,)
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(height: 30,),
+                subscribe(),
+                const SizedBox(height: 30,),
+                needHelp(),
+              ],
             ),
           ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 2,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 1,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Color(0xffE8E8E8),
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
+
 
         ],
       ),
     );
   }
 
-  Widget viewAllWidget(){
+  Widget newsListWidget(){
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 15,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 7.0),
           child: InkWell(onTap:(){
             Navigator.push(
                 context,
@@ -249,67 +203,79 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                     builder: (context) =>
                     const NewsAndInsightExplore()));
           },
-            child: ListTile(
-              tileColor: Colors.white.withOpacity(0.35),
-              visualDensity: const VisualDensity(vertical: 4),
-              trailing: Image.asset(
-                ConstantImage.dummy_bond,
-                fit: BoxFit.fill,
-                height: 200,
-                width: 100,
-              ),
-              dense: true,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 23,
-                        width: 80,
-                        color: AppColors.btnColor,
-                        child: Center(
-                          child: Text("Trading",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12))),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12)),
-                      ),
-                    ],
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.11),
+                    spreadRadius: 5,
+                    blurRadius: 11,
+                    offset: const Offset(0, 3),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "New ideas for a Equity Trading",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward_rounded,
-                    color: AppColors.textColor,
-                    size: 30,
-                  )
                 ],
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: ListTile(
+                tileColor: Colors.white.withOpacity(0.35),
+                visualDensity: const VisualDensity(vertical: 4),
+                trailing: Image.asset(
+                  ConstantImage.dummy_bond,
+                ),
+                dense: true,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 8,),
+                    Row(
+                      children: [
+                        Container(
+                          height: 23,
+                          width: 80,
+                          color: AppColors.btnColor,
+                          child: Center(
+                            child: Text("Trading",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12))),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "Jan 24, 2022",
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "New ideas for a Equity Trading",
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_rounded,
+                      color: AppColors.textColor,
+                      size: 30,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -319,20 +285,29 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
   }
 
   Widget subscribe() {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xffB2EEF8).withOpacity(0.10),
-                const Color(0xffFFFFFF),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xffB2EEF8).withOpacity(0.5),
+            const Color(0xffFFFFFF),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: -8,
+            child: Image.asset(
+              ConstantImage.leaf,
+              color: Color(0xffFF405A),
+              height: 350,
             ),
           ),
-          child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +326,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                     textStyle: const TextStyle(
                         color: Color(0xffFF405A),
                         fontWeight: FontWeight.w600,
-                        fontSize: 25),
+                        fontSize: 28),
                   ),
                 ),
                 const SizedBox(
@@ -394,7 +369,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                     height: 55,
                     width: 160,
                     decoration: const BoxDecoration(
-                      color: AppColors.btnColor,
+                      color: Color(0xffEC515F),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           bottomLeft: Radius.circular(50)),
@@ -425,17 +400,9 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          top: 8,
-          right: 8,
-          child: Image.asset(
-            ConstantImage.leaf,
-            color: Colors.black26,
-            height: 300,
-          ),
-        )
-      ],
+
+        ],
+      ),
     );
   }
 
@@ -549,6 +516,12 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

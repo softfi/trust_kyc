@@ -159,11 +159,11 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 children: [
                   advantageWidget(),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   subscribe(),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   needHelp()
                 ],
@@ -287,62 +287,85 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
             height: 15,
           ),
           Container(
-            height: 220,
             decoration: BoxDecoration(
+              color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              gradient: LinearGradient(
-                colors: [
-                  const Color(0xff58C3D5).withOpacity(0.10),
-                  const Color(0xffEC515F).withOpacity(0.15),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.45),
+                  spreadRadius: 5,
+                  blurRadius: 11,
+                  offset: const Offset(0, 3),
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "5 min read",
-                        style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child:Image.asset(ConstantImage.explore_insight)
-                  )
-                ],
-              ),
-            ),
+            child: Image.asset(ConstantImage.explore_insight),
           ),
           const SizedBox(
-            height: 10,
+            height: 30,
+          ),
+          Row(
+            children: [
+              Container(
+                height: 23,
+                width: 80,
+                color: AppColors.btnColor,
+                child: Center(
+                  child: Text("Trading",
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12))),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Text(
+                "Jan 24, 2022",
+                style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12)),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                height: 16,
+                width: 65,
+                decoration: const BoxDecoration(
+                  color: Color(0xffE1E0E7),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      bottomLeft: Radius.circular(15)),
+                ),
+                child: Center(
+                  child: Text(
+                    "5 min read",
+                    style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 9)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text("What are Advantages of Investing in Bond IPO",style: GoogleFonts.quicksand(
+            textStyle: const TextStyle(
+                color: AppColors.textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 20),
+          ),),
+          const SizedBox(
+            height: 20,
           ),
           Text(Strings.advantage,
               style: GoogleFonts.sourceSansPro(
@@ -809,13 +832,16 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0x29000000),
-                    blurRadius: 1.0,
+                    color: Colors.grey.withOpacity(0.11),
+                    spreadRadius: 5,
+                    blurRadius: 11,
+                    offset: const Offset(0, 3),
                   ),
                 ],
+                borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
               child: Padding(
@@ -897,20 +923,29 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
   }
 
   Widget subscribe() {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xffB2EEF8).withOpacity(0.10),
-                const Color(0xffFFFFFF),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            const Color(0xffB2EEF8).withOpacity(0.5),
+            const Color(0xffFFFFFF),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: -8,
+            child: Image.asset(
+              ConstantImage.leaf,
+              color: Color(0xffFF405A),
+              height: 350,
             ),
           ),
-          child: Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -929,7 +964,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                     textStyle: const TextStyle(
                         color: Color(0xffFF405A),
                         fontWeight: FontWeight.w600,
-                        fontSize: 25),
+                        fontSize: 28),
                   ),
                 ),
                 const SizedBox(
@@ -972,7 +1007,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                     height: 55,
                     width: 160,
                     decoration: const BoxDecoration(
-                      color: AppColors.btnColor,
+                      color: Color(0xffEC515F),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           bottomLeft: Radius.circular(50)),
@@ -1003,24 +1038,17 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          top: 8,
-          right: 8,
-          child: Image.asset(
-            ConstantImage.leaf,
-            color: Colors.black26,
-            height: 300,
-          ),
-        )
-      ],
+
+        ],
+      ),
     );
   }
 
-  Widget needHelp(){
+  Widget needHelp() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Need Help?",
@@ -1126,6 +1154,12 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

@@ -33,7 +33,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
       bottomNavigationBar: CustomBottomNavigation(),
       appBar: AppBar(
         title: Text(
-          "SOVEREIGN GOLD BONDS…",
+          "SOVEREIGN GOLD BONDS",
           style: GoogleFonts.quicksand(
             textStyle: const TextStyle(
                 color: Color(0xffFFFFFF),
@@ -2643,7 +2643,6 @@ class _BuyingBondsState extends State<BuyingBonds> {
               ],
             ),
           ),
-
         ],
       ),
     );
