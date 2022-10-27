@@ -161,16 +161,13 @@ class _BondsState extends State<Bonds> {
               height: 300,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Column(
-                  children: [
-                    readBondWidget(),
-                  ],
-                ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                children: [
+                  readBondWidget(),
+                ],
               ),
             ),
           ),

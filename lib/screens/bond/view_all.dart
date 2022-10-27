@@ -147,41 +147,38 @@ class _ViewAllState extends State<ViewAll> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Column(
-                  children: [
-                    viewAllWidget(),
-                    const SizedBox(height: 20,),
-                    Container(
-                      height: 35,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.btnColor
-                      ),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Load More",style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                              color: Color(0xffFfffff),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                            ),
-                          )),
-                          const Icon(Icons.refresh,size: 25,color: Colors.white,)
-                        ],
-                      ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                children: [
+                  viewAllWidget(),
+                  const SizedBox(height: 20,),
+                  Container(
+                    height: 35,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.btnColor
                     ),
-                    const SizedBox(height: 20,),
-                    subscribe(),
-                    const SizedBox(height: 20,),
-                    needHelp(),
-                  ],
-                ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Load More",style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                            color: Color(0xffFfffff),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        )),
+                        const Icon(Icons.refresh,size: 25,color: Colors.white,)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  subscribe(),
+                  const SizedBox(height: 20,),
+                  needHelp(),
+                ],
               ),
             ),
           ),

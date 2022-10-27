@@ -157,11 +157,13 @@ class _BondAdvantageState extends State<BondAdvantage> {
                   height: 20,
                 ),
                 subscribe(),
-                const SizedBox(height: 20,)
+                const SizedBox(
+                  height: 20,
+                )
               ],
             ),
           ),
-       /*   Positioned(
+          /*   Positioned(
             left: 0,
             bottom: 0,
             child: RotatedBox(
@@ -231,45 +233,49 @@ class _BondAdvantageState extends State<BondAdvantage> {
               const SizedBox(
                 width: 15,
               ),
-              Container(
-                height: 25,
-                width: 100,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      bottomLeft: Radius.circular(50)),
+              ClipPath(
+                clipper: Triangle(),
+                child: Container(
                   color: AppColors.btnColor,
-                ),
-                child: Center(
-                  child: Text("Bonds and Deb",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13),
-                      )),
+                  height: 25,
+                  width: 130,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        "Bonds and Deb",
+                        style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13)),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
                 width: 15,
               ),
-              Container(
-                height: 25,
-                width: 120,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      bottomLeft: Radius.circular(50)),
+              ClipPath(
+                clipper: Triangle(),
+                child: Container(
                   color: AppColors.btnColor,
-                ),
-                child: Center(
-                  child: Text("Investing In India",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13),
-                      )),
+                  height: 25,
+                  width: 130,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        "Investing In India",
+                        style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13)),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -1010,9 +1016,31 @@ class _BondAdvantageState extends State<BondAdvantage> {
               ],
             ),
           ),
-
         ],
       ),
     );
+  }
+}
+
+class Triangle extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    final x = size.width;
+    final y = size.height;
+
+    path.moveTo(0, y / 2);
+    path.lineTo(20, y);
+    path.lineTo(x, y);
+    path.lineTo(x, 0);
+    path.lineTo(20, 0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

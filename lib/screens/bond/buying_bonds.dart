@@ -622,48 +622,45 @@ class _BuyingBondsState extends State<BuyingBonds> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 35.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x29000000),
-                            blurRadius: 5.0,
-                          ),
-                        ],
-                        color: Colors.white),
-                    child: readBondWidget()),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: investment(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: issuerWidget(),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              subscribe(),
-              const SizedBox(
-                height: 20,
-              ),
-              needHelp(),
-            ],
-          ),
+        Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x29000000),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      color: Colors.white),
+                  child: readBondWidget()),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: investment(),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: issuerWidget(),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            subscribe(),
+            const SizedBox(
+              height: 20,
+            ),
+            needHelp(),
+          ],
         ),
         Positioned(
           left: 0,

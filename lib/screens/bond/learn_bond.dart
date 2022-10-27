@@ -157,22 +157,19 @@ class _LearnBondState extends State<LearnBond> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  seekhoWidget(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  subscribe(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  needHelp(),
-                ],
-              ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                seekhoWidget(),
+                const SizedBox(
+                  height: 20,
+                ),
+                subscribe(),
+                const SizedBox(
+                  height: 20,
+                ),
+                needHelp(),
+              ],
             ),
           ),
           /*  Positioned(
@@ -649,23 +646,24 @@ class _LearnBondState extends State<LearnBond> {
                     const SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      height: 16,
-                      width: 65,
-                      decoration: const BoxDecoration(
-                        color: Color(0xffE1E0E7),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 9)),
+                    ClipPath(
+                      clipper: Triangle(),
+                      child: Container(
+                        color:  Color(0xffE1E0E7),
+                        height: 16,
+                        width: 75,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "5 min read",
+                              style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 9)),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -901,23 +899,24 @@ class _LearnBondState extends State<LearnBond> {
                     const SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      height: 16,
-                      width: 65,
-                      decoration: const BoxDecoration(
-                        color: Color(0xffE1E0E7),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 9)),
+                    ClipPath(
+                      clipper: Triangle(),
+                      child: Container(
+                        color:  Color(0xffE1E0E7),
+                        height: 16,
+                        width: 75,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "5 min read",
+                              style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 9)),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -975,23 +974,24 @@ class _LearnBondState extends State<LearnBond> {
                     const SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      height: 16,
-                      width: 65,
-                      decoration: const BoxDecoration(
-                        color: Color(0xffE1E0E7),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "5 min read",
-                          style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 9)),
+                    ClipPath(
+                      clipper: Triangle(),
+                      child: Container(
+                        color:  Color(0xffE1E0E7),
+                        height: 16,
+                        width: 75,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "5 min read",
+                              style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 9)),
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -1240,6 +1240,29 @@ class _LearnBondState extends State<LearnBond> {
         ],
       ),
     );
+  }
+}
+
+class Triangle extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    final x = size.width;
+    final y = size.height;
+
+    path.moveTo(0, y/2);
+    path.lineTo(20, y);
+    path.lineTo(x, y);
+    path.lineTo(x, 0);
+    path.lineTo(20, 0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
   }
 }
 

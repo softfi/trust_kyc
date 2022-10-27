@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
 import 'dart:math' as math;
 import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/colorsConstant.dart';
@@ -22,7 +24,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavigation(),
-      backgroundColor:Colors.white,
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
@@ -149,368 +151,362 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x29000000),
-                                blurRadius: 5.0,
-                              ),
-                            ],
-                            color: Colors.white),
-                        child: readBondWidget()),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: investment(),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12.0),
-                    child: issuerWidget(),
-                  ),
-                  const SizedBox(height: 30,),
-                  subscribe(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  needHelp(),
-                ],
-              ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x29000000),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          color: Colors.white),
+                      child: readBondWidget()),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: investment(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: issuerWidget(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                subscribe(),
+                const SizedBox(
+                  height: 30,
+                ),
+                needHelp(),
+              ],
             ),
           ),
-        /*  Positioned(
-            left: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 2,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 1,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),*/
+
         ],
       ),
     );
   }
 
   Widget readBondWidget() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(
-        height: 30,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: Text(
-              "M",
-              style: GoogleFonts.sourceSansPro(
-                textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
+    return Stack(
+      children: [
+        Positioned(
+          top: 30,
+          right: -4,
+          child: Image.asset(
+            ConstantImage.leaf,
+            color: Color(0xff00C6D8),
+            height: 400,
+          ),
+        ),
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Text(
+                  "M",
+                  style: GoogleFonts.sourceSansPro(
+                    textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
                 ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Text("MAHINDRA & MAHINDRA FINANCIAL",
+                  style: GoogleFonts.sourceSansPro(
+                    textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ))
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(12)),
+                      color: AppColors.greenColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Center(
+                      child: Text(
+                        "Returns Based On Gold Prices",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(12)),
+                      color: AppColors.greyColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RichText(
+                          text: const TextSpan(children: [
+                            TextSpan(
+                                text: "ISIN: ",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xffFF405A))),
+                            TextSpan(
+                                text: "INE146O08118",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.textColor)),
+                          ]),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Icon(
+                          Icons.file_copy,
+                          color: Color(0xffFF405A),
+                          size: 12,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ClipPath(
+                    clipper: Triangle(),
+                    child: Container(
+                      color: AppColors.textColor,
+                      height: 25,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                        child: Center(
+                          child: Text(
+                            "Eligible Investors*",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Container(
+                  //   height: 25,
+                  //   decoration: const BoxDecoration(
+                  //       borderRadius: BorderRadius.only(
+                  //           bottomRight: Radius.circular(10),
+                  //           topRight: Radius.circular(10)),
+                  //       color: AppColors.textColor),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  //     child: Center(
+                  //       child: Text(
+                  //         "Eligible Investors*",
+                  //         style: GoogleFonts.sourceSansPro(
+                  //           textStyle: const TextStyle(
+                  //             color: Colors.white,
+                  //             fontWeight: FontWeight.bold,
+                  //             fontSize: 10,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "HUF",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Corporate",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Trust",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Minor",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
           const SizedBox(
-            width: 20,
+            height: 20,
           ),
-          Text("MAHINDRA & MAHINDRA FINANCIAL",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              "Key Points To Consider",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textColor),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              "Face Value (In INR) and Issue Size (In INR Crores)",
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ))
-        ],
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              height: 35,
-              decoration: const BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(12)),
-                  color: AppColors.greenColor),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    "Returns Based On Gold Prices",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ),
-                ),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff1D2B84)),
               ),
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 35,
-              decoration: const BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(12)),
-                  color: AppColors.greyColor),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RichText(
-                      text: const TextSpan(children: [
-                        TextSpan(
-                            text: "ISIN: ",
-                            style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xffFF405A))),
-                        TextSpan(
-                            text: "INE146O08118",
-                            style: TextStyle(
-                                fontSize: 10,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.textColor)),
-                      ]),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Icon(
-                      Icons.file_copy,
-                      color: Color(0xffFF405A),
-                      size: 12,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: SingleChildScrollView(scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: 25,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10),
-                        topRight: Radius.circular(10)),
-                    color: AppColors.textColor),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(
-                    child: Text(
-                      "Eligible Investors*",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 25,
-                color: AppColors.greyColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(
-                    child: Text(
-                      "HUF",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 25,
-                color: AppColors.greyColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(
-                    child: Text(
-                      "Corporate",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 25,
-                color: AppColors.greyColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(
-                    child: Text(
-                      "Trust",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 25,
-                color: AppColors.greyColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Center(
-                    child: Text(
-                      "Minor",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
           ),
-        ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Text(
-          "Key Points To Consider",
-          style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: AppColors.textColor),
+          const SizedBox(
+            height: 10,
           ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: Text(
-          "Face Value (In INR) and Issue Size (In INR Crores)",
-          style: GoogleFonts.sourceSansPro(
-            textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Color(0xff1D2B84)),
+          keyPoint(),
+          const SizedBox(
+            height: 20,
           ),
-        ),
-      ),
-      const SizedBox(
-        height: 10,
-      ),
-      keyPoint(),
-      const SizedBox(
-        height: 20,
-      ),
-      cardWidget(),
-    ]);
+          cardWidget(),
+        ]),
+      ],
+    );
   }
 
   Widget keyPoint() {
@@ -523,7 +519,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -588,7 +585,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -653,7 +651,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -718,7 +717,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -783,7 +783,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -848,12 +849,137 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.50,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
+                  child: InkWell(
+                    onTap: () {
+                      callBottomSheet();
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Call Option",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "YES",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "4 Oct 2022",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            const Icon(
+                              CupertinoIcons.exclamationmark_circle_fill,
+                              color: AppColors.btnColor,
+                              size: 14,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    putBottomSheet();
+                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Call Option",
+                        "Put Option",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "YES",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "4 Oct 2022",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          const Icon(
+                            CupertinoIcons.exclamationmark_circle_fill,
+                            color: AppColors.btnColor,
+                            size: 14,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xffD67278).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Govt. Guarantee",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.primaryColor,
@@ -865,7 +991,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                         height: 8,
                       ),
                       Text(
-                        "NO",
+                        "3",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -880,7 +1006,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Put Option",
+                      "Govt. Guarantee",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.primaryColor,
@@ -914,6 +1040,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.40,
@@ -942,87 +1069,106 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.50,
+              width: MediaQuery.of(context).size.width * 0.45,
               child: Container(
-                margin: EdgeInsets.all(10),
-                child: Table(
-                  columnWidths: {0:FixedColumnWidth(60)},
-                  border: TableBorder.all(color: Colors.grey.shade400),
-                  children: [
-                    TableRow(
-                      decoration: BoxDecoration(color: Color(0xffE1E0E7),),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Rating Agency",style: TextStyle(fontSize: 10.0) ,),
+                  margin: EdgeInsets.all(10),
+                  child: Table(
+                    columnWidths: {0: FixedColumnWidth(60)},
+                    border: TableBorder.all(color: Colors.grey.shade400),
+                    children: [
+                      const TableRow(
+                          decoration: BoxDecoration(
+                            color: Color(0xffE1E0E7),
                           ),
-
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Rating",style: TextStyle(fontSize: 10.0) ,),
-                          ),
-
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Rationale",style: TextStyle(fontSize: 10.0)  ,),
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Rating Agency",
+                                style: TextStyle(fontSize: 10.0),
+                              ),
                             ),
-                          ),
-
-                        ]
-                    ),
-                    TableRow(decoration: BoxDecoration(color: Color(0xffFDFDEB)),
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("CRISIL",style: TextStyle(fontSize: 10.0)),
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Rating",
+                                style: TextStyle(fontSize: 10.0),
+                              ),
                             ),
-
-                          ),
-                          Container( alignment: Alignment.center,
-                            child:const  Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("AA",style: TextStyle(fontSize: 10.0)),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Rationale",
+                                  style: TextStyle(fontSize: 10.0),
+                                ),
+                              ),
                             ),
-                          ),
-                          Container( alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.sim_card_download,size: 20,color: AppColors.btnColor,),
-
+                          ]),
+                      TableRow(
+                          decoration: BoxDecoration(color: Color(0xffFDFDEB)),
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("CRISIL",
+                                    style: TextStyle(fontSize: 10.0)),
+                              ),
                             ),
-                          ),
-                        ]
-                    ),
-                    TableRow(decoration: BoxDecoration(color: Color(0xffFDFDEB)),
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("CARE",style: TextStyle(fontSize: 10.0)),
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("AA",
+                                    style: TextStyle(fontSize: 10.0)),
+                              ),
                             ),
-
-                          ),
-                          Container( alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("AA",style: TextStyle(fontSize: 10.0)),
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.sim_card_download,
+                                  size: 20,
+                                  color: AppColors.btnColor,
+                                ),
+                              ),
                             ),
-                          ),
-                          Container( alignment: Alignment.center,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(Icons.sim_card_download,size: 20,color: AppColors.btnColor,),
+                          ]),
+                      TableRow(
+                          decoration: BoxDecoration(color: Color(0xffFDFDEB)),
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("CARE",
+                                    style: TextStyle(fontSize: 10.0)),
+                              ),
                             ),
-                          ),
-                        ]
-                    ),
-                  ],
-                )
-              ),
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("AA",
+                                    style: TextStyle(fontSize: 10.0)),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.sim_card_download,
+                                  size: 20,
+                                  color: AppColors.btnColor,
+                                ),
+                              ),
+                            ),
+                          ]),
+                    ],
+                  )),
             ),
           ],
         ),
@@ -1034,10 +1180,10 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           width: 210,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
-                const Color(0xffFF405A),
-                const Color(0xff80202D),
+                Color(0xffFF405A),
+                Color(0xff80202D),
               ],
               begin: Alignment.centerRight,
               end: Alignment.centerLeft,
@@ -1519,6 +1665,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 Container(
                   color: AppColors.textColor,
                   child: ExpansionTile(
+                    leading: const SizedBox(),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -1541,6 +1688,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                         )
                       ],
                     ),
+                    trailing: const SizedBox(),
                     children: <Widget>[
                       ListTile(
                           title: Column(
@@ -1803,7 +1951,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff22263D))),
             TextSpan(
-                text: "is a multi-billion dollar, transnational conglomerate. The Group’s activities span three core areas: Investment Banking, International Trading and Global Investments. It also supports charitable and philanthropic activities across the world through the Mahindra & Mahindra Foundation.",
+                text:
+                    "is a multi-billion dollar, transnational conglomerate. The Group’s activities span three core areas: Investment Banking, International Trading and Global Investments. It also supports charitable and philanthropic activities across the world through the Mahindra & Mahindra Foundation.",
                 style: TextStyle(
                     fontSize: 15,
                     fontStyle: FontStyle.normal,
@@ -1814,7 +1963,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         const SizedBox(
           height: 25,
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1848,7 +1996,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ],
               ),
             ),
-
             SizedBox(
               width: 120,
               child: Column(
@@ -1878,7 +2025,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ],
               ),
             ),
-
             SizedBox(
               width: 120,
               child: Column(
@@ -1908,8 +2054,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ],
               ),
             ),
-
-
           ],
         ),
         const SizedBox(
@@ -2006,24 +2150,22 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ],
               ),
             ),
-
-
           ],
         ),
-
-        const SizedBox(height: 20,),
-
+        const SizedBox(
+          height: 20,
+        ),
         Container(
-         decoration: const BoxDecoration(
-           gradient: LinearGradient(
-             colors: [
-               Color(0xffEC515F),
-               Color(0xffB73D48),
-             ],
-             begin: Alignment.centerRight,
-             end: Alignment.centerLeft,
-           ),
-         ),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xffEC515F),
+                Color(0xffB73D48),
+              ],
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -2031,28 +2173,36 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ConstantImage.issue_doc,
                 height: 60,
                 width: 50,
-
               ),
-              title: Text("Download Issue Documents",style: GoogleFonts.quicksand(
+              title: Text(
+                "Download Issue Documents",
+                style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)),
+              ),
+              subtitle: Text(
+                "The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.",
+                style: GoogleFonts.sourceSansPro(
                   textStyle: const TextStyle(
-                      color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),),
-              subtitle: Text("The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.",style: GoogleFonts.sourceSansPro(
-                textStyle: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12),
-              ),),
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12),
+                ),
+              ),
             ),
           ),
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(
+          height: 20,
+        ),
         treeWiddget(),
-
-
-        
       ],
     );
   }
 
-  Widget treeWiddget(){
+  Widget treeWiddget() {
     return Stack(
       children: [
         Padding(
@@ -2211,15 +2361,15 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             height: 25,
             child: Center(
                 child: Text(
-                  "1",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "1",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -2233,15 +2383,15 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             height: 25,
             child: Center(
                 child: Text(
-                  "2",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "2",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -2255,15 +2405,15 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             height: 25,
             child: Center(
                 child: Text(
-                  "3",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "3",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -2394,16 +2544,16 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               ],
             ),
           ),
-
         ],
       ),
     );
   }
 
-  Widget needHelp(){
+  Widget needHelp() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Need Help?",
@@ -2513,12 +2663,400 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           const SizedBox(
             height: 8,
           ),
-
           const SizedBox(
             height: 20,
           ),
         ],
       ),
     );
+  }
+
+  void callBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(35),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (BuildContext context, State) {
+          return Padding(
+            padding: EdgeInsets.only(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Wrap(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  color: AppColors.primaryColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.clear,
+                              color: Colors.white,
+                              size: 25,
+                            )),
+                      ),
+                      Text(
+                        "DATES FOR CALL OPTION",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SetAlert()));
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: AppColors.btnColor,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
+                                child: Center(
+                                    child: Text("Set Alert",
+                                        style: GoogleFonts.sourceSansPro(
+                                          textStyle: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ))),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+    );
+  }
+
+  void putBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(35),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (BuildContext context, State) {
+          return Padding(
+            padding: EdgeInsets.only(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Wrap(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  color: AppColors.primaryColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.clear,
+                              color: Colors.white,
+                              size: 25,
+                            )),
+                      ),
+                      Text(
+                        "DATES FOR PUT OPTION",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SetAlert()));
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: AppColors.btnColor,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
+                                child: Center(
+                                    child: Text("Set Alert",
+                                        style: GoogleFonts.sourceSansPro(
+                                          textStyle: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ))),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+    );
+  }
+}
+
+class Triangle extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    final x = size.width;
+    final y = size.height;
+
+    path.moveTo(0, y / 2);
+    path.lineTo(20, y);
+    path.lineTo(x, y);
+    path.lineTo(x, 0);
+    path.lineTo(20, 0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

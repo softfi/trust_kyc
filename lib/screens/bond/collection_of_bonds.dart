@@ -181,7 +181,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Text(
                             "Trending",
                             style: GoogleFonts.quicksand(
@@ -214,7 +214,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Text(
                             "Popular",
                             style: GoogleFonts.quicksand(
@@ -246,7 +246,8 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                             : AppColors.textColor,
                       ),
                       child: Center(
-                        child: Padding(padding: const EdgeInsets.symmetric(horizontal:12.0),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Text(
                             "Entire Collection",
                             style: GoogleFonts.quicksand(
@@ -263,7 +264,9 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               IndexedStack(
                 index: selectedIndex,
                 children: <Widget>[
@@ -296,11 +299,12 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Color(0xffEAF8FA),
-              Color(0xffF9EEEE)
-            ], begin: Alignment.topCenter, end: Alignment.topRight)),
+            decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                gradient: LinearGradient(
+                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
@@ -334,10 +338,11 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
             decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(colors: [
-              Color(0xffEAF8FA).withOpacity(0.4),
-              Color(0xffF9EEEE).withOpacity(0.4)
-            ], begin: Alignment.topCenter, end: Alignment.topRight)),
+                  Color(0xffEAF8FA).withOpacity(0.4),
+                  Color(0xffF9EEEE).withOpacity(0.4)
+                ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
@@ -370,10 +375,11 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
               decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(colors: [
-                Color(0xffEAF8FA).withOpacity(0.4),
-                Color(0xffF9EEEE).withOpacity(0.4)
-              ], begin: Alignment.topCenter, end: Alignment.topRight)),
+                    Color(0xffEAF8FA).withOpacity(0.4),
+                    Color(0xffF9EEEE).withOpacity(0.4)
+                  ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
                 child: ListTile(
