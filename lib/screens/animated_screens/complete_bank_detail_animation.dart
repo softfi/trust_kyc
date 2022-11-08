@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
-
 import '../Congratulations/bank_congratulations.dart';
-import '../home/profile_page.dart';
-
 class BankAnimation extends StatefulWidget {
   const BankAnimation({Key? key}) : super(key: key);
 
@@ -23,10 +20,10 @@ class _BankAnimationState extends State<BankAnimation> {
         _controller.setLooping(true);
         setState(() {});
       });
-    Future.delayed(Duration(seconds: 5), () {
-      Navigator.pop(context);
-      Navigator.push(context,
+    Future.delayed(const Duration(seconds: 5), () async{
+     await Navigator.push(context,
           MaterialPageRoute(builder: (context) => const BankComplete()));
+     Navigator.pop(context);
     });
     super.initState();
   }

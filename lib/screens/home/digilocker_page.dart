@@ -86,7 +86,7 @@ class _DigilockerState extends State<Digilocker> {
                   height: 50,
                 ),
                 const Text(
-                  "Fetch Documnet From Digilocker",
+                  "Fetch document From Digilocker",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color(0xff0c2aec),
@@ -127,14 +127,12 @@ class _DigilockerState extends State<Digilocker> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
                     if (isChecked == true) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return MyWebView(
-                          url: digiLockerModel!.link,
-                        );
-                      }));
+                      await Navigator.push(context,
+                          MaterialPageRoute(builder: (context) =>  MyWebView(
+                            url: digiLockerModel!.link,
+                          )));
                     } else {
                       Fluttertoast.showToast(msg: "Please check the agreement first");
                     }
@@ -147,17 +145,15 @@ class _DigilockerState extends State<Digilocker> {
                         fontSize: 15),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
+
+              /*  InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
                     child: Text(
                       'Cancel',
                       style: ConstStyle.sourceSans1,
-                    ))
+                    ))*/
               ],
             ),
           ),

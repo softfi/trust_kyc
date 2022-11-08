@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:logging/logging.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/screens/auths/verify_otp.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -20,15 +21,34 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final logger = Logger("LoginStateNotifier");
   bool isChecked = false;
   bool isChecked1 = false;
   bool isChecked2 = false;
-  bool isResendOtp = false;
+  int partnerInt = 0;
+  bool isLoader = false;
   bool isButtonClick = false;
   late Map resopnsmap;
   final phoneNumber = TextEditingController();
   final firstName = TextEditingController();
   final lastName = TextEditingController();
+
+  Future<void> sendOTP(String fname, String lname, String mob, int part) async {
+    try {
+      final signUpModel = await LoginRepository().sendOtp(
+          fname.toString(), lname.toString(), mob.toString(), false, part);
+      if (signUpModel != null && signUpModel != "") {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return OtpVerification(
+            phoneNumber: phoneNumber.text.toString(),
+          );
+        }));
+      }
+    } catch (e) {
+      logger.warning(e.toString());
+      SnackBar(content: Text(e.toString()));
+    }
+  }
 
   signUpValidation() async {
     if (firstName.text.isEmpty) {
@@ -46,18 +66,8 @@ class _SignUpState extends State<SignUp> {
     } else if (isChecked != true && isChecked2 != true) {
       Fluttertoast.showToast(msg: 'Check term & conditions!');
     } else {
-      final signUpModel = await LoginRepository().sendOtp(
-          firstName.text.toString(),
-          lastName.text.toString(),
-          phoneNumber.text.toString(),
-          isResendOtp);
-      if (signUpModel != null && signUpModel != "") {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return OtpVerification(
-            phoneNumber: phoneNumber.text.toString(),
-          );
-        }));
-      }
+      sendOTP(firstName.text.toString(), lastName.text.toString(),
+          phoneNumber.text.toString(), partnerInt);
     }
   }
 
@@ -333,6 +343,8 @@ class _SignUpState extends State<SignUp> {
                           onChanged: (bool? value) {
                             setState(() {
                               isChecked1 = value!;
+                              partnerInt = 1;
+                              print("=======int $partnerInt");
                             });
                           },
                         ),
@@ -473,7 +485,7 @@ class _SignUpState extends State<SignUp> {
                       MaterialPageRoute(builder: (context) => SignIn()));
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10.0,bottom: 30),
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 30),
                   child: Center(
                     child: RichText(
                       text: const TextSpan(children: [
@@ -496,7 +508,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

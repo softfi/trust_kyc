@@ -7,7 +7,6 @@ import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/bond/bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
-import 'package:trust_money/utils/styles.dart';
 import '../../bottom_navigation/bottom_navigation.dart';
 import '../../drawerWidget/drawerWidget.dart';
 import '../../utils/images.dart';
@@ -22,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIPOs = 1;
+  int currentIPOs = 2;
   bool? userIsLoggedIn;
 
   getLoggedInState() async {
@@ -39,7 +38,9 @@ class _HomePageState extends State<HomePage> {
     getLoggedInState();
     super.initState();
   }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -52,151 +53,71 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: const CustomBottomNavigation(),
         drawer: const LeftDrawer(),
         endDrawer: const DrawerWidget(),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80.0),
-          child: Container(
-            height: 80,
-            color: const Color(0xffF2A9B0),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                      icon: const Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                        size: 25,
-                      ),
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openDrawer();
-print("asasdasddas");
-
-
-                      }),
-                  Image.asset(
-                    ConstantImage.white_logo,
-                    height: 60,
-                    width: 60,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        userIsLoggedIn == null
-                            ? InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SignUp()));
-                                },
-                                child: Container(
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.45),
-                                          spreadRadius: 5,
-                                          blurRadius: 11,
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ],
-                                      color: Colors.white),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12.0),
-                                      child: Text(
-                                        "Sign Up/In",
-                                        style: GoogleFonts.quicksand(
-                                          textStyle: const TextStyle(
-                                            color: AppColors.textColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : IconButton(
-                                icon: const Icon(
-                                  Icons.person_pin,
-                                  color: Colors.white,
-                                  size: 25,
-                                ),
-                                onPressed: () {
-                                  _scaffoldKey.currentState?.openEndDrawer();
-                                  print("kldfh");
-                                },
-                              )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
+        drawerEnableOpenDragGesture: false,
+        endDrawerEnableOpenDragGesture: false,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.white,
           ),
-          // actions: [],
-          // elevation: 0.6,
-          // backgroundColor: const Color(0xff00C6D8),
-          // leading: IconButton(
-          //   icon: const Icon(Icons.arrow_back, color: Colors.white),
-          //   onPressed: () => Navigator.of(context).pop(),
-          // ),
-          // centerTitle: true,
-          // title: Text(
-          //   "Profile",
-          //   style: ConstStyle.quickStandSmall11,
-          // ),
-        ),
-        /* appBar: AppBar(
+          elevation: 0,
+          backgroundColor: const Color(0xffF2A9B0),
+          toolbarHeight: 55,
           centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.white), ,
           title: Image.asset(
             ConstantImage.white_logo,
-            height: 60,
-            width: 60,
-          ),*/
-        /* elevation: 0.0,
-          toolbarHeight: 55,
-          foregroundColor: Colors.black,
-          backgroundColor: const Color(0xffF2A9B0),
-
+            height: 50,
+            width: 50,
+          ),
           actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            Container(
-              height: 10,
-              width: 10,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.25),
-                        spreadRadius: 2,
-                        blurRadius: 11,
-                        offset: Offset(0, 3),
+            userIsLoggedIn == null
+                ? InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUp()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 11.0, bottom: 11, right: 11),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.45),
+                                spreadRadius: 5,
+                                blurRadius: 11,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                            color: Colors.white),
+                        child: Center(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              "Sign Up/In",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                    ],
-                  color: Colors.white),
-            )
-            // IconButton(onPressed: () {
-            //   Scaffold.of(context).openEndDrawer();
-            // }, icon: Icon(Icons.person_pin,size: 35,))
-          ],*/
+                    ),
+                  )
+                : IconButton(
+                    onPressed: () {
+                      _scaffoldKey.currentState?.openEndDrawer();
+                    },
+                    icon: const Icon(Icons.person_pin))
+          ],
+        ),
         body: SingleChildScrollView(
           child: Stack(
             alignment: AlignmentDirectional.topEnd,
@@ -272,28 +193,55 @@ print("asasdasddas");
                                   children: [
                                     Text("Hello I am ",
                                         style: GoogleFonts.quicksand(
-                                          textStyle: const TextStyle(
+                                          textStyle:  TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 25,
+                                            fontSize: 26,
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                blurRadius: 11,
+                                                offset:Offset(0, 3),
+                                                color: Color(0x00000029).withOpacity(0.19),
+                                              ),
+                                            ],
                                           ),
                                         )),
                                     Row(
                                       children: [
                                         Text("Bond, Trust Bond",
                                             style: GoogleFonts.quicksand(
-                                              textStyle: const TextStyle(
+                                              textStyle:  TextStyle(
                                                 color: AppColors.textColor,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 25,
+                                                fontSize: 26,
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                    blurRadius: 11,
+                                                    offset:Offset(0, 3),
+                                                    color: Color(0x00000029).withOpacity(0.19),
+                                                  ),
+                                                ],
                                               ),
                                             )),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 4.0),
-                                          child: SvgPicture.asset(
-                                            ConstantImage.spyMale,
-                                            height: 45,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey.withOpacity(0.11),
+                                                  spreadRadius: 5,
+                                                  blurRadius: 3,
+                                                  offset: const Offset(0, 3),
+                                                ),
+                                              ],
+                                              color:Colors.transparent
+                                            ),
+                                            child: SvgPicture.asset(
+                                              ConstantImage.spyMale,
+                                              height: 50,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -302,7 +250,7 @@ print("asasdasddas");
                                 ),
                                 Positioned(
                                   top: 23,
-                                  left: 227,
+                                  left: 232,
                                   child: Container(
                                     alignment: const Alignment(-0.62, -1),
                                     color: Colors.transparent,
@@ -324,12 +272,12 @@ print("asasdasddas");
                                 ),
                                 Positioned(
                                   top: 5,
-                                  left: 155,
+                                  left: 158,
                                   child: Container(
                                     height: 33,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30),
+                                      borderRadius: BorderRadius.circular(13),
                                     ),
                                     child: Center(
                                         child: Padding(
@@ -341,7 +289,7 @@ print("asasdasddas");
                                             textStyle: const TextStyle(
                                                 color: Color(0xff22263D),
                                                 fontSize: 13,
-                                                fontWeight: FontWeight.w400)),
+                                                fontWeight: FontWeight.w500)),
                                       ),
                                     )),
                                   ),
@@ -355,10 +303,17 @@ print("asasdasddas");
                           child: Text(
                             "Licensed to make\nmoney for you.",
                             style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                color: Color(0xffFfffff),
+                              textStyle:  TextStyle(
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 19,
+                                fontSize: 20,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    blurRadius: 11,
+                                    offset:Offset(0, 3),
+                                    color: Color(0x00000029).withOpacity(0.19),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -370,21 +325,23 @@ print("asasdasddas");
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 8),
+                                horizontal: 14, vertical: 12),
                             decoration: BoxDecoration(
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
-                                    color: Color(0x29000000),
-                                    blurRadius: 30.0,
+                                    color: Colors.grey.withOpacity(0.45),
+                                    spreadRadius: 5,
+                                    blurRadius: 11,
+                                    offset: const Offset(0, 3),
                                   ),
                                 ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)),
+                                color: Colors.white.withOpacity(0.80),
+                                borderRadius: BorderRadius.circular(50)),
                             child: Text("Let’s find the right BOND for you",
-                                style: GoogleFonts.sourceSansPro(
+                                style: GoogleFonts.quicksand(
                                   textStyle: const TextStyle(
                                     color: Color(0xff22263D),
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 14,
                                   ),
                                 )),
@@ -406,14 +363,14 @@ print("asasdasddas");
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Container(
                             height: 60,
-                            decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x29000000),
-                                  blurRadius: 30.0,
-                                ),
-                              ],
-                            ),
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.45),
+                                spreadRadius: 5,
+                                blurRadius: 11,
+                                offset: const Offset(0, 3),
+                              ),
+                            ], color: Colors.white),
                             child: TextFormField(
                               decoration: InputDecoration(
                                   fillColor: Colors.white54,
@@ -521,7 +478,7 @@ print("asasdasddas");
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 12.0),
                                     child: Text(
-                                      "Bond in Spotlight",
+                                      "Bonds in Spotlight",
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: TextStyle(
                                             color: currentIPOs == 2
@@ -677,7 +634,7 @@ print("asasdasddas");
                             child: Container(
                               height: 55,
                               width: 150,
-                              decoration:  BoxDecoration(
+                              decoration: BoxDecoration(
                                 color: Color(0xffEC515F),
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(50),
@@ -1019,6 +976,15 @@ print("asasdasddas");
   Widget investWidget() {
     return Stack(
       children: [
+        Positioned(
+            bottom: -13,
+            right: -40,
+            child: Image.asset(
+              "assets/images/m_tree.png",
+              height: 280,
+              width: 190,
+            )
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15),
           child: Row(
@@ -1039,7 +1005,7 @@ print("asasdasddas");
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Invest in \n3 Simple Steps",
+                    "INVEST IN \n3 SIMPLE STEPS",
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff00C6D8),
@@ -1052,7 +1018,7 @@ print("asasdasddas");
                     height: 30,
                   ),
                   Text(
-                    "Register & Complete KYC",
+                    "REGISTER & COMPLETE KYC",
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff22263D),
@@ -1098,7 +1064,7 @@ print("asasdasddas");
                     height: 30,
                   ),
                   Text(
-                    "MAKE Investment",
+                    "MAKE INVESTMENT",
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff22263D),
@@ -1233,14 +1199,7 @@ print("asasdasddas");
             )),
           ),
         ),
-        Positioned(
-            bottom: -13,
-            right: -30,
-            child: Image.asset(
-              "assets/images/m_tree.png",
-              height: 280,
-              width: 190,
-            )),
+
       ],
     );
   }
@@ -1258,7 +1217,7 @@ print("asasdasddas");
             padding:
                 const EdgeInsets.only(right: 12.0, top: 2, bottom: 2, left: 12),
             child: Container(
-              width: 270,
+              width: 290,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
                   color: Color(0x29000000),
@@ -1309,7 +1268,9 @@ print("asasdasddas");
                             ),
                           ),
                         ),
-                        const SizedBox(width: 12,),
+                        const SizedBox(
+                          width: 12,
+                        ),
                         SizedBox(
                           width: 160,
                           child: Text("MAHINDRA & MAHINDRA FINANCIAL",
@@ -1324,7 +1285,9 @@ print("asasdasddas");
                       ],
                     ),
                   ),
-                  const SizedBox(height: 8,),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Container(
                     color: const Color(0xffD67278).withOpacity(0.11),
                     child: Padding(
@@ -1406,7 +1369,7 @@ print("asasdasddas");
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Invest Payment",
+                                  "Interest Payment",
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: const TextStyle(
                                         color: Color(0xff1D2B84),
@@ -1433,7 +1396,7 @@ print("asasdasddas");
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Min. Invest",
+                                "Min. Investment",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: Color(0xff1D2B84),
@@ -1462,7 +1425,7 @@ print("asasdasddas");
                   Image.asset(
                     "assets/images/meter.png",
                     fit: BoxFit.fill,
-                    height: 130 ,
+                    height: 130,
                     width: 240,
                   ),
                   const SizedBox(
@@ -1511,7 +1474,7 @@ print("asasdasddas");
                             child: Text("Read More",
                                 style: GoogleFonts.quicksand(
                                   textStyle: const TextStyle(
-                                    color:Colors.white,
+                                    color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
                                   ),
@@ -1557,7 +1520,6 @@ print("asasdasddas");
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
                 dense: false,
-
                 leading: Image.asset(
                   ConstantImage.dummy_pic,
                 ),
@@ -1584,23 +1546,24 @@ print("asasdasddas");
                       const SizedBox(
                         width: 10,
                       ),
-                      Container(
-                        height: 16,
-                        width: 65,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffE1E0E7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "5 min read",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 9)),
+                      ClipPath(
+                        clipper: Triangle(),
+                        child: Container(
+                          color:  Color(0xffE1E0E7),
+                          height: 16,
+                          width: 75,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                "5 min read",
+                                style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: AppColors.primaryColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 9)),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -1639,7 +1602,7 @@ print("asasdasddas");
                   ConstantImage.dummy_pic,
                 ),
                 title: Text(
-                  "Rain matter invests Rs 3.5 Cr nin Trust Money",
+                  "Rainmatter invests Rs 3.5 Cr in Trust Money",
                   style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                           color: AppColors.textColor,
@@ -1661,23 +1624,24 @@ print("asasdasddas");
                       const SizedBox(
                         width: 10,
                       ),
-                      Container(
-                        height: 16,
-                        width: 65,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffE1E0E7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "5 min read",
-                            style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 9)),
+                      ClipPath(
+                        clipper: Triangle(),
+                        child: Container(
+                          color:  Color(0xffE1E0E7),
+                          height: 16,
+                          width: 75,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                "5 min read",
+                                style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: AppColors.primaryColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 9)),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -1808,7 +1772,6 @@ print("asasdasddas");
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -1934,5 +1897,28 @@ print("asasdasddas");
         ],
       ),
     );
+  }
+}
+
+class Triangle extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    final x = size.width;
+    final y = size.height;
+
+    path.moveTo(0, y/2);
+    path.lineTo(20, y);
+    path.lineTo(x, y);
+    path.lineTo(x, 0);
+    path.lineTo(20, 0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

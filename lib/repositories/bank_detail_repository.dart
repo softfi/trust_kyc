@@ -76,8 +76,7 @@ class BankDetailRepository {
   Future<List<BankDetailModel>> getBankDetails() async {
     List<BankDetailModel> detailList = [];
     var token = await HelperFunctions.getToken();
-    var response =
-        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.bankDetailWithCheck);
+    var response = await TrustKycDioClient(token).get(endpoint: TrustKycUrl.bankDetailWithCheck);
     print("=================getBankDetails ${response.data}");
     if (response.statusCode == 200) {
       response.data.forEach((element) {
@@ -91,8 +90,7 @@ class BankDetailRepository {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token).delete(
-        endpoint:
-            "${TrustKycUrl.bankDetailWithCheck}?id=$bankDetailsId");
+        endpoint: "${TrustKycUrl.bankDetailWithCheck}?id=$bankDetailsId");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       Fluttertoast.showToast(msg: 'bank details deleted');

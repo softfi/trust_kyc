@@ -338,7 +338,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                       color: AppColors.textColor,
                       height: 25,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                        padding: const EdgeInsets.only(right: 13.0,left: 21),
                         child: Center(
                           child: Text(
                             "Eligible Investors*",
@@ -1095,13 +1095,11 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                                 style: TextStyle(fontSize: 10.0),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Rationale",
-                                  style: TextStyle(fontSize: 10.0),
-                                ),
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Rationale",
+                                style: TextStyle(fontSize: 10.0),
                               ),
                             ),
                           ]),

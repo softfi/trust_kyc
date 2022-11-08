@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logging/logging.dart';
 import '../api/network_utility.dart';
@@ -14,12 +15,13 @@ class LoginRepository {
   LoginRepository();
 
   Future<SignUpModel?> sendOtp(String firstName, String lastName,
-      String mobileNo, bool isResendOtp) async {
+      String mobileNo, bool isResendOtp,int partner) async {
     final Map<String, dynamic> dataq = Map<String, dynamic>();
     dataq["fname"] = firstName;
     dataq["lname"] = lastName;
     dataq["mobile_number"] = mobileNo;
     dataq["resend_otp"] = isResendOtp;
+    dataq["my_details_with_partner_companies"] = partner;
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
@@ -29,10 +31,10 @@ class LoginRepository {
     if (response.statusCode == 200) {
       print("==============hashKEY ${data["hash_key"]}");
       await HelperFunctions.savehashkey(data["hash_key"].toString());
-      Fluttertoast.showToast(
-          msg: "OTP send successfully");
+      SnackBar(content: Text("OTP send successfully"));
     }
     return SignUpModel.fromJson(data);
+
   }
 
   Future<OtpVerifyModel?> verifyOTP(
@@ -54,7 +56,8 @@ class LoginRepository {
     logger.info("OTPResponse: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
-      Fluttertoast.showToast(msg: 'OTP verify successfully');
+      SnackBar(content: Text("OTP verify successfully"));
+      //Fluttertoast.showToast(msg: 'OTP verify successfully');
       await HelperFunctions.savetoken(data['token'].toString());
       await HelperFunctions.saveuserLoggedInSharedPreference(true);
       print("=========>token ${data['token']}");

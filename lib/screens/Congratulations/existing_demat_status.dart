@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/home/profile_page.dart';
+import 'package:trust_money/screens/profile/my_profile.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 
@@ -16,9 +16,9 @@ class _DematStatusState extends State<DematStatus> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ProfilePage()));
+    Future.delayed(Duration(seconds: 4), () async{
+     await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MyProfile()));
     });
   }
 
@@ -109,7 +109,7 @@ class _DematStatusState extends State<DematStatus> {
                   width: 10,
                 ),
                 Text(
-                  "Aadhaar Card",
+                  "Canceled Cheque",
                   style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
                         color: AppColors.textColor,

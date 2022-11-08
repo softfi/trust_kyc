@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/home/home_page.dart';
+import 'package:trust_money/screens/profile/my_profile.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
-
-import '../../utils/colorsConstant.dart';
-import '../home/profile_screen.dart';
 
 class KYCComplete extends StatelessWidget {
   const KYCComplete({Key? key}) : super(key: key);
@@ -32,7 +27,7 @@ class KYCComplete extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Profile()));
+                      builder: (context) => MyProfile()));
             },
 
               child: Text(

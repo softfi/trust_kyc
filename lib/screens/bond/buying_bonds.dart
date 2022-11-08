@@ -2860,18 +2860,16 @@ class _BuyingBondsState extends State<BuyingBonds> {
               ),
               Container(
                 decoration: BoxDecoration(color: Color(0xff2F2648)),
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "Subscription Dates",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            color: Color(0xffFFFFFF),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            letterSpacing: 0),
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Subscription Dates",
+                    style: GoogleFonts.sourceSansPro(
+                      textStyle: const TextStyle(
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15,
+                          letterSpacing: 0),
                     ),
                   ),
                 ),

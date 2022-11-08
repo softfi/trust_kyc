@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trust_money/screens/animated_screens/record_demo.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
-import 'package:trust_money/screens/home/profile_page.dart';
 import 'package:trust_money/screens/order/my_order.dart';
+import 'package:trust_money/screens/profile/personal_profile_detals.dart';
+import 'package:trust_money/screens/profile/setting.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
+import '../screens/profile/my_profile.dart';
 import '../utils/sharedPreference.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -24,6 +25,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   String lastName = "";
   String customerID = "";
   String userName = "";
+  bool isKYCPending = true;
 
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
@@ -35,43 +37,61 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     lastName = await HelperFunctions.getLastName();
     customerID = await HelperFunctions.getCustomerID();
     userName = '${firstName[0]}${lastName[0]}';
+    var isKyc = await HelperFunctions.getUserKycCompleted();
+    if (isKyc == true) {
+      setState(() {
+        isKYCPending = false;
+      });
+    }
   }
 
   _exitApp(BuildContext context) {
-    return  showDialog(
+    return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Are you sure to logout?',style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-                color: Color(0xff22263D), fontWeight: FontWeight.w600, fontSize: 18),
-          ),),
+          title: Text(
+            'Are you sure to logout?',
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: Color(0xff22263D),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
+          ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: Text('No',style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: AppColors.btnColor, fontWeight: FontWeight.w600, fontSize: 17),
-              )),
+              child: Text('No',
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.btnColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17),
+                  )),
             ),
-            FlatButton(
+            ElevatedButton(
               onPressed: () {
-               // SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+                // SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                 setState(() async {
                   await HelperFunctions.saveuserLoggedInSharedPreference(false);
                   await HelperFunctions.saveuserkyccompleted(false);
-                  SharedPreferences preferences = await SharedPreferences.getInstance();
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
                   await preferences.clear();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const SignUp()));
                 });
               },
-              child: Text('Yes',style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
-              )),
+              child: Text('Yes',
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17),
+                  )),
             ),
           ],
         );
@@ -153,50 +173,136 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 const SizedBox(
                                   height: 18,
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ProfilePage()));
-                                  },
-                                  child: Container(
-                                    height: 40,
-                                    width: 190,
-                                    decoration: BoxDecoration(
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color(0x29000000),
-                                            blurRadius: 4.0,
+                                isKYCPending
+                                    ? InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const MyProfile()));
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 190,
+                                          decoration: BoxDecoration(
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0x29000000),
+                                                  blurRadius: 4.0,
+                                                ),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(2),
+                                              color: Colors.white),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                "Profile",
+                                                style: GoogleFonts.quicksand(
+                                                    textStyle: const TextStyle(
+                                                        color:
+                                                            Color(0xff23263D),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              ),
+                                              Text(
+                                                Strings.pending,
+                                                style: GoogleFonts.quicksand(
+                                                    textStyle: const TextStyle(
+                                                        color:
+                                                            Color(0xffFF405A),
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500)),
+                                              ),
+                                            ],
                                           ),
+                                        ))
+                                    : Row(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const MyProfile()));
+                                            },
+                                            child: Container(
+                                              height: 35,
+                                              width: 100,
+                                              decoration:
+                                                  BoxDecoration(boxShadow: [
+                                                BoxShadow(
+                                                  color: Color(0x29000000)
+                                                      .withOpacity(0.11),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 11,
+                                                  offset: const Offset(0, 3),
+                                                ),
+                                              ], color: Colors.white),
+                                              child: Center(
+                                                child: Text(
+                                                  "Profile",
+                                                  style: GoogleFonts.quicksand(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff23263D),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const ProfileSetting()));
+                                            },
+                                            child: Container(
+                                              height: 35,
+                                              width: 100,
+                                              decoration:
+                                                  BoxDecoration(boxShadow: [
+                                                BoxShadow(
+                                                  color: Color(0x29000000)
+                                                      .withOpacity(0.11),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 11,
+                                                  offset: const Offset(0, 3),
+                                                ),
+                                              ], color: Colors.white),
+                                              child: Center(
+                                                child: Text(
+                                                  "Setting",
+                                                  style: GoogleFonts.quicksand(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff23263D),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                ),
+                                              ),
+                                            ),
+                                          )
                                         ],
-                                        borderRadius: BorderRadius.circular(2),
-                                        color: Colors.white),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          "Profile",
-                                          style: GoogleFonts.quicksand(
-                                              textStyle: const TextStyle(
-                                                  color: Color(0xff23263D),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold)),
-                                        ),
-                                        Text(
-                                          Strings.pending,
-                                          style: GoogleFonts.quicksand(
-                                              textStyle: const TextStyle(
-                                                  color: Color(0xffFF405A),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                      ),
                               ],
                             ),
                           ),
@@ -252,10 +358,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               endIndent: 5,
             ),
             _space,
-            InkWell(onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Order()));
-            },
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Order()));
+              },
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
@@ -303,10 +410,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
             _space,
             InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>  CameraPage()));
-              },
+              onTap: () {},
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
@@ -354,6 +458,4 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget get _space => const SizedBox(height: 10);
 
   Widget get _space1 => const SizedBox(height: 8);
-
-
 }

@@ -1,53 +1,69 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/model/get_ifsc_code_response_data.dart';
-import 'package:trust_money/screens/animated_screens/complete_bank_detail_animation.dart';
+import 'package:trust_money/model/get_bank_detail_response_data.dart';
 import 'package:trust_money/screens/bank_screen/ifsc_code.dart';
-import 'package:trust_money/screens/demat_screen/demat_details.dart';
-
-import '../../model/get_bank_detail_response_data.dart';
+import 'package:trust_money/utils/sharedPreference.dart';
+import '../../model/get_ifsc_code_response_data.dart';
 import '../../repositories/bank_detail_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
-import '../../utils/styles.dart';
-import '../../utils/sharedPreference.dart';
 
-class BankDetails extends StatefulWidget {
-  BankDetails({Key? key, required this.addBankView, required this.cardView})
-      : super(key: key);
-  bool addBankView;
-  bool cardView;
-
+class BankAccounts extends StatefulWidget {
+  const BankAccounts({
+    Key? key,
+    this.onClick,
+  }) : super(key: key);
+  final void Function()? onClick;
   @override
-  State<BankDetails> createState() => _BankDetailsState();
+  State<BankAccounts> createState() => _BankAccountsState();
 }
 
-class _BankDetailsState extends State<BankDetails> {
-  bool isCardDeleted = true;
- // bool isLoadData = false;
-  bool isBankAdded = false;
+class _BankAccountsState extends State<BankAccounts> {
+  String? userfName;
+  String enable = "Enable";
   bool inCheckCancelled = false;
-  bool isDematOnShowing = false;
   bool isDisable = false;
   bool enableGetBtn = false;
   bool showBankDetail = false;
-  bool isToggle = true;
+  bool cardView = true;
+  bool addBankView = false;
+  bool isBankAdded = false;
+
+  //bool bank_detail_list[index].isEnable = true;
   int savingIndex = 0;
   int jointIndex = 0;
   final ifscCode = TextEditingController();
   final bankAccountNo = TextEditingController();
   final confirmBankAcc = TextEditingController();
-  String? userfName;
   List<BankDetailModel> bank_detail_list = [];
   GetIfscCdeModel? getIfscCdeModel;
 
   getPreferences() async {
     userfName = await HelperFunctions.getPanName();
     setState(() {});
+  }
+
+  getbankDetail() async {
+    var data = await BankDetailRepository().getBankDetails();
+    setState(() {
+      bank_detail_list = data;
+      print("============143 $data");
+    });
+  }
+
+  getIFSC(String ifsc) async {
+    getIfscCdeModel = await BankDetailRepository().getIFSCCode(ifsc);
+    print("======>1122 $getIfscCdeModel");
+    if (getIfscCdeModel != "") {
+      setState(() {
+        showBankDetail = true;
+      });
+    }
   }
 
   checkValidation() async {
@@ -61,49 +77,22 @@ class _BankDetailsState extends State<BankDetails> {
     } else if (bankAccountNo.text.toString() !=
         confirmBankAcc.text.toString()) {
       bankAccountNotMatchedBottomSheet();
-    } else if(savingIndex == 0 ){
-      Fluttertoast.showToast(
-          msg: 'Choose your account type1!');
-    } else if(jointIndex == 0 ){
-      Fluttertoast.showToast(
-          msg: 'Choose your account type2!');
-    }else {
+    } else if (savingIndex == 0) {
+      Fluttertoast.showToast(msg: 'Choose your account type1!');
+    } else if (jointIndex == 0) {
+      Fluttertoast.showToast(msg: 'Choose your account type2!');
+    } else {
       final addBankDetailModel = await BankDetailRepository().addbankDetails(
           ifscCode.text.toString(),
           bankAccountNo.text.toString(),
           savingIndex,
           jointIndex);
       if (addBankDetailModel != "") {
-        // onBank1AddedBottomSheet();
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BankAnimation()));
-        setState(() {
-          isDematOnShowing = true;
-          widget.cardView = false;
-          widget.addBankView = false;
-        });
+        EasyLoading.dismiss();
+        widget.onClick!();
       } else {
         uploadCancelledChequeBottomSheet();
       }
-    }
-  }
-
-  getbankDetail() async {
-    var data = await BankDetailRepository().getBankDetails();
-      setState(() {
-        bank_detail_list = data;
-        //isLoadData = true;
-        print("============143 $data");
-      });
-  }
-
-  getIFSC(String ifsc) async {
-    getIfscCdeModel = await BankDetailRepository().getIFSCCode(ifsc);
-    print("======>1122 $getIfscCdeModel");
-    if (getIfscCdeModel != "") {
-      setState(() {
-        showBankDetail = true;
-      });
     }
   }
 
@@ -116,20 +105,15 @@ class _BankDetailsState extends State<BankDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-            children: [
-              Visibility(visible: widget.cardView, child: cardDetail()),
-              Visibility(visible: widget.addBankView, child: bankDetail()),
-              Visibility(
-                  visible: isDematOnShowing,
-                  child: DematDetails(
-                    addNewDematAccounts: true,
-                  )),
-            ],
-          );
-        // : const Center(
-        //     heightFactor: 18,
-        //     child: CircularProgressIndicator(color: Color(0xff00C6D8)));
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Column(
+        children: [
+          Visibility(visible: cardView, child: cardDetail()),
+          Visibility(visible: addBankView, child: bankDetail()),
+        ],
+      ),
+    );
   }
 
   Widget cardDetail() {
@@ -179,8 +163,8 @@ class _BankDetailsState extends State<BankDetails> {
                         InkWell(
                           onTap: () {
                             setState(() {
-                              widget.addBankView = true;
-                              widget.cardView = false;
+                              addBankView = true;
+                              cardView = false;
                             });
                           },
                           child: Container(
@@ -245,16 +229,21 @@ class _BankDetailsState extends State<BankDetails> {
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.73,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xffFCF3F4),
-                                      Color(0xffF8C3C7),
-                                    ],
+                                    colors: bank_detail_list[index].isEnable
+                                        ? [
+                                            Color(0xffFBF2F3),
+                                            Color(0xffF8C1C6),
+                                          ]
+                                        : [
+                                            Color(0xffE3E2E5),
+                                            Color(0xffC8C7CE),
+                                          ],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                   ),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       bottomLeft: Radius.circular(10)),
                                 ),
@@ -272,29 +261,50 @@ class _BankDetailsState extends State<BankDetails> {
                                               padding: const EdgeInsets.only(
                                                   top: 20.0),
                                               child: Image.asset(
-                                                  "assets/images/elefant.png",
-                                                  height: 45,
-                                                  width: 55),
+                                                "assets/images/elefant.png",
+                                                height: 45,
+                                                width: 55,
+                                                color: bank_detail_list[index]
+                                                        .isEnable
+                                                    ? AppColors.textColor
+                                                    : Color(0xff8F919D),
+                                              ),
                                             ),
                                             Align(
                                               alignment: Alignment.bottomCenter,
                                               child: Container(
                                                 height: 20,
                                                 width: 80,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight: Radius
-                                                                .circular(8),
+                                                        const BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    8),
                                                             topLeft:
                                                                 Radius.circular(
                                                                     8)),
-                                                    color: Color(0xffffc440)),
+                                                    color: bank_detail_list[
+                                                                index]
+                                                            .isEnable
+                                                        ? Color(0xffffc440)
+                                                        : Color(0xffB3B3B5)),
                                                 child: Center(
                                                     child: Text(
                                                   "PRIMARY",
                                                   style:
-                                                      ConstStyle.sourceSansPro,
+                                                      GoogleFonts.sourceSansPro(
+                                                    textStyle: TextStyle(
+                                                      color: bank_detail_list[
+                                                                  index]
+                                                              .isEnable
+                                                          ? AppColors.textColor
+                                                          : Color(0xffE1E0E6),
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
                                                 )),
                                               ),
                                             ),
@@ -318,23 +328,39 @@ class _BankDetailsState extends State<BankDetails> {
                                                         .width *
                                                     0.30,
                                                 child: Text(
-                                                  bank_detail_list[index]
-                                                      .bankName,
-                                                  style: ConstStyle
-                                                      .sourceSansbname,
-                                                ),
+                                                    bank_detail_list[index]
+                                                        .bankName,
+                                                    style: GoogleFonts
+                                                        .sourceSansPro(
+                                                      textStyle: TextStyle(
+                                                          color: bank_detail_list[
+                                                                      index]
+                                                                  .isEnable
+                                                              ? AppColors
+                                                                  .textColor
+                                                              : Color(
+                                                                  0xff8F919D),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 15,
+                                                          letterSpacing: 0.75),
+                                                    )),
                                               ),
                                               Container(
                                                 height: 16,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft: Radius
-                                                              .circular(5),
+                                                      const BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  5),
                                                           bottomRight:
                                                               Radius.circular(
                                                                   5)),
-                                                  color: AppColors.textColor,
+                                                  color: bank_detail_list[index]
+                                                          .isEnable
+                                                      ? AppColors.textColor
+                                                      : Color(0xffB3B3B5),
                                                 ),
                                                 child: Padding(
                                                   padding: const EdgeInsets
@@ -347,11 +373,16 @@ class _BankDetailsState extends State<BankDetails> {
                                                             1
                                                         ? "Saving A/C"
                                                         : "Current A/C",
-                                                    style: const TextStyle(
-                                                        fontSize: 8,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: Colors.white),
+                                                    style: TextStyle(
+                                                      fontSize: 8,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: bank_detail_list[
+                                                                  index]
+                                                              .isEnable
+                                                          ? Colors.white
+                                                          : Color(0xffE1E0E6),
+                                                    ),
                                                   )),
                                                 ),
                                               ),
@@ -366,8 +397,13 @@ class _BankDetailsState extends State<BankDetails> {
                                               bank_detail_list[index]
                                                   .accountNumber,
                                               style: GoogleFonts.sourceSansPro(
-                                                textStyle: const TextStyle(
-                                                    color: Color(0xff22263D),
+                                                textStyle: TextStyle(
+                                                    color:
+                                                        bank_detail_list[index]
+                                                                .isEnable
+                                                            ? AppColors
+                                                                .textColor
+                                                            : Color(0xff8F919D),
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 19,
                                                     letterSpacing: 2),
@@ -380,16 +416,21 @@ class _BankDetailsState extends State<BankDetails> {
                               ),
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.16,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xffFDF2F3),
-                                      Color(0xffF6B4BA),
-                                    ],
+                                    colors: bank_detail_list[index].isEnable
+                                        ? [
+                                            Color(0xffFBF2F3),
+                                            Color(0xffF8C1C6),
+                                          ]
+                                        : [
+                                            Color(0xffE3E2E5),
+                                            Color(0xffC8C7CE),
+                                          ],
                                     begin: Alignment.bottomLeft,
                                     end: Alignment.topRight,
                                   ),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(10),
                                       bottomRight: Radius.circular(10)),
                                 ),
@@ -404,7 +445,16 @@ class _BankDetailsState extends State<BankDetails> {
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          enableDisableBottomSheet();
+                                          if (enable == "Enable") {
+                                            setState(() {
+                                              enable = "Disable";
+                                            });
+                                          } else {
+                                            setState(() {
+                                              enable = "Enable";
+                                            });
+                                          }
+                                          enableDisableBottomSheet(index);
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
@@ -412,20 +462,22 @@ class _BankDetailsState extends State<BankDetails> {
                                           height: 25,
                                           width: 40,
                                           decoration: BoxDecoration(
-                                              color: isToggle
+                                              color: bank_detail_list[index]
+                                                      .isEnable
                                                   ? Colors.transparent
                                                   : const Color(0xffFF405A),
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                               border: Border.all(
                                                   width: 2,
-                                                  color: isToggle
+                                                  color: bank_detail_list[index]
+                                                          .isEnable
                                                       ? const Color(0xff22263D)
                                                       : const Color(
                                                           0xffFF405A))),
                                           child: Row(
                                             children: [
-                                              isToggle
+                                              bank_detail_list[index].isEnable
                                                   ? Container()
                                                   : Icon(
                                                       size: 20,
@@ -435,7 +487,7 @@ class _BankDetailsState extends State<BankDetails> {
                                               const SizedBox(
                                                 width: 10,
                                               ),
-                                              isToggle
+                                              bank_detail_list[index].isEnable
                                                   ? Icon(
                                                       size: 20,
                                                       Icons.circle,
@@ -465,6 +517,10 @@ class _BankDetailsState extends State<BankDetails> {
                                         child: Image.asset(
                                           "assets/images/delete.png",
                                           scale: 3.5,
+                                          color:
+                                              bank_detail_list[index].isEnable
+                                                  ? AppColors.textColor
+                                                  : Color(0xff8F919D),
                                         ),
                                       ),
                                     ],
@@ -634,15 +690,13 @@ class _BankDetailsState extends State<BankDetails> {
                         color: Color(0xffFF405A)),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        setState(() {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SearchIFSC()));
-                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchIFSC()));
                       },
                   ),
-                  TextSpan(
+                  const TextSpan(
                       text: "  for help with the IFSC code.",
                       style: TextStyle(
                           fontStyle: FontStyle.normal,
@@ -668,7 +722,9 @@ class _BankDetailsState extends State<BankDetails> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              getIfscCdeModel!=null?getIfscCdeModel!.bank.toString(): "",
+                              getIfscCdeModel != null
+                                  ? getIfscCdeModel!.bank.toString()
+                                  : "",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: const TextStyle(
                                     color: Color(0xff22263d),
@@ -699,7 +755,9 @@ class _BankDetailsState extends State<BankDetails> {
                                       height: 5,
                                     ),
                                     Text(
-                                      getIfscCdeModel!=null?getIfscCdeModel!.ifsc.toString(): "",
+                                      getIfscCdeModel != null
+                                          ? getIfscCdeModel!.ifsc.toString()
+                                          : "",
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
@@ -728,7 +786,9 @@ class _BankDetailsState extends State<BankDetails> {
                                       height: 5,
                                     ),
                                     Text(
-                                      getIfscCdeModel!=null?getIfscCdeModel!.branch.toString(): "",
+                                      getIfscCdeModel != null
+                                          ? getIfscCdeModel!.branch.toString()
+                                          : "",
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
@@ -755,7 +815,9 @@ class _BankDetailsState extends State<BankDetails> {
                               height: 5,
                             ),
                             Text(
-                              getIfscCdeModel!=null?getIfscCdeModel!.address.toString(): "",
+                              getIfscCdeModel != null
+                                  ? getIfscCdeModel!.address.toString()
+                                  : "",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: const TextStyle(
                                     color: Color(0xff22263D),
@@ -1097,6 +1159,7 @@ class _BankDetailsState extends State<BankDetails> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: InkWell(
                   onTap: () async {
+                    EasyLoading.show(status: 'loading...');
                     if (ifscCode.text.isNotEmpty &&
                         bankAccountNo.text.isNotEmpty) {
                       checkValidation();
@@ -1149,87 +1212,7 @@ class _BankDetailsState extends State<BankDetails> {
     );
   }
 
-  Widget get _space => const SizedBox(height: 20);
-
-  Widget get _space1 => const SizedBox(height: 3);
-
-  void onBank1AddedBottomSheet() {
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(35),
-          ),
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (context) {
-          return BottomSheet(
-            builder: (BuildContext context) {
-              return StatefulBuilder(builder: (BuildContext context, State) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.cardView = false;
-                      widget.addBankView = false;
-                      Navigator.pop(context);
-                    });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BankAnimation()));
-                    Future.delayed(const Duration(seconds: 11), () {
-                      setState(() {
-                        isDematOnShowing = true;
-                      });
-                    });
-                  },
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.30,
-                    decoration: const BoxDecoration(
-                      color: AppColors.textColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(35.0),
-                        topRight: Radius.circular(35.0),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Image.asset(
-                          ConstantImage.profile,
-                          width: 75,
-                          height: 75,
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Center(
-                          child: Text(
-                            "Congratulations! $userfName \n Bank Account Added Successfully",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              });
-            },
-            onClosing: () {},
-          );
-        });
-  }
-
-  void enableDisableBottomSheet() {
+  void enableDisableBottomSheet(int index) {
     showModalBottomSheet(
         context: context,
         isDismissible: false,
@@ -1281,15 +1264,15 @@ class _BankDetailsState extends State<BankDetails> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Center(
                             child: Text(
-                              "Do you want to Enable this?",
+                              "Do you want to $enable this?",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.quicksand(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 18),
@@ -1332,9 +1315,11 @@ class _BankDetailsState extends State<BankDetails> {
                               GestureDetector(
                                 onTap: () {
                                   Navigator.pop(context);
-                                  State(() {
-                                    isToggle = !isToggle;
-                                    print("isToggle $isToggle");
+                                  setState(() {
+                                    bank_detail_list[index].isEnable =
+                                        !bank_detail_list[index].isEnable;
+                                    print(
+                                        "bank_detail_list[index].isEnable $bank_detail_list[index].isEnable");
                                   });
                                 },
                                 child: Container(
@@ -1457,8 +1442,6 @@ class _BankDetailsState extends State<BankDetails> {
                   onTap: () {
                     setState(() {
                       Navigator.pop(context);
-                      // isUpload = true;
-                      // isMandatory = false;
                     });
                   },
                   child: Container(
@@ -1665,5 +1648,21 @@ class _BankDetailsState extends State<BankDetails> {
             onClosing: () {},
           );
         });
+  }
+
+  Widget get _space => const SizedBox(height: 20);
+
+  Widget get _space1 => const SizedBox(height: 3);
+
+  Future<bool> _onBackPressed() async{
+    if (addBankView) {
+      setState(() {
+        cardView = true;
+        addBankView = false;
+      });
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
   }
 }

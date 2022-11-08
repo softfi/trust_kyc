@@ -21,12 +21,9 @@ class _ExistingDematAnimationState extends State<ExistingDematAnimation> {
         _controller.setLooping(true);
         setState(() {});
       });
-    Future.delayed(const Duration(seconds: 5), () {
-      setState(() {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DematAccountComplete()));
-      });
+    Future.delayed(const Duration(seconds: 5), () async {
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const DematAccountComplete()));
     });
     super.initState();
   }

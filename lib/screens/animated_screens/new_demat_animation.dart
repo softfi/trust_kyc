@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/profile/my_profile.dart';
 import 'package:video_player/video_player.dart';
-
-import '../home/profile_page.dart';
 class NewDematAnimation extends StatefulWidget {
   const NewDematAnimation({Key? key}) : super(key: key);
 
@@ -21,9 +20,9 @@ class _NewDematAnimationState extends State<NewDematAnimation> {
         _controller.setLooping(true);
         setState(() {});
       });
-    Future.delayed(Duration(seconds: 5), () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ProfilePage()));
+    Future.delayed(Duration(seconds: 5), () async{
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const MyProfile()));
     });
     super.initState();
   }

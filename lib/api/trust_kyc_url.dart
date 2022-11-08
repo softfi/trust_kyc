@@ -42,8 +42,11 @@ class TrustKycUrl {
   static const dematDetail = 'api/v1/new_demat_account_details';
   static const getdematDetail = 'api/v1/new_demat_account_details';
   static const deleteDemat = 'api/v1/new_demat_account_details';
+  static const deleteExixtingDemat = 'api/v1/existing_demat_account_details';
   static const existingDemat = 'api/v1/existing_demat_account_details';
   static const addNomineeDetail = 'api/v1/nominee_details';
+  static const alldemat = 'api/v1/all_demat_account_get';
+  static const eSign = 'api/v1/esign_pdf?platform=mobile';
 
   //upload images
   static const signatureUpload = 'api/v1/signature_image_upload';

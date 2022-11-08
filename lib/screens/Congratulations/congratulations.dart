@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:trust_money/screens/home/profile_page.dart';
-import 'package:trust_money/screens/home/profile_screen.dart';
+import 'package:trust_money/screens/profile/my_profile.dart';
 
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
@@ -17,7 +15,7 @@ class _CongratulationState extends State<Congratulation> {
   void initState() {
     Future.delayed(Duration(seconds: 3),(){
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ProfilePage()));
+          MaterialPageRoute(builder: (context) => const MyProfile()));
     });
     // TODO: implement initState
     super.initState();

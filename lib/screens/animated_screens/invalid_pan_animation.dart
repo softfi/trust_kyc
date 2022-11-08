@@ -23,9 +23,9 @@ class _InvalidPANAnimationState extends State<InvalidPANAnimation> {
         _controller.setLooping(true);
         setState(() {});
       });
-    Future.delayed(Duration(seconds: 8), () {
+    Future.delayed(Duration(seconds: 8), () async{
       Navigator.pop(context);
-      Navigator.push(context,
+     await Navigator.push(context,
           MaterialPageRoute(builder: (context) =>  InvalidPanName(msg: widget.msg)));
     });
     super.initState();

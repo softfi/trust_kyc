@@ -17,7 +17,6 @@ class _DematAccountCompleteState extends State<DematAccountComplete> {
   String panNumber = "";
 
   getPreferences() async {
-
     print("============pName $panNumber");
     setState(() {});
   }
@@ -26,12 +25,9 @@ class _DematAccountCompleteState extends State<DematAccountComplete> {
   @override
   void initState() {
     getPreferences();
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DematStatus()));
-      });
+    Future.delayed(const Duration(seconds: 3), () async{
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const DematStatus()));
     });
     super.initState();
   }

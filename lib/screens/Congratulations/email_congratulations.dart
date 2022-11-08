@@ -16,6 +16,7 @@ class _EmailCompleteState extends State<EmailComplete> {
   void initState() {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pop(context);
+      Navigator.pop(context);
     });
     super.initState();
   }

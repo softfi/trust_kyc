@@ -27,6 +27,7 @@ class _ProfileCompleteState extends State<ProfileComplete> {
     getPreferences();
     Future.delayed(Duration(seconds: 4), () {
       Navigator.pop(context);
+      Navigator.pop(context);
     });
     super.initState();
   }

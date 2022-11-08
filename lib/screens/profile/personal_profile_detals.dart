@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,15 +17,15 @@ import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/bottom_sheets/personal_details_bottom_sheets.dart';
 import 'package:trust_money/model/code_verification_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
-import 'package:trust_money/screens/animated_screens/continue_animation.dart';
 import 'package:trust_money/screens/animated_screens/invalid_pan_animation.dart';
+import 'package:trust_money/screens/animated_screens/vedio_page.dart';
 import 'package:trust_money/screens/animated_screens/verify_email_id_animation.dart';
 import 'package:trust_money/screens/animated_screens/verify_pan_animation.dart';
 import 'package:trust_money/screens/bank_screen/bank_details.dart';
-
-import 'package:trust_money/screens/home/vedio_page.dart';
+import 'package:trust_money/screens/home/digilocker_page.dart';
 import 'package:video_player/video_player.dart';
 import '../../api/url_constant.dart';
 import '../../model/address_proof_response_data.dart';
@@ -42,21 +43,20 @@ import '../../utils/strings.dart';
 import '../../utils/styles.dart';
 import '../animated_screens/complete_profile_animation.dart';
 import '../../utils/sharedPreference.dart';
-import 'digilocker_page.dart';
 
-class PersonalDetails extends StatefulWidget {
-  final void Function()? onTap;
+class PersonalProfile extends StatefulWidget {
+  final void Function()? onClick1;
 
-  PersonalDetails({
+  PersonalProfile({
     Key? key,
-    this.onTap,
+    this.onClick1,
   }) : super(key: key);
 
   @override
-  State<PersonalDetails> createState() => _PersonalDetailsState();
+  State<PersonalProfile> createState() => _PersonalProfileState();
 }
 
-class _PersonalDetailsState extends State<PersonalDetails> {
+class _PersonalProfileState extends State<PersonalProfile> {
   bool profileprofilevisbileTab1 = true;
   bool profilevisbileTab2 = false;
   bool profilevisbileTab3 = false;
@@ -76,6 +76,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   bool inPersonVerifications = false;
   bool potentially_exposed_status = false;
   int potentially_exposed_statusInt = 0;
+  bool isClose = true;
   bool activate_future = false;
   int activate_futureInt = 0;
   bool isChecked = false;
@@ -92,6 +93,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   bool isButtonClickMaiden = false;
   bool isEmailVerified = false;
   bool isPanVerify = false;
+  // bool panLoder = false;
   bool isGoogleSign = true;
   bool isGoogleEmailVerify = false;
   bool isScans = true;
@@ -100,13 +102,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   bool isBackImageClick = false;
   bool isBankShowing = false;
   DateTime currentStartDate = DateTime.now();
-  String dob = "";
+  String dob = "DD/MM/YYYY";
   File? backImage, frontImage;
   final _picker = ImagePicker();
   bool itrValue = false;
   int itrValueInt = 0;
   int numberOfAccount = 1;
   int genderIndex = 0;
+  bool isgenderSelected = false;
   int maritalIndex = 0;
   int incomeIndex = 0;
   int experienceIndex = 0;
@@ -133,7 +136,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   String? fileName2;
   String? randumNumber;
   String panName = "";
-  String dateOfBirth = "";
+  String dateOfBirth1 = "";
   GetPersonalDetailModel? getPersonalDetail;
   DigiLockerDetailModel? digiLockerDetailModel;
   CodeVerificationModel? codeVerificationModel;
@@ -157,7 +160,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     userfName = await HelperFunctions.getFirstName();
     userlName = await HelperFunctions.getLastName();
     mobNo = await HelperFunctions.getPhoneNumber();
-    dateOfBirth = await HelperFunctions.getDOB();
+    dateOfBirth1 = await HelperFunctions.getDOB();
     mail = await HelperFunctions.getEmailId();
     print("============Email $mail");
     firstName.text = userfName.toString();
@@ -174,11 +177,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         isGoogleSign = false;
         isEmailVerified = true;
         getPANCard(getPersonalDetail!.panNumber);
-        setState(() {
-          //var date1  = getPersonalDetail!.dob !=""?getPersonalDetail!.dob.toString():"";
-          // dob = DateFormat('dd-MM-yyyy').format(DateTime.parse(getPersonalDetail!.dob.toString()));
-          print(dob);
-        });
+        setState(() {});
       }
     }
   }
@@ -212,10 +211,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         // you can change the format here
         currentStartDate = pickedStartDate;
         dob = DateFormat('dd-MM-yyyy').format(pickedStartDate);
+
         if (dob != date2) {
           //Fluttertoast.showToast(msg: "Your Age should be minimum 18 years!");
         }
         print("dob " + dob.toString());
+        HelperFunctions.saveDOB(dob.toString());
       });
     }
   }
@@ -398,7 +399,11 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     final cameras = await availableCameras();
     final front = cameras.firstWhere(
         (camera) => camera.lensDirection == CameraLensDirection.front);
-    _cameraController = CameraController(front, ResolutionPreset.low);
+    _cameraController = CameraController(
+      front,
+      ResolutionPreset.medium,
+      imageFormatGroup: ImageFormatGroup.yuv420,
+    );
     await _cameraController.initialize();
     setState(() => _isLoading = false);
   }
@@ -412,7 +417,6 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   Future _initVideoPlayer() async {
     _videoPlayerController = VideoPlayerController.file(File(file.path));
     await _videoPlayerController.initialize();
-    // await _videoPlayerController.play();
   }
 
   @override
@@ -445,8 +449,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         ? Column(
             children: [
               Visibility(
-                  visible: profileprofilevisbileTab1,
-                  child: updatedPersonalDetails(),),
+                visible: profileprofilevisbileTab1,
+                child: updatedPersonalDetails(),
+              ),
               Visibility(
                   visible: profilevisbileTab2,
                   child: editPersonalDetails(context)),
@@ -454,12 +459,6 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   visible: inPersonVerifications,
                   child: inPersonVerification()),
               Visibility(visible: profilevisbileTab3, child: editPersonalPic()),
-              Visibility(
-                  visible: isBankShowing,
-                  child: BankDetails(
-                    cardView: false,
-                    addBankView: true,
-                  )),
             ],
           )
         : Center(
@@ -1226,7 +1225,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  getPersonalDetail!.marriedStatus == null
+                  getPersonalDetail!.annualIncome == null
                       ? GestureDetector(
                           onTap: () {
                             setState(() {
@@ -1614,7 +1613,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Male",
                               style: GoogleFonts.sourceSansPro(
@@ -1644,7 +1644,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Female",
                               style: GoogleFonts.sourceSansPro(
@@ -1674,7 +1675,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Trans",
                               style: GoogleFonts.sourceSansPro(
@@ -1706,8 +1708,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   borderRadius: BorderRadius.circular(5),
                                   color: Color(0xff00C6D8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -1741,7 +1743,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   Text("What is your marital status?",
                       style: ConstStyle.sourceSansProDisable),
                   _space1,
-                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -1758,7 +1761,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Single",
                               style: GoogleFonts.sourceSansPro(
@@ -1788,7 +1792,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Married",
                               style: GoogleFonts.sourceSansPro(
@@ -1818,7 +1823,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Others",
                               style: GoogleFonts.sourceSansPro(
@@ -1850,8 +1856,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   borderRadius: BorderRadius.circular(5),
                                   color: Color(0xff00C6D8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -1978,7 +1984,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     style: ConstStyle.sourceSansProDisable,
                   ),
                   _space1,
-                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -1995,7 +2002,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Below 1 Lakh",
                               style: GoogleFonts.sourceSansPro(
@@ -2025,7 +2033,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "1-5 Lakh",
                               style: GoogleFonts.sourceSansPro(
@@ -2055,7 +2064,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "5-10 Lakh",
                               style: GoogleFonts.sourceSansPro(
@@ -2074,7 +2084,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   ),
                   _space1,
                   _space1,
-                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -2091,7 +2102,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "10-20 Lakh",
                               style: GoogleFonts.sourceSansPro(
@@ -2121,7 +2133,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Above 25 Lakh",
                               style: GoogleFonts.sourceSansPro(
@@ -2153,8 +2166,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   borderRadius: BorderRadius.circular(5),
                                   color: Color(0xff00C6D8)),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 12.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -2190,7 +2203,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     style: ConstStyle.sourceSansProDisable,
                   ),
                   _space1,
-                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -2199,21 +2213,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 1
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 1
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 1
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "Less than 1 Year",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 1
+                                        getPersonalDetail!.tradingExperience ==
+                                                1
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -2230,21 +2247,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 2
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 2
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 2
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "1-2 Years",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 2
+                                        getPersonalDetail!.tradingExperience ==
+                                                2
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -2261,21 +2281,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 3
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 3
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 3
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "2-5 Years",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 3
+                                        getPersonalDetail!.tradingExperience ==
+                                                3
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -2289,7 +2312,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                   ),
                   _space1,
                   _space1,
-                  SingleChildScrollView(scrollDirection: Axis.horizontal,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -2298,21 +2322,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 4
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 4
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 4
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "5-10 Years",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 4
+                                        getPersonalDetail!.tradingExperience ==
+                                                4
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -2329,21 +2356,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 5
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 5
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 5
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "10-20 Years",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 5
+                                        getPersonalDetail!.tradingExperience ==
+                                                5
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -2360,21 +2390,24 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1,
-                                  color: getPersonalDetail!.tradingExperience == 6
-                                      ? Color(0xff23263B)
-                                      : Color(0xffC8C7CD)),
+                                  color:
+                                      getPersonalDetail!.tradingExperience == 6
+                                          ? Color(0xff23263B)
+                                          : Color(0xffC8C7CD)),
                               color: getPersonalDetail!.tradingExperience == 6
                                   ? Color(0xff22263D)
                                   : Colors.white),
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               "20-25 Years",
                               style: GoogleFonts.sourceSansPro(
                                 textStyle: TextStyle(
                                     color:
-                                        getPersonalDetail!.tradingExperience == 6
+                                        getPersonalDetail!.tradingExperience ==
+                                                6
                                             ? Colors.white
                                             : Color(0xffC8C7CD),
                                     fontWeight: FontWeight.w500,
@@ -3050,7 +3083,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                 } else {
                                   potentially_exposed_statusInt = 0;
                                 }
-                                print("VALUE : $potentially_exposed_statusInt");
+                                print("VALUE : $potentially_exposed_status");
+                                print("VALUE : $value");
                               });
                             },
                           ),
@@ -3173,7 +3207,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     InkWell(
                       onTap: () {
                         if (isChecked == true && isChecked1 == true) {
-                          if (dob != "" || getPersonalDetail!.dob != null) {
+                          if (dob != "DD/MM/YYYY" ||
+                              getPersonalDetail!.dob != null) {
                             getPreferences();
                             setState(() {
                               isEditStep1 = false;
@@ -3616,10 +3651,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                           decoration: InputDecoration(
                               suffixIcon: InkWell(
                                 onTap: () async {
+                                  EasyLoading.show(status: 'loading...');
                                   if (isPanSelected == true) {
                                     panStatusModel = await ProfileRepository()
                                         .getPanCard(panNumber.text.toString());
                                     if (panStatusModel != "") {
+                                      EasyLoading.dismiss();
                                       if (panStatusModel?.panStatus == "E") {
                                         setState(() async {
                                           panName =
@@ -3631,7 +3668,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                           await HelperFunctions.saveLastName(
                                               "${panStatusModel!.panLname}");
                                           getPreferences();
-                                          Navigator.push(
+                                          await Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
@@ -3650,43 +3687,34 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         });
                                       } else if (panStatusModel?.panStatus ==
                                           "X") {
-                                        setState(() {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const InvalidPANAnimation(
-                                                        msg: "DEACTIVATED",
-                                                      )));
-                                          //ReEnterPanNumberBottomSheet("DEACTIVATED");
-                                        });
+                                        await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const InvalidPANAnimation(
+                                                      msg: "DEACTIVATED",
+                                                    )));
                                       } else if (panStatusModel?.panStatus ==
                                           "I") {
-                                        setState(() {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const InvalidPANAnimation(
-                                                        msg: "INOPERATIVE",
-                                                      )));
-                                          // ReEnterPanNumberBottomSheet("INOPERATIVE");
-                                        });
+                                        await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const InvalidPANAnimation(
+                                                      msg: "INOPERATIVE",
+                                                    )));
                                       } else if (panStatusModel?.panStatus ==
                                               "N" ||
                                           panStatusModel?.panStatus == "F" ||
                                           panStatusModel?.panStatus == "ED" ||
                                           panStatusModel?.panStatus == "D") {
-                                        setState(() {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const InvalidPANAnimation(
-                                                        msg: "INVALID",
-                                                      )));
-                                          // ReEnterPanNumberBottomSheet("INVALID ");
-                                        });
+                                        await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const InvalidPANAnimation(
+                                                      msg: "INVALID",
+                                                    )));
                                       }
                                     }
                                   }
@@ -3706,7 +3734,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ),
                                 ),
                               ),
-                              hintText: "10 Digit Pan Number",
+                              hintText: "10 Digit PAN Number",
                               border: InputBorder.none,
                               hintStyle: TextStyle(
                                   color: isPanSelected
@@ -3877,9 +3905,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         ),
                       ),
                       _space,
-                      Text("What is your gender? ",
-                          style: ConstStyle.sourceSansPro),
-                      SizedBox(
+                      Text("What is your gender? ", style: ConstStyle.sourceSansPro),
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
@@ -3889,6 +3916,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             onTap: () {
                               setState(() {
                                 genderIndex = 1;
+                                isgenderSelected = true;
                               });
                             },
                             child: Container(
@@ -3902,7 +3930,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: digiLockerDetailModel?.gender == "M"
+                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "M" || genderIndex == 1
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -3913,8 +3941,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   "Male",
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
-                                        color:
-                                            digiLockerDetailModel?.gender == "M"
+                                        color: isgenderSelected == false && digiLockerDetailModel?.gender == "M" || genderIndex == 1
                                                 ? Colors.white
                                                 : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
@@ -3924,19 +3951,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               )),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           InkWell(
                             onTap: () {
                               setState(() {
                                 genderIndex = 2;
+                                isgenderSelected = true;
                               });
                             },
                             child: Container(
                               height: 34,
                               decoration: BoxDecoration(
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color(0x29000000),
                                       blurRadius: 6.0,
@@ -3944,7 +3972,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: digiLockerDetailModel?.gender == "F"
+                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "F" || genderIndex == 2
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -3956,7 +3984,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
                                         color:
-                                            digiLockerDetailModel?.gender == "F"
+                                        isgenderSelected == false && digiLockerDetailModel?.gender == "F" || genderIndex == 2
                                                 ? Colors.white
                                                 : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
@@ -3966,19 +3994,20 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                               )),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
                           InkWell(
                             onTap: () {
                               setState(() {
                                 genderIndex = 3;
+                                isgenderSelected = true;
                               });
                             },
                             child: Container(
                               height: 34,
                               decoration: BoxDecoration(
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color(0x29000000),
                                       blurRadius: 6.0,
@@ -3986,7 +4015,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: digiLockerDetailModel?.gender == "O"
+                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "O" || genderIndex == 3
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -3998,7 +4027,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
                                         color:
-                                            digiLockerDetailModel?.gender == "O"
+                                        isgenderSelected == false && digiLockerDetailModel?.gender == "O" || genderIndex == 3
                                                 ? Colors.white
                                                 : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
@@ -5219,8 +5248,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   maritalIndex: maritalIndex,
                                   incomeIndex: incomeIndex,
                                   experienceIndex: experienceIndex,
-                                  dob: dob != ""
-                                      ? dob.toString()
+                                  dob: dob != "DD/MM/YYYY"
+                                      ? dateOfBirth1.toString()
                                       : DateFormat('dd-MM-yyyy').format(
                                           DateTime.parse(getPersonalDetail!.dob
                                               .toString())),
@@ -5232,22 +5261,25 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   itrFiled: itrValueInt,
                                 );
                                 if (updateProfileData1 != "") {
-                                  await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ContinueAnimation()));
+                                  // await Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const ContinueAnimation()));
+                                  widget.onClick1!();
                                 }
-                                setState(() {
-                                  inPersonVerifications = false;
-                                  profileprofilevisbileTab1 = false;
-                                  profilevisbileTab2 = false;
-                                  isBankShowing = true;
-                                  profilevisbileTab3 = false;
-                                  isSignInDemat = false;
-                                  isAddressAdd = false;
-                                  isButtonClickMaiden = true;
-                                });
+
+                                // setState(() {
+                                //
+                                //   // inPersonVerifications = false;
+                                //   // profileprofilevisbileTab1 = false;
+                                //   // profilevisbileTab2 = false;
+                                //   // isBankShowing = true;
+                                //   // profilevisbileTab3 = false;
+                                //   // isSignInDemat = false;
+                                //   // isAddressAdd = false;
+                                //   // isButtonClickMaiden = true;
+                                // });
                               } else {
                                 setState(() {
                                   inPersonVerifications = false;
@@ -7100,7 +7132,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   builder: (_) =>
                                       VideoPage(filePath: file.path),
                                 );
-                                Navigator.push(context, route);
+                                await Navigator.push(context, route);
                                 setState(() {
                                   // _isLoading = false;
                                   // _isRecordingPlay = false;
@@ -7375,6 +7407,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               _space,
               InkWell(
                 onTap: () async {
+                  EasyLoading.show(status: 'loading...');
                   var res = await ProfileRepository().personVerification(
                     file: file.path,
                   );
@@ -7399,29 +7432,28 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                             maritalIndex: maritalIndex,
                             incomeIndex: incomeIndex,
                             experienceIndex: experienceIndex,
-                            dob: dob.toString(),
+                            dob: dateOfBirth1.toString(),
                             politicallyexposed: potentially_exposed_statusInt,
                             wouldyouliketoActivate: activate_futureInt,
                             chekbox1: isCheckedInt,
                             chekbox2: isChecked1Int,
                             itrFiled: itrValueInt);
                     if (updateProfileData != "") {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfileAnimation()));
-                      setState(() {
-                        isBankShowing = true;
-                        isAddPersonalDetails = true;
-                        profilevisbileTab3 = false;
-                        inPersonVerifications = false;
-                        profileprofilevisbileTab1 = false;
-                        profilevisbileTab2 = false;
-                        isMandatory = false;
-                        isUpload = false;
-                        isSignInDemat = false;
-                        isAddressAdd = false;
-                      });
+                      EasyLoading.dismiss();
+                      widget.onClick1!();
+                      // setState(() {
+                      //
+                      // //  isBankShowing = true;
+                      // //   isAddPersonalDetails = true;
+                      // //   profilevisbileTab3 = false;
+                      // //   inPersonVerifications = false;
+                      // //   profileprofilevisbileTab1 = false;
+                      // //   profilevisbileTab2 = false;
+                      // //   isMandatory = false;
+                      // //   isUpload = false;
+                      // //   isSignInDemat = false;
+                      // //   isAddressAdd = false;
+                      // });
                       //onProfilePicVerificationBottomSheet();
                     } else {
                       Fluttertoast.showToast(msg: "something went wrong");
@@ -7466,523 +7498,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
   }
 
-  // Widget bankDetail() {
-  //   return Padding(
-  //     padding: const EdgeInsets.all(
-  //       8.0,
-  //     ),
-  //     child: Container(
-  //       width: MediaQuery.of(context).size.width,
-  //       decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(5),
-  //           color: const Color(0xffFCFCFD).withOpacity(0.35),
-  //           border: Border.all(width: 1.2, color: Color(0xffbcbcbc))),
-  //       child: Padding(
-  //         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
-  //         child: Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: [
-  //             Padding(
-  //               padding: const EdgeInsets.symmetric(vertical: 8.0),
-  //               child: Text(
-  //                 "Bank Details",
-  //                 style: GoogleFonts.quicksand(
-  //                   textStyle: const TextStyle(
-  //                       color: Color(0xff22263D),
-  //                       fontWeight: FontWeight.w500,
-  //                       fontSize: 20),
-  //                 ),
-  //               ),
-  //             ),
-  //             const Divider(
-  //               thickness: 1,
-  //               indent: 5,
-  //               endIndent: 5,
-  //             ),
-  //             _space,
-  //             Text(
-  //               "Hey $userfName, Enter Your Bank Details",
-  //               style: GoogleFonts.quicksand(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 20),
-  //               ),
-  //             ),
-  //             Text(
-  //               "We will deposit ₹1 in your bank account to verify it",
-  //               style: GoogleFonts.sourceSansPro(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 15),
-  //               ),
-  //             ),
-  //             _space,
-  //             Text(
-  //               "IFSC Code ",
-  //               style: GoogleFonts.sourceSansPro(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 12),
-  //               ),
-  //             ),
-  //             _space1,
-  //             Container(
-  //               height: 45,
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5),
-  //                 border: Border.all(width: 1.1, color: AppColors.borderColor),
-  //               ),
-  //               child: TextField(
-  //                 controller: ifscCode,
-  //                 autofocus: false,
-  //                 textCapitalization: TextCapitalization.characters,
-  //                 inputFormatters: [
-  //                   LengthLimitingTextInputFormatter(11),
-  //                 ],
-  //                 style: GoogleFonts.sourceSansPro(
-  //                   textStyle: const TextStyle(
-  //                       color: Color(0xff22263D),
-  //                       fontWeight: FontWeight.w500,
-  //                       fontSize: 16,
-  //                       letterSpacing: 4),
-  //                 ),
-  //                 keyboardType: TextInputType.text,
-  //                 decoration: const InputDecoration(
-  //                   hintText: "Enter IFSC code",
-  //                   hintStyle: TextStyle(color: Color(0xffC8C7CE)),
-  //                   border: InputBorder.none,
-  //                   fillColor: Colors.white,
-  //                   contentPadding:
-  //                       EdgeInsets.only(left: 14.0, bottom: 8.0, top: 5),
-  //                 ),
-  //               ),
-  //             ),
-  //             _space1,
-  //             _space1,
-  //             RichText(
-  //               text: const TextSpan(children: [
-  //                 TextSpan(
-  //                     text: "Click here",
-  //                     style: TextStyle(
-  //                         decoration: TextDecoration.underline,
-  //                         fontWeight: FontWeight.w500,
-  //                         fontSize: 12,
-  //                         color: Color(0xffFF405A))),
-  //                 TextSpan(
-  //                     text: "  for help with the IFSC code.",
-  //                     style: TextStyle(
-  //                         fontStyle: FontStyle.normal,
-  //                         fontWeight: FontWeight.w500,
-  //                         fontSize: 12,
-  //                         color: Color(0xff22263D))),
-  //               ]),
-  //             ),
-  //             _space,
-  //             Text(
-  //               "Bank Account Number ",
-  //               style: GoogleFonts.sourceSansPro(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 12),
-  //               ),
-  //             ),
-  //             _space1,
-  //             Container(
-  //               height: 45,
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5),
-  //                 border: Border.all(width: 1.1, color: AppColors.borderColor),
-  //               ),
-  //               child: TextField(
-  //                 controller: bankAccountNo,
-  //                 obscureText: true,
-  //                 autofocus: false,
-  //                 inputFormatters: [
-  //                   LengthLimitingTextInputFormatter(16),
-  //                 ],
-  //                 style: GoogleFonts.sourceSansPro(
-  //                   textStyle: const TextStyle(
-  //                       color: Color(0xff22263D),
-  //                       fontWeight: FontWeight.w500,
-  //                       fontSize: 16,
-  //                       letterSpacing: 4),
-  //                 ),
-  //                 keyboardType: TextInputType.number,
-  //                 decoration: const InputDecoration(
-  //                   hintText: "Enter 16 Digit Account Number",
-  //                   hintStyle: TextStyle(color: Color(0xffC8C7CE)),
-  //                   border: InputBorder.none,
-  //                   fillColor: Colors.white,
-  //                   labelStyle:
-  //                       TextStyle(color: AppColors.textColor, letterSpacing: 4),
-  //                   contentPadding:
-  //                       EdgeInsets.only(left: 14.0, bottom: 8.0, top: 5),
-  //                 ),
-  //               ),
-  //             ),
-  //             _space,
-  //             Text(
-  //               "Re-enter Bank Account Number ",
-  //               style: GoogleFonts.sourceSansPro(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 12),
-  //               ),
-  //             ),
-  //             _space1,
-  //             Container(
-  //               height: 45,
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5),
-  //                 border: Border.all(width: 1.1, color: AppColors.borderColor),
-  //               ),
-  //               child: TextField(
-  //                 controller: confirmBankAcc,
-  //                 autofocus: false,
-  //                 inputFormatters: [
-  //                   LengthLimitingTextInputFormatter(16),
-  //                 ],
-  //                 style: GoogleFonts.sourceSansPro(
-  //                   textStyle: const TextStyle(
-  //                       color: Color(0xff22263D),
-  //                       fontWeight: FontWeight.w500,
-  //                       fontSize: 16,
-  //                       letterSpacing: 4),
-  //                 ),
-  //                 keyboardType: TextInputType.number,
-  //                 decoration: const InputDecoration(
-  //                   hintText: "Enter 16 Digit Re-Account number",
-  //                   hintStyle: TextStyle(color: Color(0xffC8C7CE)),
-  //                   labelStyle:
-  //                       TextStyle(color: AppColors.textColor, letterSpacing: 4),
-  //                   border: InputBorder.none,
-  //                   fillColor: Colors.white,
-  //                   contentPadding:
-  //                       EdgeInsets.only(left: 14.0, bottom: 8.0, top: 5),
-  //                 ),
-  //               ),
-  //             ),
-  //             _space,
-  //             Text(
-  //               "Account Type? ",
-  //               style: GoogleFonts.sourceSansPro(
-  //                 textStyle: const TextStyle(
-  //                     color: Color(0xff22263D),
-  //                     fontWeight: FontWeight.w500,
-  //                     fontSize: 12),
-  //               ),
-  //             ),
-  //             _space,
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               children: [
-  //                 InkWell(
-  //                   onTap: () {
-  //                     setState(() {
-  //                       savingIndex = 1;
-  //                     });
-  //                   },
-  //                   child: Container(
-  //                     height: 34,
-  //                     decoration: BoxDecoration(
-  //                         boxShadow: const [
-  //                           BoxShadow(
-  //                             color: Color(0x29000000),
-  //                             blurRadius: 6.0,
-  //                           ),
-  //                         ],
-  //                         border: Border.all(
-  //                             width: 1,
-  //                             color: savingIndex == 1
-  //                                 ? Color(0xff22263D)
-  //                                 : Color(0xff22263D)),
-  //                         color: savingIndex == 1
-  //                             ? Color(0xff22263D)
-  //                             : Colors.white),
-  //                     child: Center(
-  //                         child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-  //                       child: Text(
-  //                         "Savings",
-  //                         style: GoogleFonts.sourceSansPro(
-  //                           textStyle: TextStyle(
-  //                               color: savingIndex == 1
-  //                                   ? Colors.white
-  //                                   : Color(0xff22263D),
-  //                               fontWeight: FontWeight.w500,
-  //                               fontSize: 15),
-  //                         ),
-  //                       ),
-  //                     )),
-  //                   ),
-  //                 ),
-  //                 const SizedBox(
-  //                   width: 15,
-  //                 ),
-  //                 InkWell(
-  //                   onTap: () {
-  //                     setState(() {
-  //                       savingIndex = 2;
-  //                     });
-  //                   },
-  //                   child: Container(
-  //                     height: 34,
-  //                     decoration: BoxDecoration(
-  //                         boxShadow: const [
-  //                           BoxShadow(
-  //                             color: Color(0x29000000),
-  //                             blurRadius: 6.0,
-  //                           ),
-  //                         ],
-  //                         border: Border.all(
-  //                             width: 1,
-  //                             color: savingIndex == 2
-  //                                 ? Color(0xff22263D)
-  //                                 : Color(0xff22263D)),
-  //                         color: savingIndex == 2
-  //                             ? Color(0xff22263D)
-  //                             : Colors.white),
-  //                     child: Center(
-  //                         child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-  //                       child: Text(
-  //                         "Current",
-  //                         style: GoogleFonts.sourceSansPro(
-  //                           textStyle: TextStyle(
-  //                               color: savingIndex == 2
-  //                                   ? Colors.white
-  //                                   : Color(0xff22263D),
-  //                               fontWeight: FontWeight.w500,
-  //                               fontSize: 15),
-  //                         ),
-  //                       ),
-  //                     )),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //             _space,
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.start,
-  //               children: [
-  //                 InkWell(
-  //                   onTap: () {
-  //                     setState(() {
-  //                       jointIndex = 1;
-  //                     });
-  //                   },
-  //                   child: Container(
-  //                     height: 34,
-  //                     decoration: BoxDecoration(
-  //                         boxShadow: const [
-  //                           BoxShadow(
-  //                             color: Color(0x29000000),
-  //                             blurRadius: 6.0,
-  //                           ),
-  //                         ],
-  //                         border: Border.all(
-  //                             width: 1,
-  //                             color: jointIndex == 1
-  //                                 ? Color(0xff000000)
-  //                                 : Color(0xff22263D)),
-  //                         color: jointIndex == 1
-  //                             ? Color(0xff22263D)
-  //                             : Colors.white),
-  //                     child: Center(
-  //                         child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-  //                       child: Text(
-  //                         "Single",
-  //                         style: GoogleFonts.sourceSansPro(
-  //                           textStyle: TextStyle(
-  //                               color: jointIndex == 1
-  //                                   ? Colors.white
-  //                                   : Color(0xff22263D),
-  //                               fontWeight: FontWeight.w500,
-  //                               fontSize: 15),
-  //                         ),
-  //                       ),
-  //                     )),
-  //                   ),
-  //                 ),
-  //                 const SizedBox(
-  //                   width: 15,
-  //                 ),
-  //                 InkWell(
-  //                   onTap: () {
-  //                     setState(() {
-  //                       jointIndex = 2;
-  //                     });
-  //                   },
-  //                   child: Container(
-  //                     height: 34,
-  //                     decoration: BoxDecoration(
-  //                         boxShadow: const [
-  //                           BoxShadow(
-  //                             color: Color(0x29000000),
-  //                             blurRadius: 6.0,
-  //                           ),
-  //                         ],
-  //                         border: Border.all(
-  //                             width: 1,
-  //                             color: jointIndex == 2
-  //                                 ? Color(0xff000000)
-  //                                 : Color(0xff22263D)),
-  //                         color: jointIndex == 2
-  //                             ? Color(0xff22263D)
-  //                             : Colors.white),
-  //                     child: Center(
-  //                         child: Padding(
-  //                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-  //                       child: Text(
-  //                         "Joint",
-  //                         style: GoogleFonts.sourceSansPro(
-  //                           textStyle: TextStyle(
-  //                               color: jointIndex == 2
-  //                                   ? Colors.white
-  //                                   : Color(0xff22263D),
-  //                               fontWeight: FontWeight.w500,
-  //                               fontSize: 15),
-  //                         ),
-  //                       ),
-  //                     )),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //             _space,
-  //             Visibility(
-  //               visible: inCheckCancelled,
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Text(
-  //                     "Cancelled Signed Cheque ",
-  //                     style: GoogleFonts.sourceSansPro(
-  //                       textStyle: const TextStyle(
-  //                           color: Color(0xff22263D),
-  //                           fontWeight: FontWeight.w500,
-  //                           fontSize: 12),
-  //                     ),
-  //                   ),
-  //                   _space1,
-  //                   Container(
-  //                       height: 45,
-  //                       width: MediaQuery.of(context).size.width,
-  //                       decoration: BoxDecoration(
-  //                         borderRadius: BorderRadius.circular(5),
-  //                         border: Border.all(
-  //                             width: 1.1, color: AppColors.borderColor),
-  //                       ),
-  //                       child: const Padding(
-  //                         padding: EdgeInsets.only(left: 14.0, top: 12),
-  //                         child: Text(
-  //                           "Cancelled signed Cheque.jpg",
-  //                           style: TextStyle(
-  //                               color: Color(0xff22263D),
-  //                               fontWeight: FontWeight.w400,
-  //                               fontSize: 15),
-  //                         ),
-  //                       )),
-  //                 ],
-  //               ),
-  //             ),
-  //             _space,
-  //             _space,
-  //             Padding(
-  //               padding: const EdgeInsets.only(bottom: 10.0),
-  //               child: InkWell(
-  //                 onTap: () async {
-  //                   if (ifscCode.text.isNotEmpty &&
-  //                       bankAccountNo.text.isNotEmpty &&
-  //                       confirmBankAcc.text.isNotEmpty) {
-  //                     if (ifscCode.text.isEmpty && ifscCode.text.length < 10) {
-  //                       Fluttertoast.showToast(
-  //                           msg: "Enter Your Valid IFSC Code");
-  //                     } else if (bankAccountNo.text.isEmpty &&
-  //                         bankAccountNo.text.length < 10) {
-  //                       Fluttertoast.showToast(
-  //                           msg: "Enter Your Valid Account Number");
-  //                     } else if (bankAccountNo.text.toString() !=
-  //                         confirmBankAcc.text.toString()) {
-  //                       Fluttertoast.showToast(
-  //                           msg: "Account Number does not match");
-  //                     } else {
-  //                       // final addBankDetailModel = await BankDetailRepository()
-  //                       //     .addbankDetails(
-  //                       //         ifscCode.text.toString(),
-  //                       //         bankAccountNo.text.toString(),
-  //                       //         savingIndex,
-  //                       //         jointIndex,
-  //                       //         );
-  //                       // if (addBankDetailModel != "") {
-  //                       //   onBank1AddedBottomSheet();
-  //                       //   print("===============================done");
-  //                       // } else {
-  //                       //   print("===============================nothing");
-  //                       // }
-  //                       setState(() {});
-  //                     }
-  //                   }
-  //                 },
-  //                 child: Container(
-  //                   height: 45,
-  //                   decoration: BoxDecoration(
-  //                       boxShadow: const [
-  //                         BoxShadow(
-  //                           color: Color(0x29000000),
-  //                           blurRadius: 3.0,
-  //                         ),
-  //                       ],
-  //                       border: Border.all(
-  //                           width: 2,
-  //                           color: isBankAdded == false
-  //                               ? (ifscCode.text.isNotEmpty &&
-  //                                       bankAccountNo.text.isNotEmpty &&
-  //                                       confirmBankAcc.text.isNotEmpty)
-  //                                   ? AppColors.textColor
-  //                                   : Color(0xffE1E0E6)
-  //                               : Color(0xffFF405A)),
-  //                       color: isBankAdded == false
-  //                           ? Colors.white
-  //                           : Color(0xffFF405A)),
-  //                   child: Center(
-  //                       child: Text(
-  //                     "Submit",
-  //                     style: GoogleFonts.quicksand(
-  //                       textStyle: TextStyle(
-  //                           color: isBankAdded == false
-  //                               ? (ifscCode.text.isNotEmpty &&
-  //                                       bankAccountNo.text.isNotEmpty &&
-  //                                       confirmBankAcc.text.isNotEmpty)
-  //                                   ? AppColors.textColor
-  //                                   : Color(0xffE1E0E6)
-  //                               : Colors.white,
-  //                           fontWeight: FontWeight.w500,
-  //                           fontSize: 15),
-  //                     ),
-  //                   )),
-  //                 ),
-  //               ),
-  //             ),
-  //             _space,
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget get _space => const SizedBox(height: 20);
 
   Widget get _space1 => const SizedBox(height: 3);
-
-  //for bottom sheet
 
   void onProfilePicVerificationBottomSheet() {
     showModalBottomSheet(
@@ -8223,124 +7741,124 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
   }
 
-  void closeApplicationBottomSheet() {
-    showModalBottomSheet(
+  void closeApplicationBottomSheet(){
+      showModalBottomSheet(
         context: context,
         isDismissible: false,
+        isScrollControlled: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(35),
+            top: Radius.circular(20),
           ),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (context) {
-          return BottomSheet(
-            builder: (BuildContext context) {
-              var height = MediaQuery.of(context).size.height;
-              return StatefulBuilder(builder: (BuildContext context, State) {
-                return Container(
-                  height: height * 0.43,
-                  decoration: const BoxDecoration(
-                    color: AppColors.textColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35.0),
-                      topRight: Radius.circular(35.0),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: height * 0.04,
-                      ),
-                      Image.asset(
-                        ConstantImage.profileError,
-                        width: 75,
-                        height: 75,
-                      ),
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Center(
-                          child: Text(
-                            "We apologise for the inconvenience.As per our policy, we are unable to proceed further, kindly call our customer service for further details.",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.04,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 20.0, right: 20, bottom: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        builder: (BuildContext context) {
+          var height = MediaQuery.of(context).size.height;
+          return StatefulBuilder(builder: (BuildContext context, State) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Wrap(
+                children: [
+                  Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      color: AppColors.primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                exit(0);
-                              },
-                              child: Container(
-                                height: 45,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1.5, color: Colors.white)),
-                                child: Center(
-                                    child: Text(
-                                  "Close Application",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
+                            SizedBox(
+                              height: height * 0.04,
+                            ),
+                            Image.asset(
+                              ConstantImage.profileError,
+                              width: 75,
+                              height: 75,
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Center(
+                              child: Text(
+                                "We apologise for the inconvenience.As per our policy, we are unable to proceed further, kindly call our customer service for further details.",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 18),
+                                ),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                height: 45,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1.5, color: Colors.white)),
-                                child: Center(
-                                    child: Text(
-                                  "Close Option",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
+                            SizedBox(
+                              height: height * 0.04,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 30),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      exit(0);
+                                    },
+                                    child: Container(
+                                      height: 45,
+                                      width: 160,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1.5, color: Colors.white)),
+                                      child: Center(
+                                          child: Text(
+                                            "Close Application",
+                                            style: GoogleFonts.quicksand(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500)),
+                                          )),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                     setState((){
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                    child: Container(
+                                      height: 45,
+                                      width: 160,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1.5, color: Colors.white)),
+                                      child: Center(
+                                          child: Text(
+                                            "Close Option",
+                                            style: GoogleFonts.quicksand(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500)),
+                                          )),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              });
-            },
-            onClosing: () {
-              exit(0);
-            },
-          );
-        });
-  }
+                      )),
+                ],
+              ),
+            );
+          });
+        },
+      );
+    }
 
   void onEmailAddedBottomSheet() {
     showModalBottomSheet(
@@ -12091,6 +11609,38 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             onClosing: () {},
           );
         });
+  }
+
+  updateGenders(BuildContext context) async {
+    var genderValue = await ProfileRepository().addPersonalDetails(
+        firstName: getPersonalDetail!.firstname,
+        lastName: getPersonalDetail!.lastname,
+        addressLine1: getPersonalDetail!.addressLine1,
+        addressLine2: getPersonalDetail!.addressLine2,
+        addressLine3: getPersonalDetail!.addressLine3,
+        addressZip: getPersonalDetail!.addressZip,
+        maidenName: getPersonalDetail!.mothersMaidenName,
+        professionID: getPersonalDetail!.occupation,
+        proof: getPersonalDetail!.proofType,
+        stateId: getPersonalDetail!.addressState,
+        cityID: getPersonalDetail!.addressCity,
+        genderIndex: genderIndex,
+        maritalIndex: getPersonalDetail!.marriedStatus,
+        incomeIndex: getPersonalDetail!.annualIncome,
+        experienceIndex: getPersonalDetail!.tradingExperience,
+        dob: DateFormat('dd-MM-yyyy')
+            .format(DateTime.parse(getPersonalDetail!.dob.toString())),
+        politicallyexposed: getPersonalDetail!.isPoliticallyExposed,
+        wouldyouliketoActivate: getPersonalDetail!.wouldYouLikeToActivate,
+        chekbox1: getPersonalDetail!.checkBoxShareDataWithCompany,
+        chekbox2: getPersonalDetail!.checkBoxShareDataWithGovt,
+        itrFiled: 0);
+    if (genderValue != null) {
+      // await PersonalDetailBottomSheet
+      //     .openConfirmBottomSheet(context);
+      // getPersonalDetails();
+    }
+    ;
   }
 }
 

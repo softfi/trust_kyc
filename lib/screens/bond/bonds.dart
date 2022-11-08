@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/bond/read_more_bonds.dart';
-import 'package:trust_money/utils/app_bottom_sheet.dart';
+import 'package:trust_money/bottom_sheets/bond_filter_bottom_sheet.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
@@ -18,6 +18,12 @@ class Bonds extends StatefulWidget {
 }
 
 class _BondsState extends State<Bonds> {
+  int investmentIndex = 0;
+  int safetyIndex = 0;
+  int yieldIndex = 0;
+  int tenureIndex = 0;
+  int paymentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +53,8 @@ class _BondsState extends State<Bonds> {
                           style: ConstStyle.quickStandSmall11,
                         ),
                         IconButton(
-                          icon:
-                          const Icon(Icons.notifications_none, color: Colors.white),
+                          icon: const Icon(Icons.notifications_none,
+                              color: Colors.white),
                           onPressed: () {},
                         ),
                       ],
@@ -148,7 +154,6 @@ class _BondsState extends State<Bonds> {
           ],
         ),
       ),
-
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -200,9 +205,14 @@ class _BondsState extends State<Bonds> {
                 hintText: "Bond name, issuer and bond type",
                 hintStyle: GoogleFonts.sourceSansPro(
                   textStyle: const TextStyle(
-                      color: Color(0xff1D2B84), fontWeight: FontWeight.w400, fontSize: 16),
+                      color: Color(0xff1D2B84),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16),
                 ),
-                prefixIcon: const Icon(Icons.search,color: Color(0xff1D2B84),),
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: Color(0xff1D2B84),
+                ),
                 suffixIcon: InkWell(
                   onTap: () {},
                   child: Container(
@@ -235,61 +245,69 @@ class _BondsState extends State<Bonds> {
             ),
           ], color: Colors.white, borderRadius: BorderRadius.circular(5)),
           child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 13.0),
+            padding: EdgeInsets.symmetric(horizontal: 13.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "Filter",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Color(0xff22263D), fontWeight: FontWeight.w600, fontSize: 15),
+                InkWell(
+                  onTap: () async {
+                    await AppBottomSheet.showFilterBottomSheet(context,
+                        investmentIndex, safetyIndex,paymentIndex, yieldIndex, tenureIndex);
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        "Filter",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Color(0xff22263D),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 6,
-                    ),
-                    SvgPicture.asset(
-                      ConstantImage.filter,
-                      width: 20,
-                      height: 20,
-                        color: Color(0xff22263D)
-
-                    ),
-                  ],
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      SvgPicture.asset(ConstantImage.filter,
+                          width: 20, height: 20, color: Color(0xff22263D)),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                        onTap: () async{
-                     // AppBottomSheet.showSortingBottomSheet(context);
-
-                        },
-                        child: Text(
-                          "Sort by ",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xff22263D), fontWeight: FontWeight.w600, fontSize: 15),
-                          ),
-                        )),
-                    const SizedBox(
-                      width: 6,
-                    ),
-                    SvgPicture.asset(
-                      ConstantImage.sorting,
-                      width: 20,
-                      height: 20,
-                      color: Color(0xff22263D),
-                    ),
-                  ],
+                InkWell(
+                  onTap: () async {
+                    await AppBottomSheet.showSortingBottomSheet(context,
+                        investmentIndex, safetyIndex, yieldIndex, tenureIndex);
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        "Sort by ",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Color(0xff22263D),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      SvgPicture.asset(
+                        ConstantImage.sorting,
+                        width: 20,
+                        height: 20,
+                        color: Color(0xff22263D),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
           ),
         ),
-        const SizedBox(height: 5,),
+        const SizedBox(
+          height: 5,
+        ),
         bondList(),
       ],
     );
@@ -318,7 +336,7 @@ class _BondsState extends State<Bonds> {
                     child: Image.asset(
                       ConstantImage.leaf,
                       color: Color(0xffFF405A).withOpacity(0.35),
-                      height:300,
+                      height: 300,
                     ),
                   ),
                   Column(
@@ -329,8 +347,8 @@ class _BondsState extends State<Bonds> {
                           height: 30,
                           width: 40,
                           decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.only(topRight: Radius.circular(5)),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(5)),
                               color: AppColors.textColor),
                           child: const Center(
                             child: Icon(
@@ -370,7 +388,9 @@ class _BondsState extends State<Bonds> {
                               ))
                         ],
                       ),
-                      const SizedBox(height: 8,),
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -380,7 +400,8 @@ class _BondsState extends State<Bonds> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  color: const Color(0xffD67278).withOpacity(0.11),
+                                  color:
+                                      const Color(0xffD67278).withOpacity(0.11),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15.0, vertical: 10),
@@ -389,16 +410,22 @@ class _BondsState extends State<Bonds> {
                                           MainAxisAlignment.start,
                                       children: [
                                         SizedBox(
-                                          width: MediaQuery.of(context).size.width * 0.28,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.28,
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Coupon",
-                                                style: GoogleFonts.sourceSansPro(
+                                                style:
+                                                    GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xff1D2B84),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 13),
                                                 ),
                                               ),
@@ -407,10 +434,12 @@ class _BondsState extends State<Bonds> {
                                               ),
                                               Text(
                                                 "8.00%",
-                                                style: GoogleFonts.sourceSansPro(
+                                                style:
+                                                    GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xffFF405A),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 15),
                                                 ),
                                               ),
@@ -449,7 +478,8 @@ class _BondsState extends State<Bonds> {
                                   ),
                                 ),
                                 Container(
-                                  color: const Color(0xff9BA9AD).withOpacity(0.11),
+                                  color:
+                                      const Color(0xff9BA9AD).withOpacity(0.11),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15.0, vertical: 10),
@@ -457,17 +487,23 @@ class _BondsState extends State<Bonds> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        SizedBox(width: MediaQuery.of(context).size.width * 0.28,
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.28,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Interest Payment",
-                                                style: GoogleFonts.sourceSansPro(
+                                                style:
+                                                    GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xff1D2B84),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 13),
                                                 ),
                                               ),
@@ -476,10 +512,12 @@ class _BondsState extends State<Bonds> {
                                               ),
                                               Text(
                                                 "Annual",
-                                                style: GoogleFonts.sourceSansPro(
+                                                style:
+                                                    GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xffFF405A),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 15),
                                                 ),
                                               ),
@@ -537,7 +575,8 @@ class _BondsState extends State<Bonds> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(width: 35,
+                            SizedBox(
+                              width: 35,
                               child: Text(
                                 "IPO",
                                 style: GoogleFonts.sourceSansPro(
@@ -577,12 +616,12 @@ class _BondsState extends State<Bonds> {
                                 ),
                                 child: Center(
                                     child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 40.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40.0),
                                   child: Text("Read More",
                                       style: GoogleFonts.quicksand(
                                         textStyle: const TextStyle(
-                                          color:Colors.white,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
                                         ),
@@ -590,7 +629,9 @@ class _BondsState extends State<Bonds> {
                                 )),
                               ),
                             ),
-                            Container(width: 35,)
+                            Container(
+                              width: 35,
+                            )
                           ],
                         ),
                       ),
@@ -606,7 +647,7 @@ class _BondsState extends State<Bonds> {
         });
   }
 
-  // Widget openShortingBottom(BuildContext context1) {
-  //   return
-  // }
+// Widget openShortingBottom(BuildContext context1) {
+//   return
+// }
 }

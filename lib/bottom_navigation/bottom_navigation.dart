@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/home/home_page.dart';
+import 'package:trust_money/screens/order/my_order.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
+import '../screens/bond/bonds.dart';
 import '../utils/images.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
@@ -12,6 +15,19 @@ class CustomBottomNavigation extends StatefulWidget {
 
 class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   int _currentIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomePage(),
+    Bonds(),
+    Order(),
+    HomePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +49,10 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
           fontSize: 14,
         ),
       ),
-      onTap: (value) {
-        setState(() => _currentIndex = value);
-      },
+      onTap: _onItemTapped,
+      // onTap: (value) {
+      //   setState(() => _currentIndex = value);
+      // },
       items: [
         BottomNavigationBarItem(
             label: 'Home',

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import 'complete_profile_animation.dart';
+
 class ContinueAnimation extends StatefulWidget {
   const ContinueAnimation({Key? key}) : super(key: key);
 
@@ -13,8 +15,12 @@ class _ContinueAnimationState extends State<ContinueAnimation> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () async{
       Navigator.pop(context);
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const ProfileAnimation()));
     });
   }
 

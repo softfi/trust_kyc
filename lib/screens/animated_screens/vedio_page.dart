@@ -63,10 +63,14 @@ class _VideoPageState extends State<VideoPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 400,
+            height: MediaQuery.of(context).size.height*0.70,
             child: FutureBuilder(
               future: _initVideoPlayer(),
               builder: (context, state) {
+                AspectRatio(
+                  aspectRatio: _videoPlayerController.value.aspectRatio,
+                  child: VideoPlayer(_videoPlayerController),
+                );
                 if (state.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
@@ -75,7 +79,7 @@ class _VideoPageState extends State<VideoPage> {
               },
             ),
           ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 30,),
           InkWell(onTap: (){
             onBank1AddedBottomSheet();
           },
@@ -233,5 +237,4 @@ class _VideoPageState extends State<VideoPage> {
           );
         });
   }
-
 }

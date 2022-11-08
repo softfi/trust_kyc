@@ -20,12 +20,9 @@ class _ProfileAnimationState extends State<ProfileAnimation> {
         _controller.setLooping(true);
         setState(() {});
       });
-    Future.delayed(const Duration(seconds: 5), () {
-      setState(() {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ProfileComplete()));
-      });
+    Future.delayed(const Duration(seconds: 5), () async{
+      await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const ProfileComplete()));
     });
     super.initState();
   }
