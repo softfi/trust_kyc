@@ -4,11 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
-import 'package:trust_money/screens/bond/pay_ipo.dart';
+import 'package:trust_money/screens/ipo/buy_ipo_bonds/buy_ipo_bond.dart';
 import 'dart:math' as math;
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
+import '../ipo/pay_ipo.dart';
 
 class ReadMoreBonds extends StatefulWidget {
   const ReadMoreBonds({Key? key}) : super(key: key);
@@ -1360,26 +1361,29 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         const SizedBox(
           height: 30,
         ),
-        Center(
-          child: Container(
-            height: 40,
-            width: 210,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: AppColors.btnColor,
+        InkWell(
+          onTap: () {},
+          child: Center(
+            child: Container(
+              height: 40,
+              width: 210,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: AppColors.btnColor,
+              ),
+              child: Center(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text("Buy this BOND now!",
+                    style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                        color: Color(0xffFfffff),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    )),
+              )),
             ),
-            child: Center(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text("Buy this BOND now!",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Color(0xffFfffff),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  )),
-            )),
           ),
         ),
         const SizedBox(
@@ -2096,7 +2100,11 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               );
             }),
         const SizedBox(
-          height: 22,
+          height: 20,
+        ),
+        seriesWidget(),
+        const SizedBox(
+          height: 35,
         ),
         Text(
           "About This IPO",
@@ -2243,7 +2251,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               )),
         ])),
         const SizedBox(
-          height: 25,
+          height: 35,
         ),
         Container(
           decoration: BoxDecoration(
@@ -2522,10 +2530,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         const SizedBox(
           height: 20,
         ),
-        seriesWidget(),
-        const SizedBox(
-          height: 20,
-        ),
         treeWidget(),
       ],
     );
@@ -2599,6 +2603,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
   Widget seriesWidget() {
     addItems();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Specific Terms For Each Series Of Ncds",
@@ -2606,7 +2611,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             textStyle: const TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w500,
-              fontSize: 17,
+              fontSize: 18,
             ),
           ),
         ),
@@ -2618,239 +2623,336 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           child: Container(
               height: 550,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.07),
+                      spreadRadius: 5,
+                      blurRadius: 3,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                  color: Colors.white),
+              child: Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                        width: 150,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffFF405A),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12)),
+                        ),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col1.length,
+                            itemBuilder: (context, index) {
+                              return SizedBox(
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col1[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                    VerticalDivider(
+                      width: 3,
+                      color: Colors.grey.withOpacity(0.25),
+                    ),
+                    SizedBox(
+                        width: 130,
+                        // decoration: BoxDecoration(
+                        //     color: Colors.,
+                        //     borderRadius:
+                        //     BorderRadius.only(topLeft: Radius.circular(12))),
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: Col2.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "${Col2[index]}",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                  ],
+                ),
+              )),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Text(
+          "*Company shall allocate and allot Series IV NCDs wherein the Applicants have not indicated the choice of the relevant NCD Series.",
+          style: GoogleFonts.sourceSansPro(
+            textStyle: const TextStyle(
+              color: AppColors.textColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 10,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          height: 4,
+          color: Colors.grey.withOpacity(0.35),
+        ),
+        SizedBox(
+          height: 25,
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BuyIPOBond()));
+          },
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              height: 55,
+              width: 230,
+              decoration: const BoxDecoration(
+                color: Color(0xffEC515F),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                    bottomLeft: Radius.circular(50)),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                      width: 140,
-                      decoration: BoxDecoration(
-                        color: Color(0xffFF405A),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            bottomLeft: Radius.circular(12)),
-                      ),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col1.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col1[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  Container(
-                      width: 100,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.,
-                      //     borderRadius:
-                      //     BorderRadius.only(topLeft: Radius.circular(12))),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: Col2.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              height: 50,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "${Col2[index]}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
+                  Text(
+                    "Buy this BOND now",
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16)),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                    size: 20,
+                  )
                 ],
-              )),
-        )
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -3162,8 +3264,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PayIPO()));
+
                   },
                   child: Align(
                     alignment: Alignment.topRight,
