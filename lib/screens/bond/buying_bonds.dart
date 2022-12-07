@@ -30,7 +30,6 @@ class _BuyingBondsState extends State<BuyingBonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigation(),
       appBar: AppBar(
         title: Text(
           "SOVEREIGN GOLD BONDS",

@@ -9,6 +9,7 @@ import 'package:trust_money/screens/profile/setting.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
+import '../screens/auths/choose_screen.dart';
 import '../screens/profile/my_profile.dart';
 import '../utils/sharedPreference.dart';
 
@@ -180,7 +181,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const MyProfile()));
+                                                      const ChooseScreen()));
                                         },
                                         child: Container(
                                           height: 40,

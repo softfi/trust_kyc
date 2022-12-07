@@ -19,7 +19,6 @@ class _ViewAllState extends State<ViewAll> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Color(0xffE8E8E8),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),

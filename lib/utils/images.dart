@@ -16,6 +16,7 @@ class ConstantImage {
   static const String sorting = 'assets/images/sorting.svg';
   static const String profile_pic = 'assets/images/profile_pic.svg';
   static const String issue_doc = 'assets/images/issue_doc.svg';
+  static const String clip = 'assets/images/clipBoard.svg';
 
   //png & Jpg images
   static const String explore_insight='assets/images/explore_insight.png';
@@ -56,6 +57,11 @@ class ConstantImage {
   static const String chat1 = 'assets/images/chat1.png';
   static const String order1 = 'assets/images/order1.png';
   static const String cart1 = 'assets/images/cart1.png';
+  static const String chooseImage = 'assets/images/chooseImg.png';
+  static const String pan = 'assets/images/pan.png';
+  static const String bank = 'assets/images/bank.png';
+  static const String demat = 'assets/images/demat.png';
+  static const String adhar = 'assets/images/adhar.png';
 
   // gif
   static const String error = 'assets/images/error.gif';

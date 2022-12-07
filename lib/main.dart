@@ -11,6 +11,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:video_player/video_player.dart';
 
+import 'bottom_navigation/bottom_navigation.dart';
+
 void main() async {
   // ErrorWidget.builder = (FlutterErrorDetails details) =>
   //     Material(
@@ -99,7 +101,7 @@ class SplashScreenState extends State<MyPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => const HomePage()));
+              builder: (context) =>  CustomBottomNavigation(currentIndex: 0,)));
     });
   }
 

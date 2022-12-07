@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:trust_money/screens/auths/alright_screent.dart';
+import 'package:trust_money/screens/auths/choose_screen.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/utils/strings.dart';
@@ -84,7 +85,7 @@ class _OtpVerificationState extends State<OtpVerification> {
           hashKey.toString());
       if (otpVerifyModel != "" && otpVerifyModel != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AllRight()));
+            context, MaterialPageRoute(builder: (context) => const ChooseScreen()));
         final userID = otpVerifyModel.customerId.toString();
         final firstName = otpVerifyModel.firstName.toString();
         final lastName = otpVerifyModel.lastName.toString();

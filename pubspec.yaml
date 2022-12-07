@@ -59,6 +59,8 @@ dependencies:
   camera: ^0.9.4+3
   flutter_html: any
   flutter_easyloading: ^3.0.5
+  persistent_bottom_nav_bar: any
+
 
 dev_dependencies:
   flutter_test:

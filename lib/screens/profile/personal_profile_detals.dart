@@ -93,6 +93,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
   bool isButtonClickMaiden = false;
   bool isEmailVerified = false;
   bool isPanVerify = false;
+
   // bool panLoder = false;
   bool isGoogleSign = true;
   bool isGoogleEmailVerify = false;
@@ -461,7 +462,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
               Visibility(visible: profilevisbileTab3, child: editPersonalPic()),
             ],
           )
-        : Center(
+        : const Center(
             heightFactor: 18,
             child: CircularProgressIndicator(color: Color(0xff00C6D8)));
   }
@@ -3905,7 +3906,8 @@ class _PersonalProfileState extends State<PersonalProfile> {
                         ),
                       ),
                       _space,
-                      Text("What is your gender? ", style: ConstStyle.sourceSansPro),
+                      Text("What is your gender? ",
+                          style: ConstStyle.sourceSansPro),
                       const SizedBox(
                         height: 5,
                       ),
@@ -3930,7 +3932,10 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "M" || genderIndex == 1
+                                  color: isgenderSelected == false &&
+                                              digiLockerDetailModel?.gender ==
+                                                  "M" ||
+                                          genderIndex == 1
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -3941,9 +3946,13 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   "Male",
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
-                                        color: isgenderSelected == false && digiLockerDetailModel?.gender == "M" || genderIndex == 1
-                                                ? Colors.white
-                                                : Color(0xff22263D),
+                                        color: isgenderSelected == false &&
+                                                    digiLockerDetailModel
+                                                            ?.gender ==
+                                                        "M" ||
+                                                genderIndex == 1
+                                            ? Colors.white
+                                            : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                   ),
@@ -3972,7 +3981,10 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "F" || genderIndex == 2
+                                  color: isgenderSelected == false &&
+                                              digiLockerDetailModel?.gender ==
+                                                  "F" ||
+                                          genderIndex == 2
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -3983,10 +3995,13 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   "Female",
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
-                                        color:
-                                        isgenderSelected == false && digiLockerDetailModel?.gender == "F" || genderIndex == 2
-                                                ? Colors.white
-                                                : Color(0xff22263D),
+                                        color: isgenderSelected == false &&
+                                                    digiLockerDetailModel
+                                                            ?.gender ==
+                                                        "F" ||
+                                                genderIndex == 2
+                                            ? Colors.white
+                                            : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                   ),
@@ -4015,7 +4030,10 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   ],
                                   border: Border.all(
                                       width: 1, color: Color(0xff23263B)),
-                                  color: isgenderSelected == false && digiLockerDetailModel?.gender == "O" || genderIndex == 3
+                                  color: isgenderSelected == false &&
+                                              digiLockerDetailModel?.gender ==
+                                                  "O" ||
+                                          genderIndex == 3
                                       ? Color(0xff22263D)
                                       : Colors.white),
                               child: Center(
@@ -4026,10 +4044,13 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                   "Trans",
                                   style: GoogleFonts.sourceSansPro(
                                     textStyle: TextStyle(
-                                        color:
-                                        isgenderSelected == false && digiLockerDetailModel?.gender == "O" || genderIndex == 3
-                                                ? Colors.white
-                                                : Color(0xff22263D),
+                                        color: isgenderSelected == false &&
+                                                    digiLockerDetailModel
+                                                            ?.gender ==
+                                                        "O" ||
+                                                genderIndex == 3
+                                            ? Colors.white
+                                            : Color(0xff22263D),
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15),
                                   ),
@@ -7741,124 +7762,123 @@ class _PersonalProfileState extends State<PersonalProfile> {
     );
   }
 
-  void closeApplicationBottomSheet(){
-      showModalBottomSheet(
-        context: context,
-        isDismissible: false,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
+  void closeApplicationBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
         ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (BuildContext context) {
-          var height = MediaQuery.of(context).size.height;
-          return StatefulBuilder(builder: (BuildContext context, State) {
-            return Padding(
-              padding: EdgeInsets.only(
-                  top: 0,
-                  right: 0,
-                  left: 0,
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Wrap(
-                children: [
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      color: AppColors.primaryColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: height * 0.04,
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (BuildContext context) {
+        var height = MediaQuery.of(context).size.height;
+        return StatefulBuilder(builder: (BuildContext context, State) {
+          return Padding(
+            padding: EdgeInsets.only(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Wrap(
+              children: [
+                Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    color: AppColors.primaryColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: height * 0.04,
+                          ),
+                          Image.asset(
+                            ConstantImage.profileError,
+                            width: 75,
+                            height: 75,
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                          Center(
+                            child: Text(
+                              "We apologise for the inconvenience.As per our policy, we are unable to proceed further, kindly call our customer service for further details.",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18),
+                              ),
                             ),
-                            Image.asset(
-                              ConstantImage.profileError,
-                              width: 75,
-                              height: 75,
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                            Center(
-                              child: Text(
-                                "We apologise for the inconvenience.As per our policy, we are unable to proceed further, kindly call our customer service for further details.",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: height * 0.04,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    exit(0);
+                                  },
+                                  child: Container(
+                                    height: 45,
+                                    width: 160,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1.5, color: Colors.white)),
+                                    child: Center(
+                                        child: Text(
+                                      "Close Application",
+                                      style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500)),
+                                    )),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: height * 0.04,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 30),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      exit(0);
-                                    },
-                                    child: Container(
-                                      height: 45,
-                                      width: 160,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1.5, color: Colors.white)),
-                                      child: Center(
-                                          child: Text(
-                                            "Close Application",
-                                            style: GoogleFonts.quicksand(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w500)),
-                                          )),
-                                    ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {});
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    height: 45,
+                                    width: 160,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1.5, color: Colors.white)),
+                                    child: Center(
+                                        child: Text(
+                                      "Close Option",
+                                      style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500)),
+                                    )),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                     setState((){
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                    child: Container(
-                                      height: 45,
-                                      width: 160,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1.5, color: Colors.white)),
-                                      child: Center(
-                                          child: Text(
-                                            "Close Option",
-                                            style: GoogleFonts.quicksand(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w500)),
-                                          )),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            );
-          });
-        },
-      );
-    }
+                          ),
+                        ],
+                      ),
+                    )),
+              ],
+            ),
+          );
+        });
+      },
+    );
+  }
 
   void onEmailAddedBottomSheet() {
     showModalBottomSheet(
@@ -8519,10 +8539,6 @@ class _PersonalProfileState extends State<PersonalProfile> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    print(
-                                        " getPersonalDetail?.isAadharVerified!" +
-                                            getPersonalDetail!.isAadharVerified
-                                                .toString());
                                     getPersonalDetail?.isAadharVerified != 1
                                         ? isAadhaarVerified = true
                                         : isEditStep12 = true;

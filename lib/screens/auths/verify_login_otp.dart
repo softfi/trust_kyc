@@ -13,6 +13,7 @@ import '../../repositories/veriify_otp_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
+import 'choose_screen.dart';
 
 class OTPLoginVerify extends StatefulWidget {
   OTPLoginVerify(this.phoneNumber, this.haskkey);
@@ -55,7 +56,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
       } else {
       final res = await verifyOtps().verifyOtpLogin(widget.phoneNumber, otplogin.text, widget.haskkey);
       if (res != null) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const AllRight()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const ChooseScreen()));
       }
     }
   }

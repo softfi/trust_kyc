@@ -8,6 +8,7 @@ import 'package:trust_money/utils/sharedPreference.dart';
 import '../../utils/styles.dart';
 import '../animated_screens/complete_bank_detail_animation.dart';
 import '../animated_screens/complete_profile_animation.dart';
+import 'my_personal_details.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);

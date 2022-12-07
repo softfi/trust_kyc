@@ -21,27 +21,26 @@ class _LearnBondState extends State<LearnBond> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigation(),
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
           children: [
             Container(
-              height: 80,
+              height: 70,
               color: const Color(0xff00C6D8),
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: const EdgeInsets.only(top: 30.0),
                 child: Stack(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
+                        // IconButton(
+                        //   icon:
+                        //       const Icon(Icons.arrow_back, color: Colors.white),
+                        //   onPressed: () => Navigator.of(context).pop(),
+                        // ),
                         Flexible(
                           child: Container(
                             child: Text(
@@ -52,11 +51,11 @@ class _LearnBondState extends State<LearnBond> {
                             ),
                           ),
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.notifications_none,
-                              color: Colors.white),
-                          onPressed: () {},
-                        ),
+                        // IconButton(
+                        //   icon: const Icon(Icons.notifications_none,
+                        //       color: Colors.white),
+                        //   onPressed: () {},
+                        // ),
                       ],
                     ),
                     Positioned(
@@ -169,6 +168,9 @@ class _LearnBondState extends State<LearnBond> {
                   height: 20,
                 ),
                 needHelp(),
+                const SizedBox(
+                  height: 20,
+                )
               ],
             ),
           ),
@@ -649,7 +651,7 @@ class _LearnBondState extends State<LearnBond> {
                     ClipPath(
                       clipper: Triangle(),
                       child: Container(
-                        color:  Color(0xffE1E0E7),
+                        color: Color(0xffE1E0E7),
                         height: 16,
                         width: 75,
                         child: Center(
@@ -902,7 +904,7 @@ class _LearnBondState extends State<LearnBond> {
                     ClipPath(
                       clipper: Triangle(),
                       child: Container(
-                        color:  Color(0xffE1E0E7),
+                        color: Color(0xffE1E0E7),
                         height: 16,
                         width: 75,
                         child: Center(
@@ -977,7 +979,7 @@ class _LearnBondState extends State<LearnBond> {
                     ClipPath(
                       clipper: Triangle(),
                       child: Container(
-                        color:  Color(0xffE1E0E7),
+                        color: Color(0xffE1E0E7),
                         height: 16,
                         width: 75,
                         child: Center(
@@ -1243,14 +1245,14 @@ class _LearnBondState extends State<LearnBond> {
   }
 }
 
-class Triangle extends CustomClipper<Path>{
+class Triangle extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
     final x = size.width;
     final y = size.height;
 
-    path.moveTo(0, y/2);
+    path.moveTo(0, y / 2);
     path.lineTo(20, y);
     path.lineTo(x, y);
     path.lineTo(x, 0);
@@ -1265,5 +1267,3 @@ class Triangle extends CustomClipper<Path>{
     return true;
   }
 }
-
-

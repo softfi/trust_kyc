@@ -27,14 +27,13 @@ class _BondsState extends State<Bonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE8E8E8),
-      bottomNavigationBar: CustomBottomNavigation(),
+      backgroundColor: const Color(0xffffffff).withOpacity(0.50),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
           children: [
             Container(
-              height: 80,
+              height: 70,
               color: Color(0xff00C6D8),
               child: Padding(
                 padding: const EdgeInsets.only(top: 20.0),
@@ -108,7 +107,7 @@ class _BondsState extends State<Bonds> {
               ),
             ),
             Container(
-              color: Color(0xffE8E8E8),
+              color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -122,7 +121,7 @@ class _BondsState extends State<Bonds> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 30, height: 28, cornerRadius: 0),
                         ),
@@ -140,7 +139,7 @@ class _BondsState extends State<Bonds> {
                           color: Colors.redAccent,
                         ),
                         foregroundDecoration: const RotatedCornerDecoration(
-                          color: Color(0xffE8E8E8),
+                          color: Colors.white,
                           geometry: BadgeGeometry(
                               width: 28, height: 30, cornerRadius: 0),
                         ),
@@ -157,15 +156,6 @@ class _BondsState extends State<Bonds> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Positioned(
-            top: 2,
-            right: 0,
-            child: Image.asset(
-              ConstantImage.leaf,
-              color: Color(0xffFF405A),
-              height: 300,
-            ),
-          ),
           SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.0),
@@ -251,8 +241,13 @@ class _BondsState extends State<Bonds> {
               children: [
                 InkWell(
                   onTap: () async {
-                    await AppBottomSheet.showFilterBottomSheet(context,
-                        investmentIndex, safetyIndex,paymentIndex, yieldIndex, tenureIndex);
+                    await AppBottomSheet.showFilterBottomSheet(
+                        context,
+                        investmentIndex,
+                        safetyIndex,
+                        paymentIndex,
+                        yieldIndex,
+                        tenureIndex);
                   },
                   child: Row(
                     children: [
@@ -269,7 +264,9 @@ class _BondsState extends State<Bonds> {
                         width: 6,
                       ),
                       SvgPicture.asset(ConstantImage.filter,
-                          width: 20, height: 20, color: Color(0xff22263D)),
+                          width: 20,
+                          height: 20,
+                          color: const Color(0xff22263D)),
                     ],
                   ),
                 ),
@@ -332,64 +329,75 @@ class _BondsState extends State<Bonds> {
                 children: [
                   Positioned(
                     top: 0,
-                    right: 8,
+                    right: 0,
                     child: Image.asset(
                       ConstantImage.leaf,
-                      color: Color(0xffFF405A).withOpacity(0.35),
-                      height: 300,
+                      color: Color(0xff58C3D5),
+                      height: 280,
+                      width: 143,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          height: 30,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(5)),
-                              color: AppColors.textColor),
-                          child: const Center(
-                            child: Icon(
-                              Icons.share,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                          ),
-                        ),
-                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            child: Text(
-                              "M",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
+                            padding: const EdgeInsets.only(top: 10.0, left: 15),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "M",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xff22263D),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                SizedBox(
+                                  child: Text("MAHINDRA & MAHINDRA FINANCIAL",
+                                      softWrap: true,
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                          color: Color(0xff22263D),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(5)),
+                                  color: AppColors.textColor),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.share,
+                                  color: Colors.white,
+                                  size: 14,
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Text("MAHINDRA & MAHINDRA FINANCIAL",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ))
                         ],
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 12,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -593,7 +601,7 @@ class _BondsState extends State<Bonds> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const ReadMoreBonds()));
+                                             ReadMoreBonds()));
                               },
                               child: Container(
                                 height: 35,

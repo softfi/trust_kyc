@@ -37,22 +37,21 @@ class ConstStyle {
   );
 
   static var sourceSanscardname1 = GoogleFonts.sourceSansPro(
-    textStyle: const TextStyle(
-        color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 10,letterSpacing:0.5),
+
+    textStyle: const TextStyle(color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 10,letterSpacing:0.5),
   );
 
   static var sourceSanscardname = GoogleFonts.sourceSansPro(
-    textStyle: const TextStyle(
-        color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 15,letterSpacing:0.75),
+    textStyle: const TextStyle(color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 15,letterSpacing:0.75),
   );
 
   static var sourceSanscard = GoogleFonts.sourceSansPro(
     textStyle: const TextStyle(
         color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 20,letterSpacing: 4),
   );
+
   static var sourceSansbname = GoogleFonts.sourceSansPro(
-    textStyle: const TextStyle(
-        color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 15,letterSpacing: 0.75),
+    textStyle: const TextStyle(color: Color(0xff22263d), fontWeight: FontWeight.w400, fontSize: 15,letterSpacing: 0.75),
   );
 
   static var sourceSansdob = GoogleFonts.sourceSansPro(

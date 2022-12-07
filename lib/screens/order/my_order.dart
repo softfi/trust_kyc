@@ -32,7 +32,7 @@ class _OrderState extends State<Order> {
         child: Column(
           children: [
             Container(
-              height: 80,
+              height: 70,
               color: const Color(0xff00C6D8),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
@@ -41,9 +41,12 @@ class _OrderState extends State<Order> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
+                        // IconButton(
+                        //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        //   onPressed: () => Navigator.of(context).pop(),
+                        // ),
+                        Container(
+                          width: 50,
                         ),
                         Text(
                           "Orders",
@@ -152,156 +155,112 @@ class _OrderState extends State<Order> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
+          SingleChildScrollView(
             child: SingleChildScrollView(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Text("Recent Orders",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18),
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 18,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "09/03/1900 to 09/03/2020",
-                                    style: ConstStyle.sourceSansPro,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Icon(
-                                    Icons.calendar_today_outlined,
-                                    color: AppColors.primaryColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text("Recent Orders",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Color(0xff22263D),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "09/03/1900 to 09/03/2020",
+                                  style: ConstStyle.sourceSansPro,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(
+                                  Icons.calendar_today_outlined,
+                                  color: AppColors.primaryColor,
+                                  size: 15,
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Container(
+                              height: 0.4,
+                              width: 170,
+                              color: AppColors.primaryColor,
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: 80,
+                              height: 18,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  value: value,
+                                  icon: const Icon(
+                                    Icons.keyboard_arrow_down,
                                     size: 15,
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Container(
-                                height: 0.4,
-                                width: 170,
-                                color: AppColors.primaryColor,
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                width: 80,
-                                height: 18,
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    value: value,
-                                    icon: const Icon(
-                                      Icons.keyboard_arrow_down,
-                                      size: 15,
-                                    ),
-                                    items: items.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: items,
-                                        child: Text(
-                                          items,
-                                          style: ConstStyle.sourceSansPro,
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        value = newValue!;
-                                      });
-                                    },
                                   ),
+                                  items: items.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(
+                                        items,
+                                        style: ConstStyle.sourceSansPro,
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      value = newValue!;
+                                    });
+                                  },
                                 ),
                               ),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Container(
-                                height: 0.4,
-                                width: 85,
-                                color: AppColors.primaryColor,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Container(
+                              height: 0.4,
+                              width: 85,
+                              color: AppColors.primaryColor,
+                            )
+                          ],
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    orderListTile(),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 2,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
                   ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
+                  const SizedBox(
+                    height: 10,
                   ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 1,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
+                  orderListTile(),
+                  const SizedBox(
+                    height: 20,
+                  )
+                ],
               ),
             ),
           ),
@@ -347,7 +306,13 @@ class _OrderState extends State<Order> {
                       ),
                       Text(
                         "000834287",
-                        style: ConstStyle.sourceSans1,
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -367,7 +332,13 @@ class _OrderState extends State<Order> {
                       ),
                       Text(
                         "March 6, 2022",
-                        style: ConstStyle.sourceSans1,
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -595,7 +566,6 @@ class _OrderState extends State<Order> {
                       ),
                     ],
                   ),
-
                 ),
               ],
               onExpansionChanged: (bool expanded) {

@@ -59,7 +59,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -77,12 +78,14 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   Container(
                                     padding: EdgeInsets.only(
                                         top: 0,
-                                        right: MediaQuery.of(context).size.width /
-                                            12,
+                                        right:
+                                            MediaQuery.of(context).size.width /
+                                                12,
                                         left: 15),
                                     color: bg_color,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -107,20 +110,21 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 ],
                                               )),
                                         ),
-                                        InkWell(  onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                  const CollectionOfBonds()));
-                                        },
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const CollectionOfBonds()));
+                                          },
                                           child: Container(
                                               padding: EdgeInsets.only(top: 10),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("Collection of Bonds"),
+                                                  const Text("Collection of Bonds"),
                                                   Divider(
                                                     color: divider_color,
                                                   )
@@ -133,7 +137,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text("How it works"),
+                                                const Text("How it works"),
                                                 Divider(
                                                   color: divider_color,
                                                 )
@@ -145,7 +149,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                     "Frequently Asked Questions"),
                                                 Divider(
                                                   color: divider_color,
@@ -166,7 +170,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                       "Learn,from Bonds, Trust Bonds"),
                                                   Divider(
                                                     color: divider_color,
@@ -187,7 +191,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: [
+                                                children: const [
                                                   Text("Bond Ki Khaberin"),
                                                 ],
                                               )),
@@ -213,7 +217,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -245,7 +250,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -276,8 +282,9 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
-                          child:ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          child: ListTileTheme(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -309,7 +316,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -341,7 +349,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -372,8 +381,9 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
-                          child:ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          child: ListTileTheme(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -405,7 +415,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -436,8 +447,9 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
-                          child:ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          child: ListTileTheme(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -469,7 +481,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -501,7 +514,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -541,7 +555,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -581,8 +596,9 @@ class _LeftDrawerState extends State<LeftDrawer> {
                         Theme(
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
-                          child:  ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                          child: ListTileTheme(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -622,7 +638,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -635,7 +652,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => TermsConditons()));
+                                          builder: (context) =>
+                                              TermsConditons()));
                                 },
                                 child: Text("Term & Conditions",
                                     style: GoogleFonts.quicksand(
@@ -662,7 +680,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                           data: Theme.of(context)
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
-                            contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,

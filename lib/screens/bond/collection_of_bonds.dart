@@ -39,7 +39,6 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: Collection_ofBonds_AppBar(),
-      bottomNavigationBar: CustomBottomNavigation(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
