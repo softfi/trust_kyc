@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/about_us/about_us.dart';
-import 'package:trust_money/screens/bond/bonds.dart';
+import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/screens/contactUs/contact_us.dart';
 import 'package:trust_money/screens/disclimar/disclamer.dart';
 import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
@@ -95,7 +95,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const Bonds()));
+                                                        const ReadBonds()));
                                           },
                                           child: Container(
                                               padding: EdgeInsets.only(top: 10),

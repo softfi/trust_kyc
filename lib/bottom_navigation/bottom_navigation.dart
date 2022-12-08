@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,13 +8,13 @@ import '../screens/chat/chat_page.dart';
 import '../utils/images.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
-   CustomBottomNavigation({Key? key,required this.currentIndex}) : super(key: key);
+  CustomBottomNavigation({Key? key, required this.currentIndex})
+      : super(key: key);
   int currentIndex = 0;
+
   @override
   State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
 }
-
-
 
 class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   final PageController _pageController = PageController();
@@ -98,9 +96,11 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 
   void _setPage(int pageIndex) {
     setState(() {
-      if(pageIndex!=3){
-      _pageController.jumpToPage(pageIndex);}else{
-        Navigator.push(context,MaterialPageRoute(builder: (context)=>const Chat()));
+      if (pageIndex != 3) {
+        _pageController.jumpToPage(pageIndex);
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Chat()));
       }
       _pageIndex = pageIndex;
     });
@@ -113,11 +113,15 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
         'Home',
         0));
     list.add(_barItem(
-        widget.currentIndex == 1 ? ConstantImage.order1 : ConstantImage.portfolio,
+        widget.currentIndex == 1
+            ? ConstantImage.order1
+            : ConstantImage.portfolio,
         'Portfolio',
         1));
     list.add(_barItem(
-        widget.currentIndex == 2 ? ConstantImage.cart1 : ConstantImage.dashboard,
+        widget.currentIndex == 2
+            ? ConstantImage.cart1
+            : ConstantImage.dashboard,
         'Orders',
         2));
     list.add(_barItem(

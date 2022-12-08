@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/colorsConstant.dart';
+import '../../../../utils/colorsConstant.dart';
 
 class CategoryTable extends StatelessWidget {
   const CategoryTable({Key? key}) : super(key: key);

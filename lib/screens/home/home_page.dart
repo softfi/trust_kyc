@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
-import 'package:trust_money/screens/bond/bonds.dart';
+import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import '../../drawerWidget/drawerWidget.dart';
@@ -548,7 +548,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const Bonds()));
+                                              const ReadBonds()));
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(

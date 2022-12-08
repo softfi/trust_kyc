@@ -2,8 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/colorsConstant.dart';
-import '../../../utils/styles.dart';
+import '../../../../utils/colorsConstant.dart';
+import '../../../../utils/styles.dart';
 
 class IPOsInvestor extends StatelessWidget {
   IPOsInvestor({Key? key}) : super(key: key);

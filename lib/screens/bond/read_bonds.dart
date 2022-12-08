@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:trust_money/screens/bond/read_more_bonds.dart';
+import 'package:trust_money/screens/bond/read_more_brands/read_more_bonds.dart';
 import 'package:trust_money/bottom_sheets/bond_filter_bottom_sheet.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
 import '../../bottom_navigation/bottom_navigation.dart';
+import '../../utils/app_bar.dart';
 
-class Bonds extends StatefulWidget {
-  const Bonds({Key? key}) : super(key: key);
+class ReadBonds extends StatefulWidget {
+  const ReadBonds({Key? key}) : super(key: key);
 
   @override
-  State<Bonds> createState() => _BondsState();
+  State<ReadBonds> createState() => _ReadBondsState();
 }
 
-class _BondsState extends State<Bonds> {
+class _ReadBondsState extends State<ReadBonds> {
   int investmentIndex = 0;
   int safetyIndex = 0;
   int yieldIndex = 0;
@@ -26,147 +27,37 @@ class _BondsState extends State<Bonds> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffffffff).withOpacity(0.50),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80.0),
-        child: Column(
-          children: [
-            Container(
-              height: 70,
-              color: Color(0xff00C6D8),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        Text(
-                          "EXPLORE BONDS",
-                          style: ConstStyle.quickStandSmall11,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.notifications_none,
-                              color: Colors.white),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 2,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+    return WillPopScope(
+      onWillPop: () async {
+        return await Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CustomBottomNavigation(
+                      currentIndex: 0,
+                    )));
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xffffffff).withOpacity(0.50),
+        appBar: AppToolbar.appBar(
+            "EXPLORE BONDS",
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
             ),
-            Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 30, height: 28, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                  RotatedBox(
-                    quarterTurns: 2,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 28, height: 30, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: Column(
-                children: [
-                  readBondWidget(),
-                ],
-              ),
+            IconButton(
+              icon: const Icon(Icons.notifications_none, color: Colors.white),
+              onPressed: () {},
+            )),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              children: [
+                readBondWidget(),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -310,9 +201,20 @@ class _BondsState extends State<Bonds> {
     );
   }
 
+  List data = [
+    ["MAHINDRA & MAHINDRA FINANCIAL", ""],
+    ["CREDITACCESS GRAMEEN LIMITED","IPO"],
+    ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
+    ["MAHINDRA & MAHINDRA FINANCIAL", ""],
+    ["CREDITACCESS GRAMEEN LIMITED","IPO"],
+    ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
+  ];
+
+
+
   Widget bondList() {
     return ListView.builder(
-        itemCount: 10,
+        itemCount: data.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -345,7 +247,7 @@ class _BondsState extends State<Bonds> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 10.0, left: 15),
+                            padding: const EdgeInsets.only(top: 12.0, left: 15),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -363,7 +265,8 @@ class _BondsState extends State<Bonds> {
                                   width: 15,
                                 ),
                                 SizedBox(
-                                  child: Text("MAHINDRA & MAHINDRA FINANCIAL",
+                                  width: 260,
+                                  child: Text("${data[index][0]}",
                                       softWrap: true,
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: const TextStyle(
@@ -586,7 +489,7 @@ class _BondsState extends State<Bonds> {
                             SizedBox(
                               width: 35,
                               child: Text(
-                                "IPO",
+                                "${data[index][1]}",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: Color(0xffFF405A),
@@ -600,8 +503,7 @@ class _BondsState extends State<Bonds> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                             ReadMoreBonds()));
+                                        builder: (context) => ReadMoreBonds(isIPO: data[index][1]==""?true:false,)));
                               },
                               child: Container(
                                 height: 35,
@@ -654,8 +556,4 @@ class _BondsState extends State<Bonds> {
           );
         });
   }
-
-// Widget openShortingBottom(BuildContext context1) {
-//   return
-// }
 }

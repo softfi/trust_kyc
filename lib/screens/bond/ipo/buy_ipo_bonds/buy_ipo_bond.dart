@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
-import '../../../utils/colorsConstant.dart';
-import '../../../utils/images.dart';
-import '../../bond/bond_advantages.dart';
+import '../../../../utils/colorsConstant.dart';
+import '../../../../utils/images.dart';
+import '../../../home/home_page.dart';
+import '../pay_ipo.dart';
 import 'category_table.dart';
 import 'ipo_investor.dart';
 import 'key_points.dart';
 import 'ncds_series.dart';
 
 class BuyIPOBond extends StatelessWidget {
-  const BuyIPOBond({Key? key}) : super(key: key);
-
+  BuyIPOBond({Key? key}) : super(key: key);
+  bool isChecked1 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +23,11 @@ class BuyIPOBond extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications_none,
+                color: Colors.white),
+            onPressed: () {},
           )),
       body: SingleChildScrollView(
         child: Column(
@@ -59,7 +65,149 @@ class BuyIPOBond extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            NCDsSeries()
+            NCDsSeries(isShow: false),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              color: Color(0xff00C6D8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Grand Total (₹) ",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                      ),
+                      Text(
+                        "( A+B+C+D+E+F)",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    "2,00,000",
+                    style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    checkColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    // color of tick Mark
+                    activeColor: AppColors.primaryColor,
+                    value: isChecked1,
+                    onChanged: (bool? value) {
+                      isChecked1 = value!;
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      child: RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: "I have read and agreed to the ",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12),
+                              )),
+                          TextSpan(
+                              text: "disclaimer ",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: AppColors.btnColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12),
+                              )),
+                          TextSpan(
+                              text: "and ",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12),
+                              )),
+                          TextSpan(
+                              text: "terms & conditions",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: AppColors.btnColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12),
+                              )),
+                        ]),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            InkWell(onTap: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PayIPO()));
+            },
+              child: Center(
+                child: Container(
+                  width: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: const Color(0xffFF405A),
+                  ),
+                  child: Center(
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric( vertical: 12),
+                        child: Text("Continue to Buy",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                color: Color(0xffFfffff),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                              ),
+                            )),
+                      )),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

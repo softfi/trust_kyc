@@ -17,6 +17,8 @@ class ConstantImage {
   static const String profile_pic = 'assets/images/profile_pic.svg';
   static const String issue_doc = 'assets/images/issue_doc.svg';
   static const String clip = 'assets/images/clipBoard.svg';
+  static const String bid = 'assets/images/bid.svg';
+  static const String exp = 'assets/images/explanation.svg';
 
   //png & Jpg images
   static const String explore_insight='assets/images/explore_insight.png';

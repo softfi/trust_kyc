@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../utils/colorsConstant.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
 
 class KeyPoints extends StatelessWidget {
   const KeyPoints({Key? key}) : super(key: key);

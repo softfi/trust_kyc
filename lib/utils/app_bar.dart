@@ -4,7 +4,7 @@ import 'package:trust_money/utils/styles.dart';
 
 
 class AppToolbar {
-  static appBar(String title, Widget icon){
+  static appBar(String title, Widget icon,Widget icon1){
     return PreferredSize(
       preferredSize: const Size.fromHeight(80.0),
       child: Column(
@@ -24,9 +24,7 @@ class AppToolbar {
                         title,
                         style: ConstStyle.quickStandSmall11,
                       ),
-                      Container(
-                        width: 50,
-                      )
+                      icon1
                     ],
                   ),
                   Positioned(
