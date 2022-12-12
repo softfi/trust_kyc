@@ -5,6 +5,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../utils/app_bar.dart';
+
 class AboutUs extends StatelessWidget {
   final pageviewController = PageController(initialPage: 0);
 
@@ -12,135 +14,21 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80.0),
-        child: Column(
-          children: [
-            Container(
-              height: 80,
-              color: Color(0xff00C6D8),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        Text(
-                          "ABOUT US",
-                          style: ConstStyle.quickStandSmall11,
-                        ),
-
-                        IconButton(
-                          icon:
-                              const Icon(Icons.person_pin, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        // Container(
-                        //   width: 50,
-                        // )
-                      ],
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 2,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 30, height: 28, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                  RotatedBox(
-                    quarterTurns: 2,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 28, height: 30, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: AppToolbar.appBar(
+          "ABOUT US",
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          IconButton(
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.white, shape: BoxShape.circle),
+                child: const Icon(Icons.person,
+                    size: 20, color: Color(0xff00C6D8))),
+            onPressed: () {},
+          )),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

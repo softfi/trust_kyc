@@ -4,6 +4,7 @@ import 'package:trust_money/screens/about_us/about_us.dart';
 import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/screens/contactUs/contact_us.dart';
 import 'package:trust_money/screens/disclimar/disclamer.dart';
+import 'package:trust_money/screens/faq.dart';
 import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -73,7 +74,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                                 children: [
                                   Container(
                                     padding: EdgeInsets.only(
@@ -103,7 +104,15 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("Explore Bonds"),
+                                                  Text("Explore Bonds",
+                                                      style: GoogleFonts.quicksand(
+                                                          textStyle: const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500))),
                                                   Divider(
                                                     color: divider_color,
                                                   )
@@ -124,7 +133,15 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  const Text("Collection of Bonds"),
+                                                  Text("Collection of Bonds",
+                                                      style: GoogleFonts.quicksand(
+                                                          textStyle: const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500))),
                                                   Divider(
                                                     color: divider_color,
                                                   )
@@ -137,7 +154,16 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                const Text("How it works"),
+                                                Text("How it works",
+                                                    style: GoogleFonts.quicksand(
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                color: Color(
+                                                                    0xff22263D),
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500))),
                                                 Divider(
                                                   color: divider_color,
                                                 )
@@ -149,8 +175,17 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                const Text(
-                                                    "Frequently Asked Questions"),
+                                                Text(
+                                                    "Frequently Asked Questions",
+                                                    style: GoogleFonts.quicksand(
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                color: Color(
+                                                                    0xff22263D),
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500))),
                                                 Divider(
                                                   color: divider_color,
                                                 )
@@ -170,8 +205,16 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  const Text(
-                                                      "Learn,from Bonds, Trust Bonds"),
+                                                  Text(
+                                                      "Learn,from Bonds, Trust Bonds",
+                                                      style: GoogleFonts.quicksand(
+                                                          textStyle: const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500))),
                                                   Divider(
                                                     color: divider_color,
                                                   )
@@ -191,8 +234,16 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: const [
-                                                  Text("Bond Ki Khaberin"),
+                                                children: [
+                                                  Text("Bond Ki Khaberin",
+                                                      style: GoogleFonts.quicksand(
+                                                          textStyle: const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500))),
                                                 ],
                                               )),
                                         ),
@@ -231,7 +282,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -251,7 +302,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 15),
+                                const EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -264,7 +315,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -297,7 +348,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -330,7 +381,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -363,7 +414,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -396,7 +447,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -429,7 +480,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -462,7 +513,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -495,7 +546,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                       textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold))),
+                                          fontWeight: FontWeight.w600))),
                             ),
                           ),
                         ),
@@ -535,7 +586,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                               ),
                             ),
                           ),
@@ -577,7 +628,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                               ),
                             ),
                           ),
@@ -618,7 +669,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                               ),
                             ),
                           ),
@@ -660,7 +711,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                               ),
                             ),
                           ),
@@ -681,7 +732,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
                             contentPadding:
-                                EdgeInsets.symmetric(horizontal: 15),
+                            EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -694,19 +745,56 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Disclaimer()));
+                                          builder: (context) => FAQs()));
                                 },
-                                child: Text("Disclaimer",
+                                child: Text("FAQs",
                                     style: GoogleFonts.quicksand(
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontSize: 16,
-                                            fontWeight: FontWeight.bold))),
+                                            fontWeight: FontWeight.w600))),
                               ),
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                          child: Divider(
+                            color: divider_color,
+                            thickness: 1.2,
+                          ),
+                        )
                       ],
+                    ),
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(dividerColor: Colors.transparent),
+                      child: ListTileTheme(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15),
+                        dense: true,
+                        horizontalTitleGap: .0,
+                        minLeadingWidth: 0,
+                        child: ExpansionTile(
+                          iconColor: Colors.black,
+                          collapsedIconColor: Colors.black,
+                          textColor: text_color,
+                          title: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Disclaimer()));
+                            },
+                            child: Text("Disclaimer",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600))),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

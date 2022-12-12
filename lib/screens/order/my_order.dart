@@ -199,7 +199,7 @@ class _OrderState extends State<Order> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const SizedBox(
-                        width: 40,
+                        width: 32,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,7 +257,8 @@ class _OrderState extends State<Order> {
                         height: 22,
                         width: 70,
                         decoration: BoxDecoration(
-                            color: Color(0xffc8fcdb),
+                          color: Colors.transparent,
+                           // color: Color(0xffc8fcdb),
                             borderRadius: BorderRadius.circular(3),
                             border: Border.all(
                                 width: 1, color: const Color(0xff02AD41))),

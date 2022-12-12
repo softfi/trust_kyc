@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/utils/images.dart';
 
 import '../../bottom_navigation/bottom_navigation.dart';
@@ -30,8 +31,6 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
 
   @override
   void initState() {
-    // TODO: implement initState
-    // _controller = TabController(length: 3, vsync: this, initialIndex: 0);
     super.initState();
   }
 
@@ -39,15 +38,24 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppToolbar.appBar("COLLECTION OF BONDS", Icon(Icons.menu,color: Colors.white,), IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.notifications_none,
-            color: Color(0xffffFFFFFF),
-          ))),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
+      appBar: AppToolbar.appBar(
+          "COLLECTION OF BONDS",
+          const Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_none,
+                color: Color(0xffffFFFFFF),
+              ))),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             children: [
               Card_ui(),
@@ -62,30 +70,9 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
     );
   }
 
-  Collection_ofBonds_AppBar() {
-    return AppBar(
-      iconTheme: IconThemeData(color: Color(0xffffFFFFFF)),
-      backgroundColor: Color(0xff00C6D8),
-      title: Text("COLLECTION OF BONDS",
-          style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-                color: Color(0xffffFFFFFF),
-                fontWeight: FontWeight.w500,
-                fontSize: 19),
-          )),
-      actions: [
-        IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.notifications_none,
-              color: Color(0xffffFFFFFF),
-            ))
-      ],
-    );
-  }
-
   Card_ui() {
-    return Card( elevation: 5,
+    return Card(
+      elevation: 5,
       child: Stack(children: [
         Stack(
           children: [
@@ -96,7 +83,6 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                     BoxShadow(
                       color: Color(0x29000000),
                       blurRadius: 1.0,
-
                     ),
                   ],
                   color: Colors.white),
@@ -204,7 +190,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   ),
                   Tab(
                     child: Container(
-                      width: MediaQuery.of(context).size.width/3.8,
+                      width: MediaQuery.of(context).size.width / 3.8,
                       height: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -239,7 +225,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   Tab(
                     child: Container(
                       height: 40,
-                      width: MediaQuery.of(context).size.width/2.5,
+                      width: MediaQuery.of(context).size.width / 2.5,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -306,27 +292,33 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       itemBuilder: (context, int index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration:  BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: ListTile(
-                title: Text(
-                  first_list[index],
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: Color(0xff22263D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold)),
-                ),
-                trailing: Image.asset(
-                  ConstantImage.aboutUs6,
-                  height: 100,
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ReadBonds()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  gradient: const LinearGradient(
+                      colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: ListTile(
+                  title: Text(
+                    first_list[index],
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  trailing: Image.asset(
+                    ConstantImage.aboutUs6,
+                    height: 100,
+                  ),
                 ),
               ),
             ),
@@ -344,27 +336,33 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       itemBuilder: (context, int index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration:  BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: ListTile(
-                title: Text(
-                  first_list[index],
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: Color(0xff22263D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold)),
-                ),
-                trailing: Image.asset(
-                  ConstantImage.aboutUs6,
-                  height: 100,
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ReadBonds()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  gradient: LinearGradient(
+                      colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: ListTile(
+                  title: Text(
+                    first_list[index],
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  trailing: Image.asset(
+                    ConstantImage.aboutUs6,
+                    height: 100,
+                  ),
                 ),
               ),
             ),
@@ -382,27 +380,33 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
       itemBuilder: (context, int index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            decoration:  BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                gradient: LinearGradient(
-                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: ListTile(
-                title: Text(
-                  first_list[index],
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: Color(0xff22263D),
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold)),
-                ),
-                trailing: Image.asset(
-                  ConstantImage.aboutUs6,
-                  height: 100,
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ReadBonds()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  gradient: LinearGradient(
+                      colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: ListTile(
+                  title: Text(
+                    first_list[index],
+                    style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  trailing: Image.asset(
+                    ConstantImage.aboutUs6,
+                    height: 100,
+                  ),
                 ),
               ),
             ),

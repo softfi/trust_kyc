@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/utils/images.dart';
 
 import '../../../utils/colorsConstant.dart';
 
@@ -34,57 +35,61 @@ class CustomTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.60,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 23,
-                        width: 80,
-                        color: AppColors.btnColor,
-                        child: Center(
-                          child: Text(readText,
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12))),
+                width: MediaQuery.of(context).size.width * 0.60,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 23,
+                          width: 80,
+                          color: AppColors.btnColor,
+                          child: Center(
+                            child: Text(readText,
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12))),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        date,
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12)),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    title,
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Icon(Icons.arrow_forward,color: AppColors.primaryColor,)
-
-                ],
-              )
-            ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          date,
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      title,
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Image.asset(
+                      ConstantImage.arrow,
+                      color: AppColors.primaryColor,
+                      width: 50,
+                      height: 40,
+                      fit: BoxFit.fill,
+                    )
+                  ],
+                )),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.27,
               child: Center(child: image),
@@ -93,7 +98,7 @@ class CustomTile extends StatelessWidget {
         ),
       ),
 
-     /* ListTile(
+      /* ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 0),
         trailing: image,
         title: Column(
@@ -151,7 +156,6 @@ class CustomTile extends StatelessWidget {
           ],
         ),
       )*/
-
     );
   }
 }

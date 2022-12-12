@@ -367,7 +367,7 @@ class _LearnBondState extends State<LearnBond> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const BondAdvantage()));
+                        builder: (context) => const NewsAndInsights()));
               },
               child: CustomTile(
                 date: 'Jan 24, 2022',

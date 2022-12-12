@@ -42,7 +42,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
             const SizedBox(
               height: 35,
             ),
-           /* Padding(
+            /* Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Container(
                 height: 50,
@@ -91,7 +91,7 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7.0,horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 12.0),
           child: InkWell(
             onTap: () {
               Navigator.push(
@@ -112,5 +112,4 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
       },
     );
   }
-
 }
