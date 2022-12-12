@@ -86,7 +86,7 @@ class _ReadBondsState extends State<ReadBonds> {
                 hintText: "Bond name, issuer and bond type",
                 hintStyle: GoogleFonts.sourceSansPro(
                   textStyle: const TextStyle(
-                      color: Color(0xff1D2B84),
+                      color: Color(0xffC8C7CD),
                       fontWeight: FontWeight.w400,
                       fontSize: 16),
                 ),
