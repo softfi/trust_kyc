@@ -116,7 +116,12 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         _scaffoldKey.currentState?.openEndDrawer();
                       },
-                      icon: const Icon(Icons.person_pin))
+                      icon: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape:BoxShape.circle
+                          ),
+                          child: const Icon(Icons.person,color: Color(0xffE59AA2),)))
                 ],
               ),
               SliverToBoxAdapter(
@@ -174,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                                     style: GoogleFonts.quicksand(
                                       textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 15,
                                       ),
                                     )),
@@ -319,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                                   style: GoogleFonts.quicksand(
                                     textStyle: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                       shadows: <Shadow>[
                                         Shadow(
@@ -343,15 +348,15 @@ class _HomePageState extends State<HomePage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 14, vertical: 12),
                                   decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.45),
-                                          spreadRadius: 5,
-                                          blurRadius: 11,
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ],
-                                      color: Colors.white.withOpacity(0.80),
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.grey.withOpacity(0.45),
+                                      //     spreadRadius: 5,
+                                      //     blurRadius: 11,
+                                      //     offset: const Offset(0, 3),
+                                      //   ),
+                                      // ],
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(50)),
                                   child:
                                   Text("Let’s find the right BOND for you",

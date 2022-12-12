@@ -136,14 +136,14 @@ class _OrderState extends State<Order> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.08),
+                      color: Colors.grey.withOpacity(0.15),
                       spreadRadius: 5,
                       blurRadius: 3,
                       offset: const Offset(0, 3),
@@ -151,23 +151,27 @@ class _OrderState extends State<Order> {
                   ]),
               child: ExpansionTile(
                 backgroundColor: Colors.white,
-                childrenPadding: const EdgeInsets.symmetric(vertical: 8),
-                tilePadding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                childrenPadding: const EdgeInsets.symmetric(vertical: 0),
+                tilePadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                 title: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      ConstantImage.orderImg,
-                      height: 50,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 14.0),
+                      child: Image.asset(
+                        ConstantImage.orderImg,
+                        height: 50,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width / 1.7,
+                      width: MediaQuery.of(context).size.width / 1.8,
                       child:
                           Text("Sovereign Gold Bonds Scheme 2021-22 - Series X",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                               style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
                                     height: 1.3,
@@ -178,90 +182,96 @@ class _OrderState extends State<Order> {
                     ),
                   ],
                 ),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const SizedBox(
-                      width: 40,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Order no.",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                color: Color(0xffB0B1B9),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
-                            )),
-                        const SizedBox(
-                          height: 1,
-                        ),
-                        Text(
-                          "000834287",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                              color: Color(0xff22263D),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Order Date",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                color: Color(0xffB0B1B9),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
-                            )),
-                        const SizedBox(
-                          height: 1,
-                        ),
-                        Text(
-                          "March 6, 2022",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                              color: Color(0xff22263D),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 22,
-                      width: 70,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          border: Border.all(
-                              width: 1, color: const Color(0xff02AD41))),
-                      child: Center(
-                        child: Text(
-                          "Processed",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                              color: Color(0xff02AD41),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const SizedBox(
+                        width: 40,
                       ),
-                    )
-                  ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Order no.",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xffB0B1B9),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                ),
+                              )),
+                          const SizedBox(
+                            height: 1,
+                          ),
+                          Text(
+                            "000834287",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xff22263D),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 11.5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Order Date",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Color(0xffB0B1B9),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10,
+                                ),
+                              )),
+                          const SizedBox(
+                            height: 1,
+                          ),
+                          Text(
+                            "March 6, 2022",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xff22263D),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 11.5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: 22,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          color: Color(0xffc8fcdb),
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(
+                                width: 1, color: const Color(0xff02AD41))),
+                        child: Center(
+                          child: Text(
+                            "Processed",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xff02AD41),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 trailing: Container(
+                  height: double.infinity,
                   width: 25,
                   decoration: const BoxDecoration(
+                    color: Colors.black,
                     gradient: LinearGradient(
                       colors: [
                         Color(0xffFFFFFF),
@@ -285,75 +295,91 @@ class _OrderState extends State<Order> {
                 ),
                 children: <Widget>[
                   ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Amount Invested",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                    color: Color(0xffB0B1B9),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10,
-                                  ),
-                                )),
-                            const SizedBox(
-                              height: 1,
-                            ),
-                            Text(
-                              "₹ 6,26,201",
-                              style: ConstStyle.sourceSans1,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Gold Quantity",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                    color: Color(0xffB0B1B9),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10,
-                                  ),
-                                )),
-                            const SizedBox(
-                              height: 1,
-                            ),
-                            Text(
-                              "20 Grams",
-                              style: ConstStyle.sourceSans1,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Payment Status",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                    color: Color(0xffB0B1B9),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10,
-                                  ),
-                                )),
-                            const SizedBox(
-                              height: 1,
-                            ),
-                            Text(
-                              "Successful",
-                              style: ConstStyle.sourceSans1,
-                            ),
-                          ],
-                        ),
-                        const Icon(
-                          Icons.local_printshop_rounded,
-                          size: 25,
-                          color: AppColors.primaryColor,
-                        )
-                      ],
+                    title: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      alignment:Alignment.center ,
+                      height: 74,
+                      color: Color(0xffF7F7FA),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("Amount Invested",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffB0B1B9),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              Text(
+                                "₹ 6,26,201",
+                                style: ConstStyle.sourceSans1,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("Gold Quantity",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffB0B1B9),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              Text(
+                                "20 Grams",
+                                style: ConstStyle.sourceSans1,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("Payment Status",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffB0B1B9),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 10,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              Text(
+                                "Successful",
+                                style: ConstStyle.sourceSans1,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.local_printshop_rounded,
+                                size: 25,
+                                color: AppColors.primaryColor,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                     subtitle: Stack(
                       children: [

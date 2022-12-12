@@ -295,6 +295,7 @@ class ReadMoreList extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
+                                  color: Color(0xffFF405A),
                                   borderRadius: BorderRadius.circular(30),
                                   boxShadow: const [
                                     BoxShadow(
@@ -302,14 +303,14 @@ class ReadMoreList extends StatelessWidget {
                                       blurRadius: 5.0,
                                     ),
                                   ],
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xffEC515F),
-                                      Color(0xffC4414D),
-                                    ],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                  ),
+                                  // gradient: const LinearGradient(
+                                  //   colors: [
+                                  //     Color(0xffEC515F),
+                                  //     Color(0xffC4414D),
+                                  //   ],
+                                  //   begin: Alignment.centerRight,
+                                  //   end: Alignment.centerLeft,
+                                  // ),
                                 ),
                                 child: Center(
                                     child: Padding(
@@ -411,7 +412,7 @@ class SeekhoWidget extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
+                    color: Colors.grey.withOpacity(0.20),
                     spreadRadius: 2,
                     blurRadius: 11,
                     offset: const Offset(0, 3),

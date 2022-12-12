@@ -87,7 +87,7 @@ class ViewAllWidget extends StatelessWidget {
         alignment: Alignment.topRight,
         child: Container(width:width,
           decoration: const BoxDecoration(
-            color: Color(0xffEC515F),
+            color: Color(0xffFF405A),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
           ),

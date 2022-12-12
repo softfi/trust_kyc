@@ -3,9 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/images.dart';
 
 import '../../bottom_navigation/bottom_navigation.dart';
+import '../../utils/app_bar.dart';
 import '../../utils/colorsConstant.dart';
 
-late final TabController? _controller;
+// late final TabController? _controller;
 var first_list = [
   "Ulta Short Bonds",
   "Highly Safe Bonds",
@@ -30,7 +31,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   @override
   void initState() {
     // TODO: implement initState
-    _controller = TabController(length: 3, vsync: this, initialIndex: 0);
+    // _controller = TabController(length: 3, vsync: this, initialIndex: 0);
     super.initState();
   }
 
@@ -38,7 +39,12 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Collection_ofBonds_AppBar(),
+      appBar: AppToolbar.appBar("COLLECTION OF BONDS", Icon(Icons.menu,color: Colors.white,), IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.notifications_none,
+            color: Color(0xffffFFFFFF),
+          ))),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -79,7 +85,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
   }
 
   Card_ui() {
-    return Card(
+    return Card( elevation: 5,
       child: Stack(children: [
         Stack(
           children: [
@@ -90,6 +96,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                     BoxShadow(
                       color: Color(0x29000000),
                       blurRadius: 1.0,
+
                     ),
                   ],
                   color: Colors.white),
@@ -102,7 +109,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
               right: -8,
               child: Image.asset(
                 ConstantImage.leaf,
-                color: Color(0xffFF405A).withOpacity(0.35),
+                color: Color(0xffFF405A).withOpacity(0.7),
                 height: 350,
               ),
             ),
@@ -164,7 +171,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                 tabs: [
                   Tab(
                     child: Container(
-                      height: 45,
+                      height: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -197,7 +204,8 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   ),
                   Tab(
                     child: Container(
-                      height: 45,
+                      width: MediaQuery.of(context).size.width/3.8,
+                      height: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -230,7 +238,8 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   ),
                   Tab(
                     child: Container(
-                      height: 45,
+                      height: 40,
+                      width: MediaQuery.of(context).size.width/2.5,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -299,7 +308,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
             decoration:  BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(4),
                 gradient: LinearGradient(
                     colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
                     begin: Alignment.centerLeft,
@@ -336,27 +345,28 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                gradient: LinearGradient(colors: [
-                  Color(0xffEAF8FA).withOpacity(0.4),
-                  Color(0xffF9EEEE).withOpacity(0.4)
-                ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+            decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                gradient: LinearGradient(
+                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: ListTile(
-                  title: Text(
-                    first_list[index],
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Color(0xff22263D),
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  trailing: Image.asset(
-                    ConstantImage.aboutUs6,
-                    height: 100,
-                  )),
+                title: Text(
+                  first_list[index],
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold)),
+                ),
+                trailing: Image.asset(
+                  ConstantImage.aboutUs6,
+                  height: 100,
+                ),
+              ),
             ),
           ),
         );
@@ -373,29 +383,30 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(colors: [
-                    Color(0xffEAF8FA).withOpacity(0.4),
-                    Color(0xffF9EEEE).withOpacity(0.4)
-                  ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                child: ListTile(
-                  title: Text(
-                    first_list[index],
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Color(0xff22263D),
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  trailing: Image.asset(
-                    ConstantImage.aboutUs6,
-                    height: 100,
-                  ),
+            decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                gradient: LinearGradient(
+                    colors: [Color(0xffEAF8FA), Color(0xffF9EEEE)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListTile(
+                title: Text(
+                  first_list[index],
+                  style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold)),
                 ),
-              )),
+                trailing: Image.asset(
+                  ConstantImage.aboutUs6,
+                  height: 100,
+                ),
+              ),
+            ),
+          ),
         );
       },
     );

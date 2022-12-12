@@ -42,7 +42,8 @@ class CommonWidget {
                     height: 18,
                   ),
                   Text(
-                    "INVEST IN \n3 SIMPLE STEPS",
+                    "Invest In \n3 Simple Steps",
+
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff00C6D8),
@@ -323,7 +324,7 @@ class CommonWidget {
                     height: 55,
                     width: 160,
                     decoration: const BoxDecoration(
-                      color: Color(0xffEC515F),
+                      color: Color(0xffFF405A),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(50),
                           bottomLeft: Radius.circular(50)),
