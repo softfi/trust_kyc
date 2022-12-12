@@ -62,7 +62,7 @@ class AppBottomSheet {
                             style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w500)),
                           ),
                           const SizedBox(
@@ -110,7 +110,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -151,7 +151,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -170,7 +170,7 @@ class AppBottomSheet {
                             style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w500)),
                           ),
                           const SizedBox(
@@ -218,7 +218,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -259,7 +259,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -278,7 +278,7 @@ class AppBottomSheet {
                             style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w500)),
                           ),
                           const SizedBox(
@@ -326,7 +326,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -367,7 +367,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -386,7 +386,7 @@ class AppBottomSheet {
                             style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w500)),
                           ),
                           const SizedBox(
@@ -434,7 +434,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -475,7 +475,7 @@ class AppBottomSheet {
                                                 ? const Color(0xff22263D)
                                                 : Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 15),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -522,7 +522,7 @@ class AppBottomSheet {
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 13),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -556,7 +556,7 @@ class AppBottomSheet {
                                         textStyle: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 13),
+                                            fontSize: 12),
                                       ),
                                     ),
                                   )),
@@ -671,11 +671,8 @@ class AppBottomSheet {
                                 style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500)),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               const Divider(
                                 thickness: 1.5,
@@ -696,11 +693,8 @@ class AppBottomSheet {
                                 style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500)),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               const Divider(
                                 thickness: 1.5,
@@ -721,11 +715,8 @@ class AppBottomSheet {
                                 style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500)),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               const Divider(
                                 thickness: 1.5,
@@ -746,11 +737,8 @@ class AppBottomSheet {
                                 style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500)),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               const Divider(
                                 thickness: 1.5,
@@ -771,11 +759,8 @@ class AppBottomSheet {
                                 style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w500)),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               const Divider(
                                 thickness: 1.5,
@@ -787,48 +772,6 @@ class AppBottomSheet {
                               DataWidget(
                                 selectedIndex: index,
                                 title: _options5,
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  State(() {
-                                    tenureIndex = 4;
-                                  });
-                                },
-                                child: Container(
-                                  height: 30,
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Color(0x29000000),
-                                          blurRadius: 6.0,
-                                        ),
-                                      ],
-                                      border: Border.all(
-                                          width: 1, color: Colors.white),
-                                      color: tenureIndex == 4
-                                          ? Colors.white
-                                          : const Color(0xff22263D)),
-                                  child: Center(
-                                      child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: Text(
-                                      "More than 10 years",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: TextStyle(
-                                            color: tenureIndex == 4
-                                                ? const Color(0xff22263D)
-                                                : Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  )),
-                                ),
                               ),
                               const SizedBox(
                                 height: 30,
@@ -868,7 +811,7 @@ class AppBottomSheet {
                                             textStyle: const TextStyle(
                                                 color: Color(0xff22263D),
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: 12),
                                           ),
                                         ),
                                       )),
@@ -903,7 +846,7 @@ class AppBottomSheet {
                                             textStyle: const TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: 12),
                                           ),
                                         ),
                                       )),
@@ -970,34 +913,12 @@ class _DataWidgetState extends State<DataWidget> with TickerProviderStateMixin {
                         ? const Color(0xff22263D)
                         : Colors.white,
                     fontWeight: FontWeight.w500,
-                    fontSize: 15),
+                    fontSize: 12),
               ),
             ),
           ),
         ),
       );
-      // ChoiceChip choiceChip = ChoiceChip(
-      //   selected: widget.selectedIndex == i,
-      //   label: Text(_options[i], style: GoogleFonts.sourceSansPro(
-      //     textStyle: TextStyle(
-      //         color: const Color(0xff22263D),
-      //         fontWeight: FontWeight.w500,
-      //         fontSize: 15),
-      //   )),
-      //
-      //   disabledColor: Colors.transparent,
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      //   backgroundColor: AppColors.textColor,
-      //   selectedColor: Colors.white,
-      //   onSelected: (bool selected) {
-      //     setState(() {
-      //       if (selected) {
-      //         widget.selectedIndex = i;
-      //       }
-      //     });
-      //   },
-      // );
-      //
       chips.add(chip);
     }
 
