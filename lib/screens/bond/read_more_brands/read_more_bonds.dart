@@ -62,56 +62,51 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           Container(
             width: 50,
           )),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x29000000),
-                              blurRadius: 5.0,
-                            ),
-                          ],
-                          color: Colors.white),
-                      child: readBondWidget()),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: keyHighlightWidget() //investment(),
-                    ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
-                  child: CommonWidget.issuer(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CommonWidget.invest(),
-                const SizedBox(
-                  height: 30,
-                ),
-                CommonWidget.subscribe(),
-                const SizedBox(
-                  height: 30,
-                ),
-                CommonWidget.needHelp(),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x29000000),
+                          blurRadius: 5.0,
+                        ),
+                      ],
+                      color: Colors.white),
+                  child: readBondWidget()),
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: keyHighlightWidget() //investment(),
+                ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: CommonWidget.issuer(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CommonWidget.invest(),
+            const SizedBox(
+              height: 30,
+            ),
+            CommonWidget.subscribe(),
+            const SizedBox(
+              height: 30,
+            ),
+            CommonWidget.needHelp(),
+          ],
+        ),
       ),
     );
   }
@@ -130,29 +125,28 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
-                child: Text(
-                  "M",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
+                child: Container(
+                  height: 50,width: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle
                   ),
-                ),
+                  child:Image.asset(ConstantImage.orderImg),
+                )
               ),
               const SizedBox(
                 width: 20,
               ),
               Text("MAHINDRA & MAHINDRA FINANCIAL",
-                  style: GoogleFonts.sourceSansPro(
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
                       color: Color(0xff22263D),
                       fontWeight: FontWeight.bold,
@@ -255,7 +249,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                     child: ClipPath(
                       clipper: Triangle(),
                       child: Container(
-                        color: AppColors.textColor,
+                        color: Color(0xff22263D),
                         height: 25,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 13.0, left: 21),
@@ -283,7 +277,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   ),
                   Container(
                     height: 25,
-                    color: AppColors.greyColor,
+                    color:Color(0xffE1E0E7),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Center(
@@ -305,7 +299,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   ),
                   Container(
                     height: 25,
-                    color: AppColors.greyColor,
+                    color: Color(0xffE1E0E7),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Center(
@@ -327,7 +321,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   ),
                   Container(
                     height: 25,
-                    color: AppColors.greyColor,
+                    color: Color(0xffE1E0E7),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Center(
@@ -349,7 +343,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   ),
                   Container(
                     height: 25,
-                    color: AppColors.greyColor,
+                    color: Color(0xffE1E0E7),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Center(
@@ -391,7 +385,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
               "Face Value (In INR) and Issue Size (In INR Crores)",
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: Color(0xff1D2B84)),
               ),
@@ -608,7 +602,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                     textStyle: const TextStyle(
                       color: Color(0xff000000),
                       fontWeight: FontWeight.w500,
-                      fontSize: 15,
+                      fontSize: 16,
                     ),
                   ),
                 ),
