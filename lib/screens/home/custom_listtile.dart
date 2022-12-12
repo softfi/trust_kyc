@@ -81,39 +81,37 @@ class ViewAllWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Container(width:width,
-          decoration: const BoxDecoration(
-            color: Color(0xffEC515F),
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16)),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.white,
-                  size: 20,
-                )
-              ],
-            ),
+    return Align(
+      alignment: Alignment.topRight,
+      child: Container(
+        width: width,
+        decoration: const BoxDecoration(
+          color: Color(0xffEC515F),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16)),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              const Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+                size: 20,
+              )
+            ],
           ),
         ),
       ),
@@ -159,4 +157,3 @@ class khabarenList extends StatelessWidget {
     );
   }
 }
-
