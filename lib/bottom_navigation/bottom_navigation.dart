@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/home/home_page.dart';
 import 'package:trust_money/screens/order/my_order.dart';
-import '../screens/bond/learn_bond.dart';
+import '../screens/bond/learn_bonds/learn_bond.dart';
 import '../screens/chat/chat_page.dart';
 import '../utils/images.dart';
 

@@ -10,7 +10,7 @@ import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../screens/bond/buying_bonds.dart';
 import '../screens/bond/collection_of_bonds.dart';
-import '../screens/bond/learn_bond.dart';
+import '../screens/bond/learn_bonds/learn_bond.dart';
 
 var bg_color = Colors.white;
 var divider_color = AppColors.textColor;

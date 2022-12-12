@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
+import '../home/custom_listtile.dart';
 import '../news_and_insights/explore.dart';
 
 class CommonWidget {
-
   static invest() {
     return Stack(
       children: [
@@ -42,8 +42,7 @@ class CommonWidget {
                     height: 18,
                   ),
                   Text(
-                    "Invest In \n3 Simple Steps",
-
+                    "INVEST IN \n3 SIMPLE STEPS",
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff00C6D8),
@@ -106,8 +105,8 @@ class CommonWidget {
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                         color: Color(0xff22263D),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -121,7 +120,6 @@ class CommonWidget {
                       ),
                     ),
                   ),
-
                 ],
               )
             ],
@@ -178,15 +176,15 @@ class CommonWidget {
             height: 25,
             child: Center(
                 child: Text(
-                  "1",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "1",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -201,15 +199,15 @@ class CommonWidget {
             height: 25,
             child: Center(
                 child: Text(
-                  "2",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "2",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
         Positioned(
@@ -224,22 +222,22 @@ class CommonWidget {
             height: 25,
             child: Center(
                 child: Text(
-                  "3",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                )),
+              "3",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            )),
           ),
         ),
       ],
     );
   }
 
-  static subscribe(){
+  static subscribe() {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -318,40 +316,7 @@ class CommonWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 55,
-                    width: 160,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffFF405A),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          bottomLeft: Radius.circular(50)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Subscribe",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16)),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                ViewAllWidget(title: 'Subscribe', width: 160),
               ],
             ),
           ),
@@ -360,7 +325,7 @@ class CommonWidget {
     );
   }
 
-  static needHelp(){
+  static needHelp() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Column(
@@ -482,7 +447,7 @@ class CommonWidget {
     );
   }
 
-  static issuer(){
+  static issuer() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -563,28 +528,28 @@ class CommonWidget {
         ),
         RichText(
             text: TextSpan(children: [
-              TextSpan(
-                text: "Credit Access Grameen Limited ",
-                style: GoogleFonts.sourceSansPro(
-                  textStyle: const TextStyle(
-                    color: Color(0xff000000),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
+          TextSpan(
+            text: "Credit Access Grameen Limited ",
+            style: GoogleFonts.sourceSansPro(
+              textStyle: const TextStyle(
+                color: Color(0xff000000),
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
-              TextSpan(
-                  text:
+            ),
+          ),
+          TextSpan(
+              text:
                   "is a multi-billion dollar, transnational conglomerate. The Group’s activities span three core areas: Investment Banking, International Trading and Global Investments. It also supports charitable and philanthropic activities across the world through the Mahindra & Mahindra Foundation.",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                      height: 1.1,
-                      color: AppColors.textColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15,
-                    ),
-                  )),
-            ])),
+              style: GoogleFonts.sourceSansPro(
+                textStyle: const TextStyle(
+                  height: 1.1,
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                ),
+              )),
+        ])),
         const SizedBox(
           height: 35,
         ),
@@ -766,51 +731,51 @@ class CommonWidget {
                   children: [
                     RichText(
                         text: TextSpan(children: [
-                          TextSpan(
-                            text: "Issuers Profile ",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: AppColors.btnColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                              ),
-                            ),
+                      TextSpan(
+                        text: "Issuers Profile ",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: AppColors.btnColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
                           ),
-                          WidgetSpan(
-                            child: SvgPicture.asset(
-                              ConstantImage.clip,
-                              height: 12,
-                              width: 12,
-                              color: AppColors.btnColor,
-                            ),
-                          ),
-                        ])),
+                        ),
+                      ),
+                      WidgetSpan(
+                        child: SvgPicture.asset(
+                          ConstantImage.clip,
+                          height: 12,
+                          width: 12,
+                          color: AppColors.btnColor,
+                        ),
+                      ),
+                    ])),
                     SizedBox(
                       width: 16,
                     ),
                     RichText(
                         text: TextSpan(children: [
-                          TextSpan(
-                            text: "Issuers Finance Details ",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: AppColors.btnColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15,
-                              ),
-                            ),
+                      TextSpan(
+                        text: "Issuers Finance Details ",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: AppColors.btnColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
                           ),
-                          WidgetSpan(
-                            child: SvgPicture.asset(
-                              ConstantImage.clip,
-                              height: 12,
-                              width: 12,
-                              color: AppColors.btnColor,
-                            ),
-                          ),
-                        ])),
+                        ),
+                      ),
+                      WidgetSpan(
+                        child: SvgPicture.asset(
+                          ConstantImage.clip,
+                          height: 12,
+                          width: 12,
+                          color: AppColors.btnColor,
+                        ),
+                      ),
+                    ])),
                   ],
                 ),
               ),
@@ -865,7 +830,4 @@ class CommonWidget {
       ],
     );
   }
-
-
-
 }

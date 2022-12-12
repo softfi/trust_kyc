@@ -62,9 +62,14 @@ class AppToolbar {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       icon,
-                      Text(
-                        title,
-                        style: ConstStyle.quickStandSmall11,
+                      SizedBox(
+                        width: 300,
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: ConstStyle.quickStandSmall11,
+                        ),
                       ),
                       icon1
                     ],

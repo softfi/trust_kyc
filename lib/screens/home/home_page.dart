@@ -591,7 +591,10 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              ViewAllWidget(title: 'View All', width: 150),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: ViewAllWidget(title: 'View All', width: 150),
+                              ),
                               const SizedBox(
                                 height: 30,
                               ),
