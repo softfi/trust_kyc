@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:trust_money/screens/bond/learn_bonds/view_all_list.dart';
 
 import '../../../utils/app_bar.dart';
@@ -19,7 +19,13 @@ class ViewAllEditors extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
           IconButton(
-            icon: Icon(Icons.person_pin, color: Colors.white),
+            icon: Container(padding: const EdgeInsets.all(1),
+                decoration:
+                    const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.person,
+                  color: const Color(0xff00C6D8),
+                )),
             onPressed: () {},
           )),
       body: SingleChildScrollView(
@@ -40,7 +46,7 @@ class ViewAllEditors extends StatelessWidget {
     );
   }
 
-  Widget editorList(){
+  Widget editorList() {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 6,

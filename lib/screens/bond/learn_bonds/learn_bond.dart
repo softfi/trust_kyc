@@ -24,11 +24,20 @@ class _LearnBondState extends State<LearnBond> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
-          "LEARN, FROM BOND,TRUST BOND",
+          "LEARN, FROM BOND...",
           const SizedBox(
-            height: 40,
+            width: 40,
           ),
-          const SizedBox(height: 40)),
+          IconButton(
+            icon: Container(padding: const EdgeInsets.all(1),
+                decoration:
+                const BoxDecoration(color: Colors.transparent, shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.person,
+                  color: Colors.transparent
+                )),
+            onPressed: () {},
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [
