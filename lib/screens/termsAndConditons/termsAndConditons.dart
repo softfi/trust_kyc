@@ -4,6 +4,7 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/styles.dart';
 
 import '../../utils/app_bar.dart';
+import '../../utils/app_bar.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/strings.dart';
 

@@ -67,6 +67,7 @@ class ConstantImage {
   static const String orderImg = 'assets/images/order_img.png';
   static const String arrow = 'assets/images/farword_arrow.png';
   static const String faq = 'assets/images/faq.png';
+  static const String map = 'assets/images/map.png';
 
   // gif
   static const String error = 'assets/images/error.gif';

@@ -6,6 +6,8 @@ import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
 import '../../utils/colorsConstant.dart';
+import '../bond/common_widget.dart';
+import '../home/custom_listtile.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -147,18 +149,21 @@ class ContactUs extends StatelessWidget {
         child: Column(
           children: [
             mainWidget(),
-            const SizedBox(height: 30,),
-            subscribe(),
-            const SizedBox(height: 30,),
-            needHelp(),
-
+            const SizedBox(
+              height: 35,
+            ),
+            CommonWidget.subscribe(),
+            const SizedBox(
+              height: 30,
+            ),
+            CommonWidget.needHelp(),
           ],
         ),
       ),
     );
   }
 
-  Widget mainWidget(){
+  Widget mainWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Column(
@@ -210,7 +215,7 @@ class ContactUs extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 18),
                 )),
           ),
@@ -220,7 +225,8 @@ class ContactUs extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Text("Danmondi, 7563 King Meadow Suite 896, India",
+              child: Text(
+                  "1202, Naman Centre, Bandra Kurla Complex, Bandra (East), Mumbai -400 051",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
@@ -247,7 +253,7 @@ class ContactUs extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 18),
                 )),
           ),
@@ -257,7 +263,8 @@ class ContactUs extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: Text("Support@trustmoney.com 0428 6300 6300",
+              child: Text(
+                  "info@trustgroup.in 022 40845045, 022 40845070 022 42245246",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
@@ -284,7 +291,7 @@ class ContactUs extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       fontSize: 18),
                 )),
           ),
@@ -308,26 +315,26 @@ class ContactUs extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.facebook,
-                  color: Color(0xff8F919D),
+                  color: Color(0xff8F919D).withOpacity(0.45),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
                   FontAwesomeIcons.twitter,
-                  color: Color(0xff8F919D),
+                  color: Color(0xff8F919D).withOpacity(0.45),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
                   FontAwesomeIcons.instagram,
-                  color: Color(0xff8F919D),
+                  color: Color(0xff8F919D).withOpacity(0.45),
                 ),
               ),
             ],
@@ -335,11 +342,10 @@ class ContactUs extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Container(
-            alignment: Alignment.center,
-            height: 362,
-            color: Colors.grey.shade300,
-            child: Text("Map Will be shown here"),
+          const Image(
+            image: AssetImage(
+              ConstantImage.map,
+            ),
           ),
           const SizedBox(
             height: 30,
@@ -363,11 +369,13 @@ class ContactUs extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 15)),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height: 5,
+          ),
           TextFormField(
             keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.words,
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               hintStyle: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -379,7 +387,6 @@ class ContactUs extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
           Text(
             "Email",
             style: GoogleFonts.quicksand(
@@ -388,16 +395,17 @@ class ContactUs extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 15)),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height: 5,
+          ),
           TextFormField(
             keyboardType: TextInputType.emailAddress,
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               hintStyle: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
                       fontWeight: FontWeight.w500,
                       fontSize: 17)),
-
               hintText: 'rashedul@gmail.com',
             ),
           ),
@@ -412,11 +420,13 @@ class ContactUs extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 15)),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height: 5,
+          ),
           TextFormField(
             keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.sentences,
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               hintStyle: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -424,293 +434,19 @@ class ContactUs extends StatelessWidget {
                       fontSize: 17)),
               hintMaxLines: 3,
               fillColor: Colors.white,
-              hintText: 'Hi, This is rashed, I need some urgent help about the recent Bonds...',
-
+              hintText:
+                  'Hi, This is rashed, I need some urgent help about the recent Bonds...',
             ),
           ),
           const SizedBox(
             height: 30,
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              height: 55,
-              width: 150,
-              decoration: const BoxDecoration(
-                color: AppColors.btnColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    bottomLeft: Radius.circular(50)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Send",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
+          ViewAllWidget(
+            title: 'Send',
+            width: 145,
           ),
           const SizedBox(
             height: 30,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget subscribe() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xffB2EEF8).withOpacity(0.5),
-            const Color(0xffFFFFFF),
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            right: -8,
-            child: Image.asset(
-              ConstantImage.leaf,
-              color: Color(0xffFF405A),
-              height: 350,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Subscribe To",
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20)),
-                ),
-                Text(
-                  "Bond Updates",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Color(0xffFF405A),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Subscribe to get regular updates on the latest on Bonds from Trust Money",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: InputBorder.none,
-                      hintText: "Enter your email here ",
-                      contentPadding: EdgeInsets.only(left: 13, top: 10),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 55,
-                    width: 160,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffEC515F),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          bottomLeft: Radius.circular(50)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Subscribe",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16)),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-        ],
-      ),
-    );
-  }
-
-  Widget needHelp() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Need Help?",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Speak to us",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Assisted Buying / Spelling of Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("FAQ's",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Learn from, Bond, Trust Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          const SizedBox(
-            height: 20,
           ),
         ],
       ),
