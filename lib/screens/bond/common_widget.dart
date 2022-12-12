@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/bond/tringle.dart';
 import 'dart:math' as math;
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trust_money/screens/bond/tringle.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;

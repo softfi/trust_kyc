@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
 import 'package:trust_money/screens/bond/ipo/buy_ipo_bonds/nonipo_buy_bonds.dart';
+import 'package:trust_money/screens/bond/tringle.dart';
 import 'dart:math' as math;
 import '../../../utils/app_bar.dart';
 import '../../../utils/colorsConstant.dart';

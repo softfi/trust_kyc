@@ -5,7 +5,7 @@ import 'package:trust_money/utils/styles.dart';
 class AppToolbar {
   static appBar(String title, Widget icon, Widget icon1) {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(80.0),
+      preferredSize: const Size.fromHeight(70.0),
       child: Column(
         children: [
           Container(
@@ -58,19 +58,22 @@ class AppToolbar {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      icon,
-                      Text(
-                        title,
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        overflow: TextOverflow.ellipsis,
-                        style: ConstStyle.quickStandSmall11,
-                      ),
-                      icon1
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        icon,
+                        Text(
+                          title,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: ConstStyle.quickStandSmall11,
+                        ),
+                        icon1
+                      ],
+                    ),
                   ),
                 ],
               ),

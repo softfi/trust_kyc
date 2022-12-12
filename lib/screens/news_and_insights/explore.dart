@@ -1,13 +1,16 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/screens/bond/tringle.dart';
 import 'package:trust_money/utils/styles.dart';
+import 'package:dotted_line/dotted_line.dart';
 
+import '../../utils/app_bar.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/images.dart';
 import '../../utils/strings.dart';
+import '../bond/common_widget.dart';
+import '../home/custom_listtile.dart';
 
 class NewsAndInsightExplore extends StatefulWidget {
   const NewsAndInsightExplore({Key? key}) : super(key: key);
@@ -15,207 +18,46 @@ class NewsAndInsightExplore extends StatefulWidget {
   @override
   State<NewsAndInsightExplore> createState() => _NewsAndInsightExploreState();
 }
-int articleIndex=1;
+
+int articleIndex = 1;
+
 class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80.0),
+      appBar: AppToolbar.appBar(
+          "EXPLORE",
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          IconButton(
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.white, shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.person,
+                  size: 20,
+                  color: Color(0xff00C6D8),
+                )),
+            onPressed: () {},
+          )),
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 80,
-              color: Color(0xff00C6D8),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon:
-                          const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        Text(
-                          "EXPLORE",
-                          style: ConstStyle.quickStandSmall11,
-                        ),
-
-                        IconButton(
-                          icon:
-                          const Icon(Icons.person_pin, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        // Container(
-                        //   width: 50,
-                        // )
-                      ],
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 2,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            advantageWidget(),
+            const SizedBox(
+              height: 35,
             ),
-            Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 30, height: 28, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                  RotatedBox(
-                    quarterTurns: 2,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 28, height: 30, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            CommonWidget.subscribe(),
+            const SizedBox(
+              height: 20,
             ),
+            CommonWidget.needHelp(),
           ],
         ),
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 35.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  advantageWidget(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  subscribe(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  needHelp()
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 2,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: RotatedBox(
-              quarterTurns: 1,
-              child: Material(
-                elevation: 0,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  foregroundDecoration: const RotatedCornerDecoration(
-                    color: Colors.redAccent,
-                    geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                  ),
-                  child: Container(),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -270,7 +112,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 child: Container(
                   color: AppColors.btnColor,
                   height: 25,
-                  width: 130,
+                  width: 140,
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
@@ -364,12 +206,15 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
           const SizedBox(
             height: 20,
           ),
-          Text("What are Advantages of Investing in Bond IPO",style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-                color: AppColors.textColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 20),
-          ),),
+          Text(
+            "What are Advantages of Investing in Bond IPO",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            ),
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -387,6 +232,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
+                    height: 1.4,
                     fontWeight: FontWeight.w400,
                     fontSize: 14),
               )),
@@ -398,6 +244,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -408,6 +255,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -418,6 +266,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -428,6 +277,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -437,8 +287,8 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               )),
           const SizedBox(
             height: 13,
@@ -458,6 +308,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -468,6 +319,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -488,6 +340,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -498,6 +351,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -518,6 +372,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -528,6 +383,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -548,6 +404,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -568,6 +425,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -578,6 +436,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -588,6 +447,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -598,6 +458,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 textStyle: const TextStyle(
                     color: AppColors.textColor,
                     fontWeight: FontWeight.w400,
+                    height: 1.4,
                     fontSize: 14),
               )),
           const SizedBox(
@@ -607,9 +468,8 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 100,
                 width: MediaQuery.of(context).size.width * 0.43,
-                color: Color(0xffC8C7CE),
+                color: Color(0xffC8C7CE).withOpacity(0.80),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 12.0, vertical: 12),
@@ -620,7 +480,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.arrow_back_outlined,
                             size: 20,
                             color: AppColors.primaryColor,
@@ -636,7 +496,19 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 2,
+                      ),
+                      const DottedLine(
+                        direction: Axis.horizontal,
+                        lineLength: double.infinity,
+                        lineThickness: 0.3,
+                        dashLength: 3.0,
+                        dashColor: Colors.black,
+                        dashGapLength: 3.0,
+                        dashGapColor: Colors.transparent,
+                      ),
+                      const SizedBox(
+                        height: 8,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -646,13 +518,13 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                                   textStyle: const TextStyle(
                                       color: Color(0xff22263D),
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w600))),
+                                      fontWeight: FontWeight.w500))),
                           Text("Better Than Stock IPO",
                               style: GoogleFonts.quicksand(
                                   textStyle: const TextStyle(
                                       color: Color(0xff22263D),
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w600))),
+                                      fontWeight: FontWeight.w500))),
                         ],
                       ),
                     ],
@@ -660,9 +532,8 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 ),
               ),
               Container(
-                height: 100,
                 width: MediaQuery.of(context).size.width * 0.43,
-                color: Color(0xffC8C7CE),
+                color: Color(0xffC8C7CE).withOpacity(0.80),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 12.0, vertical: 12),
@@ -681,7 +552,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500)),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.arrow_forward_rounded,
                             size: 20,
                             color: AppColors.primaryColor,
@@ -689,14 +560,26 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 2,
+                      ),
+                      const DottedLine(
+                        direction: Axis.horizontal,
+                        lineLength: double.infinity,
+                        lineThickness: 0.3,
+                        dashLength: 3.0,
+                        dashColor: Colors.black,
+                        dashGapLength: 3.0,
+                        dashGapColor: Colors.transparent,
+                      ),
+                      const SizedBox(
+                        height: 8,
                       ),
                       Text("Which Is Better: Bond \nOr Loan",
                           style: GoogleFonts.quicksand(
                               textStyle: const TextStyle(
                                   color: Color(0xff22263D),
                                   fontSize: 12,
-                                  fontWeight: FontWeight.w600))),
+                                  fontWeight: FontWeight.w500))),
                     ],
                   ),
                 ),
@@ -716,7 +599,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                   });
                 },
                 child: Container(
-                  height: 45,
+                  height: 40,
                   width: MediaQuery.of(context).size.width / 2.4,
                   decoration: BoxDecoration(
                       boxShadow: const [
@@ -730,19 +613,19 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                           : Colors.white),
                   child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text(
-                          "RELATED ARTICLES",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: TextStyle(
-                                color: articleIndex == 1
-                                    ? Colors.white
-                                    : const Color(0xff22263D),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13),
-                          ),
-                        ),
-                      )),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text(
+                      "RELATED ARTICLES",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: TextStyle(
+                            color: articleIndex == 1
+                                ? Colors.white
+                                : const Color(0xff22263D),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 13),
+                      ),
+                    ),
+                  )),
                 ),
               ),
               InkWell(
@@ -752,7 +635,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                   });
                 },
                 child: Container(
-                  height: 45,
+                  height: 40,
                   width: MediaQuery.of(context).size.width / 2.4,
                   decoration: BoxDecoration(
                       boxShadow: const [
@@ -766,19 +649,19 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                           : Colors.white),
                   child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text(
-                          "More from the Author",
-                          style: GoogleFonts.sourceSansPro(
-                            textStyle: TextStyle(
-                                color: articleIndex == 2
-                                    ? Colors.white
-                                    : const Color(0xff22263D),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13),
-                          ),
-                        ),
-                      )),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text(
+                      "More from the Author",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: TextStyle(
+                            color: articleIndex == 2
+                                ? Colors.white
+                                : const Color(0xff22263D),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 13),
+                      ),
+                    ),
+                  )),
                 ),
               ),
             ],
@@ -790,40 +673,7 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
           const SizedBox(
             height: 20,
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              height: 55,
-              width: 150,
-              decoration: const BoxDecoration(
-                color: AppColors.btnColor,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    bottomLeft: Radius.circular(50)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "View All",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
-          ),
+          ViewAllWidget(title: 'View All', width: 150),
         ],
       ),
     );
@@ -838,7 +688,8 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
-              decoration:  BoxDecoration(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.11),
@@ -850,348 +701,72 @@ class _NewsAndInsightExploreState extends State<NewsAndInsightExplore> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: ListTile(
-                  leading: Container(
-                    height: 65,
-                    width: 110,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color(0xff58C3D5).withOpacity(0.10),
-                          const Color(0xffEC515F).withOpacity(0.10),
-                        ],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "DEBIT / \nEQUITY",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: AppColors.textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18)),
-                      ),
-                    ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
+                    ConstantImage.dummy_pic,
+                    height: 75,
+                    width: MediaQuery.of(context).size.width * 0.26,
                   ),
-                  title: Text(
-                    "Debt Or Equity? Or A Combination Of Both!",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14)),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        "Jan 24, 2022",
-                        style: GoogleFonts.sourceSansPro(
-                            textStyle: const TextStyle(
-                                color: AppColors.btnColor,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12)),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        height: 16,
-                        width: 65,
-                        decoration: const BoxDecoration(
-                          color: Color(0xffE1E0E7),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(15),
-                              bottomLeft: Radius.circular(15)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "5 min read",
-                            style: GoogleFonts.sourceSansPro(
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.60,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Debt Or Equity? Or A Combination Of Both!",
+                            style: GoogleFonts.quicksand(
                                 textStyle: const TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 9)),
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14)),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Jan 24, 2022",
+                                style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                        color: AppColors.btnColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12)),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              ClipPath(
+                                clipper: Triangle(),
+                                child: Container(
+                                  color: Color(0xffE1E0E7),
+                                  height: 17,
+                                  width: 75,
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        "5 min read",
+                                        style: GoogleFonts.sourceSansPro(
+                                            textStyle: const TextStyle(
+                                                color: AppColors.primaryColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 9)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ]),
+                  )
+                ],
               )),
         );
       },
     );
-  }
-
-  Widget subscribe() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xffB2EEF8).withOpacity(0.5),
-            const Color(0xffFFFFFF),
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            right: -8,
-            child: Image.asset(
-              ConstantImage.leaf,
-              color: Color(0xffFF405A),
-              height: 350,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Subscribe To",
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20)),
-                ),
-                Text(
-                  "Bond Updates",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Color(0xffFF405A),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Subscribe to get regular updates on the latest on Bonds from Trust Money",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: InputBorder.none,
-                      hintText: "Enter your email here ",
-                      contentPadding: EdgeInsets.only(left: 13, top: 10),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 55,
-                    width: 160,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffEC515F),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          bottomLeft: Radius.circular(50)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Subscribe",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16)),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-        ],
-      ),
-    );
-  }
-
-  Widget needHelp() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Need Help?",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Speak to us",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Assisted Buying / Spelling of Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("FAQ's",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Learn from, Bond, Trust Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Triangle extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    final x = size.width;
-    final y = size.height;
-
-    path.moveTo(0, y / 2);
-    path.lineTo(20, y);
-    path.lineTo(x, y);
-    path.lineTo(x, 0);
-    path.lineTo(20, 0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

@@ -28,7 +28,7 @@ class CustomTile extends StatelessWidget {
         ),
       ], color: Colors.white, borderRadius: BorderRadius.circular(6)),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,16 +74,14 @@ class CustomTile extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             fontSize: 16)),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  const Icon(
-                    CupertinoIcons.arrow_right,
-                    color: AppColors.primaryColor,
-                  )
+                  Icon(Icons.arrow_forward,color: AppColors.primaryColor,)
+
                 ],
               )
             ),

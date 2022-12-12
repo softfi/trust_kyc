@@ -154,7 +154,7 @@ class ConstStyle {
   static var quickStandSmall11 = GoogleFonts.quicksand(
     textStyle: const TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
         color: Colors.white),
   );
 

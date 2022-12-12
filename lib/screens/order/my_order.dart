@@ -34,8 +34,17 @@ class _OrderState extends State<Order> {
           Container(
             width: 50,
           ),
-          Container(
-            width: 50,
+          IconButton(
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.transparent, shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.person,
+                  size: 20,
+                  color: Colors.transparent,
+                )),
+            onPressed: () {},
           )),
       body: SingleChildScrollView(
         child: Column(
@@ -152,7 +161,8 @@ class _OrderState extends State<Order> {
               child: ExpansionTile(
                 backgroundColor: Colors.white,
                 childrenPadding: const EdgeInsets.symmetric(vertical: 0),
-                tilePadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                tilePadding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                 title: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -247,7 +257,7 @@ class _OrderState extends State<Order> {
                         height: 22,
                         width: 70,
                         decoration: BoxDecoration(
-                          color: Color(0xffc8fcdb),
+                            color: Color(0xffc8fcdb),
                             borderRadius: BorderRadius.circular(3),
                             border: Border.all(
                                 width: 1, color: const Color(0xff02AD41))),
@@ -297,7 +307,7 @@ class _OrderState extends State<Order> {
                   ListTile(
                     title: Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      alignment:Alignment.center ,
+                      alignment: Alignment.center,
                       height: 74,
                       color: Color(0xffF7F7FA),
                       child: Row(

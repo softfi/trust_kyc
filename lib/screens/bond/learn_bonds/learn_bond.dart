@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/bond/bond_advantages.dart';
 import 'package:trust_money/screens/bond/learn_bonds/view_all_editor.dart';
 import 'package:trust_money/screens/bond/view_all.dart';
+import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
@@ -34,6 +35,7 @@ class _LearnBondState extends State<LearnBond> {
                 const BoxDecoration(color: Colors.transparent, shape: BoxShape.circle),
                 child: const Icon(
                   Icons.person,
+                    size: 20,
                   color: Colors.transparent
                 )),
             onPressed: () {},
@@ -208,7 +210,7 @@ class _LearnBondState extends State<LearnBond> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ViewAll()));
+                  MaterialPageRoute(builder: (context) => const NewsAndInsights()));
             },
             child: ViewAllWidget(title: 'View All', width: 150),
           ),

@@ -548,13 +548,13 @@ class _HomePageState extends State<HomePage> {
                                           builder: (context) =>
                                               const ReadBonds()));
                                 },
-                                child: Align(
-                                  alignment: Alignment.topRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 12.0),
                                   child: ViewAllWidget(
                                     title: 'Explore All Bonds',
                                     width: 225,
                                   ),
-                                ),
+                                )
                               ),
                               const SizedBox(
                                 height: 30,
@@ -615,9 +615,12 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              ViewAllWidget(
-                                title: 'View All',
-                                width: 150,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: ViewAllWidget(
+                                  title: 'View All',
+                                  width: 150,
+                                ),
                               ),
                             ],
                           ),
