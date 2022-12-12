@@ -5,15 +5,20 @@ import 'dart:math' as math;
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../home/home_page.dart';
+import '../../../news_and_insights/explore.dart';
 import '../pay_ipo.dart';
 import 'category_table.dart';
+import 'constWidget.dart';
 import 'ipo_investor.dart';
 import 'key_points.dart';
 import 'ncds_series.dart';
+import 'nonipo_buy_bonds.dart';
 
 class BuyIPOBond extends StatelessWidget {
-  BuyIPOBond({Key? key}) : super(key: key);
+  BuyIPOBond({Key? key, required this.isNonIPO}) : super(key: key);
+  bool isNonIPO;
   bool isChecked1 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +30,7 @@ class BuyIPOBond extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
           IconButton(
-            icon: const Icon(Icons.notifications_none,
-                color: Colors.white),
+            icon: const Icon(Icons.notifications_none, color: Colors.white),
             onPressed: () {},
           )),
       body: SingleChildScrollView(
@@ -46,68 +50,83 @@ class BuyIPOBond extends StatelessWidget {
                       color: Colors.white),
                   child: readBondWidget(context)),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Container(
-                  color: const Color(0xffE3D9D9).withOpacity(0.65),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CategoryTable(),
-                  )),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: IPOsInvestor(),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            NCDsSeries(isShow: false),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-              color: Color(0xff00C6D8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Grand Total (₹) ",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
+            Visibility(
+              child: isNonIPO
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: BuyNonIpoBonds.nonIPOInvestCalculator1(),
+                    )
+                  : Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Container(
+                              color: const Color(0xffE3D9D9).withOpacity(0.65),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CategoryTable(),
+                              )),
                         ),
-                      ),
-                      Text(
-                        "( A+B+C+D+E+F)",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12),
+                        const SizedBox(
+                          height: 30,
                         ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    "2,00,000",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: IPOsInvestor(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: NCDsSeries(isShow: false),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 12),
+                          color: Color(0xff00C6D8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Grand Total (₹) ",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                  ),
+                                  Text(
+                                    "( A+B+C+D+E+F)",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "2,00,000",
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
@@ -175,13 +194,14 @@ class BuyIPOBond extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            InkWell(onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PayIPO()));
-            },
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => PayIPO()));
+              },
               child: Center(
                 child: Container(
                   width: 170,
@@ -191,17 +211,16 @@ class BuyIPOBond extends StatelessWidget {
                   ),
                   child: Center(
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric( vertical: 12),
-                        child: Text("Continue to Buy",
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                color: Color(0xffFfffff),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                              ),
-                            )),
-                      )),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text("Continue to Buy",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                            color: Color(0xffFfffff),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        )),
+                  )),
                 ),
               ),
             ),
@@ -496,7 +515,8 @@ class BuyIPOBond extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const KeyPoints(),
+          Visibility(
+              child: isNonIPO ? ConstWidget.keyPointsConsider(context,) : KeyPoints()),
         ]),
       ],
     );

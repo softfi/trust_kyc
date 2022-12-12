@@ -138,7 +138,7 @@ class DematDetailRepository {
     });
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
-        .upload(endpoint: TrustKycUrl.signatureUpload, data: formData);
+        .upload(endpoint: TrustKycUrl.signatureUpload, data: formData,);
     if (response.statusCode == 201) {
       print("ImageString${response.data["message"].toString()}");
       await HelperFunctions.saveBackImage(response.data['message']);

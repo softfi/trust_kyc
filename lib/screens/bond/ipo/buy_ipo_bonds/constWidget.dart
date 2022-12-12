@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
+import '../../../Congratulations/alert_dialog.dart';
 
 class ConstWidget {
   static keyPoints(BuildContext context) {
@@ -18,10 +19,7 @@ class ConstWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -88,10 +86,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -120,10 +115,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -166,10 +158,7 @@ class ConstWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.45,
+                      width: MediaQuery.of(context).size.width * 0.45,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -178,7 +167,7 @@ class ConstWidget {
                             style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
                                   color:
-                                  AppColors.primaryColor.withOpacity(0.80),
+                                      AppColors.primaryColor.withOpacity(0.80),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
                             ),
@@ -199,10 +188,7 @@ class ConstWidget {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.40,
+                      width: MediaQuery.of(context).size.width * 0.40,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -211,7 +197,7 @@ class ConstWidget {
                             style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
                                   color:
-                                  AppColors.primaryColor.withOpacity(0.80),
+                                      AppColors.primaryColor.withOpacity(0.80),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
                             ),
@@ -432,10 +418,7 @@ class ConstWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -502,10 +485,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -534,10 +514,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -578,10 +555,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -610,10 +584,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -654,10 +625,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -686,10 +654,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -730,10 +695,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -749,8 +711,10 @@ class ConstWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      InkWell(onTap: () {
-                      },
+                      InkWell(
+                        onTap: () {
+                          callBottomSheet(context);
+                        },
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
@@ -766,17 +730,17 @@ class ConstWidget {
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: TextStyle(
                                       color:
-                                      AppColors.textColor.withOpacity(0.80),
+                                          AppColors.textColor.withOpacity(0.80),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 )),
                             WidgetSpan(
                                 child: SvgPicture.asset(
-                                  ConstantImage.exp,
-                                  height: 12,
-                                  width: 12,
-                                  color: AppColors.btnColor,
-                                ))
+                              ConstantImage.exp,
+                              height: 12,
+                              width: 12,
+                              color: AppColors.btnColor,
+                            ))
                           ]),
                         ),
                       ),
@@ -784,10 +748,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -803,9 +764,10 @@ class ConstWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      InkWell(onTap: () {
-
-                      },
+                      InkWell(
+                        onTap: () {
+                          putBottomSheet(context);
+                        },
                         child: RichText(
                           text: TextSpan(children: [
                             TextSpan(
@@ -821,17 +783,17 @@ class ConstWidget {
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: TextStyle(
                                       color:
-                                      AppColors.textColor.withOpacity(0.80),
+                                          AppColors.textColor.withOpacity(0.80),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10),
                                 )),
                             WidgetSpan(
                                 child: SvgPicture.asset(
-                                  ConstantImage.exp,
-                                  height: 12,
-                                  width: 12,
-                                  color: AppColors.btnColor,
-                                ))
+                              ConstantImage.exp,
+                              height: 12,
+                              width: 12,
+                              color: AppColors.btnColor,
+                            ))
                           ]),
                         ),
                       ),
@@ -851,10 +813,7 @@ class ConstWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.45,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -883,10 +842,7 @@ class ConstWidget {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 0.40,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -919,6 +875,372 @@ class ConstWidget {
           ),
         ),
       ],
+    );
+  }
+
+  static callBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (BuildContext context, State) {
+          return Padding(
+            padding: EdgeInsets.only(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Wrap(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  color: AppColors.primaryColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.clear,
+                              color: Colors.white,
+                              size: 25,
+                            )),
+                      ),
+                      Text(
+                        "DATES FOR CALL OPTION",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SetAlert()));
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: AppColors.btnColor,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
+                                child: Center(
+                                    child: Text("Set Alert",
+                                        style: GoogleFonts.sourceSansPro(
+                                          textStyle: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ))),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+    );
+  }
+
+  static putBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (BuildContext context, State) {
+          return Padding(
+            padding: EdgeInsets.only(
+                top: 0,
+                right: 0,
+                left: 0,
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Wrap(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  color: AppColors.primaryColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.clear,
+                              color: Colors.white,
+                              size: 25,
+                            )),
+                      ),
+                      Text(
+                        "DATES FOR PUT OPTION",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SetAlert()));
+                            },
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: AppColors.btnColor,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14.0),
+                                child: Center(
+                                    child: Text("Set Alert",
+                                        style: GoogleFonts.sourceSansPro(
+                                          textStyle: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ))),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "02 Oct 2022",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: AppColors.btnColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              child: Center(
+                                  child: Text("Set Alert",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),
+                                      ))),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
     );
   }
 }

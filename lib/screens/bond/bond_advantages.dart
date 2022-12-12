@@ -1029,10 +1029,10 @@ class Triangle extends CustomClipper<Path> {
     final y = size.height;
 
     path.moveTo(0, y / 2);
-    path.lineTo(20, y);
+    path.lineTo(16, y);
     path.lineTo(x, y);
     path.lineTo(x, 0);
-    path.lineTo(20, 0);
+    path.lineTo(16, 0);
     path.close();
 
     return path;

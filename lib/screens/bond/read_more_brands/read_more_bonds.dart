@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
+import 'package:trust_money/screens/bond/ipo/buy_ipo_bonds/nonipo_buy_bonds.dart';
 import 'dart:math' as math;
 import '../../../utils/app_bar.dart';
 import '../../../utils/colorsConstant.dart';
 import '../../../utils/images.dart';
-import '../../home/home_page.dart';
+import '../../../utils/sharedPreference.dart';
+import '../../home/custom_listtile.dart';
+import '../../news_and_insights/explore.dart';
 import '../common_widget.dart';
 import '../ipo/buy_ipo_bonds/buy_ipo_bond.dart';
 import '../ipo/buy_ipo_bonds/constWidget.dart';
@@ -28,6 +31,23 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     "Use of Proceeds: Augmentation of tier-i capital to strengthen its capital adequacy and to enhance long-term resources.",
     "It is rated A- by IND with STABLE outlook.",
   ];
+
+  bool userIsLoggedIn = false;
+
+  getLoggedInState() async {
+    await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
+      setState(() {
+        userIsLoggedIn = value!;
+        print("====00001 $userIsLoggedIn");
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getLoggedInState();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -258,29 +278,6 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   height: 25,
-                  //   decoration: const BoxDecoration(
-                  //       borderRadius: BorderRadius.only(
-                  //           bottomRight: Radius.circular(10),
-                  //           topRight: Radius.circular(10)),
-                  //       color: AppColors.textColor),
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  //     child: Center(
-                  //       child: Text(
-                  //         "Eligible Investors*",
-                  //         style: GoogleFonts.sourceSansPro(
-                  //           textStyle: const TextStyle(
-                  //             color: Colors.white,
-                  //             fontWeight: FontWeight.bold,
-                  //             fontSize: 10,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   const SizedBox(
                     width: 10,
                   ),
@@ -405,7 +402,9 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           ),
           Visibility(
             child: widget.isIPO
-                ? ConstWidget.keyPointsConsider(context,)
+                ? ConstWidget.keyPointsConsider(
+                    context,
+                  )
                 : ConstWidget.keyPoints(context),
           ),
           const SizedBox(
@@ -538,7 +537,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         InkWell(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => BuyIPOBond()));
+                context, MaterialPageRoute(builder: (context) => BuyIPOBond(isNonIPO: widget.isIPO,)));
           },
           child: Center(
             child: Container(
@@ -625,47 +624,20 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         ),
         Visibility(
             visible: widget.isIPO,
-            child: CommonWidget.investmentCalculator(false)),
+            child: BuyNonIpoBonds.nonIPOInvestCalculator(false, userIsLoggedIn)),
         const SizedBox(
           height: 25,
         ),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => BuyIPOBond()));
-          },
-          child: Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              height: 55,
+        Visibility(
+          visible: !widget.isIPO,
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BuyIPOBond(isNonIPO: widget.isIPO,)));
+            },
+            child: ViewAllWidget(
+              title: 'Buy this BOND now!',
               width: 250,
-              decoration: const BoxDecoration(
-                color: Color(0xffEC515F),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    bottomLeft: Radius.circular(50)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Buy this BOND now",
-                    style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 20,
-                  )
-                ],
-              ),
             ),
           ),
         ),

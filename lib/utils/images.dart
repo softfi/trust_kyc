@@ -64,6 +64,7 @@ class ConstantImage {
   static const String bank = 'assets/images/bank.png';
   static const String demat = 'assets/images/demat.png';
   static const String adhar = 'assets/images/adhar.png';
+  static const String orderImg = 'assets/images/order_img.png';
 
   // gif
   static const String error = 'assets/images/error.gif';
