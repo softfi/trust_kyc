@@ -33,6 +33,26 @@ class AboutUs extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Text("Trust Securities Services is the Non-Institutional Clientele vertical of one of India's leading full-service financial houses, TRUST Group.",style: GoogleFonts.sourceSansPro(
+                textStyle: TextStyle(
+                  height: 1.5,
+                  color: Color(0xff22263D),
+                  fontSize: 16
+                )
+              )),
+            ) ,
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Text("Under the parentage and market leadership of TRUST Group, Trust Securities services was incorporated in 2015 to serve as a 'one stop shop for financial products' across ticket sizes and client genre. We wear the genesis of Trust Group as our emblem of pride, translating over 15 years of experience and a multitude of accolades to our name; we assure perennial partnerships and high value addition, with you, for you. As a proactive debt specialist pioneering the Indian DCM market, Trust Securities services is present across the value chain with direct access to a plethora of debt, quasi-debt and quasi-equity products.",style: GoogleFonts.sourceSansPro(
+                textStyle: TextStyle(
+                  color: Color(0xff9199A1),
+                  fontSize: 16
+                )
+              )),
+            ) ,
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Center(
@@ -49,7 +69,7 @@ class AboutUs extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
-                "Why We Are Starting Our Company?",
+                "Our Company",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -64,7 +84,7 @@ class AboutUs extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "We are a TRUSTed partner and innovator having proficiency across a repertoire of Fixed Income services encapsulating debt fund raising needs. From arranging to end execution of primary issuances to facilitation and through secondary market deliveries, we service all denominations suited to whole investment quantum - from retail to corporate.",
                 style: GoogleFonts.sourceSansPro(
                   textStyle: const TextStyle(
                     color: Color(0xff22263D),
@@ -95,7 +115,7 @@ class AboutUs extends StatelessWidget {
                 children: [
                   Container(
                     child: Text(
-                      "CORE VALUES",
+                      "We Are Trust",
                       style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
@@ -109,7 +129,7 @@ class AboutUs extends StatelessWidget {
                   ),
                   Container(
                     child: Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      "Comprehensively equipped with rich experience, a seasoned managerial team, insightful investment advisory and holistic pan India reach, Trust Securities services aims to be your go-to investment house for all your fixed income needs.",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                           color: Color(0xff22263D),
@@ -350,7 +370,7 @@ class AboutUs extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\nLorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
                         color: Color(0xff22263D),
@@ -366,7 +386,7 @@ class AboutUs extends StatelessWidget {
               height: 30,
             ),
             Center(
-              child: Text("OUR LEADERSHIP",
+              child: Text("OUR Team",
                   style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
                         color: Color(0xff22263D),
@@ -400,20 +420,20 @@ class AboutUs extends StatelessWidget {
               child: SizedBox(
                 height: 550,
                 child: PageView(
+                  
                   controller: pageviewController,
                   reverse: true,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 450,
                           child: Image.asset(ConstantImage.aboutUs_pageView1),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                       
                         Text(
-                          "Hunter Kilos",
+                          "PRANAV INAMDAR" ,
                           style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
                                 color: Color(0xff000000),
@@ -421,26 +441,27 @@ class AboutUs extends StatelessWidget {
                                 fontSize: 22),
                           ),
                         ),
-                        Text(
-                          "Co-Founder",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xffA5A5A5),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16),
-                          ),
-                        )
+                        // Text(
+                        //   "Co-Founder",
+                        //   style: GoogleFonts.quicksand(
+                        //     textStyle: const TextStyle(
+                        //         color: Color(0xffA5A5A5),
+                        //         fontWeight: FontWeight.w500,
+                        //         fontSize: 16),
+                        //   ),
+                        // )
                       ],
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 450,
                           child: Image.asset(ConstantImage.aboutUs_pageView2),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
                         Text(
                           "Hunter Kilos",
                           style: GoogleFonts.quicksand(
@@ -462,14 +483,15 @@ class AboutUs extends StatelessWidget {
                       ],
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                           height: 450,
                           child: Image.asset(ConstantImage.aboutUs_pageView3),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
                         Text(
                           "Hunter Kilos",
                           style: GoogleFonts.quicksand(

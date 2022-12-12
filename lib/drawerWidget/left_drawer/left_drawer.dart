@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/drawerWidget/left_drawer/privacy_policy.dart';
 import 'package:trust_money/screens/about_us/about_us.dart';
 import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/screens/contactUs/contact_us.dart';
@@ -9,9 +10,9 @@ import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
-import '../screens/bond/buying_bonds.dart';
-import '../screens/bond/collection_of_bonds.dart';
-import '../screens/bond/learn_bonds/learn_bond.dart';
+import '../../screens/bond/buying_bonds.dart';
+import '../../screens/bond/collection_of_bonds.dart';
+import '../../screens/bond/learn_bonds/learn_bond.dart';
 
 var bg_color = Colors.white;
 var divider_color = AppColors.textColor;
@@ -748,6 +749,47 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                           builder: (context) => FAQs()));
                                 },
                                 child: Text("FAQs",
+                                    style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            color: Color(0xff22263D),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600))),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 19),
+                          child: Divider(
+                            color: divider_color,
+                            thickness: 1.2,
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Theme(
+                          data: Theme.of(context)
+                              .copyWith(dividerColor: Colors.transparent),
+                          child: ListTileTheme(
+                            contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15),
+                            dense: true,
+                            horizontalTitleGap: .0,
+                            minLeadingWidth: 0,
+                            child: ExpansionTile(
+                              iconColor: Colors.black,
+                              collapsedIconColor: Colors.black,
+                              textColor: text_color,
+                              title: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PrivacyPolicy()));
+                                },
+                                child: Text("Privacy Policy",
                                     style: GoogleFonts.quicksand(
                                         textStyle: const TextStyle(
                                             color: Color(0xff22263D),
