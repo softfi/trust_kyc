@@ -26,9 +26,9 @@ class _LearnBondState extends State<LearnBond> {
       appBar: AppToolbar.appBar(
           "LEARN, FROM BOND,TRUST BOND",
           const SizedBox(
-            height: 50,
+            height: 40,
           ),
-          const SizedBox(height: 50)),
+          const SizedBox(height: 40)),
       body: SingleChildScrollView(
         child: Column(
           children: [

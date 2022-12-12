@@ -49,10 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var width = MediaQuery.of(context).size.width;
     return Container(
       color: const Color(0xffE59AA2),
       child: SafeArea(
@@ -81,47 +78,48 @@ class _HomePageState extends State<HomePage> {
                 actions: [
                   userIsLoggedIn == null
                       ? InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUp()));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 11.0, bottom: 11, right: 11),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
-                              child: Text(
-                                "Sign Up/In",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                    color: AppColors.textColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUp()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 11.0, bottom: 11, right: 11),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Text(
+                                    "Sign Up/In",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                        color: AppColors.textColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ))
+                          ))
                       : IconButton(
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openEndDrawer();
-                      },
-                      icon: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape:BoxShape.circle
-                          ),
-                          child: const Icon(Icons.person,color: Color(0xffE59AA2),)))
+                          onPressed: () {
+                            _scaffoldKey.currentState?.openEndDrawer();
+                          },
+                          icon: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white, shape: BoxShape.circle),
+                              child: const Icon(
+                                Icons.person,
+                                color: Color(0xffE59AA2),
+                              )))
                 ],
               ),
               SliverToBoxAdapter(
@@ -188,15 +186,12 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 12.0),
                                 child: SizedBox(
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width,
+                                  width: MediaQuery.of(context).size.width,
                                   child: Stack(
                                     children: [
                                       Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text("Hello I am ",
                                               style: GoogleFonts.quicksand(
@@ -220,18 +215,18 @@ class _HomePageState extends State<HomePage> {
                                                   style: GoogleFonts.quicksand(
                                                     textStyle: TextStyle(
                                                       color:
-                                                      AppColors.textColor,
+                                                          AppColors.textColor,
                                                       fontWeight:
-                                                      FontWeight.bold,
+                                                          FontWeight.bold,
                                                       fontSize: 26,
                                                       shadows: <Shadow>[
                                                         Shadow(
                                                           blurRadius: 11,
                                                           offset: Offset(0, 3),
                                                           color:
-                                                          Color(0x00000029)
-                                                              .withOpacity(
-                                                              0.19),
+                                                              Color(0x00000029)
+                                                                  .withOpacity(
+                                                                      0.19),
                                                         ),
                                                       ],
                                                     ),
@@ -241,14 +236,14 @@ class _HomePageState extends State<HomePage> {
                                                     top: 4.0),
                                                 child: Container(
                                                   decoration:
-                                                  BoxDecoration(boxShadow: [
+                                                      BoxDecoration(boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
                                                           .withOpacity(0.11),
                                                       spreadRadius: 5,
                                                       blurRadius: 3,
                                                       offset:
-                                                      const Offset(0, 3),
+                                                          const Offset(0, 3),
                                                     ),
                                                   ], color: Colors.transparent),
                                                   child: SvgPicture.asset(
@@ -275,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                                               height: 20,
                                               color: Colors.white,
                                               alignment:
-                                              const Alignment(-0.62, 1),
+                                                  const Alignment(-0.62, 1),
                                               child: const SizedBox(
                                                 width: 20,
                                                 height: 60,
@@ -292,24 +287,22 @@ class _HomePageState extends State<HomePage> {
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
-                                            BorderRadius.circular(13),
+                                                BorderRadius.circular(13),
                                           ),
                                           child: Center(
                                               child: Padding(
-                                                padding: const EdgeInsets
-                                                    .symmetric(
-                                                    horizontal: 12.0),
-                                                child: Text(
-                                                  "( Naam to suna hoga! )",
-                                                  style: GoogleFonts.quicksand(
-                                                      textStyle: const TextStyle(
-                                                          color: Color(
-                                                              0xff22263D),
-                                                          fontSize: 13,
-                                                          fontWeight:
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 12.0),
+                                            child: Text(
+                                              "( Naam to suna hoga! )",
+                                              style: GoogleFonts.quicksand(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xff22263D),
+                                                      fontSize: 13,
+                                                      fontWeight:
                                                           FontWeight.w500)),
-                                                ),
-                                              )),
+                                            ),
+                                          )),
                                         ),
                                       ),
                                     ],
@@ -359,14 +352,14 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(50)),
                                   child:
-                                  Text("Let’s find the right BOND for you",
-                                      style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                          color: Color(0xff22263D),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      )),
+                                      Text("Let’s find the right BOND for you",
+                                          style: GoogleFonts.quicksand(
+                                            textStyle: const TextStyle(
+                                              color: Color(0xff22263D),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                          )),
                                 ),
                               ),
                               const SizedBox(
@@ -400,10 +393,10 @@ class _HomePageState extends State<HomePage> {
                                         filled: true,
                                         border: InputBorder.none,
                                         contentPadding:
-                                        const EdgeInsets.symmetric(
-                                            vertical: 20),
+                                            const EdgeInsets.symmetric(
+                                                vertical: 20),
                                         hintText:
-                                        "Bond name, issuer and bond type",
+                                            "Bond name, issuer and bond type",
                                         hintStyle: GoogleFonts.sourceSansPro(
                                           textStyle: const TextStyle(
                                               color: Color(0xff1D2B84),
@@ -422,14 +415,13 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             child: Center(
                                                 child: Text(
-                                                  "Search",
-                                                  style: GoogleFonts
-                                                      .sourceSansPro(
-                                                    textStyle: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15),
-                                                  ),
-                                                )),
+                                              "Search",
+                                              style: GoogleFonts.sourceSansPro(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15),
+                                              ),
+                                            )),
                                           ),
                                         )),
                                   ),
@@ -468,24 +460,20 @@ class _HomePageState extends State<HomePage> {
                                                 : Colors.white),
                                         child: Center(
                                             child: Padding(
-                                              padding: const EdgeInsets
-                                                  .symmetric(
-                                                  horizontal: 12.0),
-                                              child: Text(
-                                                "Current IPOs",
-                                                style: GoogleFonts
-                                                    .sourceSansPro(
-                                                  textStyle: TextStyle(
-                                                      color: currentIPOs == 1
-                                                          ? Colors.white
-                                                          : const Color(
-                                                          0xff22263D),
-                                                      fontWeight: FontWeight
-                                                          .w500,
-                                                      fontSize: 13),
-                                                ),
-                                              ),
-                                            )),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0),
+                                          child: Text(
+                                            "Current IPOs",
+                                            style: GoogleFonts.sourceSansPro(
+                                              textStyle: TextStyle(
+                                                  color: currentIPOs == 1
+                                                      ? Colors.white
+                                                      : const Color(0xff22263D),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 13),
+                                            ),
+                                          ),
+                                        )),
                                       ),
                                     ),
                                     InkWell(
@@ -509,24 +497,20 @@ class _HomePageState extends State<HomePage> {
                                                 : Colors.white),
                                         child: Center(
                                             child: Padding(
-                                              padding: const EdgeInsets
-                                                  .symmetric(
-                                                  horizontal: 12.0),
-                                              child: Text(
-                                                "Bonds in Spotlight",
-                                                style: GoogleFonts
-                                                    .sourceSansPro(
-                                                  textStyle: TextStyle(
-                                                      color: currentIPOs == 2
-                                                          ? Colors.white
-                                                          : const Color(
-                                                          0xff22263D),
-                                                      fontWeight: FontWeight
-                                                          .w500,
-                                                      fontSize: 13),
-                                                ),
-                                              ),
-                                            )),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0),
+                                          child: Text(
+                                            "Bonds in Spotlight",
+                                            style: GoogleFonts.sourceSansPro(
+                                              textStyle: TextStyle(
+                                                  color: currentIPOs == 2
+                                                      ? Colors.white
+                                                      : const Color(0xff22263D),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 13),
+                                            ),
+                                          ),
+                                        )),
                                       ),
                                     ),
                                   ],
@@ -562,7 +546,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                          const ReadBonds()));
+                                              const ReadBonds()));
                                 },
                                 child: Align(
                                   alignment: Alignment.topRight,
@@ -593,7 +577,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 12.0),
-                                child: ViewAllWidget(title: 'View All', width: 150),
+                                child: ViewAllWidget(
+                                    title: 'View All', width: 150),
                               ),
                               const SizedBox(
                                 height: 30,
@@ -654,5 +639,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
