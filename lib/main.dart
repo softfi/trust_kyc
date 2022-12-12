@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: MyPage(),
       theme: ThemeData(
+
         appBarTheme: const AppBarTheme(
           brightness: Brightness.dark,
         ),
