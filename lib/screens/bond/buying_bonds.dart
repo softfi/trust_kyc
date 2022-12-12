@@ -1459,7 +1459,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                       horizontal: 15.0, vertical: 25),
                   child: Text(
                     "Your Investment Calculator",
-                    style: GoogleFonts.sourceSansPro(
+                    style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                           color: AppColors.primaryColor,
                           fontWeight: FontWeight.w700,

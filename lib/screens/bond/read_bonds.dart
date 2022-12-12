@@ -219,8 +219,9 @@ class _ReadBondsState extends State<ReadBonds> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0,),
             child: Container(
+              padding: EdgeInsets.only(left: 8),
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
                   color: Color(0x29000000),
@@ -251,24 +252,33 @@ class _ReadBondsState extends State<ReadBonds> {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  "M",
-                                  style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                      color: Color(0xff22263D),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22,
-                                    ),
+                                Container(
+                                  height: 50,width: 50,
+                                  child:Image.asset((ConstantImage.orderImg),fit: BoxFit.cover,),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    // image: DecorationImage(image: AssetImage(ConstantImage.collection_container_bg))
                                   ),
-                                ),
+                                ) ,
+                                // Text(
+                                //   "M",
+                                //   style: GoogleFonts.sourceSansPro(
+                                //     textStyle: const TextStyle(
+                                //       color: Color(0xff22263D),
+                                //       fontWeight: FontWeight.bold,
+                                //       fontSize: 22,
+                                //     ),
+                                //   ),
+                                // ),
                                 const SizedBox(
                                   width: 15,
                                 ),
                                 SizedBox(
-                                  width: 260,
+                                  width: MediaQuery.of(context).size.width/2,
                                   child: Text("${data[index][0]}",
+                                      maxLines: 2,
                                       softWrap: true,
-                                      style: GoogleFonts.sourceSansPro(
+                                      style: GoogleFonts.quicksand(
                                         textStyle: const TextStyle(
                                           color: Color(0xff22263D),
                                           fontWeight: FontWeight.bold,
@@ -337,7 +347,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                       color: Color(0xff1D2B84),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 13),
+                                                      fontSize: 12),
                                                 ),
                                               ),
                                               const SizedBox(
@@ -351,7 +361,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                       color: Color(0xffFF405A),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 15),
+                                                      fontSize: 14),
                                                 ),
                                               ),
                                             ],
@@ -367,7 +377,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 textStyle: const TextStyle(
                                                     color: Color(0xff1D2B84),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 13),
+                                                    fontSize: 12),
                                               ),
                                             ),
                                             const SizedBox(
@@ -379,7 +389,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15),
+                                                    fontSize: 14),
                                               ),
                                             ),
                                           ],
@@ -415,7 +425,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                       color: Color(0xff1D2B84),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 13),
+                                                      fontSize: 12),
                                                 ),
                                               ),
                                               const SizedBox(
@@ -429,7 +439,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                       color: Color(0xffFF405A),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 15),
+                                                      fontSize: 14),
                                                 ),
                                               ),
                                             ],
@@ -445,7 +455,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 textStyle: const TextStyle(
                                                     color: Color(0xff1D2B84),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 13),
+                                                    fontSize: 12),
                                               ),
                                             ),
                                             const SizedBox(
@@ -457,7 +467,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 15),
+                                                    fontSize: 14),
                                               ),
                                             ),
                                           ],
@@ -515,14 +525,15 @@ class _ReadBondsState extends State<ReadBonds> {
                                       blurRadius: 5.0,
                                     ),
                                   ],
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xffEC515F),
-                                      Color(0xffC4414D),
-                                    ],
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                  ),
+                                  color: Color(0xffFF405A)
+                                  // gradient: const LinearGradient(
+                                  //   colors: [
+                                  //     Color(0xffEC515F),
+                                  //     Color(0xffC4414D),
+                                  //   ],
+                                  //   begin: Alignment.centerRight,
+                                  //   end: Alignment.centerLeft,
+                                  // ),
                                 ),
                                 child: Center(
                                     child: Padding(
