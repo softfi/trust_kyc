@@ -36,7 +36,7 @@ class TermsConditons extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
             Text("Trust Securities Services is the Non-Institutional Clientele vertical of one of India's leading full-service financial houses, TRUST Group.\n ",style: GoogleFonts.sourceSansPro(
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 height: 1.5,
                   fontSize: 16,
                   color: Color(0xff22263D)
