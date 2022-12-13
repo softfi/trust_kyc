@@ -91,7 +91,7 @@ class ViewAllEditors extends StatelessWidget {
                                 textStyle: const TextStyle(
                                     color: AppColors.textColor,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14)),
+                                    fontSize: 15)),
                           ),
                           const SizedBox(
                             height: 5,
@@ -103,7 +103,7 @@ class ViewAllEditors extends StatelessWidget {
                                 style: GoogleFonts.sourceSansPro(
                                     textStyle: const TextStyle(
                                         color: AppColors.btnColor,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: 12)),
                               ),
                               const SizedBox(
@@ -123,7 +123,7 @@ class ViewAllEditors extends StatelessWidget {
                                         style: GoogleFonts.sourceSansPro(
                                             textStyle: const TextStyle(
                                                 color: AppColors.primaryColor,
-                                                fontWeight: FontWeight.w400,
+                                                fontWeight: FontWeight.w500,
                                                 fontSize: 9)),
                                       ),
                                     ),

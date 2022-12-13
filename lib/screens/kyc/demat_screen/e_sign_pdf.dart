@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
-
-import '../../repositories/demat_repository.dart';
 
 class ESignPDF extends StatefulWidget {
   const ESignPDF({Key? key}) : super(key: key);

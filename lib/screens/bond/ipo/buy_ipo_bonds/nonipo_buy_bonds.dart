@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -895,7 +896,10 @@ class BuyNonIpoBonds {
                   ),
                 ),
                 Container(
-                  color: AppColors.textColor,
+                  decoration: BoxDecoration(
+                      color: AppColors.textColor,
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10))
+                  ),
                   child: ExpansionTile(
                     onExpansionChanged: (val){
                       userIsLoggedIn;
@@ -923,175 +927,355 @@ class BuyNonIpoBonds {
                         )
                       ],
                     ),
+
                     trailing: const SizedBox(),
                     children: <Widget>[
-                      ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                          title: Column(
-                            children: [
-                              ListView.builder(
-                                itemCount: 5,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                      padding:
-                                      const EdgeInsets.symmetric(vertical: 2.0),
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(5),
-                                              bottomRight: Radius.circular(5)),
+                      Column(
+                        children: [
+                          const DottedLine(
+                            direction: Axis.horizontal,
+                            // lineLength: double.infinity,
+                            lineThickness: 1,
+                            dashLength: 5.0,
+                            dashColor: Colors.white,
+                            dashGapLength: 3.0,
+                            dashGapColor: Colors.transparent,
+                          ),
+                          SizedBox(height: 10,),
+                          ListTile(
+                              contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                              title: Column(
+                                children: [
+                                  Container(
+                                      height: 60,
+                                      decoration:const BoxDecoration(
                                           color: Colors.white,
-                                        ),
-                                        child: ExpansionTile(
-                                          backgroundColor: Colors.white,
-                                          title: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                          borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8))
+                                      ),
+                                      child:Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          const SizedBox(width: 12,),
+                                          Text("12/05/2022",style: GoogleFonts.sourceSansPro(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Color(0xff22263D)
+                                              )
+                                          ),),
+                                          SizedBox(width: 45,),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                children: [
-                                                  Text("Interest",
-                                                      style:
-                                                      GoogleFonts.sourceSansPro(
-                                                        textStyle: const TextStyle(
-                                                          color: Color(
-                                                              0xff22263D),
-                                                          fontWeight:
-                                                          FontWeight.w500,
-                                                          fontSize: 13,
-                                                        ),
-                                                      )),
-                                                  Text("₹ 88,862.4",
-                                                      style:
-                                                      GoogleFonts.sourceSansPro(
-                                                        textStyle: const TextStyle(
-                                                          color: Color(
-                                                              0xff22263D),
-                                                          fontWeight:
-                                                          FontWeight.w500,
-                                                          fontSize: 13,
-                                                        ),
-                                                      )),
-                                                ],
-                                              ),
-                                              Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                children: [
-                                                  Text("Dividend",
-                                                      style:
-                                                      GoogleFonts.sourceSansPro(
-                                                        textStyle: const TextStyle(
-                                                          color: Color(
-                                                              0xff22263D),
-                                                          fontWeight:
-                                                          FontWeight.w500,
-                                                          fontSize: 13,
-                                                        ),
-                                                      )),
-                                                  Text("₹ 27,542.2",
-                                                      style:
-                                                      GoogleFonts.sourceSansPro(
-                                                        textStyle: const TextStyle(
-                                                          color: Color(
-                                                              0xff22263D),
-                                                          fontWeight:
-                                                          FontWeight.w500,
-                                                          fontSize: 13,
-                                                        ),
-                                                      )),
-                                                ],
-                                              ),
+                                              Text("Your investment as of today",style: GoogleFonts.sourceSansPro(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 13,
+                                                      color: Color(0xff22263D)
+                                                  )
+                                              ),),
+                                              Text("₹ 21,20,202",style: GoogleFonts.sourceSansPro(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Color(0xff22263D)
+                                                  )
+                                              ),)
                                             ],
-                                          ),
-                                          leading: Text("12 / 05/ 2022",
-                                              style: GoogleFonts.sourceSansPro(
-                                                textStyle: const TextStyle(
-                                                  color: Color(0xff22263D),
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 13,
-                                                ),
-                                              )),
-                                          trailing: _customTileExpanded
-                                              ? const Icon(
-                                            Icons.keyboard_arrow_up,
-                                            color: AppColors.primaryColor,
-                                            size: 25,
                                           )
-                                              : const Icon(
-                                            Icons.keyboard_arrow_down,
-                                            color: AppColors.primaryColor,
-                                            size: 25,
-                                          ),
-                                          children: <Widget>[
-                                            ListView.builder(
-                                                itemCount: 5,
-                                                shrinkWrap: true,
-                                                physics:
-                                                const NeverScrollableScrollPhysics(),
-                                                itemBuilder: (context, index) {
-                                                  return ListTile(
-                                                    leading: Text(
-                                                        "12 / 05 / 2023",
-                                                        style: GoogleFonts
-                                                            .sourceSansPro(
-                                                          textStyle:
-                                                          const TextStyle(
-                                                            color:
-                                                            Color(0xff22263D),
-                                                            fontWeight:
-                                                            FontWeight.w500,
-                                                            fontSize: 13,
-                                                          ),
-                                                        )),
-                                                    title: Row(
-                                                      mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                      children: [
-                                                        Text("₹ 854.50",
-                                                            style: GoogleFonts
-                                                                .sourceSansPro(
-                                                              textStyle:
-                                                              const TextStyle(
-                                                                color: Color(
-                                                                    0xff22263D),
-                                                                fontWeight:
-                                                                FontWeight.w500,
-                                                                fontSize: 13,
-                                                              ),
-                                                            )),
-                                                        Text("₹ 276.86",
-                                                            style: GoogleFonts
-                                                                .sourceSansPro(
-                                                              textStyle:
-                                                              const TextStyle(
-                                                                color: Color(
-                                                                    0xff22263D),
-                                                                fontWeight:
-                                                                FontWeight.w500,
-                                                                fontSize: 13,
-                                                              ),
-                                                            )),
-                                                        Text("   ")
-                                                      ],
+                                        ],
+                                      )
+                                  ),
+
+                                  SizedBox(height: 2,),
+
+                                  ListView.builder(
+                                    itemCount: 5,
+                                    shrinkWrap: true,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(vertical: 2.0),
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(8),
+                                                // bottomLeft: Radius.circular(8),bottomRight: Radius.circular(8)
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                            child: ExpansionTile(
+                                              // backgroundColor: Colors.transparent,
+                                              title: Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Container(
+                                                    color:Color(0xffF2FCFD),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text("Interest",
+                                                              style:
+                                                              GoogleFonts.sourceSansPro(
+                                                                textStyle: const TextStyle(
+                                                                  color: Color(
+                                                                      0xff22263D),
+                                                                  fontWeight:
+                                                                  FontWeight.w500,
+                                                                  fontSize: 13,
+                                                                ),
+                                                              )),
+                                                          Text("₹ 88,862.4",
+                                                              style:
+                                                              GoogleFonts.sourceSansPro(
+                                                                textStyle: const TextStyle(
+                                                                  color: Color(
+                                                                      0xff22263D),
+                                                                  fontWeight:
+                                                                  FontWeight.w500,
+                                                                  fontSize: 13,
+                                                                ),
+                                                              )),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  );
-                                                }),
-                                          ],
-                                          onExpansionChanged: (bool expanded) {
-                                            _customTileExpanded = expanded;
-                                          },
-                                        ),
-                                      ));
-                                },
+                                                  ),
+                                                  // VerticalDivider(color: Colors.black,thickness: 2,),
+
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        width: 2,color: Color(0xff00000029), height: 50,
+                                                      ) ,
+                                                      Container(
+                                                        color: Color(0xffFEF4F4),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text("Dividend",
+                                                                  style:
+                                                                  GoogleFonts.sourceSansPro(
+                                                                    textStyle: const TextStyle(
+                                                                      color: Color(
+                                                                          0xff22263D),
+                                                                      fontWeight:
+                                                                      FontWeight.w500,
+                                                                      fontSize: 13,
+                                                                    ),
+                                                                  )),
+                                                              Text("₹ 27,542.2",
+                                                                  style:
+                                                                  GoogleFonts.sourceSansPro(
+                                                                    textStyle: const TextStyle(
+                                                                      color: Color(
+                                                                          0xff22263D),
+                                                                      fontWeight:
+                                                                      FontWeight.w500,
+                                                                      fontSize: 13,
+                                                                    ),
+                                                                  )),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: 2,color: Color(0xff00000029), height: 50,
+                                                      ) ,
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                              leading: Text("12 / 05/ 2022",
+                                                  style: GoogleFonts.sourceSansPro(
+                                                    textStyle: const TextStyle(
+                                                      color: Color(0xff22263D),
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 13,
+                                                    ),
+                                                  )),
+                                              trailing: _customTileExpanded
+                                                  ? const Icon(
+                                                Icons.keyboard_arrow_up,
+                                                color: AppColors.primaryColor,
+                                                size: 25,
+                                              )
+                                                  : const Icon(
+                                                Icons.keyboard_arrow_down,
+                                                color: AppColors.primaryColor,
+                                                size: 25,
+                                              ),
+                                              children: <Widget>[
+                                                Container(
+                                                  decoration:BoxDecoration(
+                                                      borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8))
+                                                  ),
+                                                  child: ListView.builder(
+                                                      itemCount: 5,
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                      itemBuilder: (context, index) {
+                                                        return ListTile(
+                                                          tileColor:(index %2==0)?Color(0xffF3F5F6):Colors.white,
+                                                          leading: Text(
+                                                              "12 / 05 / 2023",
+                                                              style: GoogleFonts
+                                                                  .sourceSansPro(
+                                                                textStyle:
+                                                                const TextStyle(
+                                                                  color:
+                                                                  Color(0xff22263D),
+                                                                  fontWeight:
+                                                                  FontWeight.w500,
+                                                                  fontSize: 16,
+                                                                ),
+                                                              )),
+                                                          title: Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                            children: [
+                                                              Text("₹ 854.50",
+                                                                  style: GoogleFonts
+                                                                      .sourceSansPro(
+                                                                    textStyle:
+                                                                    const TextStyle(
+                                                                      color: Color(
+                                                                          0xff22263D),
+                                                                      fontWeight:
+                                                                      FontWeight.w500,
+                                                                      fontSize: 16,
+                                                                    ),
+                                                                  )),
+                                                              Text("₹ 276.86",
+                                                                  style: GoogleFonts
+                                                                      .sourceSansPro(
+                                                                    textStyle:
+                                                                    const TextStyle(
+                                                                      color: Color(
+                                                                          0xff22263D),
+                                                                      fontWeight:
+                                                                      FontWeight.w500,
+                                                                      fontSize: 16,
+                                                                    ),
+                                                                  )),
+                                                              Text("   ")
+                                                            ],
+                                                          ),
+                                                        );
+                                                      }),
+                                                ),
+                                              ],
+                                              onExpansionChanged: (bool expanded) {
+                                                _customTileExpanded = expanded;
+                                              },
+                                            ),
+                                          ));
+                                    },
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                      SizedBox(height: 20,),
+                      DottedLine(
+                        direction: Axis.horizontal,
+                        // lineLength: double.infinity,
+                        lineThickness: 1,
+                        dashLength: 5.0,
+                        dashColor: Colors.white,
+                        dashGapLength: 3.0,
+                        dashGapColor: Colors.transparent,
+
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xff00C6D8),
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8))
                               ),
-                            ],
-                          )),
+                              padding: EdgeInsets.only(left: 15),
+                              height: 103,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Interest Earned",style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.normal
+                                      )
+                                  ),),
+                                  Text("₹ 4,44,312",style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                        fontSize: 20,
+                                        color:Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )
+                                  ),),
+                                  Text("( Yield at 7.97% p.a )",style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                          fontSize: 15,
+                                          color:Colors.white,
+                                          fontWeight: FontWeight.normal
+                                      )
+                                  ),)
+                                ],
+                              ),
+
+                            ),
+                          ),
+                          Container(child:  DottedLine(
+                            direction: Axis.vertical,
+                            lineLength: 103,
+                            lineThickness: 1,
+                            dashLength: 5.0,
+                            dashColor: Colors.white,
+                            dashGapLength: 3.0,
+                            dashGapColor: Colors.transparent,
+
+                          ),),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.only(left: 15),
+                              height: 103,
+                              color: Color(0xffFF405A),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Total Returns",style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.normal
+                                      )
+                                  ),),
+                                  Text("₹ 25,64,514",style: GoogleFonts.sourceSansPro(
+                                      textStyle: TextStyle(
+                                        fontSize: 20,
+                                        color:Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )
+                                  ),),
+                                ],
+                              ),
+
+                            ),
+                          ),
+                        ],
+                      ) ,
+
                     ],
                   ),
                 ),

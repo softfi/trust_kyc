@@ -248,47 +248,76 @@ class BuyIPOBond extends StatelessWidget {
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(
-            height: 30,
+            height: 16,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: Text(
-                  "M",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                    ),
-                  ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 60,
+                  width: 60,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: Image.asset(ConstantImage.orderImg),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Text("MAHINDRA & MAHINDRA FINANCIAL",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ))
-            ],
+                const SizedBox(
+                  width: 13,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  child: Text(
+                      isNonIPO
+                          ? "MAHINDRA & MAHINDRA FINANCIAL"
+                          : "CREDITACCESS GRAMEEN LIMITED",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      )),
+                )
+              ],
+            ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                isNonIPO
+                    ? Container(
+                        height: 35,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(12)),
+                            color: AppColors.greenColor),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Center(
+                            child: Text(
+                              "Returns Based On Gold Prices",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
                 const SizedBox(
-                  width: 40,
+                  width: 10,
                 ),
                 Container(
                   height: 35,
@@ -517,7 +546,11 @@ class BuyIPOBond extends StatelessWidget {
             height: 10,
           ),
           Visibility(
-              child: isNonIPO ? ConstWidget.keyPointsConsider(context,) : KeyPoints()),
+              child: isNonIPO
+                  ? ConstWidget.keyPointsConsider(
+                      context,
+                    )
+                  : KeyPoints()),
         ]),
       ],
     );

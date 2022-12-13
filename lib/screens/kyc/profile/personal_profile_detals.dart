@@ -17,32 +17,31 @@ import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:trust_money/bottom_sheets/personal_details_bottom_sheets.dart';
+import 'package:trust_money/api/url_constant.dart';
+import 'package:trust_money/model/address_proof_response_data.dart';
+import 'package:trust_money/model/city_responsse_data.dart';
 import 'package:trust_money/model/code_verification_response_data.dart';
+import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
+import 'package:trust_money/model/profession_response_data.dart';
+import 'package:trust_money/model/sendOtpEmailModel.dart';
+import 'package:trust_money/model/state_response_data.dart';
+import 'package:trust_money/repositories/login_repository.dart';
+import 'package:trust_money/repositories/profile_repository.dart';
+import 'package:trust_money/screens/animated_screens/complete_profile_animation.dart';
 import 'package:trust_money/screens/animated_screens/invalid_pan_animation.dart';
 import 'package:trust_money/screens/animated_screens/vedio_page.dart';
 import 'package:trust_money/screens/animated_screens/verify_email_id_animation.dart';
 import 'package:trust_money/screens/animated_screens/verify_pan_animation.dart';
-import 'package:trust_money/screens/bank_screen/bank_details.dart';
 import 'package:trust_money/screens/home/digilocker_page.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/images.dart';
+import 'package:trust_money/utils/strings.dart';
+import 'package:trust_money/utils/styles.dart';
 import 'package:video_player/video_player.dart';
-import '../../api/url_constant.dart';
-import '../../model/address_proof_response_data.dart';
-import '../../model/city_responsse_data.dart';
-import '../../model/get_digilocker_response_data.dart';
-import '../../model/get_personal_detail_response.dart';
-import '../../model/profession_response_data.dart';
-import '../../model/sendOtpEmailModel.dart';
-import '../../model/state_response_data.dart';
-import '../../repositories/login_repository.dart';
-import '../../repositories/profile_repository.dart';
-import '../../utils/colorsConstant.dart';
-import '../../utils/images.dart';
-import '../../utils/strings.dart';
-import '../../utils/styles.dart';
-import '../animated_screens/complete_profile_animation.dart';
-import '../../utils/sharedPreference.dart';
+
+import '../../../utils/sharedPreference.dart';
 
 class PersonalProfile extends StatefulWidget {
   final void Function()? onClick1;
@@ -9633,11 +9632,11 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                       firstName: getPersonalDetail!.firstname,
                                       lastName: getPersonalDetail!.lastname,
                                       addressLine1:
-                                          getPersonalDetail?.addressLine1,
+                                          getPersonalDetail!.addressLine1,
                                       addressLine2:
-                                          getPersonalDetail?.addressLine2,
+                                          getPersonalDetail!.addressLine2,
                                       addressLine3:
-                                          getPersonalDetail?.addressLine3,
+                                          getPersonalDetail!.addressLine3,
                                       addressZip: getPersonalDetail!.addressZip,
                                       maidenName:
                                           getPersonalDetail!.mothersMaidenName,
@@ -10006,7 +10005,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                       addressLine2:
                                           getPersonalDetail!.addressLine2,
                                       addressLine3:
-                                          getPersonalDetail?.addressLine3,
+                                          getPersonalDetail!.addressLine3,
                                       addressZip: getPersonalDetail!.addressZip,
                                       maidenName:
                                           getPersonalDetail!.mothersMaidenName,
@@ -10810,7 +10809,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                           addressLine2:
                                               addressLine2.text.toString(),
                                           addressLine3:
-                                              getPersonalDetail?.addressLine3,
+                                              getPersonalDetail!.addressLine3,
                                           addressZip:
                                               addressZip.text.toString(),
                                           maidenName: getPersonalDetail!
@@ -11277,7 +11276,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                       addressLine2:
                                           getPersonalDetail!.addressLine2,
                                       addressLine3:
-                                          getPersonalDetail?.addressLine3,
+                                          getPersonalDetail!.addressLine3,
                                       addressZip: getPersonalDetail!.addressZip,
                                       maidenName:
                                           getPersonalDetail!.mothersMaidenName,
@@ -11486,7 +11485,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                                         addressLine2:
                                             getPersonalDetail!.addressLine2,
                                         addressLine3:
-                                            getPersonalDetail?.addressLine3,
+                                            getPersonalDetail!.addressLine3,
                                         addressZip:
                                             getPersonalDetail!.addressZip,
                                         maidenName: maidenName.text.toString(),

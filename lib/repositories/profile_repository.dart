@@ -14,7 +14,7 @@ import '../model/code_verification_response_data.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/get_digilocker_response_data.dart';
 import '../model/get_pan_response_data.dart';
-import '../model/get_personal_detail_response.dart';
+import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/state_response_data.dart';
 import '../utils/sharedPreference.dart';
 import 'package:http_parser/http_parser.dart';

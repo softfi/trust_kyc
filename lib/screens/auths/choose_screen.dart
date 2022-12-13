@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/kyc/profile/my_profile.dart';
 import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/images.dart';
-import '../profile/my_profile.dart';
 
 class ChooseScreen extends StatefulWidget {
   const ChooseScreen({Key? key}) : super(key: key);

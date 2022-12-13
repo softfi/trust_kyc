@@ -104,6 +104,9 @@ class _NewsAndInsightsState extends State<NewsAndInsights> {
               title: 'Is Bonds Good Investment Compared With Mutual..',
               image: Image.asset(
                 ConstantImage.dummy_bond,
+                height: 115,
+                width: 122,
+                fit: BoxFit.fill,
               ),
               readText: 'Trading',
             ),

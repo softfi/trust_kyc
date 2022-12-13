@@ -6,12 +6,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/get_bank_detail_response_data.dart';
-import 'package:trust_money/screens/bank_screen/ifsc_code.dart';
+import 'package:trust_money/screens/kyc/bank_screen/ifsc_code.dart';
+import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
-import '../../model/get_ifsc_code_response_data.dart';
-import '../../repositories/bank_detail_repository.dart';
-import '../../utils/colorsConstant.dart';
-import '../../utils/images.dart';
+
+import '../../../model/get_ifsc_code_response_data.dart';
+import '../../../repositories/bank_detail_repository.dart';
+import '../../../utils/colorsConstant.dart';
 
 class BankAccounts extends StatefulWidget {
   const BankAccounts({

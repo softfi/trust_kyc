@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
+import 'package:trust_money/screens/kyc/profile/my_profile.dart';
+import 'package:trust_money/screens/kyc/profile/setting.dart';
 import 'package:trust_money/screens/order/my_order.dart';
-import 'package:trust_money/screens/profile/personal_profile_detals.dart';
-import 'package:trust_money/screens/profile/setting.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../screens/auths/choose_screen.dart';
-import '../screens/profile/my_profile.dart';
 import '../utils/sharedPreference.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -83,7 +83,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       await SharedPreferences.getInstance();
                   await preferences.clear();
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignUp()));
+                      MaterialPageRoute(builder: (context) => const SignIn()));
                 });
               },
               child: Text('Yes',

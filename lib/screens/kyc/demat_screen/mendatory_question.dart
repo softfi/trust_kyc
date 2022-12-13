@@ -10,12 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/model/born_dropdown_response_data.dart';
 import 'package:trust_money/model/wealth_dropdown_response_data.dart';
+import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
-
-import '../../repositories/demat_repository.dart';
 
 class MandatoryQuestion extends StatefulWidget {
   final void Function()? onClick1;
@@ -105,53 +104,39 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InkWell(
-              onTap: () {
-                //Navigator.pop(context);
-                setState(() {
-                  // dematDetails = false;
-                  // addNewDematAccounts = true;
-                  // existingDematAccountDetails = false;
-                  // isNewDemat = false;
-                  // isMandatory = false;
-                  // isSignInDemat = false;
-                  // isAddNominee = false;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 25,
-                    width: 70,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            bottomRight: Radius.circular(5)),
-                        color: AppColors.textColor),
-                    child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.highlight_remove,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "Close",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
-                  ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  height: 25,
+                  width: 70,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5)),
+                      color: AppColors.textColor),
+                  child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.highlight_remove,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "Close",
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
+                          ),
+                        ],
+                      )),
                 ),
               ),
             ),

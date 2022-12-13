@@ -9,11 +9,11 @@ import '../../utils/colorsConstant.dart';
 
 // late final TabController? _controller;
 var first_list = [
-  "Ulta Short Bonds",
+  "Ultra Short Term Bonds",
   "Highly Safe Bonds",
   "Tax Free Bonds",
   "Bonds for Senior Citizen",
-  "Satae Governmnet Guaranteed Bonds",
+  "State Governmnet Guaranteed Bonds",
   "Public Sector Bank Bonds"
 ];
 
@@ -115,7 +115,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
               ),
             ),
             Positioned(
-              bottom: 78,
+              bottom: 65,
               left: 10,
               child: Text(
                 "BOND, sirf aapake liye!",

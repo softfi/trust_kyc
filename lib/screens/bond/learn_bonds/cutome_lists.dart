@@ -85,13 +85,13 @@ class CustomTile extends StatelessWidget {
                       ConstantImage.arrow,
                       color: AppColors.primaryColor,
                       width: 50,
-                      height: 40,
+                      height: 35,
                       fit: BoxFit.fill,
                     )
                   ],
                 )),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.27,
+              width: MediaQuery.of(context).size.width * 0.25,
               child: Center(child: image),
             )
           ],

@@ -2,9 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-
-import '../../utils/colorsConstant.dart';
-import '../../utils/styles.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/styles.dart';
 
 class SearchIFSC extends StatefulWidget {
   const SearchIFSC({Key? key}) : super(key: key);

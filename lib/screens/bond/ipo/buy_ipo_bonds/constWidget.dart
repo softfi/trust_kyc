@@ -439,7 +439,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -466,7 +466,7 @@ class ConstWidget {
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
                     ),
@@ -506,7 +506,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -535,7 +535,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -576,7 +576,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -605,7 +605,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -646,7 +646,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -675,7 +675,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -722,7 +722,7 @@ class ConstWidget {
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: AppColors.textColor,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 15),
                                 )),
                             TextSpan(
@@ -775,7 +775,7 @@ class ConstWidget {
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: AppColors.textColor,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 15),
                                 )),
                             TextSpan(
@@ -834,7 +834,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),
@@ -863,7 +863,7 @@ class ConstWidget {
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
                       ),

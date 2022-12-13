@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
-import 'package:trust_money/utils/styles.dart';
 
 import '../../utils/app_bar.dart';
 import '../../utils/strings.dart';
@@ -98,7 +97,7 @@ class Disclaimer extends StatelessWidget {
                 "Governing Law",
                 style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
-                        color: Color(0xff9199A1),
+                        color: AppColors.textColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 18)),
               ),

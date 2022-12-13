@@ -1,55 +1,55 @@
 import 'dart:convert';
-
-// import 'package:get/get_connect.dart';
-
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get_connect/connect.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:trust_money/api/url_constant.dart';
-
-import '../model/get_personal_detail_response.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+import 'package:trust_money/api/trust_kyc_url.dart';
+import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../utils/sharedPreference.dart';
 
-
 class APiProvider extends GetConnect {
-
-  Future SignUp(String fname,String lname,String mobno,bool isResendOtp) async {
-    final response = await post(Uri.parse(SignUpUrl),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body:  jsonEncode(<String, dynamic>{
-        "fname": fname,
-        "lname": lname,
-        "mobile_number": mobno,
-        "resend_otp":isResendOtp
-      }),
-
-    ) ;
-
-    print("Here is response body" + response.body.toString());
+  personalDetail() async {
+    // try {
+    var token = await HelperFunctions.getToken();
+    var response =
+        await get(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token,
+    });
+    print("========21 ${response.statusCode}");
+    print("========21 $token");
+    print("========21 ${response.body}");
     if (response.statusCode == 200) {
-      return response;
-    }else{
-      return response;
+      GetPersonalDetailModel model =
+          GetPersonalDetailModel.fromJson(response.body);
+      debugPrint("========21 $model");
+      return model;
     }
+    // } catch (e) {
+    //   Get.showSnackbar(GetSnackBar(
+    //     title: e.toString(),
+    //   ));
+    // }
   }
 
-  Future enterOtp(String otp) async {
-    var api = Uri.parse(OtpVerifyUrl);
-    Map mapeddate = {
-      "otp": otp.toString(),
-    };
-    final response = await http.post(
-      api,
-      body: mapeddate,
-    );
-
-    print("Here is response body" + response.body.toString());
-    if (response.statusCode == 200) {
-      return response;
-    }
-  }
+// verifyEmail()async{
+//   var token = await HelperFunctions.getToken();
+//   try {
+//     var response = await get(TrustKycUrl.verifyEmail, headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//       'Authorization': 'API Key $token',
+//     },);
+//     if (response.statusCode == 200) {
+//       GetPersonalDetailModel model = getPersonalDetailModelFromJson(response.body);
+//       debugPrint("========21 $model");
+//       return model;
+//     }
+//   } catch (e) {
+//     Get.showSnackbar(GetSnackBar(
+//       title: e.toString(),
+//     ));
+//   }
+//
+// }
 
 }

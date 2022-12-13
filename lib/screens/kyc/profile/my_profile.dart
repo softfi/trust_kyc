@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
-import 'package:trust_money/screens/bank_screen/bank_details.dart';
-import 'package:trust_money/screens/demat_screen/demat.dart';
-import 'package:trust_money/screens/profile/personal_profile_detals.dart';
+import 'package:trust_money/screens/animated_screens/complete_bank_detail_animation.dart';
+import 'package:trust_money/screens/animated_screens/complete_profile_animation.dart';
+import 'package:trust_money/screens/kyc/bank_screen/bank_details.dart';
+import 'package:trust_money/screens/kyc/demat_screen/demat.dart';
+import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/my_personal_details.dart';
+import 'package:trust_money/screens/kyc/profile/personal_profile_detals.dart';
+import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
-import '../../utils/styles.dart';
-import '../animated_screens/complete_bank_detail_animation.dart';
-import '../animated_screens/complete_profile_animation.dart';
-import 'my_personal_details.dart';
+import 'package:trust_money/utils/styles.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -43,7 +45,22 @@ class _MyProfileState extends State<MyProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
+      appBar: AppToolbar.appBar(
+          "Profile",
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          IconButton(
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.transparent, shape: BoxShape.circle),
+                child: const Icon(Icons.person,
+                    size: 20, color: Colors.transparent)),
+            onPressed: () {},
+          )),
+      /* PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
           children: [
@@ -165,13 +182,10 @@ class _MyProfileState extends State<MyProfile> {
             ),
           ],
         ),
-      ),
+      ),*/
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Padding(
-              padding: const EdgeInsets.only(bottom: 35.0),
-              child: barLine ? orderTimeLine() : tabWidget()),
           Positioned(
             left: 0,
             bottom: 0,
@@ -187,7 +201,7 @@ class _MyProfileState extends State<MyProfile> {
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
                     geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
+                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
                   ),
                   child: Container(),
                 ),
@@ -209,13 +223,17 @@ class _MyProfileState extends State<MyProfile> {
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
                     geometry:
-                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
+                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
                   ),
                   child: Container(),
                 ),
               ),
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 35.0),
+              child: barLine ? orderTimeLine() : tabWidget()),
+
         ],
       ),
     );
@@ -378,7 +396,7 @@ class _MyProfileState extends State<MyProfile> {
                       await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProfileAnimation()));
+                              builder: (context) => ProfileAnimation()));
                       setState(() {
                         selectedIndex = 1;
                       });
@@ -552,7 +570,7 @@ class _MyProfileState extends State<MyProfile> {
                       await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProfileAnimation()));
+                              builder: (context) =>  ProfileAnimation()));
                       setState(() {
                         selectedIndex = 1;
                       });

@@ -5,18 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/model/all_demat_response_data.dart';
 import 'package:trust_money/model/get_demate_account_response_data.dart';
+import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/screens/animated_screens/existing_demat_animation.dart';
-import 'package:trust_money/screens/demat_screen/e_sign_pdf.dart';
-import 'package:trust_money/screens/demat_screen/mendatory_question.dart';
-import 'package:trust_money/screens/demat_screen/nominee.dart';
-import '../../repositories/demat_repository.dart';
-import '../../utils/colorsConstant.dart';
-import '../../utils/images.dart';
-import '../../utils/styles.dart';
-import '../../utils/sharedPreference.dart';
+import 'package:trust_money/screens/kyc/demat_screen/e_sign_pdf.dart';
+import 'package:trust_money/screens/kyc/demat_screen/mendatory_question.dart';
+import 'package:trust_money/screens/kyc/demat_screen/nominee.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/images.dart';
+import 'package:trust_money/utils/sharedPreference.dart';
+import 'package:trust_money/utils/styles.dart';
 
 class DematAccount extends StatefulWidget {
   DematAccount({Key? key}) : super(key: key);

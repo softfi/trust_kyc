@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
@@ -14,16 +15,6 @@ import 'package:video_player/video_player.dart';
 import 'bottom_navigation/bottom_navigation.dart';
 
 void main() async {
-  // ErrorWidget.builder = (FlutterErrorDetails details) =>
-  //     Material(
-  //       //color: Colors.green.shade200,
-  //       child: Center(child: Text(
-  //         details.exception.toString(), style: GoogleFonts.quicksand(
-  //         textStyle: const TextStyle(
-  //             color: AppColors.btnColor, fontWeight: FontWeight.w600, fontSize: 18),
-  //       ),),
-  //       ),
-  //     );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -42,10 +33,9 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
       ),
     );
-    return MaterialApp(
+    return GetMaterialApp(
       home: MyPage(),
       theme: ThemeData(
-
         appBarTheme: const AppBarTheme(
           brightness: Brightness.dark,
         ),

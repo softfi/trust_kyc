@@ -3,17 +3,17 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/model/address_proof_response_data.dart';
+import 'package:trust_money/model/city_responsse_data.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
+import 'package:trust_money/model/nominee_identify_dropdown_response_data.dart';
+import 'package:trust_money/model/profession_response_data.dart';
+import 'package:trust_money/model/relationship_dropdown_response_data.dart';
+import 'package:trust_money/model/state_response_data.dart';
 import 'package:trust_money/repositories/nominee_repository.dart';
 import 'package:trust_money/repositories/profile_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
-import '../../model/address_proof_response_data.dart';
-import '../../model/city_responsse_data.dart';
-import '../../model/nominee_identify_dropdown_response_data.dart';
-import '../../model/profession_response_data.dart';
-import '../../model/relationship_dropdown_response_data.dart';
-import '../../model/state_response_data.dart';
 
 class Nominee extends StatefulWidget {
   final void Function()? onClick1;

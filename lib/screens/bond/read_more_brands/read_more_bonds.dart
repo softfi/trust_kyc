@@ -55,7 +55,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
-          "CREDITACCESS GRAMEEN",
+          widget.isIPO ? "MAHINDRA & MAHINDR....." : "CREDITACCESS GRAMEEN",
           IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -126,71 +126,76 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(
-            height: 10,
+            height: 16,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: Container(
-                  height: 50,width: 50,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle
-                  ),
-                  child:Image.asset(ConstantImage.orderImg),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: Image.asset(ConstantImage.orderImg),
+                ),
+                const SizedBox(
+                  width: 13,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  child: Text(
+                      widget.isIPO
+                          ? "MAHINDRA & MAHINDRA FINANCIAL"
+                          : "CREDITACCESS GRAMEEN LIMITED",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      )),
                 )
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Text("MAHINDRA & MAHINDRA FINANCIAL",
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ))
-            ],
+              ],
+            ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Container(
-                //   height: 35,
-                //   decoration: const BoxDecoration(
-                //       borderRadius:
-                //           BorderRadius.only(bottomRight: Radius.circular(12)),
-                //       color: AppColors.greenColor),
-                //   child: Padding(
-                //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                //     child: Center(
-                //       child: Text(
-                //         "Returns Based On Gold Prices",
-                //         style: GoogleFonts.sourceSansPro(
-                //           textStyle: const TextStyle(
-                //             color: Color(0xff22263D),
-                //             fontWeight: FontWeight.bold,
-                //             fontSize: 10,
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(
-                //   width: 10,
-                // ),
+                widget.isIPO
+                    ? Container(
+                        height: 35,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(12)),
+                            color: AppColors.greenColor),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Center(
+                            child: Text(
+                              "Returns Based On Gold Prices",
+                              style: GoogleFonts.sourceSansPro(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
                 const SizedBox(
-                  width: 40,
+                  width: 10,
                 ),
                 Container(
                   height: 35,
@@ -204,20 +209,25 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichText(
-                          text: const TextSpan(children: [
+                          text: TextSpan(children: [
                             TextSpan(
                                 text: "ISIN: ",
-                                style: TextStyle(
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFF405A),
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 10,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xffFF405A))),
+                                  ),
+                                )),
                             TextSpan(
                                 text: "INE146O08118",
-                                style: TextStyle(
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w600,
                                     fontSize: 10,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColors.textColor)),
+                                  ),
+                                )),
                           ]),
                         ),
                         const SizedBox(
@@ -278,7 +288,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   ),
                   Container(
                     height: 25,
-                    color:Color(0xffE1E0E7),
+                    color: Color(0xffE1E0E7),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Center(
@@ -532,7 +542,11 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         InkWell(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => BuyIPOBond(isNonIPO: widget.isIPO,)));
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BuyIPOBond(
+                          isNonIPO: widget.isIPO,
+                        )));
           },
           child: Center(
             child: Container(
@@ -619,7 +633,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         ),
         Visibility(
             visible: widget.isIPO,
-            child: BuyNonIpoBonds.nonIPOInvestCalculator(false, userIsLoggedIn)),
+            child:
+                BuyNonIpoBonds.nonIPOInvestCalculator(false, userIsLoggedIn)),
         const SizedBox(
           height: 25,
         ),
@@ -627,8 +642,12 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           visible: !widget.isIPO,
           child: InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BuyIPOBond(isNonIPO: widget.isIPO,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BuyIPOBond(
+                            isNonIPO: widget.isIPO,
+                          )));
             },
             child: ViewAllWidget(
               title: 'Buy this BOND now!',

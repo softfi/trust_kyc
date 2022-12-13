@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trust_money/screens/profile/my_profile.dart';
+import 'package:trust_money/screens/kyc/profile/my_profile.dart';
 
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
