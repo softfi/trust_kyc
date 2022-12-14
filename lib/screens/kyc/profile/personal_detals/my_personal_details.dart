@@ -14,8 +14,7 @@ import '../../../../utils/sharedPreference.dart';
 class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
   final void Function()? onClick;
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
 
   bool potentially_exposed_status = false;
   bool activate_future = false;
@@ -28,8 +27,6 @@ class MyPersonalDetails extends StatelessWidget {
   bool isButtonClick = false;
   String dateOfBirth1 = "";
 
-  // var firstName = TextEditingController();
-  // var lastName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(

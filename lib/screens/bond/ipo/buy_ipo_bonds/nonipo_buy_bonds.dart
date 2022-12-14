@@ -962,19 +962,19 @@ class BuyNonIpoBonds {
                                                   color: Color(0xff22263D)
                                               )
                                           ),),
-                                          SizedBox(width: 45,),
+                                          const SizedBox(width: 45,),
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text("Your investment as of today",style: GoogleFonts.sourceSansPro(
-                                                  textStyle: TextStyle(
+                                                  textStyle: const TextStyle(
                                                       fontSize: 13,
                                                       color: Color(0xff22263D)
                                                   )
                                               ),),
                                               Text("₹ 21,20,202",style: GoogleFonts.sourceSansPro(
-                                                  textStyle: TextStyle(
+                                                  textStyle: const TextStyle(
                                                       fontSize: 16,
                                                       color: Color(0xff22263D)
                                                   )

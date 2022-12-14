@@ -10,7 +10,7 @@ import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/screens/termsAndConditons/termsAndConditons.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
-import '../../screens/bond/buying_bonds.dart';
+import '../../screens/bond/gold_bond.dart';
 import '../../screens/bond/collection_of_bonds.dart';
 import '../../screens/bond/learn_bonds/learn_bond.dart';
 
@@ -129,7 +129,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                         const CollectionOfBonds()));
                                           },
                                           child: Container(
-                                              padding: EdgeInsets.only(top: 10),
+                                              padding: const EdgeInsets.only(top: 10),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -170,28 +170,36 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                                 )
                                               ],
                                             )),
-                                        Container(
-                                            padding: EdgeInsets.only(top: 10),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                    "Frequently Asked Questions",
-                                                    style: GoogleFonts.quicksand(
-                                                        textStyle:
-                                                            const TextStyle(
-                                                                color: Color(
-                                                                    0xff22263D),
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500))),
-                                                Divider(
-                                                  color: divider_color,
-                                                )
-                                              ],
-                                            )),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        FAQs()));
+                                          },
+                                          child: Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                      "Frequently Asked Questions",
+                                                      style: GoogleFonts.quicksand(
+                                                          textStyle: const TextStyle(
+                                                              color: Color(
+                                                                  0xff22263D),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500))),
+                                                  Divider(
+                                                    color: divider_color,
+                                                  )
+                                                ],
+                                              )),
+                                        ),
                                         InkWell(
                                           onTap: () {
                                             Navigator.push(
@@ -733,7 +741,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                               .copyWith(dividerColor: Colors.transparent),
                           child: ListTileTheme(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15),
+                                EdgeInsets.symmetric(horizontal: 15),
                             dense: true,
                             horizontalTitleGap: .0,
                             minLeadingWidth: 0,
@@ -746,48 +754,8 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => FAQs()));
-                                },
-                                child: Text("FAQs",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600))),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0, right: 19),
-                          child: Divider(
-                            color: divider_color,
-                            thickness: 1.2,
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Theme(
-                          data: Theme.of(context)
-                              .copyWith(dividerColor: Colors.transparent),
-                          child: ListTileTheme(
-                            contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15),
-                            dense: true,
-                            horizontalTitleGap: .0,
-                            minLeadingWidth: 0,
-                            child: ExpansionTile(
-                              iconColor: Colors.black,
-                              collapsedIconColor: Colors.black,
-                              textColor: text_color,
-                              title: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => PrivacyPolicy()));
+                                          builder: (context) =>
+                                              PrivacyPolicy()));
                                 },
                                 child: Text("Privacy Policy",
                                     style: GoogleFonts.quicksand(
@@ -812,8 +780,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                       data: Theme.of(context)
                           .copyWith(dividerColor: Colors.transparent),
                       child: ListTileTheme(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 15),
                         dense: true,
                         horizontalTitleGap: .0,
                         minLeadingWidth: 0,

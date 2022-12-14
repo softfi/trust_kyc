@@ -201,7 +201,7 @@ class _MyProfileState extends State<MyProfile> {
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
                     geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
+                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
                   ),
                   child: Container(),
                 ),
@@ -223,7 +223,7 @@ class _MyProfileState extends State<MyProfile> {
                   foregroundDecoration: const RotatedCornerDecoration(
                     color: Colors.redAccent,
                     geometry:
-                    BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
+                        BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
                   ),
                   child: Container(),
                 ),
@@ -233,7 +233,6 @@ class _MyProfileState extends State<MyProfile> {
           Padding(
               padding: const EdgeInsets.only(bottom: 35.0),
               child: barLine ? orderTimeLine() : tabWidget()),
-
         ],
       ),
     );
@@ -391,15 +390,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: PersonalProfile(
-                    onClick1: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileAnimation()));
-                      setState(() {
-                        selectedIndex = 1;
-                      });
+                  child: MyPersonalDetails(
+                    onClick: () async {
+                      // await Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ProfileAnimation()));
+                      // setState(() {
+                      //   selectedIndex = 1;
+                      // });
                     },
                   ),
                 ),
@@ -565,15 +564,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: PersonalProfile(
-                    onClick1: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  ProfileAnimation()));
-                      setState(() {
-                        selectedIndex = 1;
-                      });
+                  child: MyPersonalDetails(
+                    onClick: () async {
+                      // await Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>  ProfileAnimation()));
+                      // setState(() {
+                      //   selectedIndex = 1;
+                      // });
                     },
                   ),
                 ),

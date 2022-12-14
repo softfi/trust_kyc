@@ -7,6 +7,7 @@ import 'package:trust_money/utils/images.dart';
 import 'dart:math' as math;
 
 import '../../bottom_navigation/bottom_navigation.dart';
+import '../../utils/app_bar.dart';
 
 bool itrValue = true;
 List<String> items = ["Gram", "Kilo", "Mili"];
@@ -30,32 +31,21 @@ class _BuyingBondsState extends State<BuyingBonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
+      appBar: AppToolbar.appBar(
           "SOVEREIGN GOLD BONDS",
-          style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-                color: Color(0xffFFFFFF),
-                fontWeight: FontWeight.w500,
-                fontSize: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
           ),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back),
-          color: Colors.white,
-        ),
-        actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications_none),
-            color: Colors.white,
-          )
-        ],
-      ),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_none,
+                color: Color(0xffffFFFFFF),
+              ))),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +61,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -94,7 +84,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                                     fontSize: 30),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
@@ -107,7 +97,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                               ),
                             ),
                           ])),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -132,8 +122,8 @@ class _BuyingBondsState extends State<BuyingBonds> {
                             ),
                           ),
                         )),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 8.0),
                           child: Icon(
                             Icons.check_circle,
                             color: Colors.greenAccent,
@@ -142,7 +132,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
