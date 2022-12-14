@@ -5,8 +5,6 @@ import 'package:trust_money/screens/animated_screens/complete_bank_detail_animat
 import 'package:trust_money/screens/animated_screens/complete_profile_animation.dart';
 import 'package:trust_money/screens/kyc/bank_screen/bank_details.dart';
 import 'package:trust_money/screens/kyc/demat_screen/demat.dart';
-import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
-import 'package:trust_money/screens/kyc/profile/personal_detals/my_personal_details.dart';
 import 'package:trust_money/screens/kyc/profile/personal_profile_detals.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
@@ -14,7 +12,6 @@ import 'package:trust_money/utils/styles.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
-
   @override
   State<MyProfile> createState() => _MyProfileState();
 }
@@ -22,8 +19,8 @@ class MyProfile extends StatefulWidget {
 class _MyProfileState extends State<MyProfile> {
   TabController? tabController;
   int selectedIndex = 0;
-  bool barLine = true;
-  bool tabVisible = false;
+  bool barLine = false;
+  bool tabVisible = true;
 
   getKycStatus() async {
     var isKyc = await HelperFunctions.getUserKycCompleted();
@@ -60,129 +57,6 @@ class _MyProfileState extends State<MyProfile> {
                     size: 20, color: Colors.transparent)),
             onPressed: () {},
           )),
-      /* PreferredSize(
-        preferredSize: const Size.fromHeight(80.0),
-        child: Column(
-          children: [
-            Container(
-              height: 80,
-              color: const Color(0xff00C6D8),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.white),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        Text(
-                          "Profile",
-                          style: ConstStyle.quickStandSmall11,
-                        ),
-                        Container(
-                          width: 50,
-                        )
-                      ],
-                    ),
-                    Positioned(
-                      left: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 2,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: -1,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Material(
-                          elevation: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: const BoxDecoration(
-                              color: Color(0xff00C6D8),
-                            ),
-                            foregroundDecoration: const RotatedCornerDecoration(
-                              color: Colors.redAccent,
-                              geometry: BadgeGeometry(
-                                  width: 20, height: 20, cornerRadius: 0),
-                            ),
-                            child: Container(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RotatedBox(
-                    quarterTurns: 1,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 30, height: 28, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                  RotatedBox(
-                    quarterTurns: 2,
-                    child: Material(
-                      elevation: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: const BoxDecoration(
-                          color: Colors.redAccent,
-                        ),
-                        foregroundDecoration: const RotatedCornerDecoration(
-                          color: Colors.white,
-                          geometry: BadgeGeometry(
-                              width: 28, height: 30, cornerRadius: 0),
-                        ),
-                        child: Container(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),*/
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -390,15 +264,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: MyPersonalDetails(
-                    onClick: () async {
-                      // await Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ProfileAnimation()));
-                      // setState(() {
-                      //   selectedIndex = 1;
-                      // });
+                  child: PersonalProfile(
+                    onClick1: () async {
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileAnimation()));
+                      setState(() {
+                        selectedIndex = 1;
+                      });
                     },
                   ),
                 ),
@@ -564,15 +438,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: MyPersonalDetails(
-                    onClick: () async {
-                      // await Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) =>  ProfileAnimation()));
-                      // setState(() {
-                      //   selectedIndex = 1;
-                      // });
+                  child: PersonalProfile(
+                    onClick1: () async {
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  const ProfileAnimation()));
+                      setState(() {
+                        selectedIndex = 1;
+                      });
                     },
                   ),
                 ),

@@ -9,21 +9,13 @@ import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.da
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
-import '../../../../utils/sharedPreference.dart';
 
 class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
   final void Function()? onClick;
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
 
-  bool potentially_exposed_status = false;
-  bool activate_future = false;
-  int potentially_exposed_statusInt = 0;
-  int activate_futureInt = 0;
-  bool isChecked = false;
-  bool isChecked1 = false;
-  int isCheckedInt = 0;
-  int isChecked1Int = 0;
   bool isButtonClick = false;
   String dateOfBirth1 = "";
 
@@ -137,15 +129,20 @@ class MyPersonalDetails extends StatelessWidget {
                   title: 'Date of Birth - Should be as per Aadhar',
                 ),
                 _space1,
-                TextContainer(
-                  color: Colors.white,
-                  titleText: '03/09/2022 ',
-                  perfixIcon: Container(),
-                  postfixIcon: Image.asset(
-                    "assets/images/calender.png",
-                    width: 25,
-                    height: 25,
-                  ),
+                InkWell(
+                  onTap: () {
+                    _personalDetailsController.pickDate();
+                  },
+                  child: Obx(() => TextContainer(
+                        color: Colors.white,
+                        titleText: _personalDetailsController.dob.value,
+                        perfixIcon: Container(),
+                        postfixIcon: Image.asset(
+                          "assets/images/calender.png",
+                          width: 25,
+                          height: 25,
+                        ),
+                      )),
                 ),
                 _space,
                 _space,
@@ -161,20 +158,24 @@ class MyPersonalDetails extends StatelessWidget {
                             fontSize: 15),
                       ),
                     ),
-                    CustomSwitch(
-                      activeColor: Colors.green,
-                      value: potentially_exposed_status,
-                      onChanged: (value) {
-                        potentially_exposed_status = value;
-                        if (value == true) {
-                          potentially_exposed_statusInt = 1;
-                          PersonalBottomSheet.closeApplicationBottomSheet(
-                              context);
-                        } else {
-                          potentially_exposed_statusInt = 0;
-                        }
-                      },
-                    ),
+                    Obx(() => CustomSwitch(
+                          activeColor: Colors.green,
+                          value: _personalDetailsController
+                              .potentiallyExposedStatus.value,
+                          onChanged: (value) {
+                            _personalDetailsController
+                                .potentiallyExposedStatus.value = value;
+                            if (value == true) {
+                              _personalDetailsController
+                                  .potentiallyExposedStatusInt.value = 1;
+                              PersonalBottomSheet.closeApplicationBottomSheet(
+                                  context);
+                            } else {
+                              _personalDetailsController
+                                  .potentiallyExposedStatusInt.value = 0;
+                            }
+                          },
+                        )),
                   ],
                 ),
                 _space,
@@ -193,18 +194,22 @@ class MyPersonalDetails extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CustomSwitch(
-                      activeColor: Colors.green,
-                      value: activate_future,
-                      onChanged: (value) {
-                        activate_future = value;
-                        if (value == true) {
-                          activate_futureInt = 1;
-                        } else {
-                          activate_futureInt = 0;
-                        }
-                      },
-                    ),
+                    Obx(() => CustomSwitch(
+                          activeColor: Colors.green,
+                          value:
+                              _personalDetailsController.activateFuture.value,
+                          onChanged: (value) {
+                            _personalDetailsController.activateFuture.value =
+                                value;
+                            if (value == true) {
+                              _personalDetailsController
+                                  .activateFutureInt.value = 1;
+                            } else {
+                              _personalDetailsController
+                                  .activateFutureInt.value = 0;
+                            }
+                          },
+                        )),
                   ],
                 ),
                 _space,
@@ -216,22 +221,25 @@ class MyPersonalDetails extends StatelessWidget {
                     SizedBox(
                       height: 24,
                       width: 24,
-                      child: Checkbox(
-                        checkColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        activeColor: AppColors.primaryColor,
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          isChecked = value!;
-                          if (value == true) {
-                            isCheckedInt = 1;
-                          } else {
-                            isCheckedInt = 0;
-                          }
-                        },
-                      ),
+                      child: Obx(() => Checkbox(
+                            checkColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            activeColor: AppColors.primaryColor,
+                            value: _personalDetailsController.isChecked1.value,
+                            onChanged: (bool? value) {
+                              _personalDetailsController.isChecked1.value =
+                                  value!;
+                              if (value == true) {
+                                _personalDetailsController.isCheckedInt1.value =
+                                    1;
+                              } else {
+                                _personalDetailsController.isCheckedInt1.value =
+                                    0;
+                              }
+                            },
+                          )),
                     ),
                     const SizedBox(
                       width: 10,
@@ -258,22 +266,25 @@ class MyPersonalDetails extends StatelessWidget {
                     SizedBox(
                       height: 24,
                       width: 24,
-                      child: Checkbox(
-                        checkColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        activeColor: AppColors.primaryColor,
-                        value: isChecked1,
-                        onChanged: (bool? value) {
-                          isChecked1 = value!;
-                          if (value == true) {
-                            isChecked1Int = 1;
-                          } else {
-                            isChecked1Int = 0;
-                          }
-                        },
-                      ),
+                      child: Obx(() => Checkbox(
+                            checkColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            activeColor: AppColors.primaryColor,
+                            value: _personalDetailsController.isChecked2.value,
+                            onChanged: (bool? value) {
+                              _personalDetailsController.isChecked2.value =
+                                  value!;
+                              if (value == true) {
+                                _personalDetailsController.isCheckedInt2.value =
+                                    1;
+                              } else {
+                                _personalDetailsController.isCheckedInt2.value =
+                                    0;
+                              }
+                            },
+                          )),
                     ),
                     const SizedBox(
                       width: 10,
@@ -313,10 +324,8 @@ class MyPersonalDetails extends StatelessWidget {
                       border: Border.all(
                           width: 2,
                           color: isButtonClick == false
-                              ? (isChecked && isChecked1)
-                                  ? AppColors.textColor
-                                  : const Color(0xffE1E0E6)
-                              : Color(0xffFF405A)),
+                              ? AppColors.textColor
+                              : const Color(0xffE1E0E6)),
                       color: isButtonClick == false
                           ? Colors.white
                           : Color(0xffFF405A),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../../../getx_controller/auth/email/email_controller.dart';
@@ -15,7 +14,6 @@ class EmailVerification extends StatelessWidget {
     Key? key,
     this.onClick,
   }) : super(key: key);
-  EmailController _emailController = Get.put(EmailController());
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
   bool isPanSelected = false;
@@ -24,6 +22,7 @@ class EmailVerification extends StatelessWidget {
   final panNumber = TextEditingController();
 
   bool isButtonClick = false;
+  RxInt a = 1.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -32,27 +31,27 @@ class EmailVerification extends StatelessWidget {
         _personalDetailsController.isShowing.value = true;
         return false;
       },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: const Color(0xffF7F7FA).withOpacity(0.35),
-            border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
-        child: Column(
-          children: [
-            Obx(() => Visibility(
-                  visible: _emailController.isEmailShowing.value,
-                  child: emailWidget(context),
-                )),
-            Obx(() => Visibility(
-                visible: !_emailController.isEmailShowing.value,
-                child: verifiedEmail(context))),
-            Obx(() => Visibility(
-                visible: !_emailController.isEmailShowing.value,
-                child: panWidget(context))),
-            emailWidget(context),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: const Color(0xffF7F7FA).withOpacity(0.35),
+              border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
+          child: Column(
+            children: [
+              Obx(() => Visibility(
+                    visible: a.value == 1,
+                    child: emailWidget(context),
+                  )),
+              Obx(() => Visibility(
+                  visible: a.value == 2, child: verifiedEmail(context))),
+              Obx(() =>
+                  Visibility(visible: a.value == 3, child: panWidget(context))),
+            ],
+          ),
         ),
       ),
     );
@@ -60,113 +59,101 @@ class EmailVerification extends StatelessWidget {
 
   Widget emailWidget(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(12),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: const Color(0xffF7F7FA).withOpacity(0.35),
-                border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Personal Details",
-                        style: ConstStyle.quickMedium,
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "STEP 1 of 2",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xffFF405A),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12),
-                          ),
-                        ),
-                      ),
-                    ],
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                children: [
+                  Text(
+                    "Personal Details",
+                    style: ConstStyle.quickMedium,
                   ),
-                ),
-                const Divider(
-                  thickness: 0.7,
-                  indent: 5,
-                  endIndent: 5,
-                ),
-                _space,
-                Text(
-                  "Hey Jairaj, Let’s Verify Your Email Id",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16),
+                  const SizedBox(
+                    width: 15,
                   ),
-                ),
-                _space,
-                _space,
-                _space,
-                Container(
-                    height: 55,
-                    decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x29000000),
-                            blurRadius: 4.0,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          ConstantImage.google,
-                          scale: 8,
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          "Sign in with Google",
-                          style: ConstStyle.sourceSans,
-                        )
-                      ],
-                    )),
-                _space,
-                _space,
-                Center(child: Text("Or", style: ConstStyle.quickMedium)),
-                _space,
-                _space,
-                InkWell(
-                  onTap: () {
-                    _personalDetailsController.isShowing.value = false;
-                    // EmailPANBottomSheet.onEmailAddedBottomSheet(
-                    //     context, email_id);
-                    //onEmailAddedBottomSheet();
-                  },
-                  child: Container(
-                      height: 55,
-                      decoration: const BoxDecoration(boxShadow: [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 6.0,
-                        ),
-                      ], color: AppColors.primaryColor),
-                      child: Center(
-                        child: Text(
-                            "Would you like to use a different E-mail address",
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      "STEP 1 of 2",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xffFF405A),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              thickness: 0.7,
+              indent: 5,
+              endIndent: 5,
+            ),
+            _space,
+            Text(
+              "Hey Jairaj, Let’s Verify Your Email Id",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    color: Color(0xff22263D),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16),
+              ),
+            ),
+            _space,
+            _space,
+            _space,
+            Container(
+                height: 55,
+                decoration: BoxDecoration(boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x29000000),
+                    blurRadius: 4.0,
+                  ),
+                ], borderRadius: BorderRadius.circular(5), color: Colors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      ConstantImage.google,
+                      scale: 8,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      "Sign in with Google",
+                      style: ConstStyle.sourceSans,
+                    )
+                  ],
+                )),
+            _space,
+            _space,
+            Center(child: Text("Or", style: ConstStyle.quickMedium)),
+            _space,
+            _space,
+            InkWell(
+              onTap: () {
+                a.value = 2;
+                // EmailPANBottomSheet.onEmailAddedBottomSheet(
+                //     context, email_id);
+                //onEmailAddedBottomSheet();
+              },
+              child: Container(
+                  height: 55,
+                  decoration: const BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: Color(0x29000000),
+                      blurRadius: 6.0,
+                    ),
+                  ], color: AppColors.primaryColor),
+                  child: Center(
+                    child:
+                        Text("Would you like to use a different E-mail address",
                             style: GoogleFonts.quicksand(
                               textStyle: const TextStyle(
                                 color: Color(0xffFfffff),
@@ -174,17 +161,13 @@ class EmailVerification extends StatelessWidget {
                                 fontSize: 12,
                               ),
                             )),
-                      )),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.27,
-                ),
-              ],
+                  )),
             ),
-          ),
-        ],
-      ),
-    );
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.27,
+            ),
+          ],
+        ));
   }
 
   Widget verifiedEmail(BuildContext context) {
@@ -223,12 +206,12 @@ class EmailVerification extends StatelessWidget {
               ],
             )),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.35,
+          height: MediaQuery.of(context).size.height * 0.42,
         ),
         InkWell(
           onTap: () {
             isButtonClick = true;
-            _personalDetailsController.isShowing.value = false;
+            a.value = 3;
           },
           child: Container(
             height: 45,
@@ -319,8 +302,9 @@ class EmailVerification extends StatelessWidget {
               decoration: InputDecoration(
                   suffixIcon: Container(
                     width: 80,
-                    color:
-                        isPanSelected ? AppColors.textColor : Color(0xffC8C7CE),
+                    color: isPanSelected
+                        ? AppColors.textColor
+                        : const Color(0xffC8C7CE),
                     child: Center(
                       child: Text("Verify",
                           style: GoogleFonts.quicksand(
@@ -345,7 +329,7 @@ class EmailVerification extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.40,
+            height: MediaQuery.of(context).size.height * 0.55,
           ),
         ],
       ),

@@ -7,28 +7,28 @@ import '../utils/sharedPreference.dart';
 
 class APiProvider extends GetConnect {
   personalDetail() async {
-    // try {
-    var token = await HelperFunctions.getToken();
-    var response =
-        await get(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': token,
-    });
-    print("========21 ${response.statusCode}");
-    print("========21 $token");
-    print("========21 ${response.body}");
-    if (response.statusCode == 200) {
-      GetPersonalDetailModel model =
-          GetPersonalDetailModel.fromJson(response.body);
-      debugPrint("========21 $model");
-      return model;
+    try {
+      var token = await HelperFunctions.getToken();
+      var response =
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      print("========21 ${response.statusCode}");
+      print("========21 $token");
+      print("========21 ${response.body}");
+      if (response.statusCode == 200) {
+        GetPersonalDetailModel model =
+            GetPersonalDetailModel.fromJson(response.body);
+        debugPrint("========21 $model");
+        return model;
+      }
+    } catch (e) {
+      Get.showSnackbar(GetSnackBar(
+        title: e.toString(),
+      ));
     }
-    // } catch (e) {
-    //   Get.showSnackbar(GetSnackBar(
-    //     title: e.toString(),
-    //   ));
-    // }
   }
 
 // verifyEmail()async{
