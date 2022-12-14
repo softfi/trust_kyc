@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/bond/bond_advantages.dart';
 import 'package:trust_money/screens/bond/learn_bonds/view_all_editor.dart';
 import 'package:trust_money/screens/bond/view_all.dart';
+import 'package:trust_money/screens/news_and_insights/explore.dart';
 import 'package:trust_money/screens/news_and_insights/newandinsights.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -389,7 +390,7 @@ class _LearnBondState extends State<LearnBond> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const NewsAndInsights()));
+                        builder: (context) => const NewsAndInsightExplore()));
               },
               child: CustomTile(
                 date: 'Jan 24, 2022',

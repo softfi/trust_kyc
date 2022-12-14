@@ -52,274 +52,272 @@ class _BuyingBondsState extends State<BuyingBonds> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(color: Colors.yellow.shade50),
-
-              ///give image here for the background images
-              // height: 200,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+              decoration: BoxDecoration(color: Color(0xffFAF6F3)),
+              child: Stack(
                 children: [
-                  Container(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Invest in",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Color(0xff22263D),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 30),
-                              ),
-                            ),
-                            Text(
-                              "Sovereign Gold Bond",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Color(0xffFF405A),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 30),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Apply online through your Demat account and save ₹50 per gram",
-                              style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Color(0xff22263D),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20),
-                              ),
-                            ),
-                          ])),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 25,
-                    width: MediaQuery.of(context).size.width / 2.2,
-                    decoration: BoxDecoration(gradient: container_garidiant),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "Listed on BSE/NSE",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xffFFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  letterSpacing: 0),
-                            ),
-                          ),
-                        )),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
-                          ),
-                        )
-                      ],
+                  Positioned(
+                    right: 0,
+                    top: 20,
+                    child: Image.asset(
+                      ConstantImage.orderImg,
+                      height: 200,
+                      width: 200,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 25,
-                    width: MediaQuery.of(context).size.width / 2.1,
-                    decoration: BoxDecoration(gradient: container_garidiant),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                          child: Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Text(
-                                "+2.5% Interst Extra",
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.only(left: 15, right: 15),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Invest in",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 28),
+                                  ),
+                                ),
+                                Text(
+                                  "Sovereign Gold Bond",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xffFF405A),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 28),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  "Apply online through your Demat account and save ₹50 per gram",
+                                  style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Color(0xff22263D),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                              ])),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        decoration:
+                            BoxDecoration(gradient: container_garidiant),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "Listed on BSE/NSE",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
                                       fontSize: 15,
                                       letterSpacing: 0),
                                 ),
                               )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xff00E152),
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 25,
-                    width: MediaQuery.of(context).size.width / 1.7,
-                    decoration: BoxDecoration(gradient: container_garidiant),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "+ Capital Gains Tax Benefit",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xffFFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  letterSpacing: 0),
-                            ),
-                          ),
-                        )),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 25,
-                    width: MediaQuery.of(context).size.width / 1.4,
-                    decoration: BoxDecoration(gradient: container_garidiant),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "36.741.27 Crore already Invested",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xffFFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  letterSpacing: 0),
-                            ),
-                          ),
-                        )),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 25,
-                    width: MediaQuery.of(context).size.width / 1.35,
-                    decoration: BoxDecoration(gradient: container_garidiant),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "Issued by the Government of India",
-                            style: GoogleFonts.sourceSansPro(
-                              textStyle: const TextStyle(
-                                  color: Color(0xffFFFFFF),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  letterSpacing: 0),
-                            ),
-                          ),
-                        )),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 30,
-                      width: MediaQuery.of(context).size.width / 2,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          gradient: LinearGradient(
-                              colors: [Colors.red.shade900, Colors.red],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight)),
-                      child: Text(
-                        "Buy this BOND now!",
-                        style: GoogleFonts.sourceSansPro(
-                          textStyle: const TextStyle(
-                              color: Color(0xffFFFFFF),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              letterSpacing: 0),
                         ),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width / 2.1,
+                        decoration:
+                            BoxDecoration(gradient: container_garidiant),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "+ 2.5% Interest Extra",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      letterSpacing: 0),
+                                ),
+                              )),
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xff00E152),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width / 1.7,
+                        decoration:
+                            BoxDecoration(gradient: container_garidiant),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "+ Capital Gains Tax Benefit",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      letterSpacing: 0),
+                                ),
+                              )),
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xff00E152),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width / 1.4,
+                        decoration:
+                            BoxDecoration(gradient: container_garidiant),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "36,741.27 Crore already Invested!",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      letterSpacing: 0),
+                                ),
+                              )),
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xff00E152),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: MediaQuery.of(context).size.width / 1.35,
+                        decoration:
+                            BoxDecoration(gradient: container_garidiant),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "Issued by the Government of India",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15,
+                                      letterSpacing: 0),
+                                ),
+                              )),
+                              const Icon(
+                                Icons.check_circle,
+                                color: Color(0xff00E152),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width / 2,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color(0xffFF405A)),
+                          child: Text(
+                            "Buy this BOND now!",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: Color(0xffFFFFFF),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  letterSpacing: 0),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      )
+                    ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  )
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+              padding: EdgeInsets.only(left: 10, right: 10, top: 25),
               child: Column(
                 children: [
                   Text(
-                    "Investing in Sovereign Gold Bond (Sgbs",
+                    "Investing in Sovereign Gold Bond (Sgbs)",
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Text(
@@ -327,9 +325,9 @@ class _BuyingBondsState extends State<BuyingBonds> {
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           fontSize: 15,
-                          letterSpacing: 0),
+                         ),
                     ),
                   )
                 ],
@@ -348,7 +346,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
                     style: GoogleFonts.quicksand(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
                   ),
