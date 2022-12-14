@@ -957,7 +957,7 @@ class BuyNonIpoBonds {
                                         children: [
                                           const SizedBox(width: 12,),
                                           Text("12/05/2022",style: GoogleFonts.sourceSansPro(
-                                              textStyle: TextStyle(
+                                              textStyle: const TextStyle(
                                                   fontSize: 16,
                                                   color: Color(0xff22263D)
                                               )
