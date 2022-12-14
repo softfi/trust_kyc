@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
-import 'dart:math' as math;
 
-import '../../bottom_navigation/bottom_navigation.dart';
 import '../../utils/app_bar.dart';
+import 'common_widget.dart';
 
 bool itrValue = true;
 List<String> items = ["Gram", "Kilo", "Mili"];
@@ -20,14 +18,14 @@ var container_garidiant = LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight);
 
-class BuyingBonds extends StatefulWidget {
-  const BuyingBonds({Key? key}) : super(key: key);
+class GoldBond extends StatefulWidget {
+  const GoldBond({Key? key}) : super(key: key);
 
   @override
-  State<BuyingBonds> createState() => _BuyingBondsState();
+  State<GoldBond> createState() => _GoldBondState();
 }
 
-class _BuyingBondsState extends State<BuyingBonds> {
+class _GoldBondState extends State<GoldBond> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -324,10 +322,10 @@ class _BuyingBondsState extends State<BuyingBonds> {
                     "Issued br Reserve Bank Of India on behalf of Government of India , SOvereign Gold Bonds(SGBs) are the perfectg alternative to investment in physical gold. with these bonds , you can enjoy capital appreciation and also earn interst every year. These bonds , issued by the Government Of India , also eliminate several riosk associated with physical gold",
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
-                          color: Color(0xff22263D),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15,
-                         ),
+                        color: Color(0xff22263D),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                      ),
                     ),
                   )
                 ],
@@ -353,172 +351,205 @@ class _BuyingBondsState extends State<BuyingBonds> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    color: Color(0xff9BA9AD),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Hassle-Free",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Ownership of gold without any physical possession (No risks and no cost of storage)",
-                                softWrap: true,
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      letterSpacing: 0),
-                                ),
-                              )
-                            ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Color(0xff9BA9AD),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            ConstantImage.orderImg,
+                            height: 80,
+                            width: 80,
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Hassle-Free",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    )),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Ownership of gold without any physical possession (No risks and no cost of storage)",
+                                  softWrap: true,
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffFFFFFF),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    color: Color(0xffAD9FA0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Tax Treatmant",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              Text(
-                                "The capital gains tax arising on redemption of SGB to an individual has been exempted. The indexation benefits will be provided to long term capital gains arising to any person on transfer of bond.",
-                                softWrap: true,
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      letterSpacing: 0),
-                                ),
-                              )
-                            ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Color(0xffAD9FA0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            ConstantImage.orderImg,
+                            height: 80,
+                            width: 80,
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Tax Treatment",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    )),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "The capital gains tax arising on redemption of SGB to an individual has been exempted. The indexation benefits will be provided to long term capital gains arising to any person on transfer of bond.)",
+                                  softWrap: true,
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffFFFFFF),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    color: Color(0xffCA8386),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Tradability",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              Text(
-                                "Bonds will be tradable on stock exchanges within a fortnight of the issuance on a date as notified by the RBI.",
-                                softWrap: true,
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      letterSpacing: 0),
-                                ),
-                              )
-                            ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Color(0xffCA8386),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            ConstantImage.orderImg,
+                            height: 80,
+                            width: 80,
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Tradability",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    )),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Bonds will be tradable on stock exchanges within a fortnight of the issuance on a date as notified by the RBI.",
+                                  softWrap: true,
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffFFFFFF),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    color: Color(0xffD67278),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          size: 50,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Transferability",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              Text(
-                                "Bonds shall be transferable by execution of an Instrument of transfer in accordance with the provisions of the Government Securities Act.",
-                                softWrap: true,
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      letterSpacing: 0),
-                                ),
-                              )
-                            ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      color: Color(0xffD67278),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            ConstantImage.orderImg,
+                            height: 80,
+                            width: 80,
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Transferability",
+                                    style: GoogleFonts.quicksand(
+                                      textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18),
+                                    )),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Bonds shall be transferable by execution of an Instrument of transfer in accordance with the provisions of the Government Securities Act.",
+                                  softWrap: true,
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffFFFFFF),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -549,53 +580,52 @@ class _BuyingBondsState extends State<BuyingBonds> {
                   SizedBox(
                     height: 30,
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      height: 55,
-                      width: 160,
-                      decoration: const BoxDecoration(
-                        color: AppColors.btnColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            bottomLeft: Radius.circular(50)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Subscribe",
-                            style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16)),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                            size: 20,
-                          )
-                        ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        height: 55,
+                        width: 160,
+                        decoration: const BoxDecoration(
+                          color: AppColors.btnColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(50),
+                              bottomLeft: Radius.circular(50)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Subscribe",
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16)),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 20,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  treeWiddget(),
-                  SizedBox(
+                  CommonWidget.invest(),
+                  const SizedBox(
                     height: 30,
                   ),
-
-                  subscribe(),
-                  SizedBox(
+                  CommonWidget.subscribe(),
+                  const SizedBox(
                     height: 30,
                   ),
-                  needHelp(),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  CommonWidget.needHelp(),
                 ],
               ),
             )
@@ -605,97 +635,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
     );
   }
 
-  sovereign_bond_scheme_seriesX() {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 5.0,
-                        ),
-                      ],
-                      color: Colors.white),
-                  child: readBondWidget()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: investment(),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: issuerWidget(),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            subscribe(),
-            const SizedBox(
-              height: 20,
-            ),
-            needHelp(),
-          ],
-        ),
-        Positioned(
-          left: 0,
-          bottom: 0,
-          child: RotatedBox(
-            quarterTurns: 2,
-            child: Material(
-              elevation: 0,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  color: Color(0xffE8E8E8),
-                ),
-                foregroundDecoration: const RotatedCornerDecoration(
-                  color: Colors.redAccent,
-                  geometry:
-                      BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                ),
-                child: Container(),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          right: 0,
-          bottom: 0,
-          child: RotatedBox(
-            quarterTurns: 1,
-            child: Material(
-              elevation: 0,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  color: Color(0xffE8E8E8),
-                ),
-                foregroundDecoration: const RotatedCornerDecoration(
-                  color: Colors.redAccent,
-                  geometry:
-                      BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-                ),
-                child: Container(),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+
 
   Widget readBondWidget() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -2280,471 +2220,7 @@ class _BuyingBondsState extends State<BuyingBonds> {
         const SizedBox(
           height: 20,
         ),
-        treeWiddget(),
       ],
-    );
-  }
-
-  Widget treeWiddget() {
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: 5,
-                height: 390,
-                color: AppColors.textColor,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Invest in \n3 Simple Steps",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff00C6D8),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Register & Complete KYC",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Upload your documents online",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Choose Bonds",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Select bonds that match \nyour investment goal",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "Make Investment",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 19,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Pay online and receive bond \nunits in your Demat account",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-        Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: SvgPicture.asset("assets/images/line.svg")),
-        Positioned(
-          left: 4.9,
-          top: 15,
-          child: Transform.rotate(
-            angle: math.pi / 4,
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(3),
-                    bottomLeft: Radius.circular(3)),
-                color: AppColors.textColor,
-              ),
-              width: 5,
-              height: 18,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 14.7,
-          top: 15,
-          child: Transform.rotate(
-            angle: -math.pi / 4,
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(3),
-                    bottomLeft: Radius.circular(3)),
-                color: Color(0xff00C6D8),
-              ),
-              width: 5,
-              height: 18,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 120,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff00C6D8),
-            ),
-            width: 25,
-            height: 25,
-            child: Center(
-                child: Text(
-              "1",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            )),
-          ),
-        ),
-        Positioned(
-          top: 198,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff00C6D8),
-            ),
-            width: 25,
-            height: 25,
-            child: Center(
-                child: Text(
-              "2",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            )),
-          ),
-        ),
-        Positioned(
-          bottom: 110,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff00C6D8),
-            ),
-            width: 25,
-            height: 25,
-            child: Center(
-                child: Text(
-              "3",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            )),
-          ),
-        ),
-        Positioned(
-            bottom: -13,
-            right: -30,
-            child: Image.asset(
-              "assets/images/m_tree.png",
-              height: 280,
-              width: 190,
-            )),
-      ],
-    );
-  }
-
-  Widget subscribe() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xffB2EEF8).withOpacity(0.5),
-            const Color(0xffFFFFFF),
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            right: -8,
-            child: Image.asset(
-              ConstantImage.leaf,
-              color: Color(0xffFF405A),
-              height: 350,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 38.0, horizontal: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Subscribe To",
-                  style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20)),
-                ),
-                Text(
-                  "Bond Updates",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Color(0xffFF405A),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 28),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Subscribe to get regular updates on the latest on Bonds from Trust Money",
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: InputBorder.none,
-                      hintText: "Enter your email here ",
-                      contentPadding: EdgeInsets.only(left: 13, top: 10),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 55,
-                    width: 160,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffEC515F),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          bottomLeft: Radius.circular(50)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Subscribe",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16)),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget needHelp() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Need Help?",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Speak to us",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Assisted Buying / Spelling of Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("FAQ's",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: 50,
-            color: AppColors.textColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Learn from, Bond, Trust Bond",
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
-                      )),
-                  const Icon(Icons.arrow_forward_rounded,
-                      size: 22, color: Colors.white)
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -2785,27 +2261,32 @@ class _BuyingBondsState extends State<BuyingBonds> {
 
   upcoming_issue() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ListTile(
-          title: Text(
-            "Upcoming issues",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
+        Text(
+          "Upcoming issues",
+          style: GoogleFonts.quicksand(
+            textStyle: const TextStyle(
+                color: Color(0xff000000),
+                fontWeight: FontWeight.bold,
+                fontSize: 25),
+          ),
+        ),
+        SizedBox(
+          height: 12,
+        ),
+        Text(
+          "As declared by RBI, Gold bonds are issued every month. You can also easily plan your gold investments.",
+          style: GoogleFonts.sourceSansPro(
+            textStyle: TextStyle(
+              color: Color(0xff1C1C1C).withOpacity(0.70),
+              fontWeight: FontWeight.w500,
+              fontSize: 15,
             ),
           ),
-          subtitle: Text(
-            "As declared by RBI, Gold bonds are issued every month. You can also easily plan your gold investments.",
-            style: GoogleFonts.sourceSansPro(
-              textStyle: const TextStyle(
-                  color: Color(0xff1C1C1C),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 15,
-                  letterSpacing: 0),
-            ),
-          ),
+        ),
+        SizedBox(
+          height: 15,
         ),
         Table(
           columnWidths: {0: FixedColumnWidth(60)},
@@ -3039,7 +2520,16 @@ class _BuyingBondsState extends State<BuyingBonds> {
               ),
             ])
           ],
-        )
+        ),
+        Text(
+          "*As per RBI data",
+          style: GoogleFonts.sourceSansPro(
+            textStyle: const TextStyle(
+                color: Color(0xff22263D),
+                fontWeight: FontWeight.w500,
+                fontSize: 10),
+          ),
+        ),
       ],
     );
   }

@@ -232,11 +232,6 @@ class _LeftDrawerState extends State<LeftDrawer> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const BuyingBonds()));
                                           },
                                           child: Container(
                                               padding: EdgeInsets.only(top: 10),

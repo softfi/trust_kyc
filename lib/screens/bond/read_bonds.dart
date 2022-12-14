@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
+import 'package:trust_money/screens/bond/gold_bond.dart';
 import 'package:trust_money/screens/bond/read_more_brands/read_more_bonds.dart';
 import 'package:trust_money/bottom_sheets/bond_filter_bottom_sheet.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -203,14 +204,12 @@ class _ReadBondsState extends State<ReadBonds> {
 
   List data = [
     ["MAHINDRA & MAHINDRA FINANCIAL", ""],
-    ["CREDITACCESS GRAMEEN LIMITED","IPO"],
+    ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
     ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
     ["MAHINDRA & MAHINDRA FINANCIAL", ""],
-    ["CREDITACCESS GRAMEEN LIMITED","IPO"],
+    ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
     ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
   ];
-
-
 
   Widget bondList() {
     return ListView.builder(
@@ -219,7 +218,9 @@ class _ReadBondsState extends State<ReadBonds> {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+            ),
             child: Container(
               padding: EdgeInsets.only(left: 8),
               decoration: BoxDecoration(boxShadow: const [
@@ -253,13 +254,17 @@ class _ReadBondsState extends State<ReadBonds> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  height: 50,width: 50,
-                                  child:Image.asset((ConstantImage.orderImg),fit: BoxFit.cover,),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    (ConstantImage.orderImg),
+                                    fit: BoxFit.cover,
+                                  ),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     // image: DecorationImage(image: AssetImage(ConstantImage.collection_container_bg))
                                   ),
-                                ) ,
+                                ),
                                 // Text(
                                 //   "M",
                                 //   style: GoogleFonts.sourceSansPro(
@@ -274,7 +279,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                   width: 15,
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width/2,
+                                  width: MediaQuery.of(context).size.width / 2,
                                   child: Text("${data[index][0]}",
                                       maxLines: 2,
                                       softWrap: true,
@@ -510,31 +515,42 @@ class _ReadBondsState extends State<ReadBonds> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ReadMoreBonds(isIPO: data[index][1]==""?true:false,)));
+                                data[index][0] ==
+                                        "Sovereign Gold Bonds Scheme 2021-22 - Series "
+                                    ? Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const GoldBond()))
+                                    : Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ReadMoreBonds(
+                                                  isIPO: data[index][1] == ""
+                                                      ? true
+                                                      : false,
+                                                )));
                               },
                               child: Container(
                                 height: 35,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Color(0x29000000),
-                                      blurRadius: 5.0,
+                                    borderRadius: BorderRadius.circular(30),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Color(0x29000000),
+                                        blurRadius: 5.0,
+                                      ),
+                                    ],
+                                    color: Color(0xffFF405A)
+                                    // gradient: const LinearGradient(
+                                    //   colors: [
+                                    //     Color(0xffEC515F),
+                                    //     Color(0xffC4414D),
+                                    //   ],
+                                    //   begin: Alignment.centerRight,
+                                    //   end: Alignment.centerLeft,
+                                    // ),
                                     ),
-                                  ],
-                                  color: Color(0xffFF405A)
-                                  // gradient: const LinearGradient(
-                                  //   colors: [
-                                  //     Color(0xffEC515F),
-                                  //     Color(0xffC4414D),
-                                  //   ],
-                                  //   begin: Alignment.centerRight,
-                                  //   end: Alignment.centerLeft,
-                                  // ),
-                                ),
                                 child: Center(
                                     child: Padding(
                                   padding: const EdgeInsets.symmetric(
