@@ -127,14 +127,17 @@ class _DigilockerState extends State<Digilocker> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     if (isChecked == true) {
-                      await Navigator.push(context,
-                          MaterialPageRoute(builder: (context) =>  MyWebView(
-                            url: digiLockerModel!.link,
-                          )));
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyWebView(
+                                    url: digiLockerModel !=null?digiLockerModel!.link: "",
+                                  )));
                     } else {
-                      Fluttertoast.showToast(msg: "Please check the agreement first");
+                      Fluttertoast.showToast(
+                          msg: "Please check the agreement first");
                     }
                   },
                   child: const Text(
@@ -146,7 +149,7 @@ class _DigilockerState extends State<Digilocker> {
                   ),
                 ),
 
-              /*  InkWell(
+                /*  InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -160,7 +163,7 @@ class _DigilockerState extends State<Digilocker> {
           const SizedBox(
             height: 10,
           ),
-        /*  RichText(
+          /*  RichText(
             text: const TextSpan(children: [
               TextSpan(
                   text: "Powered by ",

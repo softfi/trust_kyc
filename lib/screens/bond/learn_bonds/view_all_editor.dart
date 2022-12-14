@@ -9,14 +9,15 @@ import '../bond_advantages.dart';
 import '../common_widget.dart';
 
 class ViewAllEditors extends StatelessWidget {
-  const ViewAllEditors({Key? key}) : super(key: key);
+   ViewAllEditors({Key? key,required this.title}) : super(key: key);
+  String title;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
-          "EDITORS TOP PICKS",
+          title,
           IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),

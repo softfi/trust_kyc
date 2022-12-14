@@ -11,6 +11,7 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../screens/auths/choose_screen.dart';
+import '../utils/images.dart';
 import '../utils/sharedPreference.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -46,58 +47,146 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     }
   }
 
-  _exitApp(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'Are you sure to logout?',
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18),
-            ),
+  void _exitAppBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isDismissible: false,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(35),
           ),
-          actions: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: Text('No',
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: AppColors.btnColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17),
-                  )),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                setState(() async {
-                  await HelperFunctions.saveuserLoggedInSharedPreference(false);
-                  await HelperFunctions.saveuserkyccompleted(false);
-                  SharedPreferences preferences =
-                      await SharedPreferences.getInstance();
-                  await preferences.clear();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignIn()));
-                });
-              },
-              child: Text('Yes',
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17),
-                  )),
-            ),
-          ],
-        );
-      },
-    );
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        builder: (context) {
+          return BottomSheet(
+            builder: (BuildContext context) {
+              return StatefulBuilder(
+                  builder: (BuildContext context, StateSetter State) {
+                return Wrap(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: const BoxDecoration(
+                        color: AppColors.textColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(35),
+                          topRight: Radius.circular(35),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 35,
+                          ),
+                          Image.asset(
+                            ConstantImage.error,
+                            width: 75,
+                            height: 75,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Center(
+                            child: Text(
+                              "Are you sure, \nyou want to Logout?",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 23),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.4,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.white)),
+                                  child: Center(
+                                    child: Text(
+                                      "Cancel",
+                                      style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  setState(() async {
+                                    await HelperFunctions
+                                        .saveuserLoggedInSharedPreference(
+                                            false);
+                                    await HelperFunctions.saveuserkyccompleted(
+                                        false);
+                                    SharedPreferences preferences =
+                                        await SharedPreferences.getInstance();
+                                    await preferences.clear();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SignIn()));
+                                  });
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.4,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.white),
+                                      color: Colors.white),
+                                  child: Center(
+                                    child: Text(
+                                      "Yes",
+                                      style: GoogleFonts.quicksand(
+                                        textStyle: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.textColor),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              });
+            },
+            onClosing: () {},
+          );
+        });
   }
 
   @override
@@ -430,7 +519,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             _space,
             InkWell(
               onTap: () {
-                _exitApp(context);
+                Navigator.pop(context);
+                _exitAppBottomSheet(context);
               },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,

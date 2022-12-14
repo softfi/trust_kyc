@@ -30,14 +30,12 @@ class _LearnBondState extends State<LearnBond> {
             width: 40,
           ),
           IconButton(
-            icon: Container(padding: const EdgeInsets.all(1),
-                decoration:
-                const BoxDecoration(color: Colors.transparent, shape: BoxShape.circle),
-                child: const Icon(
-                  Icons.person,
-                    size: 20,
-                  color: Colors.transparent
-                )),
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.transparent, shape: BoxShape.circle),
+                child: const Icon(Icons.person,
+                    size: 20, color: Colors.transparent)),
             onPressed: () {},
           )),
       body: SingleChildScrollView(
@@ -185,8 +183,12 @@ class _LearnBondState extends State<LearnBond> {
           ),
           InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ViewAllEditors()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewAllEditors(
+                              title: 'Editors Top Picks',
+                            )));
               },
               child: ViewAllWidget(title: 'View All', width: 150)),
           const SizedBox(
@@ -209,8 +211,10 @@ class _LearnBondState extends State<LearnBond> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const NewsAndInsights()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NewsAndInsights()));
             },
             child: ViewAllWidget(title: 'View All', width: 150),
           ),
@@ -254,7 +258,16 @@ class _LearnBondState extends State<LearnBond> {
           const SizedBox(
             height: 20,
           ),
-          ViewAllWidget(title: 'View All', width: 150),
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewAllEditors(
+                              title: 'TAX Savings',
+                            )));
+              },
+              child: ViewAllWidget(title: 'View All', width: 150)),
           const SizedBox(
             height: 20,
           ),
@@ -273,7 +286,16 @@ class _LearnBondState extends State<LearnBond> {
           const SizedBox(
             height: 20,
           ),
-          ViewAllWidget(title: 'View All', width: 150),
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewAllEditors(
+                              title: 'Personal Finance',
+                            )));
+              },
+              child: ViewAllWidget(title: 'View All', width: 150)),
         ],
       ),
     );
