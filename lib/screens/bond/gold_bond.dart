@@ -31,12 +31,9 @@ class _GoldBondState extends State<GoldBond> {
     return Scaffold(
       appBar: AppToolbar.appBar(
           "SOVEREIGN GOLD BONDS",
-          const Padding(
-            padding: EdgeInsets.only(left: 8.0),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
           ),
           IconButton(
               onPressed: () {},
