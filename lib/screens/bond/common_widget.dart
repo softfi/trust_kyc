@@ -458,7 +458,7 @@ class CommonWidget {
             clipper: Triangle(),
             child: Container(
               padding: const EdgeInsets.only(left: 13),
-              color: AppColors.btnColor,
+              color: Color(0xffFF405A),
               height: 30,
               width: 75,
               child: Center(

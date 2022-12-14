@@ -55,7 +55,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
-          widget.isIPO ? "MAHINDRA & MAHINDR....." : "CREDITACCESS GRAMEEN",
+          widget.isIPO ? "MAHINDRA & MAHINDRA FINANCIAL" : "CREDITACCESS GRAMEEN",
           IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),

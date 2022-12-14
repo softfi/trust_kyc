@@ -301,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                                                       color: Color(0xff22263D),
                                                       fontSize: 13,
                                                       fontWeight:
-                                                          FontWeight.w500)),
+                                                      FontWeight.w500)),
                                             ),
                                           )),
                                         ),
@@ -390,7 +390,7 @@ class _HomePageState extends State<HomePage> {
                                   ], color: Colors.white),
                                   child: TextFormField(
                                     decoration: InputDecoration(
-                                        fillColor: Colors.white54,
+                                        fillColor: Colors.white,
                                         filled: true,
                                         border: InputBorder.none,
                                         contentPadding:

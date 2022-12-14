@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
-import 'package:trust_money/utils/styles.dart';
 
 import '../../utils/app_bar.dart';
 
@@ -35,24 +33,25 @@ class AboutUs extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Text("Trust Securities Services is the Non-Institutional Clientele vertical of one of India's leading full-service financial houses, TRUST Group.",style: GoogleFonts.sourceSansPro(
-                textStyle: TextStyle(
-                  height: 1.5,
-                  color: Color(0xff22263D),
-                  fontSize: 16
-                )
-              )),
-            ) ,
-            SizedBox(height: 20,),
+              child: Text(
+                  "Trust Securities Services is the Non-Institutional Clientele vertical of one of India's leading full-service financial houses, TRUST Group.",
+                  style: GoogleFonts.sourceSansPro(
+                      textStyle: TextStyle(
+                          height: 1.5,
+                          color: Color(0xff22263D),
+                          fontSize: 16))),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 10.0),
-              child: Text("Under the parentage and market leadership of TRUST Group, Trust Securities services was incorporated in 2015 to serve as a 'one stop shop for financial products' across ticket sizes and client genre. We wear the genesis of Trust Group as our emblem of pride, translating over 15 years of experience and a multitude of accolades to our name; we assure perennial partnerships and high value addition, with you, for you. As a proactive debt specialist pioneering the Indian DCM market, Trust Securities services is present across the value chain with direct access to a plethora of debt, quasi-debt and quasi-equity products.",style: GoogleFonts.sourceSansPro(
-                textStyle: TextStyle(
-                  color: Color(0xff9199A1),
-                  fontSize: 16
-                )
-              )),
-            ) ,
+              child: Text(
+                  "Under the parentage and market leadership of TRUST Group, Trust Securities services was incorporated in 2015 to serve as a 'one stop shop for financial products' across ticket sizes and client genre.\n\nWe wear the genesis of Trust Group as our emblem of pride, translating over 15 years of experience and a multitude of accolades to our name; we assure perennial partnerships and high value addition, with you, for you.\n\nAs a proactive debt specialist pioneering the Indian DCM market, Trust Securities services is present across the value chain with direct access to a plethora of debt, quasi-debt and quasi-equity products.",
+                  style: GoogleFonts.sourceSansPro(
+                      textStyle:
+                          TextStyle(color: Color(0xff9199A1), fontSize: 16))),
+            ),
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Center(
@@ -225,7 +224,6 @@ class AboutUs extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 10),
                                 )),
-
                           ],
                         ),
                       ),
@@ -278,7 +276,6 @@ class AboutUs extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 10),
                                 )),
-
                           ],
                         ),
                       ),
@@ -420,7 +417,6 @@ class AboutUs extends StatelessWidget {
               child: SizedBox(
                 height: 550,
                 child: PageView(
-                  
                   controller: pageviewController,
                   reverse: true,
                   children: [
@@ -431,9 +427,9 @@ class AboutUs extends StatelessWidget {
                           height: 450,
                           child: Image.asset(ConstantImage.aboutUs_pageView1),
                         ),
-                       
+
                         Text(
-                          "PRANAV INAMDAR" ,
+                          "PRANAV INAMDAR",
                           style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
                                 color: Color(0xff000000),
@@ -582,42 +578,47 @@ class AboutUs extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, int index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6),
           child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                      colors: [Color(0xff58C3D5).withOpacity(0.02), Color(0xffEC515F).withOpacity(0.25)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight)),
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(colors: [
+                    Color(0xff58C3D5).withOpacity(0.02),
+                    Color(0xffEC515F).withOpacity(0.25)
+                  ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 12),
                 child: ListTile(
-                    title: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          headingList[index],
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 22),
-                          ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        headingList[index],
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Color(0xff22263D),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 22),
                         ),
-                        const SizedBox(height: 8,)
-                      ],
-                    ),
-                    subtitle: Text(
-                      dataList[index],
-                      style: GoogleFonts.quicksand(
-                        textStyle: const TextStyle(
-                            height: 1.4,
-                            color: Color(0xff22263D),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13),
                       ),
+                      const SizedBox(
+                        height: 8,
+                      )
+                    ],
+                  ),
+                  subtitle: Text(
+                    dataList[index],
+                    style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          height: 1.4,
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13),
                     ),
-                dense: true,),
+                  ),
+                  dense: true,
+                ),
               )),
         );
       },
@@ -740,11 +741,11 @@ class AboutUs extends StatelessWidget {
               ],
             ),
           ),
-
         ],
       ),
     );
   }
+
   Widget needHelp() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),

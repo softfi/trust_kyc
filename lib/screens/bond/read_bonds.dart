@@ -92,7 +92,7 @@ class _ReadBondsState extends State<ReadBonds> {
                 ),
                 prefixIcon: const Icon(
                   Icons.search,
-                  color: Color(0xff1D2B84),
+                  color: Color(0xffC8C7CD),
                 ),
                 suffixIcon: InkWell(
                   onTap: () {},
@@ -248,7 +248,7 @@ class _ReadBondsState extends State<ReadBonds> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 12.0, left: 15),
+                            padding: const EdgeInsets.only(top: 12.0, left: 0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -492,7 +492,7 @@ class _ReadBondsState extends State<ReadBonds> {
                         height: 25,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
