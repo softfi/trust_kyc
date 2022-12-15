@@ -12,6 +12,7 @@ class PersonalDetailsController extends GetxController {
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;
   RxBool isChecked2 = false.obs;
+  RxBool isPanSelected = false.obs;
   RxInt isCheckedInt1 = 0.obs;
   RxInt isCheckedInt2 = 0.obs;
   RxBool potentiallyExposedStatus = false.obs;
@@ -20,6 +21,7 @@ class PersonalDetailsController extends GetxController {
   RxInt activateFutureInt = 0.obs;
   var firstName = TextEditingController();
   var lastName = TextEditingController();
+  var panNumber = TextEditingController();
   Rx<DateTime> currentStartDate = DateTime.now().obs;
 
   @override

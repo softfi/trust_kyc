@@ -3,23 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
-
-import '../../../../getx_controller/auth/email/email_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/styles.dart';
 
-class EmailVerification extends StatelessWidget {
-  EmailVerification({
+class EmailVeryfication extends StatelessWidget {
+  EmailVeryfication({
     Key? key,
     this.onClick,
   }) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
-  bool isPanSelected = false;
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   final void Function()? onClick;
-  final email_id = TextEditingController();
-  final panNumber = TextEditingController();
+
 
   bool isButtonClick = false;
   RxInt a = 1.obs;
@@ -281,18 +276,19 @@ class EmailVerification extends StatelessWidget {
               border: Border.all(
                   width: 1.1,
                   color:
-                      isPanSelected ? AppColors.textColor : Color(0xffC8C7CE)),
+                  _personalDetailsController.isPanSelected.value ? AppColors.textColor : const Color(0xffC8C7CE)),
             ),
-            child: TextField(
-              controller: panNumber,
+            child:  Obx(() =>TextField(
+              controller: _personalDetailsController.panNumber,
               autofocus: false,
               style: ConstStyle.sourceSansmob,
               textCapitalization: TextCapitalization.characters,
               onChanged: (text) {
-                if (panNumber.text.length < 10) {
-                  isPanSelected = false;
+                if (_personalDetailsController.panNumber.text.length < 10) {
+                  _personalDetailsController.isPanSelected.value = false;
                 } else {
-                  isPanSelected = true;
+                  _personalDetailsController.isPanSelected.value = true;
+                  FocusScope.of(context).unfocus();
                 }
               },
               inputFormatters: [
@@ -302,7 +298,7 @@ class EmailVerification extends StatelessWidget {
               decoration: InputDecoration(
                   suffixIcon: Container(
                     width: 80,
-                    color: isPanSelected
+                    color: _personalDetailsController.isPanSelected.value
                         ? AppColors.textColor
                         : const Color(0xffC8C7CE),
                     child: Center(
@@ -317,7 +313,7 @@ class EmailVerification extends StatelessWidget {
                   hintText: "10 Digit PAN Number",
                   border: InputBorder.none,
                   hintStyle: TextStyle(
-                      color: isPanSelected
+                      color: _personalDetailsController.isPanSelected.value
                           ? AppColors.textColor
                           : Color(0xffC8C7CE),
                       fontWeight: FontWeight.w400,
@@ -326,7 +322,7 @@ class EmailVerification extends StatelessWidget {
                   fillColor: Colors.white,
                   contentPadding:
                       const EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0)),
-            ),
+            )),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.55,

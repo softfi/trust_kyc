@@ -28,7 +28,7 @@ class MyPersonalDetails extends StatelessWidget {
             child: personaDetail(context))),
         Obx(() => Visibility(
             visible: !_personalDetailsController.isShowing.value,
-            child: EmailVerification(
+            child: EmailVeryfication(
               onClick: () {},
             ))),
       ],

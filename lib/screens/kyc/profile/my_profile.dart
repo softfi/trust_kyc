@@ -5,6 +5,7 @@ import 'package:trust_money/screens/animated_screens/complete_bank_detail_animat
 import 'package:trust_money/screens/animated_screens/complete_profile_animation.dart';
 import 'package:trust_money/screens/kyc/bank_screen/bank_details.dart';
 import 'package:trust_money/screens/kyc/demat_screen/demat.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/my_personal_details.dart';
 import 'package:trust_money/screens/kyc/profile/personal_profile_detals.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
@@ -264,15 +265,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: PersonalProfile(
-                    onClick1: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileAnimation()));
-                      setState(() {
-                        selectedIndex = 1;
-                      });
+                  child: MyPersonalDetails(
+                    onClick: () async {
+                      // await Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ProfileAnimation()));
+                      // setState(() {
+                      //   selectedIndex = 1;
+                      // });
                     },
                   ),
                 ),
@@ -438,15 +439,15 @@ class _MyProfileState extends State<MyProfile> {
                 Visibility(
                   visible: selectedIndex == 0,
                   maintainState: false,
-                  child: PersonalProfile(
-                    onClick1: () async {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>  const ProfileAnimation()));
-                      setState(() {
-                        selectedIndex = 1;
-                      });
+                  child: MyPersonalDetails(
+                    onClick: () async {
+                      // await Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>  const ProfileAnimation()));
+                      // setState(() {
+                      //   selectedIndex = 1;
+                      // });
                     },
                   ),
                 ),
