@@ -61,19 +61,27 @@ class PersonalDetailsController extends GetxController {
 
 
 
-  void updatePersonalDetails(){
-    bool isAllFieldvalid=CheckValidation();
+  void update_personal_details(){
+    if(dob.value !="DD/MM/YYYY"){
       updateData();
-      isVisible.value=2;
+    }else{
+      Get.showSnackbar(GetSnackBar(messageText: Text("Select date first",style: TextStyle(
+        color: Colors.white
+      ),),duration: Duration(seconds: 2),backgroundColor: Colors.red,));
+    }
 
 
   }
 
-  bool CheckValidation() {
-    return false;
-  }
 
-  void updateData() {
 
+  void updateData() async{
+    Get.dialog(Center(child: CircularProgressIndicator(),));
+var response=await APiProvider().updatePersonalDeatil();
+if(response!=null){
+  Get.back();
+  isVisible.value=2;
+  Get.showSnackbar(GetSnackBar(messageText:Text(response.toString()) ,duration: Duration(seconds: 2),backgroundColor: Colors.green,));
+}
   }
 }

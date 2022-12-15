@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/drawerWidget/left_drawer/left_drawer.dart';
+import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/bond/read_bonds.dart';
@@ -30,11 +32,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentIPOs = 2;
   bool? userIsLoggedIn;
-
+PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsController());
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
         userIsLoggedIn = value;
+        _personalDetailsController.onInit();
         print("====00001 $userIsLoggedIn");
       });
     });
@@ -301,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                                                       color: Color(0xff22263D),
                                                       fontSize: 13,
                                                       fontWeight:
-                                                      FontWeight.w500)),
+                                                          FontWeight.w500)),
                                             ),
                                           )),
                                         ),
@@ -545,21 +548,20 @@ class _HomePageState extends State<HomePage> {
                                 height: 20,
                               ),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ReadBonds()));
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 12.0),
-                                  child: ViewAllWidget(
-                                    title: 'Explore All Bonds',
-                                    width: 225,
-                                  ),
-                                )
-                              ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ReadBonds()));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 12.0),
+                                    child: ViewAllWidget(
+                                      title: 'Explore All Bonds',
+                                      width: 225,
+                                    ),
+                                  )),
                               const SizedBox(
                                 height: 30,
                               ),

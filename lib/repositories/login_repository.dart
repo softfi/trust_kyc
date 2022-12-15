@@ -37,11 +37,10 @@ class LoginRepository {
 
   }
 
-  Future<OtpVerifyModel?> verifyOTP(
-    String mobileNumber,
-    String OTP,
-    String hashKey,
-  ) async {
+
+
+  Future<OtpVerifyModel?> verifyOTP(String mobileNumber, String OTP, String hashKey,) async
+  {
     final Map<String, dynamic> dataq = Map<String, dynamic>();
     dataq["mobile_number"] = mobileNumber;
     dataq["otp"] = OTP;
@@ -66,8 +65,12 @@ class LoginRepository {
     return OtpVerifyModel.fromJson(data);
   }
 
-  Future<SignUpModel?> resendOtp(String firstName, String lastName,
-      String mobileNo, bool isResendOtp) async {
+
+
+
+
+  Future<SignUpModel?> resendOtp(String firstName, String lastName, String mobileNo, bool isResendOtp) async
+  {
     final Map<String, dynamic> dataq = Map<String, dynamic>();
     dataq["fname"] = firstName;
     dataq["lname"] = lastName;
@@ -87,8 +90,11 @@ class LoginRepository {
     return SignUpModel.fromJson(data);
   }
 
-  Future<SendOtpEmailModule?> sentOtpToEmail(
-      String mobnumber, String emailid, bool isResendOtp) async {
+
+
+
+  Future<SendOtpEmailModule?> sentOtpToEmail(String mobnumber, String emailid, bool isResendOtp) async
+  {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     final Map<String, dynamic> dataq = Map<String, dynamic>();
