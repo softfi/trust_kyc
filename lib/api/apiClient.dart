@@ -54,8 +54,8 @@ class APiProvider extends GetConnect {
     String correctedDate="${_controller.currentStartDate.value.day}-${_controller.currentStartDate.value.month}-${_controller.currentStartDate.value.year}";
    debugPrint(correctedDate);
     var body={
-        "firstname": "${_controller.firstName.text}",
-        "lastname": "${_controller.lastName.text}",
+        "firstname": "${_controller.firstName.value.text}",
+        "lastname": "${_controller.lastName.value.text}",
         "dob": "$correctedDate",
         "smart_card_required": 0,
         "smart_card_number": "string",
@@ -85,11 +85,11 @@ class APiProvider extends GetConnect {
         "proof_front_image": "string",
         "proof_back_image": "string",
         "manager_id": 0,
-        "is_politically_exposed": 0,
+        "is_politically_exposed": _controller.potentiallyExposedStatusInt.value,
         "filled_itr_last_2years": 0,
-        "would_you_like_to_activate": 0,
-        "check_box_share_data_with_company": 0,
-        "check_box_share_data_with_govt": 0
+        "would_you_like_to_activate": _controller.activateFutureInt.value,
+        "check_box_share_data_with_company": _controller.isCheckedInt1.value,
+        "check_box_share_data_with_govt": _controller.isCheckedInt2.value
     };
     try{
       var response=await put(TrustKycUrl.baseUrl+TrustKycUrl.personalDetail, body,headers: {

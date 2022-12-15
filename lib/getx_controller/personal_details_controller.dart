@@ -19,9 +19,9 @@ class PersonalDetailsController extends GetxController {
   RxBool activateFuture = false.obs;
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
-  var firstName = TextEditingController();
-  var lastName = TextEditingController();
-  var panNumber = TextEditingController();
+  Rx<TextEditingController>  firstName = TextEditingController().obs;
+  Rx<TextEditingController>  lastName = TextEditingController().obs;
+  Rx<TextEditingController> panNumber = TextEditingController().obs;
   Rx<DateTime> currentStartDate = DateTime.now().subtract(Duration(days: 6574)).obs;
 
   @override
@@ -49,8 +49,8 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().personalDetail();
     if (response != null) {
       GetPersonalDetailModel modal = response;
-      firstName.text = modal.firstname ?? "";
-      lastName.text = modal.lastname ?? "";
+      firstName.value.text = modal.firstname ?? "";
+      lastName.value.text = modal.lastname ?? "";
       mobileNumber.value = modal.mobileNumber;
     } else {
       Get.showSnackbar(const GetSnackBar(
