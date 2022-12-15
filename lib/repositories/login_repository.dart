@@ -15,7 +15,7 @@ class LoginRepository {
   LoginRepository();
 
   Future<SignUpModel?> sendOtp(String firstName, String lastName,
-      String mobileNo, bool isResendOtp,int partner) async {
+      String mobileNo, bool isResendOtp, int partner) async {
     final Map<String, dynamic> dataq = Map<String, dynamic>();
     dataq["fname"] = firstName;
     dataq["lname"] = lastName;
@@ -34,7 +34,6 @@ class LoginRepository {
       SnackBar(content: Text("OTP send successfully"));
     }
     return SignUpModel.fromJson(data);
-
   }
 
   Future<OtpVerifyModel?> verifyOTP(

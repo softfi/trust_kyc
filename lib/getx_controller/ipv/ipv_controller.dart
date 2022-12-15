@@ -1,9 +1,7 @@
-
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class KRAController extends GetxController {
+class IPVController extends GetxController {
+
   RxInt isVisible = 1.obs;
   RxBool isRTR = false.obs;
   RxBool isSelected = false.obs;
@@ -12,8 +10,4 @@ class KRAController extends GetxController {
   RxBool isMaritalSelect = false.obs;
   RxBool isEnComeSelect = false.obs;
   RxBool isExperienceSelect = false.obs;
-
-
-  var maidenName = TextEditingController();
-
 }

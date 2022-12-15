@@ -26,7 +26,7 @@ class AppTextField extends StatelessWidget {
         border: Border.all(width: 1, color: AppColors.borderColor),
         color: Colors.white,
       ),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         autofocus: false,
         style: ConstStyle.sourceSans5,

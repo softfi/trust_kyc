@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/verify_pan_congratulations.dart';
 import 'package:trust_money/screens/animated_screens/verified_animation.dart';
+import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/images.dart';
@@ -17,7 +18,7 @@ class EmailVeryfication extends StatelessWidget {
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
   final void Function()? onClick;
-
+  var emailID = TextEditingController();
   bool isButtonClick = false;
   RxInt a = 1.obs;
 
@@ -136,8 +137,7 @@ class EmailVeryfication extends StatelessWidget {
             InkWell(
               onTap: () {
                 a.value = 2;
-                // EmailPANBottomSheet.onEmailAddedBottomSheet(
-                //     context, email_id);
+               // EmailPANBottomSheet.emailBottomSheet(context, emailID);
                 //onEmailAddedBottomSheet();
               },
               child: Container(

@@ -11,7 +11,7 @@ import '../personal_detals/app_textfield.dart';
 class Help {
   String label;
   Color color;
-  bool isSelected;
+  bool isSelected = false;
 
   Help(this.label, this.color, this.isSelected);
 }
@@ -322,16 +322,15 @@ class KRARecord extends StatelessWidget {
       Widget item = FilterChip(
         label: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(list[i].label),
-        ),
+          child: Text(list[i].label),),
         labelStyle: GoogleFonts.quicksand(
-          textStyle: const TextStyle(
-              fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
+          textStyle: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         backgroundColor: list[i].color,
         selected: list[i].isSelected,
-        onSelected: (bool value) {
+        onSelected: (bool val) {
+          _kRAController.isSelected.value = val;
           // setState(() {
           //   _chipsList[i].isSelected = value;
           // });
