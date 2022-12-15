@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/api/apiClient.dart';
+import 'package:trust_money/model/get_pan_response_data.dart';
 import 'package:trust_money/screens/Congratulations/verify_pan_congratulations.dart';
 import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
@@ -15,12 +17,11 @@ class EmailVeryfication extends StatelessWidget {
     Key? key,
     this.onClick,
   }) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   final void Function()? onClick;
-  var emailID = TextEditingController();
+
   bool isButtonClick = false;
-  RxInt a = 1.obs;
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +42,13 @@ class EmailVeryfication extends StatelessWidget {
           child: Column(
             children: [
               Obx(() => Visibility(
-                    visible: a.value == 1,
+                    visible: _personalDetailsController.a.value == 1,
                     child: emailWidget(context),
                   )),
               Obx(() => Visibility(
-                  visible: a.value == 2, child: verifiedEmail(context))),
+                  visible: _personalDetailsController.a.value == 2, child: verifiedEmail(context))),
               Obx(() =>
-                  Visibility(visible: a.value == 3, child: panWidget(context))),
+                  Visibility(visible: _personalDetailsController.a.value == 3, child: panWidget(context))),
             ],
           ),
         ),
@@ -94,7 +95,7 @@ class EmailVeryfication extends StatelessWidget {
             ),
             _space,
             Text(
-              "Hey Jairaj, Let’s Verify Your Email Id",
+              "Hey ${_personalDetailsController.firstName.value.text}, Let’s Verify Your Email Id",
               style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
@@ -136,8 +137,8 @@ class EmailVeryfication extends StatelessWidget {
             _space,
             InkWell(
               onTap: () {
-                a.value = 2;
-               // EmailPANBottomSheet.emailBottomSheet(context, emailID);
+                // a.value = 2;
+                EmailPANBottomSheet.emailBottomSheet(context, _personalDetailsController.emailID.value,);
                 //onEmailAddedBottomSheet();
               },
               child: Container(
@@ -172,7 +173,7 @@ class EmailVeryfication extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Hey jairaj, Congratulations! Your Email is Verified",
+          "Hey ${_personalDetailsController.firstName.value.text}, Congratulations! Your Email is Verified",
           style: ConstStyle.quickMedium,
         ),
         _space,
@@ -191,7 +192,7 @@ class EmailVeryfication extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width * 0.70,
                     child: Text(
-                      "dk@gmail.com",
+                      _personalDetailsController.emailID.value.text,
                       overflow: TextOverflow.ellipsis,
                       style: ConstStyle.sourceSans5,
                     )),
@@ -208,7 +209,7 @@ class EmailVeryfication extends StatelessWidget {
         InkWell(
           onTap: () {
             isButtonClick = true;
-            a.value = 3;
+            _personalDetailsController.a.value = 3;
           },
           child: Container(
             height: 45,
@@ -265,7 +266,7 @@ class EmailVeryfication extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Hey Jairaj, Let’s Validate Your PAN ",
+            "Hey ${_personalDetailsController.firstName.value.text}, Let’s Validate Your PAN ",
             style: ConstStyle.quickMedium,
           ),
           _space,
@@ -301,7 +302,10 @@ class EmailVeryfication extends StatelessWidget {
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
                         onTap: () {
-                          bottomSheet();
+
+                          verifyPan();
+
+                         /// bottomSheet();
                         },
                         child: Container(
                           width: 80,
@@ -492,4 +496,13 @@ class EmailVeryfication extends StatelessWidget {
   Widget get _space => const SizedBox(height: 16);
 
   Widget get _space1 => const SizedBox(height: 5);
+
+  void verifyPan() async{
+    var response=await APiProvider().verfiyPanNumber();
+    if(response !=null){
+      PanStatusModel modal=response;
+      Get.showSnackbar(GetSnackBar(messageText: Text("Pan varified succefully"),));
+    }
+
+  }
 }

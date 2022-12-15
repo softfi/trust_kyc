@@ -7,7 +7,9 @@ import 'package:trust_money/model/perosnal_details/get_personal_detail_response.
 import '../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
+  Rx<TextEditingController> emailID = TextEditingController().obs;
   RxInt isVisible = 1.obs;
+  RxInt a = 1.obs;
   RxString mobileNumber = "".obs;
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;
@@ -52,10 +54,6 @@ class PersonalDetailsController extends GetxController {
       firstName.value.text = modal.firstname ?? "";
       lastName.value.text = modal.lastname ?? "";
       mobileNumber.value = modal.mobileNumber;
-    } else {
-      Get.showSnackbar(const GetSnackBar(
-        title: "Something went Wrong!",
-      ));
     }
   }
 
