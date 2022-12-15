@@ -134,20 +134,22 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 width: 15,
                               ),
                               InkWell(
-                                onTap: () async{
+                                onTap: () async {
                                   // Navigator.pop(context);
 
-                                    await HelperFunctions.saveuserLoggedInSharedPreference(false);
-                                    await HelperFunctions.saveuserkyccompleted(false);
-                                    SharedPreferences preferences = await SharedPreferences.getInstance();
-                                    await preferences.clear();
-                                    Get.offAll(SignIn());
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             const SignIn()));
-
+                                  await HelperFunctions
+                                      .saveuserLoggedInSharedPreference(false);
+                                  await HelperFunctions.saveuserkyccompleted(
+                                      false);
+                                  SharedPreferences preferences =
+                                      await SharedPreferences.getInstance();
+                                  await preferences.clear();
+                                  Get.offAll(SignIn());
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const SignIn()));
                                 },
                                 child: Container(
                                   height: 45,

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/bond/tringle.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
-
+import 'dart:math' as math;
 import '../../utils/app_bar.dart';
 import 'common_widget.dart';
+import 'ipo/buy_ipo_bonds/key_points.dart';
 
 bool itrValue = true;
 List<String> items = ["Gram", "Kilo", "Mili"];
 String? selectedItem = "Gram";
 bool is_switch_on = true;
 bool _customTileExpanded = false;
+bool isEnable = false;
 int itrValueInt = 0;
 var container_garidiant = LinearGradient(
     colors: [Color(0xff58C3D5), Color(0xffEC515F)],
@@ -51,13 +54,12 @@ class _GoldBondState extends State<GoldBond> {
               child: Stack(
                 children: [
                   Positioned(
-                    right: 0,
-                    top: 20,
+                    right: -20,
+                    top: 25,
                     child: Image.asset(
-                      ConstantImage.orderImg,
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.fill,
+                      "assets/images/gold.png",
+                      height: 350,
+                      width: 350,
                     ),
                   ),
                   Column(
@@ -332,7 +334,7 @@ class _GoldBondState extends State<GoldBond> {
               height: 30,
             ),
             Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -348,218 +350,248 @@ class _GoldBondState extends State<GoldBond> {
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Color(0xff9BA9AD),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            ConstantImage.orderImg,
-                            height: 80,
-                            width: 80,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Hassle-Free",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    )),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Ownership of gold without any physical possession (No risks and no cost of storage)",
-                                  softWrap: true,
-                                  style: GoogleFonts.sourceSansPro(
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: Color(0xff9BA9AD),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          ConstantImage.orderImg,
+                          height: 80,
+                          width: 80,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Hassle-Free",
+                                  style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "Ownership of gold without any physical possession (No risks and no cost of storage)",
+                                softWrap: true,
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFFFFFF),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Color(0xffAD9FA0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            ConstantImage.orderImg,
-                            height: 80,
-                            width: 80,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Tax Treatment",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    )),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "The capital gains tax arising on redemption of SGB to an individual has been exempted. The indexation benefits will be provided to long term capital gains arising to any person on transfer of bond.)",
-                                  softWrap: true,
-                                  style: GoogleFonts.sourceSansPro(
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: Color(0xffAD9FA0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          ConstantImage.orderImg,
+                          height: 80,
+                          width: 80,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Tax Treatment",
+                                  style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "The capital gains tax arising on redemption of SGB to an individual has been exempted. The indexation benefits will be provided to long term capital gains arising to any person on transfer of bond.)",
+                                softWrap: true,
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFFFFFF),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Color(0xffCA8386),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            ConstantImage.orderImg,
-                            height: 80,
-                            width: 80,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Tradability",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    )),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Bonds will be tradable on stock exchanges within a fortnight of the issuance on a date as notified by the RBI.",
-                                  softWrap: true,
-                                  style: GoogleFonts.sourceSansPro(
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: Color(0xffCA8386),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          ConstantImage.orderImg,
+                          height: 80,
+                          width: 80,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Tradability",
+                                  style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "Bonds will be tradable on stock exchanges within a fortnight of the issuance on a date as notified by the RBI.",
+                                softWrap: true,
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFFFFFF),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      color: Color(0xffD67278),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            ConstantImage.orderImg,
-                            height: 80,
-                            width: 80,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Transferability",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18),
-                                    )),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Bonds shall be transferable by execution of an Instrument of transfer in accordance with the provisions of the Government Securities Act.",
-                                  softWrap: true,
-                                  style: GoogleFonts.sourceSansPro(
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: Color(0xffD67278),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          ConstantImage.orderImg,
+                          height: 80,
+                          width: 80,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Transferability",
+                                  style: GoogleFonts.quicksand(
                                     textStyle: const TextStyle(
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                "Bonds shall be transferable by execution of an Instrument of transfer in accordance with the provisions of the Government Securities Act.",
+                                softWrap: true,
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Color(0xffFFFFFF),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
                                   ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
 
-                  // sovereign_bond_scheme_seriesX(),
-                  Card(child: readBondWidget()),
+                  Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x29000000),
+                              blurRadius: 5.0,
+                            ),
+                          ],
+                          color: Colors.white),
+                      child: readBondWidget(context)),
+                  Container(
+                    height: 80,
+                    decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x29000000),
+                          blurRadius: 9.0,
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Container(
+                        height: 40,
+                        width: 210,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: AppColors.btnColor,
+                        ),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text("Buy this BOND now!",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                  color: Color(0xffFfffff),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                              )),
+                        )),
+                      ),
+                    ),
+                  ),
 
                   SizedBox(
                     height: 30,
                   ),
-
                   investment(),
                   SizedBox(
                     height: 30,
@@ -632,9 +664,324 @@ class _GoldBondState extends State<GoldBond> {
     );
   }
 
+  Widget readBondWidget(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          top: 30,
+          right: -4,
+          child: Image.asset(
+            ConstantImage.leaf,
+            color: const Color(0xff00C6D8),
+            height: 400,
+          ),
+        ),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 60,
+                  width: 60,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: Image.asset(ConstantImage.orderImg),
+                ),
+                const SizedBox(
+                  width: 13,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.5,
+                  child: Text("Sovereign Gold Bonds Scheme 2021-22 - Series X",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      )),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(12)),
+                      color: AppColors.greenColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Center(
+                      child: Text(
+                        "Returns Based On Gold Prices",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(12)),
+                      color: AppColors.greyColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        RichText(
+                          text: const TextSpan(children: [
+                            TextSpan(
+                                text: "ISIN: ",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xffFF405A))),
+                            TextSpan(
+                                text: "INE146O08118",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.textColor)),
+                          ]),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Icon(
+                          Icons.file_copy,
+                          color: Color(0xffFF405A),
+                          size: 12,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Transform.rotate(
+                    angle: -math.pi,
+                    child: ClipPath(
+                      clipper: Triangle(),
+                      child: Container(
+                        color: AppColors.textColor,
+                        height: 25,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 13.0, left: 21),
+                          child: Center(
+                            child: Transform.rotate(
+                              angle: -math.pi,
+                              child: Text(
+                                "Eligible Investors*",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Container(
+                  //   height: 25,
+                  //   decoration: const BoxDecoration(
+                  //       borderRadius: BorderRadius.only(
+                  //           bottomRight: Radius.circular(10),
+                  //           topRight: Radius.circular(10)),
+                  //       color: AppColors.textColor),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  //     child: Center(
+                  //       child: Text(
+                  //         "Eligible Investors*",
+                  //         style: GoogleFonts.sourceSansPro(
+                  //           textStyle: const TextStyle(
+                  //             color: Colors.white,
+                  //             fontWeight: FontWeight.bold,
+                  //             fontSize: 10,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "HUF",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Corporate",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Trust",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: AppColors.greyColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Minor",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              "Key Points To Consider",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.textColor),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              "Face Value (In INR) and Issue Size (In INR Crores)",
+              style: GoogleFonts.sourceSansPro(
+                textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff1D2B84)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Visibility(child: GoldKeyPoints()),
+          // isNonIPO
+          //     ? ConstWidget.keyPointsConsider(
+          //         context,
+          //       )
+          //     : KeyPoints()),
+        ]),
+      ],
+    );
+  }
 
-
-  Widget readBondWidget() {
+/*  Widget readBondWidget() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(
         height: 30,
@@ -935,7 +1282,7 @@ class _GoldBondState extends State<GoldBond> {
         height: 10,
       )
     ]);
-  }
+  }*/
 
   Widget keyPoint() {
     return Column(
@@ -1425,10 +1772,44 @@ class _GoldBondState extends State<GoldBond> {
                                   fontSize: 16,
                                 ),
                               )),
-
-                          ///add button here
-// RadioListTile(value: "Gold Oty", groupValue:button_value, onChanged:(value){})
-                          Text("Radio Button to be shown here")
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isEnable = true;
+                              });
+                            },
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3),
+                              height: 33,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xff00C6D8),
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: Row(
+                                children: [
+                                  isEnable
+                                      ? Container()
+                                      : Icon(
+                                          size: 20,
+                                          Icons.circle,
+                                          color: Colors.white,
+                                        ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  isEnable
+                                      ? Icon(
+                                          size: 20,
+                                          Icons.circle,
+                                          color: Color(0xff22263D),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -1459,76 +1840,81 @@ class _GoldBondState extends State<GoldBond> {
                                   )),
                             ],
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            // width: 120,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x29000000),
-                                  blurRadius: 3.0,
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "2",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            // width: 120,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x29000000),
-                                  blurRadius: 3.0,
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "",
-                                    style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold)),
+                          SizedBox(
+                            width: 130,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: 40,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x29000000),
+                                        blurRadius: 3.0,
+                                      ),
+                                    ],
                                   ),
-
-                                  /////drop down butyton here
-
-                                  Container(
-                                    child: DropdownButton<String>(
-                                      onChanged: (value) {
-                                        setState(() => selectedItem = value);
-                                      },
-                                      value: selectedItem,
-                                      items: items
-                                          .map((item) => DropdownMenuItem(
-                                                value: item,
-                                                child: Text(item),
-                                              ))
-                                          .toList(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "2",
+                                      style: GoogleFonts.quicksand(
+                                          textStyle: const TextStyle(
+                                              color: Color(0xff22263D),
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold)),
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 40,
+                                  // width: 120,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x29000000),
+                                        blurRadius: 3.0,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "",
+                                          style: GoogleFonts.quicksand(
+                                              textStyle: const TextStyle(
+                                                  color: Color(0xff22263D),
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+
+                                        /////drop down butyton here
+
+                                        Container(
+                                          child: DropdownButton<String>(
+                                            onChanged: (value) {
+                                              setState(
+                                                  () => selectedItem = value);
+                                            },
+                                            value: selectedItem,
+                                            items: items
+                                                .map((item) => DropdownMenuItem(
+                                                      value: item,
+                                                      child: Text(item),
+                                                    ))
+                                                .toList(),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           )
                         ],
@@ -1657,14 +2043,7 @@ class _GoldBondState extends State<GoldBond> {
                           width: 210,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            gradient: LinearGradient(
-                              colors: [
-                                const Color(0xffFF405A),
-                                const Color(0xff80202D),
-                              ],
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                            ),
+                            color: Color(0xffFF405A),
                           ),
                           child: Center(
                               child: Padding(
@@ -1696,7 +2075,7 @@ class _GoldBondState extends State<GoldBond> {
                             textStyle: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 15),
+                                fontSize: 18),
                           ),
                         ),
                         const SizedBox(

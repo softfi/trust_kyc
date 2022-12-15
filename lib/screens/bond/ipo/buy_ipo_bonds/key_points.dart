@@ -439,3 +439,497 @@ class KeyPoints extends StatelessWidget {
     );
   }
 }
+
+class GoldKeyPoints extends StatelessWidget {
+  const GoldKeyPoints({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          color: const Color(0xffD67278).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Coupon Rate (Returns)",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "2.5%",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Yeild",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: TextStyle(
+                            color: AppColors.primaryColor.withOpacity(0.80),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "10.60%",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xff9BA9AD).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Allotment Date",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Mar 08, 2022",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Issue Opening - Closing Dates",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Feb 28-Mar 04, 2022",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xff9BA9AD).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Next Interest Payment Date",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Sep 07, 2022",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Interest Payment Frequency",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Semi-Annually",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Text(
+                            "Every 6 Months",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xff9BA9AD).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Maturity after",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Mar 07, 2027 ",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Text(
+                            "(1st Exit Date)",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Purchase Limit",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "4 Kg/4000 units ",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Text(
+                            "During each financial year",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xff9BA9AD).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Issuer",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "Government of India  ",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.40,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "RBI Notice",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: TextStyle(
+                              color: AppColors.primaryColor.withOpacity(0.80),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "https://www.rbi.org.in",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            decoration: TextDecoration.underline,
+                              color: AppColors.btnColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          color: const Color(0xff9BA9AD).withOpacity(0.10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Govt. Guarantee",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: TextStyle(
+                                  color:
+                                  AppColors.primaryColor.withOpacity(0.80),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "No",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Exit Option Available",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: TextStyle(
+                                  color:
+                                  AppColors.primaryColor.withOpacity(0.80),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Yes",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: AppColors.textColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15),
+                                ),
+                              ),
+                              Text(
+                                "After the 5th year. Investors can exercise it on the next interest payment dates.",
+                                style: GoogleFonts.sourceSansPro(
+                                  textStyle: const TextStyle(
+                                      color: AppColors.textColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
