@@ -1,8 +1,8 @@
 import 'package:custom_switch/custom_switch.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/styles.dart';
@@ -20,7 +20,8 @@ class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
-
+  KRAController _kRAController = Get.put(KRAController());
+  RxBool isButtonClick = false.obs;
   List profession = ["sds", "sds1", "sds2", "sds3"];
   String profId = "sds";
 
@@ -174,13 +175,13 @@ class KRARecord extends StatelessWidget {
       ),
       _space1,
       Container(
-          height: 45,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1.1, color: AppColors.borderColor),
-          ),
-          child: Padding(
+        height: 45,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(width: 1.1, color: AppColors.borderColor),
+        ),
+        /* child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2(
@@ -204,7 +205,8 @@ class KRARecord extends StatelessWidget {
                   },
                   value: profId,
                 ),
-              ))),
+              ))*/
+      ),
       _space,
       AppText(
         title: 'What is your trading experience?',
@@ -225,6 +227,7 @@ class KRARecord extends StatelessWidget {
       ),
       _space,
       Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Have you filed ITR last 2 Years",
@@ -236,18 +239,14 @@ class KRARecord extends StatelessWidget {
               )),
           CustomSwitch(
             activeColor: Colors.green,
-            value: itrValue,
+            value: _kRAController.isRTR.value,
             onChanged: (value) {
-              print("VALUE : $value");
-              setState(() {
-                itrValue = value;
-                if (value == true) {
-                  itrValueInt = 1;
-                } else {
-                  itrValueInt = 0;
-                }
-                print("VALUE : $itrValue");
-              });
+              _kRAController.isRTR.value = value;
+              if (value == true) {
+                _kRAController.isRTRInt.value = 1;
+              } else {
+                _kRAController.isRTRInt.value = 0;
+              }
             },
           )
         ],
@@ -260,8 +259,59 @@ class KRARecord extends StatelessWidget {
       AppTextField(
         textCapitalization: TextCapitalization.words,
         hint: 'Enter Maiden Name',
-        controller: _personalDetailsController.lastName,
+        controller: _kRAController.maidenName,
         textInputType: TextInputType.text,
+      ),
+      _space,
+      _space,
+      _space,
+      InkWell(
+        onTap: () {
+          isButtonClick.value = true;
+        },
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x29000000),
+                blurRadius: 4.0,
+              ),
+            ],
+            border: Border.all(
+                width: 2,
+                color: isButtonClick == false
+                    ? AppColors.textColor
+                    : const Color(0xffE1E0E6)),
+            color: isButtonClick == false ? Colors.white : Color(0xffFF405A),
+          ),
+          child: Center(
+              child: Text(
+            "Continue",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: Color(0xff22263D),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+            ),
+          )),
+        ),
+      ),
+      _space1,
+      _space1,
+      Center(
+        child: Text(
+          "Save & Complete Later",
+          style: GoogleFonts.sourceSansPro(
+            textStyle: const TextStyle(
+                color: Color(0xff22263D),
+                fontWeight: FontWeight.w500,
+                fontSize: 15),
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 20,
       ),
     ]);
   }
