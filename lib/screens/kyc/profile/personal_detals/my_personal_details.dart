@@ -22,6 +22,7 @@ class MyPersonalDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _personalDetailsController.onInit();
     return Column(
       children: [
         Obx(() =>
@@ -99,7 +100,7 @@ class MyPersonalDetails extends StatelessWidget {
                 AppTextField(
                   textCapitalization: TextCapitalization.words,
                   hint: ' ',
-                  controller: _personalDetailsController.firstName,
+                  controller: _personalDetailsController.firstName.value,
                   textInputType: TextInputType.text,
                 ),
                 _space,
@@ -110,7 +111,7 @@ class MyPersonalDetails extends StatelessWidget {
                 AppTextField(
                   textCapitalization: TextCapitalization.words,
                   hint: ' ',
-                  controller: _personalDetailsController.lastName,
+                  controller: _personalDetailsController.lastName.value,
                   textInputType: TextInputType.text,
                 ),
                 _space,

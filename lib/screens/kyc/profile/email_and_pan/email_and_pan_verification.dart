@@ -282,12 +282,12 @@ class EmailVeryfication extends StatelessWidget {
                       : const Color(0xffC8C7CE)),
             ),
             child: Obx(() => TextField(
-                  controller: _personalDetailsController.panNumber,
+                  controller: _personalDetailsController.panNumber.value,
                   autofocus: false,
                   style: ConstStyle.sourceSansmob,
                   textCapitalization: TextCapitalization.characters,
                   onChanged: (text) {
-                    if (_personalDetailsController.panNumber.text.length < 10) {
+                    if (_personalDetailsController.panNumber.value.text.length < 10) {
                       _personalDetailsController.isPanSelected.value = false;
                     } else {
                       _personalDetailsController.isPanSelected.value = true;
