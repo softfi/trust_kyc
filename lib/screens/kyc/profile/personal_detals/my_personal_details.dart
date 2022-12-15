@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
+import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -39,6 +40,10 @@ class MyPersonalDetails extends StatelessWidget {
             Visibility(
                 visible: _personalDetailsController.isVisible.value == 3,
                 child: KRARecord())),
+        Obx(() =>
+            Visibility(
+                visible: _personalDetailsController.isVisible.value == 4,
+                child: IPVVerification())),
       ],
     );
   }

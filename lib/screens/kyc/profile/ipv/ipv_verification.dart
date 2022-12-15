@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';
 import '../../../../utils/styles.dart';
 import '../personal_detals/app_textfield.dart';
 
 class IPVVerification extends StatelessWidget {
-   IPVVerification({Key? key}) : super(key: key);
+  IPVVerification({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+      Get.put(PersonalDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,8 @@ class IPVVerification extends StatelessWidget {
       ),
     );
   }
-  Widget ipvWidget(BuildContext context){
+
+  Widget ipvWidget(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.all(4.0),
@@ -80,7 +83,6 @@ class IPVVerification extends StatelessWidget {
         ),
       ),
       _space,
-
       Text(
         Strings.identity_text,
         style: GoogleFonts.sourceSansPro(
@@ -102,17 +104,104 @@ class IPVVerification extends StatelessWidget {
               fontSize: 12),
         ),
       ),
-
-
-
-
-
-
-
       _space,
       _space,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SvgPicture.asset(
+                ConstantImage.bulb,
+                height: 40,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                Strings.good_light,
+                style: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SvgPicture.asset(
+                ConstantImage.webcam,
+                height: 40,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                Strings.look,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                ConstantImage.sunglasses,
+                height: 40,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                Strings.Sungalses,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                      color: Color(0xffff405A),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                ConstantImage.cap,
+                height: 40,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                Strings.Caps,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                      color: Color(0xffff405A),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
       _space,
-
       _space1,
       _space1,
       Center(
@@ -132,7 +221,7 @@ class IPVVerification extends StatelessWidget {
     ]);
   }
 
-   Widget get _space => const SizedBox(height: 16);
+  Widget get _space => const SizedBox(height: 16);
 
-   Widget get _space1 => const SizedBox(height: 5);
+  Widget get _space1 => const SizedBox(height: 5);
 }
