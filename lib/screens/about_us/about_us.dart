@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
@@ -7,9 +8,11 @@ import '../../utils/app_bar.dart';
 
 class AboutUs extends StatelessWidget {
   final pageviewController = PageController(initialPage: 0);
-
+ List dotIndicatorList=List.empty(growable: true);
+ RxInt isActive=0.obs;
   @override
   Widget build(BuildContext context) {
+    dotIndicatorList=[1,2,3];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
@@ -415,8 +418,11 @@ class AboutUs extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: SizedBox(
-                height: 550,
+                height: 600,
                 child: PageView(
+                  onPageChanged: (a){
+                    isActive.value=a;
+                  },
                   controller: pageviewController,
                   reverse: true,
                   children: [
@@ -437,15 +443,15 @@ class AboutUs extends StatelessWidget {
                                 fontSize: 22),
                           ),
                         ),
-                        // Text(
-                        //   "Co-Founder",
-                        //   style: GoogleFonts.quicksand(
-                        //     textStyle: const TextStyle(
-                        //         color: Color(0xffA5A5A5),
-                        //         fontWeight: FontWeight.w500,
-                        //         fontSize: 16),
-                        //   ),
-                        // )
+                        Text(
+                          "Pranav Inamdar, Director of Trust Group & Trust Securities services, is one of the founder member of Trust Securities services and drives a national network of niche relationships at Trust Group. An MBA from the University of Mumbai, he brings with him 17 years of rich experience in Capital Markets working across client profiles, nationally. With laurels of path breaking deals to his name, Mr. Inamdar's determination and dynamics resonates with ours.",
+                          style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Color(0xff22263D),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12),
+                          ),
+                        )
                       ],
                     ),
                     Column(
@@ -468,12 +474,12 @@ class AboutUs extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Co-Founder",
+                          "Pranav Inamdar, Director of Trust Group & Trust Securities services, is one of the founder member of Trust Securities services and drives a national network of niche relationships at Trust Group. An MBA from the University of Mumbai, he brings with him 17 years of rich experience in Capital Markets working across client profiles, nationally. With laurels of path breaking deals to his name, Mr. Inamdar's determination and dynamics resonates with ours.",
                           style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
-                                color: Color(0xffA5A5A5),
+                                color: Color(0xff22263D),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16),
+                                fontSize: 12),
                           ),
                         )
                       ],
@@ -498,12 +504,12 @@ class AboutUs extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Co-Founder",
+                          "Pranav Inamdar, Director of Trust Group & Trust Securities services, is one of the founder member of Trust Securities services and drives a national network of niche relationships at Trust Group. An MBA from the University of Mumbai, he brings with him 17 years of rich experience in Capital Markets working across client profiles, nationally. With laurels of path breaking deals to his name, Mr. Inamdar's determination and dynamics resonates with ours.",
                           style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
-                                color: Color(0xffA5A5A5),
+                                color: Color(0xff22263D),
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16),
+                                fontSize: 12),
                           ),
                         )
                       ],
@@ -512,6 +518,28 @@ class AboutUs extends StatelessWidget {
                 ),
               ),
             ),
+
+            Container(
+              alignment: Alignment.center,
+              height: 40,
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount:dotIndicatorList.length,itemBuilder: (context,index){
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Obx(()=>Container(
+                    height: 15,width: 15,
+                    decoration:  BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isActive.value==index?Colors.red:Colors.red.shade200
+                    )),
+                  ),
+                );
+              },),
+            ),
+SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(

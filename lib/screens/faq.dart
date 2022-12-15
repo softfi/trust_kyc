@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/app_bar.dart';
@@ -6,7 +7,7 @@ import '../utils/images.dart';
 
 class FAQs extends StatelessWidget {
   FAQs({Key? key}) : super(key: key);
-
+Rx<Icon> tileIcon=Icon(Icons.add).obs;
   List data = [
     [
       "Why should one invest in fixed income securities?",
@@ -156,9 +157,14 @@ class FAQs extends StatelessWidget {
                 ),
               ], color: Colors.white),
               child: Theme(
+
                 data: Theme.of(context)
                     .copyWith(dividerColor: Colors.transparent),
                 child: ExpansionTile(
+                  onExpansionChanged: (a){
+// tileIcon.value=Icon(Icons.minimize);
+                  },
+                  leading: Obx(() =>(tileIcon.value)),
 
                   childrenPadding: EdgeInsets.symmetric(vertical: 0),
                   title: Text('${data[index][0]}',

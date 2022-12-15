@@ -216,73 +216,111 @@ class MyBID extends StatelessWidget {
           height: 15,
         ),
         ListTile(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          title: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                  color:Color(0xffF7F7FA),
+                  child:Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Amount Invested",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: Color(0xffB0B1B9),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 10,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Amount Invested",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xffB0B1B9),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10,
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 1,
                         ),
-                      )),
-                  const SizedBox(
-                    height: 1,
-                  ),
-                  Text(
-                    "₹ 6,26,201",
-                    style: ConstStyle.quickStandBtn,
-                  ),
+                        Text(
+                          "₹ 6,26,201",
+                          style: ConstStyle.quickStandBtn,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Gold Quantity",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xffB0B1B9),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10,
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 1,
+                        ),
+                        Text(
+                          "20 Grams",
+                          style: ConstStyle.quickStandBtn,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Payment Status",
+                            style: GoogleFonts.sourceSansPro(
+                              textStyle: const TextStyle(
+                                color: Color(0xffB0B1B9),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10,
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 1,
+                        ),
+                        Text(
+                          "Successful",
+                          style: ConstStyle.quickStandBtn,
+                        ),
+                      ],
+                    ),
+
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                  )),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Gold Quantity",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: Color(0xffB0B1B9),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 10,
-                        ),
+                  Container(
+                    padding: EdgeInsets.only(left: 5,right: 5),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Color(0xffFCEDEE)
+                      ),
+                      child: Row(
+                        children: [
+                          Text("Download Invoice"),
+                          SizedBox(width: 5,),
+                          Icon(Icons.download),
+                        ],
                       )),
-                  const SizedBox(
-                    height: 1,
-                  ),
-                  Text(
-                    "20 Grams",
-                    style: ConstStyle.quickStandBtn,
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Payment Status",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                          color: Color(0xffB0B1B9),
-                          fontWeight: FontWeight.w400,
-                          fontSize: 10,
-                        ),
+                  Container(
+                    padding: EdgeInsets.only(left: 5,right: 5),
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Color(0xffE7F8FA)
+                      ),
+                      child: Row(
+                        children: [
+                          Text("Download Form"),
+                          SizedBox(width: 5,),
+                          Icon(Icons.download),
+                        ],
                       )),
-                  const SizedBox(
-                    height: 1,
-                  ),
-                  Text(
-                    "Successful",
-                    style: ConstStyle.quickStandBtn,
-                  ),
+
                 ],
-              ),
-              const Icon(
-                Icons.local_printshop_rounded,
-                size: 25,
-                color: AppColors.primaryColor,
               )
             ],
           ),
@@ -407,6 +445,7 @@ class MyBID extends StatelessWidget {
             ],
           ),
         ),
+
       ],
     );
   }

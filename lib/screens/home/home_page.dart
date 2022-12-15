@@ -366,11 +366,14 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Image.asset(
-                                ConstantImage.quick,
-                                fit: BoxFit.cover,
-                                height: 416,
-                                //width: MediaQuery.of(context).size.width,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  ConstantImage.quick,
+                                  fit: BoxFit.cover,
+                                  // height: 416,
+                                  //width: MediaQuery.of(context).size.width,
+                                ),
                               ),
                               const SizedBox(
                                 height: 30,
@@ -387,10 +390,10 @@ class _HomePageState extends State<HomePage> {
                                       blurRadius: 11,
                                       offset: const Offset(0, 1),
                                     ),
-                                  ], color: Colors.white),
+                                  ], color: Color(0xffB2EEF8)),
                                   child: TextFormField(
                                     decoration: InputDecoration(
-                                        fillColor: Colors.white,
+                                        fillColor: Color(0xffB2EEF8),
                                         filled: true,
                                         border: InputBorder.none,
                                         contentPadding:
@@ -400,12 +403,12 @@ class _HomePageState extends State<HomePage> {
                                             "Bond name, issuer and bond type",
                                         hintStyle: GoogleFonts.sourceSansPro(
                                           textStyle: const TextStyle(
-                                              color: Color(0xff1D2B84),
+                                              color: Colors.grey,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 16),
                                         ),
                                         prefixIcon: const Icon(Icons.search,
-                                            color: Color(0xff1D2B84)),
+                                            color: Colors.grey),
                                         suffixIcon: InkWell(
                                           onTap: () {},
                                           child: Container(

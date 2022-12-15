@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/screens/bond/ipo/order_confirmation/bid.dart';
 import '../../../utils/app_bar.dart';
 import '../../../utils/colorsConstant.dart';
+import '../../../utils/images.dart';
 
 class PayIPO extends StatefulWidget {
   const PayIPO({Key? key}) : super(key: key);
@@ -298,6 +302,11 @@ class _PayIPOState extends State<PayIPO> {
                 InkWell(
                   onTap: () {
                     setState(() {
+
+
+                      openBottomSheet();
+
+
                       index = 2;
                       isBankShowing = false;
                       isUpiShowing = true;
@@ -916,5 +925,59 @@ class _PayIPOState extends State<PayIPO> {
         });
       },
     );
+  }
+
+  void openBottomSheet() {
+    Timer(Duration(seconds: 3), () { Get.back();});
+    Get.bottomSheet(
+        Wrap(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+            color: AppColors.textColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(35),
+              topRight: Radius.circular(35),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 35,
+              ),
+              Image.asset(
+                ConstantImage.error,
+                width: 75,
+                height: 75,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Text(
+                  "UPI Payment Can't be more than ₹ 5,00,000. Can you use ASBA Payment mode to complete your Payment.",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 23),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }

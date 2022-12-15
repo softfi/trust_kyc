@@ -306,91 +306,118 @@ class _OrderState extends State<Order> {
                 ),
                 children: <Widget>[
                   ListTile(
-                    title: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      alignment: Alignment.center,
-                      height: 74,
-                      color: Color(0xffF7F7FA),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                    title: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          alignment: Alignment.center,
+                          height: 74,
+                          color: Color(0xffF7F7FA),
+                          child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Amount Invested",
-                                  style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                      color: Color(0xffB0B1B9),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 10,
-                                    ),
-                                  )),
-                              const SizedBox(
-                                height: 1,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("Amount Invested",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                          color: Color(0xffB0B1B9),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 10,
+                                        ),
+                                      )),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  Text(
+                                    "₹ 6,26,201",
+                                    style: ConstStyle.sourceSans1,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "₹ 6,26,201",
-                                style: ConstStyle.sourceSans1,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("Gold Quantity",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                          color: Color(0xffB0B1B9),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 10,
+                                        ),
+                                      )),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  Text(
+                                    "20 Grams",
+                                    style: ConstStyle.sourceSans1,
+                                  ),
+                                ],
                               ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("Payment Status",
+                                      style: GoogleFonts.sourceSansPro(
+                                        textStyle: const TextStyle(
+                                          color: Color(0xffB0B1B9),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 10,
+                                        ),
+                                      )),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  Text(
+                                    "Successful",
+                                    style: ConstStyle.sourceSans1,
+                                  ),
+                                ],
+                              ),
+
                             ],
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Gold Quantity",
-                                  style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                      color: Color(0xffB0B1B9),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 10,
-                                    ),
-                                  )),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              Text(
-                                "20 Grams",
-                                style: ConstStyle.sourceSans1,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("Payment Status",
-                                  style: GoogleFonts.sourceSansPro(
-                                    textStyle: const TextStyle(
-                                      color: Color(0xffB0B1B9),
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 10,
-                                    ),
-                                  )),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              Text(
-                                "Successful",
-                                style: ConstStyle.sourceSans1,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.local_printshop_rounded,
-                                size: 25,
-                                color: AppColors.primaryColor,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 10,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                padding: EdgeInsets.only(left: 5,right: 5),
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffFCEDEE)
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text("Download Invoice"),
+                                    SizedBox(width: 5,),
+                                    Icon(Icons.download),
+                                  ],
+                                )),
+                            Container(
+                                padding: EdgeInsets.only(left: 5,right: 5),
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Color(0xffE7F8FA)
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text("Download Form"),
+                                    SizedBox(width: 5,),
+                                    Icon(Icons.download),
+                                  ],
+                                )),
+
+                          ],
+                        )
+                      ],
                     ),
                     subtitle: Stack(
                       children: [
