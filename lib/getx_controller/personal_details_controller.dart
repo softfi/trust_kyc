@@ -22,7 +22,7 @@ class PersonalDetailsController extends GetxController {
   var firstName = TextEditingController();
   var lastName = TextEditingController();
   var panNumber = TextEditingController();
-  Rx<DateTime> currentStartDate = DateTime.now().obs;
+  Rx<DateTime> currentStartDate = DateTime.now().subtract(Duration(days: 6574)).obs;
 
   @override
   void onInit() {
@@ -35,10 +35,11 @@ class PersonalDetailsController extends GetxController {
         context: Get.context!,
         initialDate: currentStartDate.value,
         firstDate: DateTime(1900),
-        lastDate: DateTime.now());
+        lastDate: DateTime.now().subtract(Duration(days: 6574))
+    );
     if (pickedDate != null && pickedDate != currentStartDate) {
       currentStartDate.value = pickedDate;
-      dob = DateFormat('dd-MM-yyyy').format(pickedDate) as RxString;
+      dob.value = DateFormat('dd-MM-yyyy').format(pickedDate) ;
       print("dob " + dob.toString());
       HelperFunctions.saveDOB(dob.toString());
     }
@@ -56,5 +57,23 @@ class PersonalDetailsController extends GetxController {
         title: "Something went Wrong!",
       ));
     }
+  }
+
+
+
+  void updatePersonalDetails(){
+    bool isAllFieldvalid=CheckValidation();
+      updateData();
+      isVisible.value=2;
+
+
+  }
+
+  bool CheckValidation() {
+    return false;
+  }
+
+  void updateData() {
+
   }
 }
