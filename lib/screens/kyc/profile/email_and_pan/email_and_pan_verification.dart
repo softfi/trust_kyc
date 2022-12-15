@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/Congratulations/verify_pan_congratulations.dart';
+import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/images.dart';
@@ -12,9 +14,9 @@ class EmailVeryfication extends StatelessWidget {
     Key? key,
     this.onClick,
   }) : super(key: key);
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
   final void Function()? onClick;
-
 
   bool isButtonClick = false;
   RxInt a = 1.obs;
@@ -23,7 +25,7 @@ class EmailVeryfication extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        _personalDetailsController.isShowing.value = true;
+        _personalDetailsController.isVisible.value = 1;
         return false;
       },
       child: Padding(
@@ -275,61 +277,216 @@ class EmailVeryfication extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                   width: 1.1,
-                  color:
-                  _personalDetailsController.isPanSelected.value ? AppColors.textColor : const Color(0xffC8C7CE)),
+                  color: _personalDetailsController.isPanSelected.value
+                      ? AppColors.textColor
+                      : const Color(0xffC8C7CE)),
             ),
-            child:  Obx(() =>TextField(
-              controller: _personalDetailsController.panNumber,
-              autofocus: false,
-              style: ConstStyle.sourceSansmob,
-              textCapitalization: TextCapitalization.characters,
-              onChanged: (text) {
-                if (_personalDetailsController.panNumber.text.length < 10) {
-                  _personalDetailsController.isPanSelected.value = false;
-                } else {
-                  _personalDetailsController.isPanSelected.value = true;
-                  FocusScope.of(context).unfocus();
-                }
-              },
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(10),
-              ],
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                  suffixIcon: Container(
-                    width: 80,
-                    color: _personalDetailsController.isPanSelected.value
-                        ? AppColors.textColor
-                        : const Color(0xffC8C7CE),
-                    child: Center(
-                      child: Text("Verify",
-                          style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500))),
-                    ),
-                  ),
-                  hintText: "10 Digit PAN Number",
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(
-                      color: _personalDetailsController.isPanSelected.value
-                          ? AppColors.textColor
-                          : Color(0xffC8C7CE),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18,
-                      letterSpacing: 4),
-                  fillColor: Colors.white,
-                  contentPadding:
-                      const EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0)),
-            )),
+            child: Obx(() => TextField(
+                  controller: _personalDetailsController.panNumber,
+                  autofocus: false,
+                  style: ConstStyle.sourceSansmob,
+                  textCapitalization: TextCapitalization.characters,
+                  onChanged: (text) {
+                    if (_personalDetailsController.panNumber.text.length < 10) {
+                      _personalDetailsController.isPanSelected.value = false;
+                    } else {
+                      _personalDetailsController.isPanSelected.value = true;
+                      FocusScope.of(context).unfocus();
+                    }
+                  },
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(10),
+                  ],
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          bottomSheet();
+                        },
+                        child: Container(
+                          width: 80,
+                          color: _personalDetailsController.isPanSelected.value
+                              ? AppColors.textColor
+                              : const Color(0xffC8C7CE),
+                          child: Center(
+                            child: Text("Verify",
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500))),
+                          ),
+                        ),
+                      ),
+                      hintText: "10 Digit PAN Number",
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                          color: _personalDetailsController.isPanSelected.value
+                              ? AppColors.textColor
+                              : Color(0xffC8C7CE),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18,
+                          letterSpacing: 4),
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.only(
+                          left: 14.0, bottom: 7.0, top: 5.0)),
+                )),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.55,
+            height: MediaQuery.of(context).size.height * 0.44,
+          ),
+          InkWell(
+            onTap: () {
+              isButtonClick = true;
+              Get.to(
+                VerifiedAnim(
+                  title: "We Are Verifying \nYour PAN",
+                  subTitle:
+                      "We are validating your ID and Username with the authorities, this may take some time.",
+                  image: "assets/images/loding.mp4",
+                  onClick: () {
+                    Get.to(PANVerified(
+                      onClick: () {
+                        _personalDetailsController.isVisible.value = 3;
+                      },
+                    ));
+                  },
+                ),
+              );
+            },
+            child: Container(
+              height: 45,
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x29000000),
+                    blurRadius: 4.0,
+                  ),
+                ],
+                border: Border.all(
+                    width: 2,
+                    color: isButtonClick
+                        ? AppColors.textColor
+                        : const Color(0xffE1E0E6)),
+                color: isButtonClick ? Colors.white : Color(0xffFF405A),
+              ),
+              child: Center(
+                  child: Text(
+                "Continue",
+                style: GoogleFonts.quicksand(
+                  textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              )),
+            ),
+          ),
+          _space1,
+          _space1,
+          Center(
+            child: Text(
+              "Save & Complete Later",
+              style: GoogleFonts.sourceSansPro(
+                textStyle: const TextStyle(
+                    color: Color(0xff22263D),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),
     );
+  }
+
+  void bottomSheet() {
+    Get.bottomSheet(
+        Wrap(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Image.asset(
+                  ConstantImage.card,
+                  width: 75,
+                  height: 75,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text("Hi, [Jairaj Bhawani Shankar]",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        color: Colors.white)),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text("Your PAN is",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.white)),
+                const Text("DEACTIVATED",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        letterSpacing: 2,
+                        color: AppColors.btnColor)),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text("Please provide on valid \nPAN Number",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        color: Colors.white)),
+                const SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      height: 45,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.white)),
+                      child: Center(
+                          child: Text(
+                        "Wrong name? -Re-enter PAN number",
+                        style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400)),
+                      )),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+              ],
+            ),
+          ],
+        ),
+        enableDrag: false,
+        backgroundColor: AppColors.textColor,
+        isDismissible: false,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30), topLeft: Radius.circular(30))));
   }
 
   Widget get _space => const SizedBox(height: 16);

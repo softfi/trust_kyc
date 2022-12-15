@@ -7,7 +7,7 @@ import 'package:trust_money/model/perosnal_details/get_personal_detail_response.
 import '../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
-  RxBool isShowing = true.obs;
+  RxInt isVisible = 1.obs;
   RxString mobileNumber = "".obs;
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;

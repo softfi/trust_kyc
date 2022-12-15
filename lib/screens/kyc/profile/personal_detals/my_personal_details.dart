@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.dart';
@@ -24,13 +25,16 @@ class MyPersonalDetails extends StatelessWidget {
     return Column(
       children: [
         Obx(() => Visibility(
-            visible: _personalDetailsController.isShowing.value,
+            visible: _personalDetailsController.isVisible.value == 1,
             child: personaDetail(context))),
         Obx(() => Visibility(
-            visible: !_personalDetailsController.isShowing.value,
+            visible: _personalDetailsController.isVisible.value == 2,
             child: EmailVeryfication(
               onClick: () {},
             ))),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 3,
+            child: KRARecord())),
       ],
     );
   }
@@ -310,7 +314,7 @@ class MyPersonalDetails extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     isButtonClick = true;
-                    _personalDetailsController.isShowing.value = false;
+                    _personalDetailsController.isVisible.value = 2;
                   },
                   child: Container(
                     height: 45,

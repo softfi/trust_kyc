@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../utils/images.dart';
 
-class PANVerified extends StatefulWidget {
-  const PANVerified({Key? key}) : super(key: key);
-
-
-  @override
-  State<PANVerified> createState() => _PANVerifiedState();
-}
-
-class _PANVerifiedState extends State<PANVerified> {
-  String panName = "";
-
-  getPreferences() async {
-    panName = await HelperFunctions.getPanName();
-    print("============panName $panName");
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    getPreferences();
-    super.initState();
-  }
+class PANVerified extends StatelessWidget {
+  const PANVerified({Key? key,required this.onClick}) : super(key: key);
+  final void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +26,7 @@ class _PANVerifiedState extends State<PANVerified> {
               width: 150,
             ),
           ),
-          Text("Hi [$panName]",
+          Text("Hi [JAiRaj]",
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
@@ -53,9 +36,7 @@ class _PANVerifiedState extends State<PANVerified> {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: InkWell(
               onTap: () {
-                setState(() {
-                  Navigator.pop(context);
-                });
+               onClick!();
               },
               child: Container(
                 alignment: Alignment.center,
@@ -65,7 +46,7 @@ class _PANVerifiedState extends State<PANVerified> {
                   padding: const EdgeInsets.only(
                       bottom: 2.0, left: 2, right: 2, top: 5),
                   child: Text(
-                    "I confirm to open the account in the same name of [$panName]",
+                    "I confirm to open the account in the same name of [Jairaj]",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
@@ -106,3 +87,5 @@ class _PANVerifiedState extends State<PANVerified> {
     );
   }
 }
+
+

@@ -24,7 +24,7 @@ class _VerifyPANAnimationState extends State<VerifyPANAnimation> {
     Future.delayed(Duration(seconds: 5), () async{
       Navigator.pop(context);
       await Navigator.push(context,
-          MaterialPageRoute(builder: (context) =>  PANVerified()));
+          MaterialPageRoute(builder: (context) =>  PANVerified(onClick: () {  },)));
     });
     super.initState();
   }
