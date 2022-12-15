@@ -337,7 +337,7 @@ class MyPersonalDetails extends StatelessWidget {
                     _personalDetailsController.isChecked2.value) ? InkWell(
                   onTap: () {
                     isButtonClick.value = true;
-                    _personalDetailsController.updatePersonalDetails();
+                    _personalDetailsController.update_personal_details();
                     // _personalDetailsController.isVisible.value = 2;
                   },
                   child: Container(

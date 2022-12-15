@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
@@ -132,24 +133,21 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               const SizedBox(
                                 width: 15,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  setState(() async {
-                                    await HelperFunctions
-                                        .saveuserLoggedInSharedPreference(
-                                            false);
-                                    await HelperFunctions.saveuserkyccompleted(
-                                        false);
-                                    SharedPreferences preferences =
-                                        await SharedPreferences.getInstance();
+                              InkWell(
+                                onTap: () async{
+                                  // Navigator.pop(context);
+
+                                    await HelperFunctions.saveuserLoggedInSharedPreference(false);
+                                    await HelperFunctions.saveuserkyccompleted(false);
+                                    SharedPreferences preferences = await SharedPreferences.getInstance();
                                     await preferences.clear();
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SignIn()));
-                                  });
+                                    Get.offAll(SignIn());
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             const SignIn()));
+
                                 },
                                 child: Container(
                                   height: 45,
