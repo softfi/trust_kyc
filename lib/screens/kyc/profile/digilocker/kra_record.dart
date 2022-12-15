@@ -268,6 +268,7 @@ class KRARecord extends StatelessWidget {
       InkWell(
         onTap: () {
           isButtonClick.value = true;
+          _personalDetailsController.isVisible.value = 4;
         },
         child: Container(
           height: 45,
@@ -322,9 +323,11 @@ class KRARecord extends StatelessWidget {
       Widget item = FilterChip(
         label: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(list[i].label),),
+          child: Text(list[i].label),
+        ),
         labelStyle: GoogleFonts.quicksand(
-          textStyle: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
+          textStyle: const TextStyle(
+              fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         backgroundColor: list[i].color,
