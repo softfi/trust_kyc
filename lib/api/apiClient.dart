@@ -6,6 +6,7 @@ import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
+import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class APiProvider extends GetConnect {
@@ -24,9 +25,7 @@ class APiProvider extends GetConnect {
         return model;
       }
     } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        messageText: Text(e.toString()),
-      ));
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
@@ -103,28 +102,14 @@ class APiProvider extends GetConnect {
             'Accept': 'application/json',
             'Authorization': token,
           });
-      // var temp=json.decode(response.body);
-      // debugPrint(temp.toString());
       if (response.statusCode == 200) {
-        // var temp=jsonDecode(response.body);
         return response.body["message"];
       } else {
         Get.back();
-        Get.showSnackbar(
-          GetSnackBar(
-            messageText: Text(
-              response.body["errors"],
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.red,
-            duration: Duration(seconds: 2),
-          ),
-        );
+       ShowCustomSnackBar().ErrorSnackBar(  response.body["errors"],);
       }
     } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        messageText: Text(e.toString()),
-      ));
+     ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
@@ -146,24 +131,16 @@ class APiProvider extends GetConnect {
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
         return response.body["message"];
       }
     } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: Colors.red,
-        messageText: Text(
-          e.toString(),
-          style: TextStyle(color: Colors.white),
-        ),
-      ));
+     ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
   verifyOtp(String email, String otp) async {
     var token = await HelperFunctions.getToken();
-    debugPrint("$email  $otp");
     var body = {"email_id": email, "otp": otp};
     try {
       var response = await post(
@@ -173,27 +150,16 @@ class APiProvider extends GetConnect {
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint(response.body.toString());
-      debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
         if (response.body["is_email_verified"] == 1) {
           await HelperFunctions.saveEmail(response.body["email_id"].toString());
           return response.body["message"];
         }
       } else {
-        Get.showSnackbar(GetSnackBar(
-          messageText: Text(response.body["message"]),
-        ));
+        ShowCustomSnackBar().ErrorSnackBar(response.body["message"]);
       }
     } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 2),
-        messageText: Text(
-          e.toString(),
-          style: TextStyle(color: Colors.white),
-        ),
-      ));
+     ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
@@ -201,7 +167,6 @@ class APiProvider extends GetConnect {
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
-    print("========75 ${_controller.panNumber.value.text}");
     try {
       var response = await get(
           TrustKycUrl.baseUrl +
@@ -212,26 +177,14 @@ class APiProvider extends GetConnect {
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint(response.statusCode.toString());
-      debugPrint(response.status.toString());
       if(response.statusCode==200){
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
-        debugPrint(modal.panStatus);
         return modal;
       }else{
-        Get.showSnackbar(GetSnackBar(
-          messageText: Text(response.body["message"].toString()),
-        ));
+        ShowCustomSnackBar().ErrorSnackBar(response.body["message"].toString());
       }
     } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 2),
-        messageText: Text(
-          e.toString(),
-          style: TextStyle(color: Colors.white),
-        ),
-      ));
+     ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 }
