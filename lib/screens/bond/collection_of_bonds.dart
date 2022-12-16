@@ -173,7 +173,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Text(
                             "Trending",
                             style: GoogleFonts.quicksand(
@@ -190,7 +190,6 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   ),
                   Tab(
                     child: Container(
-                      width: MediaQuery.of(context).size.width / 3.8,
                       height: 40,
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -207,7 +206,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Text(
                             "Popular",
                             style: GoogleFonts.quicksand(
@@ -225,7 +224,6 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                   Tab(
                     child: Container(
                       height: 40,
-                      width: MediaQuery.of(context).size.width / 2.5,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -241,7 +239,7 @@ class _CollectionOfBondsState extends State<CollectionOfBonds>
                       ),
                       child: Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Text(
                             "Entire Collection",
                             style: GoogleFonts.quicksand(
