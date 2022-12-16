@@ -72,8 +72,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.7),
+                    crossAxisCount: 2, childAspectRatio: 1.7),
                 children: [
                   SizedBox(
                     child: Column(
@@ -198,8 +197,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                 ],
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 25,right: 25,bottom: 30),
+                padding: const EdgeInsets.only(left: 25, right: 25, bottom: 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -208,11 +206,13 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CustomBottomNavigation(currentIndex: 0,)));
+                                builder: (context) => CustomBottomNavigation(
+                                      currentIndex: 0,
+                                    )));
                       },
                       child: Container(
                         height: 45,
-                        width: 160,
+                        width: 140,
                         decoration: BoxDecoration(
                             border: Border.all(
                                 width: 1.5, color: Color(0xff23263B))),
@@ -236,7 +236,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                       },
                       child: Container(
                         height: 45,
-                        width: 160,
+                        width: 140,
                         decoration:
                             const BoxDecoration(color: Color(0xffFF405A)),
                         child: Center(
