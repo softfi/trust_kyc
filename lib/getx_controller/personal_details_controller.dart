@@ -11,6 +11,7 @@ class PersonalDetailsController extends GetxController {
   RxInt isVisible = 1.obs;
   RxInt a = 1.obs;
   RxString mobileNumber = "".obs;
+  RxString mail = "".obs;
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;
   RxBool isChecked2 = false.obs;
@@ -21,15 +22,21 @@ class PersonalDetailsController extends GetxController {
   RxBool activateFuture = false.obs;
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
-  Rx<TextEditingController>  firstName = TextEditingController().obs;
-  Rx<TextEditingController>  lastName = TextEditingController().obs;
+  Rx<TextEditingController> firstName = TextEditingController().obs;
+  Rx<TextEditingController> lastName = TextEditingController().obs;
   Rx<TextEditingController> panNumber = TextEditingController().obs;
-  Rx<DateTime> currentStartDate = DateTime.now().subtract(Duration(days: 6574)).obs;
+  Rx<DateTime> currentStartDate =
+      DateTime.now().subtract(Duration(days: 6574)).obs;
 
   @override
   void onInit() {
     getPersonalDetails();
+    getPerferences();
     super.onInit();
+  }
+
+  void getPerferences() async {
+    mail = await HelperFunctions.getEmailId();
   }
 
   void pickDate() async {
@@ -37,11 +44,10 @@ class PersonalDetailsController extends GetxController {
         context: Get.context!,
         initialDate: currentStartDate.value,
         firstDate: DateTime(1900),
-        lastDate: DateTime.now().subtract(Duration(days: 6574))
-    );
+        lastDate: DateTime.now().subtract(Duration(days: 6574)));
     if (pickedDate != null && pickedDate != currentStartDate) {
       currentStartDate.value = pickedDate;
-      dob.value = DateFormat('dd-MM-yyyy').format(pickedDate) ;
+      dob.value = DateFormat('dd-MM-yyyy').format(pickedDate);
       print("dob " + dob.toString());
       HelperFunctions.saveDOB(dob.toString());
     }
@@ -57,29 +63,38 @@ class PersonalDetailsController extends GetxController {
     }
   }
 
-
-
-  void update_personal_details(){
-    if(dob.value !="DD/MM/YYYY"){
+  void update_personal_details() {
+    if (dob.value != "DD/MM/YYYY") {
       updateData();
-    }else{
-      Get.showSnackbar(GetSnackBar(messageText: Text("Select date first",style: TextStyle(
-        color: Colors.white
-      ),),duration: Duration(seconds: 2),backgroundColor: Colors.red,));
+    } else {
+      Get.showSnackbar(GetSnackBar(
+        messageText: Text(
+          "Select date first",
+          style: TextStyle(color: Colors.white),
+        ),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.red,
+      ));
     }
-
-
   }
 
-
-
-  void updateData() async{
-    Get.dialog(Center(child: CircularProgressIndicator(),));
-var response=await APiProvider().updatePersonalDeatil();
-if(response!=null){
-  Get.back();
-  isVisible.value=2;
-  Get.showSnackbar(GetSnackBar(messageText:Text(response.toString()) ,duration: Duration(seconds: 2),backgroundColor: Colors.green,));
-}
+  void updateData() async {
+    Get.dialog(Center(
+      child: CircularProgressIndicator(),
+    ));
+    var response = await APiProvider().updatePersonalDeatil();
+    if (response != null) {
+      Get.back();
+      if (mail != "" && mail != null) {
+        a.value = 2;
+      } else {
+        isVisible.value = 2;
+      }
+      Get.showSnackbar(GetSnackBar(
+        messageText: Text(response.toString()),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+      ));
+    }
   }
 }

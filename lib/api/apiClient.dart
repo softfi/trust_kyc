@@ -177,6 +177,7 @@ class APiProvider extends GetConnect {
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
         if (response.body["is_email_verified"] == 1) {
+          await HelperFunctions.saveEmail(response.body["email_id"].toString());
           return response.body["message"];
         }
       } else {
@@ -200,22 +201,25 @@ class APiProvider extends GetConnect {
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
+    print("========75 ${_controller.panNumber}");
     try {
       var response = await get(
           TrustKycUrl.baseUrl +
               TrustKycUrl.getPANCard +
-              "?pan_no=${_controller.panNumber.value}",
+              "?pan_no=${_controller.panNumber.value.text}",
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
+      debugPrint(response.statusCode.toString());
       if(response.statusCode==200){
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
+        debugPrint(modal.panStatus);
         return modal;
       }else{
         Get.showSnackbar(GetSnackBar(
-          messageText: Text(response.body["message"]),
+          messageText: Text(response.body["message"].toString()),
         ));
       }
     } catch (e) {
