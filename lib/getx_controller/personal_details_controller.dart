@@ -25,7 +25,8 @@ class PersonalDetailsController extends GetxController {
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
   Rx<TextEditingController> panNumber = TextEditingController().obs;
-  Rx<DateTime> currentStartDate = DateTime.now().subtract(Duration(days: 6574)).obs;
+  Rx<DateTime> currentStartDate =
+      DateTime.now().subtract(Duration(days: 6574)).obs;
   GetPersonalDetailModel? modaltest;
 
   @override
@@ -57,12 +58,15 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().personalDetail();
     if (response != null) {
       GetPersonalDetailModel modal = response;
-      modaltest=response;
+      modaltest = response;
       firstName.value.text = modal.firstname ?? "";
       lastName.value.text = modal.lastname ?? "";
       mobileNumber.value = modal.mobileNumber;
-      emailID.value.text=modal.emailId.toString();
-      dob.value=modal.dob.toUtc().toString().replaceRange(10, dob.toString().length+1, "");
+      emailID.value.text = modal.emailId.toString();
+      dob.value = modal.dob
+          .toUtc()
+          .toString()
+          .replaceRange(10, dob.toString().length + 1, "");
     }
   }
 
@@ -89,7 +93,7 @@ class PersonalDetailsController extends GetxController {
     if (response != null) {
       Get.back();
       debugPrint(modaltest!.isEmailVerified.toString());
-      if (modaltest!.isEmailVerified==1) {
+      if (modaltest!.isEmailVerified == 1) {
         a.value = 2;
         isVisible.value = 2;
       } else {

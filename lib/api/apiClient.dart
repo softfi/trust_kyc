@@ -31,26 +31,6 @@ class APiProvider extends GetConnect {
     }
   }
 
-// verifyEmail()async{
-//   var token = await HelperFunctions.getToken();
-//   try {
-//     var response = await get(TrustKycUrl.verifyEmail, headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//       'Authorization': 'API Key $token',
-//     },);
-//     if (response.statusCode == 200) {
-//       GetPersonalDetailModel model = getPersonalDetailModelFromJson(response.body);
-//       debugPrint("========21 $model");
-//       return model;
-//     }
-//   } catch (e) {
-//     Get.showSnackbar(GetSnackBar(
-//       title: e.toString(),
-//     ));
-//   }
-//
-// }
   updatePersonalDeatil() async {
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
@@ -219,12 +199,13 @@ class APiProvider extends GetConnect {
             'Authorization': token,
           });
       debugPrint(response.bodyString.toString());
+      debugPrint(response.statusCode.toString());
       if(response.statusCode==200){
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
         return modal;
       }else{
         Get.back();
-        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"][0].toString());
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"].toString());
       }
     } catch (e) {
      ShowCustomSnackBar().ErrorSnackBar(e.toString());
