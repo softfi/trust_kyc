@@ -279,7 +279,7 @@ class ProfileRepository {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
-        .get(endpoint: "${TrustKycUrl.digilocker}?platform=mobile");
+        .get(endpoint: "${TrustKycUrl.authenticateDigilocker}?platform=mobile");
     print("========token $token");
     print("lockerResponse: ${response.data}");
     var data = NetworkUtility.responseHandler(response);

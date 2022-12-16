@@ -34,7 +34,7 @@ import 'package:trust_money/screens/animated_screens/invalid_pan_animation.dart'
 import 'package:trust_money/screens/animated_screens/vedio_page.dart';
 import 'package:trust_money/screens/animated_screens/verify_email_id_animation.dart';
 import 'package:trust_money/screens/animated_screens/verify_pan_animation.dart';
-import 'package:trust_money/screens/home/digilocker_page.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/digilocker_page.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/strings.dart';
@@ -3293,7 +3293,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                           _space,
                           _space,
                           _space1,
-                         // Text("Email ID* ", style: ConstStyle.sourceSansPro),
+                          // Text("Email ID* ", style: ConstStyle.sourceSansPro),
                           _space1,
                           InkWell(
                             onTap: () async {
@@ -3315,14 +3315,12 @@ class _PersonalProfileState extends State<PersonalProfile> {
                             },
                             child: Container(
                                 height: 55,
-                                decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Color(0x29000000),
-                                        blurRadius: 4.0,
-                                      ),
-                                    ],
-                                    color: Colors.white),
+                                decoration: BoxDecoration(boxShadow: const [
+                                  BoxShadow(
+                                    color: Color(0x29000000),
+                                    blurRadius: 4.0,
+                                  ),
+                                ], color: Colors.white),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

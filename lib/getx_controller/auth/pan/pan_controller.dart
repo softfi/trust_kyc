@@ -12,7 +12,6 @@ import '../../../utils/sharedPreference.dart';
 import '../../personal_details_controller.dart';
 
 class PanCardUserDeatils extends GetxController{
-
   PersonalDetailsController _personalDetailsController =
   Get.put(PersonalDetailsController());
   PanStatusModel? panDataModal;

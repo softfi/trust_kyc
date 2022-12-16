@@ -2,42 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:trust_money/screens/home/webview.dart';
 
-import '../../model/digiLocker_response_data.dart';
-import '../../repositories/profile_repository.dart';
-import '../../utils/colorsConstant.dart';
-import '../../utils/images.dart';
-import '../../utils/strings.dart';
-import '../../utils/styles.dart';
+import '../../../../getx_controller/kra/kra_controller.dart';
+import '../../../../model/digiLocker_response_data.dart';
+import '../../../../repositories/profile_repository.dart';
+import '../../../../utils/colorsConstant.dart';
+import '../../../../utils/images.dart';
+import '../../../../utils/strings.dart';
+import '../../../../utils/styles.dart';
 
-class Digilocker extends StatefulWidget {
-  const Digilocker({Key? key}) : super(key: key);
 
-  @override
-  _DigilockerState createState() => _DigilockerState();
-}
 
-class _DigilockerState extends State<Digilocker> {
-  bool isChecked = false;
-  DigiLockerModel? digiLockerModel;
+class Digilocker extends StatelessWidget {
+  Digilocker({Key? key}) : super(key: key);
 
-  authenticateDigiLocker() async {
-    var res1 = await ProfileRepository().digiLocker();
-    print("============9007 $res1");
-    setState(() {
-      if (res1 != null && res1 != "") {
-        digiLockerModel = res1;
-        setState(() {});
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    authenticateDigiLocker();
-    super.initState();
-  }
+  KRAController _kRAController = Get.put(KRAController());
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +87,9 @@ class _DigilockerState extends State<Digilocker> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      value: isChecked,
+                      value: _kRAController.isChecked.value,
                       onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
+                        _kRAController.isChecked.value = value!;
                       },
                     ),
                     Padding(
@@ -128,13 +107,8 @@ class _DigilockerState extends State<Digilocker> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (isChecked == true) {
-                      await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyWebView(
-                                    url: digiLockerModel !=null?digiLockerModel!.link: "",
-                                  )));
+                    if (_kRAController.isChecked.value == true) {
+                      Get.to(MyWebView(url: _kRAController.urlLink.value));
                     } else {
                       Fluttertoast.showToast(
                           msg: "Please check the agreement first");
@@ -148,40 +122,19 @@ class _DigilockerState extends State<Digilocker> {
                         fontSize: 15),
                   ),
                 ),
-
-                /*  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Cancel',
-                      style: ConstStyle.sourceSans1,
-                    ))*/
               ],
             ),
           ),
           const SizedBox(
             height: 10,
           ),
-          /*  RichText(
-            text: const TextSpan(children: [
-              TextSpan(
-                  text: "Powered by ",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff22263D))),
-              TextSpan(
-                  text: "digio",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xffa327ec))),
-            ]),
-          ),*/
         ],
       ),
     );
   }
 }
+
+
+
+
+

@@ -12,7 +12,6 @@ class VerifiedAnim extends StatefulWidget {
       : super(key: key);
   String? title, subTitle, image;
   final void Function()? onClick;
-
   @override
   State<VerifiedAnim> createState() => _VerifiedAnimState();
 }

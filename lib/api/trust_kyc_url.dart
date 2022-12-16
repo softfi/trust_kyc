@@ -54,7 +54,7 @@ class TrustKycUrl {
   static const personVerification = 'api/v1/in_person_video_verification_video';
 
   //digilocker
-  static const digilocker = 'api/v1/authentication_digilocker';
+  static const authenticateDigilocker = 'api/v1/authentication_digilocker';
   static const getDigiLocker = 'api/v1/digilocker_details';
 
   //pan card

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
@@ -136,6 +138,44 @@ class APiProvider extends GetConnect {
       }
     } catch (e) {
      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  authenticateDigilocker() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response =
+      await get(TrustKycUrl.baseUrl + TrustKycUrl.authenticateDigilocker, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      if (response.statusCode == 200) {
+        DigiLockerModel model =
+        DigiLockerModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  digilockerData() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response =
+      await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      if (response.statusCode == 200) {
+        DigiLockerDetailModel model =
+        DigiLockerDetailModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
