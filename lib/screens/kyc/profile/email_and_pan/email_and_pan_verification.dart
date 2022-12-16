@@ -28,7 +28,8 @@ class EmailVeryfication extends StatelessWidget {
   final void Function()? onClick;
 
   bool isButtonClick = false;
-  PanCardUserDeatils _panCardUserDeatils=Get.put(PanCardUserDeatils());
+  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -77,15 +78,17 @@ class EmailVeryfication extends StatelessWidget {
                 thickness: 0.7,
                 indent: 5,
                 endIndent: 5,
+              ), //_personalDetailsController.modaltest!.emailId == 1?
+              SizedBox(
+                height: 10,
               ),
-             SizedBox(height: 10,),
               Obx(() => Visibility(
-                    // visible: _personalDetailsController.a.value == 1,
-                    child: _personalDetailsController.modaltest!.emailId == 1?verifiedEmail(context):emailWidget(context),
+                    visible: _personalDetailsController.a.value == 1,
+                    child: verifiedEmail(context),
                   )),
-              // Obx(() => Visibility(
-              //     visible: _personalDetailsController.a.value == 2,
-              //     child: verifiedEmail(context))),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.a.value == 2,
+                  child: verifiedEmail(context))),
               Obx(() => Visibility(
                   visible: _personalDetailsController.a.value == 3,
                   child: panWidget(context))),
@@ -114,56 +117,57 @@ class EmailVeryfication extends StatelessWidget {
             _space,
             _space,
             _space,
-
             StreamBuilder(
               //this will detect the change in the user
-              stream:FirebaseAuth.instance.authStateChanges() ,
-              builder: (context,snapshot)
-              {
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
                 //we will handle the different state like islogging in or is logged out
-                if(snapshot.connectionState==ConnectionState.waiting)
-                {return Center(child: CircularProgressIndicator(),);}
-
-                else if(snapshot.hasError)
-                {return Center(child: Text("Something went wrong"),);}
-                else{
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text("Something went wrong"),
+                  );
+                } else {
                   return InkWell(
-                  onTap: (){
-                    (snapshot.hasData)?GoogleSignInProvider().logout():GoogleSignInProvider().googleLogin();
-                  },
-                  child: Container(
-                      height: 55,
-                      decoration: BoxDecoration(boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 4.0,
-                        ),
-                      ], borderRadius: BorderRadius.circular(5), color: Colors.white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            ConstantImage.google,
-                            scale: 8,
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            "Sign in with Google",
-                            style: ConstStyle.sourceSans,
-                          )
-                        ],
-                      )),
-                );
+                    onTap: () {
+                      (snapshot.hasData)
+                          ? GoogleSignInProvider().logout()
+                          : GoogleSignInProvider().googleLogin();
+                    },
+                    child: Container(
+                        height: 55,
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x29000000),
+                                blurRadius: 4.0,
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              ConstantImage.google,
+                              scale: 8,
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "Sign in with Google",
+                              style: ConstStyle.sourceSans,
+                            )
+                          ],
+                        )),
+                  );
                 }
-              }
-              ,
+              },
             ),
-
-
-
-
             _space,
             _space,
             Center(child: Text("Or", style: ConstStyle.quickMedium)),
@@ -374,7 +378,7 @@ class EmailVeryfication extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.48,
           ),
-         /* InkWell(
+          /* InkWell(
             onTap: () {
               isButtonClick = true;
             },
@@ -427,11 +431,7 @@ class EmailVeryfication extends StatelessWidget {
     );
   }
 
-
-
   Widget get _space => const SizedBox(height: 16);
 
   Widget get _space1 => const SizedBox(height: 5);
-
-
 }
