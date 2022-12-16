@@ -8,7 +8,10 @@ import 'package:trust_money/screens/Congratulations/verify_pan_congratulations.d
 import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:video_player/video_player.dart';
+import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../utils/helper_widget/show_loading_animation.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/sharedPreference.dart';
 import '../../../../utils/styles.dart';
@@ -23,7 +26,7 @@ class EmailVeryfication extends StatelessWidget {
   final void Function()? onClick;
 
   bool isButtonClick = false;
-
+  PanCardUserDeatils _panCardUserDeatils=Get.put(PanCardUserDeatils());
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -309,7 +312,7 @@ class EmailVeryfication extends StatelessWidget {
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
                         onTap: () {
-                          verifyPan();
+                          _panCardUserDeatils.verifyPan();
                         },
                         child: Container(
                           width: 80,
@@ -396,131 +399,11 @@ class EmailVeryfication extends StatelessWidget {
     );
   }
 
-  void bottomSheet(String msg, String PANname) {
-    Get.bottomSheet(
-        Wrap(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Image.asset(
-                  ConstantImage.card,
-                  width: 75,
-                  height: 75,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text("Hi, [$PANname]",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                        color: Colors.white)),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Text("Your PAN is",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: Colors.white)),
-                Text("$msg",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        letterSpacing: 2,
-                        color: AppColors.btnColor)),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Text("Please provide on valid \nPAN Number",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                        color: Colors.white)),
-                const SizedBox(
-                  height: 25,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      height: 45,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.white)),
-                      child: Center(
-                          child: Text(
-                        "Wrong name? -Re-enter PAN number",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400)),
-                      )),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-              ],
-            ),
-          ],
-        ),
-        enableDrag: false,
-        backgroundColor: AppColors.textColor,
-        isDismissible: false,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30), topLeft: Radius.circular(30))));
-  }
+
 
   Widget get _space => const SizedBox(height: 16);
 
   Widget get _space1 => const SizedBox(height: 5);
 
-  void verifyPan() async {
-    Get.dialog(Center(child: CircularProgressIndicator(),));
-    var response = await APiProvider().verfiyPanNumber();
-    if (response != null) {
-      Get.back();
-      PanStatusModel modal = response;
-      await HelperFunctions.savePanName(
-          "${modal.panFname} ${modal..panMname} ${modal..panLname}");
-      var PANname = "${modal.panFname} ${modal..panMname} ${modal..panLname}";
-      if (modal.panStatus == "E") {
-        Get.to(
-          VerifiedAnim(
-            title: "We Are Verifying \nYour PAN",
-            subTitle:
-                "We are validating your ID and Username with the authorities, this may take some time.",
-            image: "assets/images/loding.mp4",
-            onClick: () {
-              Get.to(PANVerified(
-                onClick: () {
-                  _personalDetailsController.isVisible.value = 3;
-                },
-              ));
-            },
-          ),
-        );
-      } else if (modal.panStatus == "X") {
-        bottomSheet("DEACTIVATED", PANname);
-      } else if (modal.panStatus == "I") {
-        bottomSheet("INOPERATIVE", PANname);
-      } else if (modal.panStatus == "N" ||
-          modal.panStatus == "F" ||
-          modal.panStatus == "ED" ||
-          modal.panStatus == "D") {
-        bottomSheet("INVALID", PANname);
-      }
-    }
-  }
+
 }

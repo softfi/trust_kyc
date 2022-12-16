@@ -179,6 +179,7 @@ class APiProvider extends GetConnect {
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
         return modal;
       }else{
+        Get.back();
         ShowCustomSnackBar().ErrorSnackBar(response.body["errors"][0].toString());
       }
     } catch (e) {
