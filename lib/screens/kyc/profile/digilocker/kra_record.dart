@@ -18,8 +18,7 @@ class Help {
 
 class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   KRAController _kRAController = Get.put(KRAController());
   RxBool isButtonClick = false.obs;
   List profession = ["sds", "sds1", "sds2", "sds3"];
@@ -84,8 +83,9 @@ class KRARecord extends StatelessWidget {
         endIndent: 5,
       ),
       _space,
+
       Text(
-        "Hey Jairaj, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey ${_personalDetailsController.firstName.value.text}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,
