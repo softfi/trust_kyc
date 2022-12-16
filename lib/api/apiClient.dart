@@ -145,11 +145,15 @@ class APiProvider extends GetConnect {
     try {
       var token = await HelperFunctions.getToken();
       var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.authenticateDigilocker, headers: {
+      await get(TrustKycUrl.baseUrl + TrustKycUrl.authenticateDigilocker+"?platform=mobile", headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
       });
+      debugPrint(response.statusCode.toString());
+      debugPrint(response.body.toString());
+      debugPrint("response.statusCode.toString()");
+
       if (response.statusCode == 200) {
         DigiLockerModel model =
         DigiLockerModel.fromJson(response.body);

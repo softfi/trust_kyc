@@ -30,6 +30,7 @@ class KRAController extends GetxController {
     if (response != null) {
       DigiLockerModel digiLockerModel = response;
       urlLink.value = digiLockerModel.link;
+      debugPrint("======== ${urlLink.value}");
     }
   }
 

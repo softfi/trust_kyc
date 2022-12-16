@@ -10,8 +10,8 @@ import '../../getx_controller/auth/pan/pan_controller.dart';
 import '../../utils/images.dart';
 
 class PANVerified extends StatelessWidget {
-  PANVerified({Key? key, required this.onClick}) : super(key: key);
-  final void Function()? onClick;
+  PANVerified({Key? key, required this.onClick()}) : super(key: key);
+  Function onClick;
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
 
   @override
@@ -42,7 +42,9 @@ class PANVerified extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: InkWell(
               onTap: () {
-                onClick!();
+                debugPrint("856867897 ");
+                onClick();
+                debugPrint("856867897 ");
               },
               child: Container(
                 alignment: Alignment.center,
@@ -73,7 +75,7 @@ class PANVerified extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: InkWell(
               onTap: () {
-                Navigator.pop(context);
+               Get.back();
               },
               child: Container(
                 height: 45,

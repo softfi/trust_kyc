@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MyWebView extends StatefulWidget {
@@ -14,7 +16,7 @@ class MyWebView extends StatefulWidget {
 class _MyWebViewState extends State<MyWebView> {
 
   late final WebViewController webViewController;
-
+PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsController());
   @override
   void initState() {
     super.initState();
@@ -44,6 +46,9 @@ class _MyWebViewState extends State<MyWebView> {
                 if(path=="/callback"){
                   Navigator.pop(context);
                   Navigator.pop(context);
+                  Navigator.pop(context);
+
+                  _personalDetailsController.isVisible.value=3;
                 }
                 /*final Map<String,String> params = uri.queryParameters;
                 if(params.containsKey("code")){

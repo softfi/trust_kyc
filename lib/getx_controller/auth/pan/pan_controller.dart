@@ -6,31 +6,40 @@ import '../../../api/apiClient.dart';
 import '../../../model/get_pan_response_data.dart';
 import '../../../screens/Congratulations/verify_pan_congratulations.dart';
 import '../../../screens/animated_screens/verified_animation.dart';
+import '../../../screens/kyc/profile/digilocker/digilocker_page.dart';
+import '../../../screens/kyc/profile/personal_detals/my_personal_details.dart';
 import '../../../utils/colorsConstant.dart';
 import '../../../utils/images.dart';
 import '../../../utils/sharedPreference.dart';
 import '../../personal_details_controller.dart';
 
-class PanCardUserDeatils extends GetxController{
+class PanCardUserDeatils extends GetxController {
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+      Get.put(PersonalDetailsController());
   PanStatusModel? panDataModal;
 
-
-
-
   void verifyPan() async {
-    Get.dialog( VerifiedAnim(image:"assets/images/loding.mp4" ,onClick: (){},title: "We Are Verifying \nYour PAN",subTitle: "We are validating your ID and Username with the authorities, this may take some time.",));
+    Get.dialog(VerifiedAnim(
+      image: "assets/images/loding.mp4",
+      onClick: () {},
+      title: "We Are Verifying \nYour PAN",
+      subTitle:
+          "We are validating your ID and Username with the authorities, this may take some time.",
+    ));
     var response = await APiProvider().verfiyPanNumber();
     if (response != null) {
       Get.back();
       PanStatusModel modal = response;
-      panDataModal=response;
+      panDataModal = response;
       await HelperFunctions.savePanName(
           "${modal.panFname} ${modal..panMname} ${modal..panLname}");
       var PANname = "${modal.panFname} ${modal..panMname} ${modal..panLname}";
       if (modal.panStatus == "E") {
-        Get.to(PANVerified(onClick: (){_personalDetailsController.isVisible.value=3;}));
+        Get.to(PANVerified(onClick: () {
+          Get.to(Digilocker());
+          //_personalDetailsController.isVisible.value = 3;
+          // Get.back();
+        }));
       } else if (modal.panStatus == "X") {
         bottomSheet("DEACTIVATED", PANname);
       } else if (modal.panStatus == "I") {
@@ -43,11 +52,6 @@ class PanCardUserDeatils extends GetxController{
       }
     }
   }
-
-
-
-
-
 
   void bottomSheet(String msg, String PANname) {
     Get.bottomSheet(
@@ -110,13 +114,13 @@ class PanCardUserDeatils extends GetxController{
                           border: Border.all(width: 1, color: Colors.white)),
                       child: Center(
                           child: Text(
-                            "Wrong name? -Re-enter PAN number",
-                            style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w400)),
-                          )),
+                        "Wrong name? -Re-enter PAN number",
+                        style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400)),
+                      )),
                     ),
                   ),
                 ),
@@ -134,5 +138,4 @@ class PanCardUserDeatils extends GetxController{
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(30), topLeft: Radius.circular(30))));
   }
-
 }

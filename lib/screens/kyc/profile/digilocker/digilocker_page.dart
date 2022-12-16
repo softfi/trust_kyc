@@ -81,7 +81,7 @@ class Digilocker extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Checkbox(
+                    Obx(() =>Checkbox(
                       checkColor: Colors.white,
                       activeColor: AppColors.primaryColor,
                       shape: RoundedRectangleBorder(
@@ -91,7 +91,7 @@ class Digilocker extends StatelessWidget {
                       onChanged: (bool? value) {
                         _kRAController.isChecked.value = value!;
                       },
-                    ),
+                    )),
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: SizedBox(
@@ -108,6 +108,7 @@ class Digilocker extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     if (_kRAController.isChecked.value == true) {
+                      // debugPrint("========url ${_kRAController.urlLink.value}");
                       Get.to(MyWebView(url: _kRAController.urlLink.value));
                     } else {
                       Fluttertoast.showToast(
