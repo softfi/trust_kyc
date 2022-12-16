@@ -201,7 +201,7 @@ class APiProvider extends GetConnect {
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
-    print("========75 ${_controller.panNumber}");
+    print("========75 ${_controller.panNumber.value.text}");
     try {
       var response = await get(
           TrustKycUrl.baseUrl +
@@ -213,6 +213,7 @@ class APiProvider extends GetConnect {
             'Authorization': token,
           });
       debugPrint(response.statusCode.toString());
+      debugPrint(response.status.toString());
       if(response.statusCode==200){
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
         debugPrint(modal.panStatus);

@@ -36,7 +36,7 @@ class PersonalDetailsController extends GetxController {
   }
 
   void getPerferences() async {
-    mail = await HelperFunctions.getEmailId();
+    mail.value = await HelperFunctions.getEmailId();
   }
 
   void pickDate() async {
