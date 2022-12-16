@@ -92,7 +92,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: CommonWidget.issuer(),
+              child: CommonWidget.issuer(context),
             ),
             const SizedBox(
               height: 20,
@@ -588,7 +588,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             textStyle: const TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w500,
-              fontSize: 18,
+              fontSize: 20,
             ),
           ),
         ),
@@ -659,12 +659,14 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           height: 35,
         ),
         Text(
-          "About This IPO",
+        widget.isIPO
+        ? "About This Bond"
+            : "About This IPO",
           style: GoogleFonts.quicksand(
             textStyle: const TextStyle(
               color: AppColors.textColor,
               fontWeight: FontWeight.w500,
-              fontSize: 18,
+              fontSize: 20,
             ),
           ),
         ),

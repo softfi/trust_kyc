@@ -2,6 +2,7 @@ import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
@@ -20,6 +21,7 @@ class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
+  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   KRAController _kRAController = Get.put(KRAController());
   RxBool isButtonClick = false.obs;
   List profession = ["sds", "sds1", "sds2", "sds3"];
@@ -85,7 +87,7 @@ class KRARecord extends StatelessWidget {
       ),
       _space,
       Text(
-        "Hey ${_personalDetailsController.firstName.value.text}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panMname} ${_panCardUserDeatils.panDataModal!.panLname}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,
@@ -95,7 +97,7 @@ class KRARecord extends StatelessWidget {
       _space1,
       TextContainer(
         color: Color(0xffF7F7FA),
-        titleText: "5436 7658 7658",
+        titleText: _kRAController.digiLockerDetailModel!.aadharNumber,
         perfixIcon: Container(),
         postfixIcon: Container(),
       ),
@@ -114,13 +116,13 @@ class KRARecord extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: Text(
-            "A 1XX4, XXXXX XXXXX XXX, XXXXX XXXXX XXXXX, XXXXX - XXXXX, XXXXX - XXXX64, XXXXXXXXXX, XXXXX.",
+            "${_kRAController.digiLockerDetailModel!.location}, ${_kRAController.digiLockerDetailModel!.villageTownCity}, \n${_kRAController.digiLockerDetailModel!.district}, \n${_kRAController.digiLockerDetailModel!.state},  \n${_kRAController.digiLockerDetailModel!.pincode}",
             style: GoogleFonts.sourceSansPro(
               textStyle: const TextStyle(
                   color: Color(0xff22263D),
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
-                  letterSpacing: 3),
+                  letterSpacing: 1),
             ),
           ),
         ),

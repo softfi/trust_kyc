@@ -959,6 +959,7 @@ class BuyNonIpoBonds {
                                           Text("12/05/2022",style: GoogleFonts.sourceSansPro(
                                               textStyle: const TextStyle(
                                                   fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
                                                   color: Color(0xff22263D)
                                               )
                                           ),),
@@ -970,12 +971,14 @@ class BuyNonIpoBonds {
                                               Text("Your investment as of today",style: GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       fontSize: 13,
+                                                      fontWeight: FontWeight.w500,
                                                       color: Color(0xff22263D)
                                                   )
                                               ),),
                                               Text("₹ 21,20,202",style: GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       fontSize: 16,
+                                                      fontWeight: FontWeight.w500,
                                                       color: Color(0xff22263D)
                                                   )
                                               ),)
@@ -1024,8 +1027,8 @@ class BuyNonIpoBonds {
                                                                   color: Color(
                                                                       0xff22263D),
                                                                   fontWeight:
-                                                                  FontWeight.w500,
-                                                                  fontSize: 13,
+                                                                  FontWeight.w600,
+                                                                  fontSize: 10,
                                                                 ),
                                                               )),
                                                           Text("₹ 88,862.4",
@@ -1036,7 +1039,7 @@ class BuyNonIpoBonds {
                                                                       0xff22263D),
                                                                   fontWeight:
                                                                   FontWeight.w500,
-                                                                  fontSize: 13,
+                                                                  fontSize: 16,
                                                                 ),
                                                               )),
                                                         ],
@@ -1065,7 +1068,7 @@ class BuyNonIpoBonds {
                                                                       color: Color(
                                                                           0xff22263D),
                                                                       fontWeight:
-                                                                      FontWeight.w500,
+                                                                      FontWeight.w600,
                                                                       fontSize: 13,
                                                                     ),
                                                                   )),
@@ -1077,7 +1080,7 @@ class BuyNonIpoBonds {
                                                                           0xff22263D),
                                                                       fontWeight:
                                                                       FontWeight.w500,
-                                                                      fontSize: 13,
+                                                                      fontSize: 16,
                                                                     ),
                                                                   )),
                                                             ],
@@ -1091,12 +1094,12 @@ class BuyNonIpoBonds {
                                                   ),
                                                 ],
                                               ),
-                                              leading: Text("12 / 05/ 2022",
+                                              leading: Text("12/06/2023",
                                                   style: GoogleFonts.sourceSansPro(
                                                     textStyle: const TextStyle(
                                                       color: Color(0xff22263D),
                                                       fontWeight: FontWeight.w500,
-                                                      fontSize: 13,
+                                                      fontSize: 16,
                                                     ),
                                                   )),
                                               trailing: _customTileExpanded
@@ -1104,8 +1107,7 @@ class BuyNonIpoBonds {
                                                 Icons.keyboard_arrow_up,
                                                 color: AppColors.primaryColor,
                                                 size: 25,
-                                              )
-                                                  : const Icon(
+                                              ) : const Icon(
                                                 Icons.keyboard_arrow_down,
                                                 color: AppColors.primaryColor,
                                                 size: 25,
@@ -1124,7 +1126,7 @@ class BuyNonIpoBonds {
                                                         return ListTile(
                                                           tileColor:(index %2==0)?Color(0xffF3F5F6):Colors.white,
                                                           leading: Text(
-                                                              "12 / 05 / 2023",
+                                                              "12/05/2023",
                                                               style: GoogleFonts
                                                                   .sourceSansPro(
                                                                 textStyle:

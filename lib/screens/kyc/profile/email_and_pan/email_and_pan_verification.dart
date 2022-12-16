@@ -79,11 +79,11 @@ class EmailVeryfication extends StatelessWidget {
               _space,
               Obx(() => Visibility(
                     visible: _personalDetailsController.a.value == 1,
-                    child: emailWidget(context),
+                    child: _personalDetailsController.modaltest!.emailId == 1?verifiedEmail(context):emailWidget(context),
                   )),
-              Obx(() => Visibility(
-                  visible: _personalDetailsController.a.value == 2,
-                  child: verifiedEmail(context))),
+              // Obx(() => Visibility(
+              //     visible: _personalDetailsController.a.value == 2,
+              //     child: verifiedEmail(context))),
               Obx(() => Visibility(
                   visible: _personalDetailsController.a.value == 3,
                   child: panWidget(context))),

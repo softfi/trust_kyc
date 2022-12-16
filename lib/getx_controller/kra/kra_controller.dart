@@ -18,6 +18,7 @@ class KRAController extends GetxController {
   RxBool isEnComeSelect = false.obs;
   RxBool isExperienceSelect = false.obs;
   var maidenName = TextEditingController();
+  DigiLockerDetailModel? digiLockerDetailModel;
 
   @override
   void onInit() {
@@ -30,6 +31,7 @@ class KRAController extends GetxController {
     if (response != null) {
       DigiLockerModel digiLockerModel = response;
       urlLink.value = digiLockerModel.link;
+      getDigilockerData();
       debugPrint("======== ${urlLink.value}");
     }
   }
@@ -38,6 +40,7 @@ class KRAController extends GetxController {
     var response = await APiProvider().digilockerData();
     if (response != null) {
       DigiLockerDetailModel digiLockerModel = response;
+      digiLockerDetailModel = response;
     }
   }
 

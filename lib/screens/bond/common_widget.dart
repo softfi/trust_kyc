@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/bond/tringle.dart';
 import 'dart:math' as math;
@@ -448,7 +449,7 @@ class CommonWidget {
     );
   }
 
-  static issuer() {
+  static issuer(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -790,6 +791,7 @@ class CommonWidget {
           height: 20,
         ),
         Container(
+          width: double.infinity,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -802,7 +804,43 @@ class CommonWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListTile(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SvgPicture.asset(
+                  ConstantImage.issue_doc,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.62,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Download Issue Documents",
+                        style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            /*ListTile(
               leading: SvgPicture.asset(
                 ConstantImage.issue_doc,
                 height: 60,
@@ -813,7 +851,7 @@ class CommonWidget {
                 style: GoogleFonts.quicksand(
                     textStyle: const TextStyle(
                         color: Colors.white,
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold)),
               ),
               subtitle: Text(
@@ -825,7 +863,7 @@ class CommonWidget {
                       fontSize: 12),
                 ),
               ),
-            ),
+            ),*/
           ),
         ),
       ],
