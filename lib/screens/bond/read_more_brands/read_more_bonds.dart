@@ -55,7 +55,9 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppToolbar.appBar(
-          widget.isIPO ? "MAHINDRA & MAHINDRA FINANCIAL" : "CREDITACCESS GRAMEEN",
+          widget.isIPO
+              ? "MAHINDRA & MAHINDRA FINANCIAL"
+              : "CREDITACCESS GRAMEEN",
           IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -277,6 +279,28 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                                   ),
                                 ),
                               ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 25,
+                    color: Color(0xffE1E0E7),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Center(
+                        child: Text(
+                          "Individual",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle: const TextStyle(
+                              color: AppColors.textColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10,
                             ),
                           ),
                         ),
@@ -633,8 +657,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
         ),
         Visibility(
             visible: widget.isIPO,
-            child:
-                BuyNonIpoBonds.nonIPOInvestCalculator(false, userIsLoggedIn)),
+            child: BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn,context)),
         const SizedBox(
           height: 25,
         ),
@@ -659,9 +682,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           height: 35,
         ),
         Text(
-        widget.isIPO
-        ? "About This Bond"
-            : "About This IPO",
+          widget.isIPO ? "About This Bond" : "About This IPO",
           style: GoogleFonts.quicksand(
             textStyle: const TextStyle(
               color: AppColors.textColor,

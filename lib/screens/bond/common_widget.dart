@@ -809,22 +809,27 @@ class CommonWidget {
               children: [
                 SvgPicture.asset(
                   ConstantImage.issue_doc,
+                  height: 67,
+                  width: 51,
+                ),
+                const SizedBox(
+                  width: 8,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.62,
+                  width: MediaQuery.of(context).size.width / 1.5,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Download Issue Documents",
+                        "DOWNLOAD ISSUE DOCUMENTS",
                         style: GoogleFonts.quicksand(
                             textStyle: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 17,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold)),
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 3,
                       ),
                       Text(
                         "The document contains high-quality data which is fetched from SEBI and Exchange websites to help you make an informed decision.",
@@ -832,7 +837,7 @@ class CommonWidget {
                           textStyle: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w300,
-                              fontSize: 12),
+                              fontSize: 10),
                         ),
                       ),
                     ],
