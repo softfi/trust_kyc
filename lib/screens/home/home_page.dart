@@ -37,7 +37,7 @@ PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsCont
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
         userIsLoggedIn = value;
-       // if(userIsLoggedIn!)_personalDetailsController.onInit();
+       if(userIsLoggedIn!)_personalDetailsController.onInit();
         print("====00001 $userIsLoggedIn");
       });
     });
