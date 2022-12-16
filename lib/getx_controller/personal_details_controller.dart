@@ -55,7 +55,10 @@ class PersonalDetailsController extends GetxController {
   }
 
   void getPersonalDetails() async {
+    debugPrint("firstName.value.text.toString()");
     var response = await APiProvider().personalDetail();
+    debugPrint("firstName.value.text.toString()");
+    debugPrint(response.toString());
     if (response != null) {
       GetPersonalDetailModel modal = response;
       modaltest = response;
@@ -63,10 +66,9 @@ class PersonalDetailsController extends GetxController {
       lastName.value.text = modal.lastname;
       mobileNumber.value = modal.mobileNumber;
       emailID.value.text = modal.emailId.toString();
-      dob.value = modal.dob
-          .toUtc()
-          .toString()
-          .replaceRange(10, dob.toString().length + 1, "");
+
+      debugPrint(firstName.value.text.toString());
+      dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
     }
   }
 
@@ -92,7 +94,7 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().updatePersonalDeatil();
     if (response != null) {
       Get.back();
-      debugPrint(modaltest!.isEmailVerified.toString());
+
       if (modaltest!.isEmailVerified == 1) {
         a.value = 2;
         isVisible.value = 2;

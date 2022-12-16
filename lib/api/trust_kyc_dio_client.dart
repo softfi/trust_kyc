@@ -97,7 +97,7 @@ class TrustKycDioClient {
        // Fluttertoast.showToast(msg: resData['errors'][0]);
       } else if (e.response?.statusCode == 400) {
         var resData = e.response?.data as Map<String, dynamic>;
-        Fluttertoast.showToast(msg:resData['errors']);
+        Fluttertoast.showToast(msg:resData['errors'].toString());
         throw RequestException(resData['errors']);
       }
       throw ServerException(e.response?.data);

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../utils/google_sign_in.dart';
 import '../../../../utils/helper_widget/show_loading_animation.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/sharedPreference.dart';
@@ -46,7 +48,7 @@ class EmailVeryfication extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Row(
                   children: [
                     Text(
@@ -76,9 +78,9 @@ class EmailVeryfication extends StatelessWidget {
                 indent: 5,
                 endIndent: 5,
               ),
-              _space,
+             SizedBox(height: 10,),
               Obx(() => Visibility(
-                    visible: _personalDetailsController.a.value == 1,
+                    // visible: _personalDetailsController.a.value == 1,
                     child: _personalDetailsController.modaltest!.emailId == 1?verifiedEmail(context):emailWidget(context),
                   )),
               // Obx(() => Visibility(
@@ -112,30 +114,56 @@ class EmailVeryfication extends StatelessWidget {
             _space,
             _space,
             _space,
-            Container(
-                height: 55,
-                decoration: BoxDecoration(boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    blurRadius: 4.0,
-                  ),
-                ], borderRadius: BorderRadius.circular(5), color: Colors.white),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      ConstantImage.google,
-                      scale: 8,
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      "Sign in with Google",
-                      style: ConstStyle.sourceSans,
-                    )
-                  ],
-                )),
+
+            StreamBuilder(
+              //this will detect the change in the user
+              stream:FirebaseAuth.instance.authStateChanges() ,
+              builder: (context,snapshot)
+              {
+                //we will handle the different state like islogging in or is logged out
+                if(snapshot.connectionState==ConnectionState.waiting)
+                {return Center(child: CircularProgressIndicator(),);}
+
+                else if(snapshot.hasError)
+                {return Center(child: Text("Something went wrong"),);}
+                else{
+                  return InkWell(
+                  onTap: (){
+                    (snapshot.hasData)?GoogleSignInProvider().logout():GoogleSignInProvider().googleLogin();
+                  },
+                  child: Container(
+                      height: 55,
+                      decoration: BoxDecoration(boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x29000000),
+                          blurRadius: 4.0,
+                        ),
+                      ], borderRadius: BorderRadius.circular(5), color: Colors.white),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            ConstantImage.google,
+                            scale: 8,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            "Sign in with Google",
+                            style: ConstStyle.sourceSans,
+                          )
+                        ],
+                      )),
+                );
+                }
+              }
+              ,
+            ),
+
+
+
+
             _space,
             _space,
             Center(child: Text("Or", style: ConstStyle.quickMedium)),
