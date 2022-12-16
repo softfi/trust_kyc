@@ -164,24 +164,22 @@ class APiProvider extends GetConnect {
   }
 
   verfiyPanNumber() async {
-    PersonalDetailsController _controller =
-        Get.put(PersonalDetailsController());
+    PersonalDetailsController _controller = Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     try {
-      var response = await get(
-          TrustKycUrl.baseUrl +
-              TrustKycUrl.getPANCard +
+      var response = await get(TrustKycUrl.baseUrl + TrustKycUrl.getPANCard +
               "?pan_no=${_controller.panNumber.value.text}",
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
+      debugPrint(response.bodyString.toString());
       if(response.statusCode==200){
         PanStatusModel modal=PanStatusModel.fromJson(response.body);
         return modal;
       }else{
-        ShowCustomSnackBar().ErrorSnackBar(response.body["message"].toString());
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"][0].toString());
       }
     } catch (e) {
      ShowCustomSnackBar().ErrorSnackBar(e.toString());

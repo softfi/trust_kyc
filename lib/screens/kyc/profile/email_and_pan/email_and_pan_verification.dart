@@ -487,8 +487,10 @@ class EmailVeryfication extends StatelessWidget {
   Widget get _space1 => const SizedBox(height: 5);
 
   void verifyPan() async {
+    Get.dialog(Center(child: CircularProgressIndicator(),));
     var response = await APiProvider().verfiyPanNumber();
     if (response != null) {
+      Get.back();
       PanStatusModel modal = response;
       await HelperFunctions.savePanName(
           "${modal.panFname} ${modal..panMname} ${modal..panLname}");
@@ -519,7 +521,6 @@ class EmailVeryfication extends StatelessWidget {
           modal.panStatus == "D") {
         bottomSheet("INVALID", PANname);
       }
-      //Get.showSnackbar(GetSnackBar(messageText: Text("Pan varified succefully"),));
     }
   }
 }

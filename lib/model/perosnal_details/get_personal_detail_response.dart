@@ -26,7 +26,7 @@ class GetPersonalDetailModel {
     required this.citySequenceNo,
     required this.countryCode,
     this.customerType,
-    //required this.dob,
+    required this.dob,
     this.ekycApplicationStatus,
     this.emailId,
     required this.existingDematAccountCount,
@@ -76,7 +76,7 @@ class GetPersonalDetailModel {
   String citySequenceNo;
   String countryCode;
   dynamic customerType;
-  // DateTime dob;
+   DateTime dob;
   dynamic ekycApplicationStatus;
   dynamic emailId;
   int existingDematAccountCount;
@@ -126,7 +126,7 @@ class GetPersonalDetailModel {
     citySequenceNo: json["city_sequence_no"],
     countryCode: json["country_code"],
     customerType: json["customer_type"],
-   // dob: DateTime.parse(json["dob"] ?? ""),
+   dob: DateTime.parse(json["dob"] ?? ""),
     ekycApplicationStatus: json["ekyc_application_status"],
     emailId: json["email_id"],
     existingDematAccountCount: json["existing_demat_account_count"],
@@ -177,7 +177,7 @@ class GetPersonalDetailModel {
     "city_sequence_no": citySequenceNo,
     "country_code": countryCode,
     "customer_type": customerType,
-   // "dob": "${dob.year.toString().padLeft(4, '0')}-${dob.month.toString().padLeft(2, '0')}-${dob.day.toString().padLeft(2, '0')}",
+   "dob": "${dob.year.toString().padLeft(4, '0')}-${dob.month.toString().padLeft(2, '0')}-${dob.day.toString().padLeft(2, '0')}",
     "ekyc_application_status": ekycApplicationStatus,
     "email_id": emailId,
     "existing_demat_account_count": existingDematAccountCount,

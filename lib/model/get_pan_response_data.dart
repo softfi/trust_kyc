@@ -1,3 +1,6 @@
+// To parse this JSON data, do
+//
+//     final panStatusModel = panStatusModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -7,15 +10,17 @@ String panStatusModelToJson(PanStatusModel data) => json.encode(data.toJson());
 
 class PanStatusModel {
   PanStatusModel({
-    required this.aadharVerifyStatus,
-    required this.panFname,
-    required this.panLname,
-    required this.panMname,
-    required this.panStatus,
-    required this.personVideoVerificationStatus,
+   required this.aadharVerifyStatus,
+   required this.panDebarredStatus,
+   required this.panFname,
+   required this.panLname,
+   required this.panMname,
+   required this.panStatus,
+   required this.personVideoVerificationStatus,
   });
 
   int aadharVerifyStatus;
+  String panDebarredStatus;
   String panFname;
   String panLname;
   String panMname;
@@ -24,6 +29,7 @@ class PanStatusModel {
 
   factory PanStatusModel.fromJson(Map<String, dynamic> json) => PanStatusModel(
     aadharVerifyStatus: json["aadhar_verify_status"],
+    panDebarredStatus: json["pan_debarred_status"],
     panFname: json["pan_fname"],
     panLname: json["pan_lname"],
     panMname: json["pan_mname"],
@@ -33,6 +39,7 @@ class PanStatusModel {
 
   Map<String, dynamic> toJson() => {
     "aadhar_verify_status": aadharVerifyStatus,
+    "pan_debarred_status": panDebarredStatus,
     "pan_fname": panFname,
     "pan_lname": panLname,
     "pan_mname": panMname,
