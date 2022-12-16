@@ -102,23 +102,23 @@ class MyPersonalDetails extends StatelessWidget {
                   title: 'First Name* ',
                 ),
                 _space1,
-                AppTextField(
+                Obx(() =>AppTextField(
                   textCapitalization: TextCapitalization.words,
                   hint: ' ',
                   controller: _personalDetailsController.firstName.value,
                   textInputType: TextInputType.text,
-                ),
+                )),
                 _space,
                 AppText(
                   title: 'Last Name* ',
                 ),
                 _space1,
-                AppTextField(
+                Obx(() =>AppTextField(
                   textCapitalization: TextCapitalization.words,
                   hint: ' ',
                   controller: _personalDetailsController.lastName.value,
                   textInputType: TextInputType.text,
-                ),
+                )),
                 _space,
                 AppText(
                   title: 'Mobile Name* ',

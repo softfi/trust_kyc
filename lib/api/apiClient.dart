@@ -21,9 +21,10 @@ class APiProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': token,
       });
+      debugPrint("971231231273719273998213123819392939821983921");
+      debugPrint(response.body.toString());
       if (response.statusCode == 200) {
-        GetPersonalDetailModel model =
-            GetPersonalDetailModel.fromJson(response.body);
+        GetPersonalDetailModel model = GetPersonalDetailModel.fromJson(response.body);
         return model;
       }
     } catch (e) {

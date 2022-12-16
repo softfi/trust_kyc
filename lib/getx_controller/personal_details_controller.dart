@@ -59,8 +59,8 @@ class PersonalDetailsController extends GetxController {
     if (response != null) {
       GetPersonalDetailModel modal = response;
       modaltest = response;
-      firstName.value.text = modal.firstname ?? "";
-      lastName.value.text = modal.lastname ?? "";
+      firstName.value.text = modal.firstname;
+      lastName.value.text = modal.lastname;
       mobileNumber.value = modal.mobileNumber;
       emailID.value.text = modal.emailId.toString();
       dob.value = modal.dob
