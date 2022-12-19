@@ -22,13 +22,13 @@ class KRAController extends GetxController {
   DigiLockerDetailModel? digiLockerDetailModel;
   PersonalDetailsController _personalDetailsController =
   Get.put(PersonalDetailsController());
-  RxList<ProfessionModel> professionList =
-      List<ProfessionModel>.empty(growable: true).obs;
+  RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
 
   @override
   void onInit() {
     authenticatDigilocker();
     getProfessionList();
+    debugPrint("======== ======================${urlLink.value}");
     super.onInit();
   }
 
@@ -59,15 +59,14 @@ class KRAController extends GetxController {
 
   void getProfessionList() async {
     debugPrint("firstName.value.text.toString()");
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
+
     var response = await APiProvider().getOccupationList();
     debugPrint(response.toString());
     if (response != null) {
       debugPrint("==========776 ${response}");
       professionList.value = response;
-      Get.back();
+      debugPrint(professionList.value.toString());
+      debugPrint("0000000000000000000000000000000");
     }
   }
 

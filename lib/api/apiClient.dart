@@ -264,6 +264,8 @@ class APiProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': token,
       });
+      debugPrint(response.statusCode.toString());
+      debugPrint("response.statusCode.toString()response.statusCode.toString(");
       if (response.statusCode == 200) {
         debugPrint("==========77687956 ${response.body}");
         ProfessionModel model = ProfessionModel.fromJson(response.body);
