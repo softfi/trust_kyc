@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/utils/helper_widget/custom_snsckbar.dart';
 import '../../api/apiClient.dart';
 import '../../model/digiLocker_response_data.dart';
 import '../../model/get_digilocker_response_data.dart';
@@ -10,21 +12,18 @@ class KRAController extends GetxController {
   RxString urlLink = "".obs;
   RxBool isChecked = false.obs;
   RxBool isRTR = false.obs;
-  RxBool isSelected = false.obs;
+  RxString professionId = "".obs;
   RxInt isRTRInt = 0.obs;
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
   RxInt isExperienceSelect = 0.obs;
-  var _selectedChip = 0.obs;
-
-  get selectedChip => this._selectedChip.value;
-
-  set selectedChip(index) => this._selectedChip.value = index;
   var maidenName = TextEditingController();
   DigiLockerDetailModel? digiLockerDetailModel;
-
-  RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
+  PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
+  RxList<ProfessionModel> professionList =
+      List<ProfessionModel>.empty(growable: true).obs;
 
   @override
   void onInit() {
@@ -70,5 +69,36 @@ class KRAController extends GetxController {
       professionList.value = response;
       Get.back();
     }
+  }
+
+  void update_personal_details() {
+    if (isGenderSelect.value == 0) {
+      ShowCustomSnackBar().ErrorSnackBar("Select Your Gender");
+    } else if (isMaritalSelect.value == 0) {
+      ShowCustomSnackBar().ErrorSnackBar("Select Your Marital Status");
+    } else if (isEnComeSelect == 0) {
+      ShowCustomSnackBar().ErrorSnackBar("Select Your Annual Income");
+    }else if (professionId.value == null) {
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
+    }  else if (isExperienceSelect == 0) {
+      ShowCustomSnackBar().ErrorSnackBar("Select Your Experience");
+    }else if (maidenName.text.isEmpty) {
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
+    }else{
+      updateData();
+    }
+  }
+
+  void updateData() async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var response = await APiProvider().updatePersonalDeatil();
+    if (response != null) {
+      _personalDetailsController.getPersonalDetails();
+      _personalDetailsController.isVisible.value = 4;
+      Get.back();
+    }
+    ShowCustomSnackBar().SuccessSnackBar(response.toString());
   }
 }

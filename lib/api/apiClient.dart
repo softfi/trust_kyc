@@ -7,8 +7,10 @@ import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import '../getx_controller/kra/kra_controller.dart';
 import '../model/bond/bond_details_modal.dart';
 import '../model/bond/bond_list_modal.dart';
+import '../model/code_verification_response_data.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/profession_response_data.dart';
@@ -40,6 +42,7 @@ class APiProvider extends GetConnect {
   updatePersonalDeatil() async {
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
+    KRAController _kRAController = Get.put(KRAController());
     var token = await HelperFunctions.getToken();
     String correctedDate =
         "${_controller.currentStartDate.value.day}-${_controller.currentStartDate.value.month}-${_controller.currentStartDate.value.year}";
@@ -51,12 +54,12 @@ class APiProvider extends GetConnect {
       "smart_card_required": 0,
       "smart_card_number": "string",
       "smart_card_PIN": "string",
-      "gender": 0,
-      "married_status": 0,
-      "mothers_maiden_name": "string",
-      "annual_income": 0,
-      "trading_experience": 0,
-      "occupation": "string",
+      "gender": _kRAController.isGenderSelect.value,
+      "married_status": _kRAController.isMaritalSelect.value,
+      "mothers_maiden_name": "${_kRAController.maidenName.value.text}",
+      "annual_income": _kRAController.isEnComeSelect.value,
+      "trading_experience": _kRAController.isExperienceSelect.value,
+      "occupation": "${_kRAController.professionId.value}",
       "lifestyle": "string",
       "geogriphical_code": "string",
       "education_degree": "string",
@@ -77,7 +80,7 @@ class APiProvider extends GetConnect {
       "proof_back_image": "string",
       "manager_id": 0,
       "is_politically_exposed": _controller.potentiallyExposedStatusInt.value,
-      "filled_itr_last_2years": 0,
+      "filled_itr_last_2years": _kRAController.isRTRInt.value,
       "would_you_like_to_activate": _controller.activateFutureInt.value,
       "check_box_share_data_with_company": _controller.isCheckedInt1.value,
       "check_box_share_data_with_govt": _controller.isCheckedInt2.value
@@ -294,4 +297,25 @@ try{
   ShowCustomSnackBar().ErrorSnackBar(e.toString());
 }
   }
+
+  getIPVCode() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response = await get(
+          TrustKycUrl.baseUrl + TrustKycUrl.getVideoVerificationCode,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      if (response.statusCode == 200) {
+        CodeVerificationModel model = CodeVerificationModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+
 }

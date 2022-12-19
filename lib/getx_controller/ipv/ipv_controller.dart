@@ -1,13 +1,25 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class IPVController extends GetxController {
+import '../../api/apiClient.dart';
+import '../../model/code_verification_response_data.dart';
 
+class IPVController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isRecordingPlay = false.obs;
   RxBool isRecordingStop = false.obs;
-  RxString randumNumber  ="".obs;
+  RxString randumNumber1 = "".obs;
+  RxString randumNumber2 = "".obs;
+  RxString randumNumber3 = "".obs;
+  RxString randumNumber4 = "".obs;
   RxBool isSelected = false.obs;
+
+  @override
+  void onInit() {
+    getIPVCode();
+    super.onInit();
+  }
 
   // _initCamera() async {
   //   final cameras = await availableCameras();
@@ -33,4 +45,14 @@ class IPVController extends GetxController {
   //   await _videoPlayerController.initialize();
   // }
 
+  getIPVCode() async {
+    var response = await APiProvider().getIPVCode();
+    if (response != null) {
+      CodeVerificationModel modal = response;
+      randumNumber1.value = modal.randomNumber[0];
+      randumNumber2.value = modal.randomNumber[0];
+      randumNumber3.value = modal.randomNumber[0];
+      randumNumber4.value = modal.randomNumber[0];
+    }
+  }
 }

@@ -41,7 +41,6 @@ class KRARecord extends StatelessWidget {
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   KRAController _kRAController = Get.put(KRAController());
   RxBool isButtonClick = false.obs;
-  RxString profId = "".obs;
 
   RxList<String> genderList = [
     "",
@@ -87,6 +86,7 @@ class KRARecord extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
               color: const Color(0xffF7F7FA).withOpacity(0.35),
               border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
           child: Column(
@@ -233,9 +233,9 @@ class KRARecord extends StatelessWidget {
                         ));
                   }).toList(),
                   onChanged: (newVal) {
-                    profId.value = newVal.toString();
+                    _kRAController.professionId.value = newVal.toString();
                   },
-                  value: profId,
+                  value: _kRAController.professionId.value,
                 ),
               )))),
       _space,
@@ -289,10 +289,48 @@ class KRARecord extends StatelessWidget {
       _space,
       InkWell(
         onTap: () {
-          isButtonClick.value = true;
-          _personalDetailsController.isVisible.value = 4;
+          if (_kRAController.maidenName.text.isNotEmpty) {
+            isButtonClick.value = true;
+            _kRAController.update_personal_details();
+          }
+
+          //_personalDetailsController.isVisible.value = 4;
         },
         child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x29000000),
+                blurRadius: 3.0,
+              ),
+            ],
+            border: Border.all(
+                width: 2,
+                color: !isButtonClick.value
+                    ? _kRAController.maidenName.text.isNotEmpty
+                        ? AppColors.textColor
+                        : Color(0xffE1E0E6)
+                    : Color(0xffFF405A)),
+            color:
+                !isButtonClick.value ? Colors.white : Color(0xffFF405A),
+          ),
+          child: Center(
+              child: Text(
+            "Continue",
+            style: GoogleFonts.quicksand(
+              textStyle: TextStyle(
+                  color: !isButtonClick.value
+                      ? _kRAController.maidenName.text.isNotEmpty
+                          ? AppColors.textColor
+                          : Color(0xffE1E0E6)
+                      : Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+            ),
+          )),
+        ),
+        /*Container(
           height: 45,
           decoration: BoxDecoration(
             boxShadow: const [
@@ -318,7 +356,7 @@ class KRARecord extends StatelessWidget {
                   fontSize: 15),
             ),
           )),
-        ),
+        ),*/
       ),
       _space1,
       _space1,

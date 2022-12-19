@@ -16,7 +16,7 @@ import '../personal_detals/app_textfield.dart';
 class IPVVerification extends StatelessWidget {
   IPVVerification({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  Get.put(PersonalDetailsController());
   IPVController _ipvController = Get.put(IPVController());
 
   RxBool isButtonClick = false.obs;
@@ -32,7 +32,10 @@ class IPVVerification extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
           padding: const EdgeInsets.all(12),
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           decoration: BoxDecoration(
               color: const Color(0xffF7F7FA).withOpacity(0.35),
               border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
@@ -112,7 +115,7 @@ class IPVVerification extends StatelessWidget {
         ),
       ),
       _space,
-    /*  _ipvController.isLoading.value == false
+      /*  _ipvController.isLoading.value == false
           ? InkWell(
         onTap: () async {
           _ipvController.isLoading.value = true;
@@ -240,14 +243,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-              "0",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: AppColors.textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25),
-              ),
-            )),
+                  "${_ipvController.randumNumber1}",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25),
+                  ),
+                )),
           ),
           const SizedBox(
             width: 20,
@@ -263,14 +266,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-              "0",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: AppColors.textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25),
-              ),
-            )),
+                  "${_ipvController.randumNumber2}",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25),
+                  ),
+                )),
           ),
           const SizedBox(
             width: 20,
@@ -286,14 +289,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-              "3",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: AppColors.textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25),
-              ),
-            )),
+                  "${_ipvController.randumNumber3}",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25),
+                  ),
+                )),
           ),
           const SizedBox(
             width: 20,
@@ -309,14 +312,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-              "4",
-              style: GoogleFonts.quicksand(
-                textStyle: const TextStyle(
-                    color: AppColors.textColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25),
-              ),
-            )),
+                  "${_ipvController.randumNumber4}",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25),
+                  ),
+                )),
           ),
         ],
       ),
@@ -478,18 +481,18 @@ class IPVVerification extends StatelessWidget {
                     ? AppColors.textColor
                     : const Color(0xffE1E0E6)),
             color:
-                isButtonClick.value == false ? Colors.white : Color(0xffFF405A),
+            isButtonClick.value == false ? Colors.white : Color(0xffFF405A),
           ),
           child: Center(
               child: Text(
-            "Continue",
-            style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15),
-            ),
-          )),
+                "Continue",
+                style: GoogleFonts.quicksand(
+                  textStyle: const TextStyle(
+                      color: Color(0xff22263D),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              )),
         ),
       ),
       _space1,
@@ -557,13 +560,13 @@ class IPVVerification extends StatelessWidget {
                           border: Border.all(width: 1.5, color: Colors.white)),
                       child: Center(
                           child: Text(
-                        "Close",
-                        style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500)),
-                      )),
+                            "Close",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500)),
+                          )),
                     ),
                   ),
                   const SizedBox(
