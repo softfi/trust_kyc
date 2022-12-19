@@ -4,27 +4,19 @@ import 'package:get/get.dart';
 import '../../api/apiClient.dart';
 import '../../model/bond/bond_details_modal.dart';
 class ReadMoreBond extends GetxController{
-  Rx<BondDetails>? specificBondDataDetails ;
-
+ var specificBondDataDetails =Rxn<BondDetails>();
   RxList<BondCashflowDetail> bondCashflowdetails=List<BondCashflowDetail>.empty(growable: true).obs;
 
-//RxList<BondDetails> bondDetails=List<BondDetails>.empty(growable: true).obs;
 
   void getReadMoreBondDetails(String isisnNo)async{
     var response=await APiProvider().getBondDetails(isisnNo);
     if(response !=null){
       BondDetails modal=response;
-      specificBondDataDetails = modal.obs;
+      specificBondDataDetails.value = modal;
       bondCashflowdetails.value=modal.message.bondCashflowDetails;
-      update();
     }
   }
 
-@override
-  void onInit() {
-    update();
-    // TODO: implement onInit
-    super.onInit();
-  }
+
 
 }

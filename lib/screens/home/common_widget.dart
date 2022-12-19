@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/images.dart';
 
 import '../../getx_controller/bond/bond_list_data_controller.dart';
+import '../../getx_controller/bond/read_more_bond_controller.dart';
 import '../../utils/colorsConstant.dart';
 import '../bond/bond_advantages.dart';
 import '../bond/read_more_brands/read_more_bonds.dart';
@@ -12,6 +13,7 @@ import 'custom_listtile.dart';
 class ReadMoreList extends StatelessWidget {
   ReadMoreList({Key? key}) : super(key: key);
   BondListData _bondListData=Get.put(BondListData());
+  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
   List data = [
     ["MAHINDRA & MAHINDRA FINANCIAL", ""],
     ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
@@ -281,6 +283,7 @@ class ReadMoreList extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

@@ -39,7 +39,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
 
   bool userIsLoggedIn = false;
   ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
-
+RxInt a=1.obs;
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
@@ -51,17 +51,16 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
 
   @override
   void initState() {
-    _readMoreBond.getReadMoreBondDetails(widget.isinNo);
     getLoggedInState();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(()=>((_readMoreBond.specificBondDataDetails.value !=null))?Scaffold(
         backgroundColor: Colors.white,
         appBar: AppToolbar.appBar(
-            "{_readMoreBond.specificBondDataDetails!.value.message.bondDetails.bondBondsName}",
+            "${_readMoreBond.specificBondDataDetails.value!.message.bondDetails.bondBondsName}",
             IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
@@ -69,8 +68,9 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             Container(
               width: 50,
             )),
-        body: Obx((){
-          return (_readMoreBond.specificBondDataDetails!.value !=null)?SingleChildScrollView(
+        body:
+        Obx((){
+          return (a.value==1)?(_readMoreBond.specificBondDataDetails.value !=null)?SingleChildScrollView(
                     child: Column(
                       children: [
                         Padding(
@@ -116,9 +116,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                         CommonWidget.needHelp(),
                       ],
                     ),
-                  ):Center(child: CircularProgressIndicator());}));
-
-
+                  ):Center(child: CircularProgressIndicator()):CircularProgressIndicator();
+        })):Center(child: CircularProgressIndicator(),));
   }
 
   Widget readBondWidget() {
@@ -147,11 +146,11 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(shape: BoxShape.circle),
-                  child: (_readMoreBond.specificBondDataDetails!.value.message
+                  child: (_readMoreBond.specificBondDataDetails.value!.message
                               .bondDetails.bondLogo !=
                           null)
                       ? Image.network(
-                          _readMoreBond.specificBondDataDetails!.value.message
+                          _readMoreBond.specificBondDataDetails.value!.message
                               .bondDetails.bondLogo,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(ConstantImage.orderImg))
@@ -163,7 +162,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      "${_readMoreBond.specificBondDataDetails!.value.message.bondDetails.bondBondsName}",
+                      "${_readMoreBond.specificBondDataDetails.value!.message.bondDetails.bondBondsName}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -235,7 +234,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                                   ),
                                 )),
                             TextSpan(
-                                text: "${_readMoreBond.specificBondDataDetails!.value.message
+                                text: "${_readMoreBond.specificBondDataDetails.value!.message
                                     .bondDetails.bondIsinNumber}",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
@@ -446,9 +445,9 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           Visibility(
             child: widget.isIPO == 1
                 ? ConstWidget.keyPointsConsider(
-                    context,_readMoreBond.specificBondDataDetails!.value
+                    context,_readMoreBond.specificBondDataDetails.value!
                   )
-                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails!.value),
+                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails.value!),
           ),
           const SizedBox(
             height: 20,
