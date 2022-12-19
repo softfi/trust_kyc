@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
 import 'package:trust_money/screens/bond/ipo/buy_ipo_bonds/nonipo_buy_bonds.dart';
 import 'package:trust_money/screens/bond/tringle.dart';
 import 'dart:math' as math;
+import '../../../getx_controller/bond/read_more_bond_controller.dart';
 import '../../../utils/app_bar.dart';
 import '../../../utils/colorsConstant.dart';
 import '../../../utils/images.dart';
@@ -18,8 +20,10 @@ import '../ipo/buy_ipo_bonds/ncds_series.dart';
 import '../ipo/nonipo_ncds.dart';
 
 class ReadMoreBonds extends StatefulWidget {
-  ReadMoreBonds({Key? key, required this.isIPO}) : super(key: key);
-  bool isIPO;
+  ReadMoreBonds({Key? key, required this.isIPO, required this.isinNo})
+      : super(key: key);
+  int isIPO;
+  String isinNo;
 
   @override
   State<ReadMoreBonds> createState() => _ReadMoreBondsState();
@@ -34,6 +38,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
   ];
 
   bool userIsLoggedIn = false;
+  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
 
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
@@ -46,6 +51,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
 
   @override
   void initState() {
+    _readMoreBond.getReadMoreBondDetails(widget.isinNo);
     getLoggedInState();
     super.initState();
   }
@@ -53,65 +59,66 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppToolbar.appBar(
-          widget.isIPO
-              ? "MAHINDRA & MAHINDRA FINANCIAL"
-              : "CREDITACCESS GRAMEEN",
-          IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          Container(
-            width: 50,
-          )),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 5.0,
+        backgroundColor: Colors.white,
+        appBar: AppToolbar.appBar(
+            "{_readMoreBond.specificBondDataDetails!.value.message.bondDetails.bondBondsName}",
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            Container(
+              width: 50,
+            )),
+        body: Obx((){
+          return (_readMoreBond.specificBondDataDetails!.value !=null)?SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color(0x29000000),
+                                      blurRadius: 5.0,
+                                    ),
+                                  ],
+                                  color: Colors.white),
+                              child: readBondWidget()),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: keyHighlightWidget() //investment(),
+                            ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          child: CommonWidget.issuer(context),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        CommonWidget.invest(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CommonWidget.subscribe(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CommonWidget.needHelp(),
                       ],
-                      color: Colors.white),
-                  child: readBondWidget()),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: keyHighlightWidget() //investment(),
-                ),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
-              child: CommonWidget.issuer(context),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            CommonWidget.invest(),
-            const SizedBox(
-              height: 30,
-            ),
-            CommonWidget.subscribe(),
-            const SizedBox(
-              height: 30,
-            ),
-            CommonWidget.needHelp(),
-          ],
-        ),
-      ),
-    );
+                    ),
+                  ):Center(child: CircularProgressIndicator());}));
+
+
   }
 
   Widget readBondWidget() {
@@ -140,7 +147,15 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(shape: BoxShape.circle),
-                  child: Image.asset(ConstantImage.orderImg),
+                  child: (_readMoreBond.specificBondDataDetails!.value.message
+                              .bondDetails.bondLogo !=
+                          null)
+                      ? Image.network(
+                          _readMoreBond.specificBondDataDetails!.value.message
+                              .bondDetails.bondLogo,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Image.asset(ConstantImage.orderImg))
+                      : Image.asset(ConstantImage.orderImg),
                 ),
                 const SizedBox(
                   width: 13,
@@ -148,9 +163,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      widget.isIPO
-                          ? "MAHINDRA & MAHINDRA FINANCIAL"
-                          : "CREDITACCESS GRAMEEN LIMITED",
+                      "${_readMoreBond.specificBondDataDetails!.value.message.bondDetails.bondBondsName}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -172,7 +185,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                widget.isIPO
+                widget.isIPO == 1
                     ? Container(
                         height: 35,
                         decoration: const BoxDecoration(
@@ -222,7 +235,8 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                                   ),
                                 )),
                             TextSpan(
-                                text: "INE146O08118",
+                                text: "${_readMoreBond.specificBondDataDetails!.value.message
+                                    .bondDetails.bondIsinNumber}",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                     color: AppColors.textColor,
@@ -430,11 +444,11 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
             height: 10,
           ),
           Visibility(
-            child: widget.isIPO
+            child: widget.isIPO == 1
                 ? ConstWidget.keyPointsConsider(
-                    context,
+                    context,_readMoreBond.specificBondDataDetails!.value
                   )
-                : ConstWidget.keyPoints(context),
+                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails!.value),
           ),
           const SizedBox(
             height: 20,
@@ -569,7 +583,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => BuyIPOBond(
-                          isNonIPO: widget.isIPO,
+                          isNonIPO: widget.isIPO == 1,
                         )));
           },
           child: Center(
@@ -651,25 +665,26 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           height: 20,
         ),
         Visibility(
-            child: widget.isIPO ? NonIPONCDs() : NCDsSeries(isShow: true)),
+            child: widget.isIPO == 1 ? NonIPONCDs() : NCDsSeries(isShow: true)),
         SizedBox(
           height: 10,
         ),
         Visibility(
-            visible: widget.isIPO,
-            child: BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn,context)),
+            visible: widget.isIPO == 1,
+            child:
+                BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn, context)),
         const SizedBox(
           height: 25,
         ),
         Visibility(
-          visible: !widget.isIPO,
+          visible: widget.isIPO == 1,
           child: InkWell(
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BuyIPOBond(
-                            isNonIPO: widget.isIPO,
+                            isNonIPO: widget.isIPO == 1,
                           )));
             },
             child: ViewAllWidget(
@@ -682,7 +697,7 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
           height: 35,
         ),
         Text(
-          widget.isIPO ? "About This Bond" : "About This IPO",
+          widget.isIPO == 1 ? "About This Bond" : "About This IPO",
           style: GoogleFonts.quicksand(
             textStyle: const TextStyle(
               color: AppColors.textColor,

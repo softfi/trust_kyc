@@ -11,7 +11,9 @@ import 'package:trust_money/screens/bond/read_bonds.dart';
 import 'package:trust_money/screens/home/common_widget.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
+import '../../api/apiClient.dart';
 import '../../drawerWidget/drawerWidget.dart';
+import '../../getx_controller/bond/bond_list_data_controller.dart';
 import '../../utils/images.dart';
 import '../../utils/strings.dart';
 import 'dart:math' as math;
@@ -35,7 +37,11 @@ class _HomePageState extends State<HomePage> {
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
 
-  getLoggedInState() async {
+  BondListData _bondListData=Get.put(BondListData());
+
+
+
+getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
         userIsLoggedIn = value;

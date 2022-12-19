@@ -545,12 +545,12 @@ class BuyIPOBond extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Visibility(
-              child: isNonIPO
-                  ? ConstWidget.keyPointsConsider(
-                      context,
-                    )
-                  : KeyPoints()),
+          // Visibility(
+          //     child: isNonIPO
+          //         ? ConstWidget.keyPointsConsider(
+          //             context,
+          //           )
+          //         : KeyPoints()),
         ]),
       ],
     );

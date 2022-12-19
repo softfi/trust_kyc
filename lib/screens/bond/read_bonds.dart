@@ -526,9 +526,8 @@ class _ReadBondsState extends State<ReadBonds> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => ReadMoreBonds(
-                                                  isIPO: data[index][1] == ""
-                                                      ? true
-                                                      : false,
+                                                  isIPO: data[index][1],
+                                              isinNo: "121212121211",
                                                 )));
                               },
                               child: Container(

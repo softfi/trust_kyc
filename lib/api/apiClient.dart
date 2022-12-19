@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,8 @@ import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import '../model/bond/bond_details_modal.dart';
+import '../model/bond/bond_list_modal.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/profession_response_data.dart';
@@ -267,19 +271,27 @@ class APiProvider extends GetConnect {
     }
   }
 
-/* Future<List<ProfessionModel>> occupation() async {
-    List<ProfessionModel> occupationList = [];
-    print("=================> called");
-    await NetworkUtility.checkNetworkStatus();
-    var token = await HelperFunctions.getToken();
-    var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
-    if (response.statusCode == 200) {
-      //final json = jsonDecode(response.data);
-      response.data.forEach((element) {
-        occupationList.add(ProfessionModel.fromJson(element));
-      });
-    }
-    return occupationList;
-  }*/
+  bondList()async{
+try{
+var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.bondList+"?page_number=1&limit=11");
+if(response!=null){
+  if(response.statusCode==200){
+    AllBondList modal=AllBondList.fromJson((response.body));
+    return modal;
+  }else{ShowCustomSnackBar().ErrorSnackBar(response.statusCode.toString());}
+}
+}catch(e){ShowCustomSnackBar().ErrorSnackBar(e.toString());}
+  }
+
+  getBondDetails(String isisnNo)async{
+try{
+  var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.specificBondsList+"?bond_isin_number=$isisnNo");
+  if(response.statusCode==200){
+    BondDetails modal=BondDetails.fromJson((response.body));
+    return modal;
+  }
+}catch(e){
+  ShowCustomSnackBar().ErrorSnackBar(e.toString());
+}
+  }
 }

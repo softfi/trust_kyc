@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/images.dart';
 
+import '../../getx_controller/bond/bond_list_data_controller.dart';
 import '../../utils/colorsConstant.dart';
 import '../bond/bond_advantages.dart';
 import '../bond/read_more_brands/read_more_bonds.dart';
@@ -9,7 +11,7 @@ import 'custom_listtile.dart';
 
 class ReadMoreList extends StatelessWidget {
   ReadMoreList({Key? key}) : super(key: key);
-
+  BondListData _bondListData=Get.put(BondListData());
   List data = [
     ["MAHINDRA & MAHINDRA FINANCIAL", ""],
     ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
@@ -24,8 +26,8 @@ class ReadMoreList extends StatelessWidget {
     return SizedBox(
       height: 445,
       width: double.infinity,
-      child: ListView.builder(
-        itemCount: data.length,
+      child: Obx(()=>ListView.builder(
+        itemCount: _bondListData.bondList.value.length,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
@@ -69,16 +71,11 @@ class ReadMoreList extends StatelessWidget {
                                     color: const Color(0xff58C3D5)
                                         .withOpacity(0.35)),
                                 child: Center(
-                                  child: Text(
-                                    "M",
-                                    style: GoogleFonts.sourceSansPro(
-                                      textStyle: const TextStyle(
-                                        color: Color(0xff22263D),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 22,
-                                      ),
-                                    ),
-                                  ),
+                                  child: (_bondListData.bondList.value[index].bondLogo!=null)?Image.network(_bondListData.bondList.value[index].bondLogo,errorBuilder: (context, error, stackTrace) => Image.asset(
+                                      ConstantImage.orderImg
+                                  ),):Image.asset(
+                                      ConstantImage.orderImg
+                                  )
                                 ),
                               ),
                             ),
@@ -88,7 +85,7 @@ class ReadMoreList extends StatelessWidget {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 14.0),
-                                child: Text("${data[index][0]}",
+                                child: Text("${_bondListData.bondList.value[index].bondBondsName}",
                                     style: GoogleFonts.quicksand(
                                       textStyle: const TextStyle(
                                         color: Color(0xff22263D),
@@ -148,7 +145,7 @@ class ReadMoreList extends StatelessWidget {
                                       height: 8,
                                     ),
                                     Text(
-                                      "8.00%",
+                                      "${_bondListData.bondList.value[index].bondCouponAmount}",
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: const TextStyle(
                                             color: Color(0xffFF405A),
@@ -175,7 +172,7 @@ class ReadMoreList extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Text(
-                                    "10.60%",
+                                    "www",
                                     style: GoogleFonts.sourceSansPro(
                                       textStyle: const TextStyle(
                                           color: Color(0xffFF405A),
@@ -215,7 +212,7 @@ class ReadMoreList extends StatelessWidget {
                                       height: 8,
                                     ),
                                     Text(
-                                      "Annual",
+                                      "${_bondListData.bondList.value[index].bondInterestFrequency}",
                                       style: GoogleFonts.sourceSansPro(
                                         textStyle: const TextStyle(
                                             color: Color(0xffFF405A),
@@ -242,7 +239,7 @@ class ReadMoreList extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Text(
-                                    "Annual",
+                                    "www",
                                     style: GoogleFonts.sourceSansPro(
                                       textStyle: const TextStyle(
                                           color: Color(0xffFF405A),
@@ -273,7 +270,7 @@ class ReadMoreList extends StatelessWidget {
                             SizedBox(
                               width: 38,
                               child: Text(
-                                "${data[index][1]}",
+                                _bondListData.bondList.value[index].bondType==1?"IPO":"",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: Color(0xffFF405A),
@@ -288,9 +285,8 @@ class ReadMoreList extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ReadMoreBonds(
-                                              isIPO: data[index][1] == ""
-                                                  ? true
-                                                  : false,
+                                              isIPO: _bondListData.bondList.value[index].bondType,
+                                            isinNo:_bondListData.bondList.value[index].bondIsinNumber
                                             )));
                               },
                               child: Container(
@@ -343,7 +339,7 @@ class ReadMoreList extends StatelessWidget {
             ),
           );
         },
-      ),
+      )),
     );
   }
 }

@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../model/bond/bond_details_modal.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../Congratulations/alert_dialog.dart';
 
 class ConstWidget {
-  static keyPoints(BuildContext context) {
+  static keyPoints(BuildContext context,BondDetails _bondDetails) {
     return Column(
       children: [
         Container(
@@ -36,7 +37,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "14, Nov 2022",
+                      (_bondDetails.message.bondDetails.bondOpeningDate!=null)?"${_bondDetails.message.bondDetails.bondOpeningDate}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -63,7 +64,7 @@ class ConstWidget {
                       height: 8,
                     ),
                     Text(
-                      "02, Dec 2022",
+                      (_bondDetails.message.bondDetails.bondCloserDate!=null)?"${_bondDetails.message.bondDetails.bondCloserDate}":"N/A",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -103,7 +104,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "₹1,000/- per NCD",
+    (_bondDetails.message.bondDetails.bondFaceValue!=null)?"₹ ${_bondDetails.message.bondDetails.bondFaceValue}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -132,7 +133,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "₹10,000/- (10 NCD) and in multiples of ₹1,000/- (1 NCD) thereafter",
+    (_bondDetails.message.bondDetails.bondMinimumApplication!=null)?"₹ ${_bondDetails.message.bondDetails.bondMinimumApplication}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -176,7 +177,7 @@ class ConstWidget {
                             height: 8,
                           ),
                           Text(
-                            "BSE and NSE",
+                            (_bondDetails.message.bondDetails.bondListing!=null)?"${_bondDetails.message.bondDetails.bondListing}":"N/A",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -206,7 +207,7 @@ class ConstWidget {
                             height: 8,
                           ),
                           Text(
-                            "₹250 Crore with an option to retain oversubscription up to ₹250 Crore aggregating upto to ₹ 500 Crore",
+                            (_bondDetails.message.bondDetails.bondIssueSize!=null)?"₹${_bondDetails.message.bondDetails.bondIssueSize}":"N/A",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -222,7 +223,7 @@ class ConstWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                tableWidget(),
+                tableWidget(_bondDetails),
               ],
             ),
           ),
@@ -231,7 +232,7 @@ class ConstWidget {
     );
   }
 
-  static tableWidget() {
+  static tableWidget(BondDetails _bondDetails) {
     return Container(
         color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 2),
@@ -349,7 +350,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "25%",
+    (_bondDetails.message.bondDetails.bondCategoryInstitutional!=null)?"${_bondDetails.message.bondDetails.bondCategoryInstitutional}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -363,7 +364,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "35%",
+    (_bondDetails.message.bondDetails.bondCategoryNonInstitutional!=null)?"${_bondDetails.message.bondDetails.bondCategoryNonInstitutional}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -377,7 +378,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "15%",
+    (_bondDetails.message.bondDetails.bondCategoryHni !=null)?"${_bondDetails.message.bondDetails.bondCategoryHni}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -391,7 +392,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "25%",
+    (_bondDetails.message.bondDetails.bondCategoryRetail!=null)?"${_bondDetails.message.bondDetails.bondCategoryRetail}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -406,7 +407,7 @@ class ConstWidget {
         ));
   }
 
-  static keyPointsConsider(BuildContext context) {
+  static keyPointsConsider(BuildContext context,BondDetails _bondDetails ) {
     return Column(
       children: [
         Container(
@@ -435,7 +436,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "8.00%",
+                       (_bondDetails.message.bondDetails.bondCouponRate!=null)?"${_bondDetails.message.bondDetails.bondCouponRate}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -502,7 +503,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "10,00,000.00",
+    (_bondDetails.message.bondDetails.bondFaceValue!=null)?"${_bondDetails.message.bondDetails.bondFaceValue}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -531,7 +532,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "100.00",
+    (_bondDetails.message.bondDetails.bondIssueSize!=null)?"${_bondDetails.message.bondDetails.bondIssueSize}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -572,7 +573,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "Annual",
+                        (_bondDetails.message.bondDetails.bondInterestFrequency!=null)? "${_bondDetails.message.bondDetails.bondInterestFrequency}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -601,7 +602,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "13/Sep/2024",
+                      (_bondDetails.message.bondDetails.bondMaturityDate!=null)?"${_bondDetails.message.bondDetails.bondMaturityDate}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -642,7 +643,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "No",
+                        "www",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -671,7 +672,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "No",
+                        "www",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
