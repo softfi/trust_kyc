@@ -173,13 +173,18 @@ class EmailPANBottomSheet {
                       controller: optController,
                       keyboardType: TextInputType.number,
                       autofocus: false,
-                      style: ConstStyle.sourceSans,
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                          letterSpacing: 4,
+                            color: Color(0xff22263D), fontWeight: FontWeight.w400, fontSize: 18),
+                      ),
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(
                             color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
                         hintStyle: TextStyle(
-                            color: Color(0xff22263d), letterSpacing: 4),
+
+                            color: Color(0xff22263d), letterSpacing:4),
                         hintText: "******",
                         fillColor: Colors.white,
                         filled: true,

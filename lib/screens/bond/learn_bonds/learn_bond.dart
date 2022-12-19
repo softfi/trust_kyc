@@ -165,7 +165,7 @@ class _LearnBondState extends State<LearnBond> {
             ],
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           Text(
             "Editors Top Picks",

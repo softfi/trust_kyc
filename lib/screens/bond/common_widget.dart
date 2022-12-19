@@ -31,7 +31,7 @@ class CommonWidget {
               ),
               Container(
                 width: 5,
-                height: 440,
+                height: 370,
                 color: AppColors.textColor,
               ),
               const SizedBox(
@@ -40,9 +40,6 @@ class CommonWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 18,
-                  ),
                   Text(
                     "INVEST IN \n3 SIMPLE STEPS",
                     style: GoogleFonts.quicksand(
@@ -167,7 +164,7 @@ class CommonWidget {
           ),
         ),
         Positioned(
-          top: 171,
+          top: 136,
           left: 15,
           child: Container(
             decoration: BoxDecoration(
@@ -190,7 +187,7 @@ class CommonWidget {
           ),
         ),
         Positioned(
-          top: 250,
+          top: 210,
           left: 15,
           child: Container(
             decoration: BoxDecoration(
@@ -213,7 +210,7 @@ class CommonWidget {
           ),
         ),
         Positioned(
-          bottom: 105,
+          bottom: 85,
           left: 15,
           child: Container(
             decoration: BoxDecoration(

@@ -575,7 +575,7 @@ PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsCont
                               ),
                               CommonWidget.invest(),
                               const SizedBox(
-                                height: 50,
+                                height: 30,
                               ),
                               SeekhoWidget(),
                               const SizedBox(
