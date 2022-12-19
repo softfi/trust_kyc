@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
+import '../model/profession_response_data.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
@@ -24,7 +24,8 @@ class APiProvider extends GetConnect {
       debugPrint("971231231273719273998213123819392939821983921");
       debugPrint(response.body.toString());
       if (response.statusCode == 200) {
-        GetPersonalDetailModel model = GetPersonalDetailModel.fromJson(response.body);
+        GetPersonalDetailModel model =
+            GetPersonalDetailModel.fromJson(response.body);
         return model;
       }
     } catch (e) {
@@ -89,10 +90,12 @@ class APiProvider extends GetConnect {
         return response.body["message"];
       } else {
         Get.back();
-       ShowCustomSnackBar().ErrorSnackBar(  response.body["errors"],);
+        ShowCustomSnackBar().ErrorSnackBar(
+          response.body["errors"],
+        );
       }
     } catch (e) {
-     ShowCustomSnackBar().ErrorSnackBar(e.toString());
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
@@ -116,48 +119,6 @@ class APiProvider extends GetConnect {
           });
       if (response.statusCode == 200) {
         return response.body["message"];
-      }
-    } catch (e) {
-     ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    }
-  }
-
-  authenticateDigilocker() async {
-    try {
-      var token = await HelperFunctions.getToken();
-      var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.authenticateDigilocker+"?platform=mobile", headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token,
-      });
-      debugPrint(response.statusCode.toString());
-      debugPrint(response.body.toString());
-      debugPrint("response.statusCode.toString()");
-
-      if (response.statusCode == 200) {
-        DigiLockerModel model =
-        DigiLockerModel.fromJson(response.body);
-        return model;
-      }
-    } catch (e) {
-      ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    }
-  }
-
-  digilockerData() async {
-    try {
-      var token = await HelperFunctions.getToken();
-      var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token,
-      });
-      if (response.statusCode == 200) {
-        DigiLockerDetailModel model =
-        DigiLockerDetailModel.fromJson(response.body);
-        return model;
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
@@ -184,15 +145,18 @@ class APiProvider extends GetConnect {
         ShowCustomSnackBar().ErrorSnackBar(response.body["message"]);
       }
     } catch (e) {
-     ShowCustomSnackBar().ErrorSnackBar(e.toString());
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
   verfiyPanNumber() async {
-    PersonalDetailsController _controller = Get.put(PersonalDetailsController());
+    PersonalDetailsController _controller =
+        Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     try {
-      var response = await get(TrustKycUrl.baseUrl + TrustKycUrl.getPANCard +
+      var response = await get(
+          TrustKycUrl.baseUrl +
+              TrustKycUrl.getPANCard +
               "?pan_no=${_controller.panNumber.value.text}",
           headers: {
             'Content-Type': 'application/json',
@@ -201,46 +165,121 @@ class APiProvider extends GetConnect {
           });
       debugPrint(response.bodyString.toString());
       debugPrint(response.statusCode.toString());
-      if(response.statusCode==200){
-        PanStatusModel modal=PanStatusModel.fromJson(response.body);
+      if (response.statusCode == 200) {
+        PanStatusModel modal = PanStatusModel.fromJson(response.body);
         return modal;
-      }else{
+      } else {
         Get.back();
         ShowCustomSnackBar().ErrorSnackBar(response.body["errors"].toString());
       }
     } catch (e) {
-     ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    }
-  }
-
-
-
-
-
-  verifyGoogleGmail()async{
-    PersonalDetailsController _controller = Get.put(PersonalDetailsController());
-    var token = await HelperFunctions.getToken();
-    var body={
-      "email_id":_controller.mail.value,
-      "is_verified":true
-    };
-    debugPrint(_controller.mail.value);
-    try{
-      var response =await post(TrustKycUrl.baseUrl+TrustKycUrl.verifyEmail,body,headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': token,
-    });
-    debugPrint("response.statusCode.toString()");
-    debugPrint(response.statusCode.toString());
-      if(response.statusCode==200){
-        debugPrint(response.body.toString());
-        return true;
-    }else{
-        return false;
-      }
-    }catch(e){
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
+
+  authenticateDigilocker() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response = await get(
+          TrustKycUrl.baseUrl +
+              TrustKycUrl.authenticateDigilocker +
+              "?platform=mobile",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint(response.statusCode.toString());
+      debugPrint(response.body.toString());
+      debugPrint("response.statusCode.toString()");
+
+      if (response.statusCode == 200) {
+        DigiLockerModel model = DigiLockerModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  digilockerData() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response =
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      if (response.statusCode == 200) {
+        DigiLockerDetailModel model =
+            DigiLockerDetailModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  verifyGoogleGmail() async {
+    PersonalDetailsController _controller =
+        Get.put(PersonalDetailsController());
+    var token = await HelperFunctions.getToken();
+    var body = {"email_id": _controller.mail.value, "is_verified": true};
+    debugPrint(_controller.mail.value);
+    try {
+      var response = await post(
+          TrustKycUrl.baseUrl + TrustKycUrl.verifyEmail, body,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("response.statusCode.toString()");
+      debugPrint(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        debugPrint(response.body.toString());
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  getOccupationList() async {
+    try {
+      var token = await HelperFunctions.getToken();
+      var response =
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.profession, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      if (response.statusCode == 200) {
+        debugPrint("==========77687956 ${response.body}");
+        ProfessionModel model = ProfessionModel.fromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+/* Future<List<ProfessionModel>> occupation() async {
+    List<ProfessionModel> occupationList = [];
+    print("=================> called");
+    await NetworkUtility.checkNetworkStatus();
+    var token = await HelperFunctions.getToken();
+    var response =
+    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
+    if (response.statusCode == 200) {
+      //final json = jsonDecode(response.data);
+      response.data.forEach((element) {
+        occupationList.add(ProfessionModel.fromJson(element));
+      });
+    }
+    return occupationList;
+  }*/
 }

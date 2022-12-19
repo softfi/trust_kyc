@@ -32,12 +32,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentIPOs = 2;
   bool? userIsLoggedIn;
-PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
+
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
         userIsLoggedIn = value;
-       if(userIsLoggedIn!)_personalDetailsController.onInit();
+        if (userIsLoggedIn!) _personalDetailsController.onInit();
         print("====00001 $userIsLoggedIn");
       });
     });

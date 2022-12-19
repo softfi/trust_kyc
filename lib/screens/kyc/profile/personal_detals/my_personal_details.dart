@@ -16,7 +16,7 @@ class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
   final void Function()? onClick;
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+      Get.put(PersonalDetailsController());
 
   RxBool isButtonClick = false.obs;
   String dateOfBirth1 = "";
@@ -26,24 +26,20 @@ class MyPersonalDetails extends StatelessWidget {
     _personalDetailsController.onInit();
     return Column(
       children: [
-        Obx(() =>
-            Visibility(
-                visible: _personalDetailsController.isVisible.value == 1,
-                child: personaDetail(context))),
-        Obx(() =>
-            Visibility(
-                visible: _personalDetailsController.isVisible.value == 2,
-                child: EmailVeryfication(
-                  onClick: () {},
-                ))),
-        Obx(() =>
-            Visibility(
-                visible: _personalDetailsController.isVisible.value == 3,
-                child: KRARecord())),
-        Obx(() =>
-            Visibility(
-                visible: _personalDetailsController.isVisible.value == 4,
-                child: IPVVerification())),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 1,
+            child: personaDetail(context))),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 2,
+            child: EmailVeryfication(
+              onClick: () {},
+            ))),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 3,
+            child: KRARecord())),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 4,
+            child: IPVVerification())),
       ],
     );
   }
@@ -55,10 +51,7 @@ class MyPersonalDetails extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(12),
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: const Color(0xffF7F7FA).withOpacity(0.35),
@@ -102,44 +95,43 @@ class MyPersonalDetails extends StatelessWidget {
                   title: 'First Name* ',
                 ),
                 _space1,
-                Obx(() =>AppTextField(
-                  textCapitalization: TextCapitalization.words,
-                  hint: ' ',
-                  controller: _personalDetailsController.firstName.value,
-                  textInputType: TextInputType.text,
-                )),
+                Obx(() => AppTextField(
+                      textCapitalization: TextCapitalization.words,
+                      hint: ' ',
+                      controller: _personalDetailsController.firstName.value,
+                      textInputType: TextInputType.text,
+                    )),
                 _space,
                 AppText(
                   title: 'Last Name* ',
                 ),
                 _space1,
-                Obx(() =>AppTextField(
-                  textCapitalization: TextCapitalization.words,
-                  hint: ' ',
-                  controller: _personalDetailsController.lastName.value,
-                  textInputType: TextInputType.text,
-                )),
+                Obx(() => AppTextField(
+                      textCapitalization: TextCapitalization.words,
+                      hint: ' ',
+                      controller: _personalDetailsController.lastName.value,
+                      textInputType: TextInputType.text,
+                    )),
                 _space,
                 AppText(
                   title: 'Mobile Name* ',
                 ),
                 _space1,
                 Obx(
-                      () =>
-                      TextContainer(
-                        titleText:
-                        ' +91 ${_personalDetailsController.mobileNumber}',
-                        perfixIcon: Image.asset(
-                          "assets/images/india.png",
-                          scale: 4,
-                        ),
-                        postfixIcon: Image.asset(
-                          "assets/images/done1.png",
-                          color: Colors.green,
-                          scale: 6,
-                        ),
-                        color: Color(0xffF7F7FA),
-                      ),
+                  () => TextContainer(
+                    titleText:
+                        ' +91 ${_personalDetailsController.mobileNumber.toString()}',
+                    perfixIcon: Image.asset(
+                      "assets/images/india.png",
+                      scale: 4,
+                    ),
+                    postfixIcon: Image.asset(
+                      "assets/images/done1.png",
+                      color: Colors.green,
+                      scale: 6,
+                    ),
+                    color: Color(0xffF7F7FA),
+                  ),
                 ),
                 _space,
                 AppText(
@@ -150,8 +142,7 @@ class MyPersonalDetails extends StatelessWidget {
                   onTap: () {
                     _personalDetailsController.pickDate();
                   },
-                  child: Obx(() =>
-                      TextContainer(
+                  child: Obx(() => TextContainer(
                         color: Colors.white,
                         titleText: _personalDetailsController.dob.value,
                         perfixIcon: Container(),
@@ -176,8 +167,7 @@ class MyPersonalDetails extends StatelessWidget {
                             fontSize: 15),
                       ),
                     ),
-                    Obx(() =>
-                        CustomSwitch(
+                    Obx(() => CustomSwitch(
                           activeColor: Colors.green,
                           value: _personalDetailsController
                               .potentiallyExposedStatus.value,
@@ -202,10 +192,7 @@ class MyPersonalDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width / 1.5,
+                      width: MediaQuery.of(context).size.width / 1.5,
                       child: Text(
                         Strings.active_check,
                         style: GoogleFonts.sourceSansPro(
@@ -216,11 +203,10 @@ class MyPersonalDetails extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Obx(() =>
-                        CustomSwitch(
+                    Obx(() => CustomSwitch(
                           activeColor: Colors.green,
                           value:
-                          _personalDetailsController.activateFuture.value,
+                              _personalDetailsController.activateFuture.value,
                           onChanged: (value) {
                             _personalDetailsController.activateFuture.value =
                                 value;
@@ -244,8 +230,7 @@ class MyPersonalDetails extends StatelessWidget {
                     SizedBox(
                       height: 24,
                       width: 24,
-                      child: Obx(() =>
-                          Checkbox(
+                      child: Obx(() => Checkbox(
                             checkColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
@@ -254,13 +239,13 @@ class MyPersonalDetails extends StatelessWidget {
                             value: _personalDetailsController.isChecked1.value,
                             onChanged: (bool? value) {
                               _personalDetailsController.isChecked1.value =
-                              value!;
+                                  value!;
                               if (value == true) {
                                 _personalDetailsController.isCheckedInt1.value =
-                                1;
+                                    1;
                               } else {
                                 _personalDetailsController.isCheckedInt1.value =
-                                0;
+                                    0;
                               }
                             },
                           )),
@@ -271,10 +256,7 @@ class MyPersonalDetails extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 5.0),
                       child: SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1.3,
+                        width: MediaQuery.of(context).size.width / 1.3,
                         child: Text(
                             "I understand and agree to allow Trust Money to share my data with its group companies.",
                             style: GoogleFonts.sourceSansPro(
@@ -293,8 +275,7 @@ class MyPersonalDetails extends StatelessWidget {
                     SizedBox(
                       height: 24,
                       width: 24,
-                      child: Obx(() =>
-                          Checkbox(
+                      child: Obx(() => Checkbox(
                             checkColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),
@@ -303,13 +284,13 @@ class MyPersonalDetails extends StatelessWidget {
                             value: _personalDetailsController.isChecked2.value,
                             onChanged: (bool? value) {
                               _personalDetailsController.isChecked2.value =
-                              value!;
+                                  value!;
                               if (value == true) {
                                 _personalDetailsController.isCheckedInt2.value =
-                                1;
+                                    1;
                               } else {
                                 _personalDetailsController.isCheckedInt2.value =
-                                0;
+                                    0;
                               }
                             },
                           )),
@@ -320,17 +301,14 @@ class MyPersonalDetails extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width / 1.3,
+                        width: MediaQuery.of(context).size.width / 1.3,
                         child: Text(
                             "I understand and agree to allow Trust Money to share my data with companies mandated by the Govt.",
                             style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    color: Color(0xff22263D),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
+                              textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12),
                             )),
                       ),
                     ),
@@ -338,74 +316,73 @@ class MyPersonalDetails extends StatelessWidget {
                 ),
                 _space,
                 _space,
-                Obx(() =>
-                ((_personalDetailsController.isChecked1.value &&
-                    _personalDetailsController.isChecked2.value) ? InkWell(
-                  onTap: () {
-                    isButtonClick.value = true;
-                    _personalDetailsController.update_personal_details();
-                    // _personalDetailsController.isVisible.value = 2;
-                  },
-                  child: Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 4.0,
-                        ),
-                      ],
-                      border: Border.all(
-                          width: 2,
-                          color: const Color(0xffE1E0E6)),
-                      color: Color(0xffFF405A),
-                    ),
-                    child: Center(
-                        child: Text(
-                          "Continue",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15),
+                Obx(() => ((_personalDetailsController.isChecked1.value &&
+                        _personalDetailsController.isChecked2.value)
+                    ? InkWell(
+                        onTap: () {
+                          isButtonClick.value = true;
+                          _personalDetailsController.update_personal_details();
+                        },
+                        child: Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x29000000),
+                                blurRadius: 4.0,
+                              ),
+                            ],
+                            border: Border.all(
+                                width: 2, color: const Color(0xffE1E0E6)),
+                            color: Color(0xffFF405A),
                           ),
-                        )),
-                  ),
-                ) :
-                InkWell(
-                  onTap: (){Get.showSnackbar(
-                      GetSnackBar(
-                        backgroundColor: Colors.red,
-                        duration: Duration(seconds: 2),
-                        messageText: Text("Accept all terms and conditions first",style: TextStyle(
-                          color: Colors.white
-                        ),),));},
-                  child: Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x29000000),
-                          blurRadius: 4.0,
+                          child: Center(
+                              child: Text(
+                            "Continue",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15),
+                            ),
+                          )),
                         ),
-                      ],
-                      border: Border.all(
-                          width: 2,
-                          color:  AppColors.textColor),
-                      color: Colors.white
-                    ),
-                    child: Center(
-                        child: Text(
-                          "Continue",
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Color(0xff22263D),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15),
-                          ),
-                        )),
-                  ),
-                ))),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          Get.showSnackbar(GetSnackBar(
+                            backgroundColor: Colors.red,
+                            duration: Duration(seconds: 2),
+                            messageText: Text(
+                              "Accept all terms and conditions first",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ));
+                        },
+                        child: Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x29000000),
+                                  blurRadius: 4.0,
+                                ),
+                              ],
+                              border: Border.all(
+                                  width: 2, color: AppColors.textColor),
+                              color: Colors.white),
+                          child: Center(
+                              child: Text(
+                            "Continue",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Color(0xff22263D),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15),
+                            ),
+                          )),
+                        ),
+                      ))),
                 _space1,
                 _space1,
                 Center(

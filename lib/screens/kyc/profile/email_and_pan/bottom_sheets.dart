@@ -7,7 +7,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';
-import 'email_and_pan_verification.dart';
+import '../../../Congratulations/email_congratulations.dart';
+import '../../../animated_screens/verified_animation.dart';
 
 class EmailPANBottomSheet {
   static emailBottomSheet(BuildContext context, TextEditingController emailId) {
@@ -175,16 +176,17 @@ class EmailPANBottomSheet {
                       autofocus: false,
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
-                          letterSpacing: 4,
-                            color: Color(0xff22263D), fontWeight: FontWeight.w400, fontSize: 18),
+                            letterSpacing: 4,
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
                       ),
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(
                             color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
                         hintStyle: TextStyle(
-
-                            color: Color(0xff22263d), letterSpacing:4),
+                            color: Color(0xff22263d), letterSpacing: 4),
                         hintText: "******",
                         fillColor: Colors.white,
                         filled: true,
@@ -331,23 +333,35 @@ class EmailPANBottomSheet {
     PersonalDetailsController _personalDetailsController =
         Get.put(PersonalDetailsController());
     if (otp.isNotEmpty) {
-      Get.dialog(Center(child: CircularProgressIndicator()));
+      Get.dialog(VerifiedAnim(
+        image: "assets/images/loding.mp4",
+        onClick: () {},
+        title: "We Are Verifying Your Email ID",
+        subTitle:
+            "We are validating your ID and Username with the service provider, this may take some time.",
+      ));
       var response = await APiProvider().verifyOtp(email, otp);
       if (response != null) {
         Get.back();
         Get.back();
+        Get.to(EmailComplete())!
+            .then((value) {
+          _personalDetailsController.getPersonalDetails();
+          debugPrint("++++++++++++9789686");
+
+        });
+
         Get.showSnackbar(GetSnackBar(
           duration: Duration(seconds: 2),
           backgroundColor: Colors.green,
           messageText: Text(
             response.toString(),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ));
-        _personalDetailsController.a.value = 2;
       }
     } else {
-      Get.showSnackbar(GetSnackBar(
+      Get.showSnackbar(const GetSnackBar(
         messageText: Text("Enter opt first"),
       ));
     }

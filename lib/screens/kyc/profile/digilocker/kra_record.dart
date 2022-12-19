@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_switch/custom_switch.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/filterChip.dart';
 import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
@@ -12,9 +15,23 @@ import '../personal_detals/app_textfield.dart';
 class Help {
   String label;
   Color color;
-  bool isSelected = false;
 
-  Help(this.label, this.color, this.isSelected);
+  Help(
+    this.label,
+    this.color,
+  );
+}
+
+class chipModel {
+  String? name;
+  String? color;
+
+  chipModel(this.name, this.color);
+
+  chipModel.fromDocumentSnapshot(QueryDocumentSnapshot snapshot) {
+    name = snapshot.get('name');
+    color = snapshot.get('color');
+  }
 }
 
 class KRARecord extends StatelessWidget {
@@ -24,8 +41,38 @@ class KRARecord extends StatelessWidget {
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   KRAController _kRAController = Get.put(KRAController());
   RxBool isButtonClick = false.obs;
-  List profession = ["sds", "sds1", "sds2", "sds3"];
-  String profId = "sds";
+  RxString profId = "".obs;
+
+  RxList<String> genderList = [
+    "",
+    "Male",
+    "Female",
+    "Trans.",
+  ].obs;
+  RxList<String> maritalList = [
+    "",
+    "Single",
+    "Married",
+    "others",
+  ].obs;
+  RxList<String> annualIncomeList = [
+    "",
+    "Below 1 Lakh",
+    "1-5 Lakhs",
+    "5-10 Lakhs",
+    "10-25 Lakhs",
+    "Above 25 Lakhs"
+  ].obs;
+  RxList<String> ExperienceList = [
+    "",
+    "Less than 1 Year",
+    "1-2 Years",
+    "2-5 Years",
+    "5-10 Years",
+    "10-20 Years",
+    "20-25 Years",
+    "Above 25 Years",
+  ].obs;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +134,7 @@ class KRARecord extends StatelessWidget {
       ),
       _space,
       Text(
-        "Hey ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panMname} ${_panCardUserDeatils.panDataModal!.panLname}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey ${_panCardUserDeatils.panName}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,
@@ -131,59 +178,43 @@ class KRARecord extends StatelessWidget {
       AppText(
         title: 'What is your gender?',
       ),
-      Wrap(
-        spacing: 10,
-        runSpacing: -6,
-        direction: Axis.horizontal,
-        children: helpChips([
-          Help("Male", AppColors.primaryColor, false),
-          Help("Female", AppColors.primaryColor, false),
-          Help("Trans", AppColors.primaryColor, false),
-        ]),
+      _space1,
+      MyFilterChip(
+        selectedIndex: _kRAController.isGenderSelect,
+        //_kRAController.digiLockerDetailModel!.gender == "M" ? _kRAController.isGenderSelect = 1:_kRAController.isGenderSelect.value = 2,
+        title: genderList,
       ),
       _space,
       AppText(
         title: 'What is your marital status?',
       ),
-      Wrap(
-        spacing: 10,
-        runSpacing: -6,
-        direction: Axis.horizontal,
-        children: helpChips([
-          Help("Single", AppColors.primaryColor, false),
-          Help("Married", AppColors.primaryColor, false),
-          Help("Others", AppColors.primaryColor, false),
-        ]),
+      _space1,
+      MyFilterChip(
+        selectedIndex: _kRAController.isMaritalSelect,
+        title: maritalList,
       ),
       _space,
       AppText(
         title: 'What is your annual income?',
       ),
-      Wrap(
-        spacing: 10,
-        runSpacing: -6,
-        direction: Axis.horizontal,
-        children: helpChips([
-          Help("Below 1 Lakh", AppColors.primaryColor, false),
-          Help("1-5 Lakhs", AppColors.primaryColor, false),
-          Help("5-10 Lakhs", AppColors.primaryColor, false),
-          Help("10-25 Lakhs", AppColors.primaryColor, false),
-          Help("Above 25 Lakhs", AppColors.primaryColor, false),
-        ]),
+      _space1,
+      MyFilterChip(
+        selectedIndex: _kRAController.isEnComeSelect,
+        title: annualIncomeList,
       ),
       _space,
       AppText(
         title: 'What is your Occupaion',
       ),
       _space1,
-      Container(
-        height: 45,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(width: 1.1, color: AppColors.borderColor),
-        ),
-        /* child: Padding(
+      Obx(() => Container(
+          height: 45,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 1.1, color: AppColors.borderColor),
+          ),
+          child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2(
@@ -191,7 +222,7 @@ class KRARecord extends StatelessWidget {
                     "Select Occupation",
                     style: TextStyle(color: Color(0xffC8C7CE)),
                   ),
-                  items: profession.map((item) {
+                  items: _kRAController.professionList.map((item) {
                     return DropdownMenuItem(
                         value: item.professionName.toString(),
                         child: Text(
@@ -201,31 +232,20 @@ class KRARecord extends StatelessWidget {
                           ),
                         ));
                   }).toList(),
-                  onChanged: (String? newVal) {
-                    profId = newVal!;
-                    print(profId.toString());
+                  onChanged: (newVal) {
+                    profId.value = newVal.toString();
                   },
                   value: profId,
                 ),
-              ))*/
-      ),
+              )))),
       _space,
       AppText(
         title: 'What is your trading experience?',
       ),
-      Wrap(
-        spacing: 10,
-        runSpacing: -6,
-        direction: Axis.horizontal,
-        children: helpChips([
-          Help("Less than 1 Year", AppColors.primaryColor, false),
-          Help("1-2 Years", AppColors.primaryColor, false),
-          Help("2-5 Years", AppColors.primaryColor, false),
-          Help("5-10 Years", AppColors.primaryColor, false),
-          Help("10-20 Years", AppColors.primaryColor, false),
-          Help("20-25 Years", AppColors.primaryColor, false),
-          Help("Above 25 Years", AppColors.primaryColor, false),
-        ]),
+      _space1,
+      MyFilterChip(
+        selectedIndex: _kRAController.isExperienceSelect,
+        title: ExperienceList,
       ),
       _space,
       Row(
@@ -319,7 +339,7 @@ class KRARecord extends StatelessWidget {
     ]);
   }
 
-  List<Widget> helpChips(List<Help> list) {
+/*  List<Widget> helpChips(List<Help> list) {
     List<Widget> chips = [];
     for (int i = 0; i < list.length; i++) {
       Widget item = FilterChip(
@@ -333,19 +353,26 @@ class KRARecord extends StatelessWidget {
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
         backgroundColor: list[i].color,
-        selected: list[i].isSelected,
-        onSelected: (bool val) {
-          _kRAController.isSelected.value = val;
-          // setState(() {
-          //   _chipsList[i].isSelected = value;
-          // });
+        selected: _kRAController.selectedChip == i,
+        //list[i].isSelected,
+        onSelected: (bool selected) {
+          _kRAController.selectedChip = selected ? i : null;
+          // firestoreController.onInit();
+          // firestoreController.getLaptops(
+          //     LaptopBrand.values[chipController.selectedChip]);
         },
+        // onSelected: (bool val) {
+        //   _kRAController.isSelected.value = val;
+        //   // setState(() {
+        //   //   _chipsList[i].isSelected = value;
+        //   // });
+        // },
         showCheckmark: false,
       );
       chips.add(item);
     }
     return chips;
-  }
+  }*/
 
   Widget get _space => const SizedBox(height: 16);
 

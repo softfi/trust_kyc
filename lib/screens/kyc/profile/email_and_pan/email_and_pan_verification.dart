@@ -3,19 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/api/apiClient.dart';
-import 'package:trust_money/model/get_pan_response_data.dart';
-import 'package:trust_money/screens/Congratulations/verify_pan_congratulations.dart';
-import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
-import 'package:video_player/video_player.dart';
 import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/google_sign_in.dart';
-import '../../../../utils/helper_widget/show_loading_animation.dart';
 import '../../../../utils/images.dart';
-import '../../../../utils/sharedPreference.dart';
 import '../../../../utils/styles.dart';
 
 class EmailVeryfication extends StatelessWidget {
@@ -23,11 +16,10 @@ class EmailVeryfication extends StatelessWidget {
     Key? key,
     this.onClick,
   }) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   final void Function()? onClick;
-
-  bool isButtonClick = false;
+  RxInt isShowing = 1.obs;
+  RxBool isButtonClick = false.obs;
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
 
   @override
@@ -78,20 +70,25 @@ class EmailVeryfication extends StatelessWidget {
                 thickness: 0.7,
                 indent: 5,
                 endIndent: 5,
-              ), //_personalDetailsController.modaltest!.emailId == 1?
-              SizedBox(
+              ),
+              const SizedBox(
                 height: 10,
               ),
               Obx(() => Visibility(
-                    visible: _personalDetailsController.a.value == 1,
-                    child: verifiedEmail(context),
-                  )),
+                  visible: isShowing.value == 1,
+                  child:
+                      _personalDetailsController.modaltest!.isEmailVerified == 1
+                          ? verifiedEmail(context)
+                          : emailWidget(context))),
+              // Obx(() => Visibility(
+              //       visible: isShowing.value == 1,
+              //       child: emailWidget(context),
+              //     )),
+              // Obx(() => Visibility(
+              //     visible: isShowing.value == 2,
+              //     child: verifiedEmail(context))),
               Obx(() => Visibility(
-                  visible: _personalDetailsController.a.value == 2,
-                  child: verifiedEmail(context))),
-              Obx(() => Visibility(
-                  visible: _personalDetailsController.a.value == 3,
-                  child: panWidget(context))),
+                  visible: isShowing.value == 3, child: panWidget(context))),
             ],
           ),
         ),
@@ -247,10 +244,10 @@ class EmailVeryfication extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.42,
         ),
-        InkWell(
+        GestureDetector(
           onTap: () {
-            isButtonClick = true;
-            _personalDetailsController.a.value = 3;
+            isButtonClick.value = true;
+            _personalDetailsController.modaltest!.isPanVerified == 1?_personalDetailsController.isVisible.value = 3:isShowing.value = 3;
           },
           child: Container(
             height: 45,
@@ -263,10 +260,12 @@ class EmailVeryfication extends StatelessWidget {
               ],
               border: Border.all(
                   width: 2,
-                  color: isButtonClick == false
+                  color: isButtonClick.value == false
                       ? AppColors.textColor
                       : const Color(0xffE1E0E6)),
-              color: isButtonClick == false ? Colors.white : Color(0xffFF405A),
+              color: isButtonClick.value == false
+                  ? Colors.white
+                  : Color(0xffFF405A),
             ),
             child: Center(
                 child: Text(

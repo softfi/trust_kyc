@@ -14,9 +14,10 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
-
   late final WebViewController webViewController;
-PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
+
   @override
   void initState() {
     super.initState();
@@ -34,21 +35,19 @@ PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsCont
               javascriptMode: JavascriptMode.unrestricted,
               gestureNavigationEnabled: true,
               backgroundColor: const Color(0x00ffffff),
-              onPageStarted: (url){
-                print("onPageStarted=============>"+url);
-                /*https://trust-api.trustmony.com/callback?code=6356a8aebdce4f484a8ab8fb3802197e2a4fdb7e&state=5,mobile*/
+              onPageStarted: (url) {
+                print("onPageStarted=============>" + url);
               },
-              onPageFinished: (url){
-                print("onPageFinished=============>"+url);
+              onPageFinished: (url) {
+                print("onPageFinished=============>" + url);
                 final uri = Uri.parse(url);
-                final path= uri.path;
+                final path = uri.path;
                 print("path===============$path");
-                if(path=="/callback"){
+                if (path == "/callback") {
                   Navigator.pop(context);
                   Navigator.pop(context);
                   Navigator.pop(context);
-
-                  _personalDetailsController.isVisible.value=3;
+                  _personalDetailsController.isVisible.value = 3;
                 }
                 /*final Map<String,String> params = uri.queryParameters;
                 if(params.containsKey("code")){
@@ -58,7 +57,7 @@ PersonalDetailsController _personalDetailsController=Get.put(PersonalDetailsCont
                   }
                 }*/
               },
-              onWebViewCreated: (controller){
+              onWebViewCreated: (controller) {
                 webViewController = controller;
               },
             );

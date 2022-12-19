@@ -14,9 +14,8 @@ import '../../../utils/sharedPreference.dart';
 import '../../personal_details_controller.dart';
 
 class PanCardUserDeatils extends GetxController {
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
   PanStatusModel? panDataModal;
+  RxString panName = "".obs;
 
   void verifyPan() async {
     Get.dialog(VerifiedAnim(
@@ -31,9 +30,7 @@ class PanCardUserDeatils extends GetxController {
       Get.back();
       PanStatusModel modal = response;
       panDataModal = response;
-      await HelperFunctions.savePanName(
-          "${modal.panFname} ${modal..panMname} ${modal..panLname}");
-      var PANname = "${modal.panFname} ${modal..panMname} ${modal..panLname}";
+      panName.value = "${modal..panFname} ${modal..panMname} ${modal..panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
           Get.to(Digilocker());
@@ -41,19 +38,19 @@ class PanCardUserDeatils extends GetxController {
           // Get.back();
         }));
       } else if (modal.panStatus == "X") {
-        bottomSheet("DEACTIVATED", PANname);
+        bottomSheet("DEACTIVATED");
       } else if (modal.panStatus == "I") {
-        bottomSheet("INOPERATIVE", PANname);
+        bottomSheet("INOPERATIVE");
       } else if (modal.panStatus == "N" ||
           modal.panStatus == "F" ||
           modal.panStatus == "ED" ||
           modal.panStatus == "D") {
-        bottomSheet("INVALID", PANname);
+        bottomSheet("INVALID");
       }
     }
   }
 
-  void bottomSheet(String msg, String PANname) {
+  void bottomSheet(String msg,) {
     Get.bottomSheet(
         Wrap(
           children: [
@@ -71,7 +68,7 @@ class PanCardUserDeatils extends GetxController {
                 const SizedBox(
                   height: 10,
                 ),
-                Text("Hi, [$PANname]",
+                Text("Hi, [$panName]",
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 18,

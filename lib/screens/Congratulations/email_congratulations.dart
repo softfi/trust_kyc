@@ -14,8 +14,7 @@ class EmailComplete extends StatefulWidget {
 class _EmailCompleteState extends State<EmailComplete> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pop(context);
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.pop(context);
     });
     super.initState();

@@ -13,8 +13,6 @@ import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';
 import '../../../../utils/styles.dart';
 
-
-
 class Digilocker extends StatelessWidget {
   Digilocker({Key? key}) : super(key: key);
 
@@ -81,17 +79,17 @@ class Digilocker extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Obx(() =>Checkbox(
-                      checkColor: Colors.white,
-                      activeColor: AppColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      value: _kRAController.isChecked.value,
-                      onChanged: (bool? value) {
-                        _kRAController.isChecked.value = value!;
-                      },
-                    )),
+                    Obx(() => Checkbox(
+                          checkColor: Colors.white,
+                          activeColor: AppColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          value: _kRAController.isChecked.value,
+                          onChanged: (bool? value) {
+                            _kRAController.isChecked.value = value!;
+                          },
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: SizedBox(
@@ -134,8 +132,3 @@ class Digilocker extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
