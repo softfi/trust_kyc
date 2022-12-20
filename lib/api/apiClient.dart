@@ -10,6 +10,7 @@ import 'package:trust_money/model/get_pan_response_data.dart';
 import '../getx_controller/kra/kra_controller.dart';
 import '../model/bond/bond_details_modal.dart';
 import '../model/bond/bond_list_modal.dart';
+import '../model/bond/investment_caclulator_modal.dart';
 import '../model/code_verification_response_data.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
@@ -326,5 +327,15 @@ class APiProvider extends GetConnect {
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
+  }
+
+  getInvestmentCalculatonResult(String isinNo, int bondNo)async{
+    try{
+      var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.inestmentCalculator+"?isin=$isinNo&number_of_bonds=$bondNo");
+      if(response.statusCode==200){
+        InvestmentCalculatorModal modal=InvestmentCalculatorModal.fromJson(response.body);
+        return modal;
+      }
+    }catch(e){ShowCustomSnackBar().ErrorSnackBar(e.toString());}
   }
 }

@@ -7,6 +7,7 @@ import '../../getx_controller/bond/bond_list_data_controller.dart';
 import '../../getx_controller/bond/read_more_bond_controller.dart';
 import '../../utils/colorsConstant.dart';
 import '../bond/bond_advantages.dart';
+import '../bond/gold_bond.dart';
 import '../bond/read_more_brands/read_more_bonds.dart';
 import 'custom_listtile.dart';
 
@@ -284,13 +285,26 @@ class ReadMoreList extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
-                                Navigator.push(
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => ReadMoreBonds(
+                                //               isIPO: _bondListData.bondList.value[index].bondType,
+                                //             isinNo:_bondListData.bondList.value[index].bondIsinNumber
+                                //             )));
+                                _bondListData.bondList.value[index].bondType == 4
+                                    ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const GoldBond()))
+                                    : Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ReadMoreBonds(
-                                              isIPO: _bondListData.bondList.value[index].bondType,
-                                            isinNo:_bondListData.bondList.value[index].bondIsinNumber
-                                            )));
+                                          isIPO:  _bondListData.bondList.value[index].bondType,
+                                          isinNo: _bondListData.bondList.value[index].bondIsinNumber,
+                                        )));
                               },
                               child: Container(
                                 decoration: BoxDecoration(

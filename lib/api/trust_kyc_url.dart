@@ -64,4 +64,5 @@ class TrustKycUrl {
   //bond
  static const bondList="api/v1/bonds_list";
  static const specificBondsList="/api/v1/specific_bonds_list";
+ static const inestmentCalculator="/api/v1/investment_calculator";
 }

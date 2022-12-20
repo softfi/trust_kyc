@@ -463,7 +463,7 @@ class ConstWidget {
                       height: 8,
                     ),
                     Text(
-                      "10.60%",
+                      "www",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -831,7 +831,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "3",
+                        "www",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -860,7 +860,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        "NO",
+                        "www",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,

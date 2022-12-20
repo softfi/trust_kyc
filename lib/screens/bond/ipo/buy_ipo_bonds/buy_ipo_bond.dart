@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trust_money/screens/bond/tringle.dart';
 import 'package:trust_money/utils/app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
+import '../../../../getx_controller/bond/read_more_bond_controller.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../home/home_page.dart';
@@ -18,7 +20,8 @@ import 'nonipo_buy_bonds.dart';
 class BuyIPOBond extends StatelessWidget {
   BuyIPOBond({Key? key, required this.isNonIPO}) : super(key: key);
   bool isNonIPO;
-  bool isChecked1 = false;
+  RxBool isChecked1 = false.obs;
+  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +41,11 @@ class BuyIPOBond extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 5, left: 12, right: 12),
+              padding:  EdgeInsets.only(top: 5, left: 12, right: 12),
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
-                      boxShadow: const [
+                      boxShadow:  [
                         BoxShadow(
                           color: Color(0x29000000),
                           blurRadius: 5.0,
@@ -54,8 +57,11 @@ class BuyIPOBond extends StatelessWidget {
             Visibility(
               child: isNonIPO
                   ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: BuyNonIpoBonds.nonIPOInvestCalculator1(),
+                      padding:  EdgeInsets.symmetric(horizontal: 12),
+                      child: BuyNonIpoBonds.nonIPOInvestCalculator(
+                          true,
+                          context,
+                          _readMoreBond.specificBondDataDetails.value!,false),
                     )
                   : Column(
                       children: [
@@ -136,18 +142,18 @@ class BuyIPOBond extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Checkbox(
+                  Obx(() =>Checkbox(
                     checkColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
                     // color of tick Mark
                     activeColor: AppColors.primaryColor,
-                    value: isChecked1,
+                    value: isChecked1.value,
                     onChanged: (bool? value) {
-                      isChecked1 = value!;
+                      isChecked1.value = value!;
                     },
-                  ),
+                  )),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
                     child: SizedBox(
@@ -260,7 +266,16 @@ class BuyIPOBond extends StatelessWidget {
                   height: 60,
                   width: 60,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
-                  child: Image.asset(ConstantImage.orderImg),
+                  child: (_readMoreBond.specificBondDataDetails.value!.message
+                              .bondDetails.bondLogo ==
+                          null)
+                      ? Image.asset(ConstantImage.orderImg)
+                      : Image.network(
+                          _readMoreBond.specificBondDataDetails.value!.message
+                              .bondDetails.bondLogo,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Image.asset(ConstantImage.orderImg),
+                        ),
                 ),
                 const SizedBox(
                   width: 13,
@@ -268,9 +283,8 @@ class BuyIPOBond extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      isNonIPO
-                          ? "MAHINDRA & MAHINDRA FINANCIAL"
-                          : "CREDITACCESS GRAMEEN LIMITED",
+                      _readMoreBond.specificBondDataDetails.value!.message
+                          .bondDetails.bondBondsName,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -331,7 +345,7 @@ class BuyIPOBond extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichText(
-                          text: const TextSpan(children: [
+                          text: TextSpan(children: [
                             TextSpan(
                                 text: "ISIN: ",
                                 style: TextStyle(
@@ -339,7 +353,8 @@ class BuyIPOBond extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: Color(0xffFF405A))),
                             TextSpan(
-                                text: "INE146O08118",
+                                text:
+                                    "${_readMoreBond.specificBondDataDetails.value!.message.bondDetails.bondIsinNumber}",
                                 style: TextStyle(
                                     fontSize: 10,
                                     fontStyle: FontStyle.normal,

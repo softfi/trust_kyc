@@ -52,6 +52,7 @@ RxInt a=1.obs;
   @override
   void initState() {
     getLoggedInState();
+    debugPrint(widget.isIPO.toString());
     super.initState();
   }
 
@@ -184,7 +185,7 @@ RxInt a=1.obs;
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                widget.isIPO == 1
+                widget.isIPO == 3 || widget.isIPO==2
                     ? Container(
                         height: 35,
                         decoration: const BoxDecoration(
@@ -443,7 +444,7 @@ RxInt a=1.obs;
             height: 10,
           ),
           Visibility(
-            child: widget.isIPO == 1
+            child: widget.isIPO == 3 || widget.isIPO==2
                 ? ConstWidget.keyPointsConsider(
                     context,_readMoreBond.specificBondDataDetails.value!
                   )
@@ -582,7 +583,7 @@ RxInt a=1.obs;
                 context,
                 MaterialPageRoute(
                     builder: (context) => BuyIPOBond(
-                          isNonIPO: widget.isIPO == 1,
+                          isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
                         )));
           },
           child: Center(
@@ -664,26 +665,31 @@ RxInt a=1.obs;
           height: 20,
         ),
         Visibility(
-            child: widget.isIPO == 1 ? NonIPONCDs() : NCDsSeries(isShow: true)),
+            child: widget.isIPO == 3 || widget.isIPO==2 ? NonIPONCDs() : NCDsSeries(isShow: true)),
         SizedBox(
           height: 10,
         ),
         Visibility(
-            visible: widget.isIPO == 1,
-            child:
-                BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn, context)),
+            visible: widget.isIPO == 3 || widget.isIPO==2,
+            child:Column(
+    children: [
+                BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn, context,_readMoreBond.specificBondDataDetails.value!,true),
+      BuyNonIpoBonds.whatIWillEarn(userIsLoggedIn, context,_readMoreBond.specificBondDataDetails.value!),
+    ],
+    )),
+
         const SizedBox(
           height: 25,
         ),
         Visibility(
-          visible: widget.isIPO == 1,
+          visible: widget.isIPO == 3 || widget.isIPO==2,
           child: InkWell(
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BuyIPOBond(
-                            isNonIPO: widget.isIPO == 1,
+                            isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
                           )));
             },
             child: ViewAllWidget(
@@ -696,7 +702,7 @@ RxInt a=1.obs;
           height: 35,
         ),
         Text(
-          widget.isIPO == 1 ? "About This Bond" : "About This IPO",
+          widget.isIPO == 3 || widget.isIPO==2 ? "About This Bond" : "About This IPO",
           style: GoogleFonts.quicksand(
             textStyle: const TextStyle(
               color: AppColors.textColor,
