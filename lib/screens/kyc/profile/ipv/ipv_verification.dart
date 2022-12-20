@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/getx_controller/ipv/ipv_controller.dart';
 import 'package:trust_money/screens/animated_screens/vedio_page.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
@@ -16,7 +18,7 @@ import '../personal_detals/app_textfield.dart';
 class IPVVerification extends StatelessWidget {
   IPVVerification({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+      Get.put(PersonalDetailsController());
   IPVController _ipvController = Get.put(IPVController());
 
   RxBool isButtonClick = false.obs;
@@ -32,10 +34,7 @@ class IPVVerification extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Container(
           padding: const EdgeInsets.all(12),
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: const Color(0xffF7F7FA).withOpacity(0.35),
               border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
@@ -115,118 +114,381 @@ class IPVVerification extends StatelessWidget {
         ),
       ),
       _space,
-      /*  _ipvController.isLoading.value == false
-          ? InkWell(
-        onTap: () async {
-          _ipvController.isLoading.value = true;
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Center(
+          child: Obx(() => Container(
+                height: 250,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                      width: 3,
+                      color: _ipvController.isLoading.value == true
+                          ? const Color(0xff66DC65)
+                          : AppColors.primaryColor),
+                ),
+                child: _ipvController.isLoading.value == false
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(28.0),
+                          child: SvgPicture.asset(
+                            ConstantImage.profile_pic,
+                          ),
+                        ),
+                      )
+                    : _ipvController.isRecordingPlay.value == true
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: CameraPreview(
+                                _ipvController.cameraController.value!),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Stack(
+                              children: [
+                                FutureBuilder(
+                                  future: _ipvController.initVideoPlayer(),
+                                  builder: (context, state) {
+                                    if (state.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    } else {
+                                      return VideoPlayer(_ipvController
+                                          .videoPlayerController.value!);
+                                    }
+                                  },
+                                ),
+                                Positioned(
+                                  top: 105,
+                                  left: 150,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 0.5, color: Colors.white),
+                                      borderRadius: BorderRadius.circular(35),
+                                      color:
+                                          Color(0xffffffff).withOpacity(0.20),
+                                    ),
+                                    child: const Center(
+                                        child: Icon(
+                                      Icons.play_arrow,
+                                      size: 30,
+                                      color: Colors.white,
+                                    )),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                /*  child: _ipvController.isLoading.value
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(28.0),
+                        child: SvgPicture.asset(
+                          ConstantImage.profile_pic,
+                        ),
+                      ),
+                    )
+                  : _ipvController.isRecordingPlay.value
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: CameraPreview(_ipvController.cameraController.value!),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Stack(
+                            children: [
+                              FutureBuilder(
+                                future: _ipvController.initVideoPlayer(),
+                                builder: (context, state) {
+                                  if (state.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  } else {
+                                    return VideoPlayer(_ipvController
+                                        .videoPlayerController.value!);
+                                  }
+                                },
+                              ),
+                              Positioned(
+                                top: 105,
+                                left: 150,
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(width: 0.5, color: Colors.white),
+                                    borderRadius: BorderRadius.circular(35),
+                                    color: Color(0xffffffff).withOpacity(0.20),
+                                  ),
+                                  child: const Center(
+                                      child: Icon(
+                                    Icons.play_arrow,
+                                    size: 30,
+                                    color: Colors.white,
+                                  )),
+                                ),
+                              )
+                            ],
+                          ),
+                        )*/
+              )),
+        ),
+      ),
+      _space,
+      Obx(
+        () => _ipvController.isLoading.value == false
+            ? GestureDetector(
+                onTap: () {
+                  debugPrint("========5463 ${_ipvController.isLoading.value}");
+                  _ipvController.isLoading.value = true;
+                  _ipvController.isRecordingStop.value == false;
+                  debugPrint("========5463 ${_ipvController.isLoading.value}");
+                },
+                child: Center(
+                  child: Container(
+                    height: 30,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13),
+                        color: AppColors.primaryColor),
+                    child: Center(
+                        child: Text(
+                      "Capture",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 10),
+                      ),
+                    )),
+                  ),
+                ),
+              )
+            : _ipvController.isRecordingStop.value == false
+                ? InkWell(
+                    onTap: () async {
+                      _ipvController.isRecordingStop.value = true;
+                      _ipvController.isRecordingPlay.value == false;
+                      isButtonClick.value = true;
+                      // _ipvController.isLoading.value = false;
+                      //  debugPrint("========5463 ${_ipvController.isLoading.value}");
+                      // _ipvController.recordVideo();
+                      // Future.delayed(Duration(seconds: 15), () async {
+                      //   _ipvController.isRecordingPlay.value = true;
+                      //   _ipvController.file.value ==
+                      //       await _ipvController.cameraController.value!
+                      //           .stopVideoRecording();
+                      // });
+                    },
+                    child: Center(
+                      child: Container(
+                        height: 30,
+                        width: 140,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                            color: Color(0xff02AD41)),
+                        child: Center(
+                            child: Text(
+                          "Start Recording",
+                          style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 10),
+                          ),
+                        )),
+                      ),
+                    ),
+                  )
+                : _ipvController.isRecordingPlay.value == false
+                    ? InkWell(
+                        onTap: () async {
+                          _ipvController.isRecordingPlay.value = true;
+                          // _ipvController.file.value ==
+                          //     await _ipvController.cameraController.value!
+                          //         .stopVideoRecording();
+                          // _ipvController.isRecordingPlay.value = true;
+                        },
+                        child: Center(
+                          child: Container(
+                            height: 30,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(13),
+                                color: Color(0xffFF0023)),
+                            child: Center(
+                                child: Text(
+                              "Stop",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10),
+                              ),
+                            )),
+                          ),
+                        ),
+                      )
+                    : InkWell(
+                        onTap: () async{
+                          final route = MaterialPageRoute(
+                            fullscreenDialog: true,
+                            builder: (_) =>
+                                VideoPage(filePath:  _ipvController.file.value!.path),
+                          );
+                          await Navigator.push(context, route);
+                        },
+                        child: Center(
+                          child: Container(
+                            height: 30,
+                            width: 100,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(13),
+                                color: AppColors.primaryColor),
+                            child: Center(
+                                child: Text(
+                              "Preview",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10),
+                              ),
+                            )),
+                          ),
+                        ),
+                      ),
 
-        },
-        child: Container(
-          height: 30,
-          width: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(13),
-              color: AppColors.primaryColor),
-          child: Center(
-              child: Text(
-                "Capture",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10),
-                ),
-              )),
-        ),
-      )
-          : _ipvController.isRecordingStop.value == false
-          ? InkWell(
-        onTap: () async {
-          // setState(() {
-          //   _recordVideo();
-          //   Future.delayed(Duration(seconds: 15), () async {
-          //     _isRecordingPlay = true;
-          //     file = await _cameraController
-          //         .stopVideoRecording();
-          //     setState(() {
-          //       _isRecording = false;
-          //       isCapture = true;
-          //     });
-          //   });
-          //   setState(() {
-          //     _isRecordingStop = true;
-          //   });
-          // });
-        },
-        child: Container(
-          height: 30,
-          width: 140,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(13),
-              color: Color(0xff02AD41)),
-          child: Center(
-              child: Text(
-                "Start Recording",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10),
-                ),
-              )),
-        ),
-      )
-          : _ipvController.isRecordingPlay.value == false
-          ? InkWell(
-        onTap: () async {
-          // file = await _cameraController
-          //     .stopVideoRecording();
-          // setState(() {
-          //   isCapture = true;
-          //   _isRecording = false;
-          //   _isRecordingPlay = true;
-          // });
-        },
-        child: Container(
-          height: 30,
-          width: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(13),
-              color: Color(0xffFF0023)),
-          child: Center(
-              child: Text(
-                "Stop",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10),
-                ),
-              )),
-        ),
-      )
-          : InkWell(
-        onTap: () async {
-         // Get.to(VideoPage(filePath: filePath));
-        },
-        child: Container(
-          height: 30,
-          width: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(13),
-              color: AppColors.primaryColor),
-          child: Center(
-              child: Text(
-                "Preview",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 10),
-                ),
-              )),
-        ),
-      ),*/
+        /*_ipvController.isLoading.value == false
+              ? GestureDetector(
+                  onTap: () {
+                    debugPrint(
+                        "========5463 ${_ipvController.isLoading.value}");
+                    _ipvController.isLoading.value = true;
+                    _ipvController.isRecordingStop.value == true;
+                    debugPrint(
+                        "========5463 ${_ipvController.isLoading.value}");
+                  },
+                  child: Center(
+                    child: Container(
+                      height: 30,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(13),
+                          color: AppColors.primaryColor),
+                      child: Center(
+                          child: Text(
+                        "Capture",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 10),
+                        ),
+                      )),
+                    ),
+                  ),
+                )
+              : _ipvController.isRecordingStop.value == false
+                  ? InkWell(
+                      onTap: () async {
+                        _ipvController.isRecordingStop.value = true;
+                        _ipvController.isRecordingPlay.value = true;
+                        isButtonClick.value = true;
+                        // _ipvController.isLoading.value = false;
+                        //  debugPrint("========5463 ${_ipvController.isLoading.value}");
+                        // _ipvController.recordVideo();
+                        // Future.delayed(Duration(seconds: 15), () async {
+                        //   _ipvController.isRecordingPlay.value = true;
+                        //   _ipvController.file.value ==
+                        //       await _ipvController.cameraController.value!
+                        //           .stopVideoRecording();
+                        // });
+                      },
+                      child: Center(
+                        child: Container(
+                          height: 30,
+                          width: 140,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              color: Color(0xff02AD41)),
+                          child: Center(
+                              child: Text(
+                            "Start Recording",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10),
+                            ),
+                          )),
+                        ),
+                      ),
+                    )
+                  : _ipvController.isRecordingPlay.value == false
+                      ? InkWell(
+                          onTap: () async {
+                            _ipvController.isRecordingPlay.value = true;
+                            // _ipvController.file.value ==
+                            //     await _ipvController.cameraController.value!
+                            //         .stopVideoRecording();
+                            // _ipvController.isRecordingPlay.value = true;
+                          },
+                          child: Center(
+                            child: Container(
+                              height: 30,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(13),
+                                  color: Color(0xffFF0023)),
+                              child: Center(
+                                  child: Text(
+                                "Stop",
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10),
+                                ),
+                              )),
+                            ),
+                          ),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            Get.to(VideoPage(
+                                filePath: _ipvController.file.value!.path));
+                          },
+                          child: Center(
+                            child: Container(
+                              height: 30,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(13),
+                                  color: AppColors.primaryColor),
+                              child: Center(
+                                  child: Text(
+                                "Preview",
+                                style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10),
+                                ),
+                              )),
+                            ),
+                          ),
+                        )*/
+      ),
       _space,
       _space,
       Row(
@@ -243,14 +505,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-                  "${_ipvController.randumNumber1}",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25),
-                  ),
-                )),
+              "${_ipvController.randumNumber1}",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25),
+              ),
+            )),
           ),
           const SizedBox(
             width: 20,
@@ -266,14 +528,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-                  "${_ipvController.randumNumber2}",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25),
-                  ),
-                )),
+              "${_ipvController.randumNumber2}",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25),
+              ),
+            )),
           ),
           const SizedBox(
             width: 20,
@@ -289,14 +551,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-                  "${_ipvController.randumNumber3}",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25),
-                  ),
-                )),
+              "${_ipvController.randumNumber3}",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25),
+              ),
+            )),
           ),
           const SizedBox(
             width: 20,
@@ -312,14 +574,14 @@ class IPVVerification extends StatelessWidget {
             ], borderRadius: BorderRadius.circular(5), color: Colors.white),
             child: Center(
                 child: Text(
-                  "${_ipvController.randumNumber4}",
-                  style: GoogleFonts.quicksand(
-                    textStyle: const TextStyle(
-                        color: AppColors.textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25),
-                  ),
-                )),
+              "${_ipvController.randumNumber4}",
+              style: GoogleFonts.quicksand(
+                textStyle: const TextStyle(
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25),
+              ),
+            )),
           ),
         ],
       ),
@@ -481,18 +743,18 @@ class IPVVerification extends StatelessWidget {
                     ? AppColors.textColor
                     : const Color(0xffE1E0E6)),
             color:
-            isButtonClick.value == false ? Colors.white : Color(0xffFF405A),
+                isButtonClick.value == false ? Colors.white : Color(0xffFF405A),
           ),
           child: Center(
               child: Text(
-                "Continue",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
-                ),
-              )),
+            "Continue",
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                  color: Color(0xff22263D),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+            ),
+          )),
         ),
       ),
       _space1,
@@ -560,13 +822,13 @@ class IPVVerification extends StatelessWidget {
                           border: Border.all(width: 1.5, color: Colors.white)),
                       child: Center(
                           child: Text(
-                            "Close",
-                            style: GoogleFonts.quicksand(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500)),
-                          )),
+                        "Close",
+                        style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500)),
+                      )),
                     ),
                   ),
                   const SizedBox(

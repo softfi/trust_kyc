@@ -22,6 +22,7 @@ class KRAController extends GetxController {
   DigiLockerDetailModel? digiLockerDetailModel;
   PersonalDetailsController _personalDetailsController =
   Get.put(PersonalDetailsController());
+  ProfessionModel? _professionModel;
   RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
 
   @override
@@ -61,10 +62,12 @@ class KRAController extends GetxController {
     debugPrint("firstName.value.text.toString()");
 
     var response = await APiProvider().getOccupationList();
-    debugPrint(response.toString());
+    debugPrint("==========776 ${response}");
     if (response != null) {
       debugPrint("==========776 ${response}");
-      professionList.value = response;
+      response.data.forEach((element) {
+        professionList.value.add(ProfessionModel.fromJson(element));
+      });
       debugPrint(professionList.value.toString());
       debugPrint("0000000000000000000000000000000");
     }
