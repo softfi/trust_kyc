@@ -12,7 +12,10 @@ import '../../../../utils/images.dart';
 import '../pay_ipo.dart';
 import 'buy_ipo_bond.dart';
 RxBool isKycDone=false.obs;
-class BuyNonIpoBonds {
+class BuyNonIpoBonds extends GetxController{
+
+
+
 
   static nonIPOInvestCalculator1() {
     return Padding(
@@ -1472,5 +1475,12 @@ class BuyNonIpoBonds {
   isKycDone.value =await HelperFunctions.getUserKycCompleted()??false;
   debugPrint(isKycDone.value.toString());
   debugPrint("isKycDone.value.toString()");
+  }
+
+  @override
+  void onInit() {
+    fn();
+    // TODO: implement onInit
+    super.onInit();
   }
 }

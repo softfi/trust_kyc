@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/bottom_sheets/bottom_sheet.dart';
 import 'package:trust_money/screens/Congratulations/alert_dialog.dart';
 import 'package:trust_money/screens/bond/ipo/buy_ipo_bonds/nonipo_buy_bonds.dart';
 import 'package:trust_money/screens/bond/tringle.dart';
@@ -30,6 +31,8 @@ class ReadMoreBonds extends StatefulWidget {
 }
 
 class _ReadMoreBondsState extends State<ReadMoreBonds> {
+
+  BuyNonIpoBonds _buyNonIpoBonds=Get.put(BuyNonIpoBonds());
   List data = [
     "This bond can be considered for medium term Investment purpose with annual returns. Coupon is 13.75% i.e you will receive Rs. 137,500.0 annual interest for every 10 lac Investment. It has call option on 24-Jan-2025.",
     "The bond issuer is of type Private Sector Bank. The Issuer raised total Rs. 500.0 Cr for this bond.",
@@ -579,12 +582,12 @@ RxInt a=1.obs;
         ),
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
+            (isKycDone.value)?
+            Navigator.push(context, MaterialPageRoute(
                     builder: (context) => BuyIPOBond(
                           isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                        )));
+                        ))):
+            ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
           },
           child: Center(
             child: Container(
@@ -685,12 +688,12 @@ RxInt a=1.obs;
           visible: widget.isIPO == 3 || widget.isIPO==2,
           child: InkWell(
             onTap: () {
-              Navigator.push(
+              (isKycDone.value)?Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BuyIPOBond(
                             isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                          )));
+                          ))):ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
             },
             child: ViewAllWidget(
               title: 'Buy this BOND now!',
