@@ -133,8 +133,8 @@ class KRARecord extends StatelessWidget {
         endIndent: 5,
       ),
       _space,
-      Text(
-        "Hey ${_panCardUserDeatils.panName}, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+      Text(/*${_panCardUserDeatils.panName}*/
+        "Hey, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,

@@ -63,13 +63,13 @@ class APiProvider extends GetConnect {
       "lifestyle": "string",
       "geogriphical_code": "string",
       "education_degree": "string",
-      "address_line_1": "string",
-      "address_line_2": "string",
-      "address_line_3": "string",
-      "address_zip": "string",
+      "address_line_1": "${_kRAController.digiLockerDetailModel!.landmark}",
+      "address_line_2": "${_kRAController.digiLockerDetailModel!.location}",
+      "address_line_3": "${_kRAController.digiLockerDetailModel!.villageTownCity}",
+      "address_zip": "${_kRAController.digiLockerDetailModel!.pincode}",
       "address_state_code": "string",
-      "address_state": "string",
-      "address_city": "string",
+      "address_state": "${_kRAController.digiLockerDetailModel!.state}",
+      "address_city": "${_kRAController.digiLockerDetailModel!.district}",
       "city_sequence_no": "string",
       "family_account": "string",
       "mental_disability": "string",
@@ -276,28 +276,36 @@ class APiProvider extends GetConnect {
     }
   }
 
-  bondList()async{
-try{
-var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.bondList+"?page_number=1&limit=11");
-if(response!=null){
-  if(response.statusCode==200){
-    AllBondList modal=AllBondList.fromJson((response.body));
-    return modal;
-  }else{ShowCustomSnackBar().ErrorSnackBar(response.statusCode.toString());}
-}
-}catch(e){ShowCustomSnackBar().ErrorSnackBar(e.toString());}
+  bondList() async {
+    try {
+      var response = await get(TrustKycUrl.baseUrl +
+          TrustKycUrl.bondList +
+          "?page_number=1&limit=11");
+      if (response != null) {
+        if (response.statusCode == 200) {
+          AllBondList modal = AllBondList.fromJson((response.body));
+          return modal;
+        } else {
+          ShowCustomSnackBar().ErrorSnackBar(response.statusCode.toString());
+        }
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
   }
 
-  getBondDetails(String isisnNo)async{
-try{
-  var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.specificBondsList+"?bond_isin_number=$isisnNo");
-  if(response.statusCode==200){
-    BondDetails modal=BondDetails.fromJson((response.body));
-    return modal;
-  }
-}catch(e){
-  ShowCustomSnackBar().ErrorSnackBar(e.toString());
-}
+  getBondDetails(String isisnNo) async {
+    try {
+      var response = await get(TrustKycUrl.baseUrl +
+          TrustKycUrl.specificBondsList +
+          "?bond_isin_number=$isisnNo");
+      if (response.statusCode == 200) {
+        BondDetails modal = BondDetails.fromJson((response.body));
+        return modal;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
   }
 
   getIPVCode() async {
@@ -311,13 +319,12 @@ try{
             'Authorization': token,
           });
       if (response.statusCode == 200) {
-        CodeVerificationModel model = CodeVerificationModel.fromJson(response.body);
+        CodeVerificationModel model =
+            CodeVerificationModel.fromJson(response.body);
         return model;
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
-
-
 }
