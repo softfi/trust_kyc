@@ -173,7 +173,7 @@ class VideoPreview extends StatelessWidget {
                         ),
                         InkWell(
                               onTap: () async {
-                                _ipvController.isLoading.value = false;
+                                _ipvController.isLoading.value = 1;
                                 _ipvController.isRecordingPlay.value = false;
                                 _ipvController.isRecordingStop.value = false;
                                 Get.back();

@@ -126,11 +126,11 @@ class IPVVerification extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                       width: 3,
-                      color: _ipvController.isLoading.value
+                      color: _ipvController.isLoading.value==1
                           ? AppColors.primaryColor
                           : const Color(0xff66DC65)),
                 ),
-                child: _ipvController.isLoading.value
+                child: _ipvController.isLoading.value==1
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Padding(
@@ -140,13 +140,23 @@ class IPVVerification extends StatelessWidget {
                           ),
                         ),
                       )
-                    : _ipvController.isRecordingStop.value
-                        ? ClipRRect(
+                    : _ipvController.isLoading.value==2
+                        ? (_ipvController.newCameraController.value!=null)?
+                ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
-                            child: CameraPreview(
-                                _ipvController.cameraController.value!),
-                          )
-                        : ClipRRect(
+                            child: AspectRatio(
+                                aspectRatio: _ipvController.newCameraController.value!.value.aspectRatio,
+                                child: CameraPreview(_ipvController.newCameraController.value!)),
+                          ):
+                Container()
+                        :_ipvController.isLoading.value==3?
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: AspectRatio(
+                      aspectRatio: _ipvController.newCameraController.value!.value.aspectRatio,
+                      child: CameraPreview(_ipvController.newCameraController.value!)),
+                ):
+                ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Stack(
                               children: [
@@ -158,17 +168,30 @@ class IPVVerification extends StatelessWidget {
                                       return const Center(
                                           child: CircularProgressIndicator());
                                     } else {
-                                      return VideoPlayer(_ipvController
-                                          .videoPlayerController.value!);
+                                      return (_ipvController
+                                          .videoPlayerController.value!=null)?VideoPlayer(_ipvController
+                                          .videoPlayerController.value!):
+                                      Center(
+                                            child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(28.0),
+                                            child: SvgPicture.asset(
+                                              ConstantImage.profile_pic,
+                                            ),
+                                        ),
+                                      ),
+                                          );
                                     }
                                   },
                                 ),
-                                Positioned(
-                                  top: 105,
-                                  left: 150,
+                                Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.center,
                                   child: Container(
-                                    height: 40,
-                                    width: 40,
+                                    height: 50,
+                                    width: 50,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 0.5, color: Colors.white),
@@ -192,14 +215,17 @@ class IPVVerification extends StatelessWidget {
       ),
       _space,
       Obx(
-        () => _ipvController.isLoading.value
+        () => _ipvController.isLoading.value==1
             ? GestureDetector(
                 onTap: () {
-                  debugPrint("========5463 ${_ipvController.isLoading.value}");
-                  _ipvController.isLoading.value = false;
-                  _ipvController.isRecordingStop.value = true;
-                  _ipvController.isRecordingPlay.value = false;
-                  debugPrint("========5463 ${_ipvController.isLoading.value}");
+                  _ipvController.newCameraController.value!.prepareForVideoRecording();
+                  _ipvController.isLoading.value=2;
+                  // _ipvController.initCamera();
+                  // debugPrint("========5463 ${_ipvController.isLoading.value}");
+                  // _ipvController.isLoading.value = false;
+                  // _ipvController.isRecordingStop.value = true;
+                  // _ipvController.isRecordingPlay.value = false;
+                  // debugPrint("========5463 ${_ipvController.isLoading.value}");
                 },
                 child: Center(
                   child: Container(
@@ -221,19 +247,16 @@ class IPVVerification extends StatelessWidget {
                   ),
                 ),
               )
-            : _ipvController.isRecordingStop.value
+            : _ipvController.isLoading.value==2
                 ? InkWell(
                     onTap: () async {
-                      _ipvController.recordVideo();
-                      _ipvController.isLoading.value = false;
-                      _ipvController.isRecordingStop.value = false;
-                      _ipvController.isRecordingPlay.value = true;
-                      // Future.delayed(const Duration(seconds: 15), () async {
-                      //   _ipvController.file.value = await _ipvController.cameraController.value!.stopVideoRecording();
-                      //   _ipvController.isLoading.value = false;
-                      //   _ipvController.isRecordingStop.value = false;
-                      //   _ipvController.isRecordingPlay.value = true;
-                      // });
+                      _ipvController.newCameraController.value!.startVideoRecording();
+                      _ipvController.isLoading.value=3;
+                      // _ipvController.recordVideo();
+                      // _ipvController.isLoading.value = false;
+                      // _ipvController.isRecordingStop.value = false;
+                      // _ipvController.isRecordingPlay.value = true;
+                      //
                     },
                     child: Center(
                       child: Container(
@@ -255,15 +278,13 @@ class IPVVerification extends StatelessWidget {
                       ),
                     ),
                   )
-                : _ipvController.isRecordingPlay.value
+                :_ipvController.isLoading.value==3
                     ? InkWell(
                         onTap: () async {
-                          _ipvController.isLoading.value = false;
-                          _ipvController.isRecordingStop.value = false;
-                          _ipvController.isRecordingPlay.value = false;
-                          _ipvController.file.value = (await _ipvController
-                              .cameraController.value!
-                              .stopVideoRecording()) as File?;
+                          _ipvController.isLoading.value=4;
+                          var temp= await (_ipvController.newCameraController.value!.stopVideoRecording()).then((XFile? file) {
+                            _ipvController.file.value=File(file!.path);
+                          });
                         },
                         child: Center(
                           child: Container(
@@ -285,8 +306,10 @@ class IPVVerification extends StatelessWidget {
                           ),
                         ),
                       )
-                    : InkWell(
+                    : _ipvController.isLoading.value==4?
+        InkWell(
                         onTap: () async {
+                          _ipvController.isLoading.value=1;
                           Get.dialog(VideoPreview());
                           // final route = MaterialPageRoute(
                           //   fullscreenDialog: true,
@@ -314,10 +337,13 @@ class IPVVerification extends StatelessWidget {
                             )),
                           ),
                         ),
-                      ),
+                      ):
+        Container(),
       ),
+      ///////////////////////////////////////////////////////
       _space,
       _space,
+
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

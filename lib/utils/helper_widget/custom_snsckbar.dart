@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class ShowCustomSnackBar{
   void SuccessSnackBar(String message){
-    Get.closeAllSnackbars();
+    // Get.closeAllSnackbars();
     Get.showSnackbar(
       GetSnackBar(
         duration: Duration(seconds: 2),
@@ -19,7 +19,7 @@ class ShowCustomSnackBar{
 
 
   void ErrorSnackBar(String message){
-    Get.closeAllSnackbars();
+    // Get.closeAllSnackbars();
     Get.showSnackbar(GetSnackBar(
       backgroundColor: Colors.red,
       duration: Duration(

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart'as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +9,7 @@ import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import '../getx_controller/ipv/ipv_controller.dart';
 import '../getx_controller/kra/kra_controller.dart';
 import '../model/bond/bond_details_modal.dart';
 import '../model/bond/bond_list_modal.dart';
@@ -21,6 +22,7 @@ import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class APiProvider extends GetConnect {
+
   personalDetail() async {
     try {
       var token = await HelperFunctions.getToken();
@@ -43,6 +45,7 @@ class APiProvider extends GetConnect {
   }
 
   updatePersonalDeatil() async {
+    IPVController _ipvController=Get.put(IPVController());
     PersonalDetailsController _controller =
         Get.put(PersonalDetailsController());
     KRAController _kRAController = Get.put(KRAController());
@@ -89,7 +92,7 @@ class APiProvider extends GetConnect {
       "family_account": "string",
       "mental_disability": "string",
       "profile_image": "string",
-      "verification_video": "string",
+      "verification_video":_ipvController.fileLink.value??"",
       "proof_type": "string",
       "proof_front_image": "string",
       "proof_back_image": "string",
@@ -360,29 +363,27 @@ class APiProvider extends GetConnect {
     }
   }
 
-  uploadVideo(File? file) async {
-    // debugPrint("=======xfile ${file!.path.split("/").last}");
-    // debugPrint("=======xfile ${file}");
-
+  uploadVideo(File file) async {
     var token = await HelperFunctions.getToken();
     final postBody = FormData({
-      "video": await MultipartFile(file,
-          filename: file!.path.split("/").last.toString()),
+      "video": await MultipartFile(file, filename: file.path.split("/").last.toString()),
     });
     try {
-      var response = await post(
-          TrustKycUrl.baseUrl + TrustKycUrl.personVerification, postBody,
+      final response = await http.post(Uri.parse(TrustKycUrl.baseUrl + TrustKycUrl.personVerification), body:postBody,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
       debugPrint("=======34343434 ${response.body}");
-      debugPrint("=======34343434 ${response.statusCode}");
+      // debugPrint("=======34343434 ${response.statusText}");
+      // debugPrint("=======34343434 ${(response.status.toString())}");
+      debugPrint("=======34343434444444 ${response.statusCode}");
       if (response.statusCode == 201) {
-        debugPrint("=======xfile ${response.body}");
-        debugPrint("=======xfile ${response.body["video"]}");
-        return response.body["video"];
+        // debugPrint("=======xfile ${response.body}");
+        // debugPrint("=======xfile ${response.body["video"]}");
+        var temp=jsonDecode(response.body);
+        return temp["video"];
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());

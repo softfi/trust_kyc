@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../api/apiClient.dart';
@@ -11,7 +12,8 @@ import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../personal_details_controller.dart';
 
 class IPVController extends GetxController {
-  RxBool isLoading = false.obs;
+  var   newCameraController=Rxn<CameraController>();
+  RxInt isLoading = 1.obs;
   RxBool isRecordingPlay = false.obs;
   RxBool isRecordingStop = false.obs;
   RxString randumNumber1 = "".obs;
@@ -22,10 +24,10 @@ class IPVController extends GetxController {
   var file = Rx<File?>(null);
   set file1(value) => file.value = value;
   get file1 => file.value;
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  RxString fileLink="".obs;
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
 
-  var videoPlayerController = Rx<VideoPlayerController?>(null);
+  var videoPlayerController = Rxn<VideoPlayerController>();
 
   set videoPlayController1(value) => videoPlayerController.value = value;
 
@@ -36,13 +38,20 @@ class IPVController extends GetxController {
 
   get cameraController1 => cameraController.value;
 
+
+
+
+
   @override
   void onInit() {
+    newCameraController.value = CameraController(CameraDescription(name:"1", lensDirection: CameraLensDirection.front,sensorOrientation: 1 ), ResolutionPreset.max);
+    newCameraController.value!.initialize().then((value)  {
+      return ;
+    });
     getIPVCode();
-    initCamera();
     Future.delayed(const Duration(seconds: 15), () async {
       file.value = (await cameraController.value!.stopVideoRecording()) as File?;
-      isLoading.value = false;
+      isLoading.value = 1;
       isRecordingStop.value = false;
       isRecordingPlay.value = false;
     });
@@ -74,7 +83,7 @@ class IPVController extends GetxController {
       imageFormatGroup: ImageFormatGroup.bgra8888,
     );
     await cameraController.value!.initialize();
-    isLoading.value = true;
+    isLoading.value = 1;
   }
 
   recordVideo() async {
@@ -87,6 +96,17 @@ class IPVController extends GetxController {
         VideoPlayerController.file(File(file.value!.path));
     await videoPlayerController.value!.initialize();
   }
+
+
+  newInItVideoPlayer()async{
+    videoPlayerController.value =
+        VideoPlayerController.file(File(file.value!.path));
+    await videoPlayerController.value!.initialize();
+  }
+
+
+
+
 
   getIPVCode() async {
     var response = await APiProvider().getIPVCode();
@@ -108,6 +128,7 @@ class IPVController extends GetxController {
     var response = await APiProvider().uploadVideo(file);
     if (response != null) {
       Get.back();
+      // fileLink=response.video;
       //updateData();
     } else {
       Get.back();
