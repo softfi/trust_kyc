@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
@@ -64,13 +66,25 @@ class APiProvider extends GetConnect {
       "lifestyle": "string",
       "geogriphical_code": "string",
       "education_degree": "string",
-      "address_line_1": (_kRAController.digiLockerDetailModel!=null)?"${_kRAController.digiLockerDetailModel!.landmark}":"",
-      "address_line_2": (_kRAController.digiLockerDetailModel!=null)?"${_kRAController.digiLockerDetailModel!.location}":"",
-      "address_line_3":(_kRAController.digiLockerDetailModel!=null)? "${_kRAController.digiLockerDetailModel!.villageTownCity}":"",
-      "address_zip": (_kRAController.digiLockerDetailModel!=null)?"${_kRAController.digiLockerDetailModel!.pincode}":"",
+      "address_line_1": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.landmark}"
+          : "",
+      "address_line_2": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.location}"
+          : "",
+      "address_line_3": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.villageTownCity}"
+          : "",
+      "address_zip": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.pincode}"
+          : "",
       "address_state_code": "string",
-      "address_state": (_kRAController.digiLockerDetailModel!=null)?"${_kRAController.digiLockerDetailModel!.state}":"",
-      "address_city": (_kRAController.digiLockerDetailModel!=null)?"${_kRAController.digiLockerDetailModel!.district}":"",
+      "address_state": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.state}"
+          : "",
+      "address_city": (_kRAController.digiLockerDetailModel != null)
+          ? "${_kRAController.digiLockerDetailModel!.district}"
+          : "",
       "city_sequence_no": "string",
       "family_account": "string",
       "mental_disability": "string",
@@ -258,7 +272,7 @@ class APiProvider extends GetConnect {
 
   getOccupationList() async {
     try {
-      List<ProfessionModel> temp=List.empty(growable: true);
+      List<ProfessionModel> temp = List.empty(growable: true);
       var token = await HelperFunctions.getToken();
       var response =
           await get(TrustKycUrl.baseUrl + TrustKycUrl.profession, headers: {
@@ -268,7 +282,9 @@ class APiProvider extends GetConnect {
       });
       debugPrint("000000000000000000000000022323232332323230");
       if (response.statusCode == 200) {
-        response.body.forEach((e){temp.add(ProfessionModel.fromJson(e));});
+        response.body.forEach((e) {
+          temp.add(ProfessionModel.fromJson(e));
+        });
         return temp;
       }
     } catch (e) {
@@ -329,13 +345,66 @@ class APiProvider extends GetConnect {
     }
   }
 
-  getInvestmentCalculatonResult(String isinNo, int bondNo)async{
-    try{
-      var response=await get(TrustKycUrl.baseUrl+TrustKycUrl.inestmentCalculator+"?isin=$isinNo&number_of_bonds=$bondNo");
-      if(response.statusCode==200){
-        InvestmentCalculatorModal modal=InvestmentCalculatorModal.fromJson(response.body);
+  getInvestmentCalculatonResult(String isinNo, int bondNo) async {
+    try {
+      var response = await get(TrustKycUrl.baseUrl +
+          TrustKycUrl.inestmentCalculator +
+          "?isin=$isinNo&number_of_bonds=$bondNo");
+      if (response.statusCode == 200) {
+        InvestmentCalculatorModal modal =
+            InvestmentCalculatorModal.fromJson(response.body);
         return modal;
       }
-    }catch(e){ShowCustomSnackBar().ErrorSnackBar(e.toString());}
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  uploadVideo(File? file) async {
+    // debugPrint("=======xfile ${file!.path.split("/").last}");
+    // debugPrint("=======xfile ${file}");
+
+    var token = await HelperFunctions.getToken();
+    final postBody = FormData({
+      "video": await MultipartFile(file,
+          filename: file!.path.split("/").last.toString()),
+    });
+    try {
+      var response = await post(
+          TrustKycUrl.baseUrl + TrustKycUrl.personVerification, postBody,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("=======34343434 ${response.body}");
+      debugPrint("=======34343434 ${response.statusCode}");
+      if (response.statusCode == 201) {
+        debugPrint("=======xfile ${response.body}");
+        debugPrint("=======xfile ${response.body["video"]}");
+        return response.body["video"];
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  updateprogressbar(String barStatus) async {
+    var token = await HelperFunctions.getToken();
+    var body = {
+      "kyc_progressbar_status_id": barStatus,
+    };
+    try {
+      var response = await post(TrustKycUrl.updateBarStatus, body, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      if (response.statusCode == 200) {
+        return response.body["message"];
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
   }
 }

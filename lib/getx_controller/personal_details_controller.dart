@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
+import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
@@ -10,6 +11,7 @@ class PersonalDetailsController extends GetxController {
   RxInt isVisible = 1.obs;
   RxString mobileNumber = "".obs;
   RxString mail = "".obs;
+  RxString updateStatus = "".obs;
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;
   RxBool isChecked2 = false.obs;
@@ -102,5 +104,19 @@ class PersonalDetailsController extends GetxController {
       duration: const Duration(seconds: 2),
       backgroundColor: Colors.green,
     ));
+  }
+
+  void updateStatusBar() async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var response = await APiProvider().updateprogressbar(updateStatus.value);
+    if (response != null) {
+      Get.back();
+      Get.back();
+      ShowCustomSnackBar().SuccessSnackBar(response);
+    }else{
+      Get.back();
+    }
   }
 }

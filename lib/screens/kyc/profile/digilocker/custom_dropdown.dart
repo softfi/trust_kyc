@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/utils/colorsConstant.dart';
 
 class DropDownContainer extends StatelessWidget {
   const DropDownContainer(
@@ -23,14 +25,6 @@ class DropDownContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Text(
-        //   "${dropdownHeading}",
-        //   style: TextStyle(
-        //       color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
-        // ),
-        // SizedBox(
-        //   height: 5,
-        // ),
         Obx(() => Container(
             padding: EdgeInsets.only(left: 5),
             decoration: BoxDecoration(
@@ -43,12 +37,22 @@ class DropDownContainer extends StatelessWidget {
                     isExpanded: true,
                     value: dropDownInitialValue.value,
                     hint: Text(
-                      "Select value.",
-                      style: TextStyle(color: Colors.black),
+                      dropdownHeading,
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xffC8C7CE),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18),
+                      ),
                     ),
                     items: dropDownList.map((e) {
                       return DropdownMenuItem(
-                          value: e.toString(), child: Text(e.toString()));
+                          value: e.toString(), child: Text(e.toString(),style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: AppColors.textColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18),
+                      ),));
                     }).toList(),
                     onChanged: (val) {
                       on_drop_down_change(val.toString());

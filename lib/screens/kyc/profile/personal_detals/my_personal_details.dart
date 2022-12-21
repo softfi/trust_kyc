@@ -383,16 +383,21 @@ class MyPersonalDetails extends StatelessWidget {
                           )),
                         ),
                       ))),
-                _space1,
-                _space1,
-                Center(
-                  child: Text(
-                    "Save & Complete Later",
-                    style: GoogleFonts.sourceSansPro(
-                      textStyle: const TextStyle(
-                          color: Color(0xff22263D),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15),
+                _space,
+                InkWell(
+                  onTap: () {
+                    _personalDetailsController.updateStatus.value = "1";
+                    PersonalBottomSheet.saveAndCompleteBottomSheet();
+                  },
+                  child: Center(
+                    child: Text(
+                      "Save & Complete Later",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15),
+                      ),
                     ),
                   ),
                 ),

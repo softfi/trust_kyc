@@ -219,16 +219,18 @@ class KRARecord extends StatelessWidget {
           ),
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child:  DropDownContainer(
+              child: DropDownContainer(
                 dropdownHeading: "Select Occupation",
                 dropDownInitialValue: "${_kRAController.newProfessionalList.value[0]}".obs,
                 dropDownList: _kRAController.newProfessionalList.value,
                 on_drop_down_change: (val) {
-                  List<ProfessionModel> temp=_kRAController.professionList.value.where((element) => element.professionName==val).toList();
-                  _kRAController.professionId.value=temp[0].id.toString();
+                  List<ProfessionModel> temp = _kRAController
+                      .professionList.value
+                      .where((element) => element.professionName == val)
+                      .toList();
+                  _kRAController.professionId.value = temp[0].id.toString();
                 },
-              )
-              ))),
+              )))),
       _space,
       AppText(
         title: 'What is your trading experience?',
@@ -281,11 +283,9 @@ class KRARecord extends StatelessWidget {
       InkWell(
         onTap: () {
           if (_kRAController.maidenName.text.isNotEmpty) {
-            isButtonClick.value = true;
+             isButtonClick.value = true;
             _kRAController.update_personal_details();
           }
-
-          //_personalDetailsController.isVisible.value = 4;
         },
         child: Container(
           height: 45,

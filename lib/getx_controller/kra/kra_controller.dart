@@ -63,9 +63,7 @@ RxList newProfessionalList=List.empty(growable: true).obs;
     if (response != null) {
       professionList.value=response;
       professionList.value.forEach((element) {newProfessionalList.value.add(element.professionName);});
-      // response.forEach((element){professionList.add({"professionName":element["profession_name"],"id":element["id"]});});
-      debugPrint(professionList.value.toString());
-      debugPrint("4545454545454545454545454");
+
     }
   }
 

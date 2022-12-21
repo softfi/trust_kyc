@@ -198,8 +198,7 @@ class ProfileRepository {
     print("=================> called");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
-    var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
+    var response = await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
     if (response.statusCode == 200) {
       //final json = jsonDecode(response.data);
       response.data.forEach((element) {

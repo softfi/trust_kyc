@@ -6941,8 +6941,7 @@ class _PersonalProfileState extends State<PersonalProfile> {
                               _recordVideo();
                               Future.delayed(Duration(seconds: 15), () async {
                                 _isRecordingPlay = true;
-                                file = await _cameraController
-                                    .stopVideoRecording();
+                                file = await _cameraController.stopVideoRecording();
                                 setState(() {
                                   _isRecording = false;
                                   isCapture = true;

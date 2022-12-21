@@ -57,6 +57,11 @@ class TrustKycUrl {
   static const authenticateDigilocker = 'api/v1/authentication_digilocker';
   static const getDigiLocker = 'api/v1/digilocker_details';
 
+  //bond
+  static const updateBarStatus = '${baseUrl}api/v1/kyc_progressbar_status';
+  static const getBarStatus = '${baseUrl}api/v1/kyc_progressbar_status';
+
+
   //pan card
   static const getPANCard = 'api/v1/pan_verify';
   static const cvlKRA = 'api/v1/cvl_kra';
