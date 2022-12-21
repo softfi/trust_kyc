@@ -44,7 +44,7 @@ class IPVController extends GetxController {
 
   @override
   void onInit() {
-    newCameraController.value = CameraController(CameraDescription(name:"1", lensDirection: CameraLensDirection.front,sensorOrientation: 1 ), ResolutionPreset.max);
+    newCameraController.value = CameraController(CameraDescription(name:"1", lensDirection: CameraLensDirection.front,sensorOrientation: 1 ), ResolutionPreset.low);
     newCameraController.value!.initialize().then((value)  {
       return ;
     });
@@ -128,11 +128,11 @@ class IPVController extends GetxController {
     var response = await APiProvider().uploadVideo(file);
     if (response != null) {
       Get.back();
+
       // fileLink=response.video;
       //updateData();
-    } else {
-      Get.back();
     }
+
     ShowCustomSnackBar().SuccessSnackBar(response.toString());
   }
 

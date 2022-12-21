@@ -34,7 +34,7 @@ class PersonalDetailsController extends GetxController {
   @override
   void onInit() {
     getPersonalDetails();
-    getStatusBar();
+    // getStatusBar();
     getPerferences();
     super.onInit();
   }
@@ -56,9 +56,8 @@ class PersonalDetailsController extends GetxController {
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
       dob.value = dob.value = DateFormat('dd-MM-yyyy').format(modal.dob);
       update();
-    } else {
-      Get.back();
     }
+
   }
 
   void getPerferences() async {
@@ -103,8 +102,6 @@ class PersonalDetailsController extends GetxController {
       getPersonalDetails();
       isVisible.value = 2;
       Get.back();
-    } else {
-      Get.back();
     }
     Get.showSnackbar(GetSnackBar(
       messageText: Text(response.toString()),
@@ -113,30 +110,23 @@ class PersonalDetailsController extends GetxController {
     ));
   }
 
-  void updateStatusBar() async {
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
-    var response = await APiProvider().updateprogressbar(updateStatus.value);
-    if (response != null) {
-      Get.back();
-      Get.back();
-      ShowCustomSnackBar().SuccessSnackBar(response);
-    } else {
-      Get.back();
-    }
-  }
-
-  void getStatusBar() async {
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
-    var response = await APiProvider().getProgressBar();
-    if (response != null) {
-      barStatusModel = response;
-      ShowCustomSnackBar().SuccessSnackBar(response);
-    } else {
-      Get.back();
-    }
-  }
+  // void updateStatusBar() async {
+  //   Get.dialog(const Center(
+  //     child: CircularProgressIndicator(),
+  //   ));
+  //   var response = await APiProvider().updateprogressbar(updateStatus.value);
+  //   if (response != null) {
+  //     Get.back();
+  //     Get.back();
+  //     ShowCustomSnackBar().SuccessSnackBar(response);
+  //   }
+  // }
+  //
+  // void getStatusBar() async {
+  //   var response = await APiProvider().getProgressBar();
+  //   if (response != null) {
+  //     barStatusModel.value = response;
+  //     ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message==1?"Success":"Failed");
+  //   }
+  // }
 }

@@ -365,28 +365,40 @@ class APiProvider extends GetConnect {
   }
 
   uploadVideo(File file) async {
+    debugPrint(file.toString());
     var token = await HelperFunctions.getToken();
     final postBody = FormData({
-      "video": await MultipartFile(file, filename: file.path.split("/").last.toString()),
+      "video": await MultipartFile(file, filename: file.path.toString()),
     });
     try {
-      final response = await http.post(Uri.parse(TrustKycUrl.baseUrl + TrustKycUrl.personVerification), body:postBody,
+      debugPrint("=======34343434 {response.body}");
+      var response = await post(
+          TrustKycUrl.baseUrl + TrustKycUrl.personVerification, postBody,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint("=======34343434 ${response.body}");
-      // debugPrint("=======34343434 ${response.statusText}");
-      // debugPrint("=======34343434 ${(response.status.toString())}");
-      debugPrint("=======34343434444444 ${response.statusCode}");
+    // .timeout(Duration(seconds: 10)).then((value) => debugPrint(value.toString()))
+      debugPrint("=======34343434 {response.body}");
+      debugPrint("=======34343434 ${response.statusText}");
+      debugPrint("=======34343434 ${(response.status.toString())}");
+      debugPrint(" =======34343434444444${response.statusCode}");
+      debugPrint(" =======34343434444444${response.body}");
+      debugPrint(" =======34343434444444${response.bodyString}");
+      debugPrint(" =======34343434444444${response.bodyBytes}");
+      debugPrint(" =======34343434444444${response.request}");
+      debugPrint(" =======34343434444444${response}");
       if (response.statusCode == 201) {
         // debugPrint("=======xfile ${response.body}");
         // debugPrint("=======xfile ${response.body["video"]}");
         var temp=jsonDecode(response.body);
-        return temp["video"];
+        return response;
       }
+
     } catch (e) {
+      debugPrint(e.toString());
+      debugPrint("e.toString()");
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
