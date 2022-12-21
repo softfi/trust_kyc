@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
+import '../model/status_bar/progress_status_bar.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
@@ -28,10 +29,12 @@ class PersonalDetailsController extends GetxController {
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
   GetPersonalDetailModel? modaltest;
+  var barStatusModel = Rxn<StatusBarModel>();
 
   @override
   void onInit() {
     getPersonalDetails();
+    getStatusBar();
     getPerferences();
     super.onInit();
   }
@@ -53,6 +56,8 @@ class PersonalDetailsController extends GetxController {
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
       dob.value = dob.value = DateFormat('dd-MM-yyyy').format(modal.dob);
       update();
+    } else {
+      Get.back();
     }
   }
 
@@ -98,6 +103,8 @@ class PersonalDetailsController extends GetxController {
       getPersonalDetails();
       isVisible.value = 2;
       Get.back();
+    } else {
+      Get.back();
     }
     Get.showSnackbar(GetSnackBar(
       messageText: Text(response.toString()),
@@ -115,7 +122,20 @@ class PersonalDetailsController extends GetxController {
       Get.back();
       Get.back();
       ShowCustomSnackBar().SuccessSnackBar(response);
-    }else{
+    } else {
+      Get.back();
+    }
+  }
+
+  void getStatusBar() async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var response = await APiProvider().getProgressBar();
+    if (response != null) {
+      barStatusModel = response;
+      ShowCustomSnackBar().SuccessSnackBar(response);
+    } else {
       Get.back();
     }
   }

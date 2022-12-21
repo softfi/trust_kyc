@@ -12,6 +12,8 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../../../utils/helper_widget/custom_snsckbar.dart';
+
 class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
   final void Function()? onClick;
@@ -316,73 +318,65 @@ class MyPersonalDetails extends StatelessWidget {
                 ),
                 _space,
                 _space,
-                Obx(() => ((_personalDetailsController.isChecked1.value &&
-                        _personalDetailsController.isChecked2.value)
-                    ? InkWell(
-                        onTap: () {
+                Obx(() => InkWell(
+                      onTap: () {
+                        if (_personalDetailsController.isCheckedInt1.value !=
+                                0 &&
+                            _personalDetailsController.isCheckedInt2.value !=
+                                0) {
                           isButtonClick.value = true;
                           _personalDetailsController.update_personal_details();
-                        },
-                        child: Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x29000000),
-                                blurRadius: 4.0,
-                              ),
-                            ],
-                            border: Border.all(
-                                width: 2, color: const Color(0xffE1E0E6)),
-                            color: Color(0xffFF405A),
+                        } else {
+                          ShowCustomSnackBar().ErrorSnackBar(
+                              "Accept all terms and conditions first");
+                        }
+                      },
+                      child: Container(
+                        height: 45,
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x29000000),
+                              blurRadius: 4.0,
+                            ),
+                          ],
+                          border: Border.all(
+                              width: 2,
+                              color: isButtonClick.value == false
+                                  ? (_personalDetailsController
+                                                  .isCheckedInt1.value !=
+                                              0 &&
+                                          _personalDetailsController
+                                                  .isCheckedInt2.value !=
+                                              0)
+                                      ? AppColors.textColor
+                                      : Color(0xffE1E0E6)
+                                  : Color(0xffFF405A)),
+                          color: isButtonClick == false
+                              ? Colors.white
+                              : Color(0xffFF405A),
+                        ),
+                        child: Center(
+                            child: Text(
+                          "Continue",
+                          style: GoogleFonts.quicksand(
+                            textStyle: TextStyle(
+                                color: isButtonClick.value == false
+                                    ? (_personalDetailsController
+                                                    .isCheckedInt1.value !=
+                                                0 &&
+                                            _personalDetailsController
+                                                    .isCheckedInt2.value !=
+                                                0)
+                                        ? AppColors.textColor
+                                        : Color(0xffE1E0E6)
+                                    : Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15),
                           ),
-                          child: Center(
-                              child: Text(
-                            "Continue",
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15),
-                            ),
-                          )),
-                        ),
-                      )
-                    : InkWell(
-                        onTap: () {
-                          Get.showSnackbar(GetSnackBar(
-                            backgroundColor: Colors.red,
-                            duration: Duration(seconds: 2),
-                            messageText: Text(
-                              "Accept all terms and conditions first",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ));
-                        },
-                        child: Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color(0x29000000),
-                                  blurRadius: 4.0,
-                                ),
-                              ],
-                              border: Border.all(
-                                  width: 2, color: AppColors.textColor),
-                              color: Colors.white),
-                          child: Center(
-                              child: Text(
-                            "Continue",
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Color(0xff22263D),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15),
-                            ),
-                          )),
-                        ),
-                      ))),
+                        )),
+                      ),
+                    )),
                 _space,
                 InkWell(
                   onTap: () {

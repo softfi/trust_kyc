@@ -8,8 +8,10 @@ import 'package:trust_money/screens/kyc/profile/digilocker/filterChip.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
+import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/styles.dart';
 import '../personal_detals/app_textfield.dart';
+import '../personal_detals/bottom_sheets.dart';
 import 'custom_dropdown.dart';
 
 class Help {
@@ -221,7 +223,8 @@ class KRARecord extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: DropDownContainer(
                 dropdownHeading: "Select Occupation",
-                dropDownInitialValue: "${_kRAController.newProfessionalList.value[0]}".obs,
+                dropDownInitialValue:
+                    "${_kRAController.newProfessionalList.value[0]}".obs,
                 dropDownList: _kRAController.newProfessionalList.value,
                 on_drop_down_change: (val) {
                   List<ProfessionModel> temp = _kRAController
@@ -280,84 +283,131 @@ class KRARecord extends StatelessWidget {
       _space,
       _space,
       _space,
-      InkWell(
-        onTap: () {
-          if (_kRAController.maidenName.text.isNotEmpty) {
-             isButtonClick.value = true;
-            _kRAController.update_personal_details();
-          }
-        },
-        child: Container(
-          height: 45,
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x29000000),
-                blurRadius: 3.0,
+      Obx(() => InkWell(
+            onTap: () {
+              if (_kRAController.maidenName.text != "") {
+                isButtonClick.value = true;
+                _kRAController.update_personal_details();
+              }
+            },
+            child: Container(
+              height: 45,
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x29000000),
+                    blurRadius: 4.0,
+                  ),
+                ],
+                border: Border.all(
+                    width: 2,
+                    color: isButtonClick.value == false
+                        ? (_kRAController.maidenName.text != "")
+                            ? AppColors.textColor
+                            : Color(0xffE1E0E6)
+                        : Color(0xffFF405A)),
+                color:
+                    isButtonClick == false ? Colors.white : Color(0xffFF405A),
               ),
-            ],
-            border: Border.all(
-                width: 2,
-                color: !isButtonClick.value
-                    ? _kRAController.maidenName.text.isNotEmpty
-                        ? AppColors.textColor
-                        : Color(0xffE1E0E6)
-                    : Color(0xffFF405A)),
-            color: !isButtonClick.value ? Colors.white : Color(0xffFF405A),
-          ),
-          child: Center(
-              child: Text(
-            "Continue",
-            style: GoogleFonts.quicksand(
-              textStyle: TextStyle(
-                  color: !isButtonClick.value
-                      ? _kRAController.maidenName.text.isNotEmpty
-                          ? AppColors.textColor
-                          : Color(0xffE1E0E6)
-                      : Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15),
+              child: Center(
+                  child: Text(
+                "Continue",
+                style: GoogleFonts.quicksand(
+                  textStyle: TextStyle(
+                      color: isButtonClick.value == false
+                          ? (_kRAController.maidenName.text != "")
+                              ? AppColors.textColor
+                              : Color(0xffE1E0E6)
+                          : Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15),
+                ),
+              )),
             ),
           )),
-        ),
-        /*Container(
-          height: 45,
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x29000000),
-                blurRadius: 4.0,
-              ),
-            ],
-            border: Border.all(
-                width: 2,
-                color: isButtonClick == false
-                    ? AppColors.textColor
-                    : const Color(0xffE1E0E6)),
-            color: isButtonClick == false ? Colors.white : Color(0xffFF405A),
-          ),
-          child: Center(
-              child: Text(
-            "Continue",
-            style: GoogleFonts.quicksand(
+      // InkWell(
+      //   onTap: () {
+      //     if (_kRAController.maidenName.text.isNotEmpty) {
+      //        isButtonClick.value = true;
+      //       _kRAController.update_personal_details();
+      //     }
+      //   },
+      //   child: Container(
+      //     height: 45,
+      //     decoration: BoxDecoration(
+      //       boxShadow: const [
+      //         BoxShadow(
+      //           color: Color(0x29000000),
+      //           blurRadius: 3.0,
+      //         ),
+      //       ],
+      //       border: Border.all(
+      //           width: 2,
+      //           color: !isButtonClick.value
+      //               ? _kRAController.maidenName.text.isNotEmpty
+      //                   ? AppColors.textColor
+      //                   : Color(0xffE1E0E6)
+      //               : Color(0xffFF405A)),
+      //       color: !isButtonClick.value ? Colors.white : Color(0xffFF405A),
+      //     ),
+      //     child: Center(
+      //         child: Text(
+      //       "Continue",
+      //       style: GoogleFonts.quicksand(
+      //         textStyle: TextStyle(
+      //             color: !isButtonClick.value
+      //                 ? _kRAController.maidenName.text.isNotEmpty
+      //                     ? AppColors.textColor
+      //                     : Color(0xffE1E0E6)
+      //                 : Colors.white,
+      //             fontWeight: FontWeight.w500,
+      //             fontSize: 15),
+      //       ),
+      //     )),
+      //   ),
+      //   /*Container(
+      //     height: 45,
+      //     decoration: BoxDecoration(
+      //       boxShadow: const [
+      //         BoxShadow(
+      //           color: Color(0x29000000),
+      //           blurRadius: 4.0,
+      //         ),
+      //       ],
+      //       border: Border.all(
+      //           width: 2,
+      //           color: isButtonClick == false
+      //               ? AppColors.textColor
+      //               : const Color(0xffE1E0E6)),
+      //       color: isButtonClick == false ? Colors.white : Color(0xffFF405A),
+      //     ),
+      //     child: Center(
+      //         child: Text(
+      //       "Continue",
+      //       style: GoogleFonts.quicksand(
+      //         textStyle: const TextStyle(
+      //             color: Color(0xff22263D),
+      //             fontWeight: FontWeight.w500,
+      //             fontSize: 15),
+      //       ),
+      //     )),
+      //   ),*/
+      // ),
+      _space,
+      InkWell(
+        onTap: () {
+          _personalDetailsController.updateStatus.value = "2";
+          PersonalBottomSheet.saveAndCompleteBottomSheet();
+        },
+        child: Center(
+          child: Text(
+            "Save & Complete Later",
+            style: GoogleFonts.sourceSansPro(
               textStyle: const TextStyle(
                   color: Color(0xff22263D),
                   fontWeight: FontWeight.w500,
                   fontSize: 15),
             ),
-          )),
-        ),*/
-      ),
-      _space1,
-      _space1,
-      Center(
-        child: Text(
-          "Save & Complete Later",
-          style: GoogleFonts.sourceSansPro(
-            textStyle: const TextStyle(
-                color: Color(0xff22263D),
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
           ),
         ),
       ),
