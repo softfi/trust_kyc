@@ -18,6 +18,7 @@ import '../model/code_verification_response_data.dart';
 import '../model/digiLocker_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/profession_response_data.dart';
+import '../model/status_bar/progress_status_bar.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
@@ -391,18 +392,42 @@ class APiProvider extends GetConnect {
   }
 
   updateprogressbar(String barStatus) async {
+    debugPrint("=======res $barStatus");
     var token = await HelperFunctions.getToken();
     var body = {
       "kyc_progressbar_status_id": barStatus,
     };
     try {
-      var response = await post(TrustKycUrl.updateBarStatus, body, headers: {
+      debugPrint("=======res ${TrustKycUrl.updateBarStatus}");
+      var response = await put(TrustKycUrl.updateBarStatus, body, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
       });
+      debugPrint("=======res ${response.body}");
+      debugPrint("=======res ${response.statusCode}");
       if (response.statusCode == 200) {
+        debugPrint("=======res ${response.body["message"]}");
         return response.body["message"];
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  getProgressBar() async {
+    var token = await HelperFunctions.getToken();
+    try {
+      var response = await get(TrustKycUrl.updateBarStatus, headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token,
+      });
+      debugPrint("=======res1 ${response.body}");
+      debugPrint("=======res1 ${response.statusCode}");
+      if (response.statusCode == 200) {
+        StatusBarModel model = StatusBarModel.fromJson(response.body);
+        return model;
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
