@@ -258,6 +258,7 @@ class APiProvider extends GetConnect {
 
   getOccupationList() async {
     try {
+      List<ProfessionModel> temp=List.empty(growable: true);
       var token = await HelperFunctions.getToken();
       var response =
           await get(TrustKycUrl.baseUrl + TrustKycUrl.profession, headers: {
@@ -265,14 +266,13 @@ class APiProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': token,
       });
-      debugPrint(response.statusCode.toString());
-      debugPrint("response.statusCode.toString()response.statusCode.toString(");
+      debugPrint("000000000000000000000000022323232332323230");
       if (response.statusCode == 200) {
-        debugPrint("==========77687956 ${response.body}");
-        ProfessionModel model = ProfessionModel.fromJson(response.body);
-        return model;
+        response.body.forEach((e){temp.add(ProfessionModel.fromJson(e));});
+        return temp;
       }
     } catch (e) {
+      debugPrint(e.toString());
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }

@@ -24,7 +24,7 @@ class KRAController extends GetxController {
   Get.put(PersonalDetailsController());
   ProfessionModel? _professionModel;
   RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
-
+RxList newProfessionalList=List.empty(growable: true).obs;
   @override
   void onInit() {
     authenticatDigilocker();
@@ -59,17 +59,13 @@ class KRAController extends GetxController {
   }
 
   void getProfessionList() async {
-    debugPrint("firstName.value.text.toString()");
-
     var response = await APiProvider().getOccupationList();
-    debugPrint("==========776 ${response}");
     if (response != null) {
-      debugPrint("==========776 ${response}");
-      response.data.forEach((element) {
-        professionList.value.add(ProfessionModel.fromJson(element));
-      });
+      professionList.value=response;
+      professionList.value.forEach((element) {newProfessionalList.value.add(element.professionName);});
+      // response.forEach((element){professionList.add({"professionName":element["profession_name"],"id":element["id"]});});
       debugPrint(professionList.value.toString());
-      debugPrint("0000000000000000000000000000000");
+      debugPrint("4545454545454545454545454");
     }
   }
 

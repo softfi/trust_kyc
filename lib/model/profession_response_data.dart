@@ -10,8 +10,8 @@ String professionModelToJson(List<ProfessionModel> data) => json.encode(List<dyn
 
 class ProfessionModel {
   ProfessionModel({
-    required this.id,
-    required this.professionName,
+ required  this.id,
+ required  this.professionName,
   });
 
   int id;

@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_switch/custom_switch.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/model/profession_response_data.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/filterChip.dart';
-import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/styles.dart';
 import '../personal_detals/app_textfield.dart';
+import 'custom_dropdown.dart';
 
 class Help {
   String label;
@@ -38,10 +38,8 @@ class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
-  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   KRAController _kRAController = Get.put(KRAController());
   RxBool isButtonClick = false.obs;
-
   RxList<String> genderList = [
     "",
     "Male",
@@ -133,7 +131,8 @@ class KRARecord extends StatelessWidget {
         endIndent: 5,
       ),
       _space,
-      Text(/*${_panCardUserDeatils.panName}*/
+      Text(
+        /*${_panCardUserDeatils.panName}*/
         "Hey, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
@@ -144,7 +143,9 @@ class KRARecord extends StatelessWidget {
       _space1,
       TextContainer(
         color: Color(0xffF7F7FA),
-        titleText: _kRAController.digiLockerDetailModel!.aadharNumber,
+        titleText: (_kRAController.digiLockerDetailModel != null)
+            ? _kRAController.digiLockerDetailModel!.aadharNumber
+            : "",
         perfixIcon: Container(),
         postfixIcon: Container(),
       ),
@@ -163,7 +164,9 @@ class KRARecord extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: Text(
-            "${_kRAController.digiLockerDetailModel!.location}, ${_kRAController.digiLockerDetailModel!.villageTownCity}, \n${_kRAController.digiLockerDetailModel!.district}, \n${_kRAController.digiLockerDetailModel!.state},  \n${_kRAController.digiLockerDetailModel!.pincode}",
+            (_kRAController.digiLockerDetailModel != null)
+                ? "${_kRAController.digiLockerDetailModel!.location}, ${_kRAController.digiLockerDetailModel!.villageTownCity}, \n${_kRAController.digiLockerDetailModel!.district}, \n${_kRAController.digiLockerDetailModel!.state},  \n${_kRAController.digiLockerDetailModel!.pincode}"
+                : "",
             style: GoogleFonts.sourceSansPro(
               textStyle: const TextStyle(
                   color: Color(0xff22263D),
@@ -208,7 +211,7 @@ class KRARecord extends StatelessWidget {
       ),
       _space1,
       Obx(() => Container(
-          height: 45,
+          height: 50,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -216,28 +219,16 @@ class KRARecord extends StatelessWidget {
           ),
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton2(
-                  hint: const Text(
-                    "Select Occupation",
-                    style: TextStyle(color: Color(0xffC8C7CE)),
-                  ),
-                  items: _kRAController.professionList.map((item) {
-                    return DropdownMenuItem(
-                        value: item.professionName.toString(),
-                        child: Text(
-                          item.professionName,
-                          style: const TextStyle(
-                            fontSize: 17.0,
-                          ),
-                        ));
-                  }).toList(),
-                  onChanged: (newVal) {
-                    _kRAController.professionId.value = newVal.toString();
-                  },
-                  value: _kRAController.professionId.value,
-                ),
-              )))),
+              child:  DropDownContainer(
+                dropdownHeading: "Select Occupation",
+                dropDownInitialValue: "${_kRAController.newProfessionalList.value[0]}".obs,
+                dropDownList: _kRAController.newProfessionalList.value,
+                on_drop_down_change: (val) {
+                  List<ProfessionModel> temp=_kRAController.professionList.value.where((element) => element.professionName==val).toList();
+                  _kRAController.professionId.value=temp[0].id.toString();
+                },
+              )
+              ))),
       _space,
       AppText(
         title: 'What is your trading experience?',
@@ -312,8 +303,7 @@ class KRARecord extends StatelessWidget {
                         ? AppColors.textColor
                         : Color(0xffE1E0E6)
                     : Color(0xffFF405A)),
-            color:
-                !isButtonClick.value ? Colors.white : Color(0xffFF405A),
+            color: !isButtonClick.value ? Colors.white : Color(0xffFF405A),
           ),
           child: Center(
               child: Text(

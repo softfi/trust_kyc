@@ -23,20 +23,20 @@ class DropDownContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "${dropdownHeading}",
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
-        ),
-        SizedBox(
-          height: 5,
-        ),
+        // Text(
+        //   "${dropdownHeading}",
+        //   style: TextStyle(
+        //       color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),
+        // ),
+        // SizedBox(
+        //   height: 5,
+        // ),
         Obx(() => Container(
             padding: EdgeInsets.only(left: 5),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.black)),
-            width: widt / 3,
+                border: Border.all(color: Colors.transparent)),
+            width: widt.value,
             height: filedHeight.value,
             child: DropdownButtonHideUnderline(
                 child: DropdownButton(
