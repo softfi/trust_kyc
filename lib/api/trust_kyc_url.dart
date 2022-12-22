@@ -51,7 +51,7 @@ class TrustKycUrl {
   //upload images
   static const signatureUpload = 'api/v1/signature_image_upload';
   static const proofImage = 'api/v1/proof_image_upload';
-  static const personVerification = 'api/v1/in_person_video_verification_video';
+      static const personVerification = 'api/v1/in_person_video_verification_video';
 
   //digilocker
   static const authenticateDigilocker = 'api/v1/authentication_digilocker';

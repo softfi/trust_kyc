@@ -263,7 +263,6 @@ class EmailPANBottomSheet {
 
   static void validateAndSendOtp(String text) async {
     debugPrint(text);
-
     if (text.isNotEmpty) {
       bool isOk = text.isValidEmail();
       if (isOk) {
@@ -273,15 +272,6 @@ class EmailPANBottomSheet {
         var response = await APiProvider().SendKycEmailOtp(text, false);
         if (response != null) {
           Get.back();
-          Get.back();
-          Get.showSnackbar(GetSnackBar(
-            backgroundColor: Colors.green,
-            duration: Duration(seconds: 2),
-            messageText: Text(
-              response.toString(),
-              style: TextStyle(color: Colors.white),
-            ),
-          ));
           Get.back();
           onOtpAddedBottomSheet(Get.context!, text);
         }
@@ -337,32 +327,18 @@ class EmailPANBottomSheet {
         image: "assets/images/loding.mp4",
         onClick: () {},
         title: "We Are Verifying Your Email ID",
-        subTitle:
-            "We are validating your ID and Username with the service provider, this may take some time.",
+        subTitle: "We are validating your ID and Username with the service provider, this may take some time.",
       ));
       var response = await APiProvider().verifyOtp(email, otp);
       if (response != null) {
         Get.back();
         Get.back();
-        Get.to(EmailComplete())!
-            .then((value) {
-          _personalDetailsController.getPersonalDetails();
-          debugPrint("++++++++++++9789686");
-
-        });
-
-        Get.showSnackbar(GetSnackBar(
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.green,
-          messageText: Text(
-            response.toString(),
-            style: const TextStyle(color: Colors.white),
-          ),
-        ));
+        _personalDetailsController.isShowing.value = 3;
+        Get.to(const EmailComplete());
       }
     } else {
       Get.showSnackbar(const GetSnackBar(
-        messageText: Text("Enter opt first"),
+        messageText: Text("Enter OTP first"),
       ));
     }
   }

@@ -14,11 +14,9 @@ import '../../../../utils/styles.dart';
 class EmailVeryfication extends StatelessWidget {
   EmailVeryfication({
     Key? key,
-    this.onClick,
   }) : super(key: key);
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
-  final void Function()? onClick;
-  RxInt isShowing = 1.obs;
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
   RxBool isButtonClick = false.obs;
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
 
@@ -74,21 +72,21 @@ class EmailVeryfication extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Obx(() => Visibility(
-                  visible: isShowing.value == 1,
-                  child:
-                      _personalDetailsController.modaltest!.isEmailVerified == 1
-                          ? verifiedEmail(context)
-                          : emailWidget(context))),
               // Obx(() => Visibility(
-              //       visible: isShowing.value == 1,
-              //       child: emailWidget(context),
-              //     )),
-              // Obx(() => Visibility(
-              //     visible: isShowing.value == 2,
-              //     child: verifiedEmail(context))),
+              //     visible: isShowing.value == 1,
+              //     child: _personalDetailsController.modaltest.value!.isEmailVerified == 1
+              //             ? verifiedEmail(context)
+              //             : emailWidget(context))),
               Obx(() => Visibility(
-                  visible: isShowing.value == 3, child: panWidget(context))),
+                    visible: _personalDetailsController.isShowing.value == 1,
+                    child: emailWidget(context),
+                  )),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isShowing.value == 2,
+                  child: verifiedEmail(context))),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isShowing.value == 3,
+                  child: panWidget(context))),
             ],
           ),
         ),
@@ -247,7 +245,9 @@ class EmailVeryfication extends StatelessWidget {
         GestureDetector(
           onTap: () {
             isButtonClick.value = true;
-            _personalDetailsController.modaltest!.isPanVerified == 1?_personalDetailsController.isVisible.value = 3:isShowing.value = 3;
+            _personalDetailsController.modaltest.value!.isPanVerified == 1
+                ? _personalDetailsController.isVisible.value = 3
+                : _personalDetailsController.isShowing.value = 3;
           },
           child: Container(
             height: 45,
@@ -323,13 +323,12 @@ class EmailVeryfication extends StatelessWidget {
                       : const Color(0xffC8C7CE)),
             ),
             child: Obx(() => TextField(
-                  controller: _personalDetailsController.panNumber.value,
+                  controller: _panCardUserDeatils.panNumber.value,
                   autofocus: false,
                   style: ConstStyle.sourceSansmob,
                   textCapitalization: TextCapitalization.characters,
                   onChanged: (text) {
-                    if (_personalDetailsController.panNumber.value.text.length <
-                        10) {
+                    if (_panCardUserDeatils.panNumber.value.text.length < 10) {
                       _personalDetailsController.isPanSelected.value = false;
                     } else {
                       _personalDetailsController.isPanSelected.value = true;

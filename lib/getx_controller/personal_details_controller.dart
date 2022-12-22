@@ -4,15 +4,16 @@ import 'package:intl/intl.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
 import '../model/status_bar/progress_status_bar.dart';
-import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
   Rx<TextEditingController> emailID = TextEditingController().obs;
   RxInt isVisible = 1.obs;
+  RxInt isShowing = 1.obs;
   RxString mobileNumber = "".obs;
   RxString mail = "".obs;
   RxString updateStatus = "".obs;
+  RxString checkProfileStatus = "".obs;
   RxString dob = "DD/MM/YYYY".obs;
   RxBool isChecked1 = false.obs;
   RxBool isChecked2 = false.obs;
@@ -25,43 +26,49 @@ class PersonalDetailsController extends GetxController {
   RxInt activateFutureInt = 0.obs;
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
-  Rx<TextEditingController> panNumber = TextEditingController().obs;
+
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
-  GetPersonalDetailModel? modaltest;
+  var modaltest = Rxn<GetPersonalDetailModel>();
+
+  //GetPersonalDetailModel? modaltest;
   var barStatusModel = Rxn<StatusBarModel>();
 
   @override
   void onInit() {
-    getPersonalDetails();
     // getStatusBar();
     getPerferences();
     super.onInit();
   }
 
-  void getPersonalDetails() async {
-    debugPrint("firstName.value.text.toString()");
+   getPersonalDetails() async {
     var response = await APiProvider().personalDetail();
     debugPrint(response.toString());
     if (response != null) {
       GetPersonalDetailModel modal = response;
       modaltest = response;
-      firstName.value.text = modal.firstname;
-      lastName.value.text = modal.lastname;
-      mobileNumber.value = modal.mobileNumber;
+      await HelperFunctions.saveFirstName(
+          response.body[modal.firstname].toString());
+      await HelperFunctions.saveLastName(
+          response.body[modal.lastname].toString());
+      // firstName.value.text = modal.firstname;
+      // lastName.value.text = modal.lastname;
+      // mobileNumber.value = modal.mobileNumber;
       emailID.value.text = modal.emailId.toString();
+      checkProfileStatus.value = modal.mothersMaidenName.toString();
       await HelperFunctions.saveFirstName(modal.firstname.toString());
       await HelperFunctions.saveLastName(modal.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
       dob.value = dob.value = DateFormat('dd-MM-yyyy').format(modal.dob);
-      update();
     }
-
   }
 
   void getPerferences() async {
     mail.value = await HelperFunctions.getEmailId();
+    firstName.value.text = await HelperFunctions.getFirstName();
+    lastName.value.text = await HelperFunctions.getLastName();
+    mobileNumber.value = await HelperFunctions.getPhoneNumber();
   }
 
   void pickDate() async {
@@ -110,23 +117,23 @@ class PersonalDetailsController extends GetxController {
     ));
   }
 
-  // void updateStatusBar() async {
-  //   Get.dialog(const Center(
-  //     child: CircularProgressIndicator(),
-  //   ));
-  //   var response = await APiProvider().updateprogressbar(updateStatus.value);
-  //   if (response != null) {
-  //     Get.back();
-  //     Get.back();
-  //     ShowCustomSnackBar().SuccessSnackBar(response);
-  //   }
-  // }
-  //
-  // void getStatusBar() async {
-  //   var response = await APiProvider().getProgressBar();
-  //   if (response != null) {
-  //     barStatusModel.value = response;
-  //     ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message==1?"Success":"Failed");
-  //   }
-  // }
+// void updateStatusBar() async {
+//   Get.dialog(const Center(
+//     child: CircularProgressIndicator(),
+//   ));
+//   var response = await APiProvider().updateprogressbar(updateStatus.value);
+//   if (response != null) {
+//     Get.back();
+//     Get.back();
+//     ShowCustomSnackBar().SuccessSnackBar(response);
+//   }
+// }
+//
+// void getStatusBar() async {
+//   var response = await APiProvider().getProgressBar();
+//   if (response != null) {
+//     barStatusModel.value = response;
+//     ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message==1?"Success":"Failed");
+//   }
+// }
 }

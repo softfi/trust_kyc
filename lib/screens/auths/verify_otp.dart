@@ -84,8 +84,11 @@ class _OtpVerificationState extends State<OtpVerification> {
           otpText.text.toString(),
           hashKey.toString());
       if (otpVerifyModel != "" && otpVerifyModel != null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const ChooseScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChooseScreen()), (e) => false);
+
         final userID = otpVerifyModel.customerId.toString();
         final firstName = otpVerifyModel.firstName.toString();
         final lastName = otpVerifyModel.lastName.toString();

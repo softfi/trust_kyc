@@ -20,7 +20,7 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -89,10 +89,11 @@ class SplashScreenState extends State<MyPage> {
       //         child: HomePage(),
       //       ),
       //     ), (e) => false);
-      Navigator.push(
+
+      Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (context) =>  CustomBottomNavigation(currentIndex: 0,)));
+              builder: (context) => CustomBottomNavigation(currentIndex: 0,)), (e) => false);
     });
   }
 
@@ -108,18 +109,18 @@ class SplashScreenState extends State<MyPage> {
       decoration: BoxDecoration(
         gradient: splashBackgroundColorChange == false
             ? const LinearGradient(
-          colors: [
-            Color(0xffBEFBFF),
-            Color(0xffFFD7DB),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        )
+                colors: [
+                  Color(0xffBEFBFF),
+                  Color(0xffFFD7DB),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
             : const LinearGradient(
-          colors: [Colors.white, Colors.white],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+                colors: [Colors.white, Colors.white],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
       ),
       child: Center(
         child: Image.asset(

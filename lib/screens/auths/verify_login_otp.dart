@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:trust_money/api/url_constant.dart';
-import 'package:trust_money/screens/auths/alright_screent.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/utils/strings.dart';
 import '../../repositories/veriify_otp_repository.dart';
@@ -17,7 +16,8 @@ import 'choose_screen.dart';
 
 class OTPLoginVerify extends StatefulWidget {
   OTPLoginVerify(this.phoneNumber, this.haskkey);
-  String  phoneNumber, haskkey;
+
+  String phoneNumber, haskkey;
 
   @override
   _OTPLoginVerifyState createState() => _OTPLoginVerifyState();
@@ -48,15 +48,18 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
     });
   }
 
-
   verifyotplogin() async {
     if (otplogin.text.isEmpty) {
       Fluttertoast.showToast(msg: 'Please enter otp first');
       return;
-      } else {
-      final res = await verifyOtps().verifyOtpLogin(widget.phoneNumber, otplogin.text, widget.haskkey);
+    } else {
+      final res = await verifyOtps()
+          .verifyOtpLogin(widget.phoneNumber, otplogin.text, widget.haskkey);
       if (res != null) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const ChooseScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => ChooseScreen()),
+            (e) => false);
       }
     }
   }
@@ -114,8 +117,6 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -170,10 +171,13 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                     WidgetSpan(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
-                        child: InkWell(onTap: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const SignIn()));
-                        },
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignIn()));
+                          },
                           child: const Image(
                             image: AssetImage(
                               ConstantImage.edit,
@@ -198,9 +202,9 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                   child: TextField(
                     onChanged: (text) {
                       setState(() {
-                        if(otplogin.text.length<4){
+                        if (otplogin.text.length < 4) {
                           isDisable = false;
-                        }else{
+                        } else {
                           isDisable = true;
                         }
                       });
@@ -218,7 +222,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                       hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                       fillColor: Colors.white,
                       contentPadding:
-                      EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0),
+                          EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0),
                     ),
                   ),
                 ),
@@ -230,7 +234,6 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                       Strings.not_get,
                       style: ConstStyle.sourceSans2,
                     ),
-
                     Row(
                       children: [
                         Visibility(
@@ -258,9 +261,9 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                                   color: AppColors.textColor),
                               child: Center(
                                   child: Text(
-                                    "Resend OTP",
-                                    style: ConstStyle.quickStandSmall,
-                                  )),
+                                "Resend OTP",
+                                style: ConstStyle.quickStandSmall,
+                              )),
                             ),
                           ),
                         ),
@@ -279,7 +282,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                         ),
                       ],
                     ),
-                   /* disableOtp
+                    /* disableOtp
                         ? InkWell(
                       onTap: () {
                         _resendOTPLogin(
@@ -319,7 +322,9 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 30.0,),
+              padding: const EdgeInsets.only(
+                bottom: 30.0,
+              ),
               child: InkWell(
                 onTap: () {
                   if (isDisable == true) {
@@ -329,7 +334,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                     });
                   }
                 },
-                child:Container(
+                child: Container(
                   height: 45,
                   decoration: BoxDecoration(
                     boxShadow: const [
@@ -338,10 +343,12 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                         blurRadius: 3.0,
                       ),
                     ],
-                    border: Border.all(width: 2, color:isButtonClick == false
+                    border: Border.all(
+                        width: 2,
+                        color: isButtonClick == false
                             ? isDisable
-                            ? AppColors.textColor
-                            : Color(0xffE1E0E6)
+                                ? AppColors.textColor
+                                : Color(0xffE1E0E6)
                             : Color(0xffFF405A)),
                     color: isButtonClick == false
                         ? Colors.white
@@ -349,19 +356,18 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
                   ),
                   child: Center(
                       child: Text(
-                        "Verify",
-                        style: GoogleFonts.quicksand(
-                          textStyle: TextStyle(
-                              color: isButtonClick == false
-                                  ? isDisable
+                    "Verify",
+                    style: GoogleFonts.quicksand(
+                      textStyle: TextStyle(
+                          color: isButtonClick == false
+                              ? isDisable
                                   ? AppColors.textColor
                                   : Color(0xffE1E0E6)
-                                  : Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15
-                          ),
-                        ),
-                      )),
+                              : Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15),
+                    ),
+                  )),
                 ),
               ),
             ),

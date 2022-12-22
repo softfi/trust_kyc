@@ -138,7 +138,7 @@ class ProfileRepository {
     print("================45655 $data");
     if (response.statusCode == 200) {
       return data;
-    }else{
+    } else {
       Fluttertoast.showToast(msg: "something wrong!");
     }
   }
@@ -183,7 +183,7 @@ class ProfileRepository {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.addressProof);
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.addressProof);
     if (response.statusCode == 200) {
       //final json = jsonDecode(response.data);
       response.data.forEach((element) {
@@ -198,7 +198,8 @@ class ProfileRepository {
     print("=================> called");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
-    var response = await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
+    var response =
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.profession);
     if (response.statusCode == 200) {
       //final json = jsonDecode(response.data);
       response.data.forEach((element) {
@@ -210,8 +211,8 @@ class ProfileRepository {
 
   Future uploadScans(
       {required String proofType,
-        required File file1,
-        required File file2}) async {
+      required File file1,
+      required File file2}) async {
     String fileName = file1.path.split('/').last;
     String fileName1 = file2.path.split('/').last;
     try {
@@ -254,8 +255,8 @@ class ProfileRepository {
       });
       var token = await HelperFunctions.getToken();
       var dio = Dio();
-      var response =
-      await TrustKycDioClient(token).upload(endpoint: TrustKycUrl.personVerification,data: formData);
+      var response = await TrustKycDioClient(token)
+          .upload(endpoint: TrustKycUrl.personVerification, data: formData);
       // var response = await dio.post(TrustKycUrl.baseUrl + TrustKycUrl.personVerification,
       //     data: formData,
       //     options: Options(headers: {
@@ -329,9 +330,7 @@ class ProfileRepository {
     return CodeVerificationModel.fromJson(data);
   }
 
-  Future<VerifyEmailModel?> verifyEmail(
-      String email,
-      bool isVerified) async {
+  Future<VerifyEmailModel?> verifyEmail(String email, bool isVerified) async {
     final Map<String, dynamic> dataq = Map<String, dynamic>();
     dataq["email_id"] = email;
     dataq["is_verified"] = isVerified;
@@ -342,7 +341,9 @@ class ProfileRepository {
     print("verifyEmail: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
-      Fluttertoast.showToast(msg:response.data["message"],);
+      Fluttertoast.showToast(
+        msg: response.data["message"],
+      );
     }
     return VerifyEmailModel.fromJson(data);
   }

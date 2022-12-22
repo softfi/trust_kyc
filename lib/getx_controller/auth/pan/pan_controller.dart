@@ -16,16 +16,16 @@ import '../../personal_details_controller.dart';
 class PanCardUserDeatils extends GetxController {
   PanStatusModel? panDataModal;
   RxString panName = "".obs;
+  Rx<TextEditingController> panNumber = TextEditingController().obs;
 
-  void verifyPan() async {
+  verifyPan() async {
     Get.dialog(VerifiedAnim(
       image: "assets/images/loding.mp4",
       onClick: () {},
       title: "We Are Verifying \nYour PAN",
-      subTitle:
-          "We are validating your ID and Username with the authorities, this may take some time.",
+      subTitle: "We are validating your ID and Username with the authorities, this may take some time.",
     ));
-    var response = await APiProvider().verfiyPanNumber();
+    var response = await APiProvider().verfiyPanNumber(panNumber.value.text);
     if (response != null) {
       Get.back();
       PanStatusModel modal = response;

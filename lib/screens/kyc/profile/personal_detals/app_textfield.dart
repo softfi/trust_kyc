@@ -65,6 +65,25 @@ class AppText extends StatelessWidget {
   }
 }
 
+class DesableAppText extends StatelessWidget {
+  DesableAppText({Key? key, required this.title}) : super(key: key);
+
+  String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: GoogleFonts.sourceSansPro(
+        textStyle: TextStyle(
+            color: Color(0xff22263D).withOpacity(0.50),
+            fontWeight: FontWeight.w500,
+            fontSize: 12),
+      ),
+    );
+  }
+}
+
 class TextContainer extends StatelessWidget {
   TextContainer(
       {Key? key,

@@ -8,6 +8,9 @@ import 'package:video_player/video_player.dart';
 
 import '../../api/apiClient.dart';
 import '../../model/code_verification_response_data.dart';
+import '../../repositories/demat_repository.dart';
+import '../../screens/Congratulations/profile_complete_congratulations.dart';
+import '../../screens/animated_screens/verified_animation.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../personal_details_controller.dart';
 
@@ -37,10 +40,6 @@ class IPVController extends GetxController {
   set cameraController1(value) => cameraController.value = value;
 
   get cameraController1 => cameraController.value;
-
-
-
-
 
   @override
   void onInit() {
@@ -119,21 +118,38 @@ class IPVController extends GetxController {
     }
   }
 
+  // void updateVideo(File file) async {
+  //   debugPrint("=======xfile ${file}");
+  //   // File? file = File(xFile);
+  //   Get.dialog(const Center(
+  //     child: CircularProgressIndicator(),
+  //   ));
+  //   var response = await DematDetailRepository().uploadVideo(file);
+  //   if (response != null) {
+  //     updateData();
+  //     Get.back();
+  //   }
+  //   //ShowCustomSnackBar().SuccessSnackBar(response.toString());
+  // }
+
   void updateVideo(File file) async {
     debugPrint("=======xfile ${file}");
-    // File? file = File(xFile);
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
-    var response = await APiProvider().uploadVideo(file);
+    Get.dialog(
+        VerifiedAnim(title: "We Are Verifying Your Identity", subTitle:"We are validating your ID and Username with the authorities, this may take some time." , image: "assets/images/loding.mp4", onClick: (){})
+    );  print("RResponsive1");
+    var response = await DematDetailRepository().uploadVideo(file);
+    print("REsponsiiiii$response");
     if (response != null) {
+      fileLink.value=response;
       Get.back();
+      updateData(); Get.back();
+      Get.to(ProfileComplete());
 
-      // fileLink=response.video;
-      //updateData();
+    }else{
+
     }
 
-    ShowCustomSnackBar().SuccessSnackBar(response.toString());
+
   }
 
   void updateData() async {

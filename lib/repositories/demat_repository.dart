@@ -16,6 +16,7 @@ import '../model/born_dropdown_response_data.dart';
 import '../model/get_demat_response_data.dart';
 import '../model/nominee_identify_dropdown_response_data.dart';
 import '../model/relationship_dropdown_response_data.dart';
+import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class DematDetailRepository {
@@ -185,4 +186,23 @@ class DematDetailRepository {
       return response;
     }
   }
+
+  uploadVideo(File file) async {
+    var token = await HelperFunctions.getToken();
+    FormData formData = FormData.fromMap({
+      "video": await MultipartFile.fromFile(file.path,filename: file.path.split('/').last),
+    });
+    try {
+      var response= await TrustKycDioClient(token)
+          .upload(endpoint: TrustKycUrl.personVerification, data: formData);
+      if (response.statusCode == 201) {
+        return response.data.toString();
+      }
+
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+
 }

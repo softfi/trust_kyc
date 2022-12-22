@@ -11,8 +11,8 @@ import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.da
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
-
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
+import 'show_personal_details/show_personal_details.dart';
 
 class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
@@ -33,9 +33,7 @@ class MyPersonalDetails extends StatelessWidget {
             child: personaDetail(context))),
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 2,
-            child: EmailVeryfication(
-              onClick: () {},
-            ))),
+            child: EmailVeryfication())),
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 3,
             child: KRARecord())),
@@ -44,6 +42,7 @@ class MyPersonalDetails extends StatelessWidget {
             child: IPVVerification())),
       ],
     );
+    // : ShowPersonalDetails();
   }
 
   Widget personaDetail(BuildContext context) {
