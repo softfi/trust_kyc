@@ -72,18 +72,20 @@ class EmailVeryfication extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isShowing.value == 1,
+                  child: _personalDetailsController
+                              .modaltest.value!.isEmailVerified ==
+                          1
+                      ? verifiedEmail(context)
+                      : emailWidget(context))),
               // Obx(() => Visibility(
-              //     visible: isShowing.value == 1,
-              //     child: _personalDetailsController.modaltest.value!.isEmailVerified == 1
-              //             ? verifiedEmail(context)
-              //             : emailWidget(context))),
-              Obx(() => Visibility(
-                    visible: _personalDetailsController.isShowing.value == 1,
-                    child: emailWidget(context),
-                  )),
-              Obx(() => Visibility(
-                  visible: _personalDetailsController.isShowing.value == 2,
-                  child: verifiedEmail(context))),
+              //       visible: _personalDetailsController.isShowing.value == 1,
+              //       child: emailWidget(context),
+              //     )),
+              // Obx(() => Visibility(
+              //     visible: _personalDetailsController.isShowing.value == 2,
+              //     child: verifiedEmail(context))),
               Obx(() => Visibility(
                   visible: _personalDetailsController.isShowing.value == 3,
                   child: panWidget(context))),
@@ -245,7 +247,10 @@ class EmailVeryfication extends StatelessWidget {
         GestureDetector(
           onTap: () {
             isButtonClick.value = true;
-            _personalDetailsController.modaltest.value!.isPanVerified == 1
+            _personalDetailsController.modaltest.value!.isPanVerified == 1 &&
+                    _personalDetailsController
+                            .modaltest.value!.isAadharVerified ==
+                        1
                 ? _personalDetailsController.isVisible.value = 3
                 : _personalDetailsController.isShowing.value = 3;
           },

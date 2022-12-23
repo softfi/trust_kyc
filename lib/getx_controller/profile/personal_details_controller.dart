@@ -58,6 +58,7 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().personalDetail();
     debugPrint(response.toString());
     if (response != null) {
+      getStatusBar();
       //GetPersonalDetailModel modal = response;
       modaltest.value = response;
       debugPrint("=======0009089 $response");
@@ -118,31 +119,30 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().updatePersonalDeatil();
     debugPrint("=======00090893asdsdadasd3333 $response");
     if (response != null) {
-      debugPrint("=======000908933333 $response");
-      getPersonalDetails();
       isVisible.value = 2;
+      getPersonalDetails();
       Get.back();
     }
     ShowCustomSnackBar().SuccessSnackBar(response.toString());
   }
 
-// void updateStatusBar() async {
-//   Get.dialog(const Center(
-//     child: CircularProgressIndicator(),
-//   ));
-//   var response = await APiProvider().updateprogressbar(updateStatus.value);
-//   if (response != null) {
-//     Get.back();
-//     Get.back();
-//     ShowCustomSnackBar().SuccessSnackBar(response);
-//   }
-// }
-//
-// void getStatusBar() async {
-//   var response = await APiProvider().getProgressBar();
-//   if (response != null) {
-//     barStatusModel.value = response;
-//     ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message==1?"Success":"Failed");
-//   }
-// }
+  void updateStatusBar() async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var response = await APiProvider().updateprogressbar(updateStatus.value);
+    if (response != null) {
+      Get.back();
+      Get.back();
+      ShowCustomSnackBar().SuccessSnackBar(response);
+    }
+  }
+
+  void getStatusBar() async {
+    var response = await APiProvider().getProgressBar();
+    if (response != null) {
+      barStatusModel.value = response;
+     // ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message == 1 ? "Success" : "Failed");
+    }
+  }
 }

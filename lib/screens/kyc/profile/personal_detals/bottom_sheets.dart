@@ -207,7 +207,7 @@ class PersonalBottomSheet {
                       ),
                       InkWell(
                         onTap: () async {
-                         // _personalDetailsController.updateStatusBar();
+                          _personalDetailsController.updateStatusBar();
                         },
                         child: Container(
                           height: 45,

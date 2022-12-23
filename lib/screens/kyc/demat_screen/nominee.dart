@@ -17,6 +17,7 @@ import 'package:trust_money/utils/styles.dart';
 
 class Nominee extends StatefulWidget {
   final void Function()? onClick1;
+
   const Nominee({Key? key, required this.onClick1}) : super(key: key);
 
   @override
@@ -60,6 +61,7 @@ class _NomineeState extends State<Nominee> {
     'Mrs.',
     'Mis.',
   ];
+
   geteDigiLocker() async {
     var res1 = await ProfileRepository().getdigiLocker();
     print("============927 ${res1!.aadharNumber}");
@@ -68,7 +70,6 @@ class _NomineeState extends State<Nominee> {
       setState(() {});
     }
   }
-
 
   Future<void> _selectStartDate(BuildContext context) async {
     final DateTime? pickedStartDate = await showDatePicker(
@@ -139,12 +140,13 @@ class _NomineeState extends State<Nominee> {
     relationshipList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Visibility(visible: isAddNominee, child: nomineeWidget());
   }
 
-  Widget nomineeWidget(){
+  Widget nomineeWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
@@ -182,25 +184,25 @@ class _NomineeState extends State<Nominee> {
                         color: AppColors.textColor),
                     child: Center(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.highlight_remove,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "Close",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.highlight_remove,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Close",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                      ],
+                    )),
                   ),
                 ),
               ),
@@ -328,8 +330,8 @@ class _NomineeState extends State<Nominee> {
                                   width: 1.1, color: AppColors.borderColor),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 14.0),
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton2(
                                   value: mrsValue,
@@ -376,7 +378,7 @@ class _NomineeState extends State<Nominee> {
                             decoration: const InputDecoration(
                               hintText: "Full Name",
                               hintStyle:
-                              const TextStyle(color: Color(0xffC8C7CE)),
+                                  const TextStyle(color: Color(0xffC8C7CE)),
                               border: InputBorder.none,
                               fillColor: Colors.white,
                               contentPadding: EdgeInsets.only(
@@ -587,11 +589,11 @@ class _NomineeState extends State<Nominee> {
                                   autofocus: false,
                                   style: ConstStyle.sourceSans5,
                                   textCapitalization:
-                                  TextCapitalization.characters,
+                                      TextCapitalization.characters,
                                   decoration: InputDecoration(
                                     hintText: "Enter $nomineeProofID",
                                     hintStyle:
-                                    TextStyle(color: Color(0xffC8C7CE)),
+                                        TextStyle(color: Color(0xffC8C7CE)),
                                     border: InputBorder.none,
                                     fillColor: Colors.white,
                                     contentPadding: EdgeInsets.only(
@@ -658,10 +660,9 @@ class _NomineeState extends State<Nominee> {
                           ),
                           child: Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 12.0),
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
@@ -781,7 +782,7 @@ class _NomineeState extends State<Nominee> {
                                   decoration: const InputDecoration(
                                     hintText: "ADDRESS LINE 1",
                                     hintStyle:
-                                    TextStyle(color: Color(0xffC8C7CE)),
+                                        TextStyle(color: Color(0xffC8C7CE)),
                                     border: InputBorder.none,
                                     fillColor: Colors.white,
                                     contentPadding: EdgeInsets.only(
@@ -804,7 +805,7 @@ class _NomineeState extends State<Nominee> {
                                   decoration: const InputDecoration(
                                     hintText: "ADDRESS LINE 2",
                                     hintStyle:
-                                    TextStyle(color: Color(0xffC8C7CE)),
+                                        TextStyle(color: Color(0xffC8C7CE)),
                                     border: InputBorder.none,
                                     fillColor: Colors.white,
                                     contentPadding: EdgeInsets.only(
@@ -837,7 +838,7 @@ class _NomineeState extends State<Nominee> {
                                   decoration: const InputDecoration(
                                     hintText: "Enter Pin Code",
                                     hintStyle:
-                                    TextStyle(color: Color(0xffC8C7CE)),
+                                        TextStyle(color: Color(0xffC8C7CE)),
                                     border: InputBorder.none,
                                     fillColor: Colors.white,
                                     contentPadding: EdgeInsets.only(
@@ -885,7 +886,7 @@ class _NomineeState extends State<Nominee> {
                                                   fontSize: 17.0,
                                                 ),
                                               ) //Id that has to be passed that the dropdo  //e.g   India (Name)    and   its   ID (55fgf5f6frf56f) somethimg like that....
-                                          );
+                                              );
                                         }).toList(),
                                         onChanged: (String? newVal) {
                                           setState(() {
@@ -934,7 +935,7 @@ class _NomineeState extends State<Nominee> {
                                                 child: Text(
                                                   item.cityName,
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   //Names that the api dropdown contains
                                                   style: const TextStyle(
                                                     fontSize: 17.0,
@@ -966,20 +967,19 @@ class _NomineeState extends State<Nominee> {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: InkWell(
                       onTap: () async {
-                        var resData =
-                        await NomineeRepository().addNominee(
+                        var resData = await NomineeRepository().addNominee(
                           title: mrsValue,
                           firstname: nominieefirstName.text.toString(),
                           relationshipwithApplication: relationID!,
                           nominieeIdentify: int.parse(nomineeProofID!),
                           nominieeIdentificationNumber:
-                          nomineeIdentificationNumber.text.toString(),
+                              nomineeIdentificationNumber.text.toString(),
                           mobilenumber: nomineeMobileNumber.text.toString(),
                           dob: dob.toString(),
                           currentaddressLine1:
-                          "${digiLockerDetailModel!.houseNo}, ${digiLockerDetailModel!.location}",
+                              "${digiLockerDetailModel!.houseNo}, ${digiLockerDetailModel!.location}",
                           currentaddressLine2:
-                          digiLockerDetailModel!.villageTownCity,
+                              digiLockerDetailModel!.villageTownCity,
                           currentaddressLine3: digiLockerDetailModel!.country,
                           currentCity: digiLockerDetailModel!.district,
                           currentState: digiLockerDetailModel!.state,
@@ -987,11 +987,10 @@ class _NomineeState extends State<Nominee> {
                           addressLine1: alternateAddress1.text.toString(),
                           addressLine2: alternateAddress2.text.toString(),
                           addreszipCode:
-                          alternatenominieePinCode.text.toString(),
+                              alternatenominieePinCode.text.toString(),
                           alternateaddressState:
-                          alternatenomineeStatedId.toString(),
-                          alternateaddressCity:
-                          alternatenomineeCity.toString(),
+                              alternatenomineeStatedId.toString(),
+                          alternateaddressCity: alternatenomineeCity.toString(),
                         );
                         if (resData != "") {
                           widget.onClick1!();
@@ -1016,9 +1015,9 @@ class _NomineeState extends State<Nominee> {
                               width: 2,
                               color: isnomineeAdded == false
                                   ? (relationID != null &&
-                                  nomineeProofID != null)
-                                  ? AppColors.textColor
-                                  : Color(0xffE1E0E6)
+                                          nomineeProofID != null)
+                                      ? AppColors.textColor
+                                      : Color(0xffE1E0E6)
                                   : Color(0xffFF405A)),
                           color: isnomineeAdded == false
                               ? Colors.white
@@ -1026,19 +1025,19 @@ class _NomineeState extends State<Nominee> {
                         ),
                         child: Center(
                             child: Text(
-                              "Continue",
-                              style: GoogleFonts.quicksand(
-                                textStyle: TextStyle(
-                                    color: isnomineeAdded == false
-                                        ? (relationID != null &&
-                                        nomineeProofID != null)
+                          "Continue",
+                          style: GoogleFonts.quicksand(
+                            textStyle: TextStyle(
+                                color: isnomineeAdded == false
+                                    ? (relationID != null &&
+                                            nomineeProofID != null)
                                         ? AppColors.textColor
                                         : Color(0xffE1E0E6)
-                                        : Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15),
-                              ),
-                            )),
+                                    : Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15),
+                          ),
+                        )),
                       ),
                     ),
                   ),
@@ -1050,9 +1049,6 @@ class _NomineeState extends State<Nominee> {
         ),
       ),
     );
-
-
-
   }
 
   Widget get _space => const SizedBox(height: 20);
