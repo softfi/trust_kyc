@@ -28,7 +28,6 @@ RxList newProfessionalList=List.empty(growable: true).obs;
 
   @override
   void onInit() {
-    authenticatDigilocker();
     getProfessionList();
     debugPrint("======== ======================${urlLink.value}");
     super.onInit();

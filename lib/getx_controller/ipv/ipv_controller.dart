@@ -27,9 +27,7 @@ class IPVController extends GetxController {
   RxString randumNumber4 = "".obs;
   RxBool isSelected = false.obs;
   var file = Rx<File?>(null);
-
   set file1(value) => file.value = value;
-
   get file1 => file.value;
   RxString fileLink = "".obs;
   PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
@@ -48,19 +46,9 @@ class IPVController extends GetxController {
 
   @override
   void onInit() {
-    newCameraController.value = CameraController(
-        CameraDescription(
-            name: "1",
-            lensDirection: CameraLensDirection.front,
-            sensorOrientation: 1),
-        ResolutionPreset.low);
-    newCameraController.value!.initialize().then((value) {
-      return;
-    });
     getIPVCode();
     Future.delayed(const Duration(seconds: 15), () async {
-      file.value =
-          (await cameraController.value!.stopVideoRecording()) as File?;
+      file.value = (await cameraController.value!.stopVideoRecording()) as File?;
       isLoading.value = 1;
       isRecordingStop.value = false;
       isRecordingPlay.value = false;
@@ -71,6 +59,7 @@ class IPVController extends GetxController {
   late VideoPlayerController videoPlayerController12;
 
   void dispose() {
+    newCameraController.value!.dispose();
     videoPlayerController12.dispose();
     videoPlayerController12.pause();
     super.dispose();
@@ -85,16 +74,24 @@ class IPVController extends GetxController {
   }
 
   initCamera() async {
-    final cameras = await availableCameras();
-    final front = cameras.firstWhere(
-        (camera) => camera.lensDirection == CameraLensDirection.front);
-    cameraController.value = CameraController(
-      front,
-      ResolutionPreset.low,
-      imageFormatGroup: ImageFormatGroup.bgra8888,
-    );
-    await cameraController.value!.initialize();
-    isLoading.value = 1;
+    newCameraController.value = CameraController(CameraDescription(
+        name: "1",
+        lensDirection: CameraLensDirection.front,
+        sensorOrientation: 1),
+        ResolutionPreset.low);
+    newCameraController.value!.initialize().then((value) {
+      return;
+    });
+    // final cameras = await availableCameras();
+    // final front = cameras.firstWhere(
+    //     (camera) => camera.lensDirection == CameraLensDirection.front);
+    // cameraController.value = CameraController(
+    //   front,
+    //   ResolutionPreset.low,
+    //   imageFormatGroup: ImageFormatGroup.bgra8888,
+    // );
+    // await cameraController.value!.initialize();
+    // isLoading.value = 1;
   }
 
   recordVideo() async {

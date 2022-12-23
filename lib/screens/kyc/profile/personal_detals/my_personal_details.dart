@@ -13,7 +13,6 @@ import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 
-
 class MyPersonalDetails extends StatelessWidget {
   MyPersonalDetails({Key? key,}) : super(key: key);
   PersonalDetailsController _personalDetailsController =

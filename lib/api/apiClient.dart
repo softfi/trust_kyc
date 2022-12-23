@@ -120,8 +120,7 @@ class APiProvider extends GetConnect {
         return response.body["message"];
       } else {
         Get.back();
-        ShowCustomSnackBar().ErrorSnackBar(
-          response.body["errors"],
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"],
         );
       }
     } catch (e) {
@@ -244,13 +243,15 @@ class APiProvider extends GetConnect {
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint(response.statusCode.toString());
+      debugPrint("response.statusCode " +response.statusCode.toString());
       debugPrint("response.statusCode " +response.body.toString());
       if (response.statusCode == 200) {
         DigiLockerModel model = DigiLockerModel.fromJson(jsonDecode(response.body));
+        debugPrint("response.statusCode12 " +response.body.toString());
         return model;
       }
     } catch (e) {
+      debugPrint("response.statusCode1234 " +e.toString());
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }

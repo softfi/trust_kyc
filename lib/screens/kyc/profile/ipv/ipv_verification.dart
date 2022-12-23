@@ -218,14 +218,9 @@ class IPVVerification extends StatelessWidget {
         () => _ipvController.isLoading.value==1
             ? GestureDetector(
                 onTap: () {
+                  _ipvController.initCamera();
                   _ipvController.newCameraController.value!.prepareForVideoRecording();
                   _ipvController.isLoading.value=2;
-                  // _ipvController.initCamera();
-                  // debugPrint("========5463 ${_ipvController.isLoading.value}");
-                  // _ipvController.isLoading.value = false;
-                  // _ipvController.isRecordingStop.value = true;
-                  // _ipvController.isRecordingPlay.value = false;
-                  // debugPrint("========5463 ${_ipvController.isLoading.value}");
                 },
                 child: Center(
                   child: Container(
