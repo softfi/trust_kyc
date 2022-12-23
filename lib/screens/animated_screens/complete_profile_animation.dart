@@ -21,8 +21,8 @@ class _ProfileAnimationState extends State<ProfileAnimation> {
         setState(() {});
       });
     Future.delayed(const Duration(seconds: 5), () async{
-      await Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ProfileComplete()));
+      // await Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) =>  ProfileComplete()));
     });
     super.initState();
   }

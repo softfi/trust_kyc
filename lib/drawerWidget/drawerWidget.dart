@@ -321,7 +321,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          const MyProfile()));
+                                                           MyProfile()));
                                             },
                                             child: Container(
                                               height: 35,

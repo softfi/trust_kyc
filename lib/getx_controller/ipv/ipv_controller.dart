@@ -12,10 +12,12 @@ import '../../repositories/demat_repository.dart';
 import '../../screens/Congratulations/profile_complete_congratulations.dart';
 import '../../screens/animated_screens/verified_animation.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
+import '../../utils/images.dart';
+import '../auth/pan/pan_controller.dart';
 import '../personal_details_controller.dart';
 
 class IPVController extends GetxController {
-  var   newCameraController=Rxn<CameraController>();
+  var newCameraController = Rxn<CameraController>();
   RxInt isLoading = 1.obs;
   RxBool isRecordingPlay = false.obs;
   RxBool isRecordingStop = false.obs;
@@ -25,10 +27,13 @@ class IPVController extends GetxController {
   RxString randumNumber4 = "".obs;
   RxBool isSelected = false.obs;
   var file = Rx<File?>(null);
+
   set file1(value) => file.value = value;
+
   get file1 => file.value;
-  RxString fileLink="".obs;
+  RxString fileLink = "".obs;
   PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
 
   var videoPlayerController = Rxn<VideoPlayerController>();
 
@@ -43,19 +48,26 @@ class IPVController extends GetxController {
 
   @override
   void onInit() {
-    newCameraController.value = CameraController(CameraDescription(name:"1", lensDirection: CameraLensDirection.front,sensorOrientation: 1 ), ResolutionPreset.low);
-    newCameraController.value!.initialize().then((value)  {
-      return ;
+    newCameraController.value = CameraController(
+        CameraDescription(
+            name: "1",
+            lensDirection: CameraLensDirection.front,
+            sensorOrientation: 1),
+        ResolutionPreset.low);
+    newCameraController.value!.initialize().then((value) {
+      return;
     });
     getIPVCode();
     Future.delayed(const Duration(seconds: 15), () async {
-      file.value = (await cameraController.value!.stopVideoRecording()) as File?;
+      file.value =
+          (await cameraController.value!.stopVideoRecording()) as File?;
       isLoading.value = 1;
       isRecordingStop.value = false;
       isRecordingPlay.value = false;
     });
     super.onInit();
   }
+
   late VideoPlayerController videoPlayerController12;
 
   void dispose() {
@@ -96,16 +108,11 @@ class IPVController extends GetxController {
     await videoPlayerController.value!.initialize();
   }
 
-
-  newInItVideoPlayer()async{
+  newInItVideoPlayer() async {
     videoPlayerController.value =
         VideoPlayerController.file(File(file.value!.path));
     await videoPlayerController.value!.initialize();
   }
-
-
-
-
 
   getIPVCode() async {
     var response = await APiProvider().getIPVCode();
@@ -134,22 +141,28 @@ class IPVController extends GetxController {
 
   void updateVideo(File file) async {
     debugPrint("=======xfile ${file}");
-    Get.dialog(
-        VerifiedAnim(title: "We Are Verifying Your Identity", subTitle:"We are validating your ID and Username with the authorities, this may take some time." , image: "assets/images/loding.mp4", onClick: (){})
-    );  print("RResponsive1");
+    Get.dialog(VerifiedAnim(
+        title: "We Are Verifying Your Identity",
+        subTitle: "We are validating your ID and Username with the authorities, this may take some time.",
+        image: "assets/images/loding.mp4",
+        onClick: () {}));
+    print("RResponsive1");
     var response = await DematDetailRepository().uploadVideo(file);
     print("REsponsiiiii$response");
     if (response != null) {
-      fileLink.value=response;
+      fileLink.value = response;
       Get.back();
-      updateData(); Get.back();
-      Get.to(ProfileComplete());
-
-    }else{
-
+      updateData();
+      Get.back();
+      Get.to(CustomCongratulations(
+        title: 'Congratulations! ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panFname} \nIdentity Verification \ncompleted Successfully',
+        image: ConstantImage.profile,
+      ))!.then((value) {
+        Future.delayed(const Duration(seconds: 4), () {
+          _personalDetailsController.selectedIndex.value = 1;
+        });
+      });
     }
-
-
   }
 
   void updateData() async {

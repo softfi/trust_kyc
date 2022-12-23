@@ -21,10 +21,11 @@ class KRAController extends GetxController {
   var maidenName = TextEditingController();
   DigiLockerDetailModel? digiLockerDetailModel;
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+  Get.put(PersonalDetailsController());//list sa=[]
   ProfessionModel? _professionModel;
   RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
 RxList newProfessionalList=List.empty(growable: true).obs;
+
   @override
   void onInit() {
     authenticatDigilocker();

@@ -180,6 +180,33 @@ class APiProvider extends GetConnect {
     }
   }
 
+  verifyGoogleGmail() async {
+    PersonalDetailsController _controller =
+    Get.put(PersonalDetailsController());
+    var token = await HelperFunctions.getToken();
+    var body = {"email_id": _controller.mail.value, "is_verified": true};
+    debugPrint(_controller.mail.value);
+    try {
+      var response = await post(
+          TrustKycUrl.baseUrl + TrustKycUrl.verifyEmail, body,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("response.statusCode.toString()");
+      debugPrint(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        debugPrint(response.body.toString());
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
   verfiyPanNumber(String PAN) async {
     // PersonalDetailsController _controller = Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
@@ -243,33 +270,6 @@ class APiProvider extends GetConnect {
         DigiLockerDetailModel model =
         DigiLockerDetailModel.fromJson(response.body);
         return model;
-      }
-    } catch (e) {
-      ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    }
-  }
-
-  verifyGoogleGmail() async {
-    PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
-    var token = await HelperFunctions.getToken();
-    var body = {"email_id": _controller.mail.value, "is_verified": true};
-    debugPrint(_controller.mail.value);
-    try {
-      var response = await post(
-          TrustKycUrl.baseUrl + TrustKycUrl.verifyEmail, body,
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': token,
-          });
-      debugPrint("response.statusCode.toString()");
-      debugPrint(response.statusCode.toString());
-      if (response.statusCode == 200) {
-        debugPrint(response.body.toString());
-        return true;
-      } else {
-        return false;
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());

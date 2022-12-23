@@ -12,11 +12,10 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
-import 'show_personal_details/show_personal_details.dart';
+
 
 class MyPersonalDetails extends StatelessWidget {
-  MyPersonalDetails({Key? key, this.onClick}) : super(key: key);
-  final void Function()? onClick;
+  MyPersonalDetails({Key? key,}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
 
@@ -173,8 +172,7 @@ class MyPersonalDetails extends StatelessWidget {
                           value: _personalDetailsController
                               .potentiallyExposedStatus.value,
                           onChanged: (value) {
-                            _personalDetailsController
-                                .potentiallyExposedStatus.value = value;
+                            _personalDetailsController.potentiallyExposedStatus.value = value;
                             if (value == true) {
                               _personalDetailsController
                                   .potentiallyExposedStatusInt.value = 1;
@@ -287,11 +285,9 @@ class MyPersonalDetails extends StatelessWidget {
                               _personalDetailsController.isChecked2.value =
                                   value!;
                               if (value == true) {
-                                _personalDetailsController.isCheckedInt2.value =
-                                    1;
+                                _personalDetailsController.isCheckedInt2.value = 1;
                               } else {
-                                _personalDetailsController.isCheckedInt2.value =
-                                    0;
+                                _personalDetailsController.isCheckedInt2.value = 0;
                               }
                             },
                           )),

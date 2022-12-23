@@ -22,7 +22,7 @@ class _NewDematAnimationState extends State<NewDematAnimation> {
       });
     Future.delayed(Duration(seconds: 5), () async{
       await Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const MyProfile()));
+          MaterialPageRoute(builder: (context) =>  MyProfile()));
     });
     super.initState();
   }

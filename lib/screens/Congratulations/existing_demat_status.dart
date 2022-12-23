@@ -18,7 +18,7 @@ class _DematStatusState extends State<DematStatus> {
     super.initState();
     Future.delayed(Duration(seconds: 4), () async{
      await Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const MyProfile()));
+          MaterialPageRoute(builder: (context) =>  MyProfile()));
     });
   }
 

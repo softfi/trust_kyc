@@ -232,7 +232,7 @@ class _ChooseScreenState extends State<ChooseScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MyProfile()));
+                                builder: (context) =>  MyProfile()));
                       },
                       child: Container(
                         height: 45,

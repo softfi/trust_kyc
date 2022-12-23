@@ -15,7 +15,7 @@ class _CongratulationState extends State<Congratulation> {
   void initState() {
     Future.delayed(Duration(seconds: 3),(){
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const MyProfile()));
+          MaterialPageRoute(builder: (context) => MyProfile()));
     });
     // TODO: implement initState
     super.initState();

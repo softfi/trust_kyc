@@ -24,6 +24,10 @@ class PersonalDetailsController extends GetxController {
   RxBool activateFuture = false.obs;
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
+  RxInt selectedIndex = 0.obs;
+  RxBool barLine = true.obs;
+  RxBool tabVisible = false.obs;
+  var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
 
@@ -36,12 +40,20 @@ class PersonalDetailsController extends GetxController {
 
   @override
   void onInit() {
-    // getStatusBar();
+    getKycStatus();
     getPerferences();
     super.onInit();
   }
 
-   getPersonalDetails() async {
+  getKycStatus() async {
+    var isKyc = await HelperFunctions.getUserKycCompleted();
+    if (isKyc == true) {
+      tabVisible.value = true;
+      barLine.value = false;
+    }
+  }
+
+  getPersonalDetails() async {
     var response = await APiProvider().personalDetail();
     debugPrint(response.toString());
     if (response != null) {
