@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
-import '../model/status_bar/progress_status_bar.dart';
-import '../utils/sharedPreference.dart';
+import '../../model/status_bar/progress_status_bar.dart';
+import '../../utils/helper_widget/custom_snsckbar.dart';
+import '../../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
   Rx<TextEditingController> emailID = TextEditingController().obs;
@@ -30,7 +31,6 @@ class PersonalDetailsController extends GetxController {
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
-
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
   var modaltest = Rxn<GetPersonalDetailModel>();
@@ -41,6 +41,7 @@ class PersonalDetailsController extends GetxController {
   @override
   void onInit() {
     getKycStatus();
+    getPersonalDetails();
     getPerferences();
     super.onInit();
   }
@@ -57,22 +58,20 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().personalDetail();
     debugPrint(response.toString());
     if (response != null) {
-      GetPersonalDetailModel modal = response;
-      modaltest = response;
-      await HelperFunctions.saveFirstName(
-          response.body[modal.firstname].toString());
-      await HelperFunctions.saveLastName(
-          response.body[modal.lastname].toString());
+      //GetPersonalDetailModel modal = response;
+      modaltest.value = response;
+      debugPrint("=======0009089 $response");
       // firstName.value.text = modal.firstname;
       // lastName.value.text = modal.lastname;
       // mobileNumber.value = modal.mobileNumber;
-      emailID.value.text = modal.emailId.toString();
-      checkProfileStatus.value = modal.mothersMaidenName.toString();
-      await HelperFunctions.saveFirstName(modal.firstname.toString());
-      await HelperFunctions.saveLastName(modal.lastname.toString());
+      emailID.value.text = modaltest.value!.emailId.toString();
+      checkProfileStatus.value = modaltest.value!.mothersMaidenName.toString();
+      await HelperFunctions.saveFirstName(
+          modaltest.value!.firstname.toString());
+      await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
-      dob.value = dob.value = DateFormat('dd-MM-yyyy').format(modal.dob);
+      dob.value = DateFormat('dd-MM-yyyy').format(modaltest.value!.dob);
     }
   }
 
@@ -117,16 +116,14 @@ class PersonalDetailsController extends GetxController {
       child: CircularProgressIndicator(),
     ));
     var response = await APiProvider().updatePersonalDeatil();
+    debugPrint("=======00090893asdsdadasd3333 $response");
     if (response != null) {
+      debugPrint("=======000908933333 $response");
       getPersonalDetails();
       isVisible.value = 2;
       Get.back();
     }
-    Get.showSnackbar(GetSnackBar(
-      messageText: Text(response.toString()),
-      duration: const Duration(seconds: 2),
-      backgroundColor: Colors.green,
-    ));
+    ShowCustomSnackBar().SuccessSnackBar(response.toString());
   }
 
 // void updateStatusBar() async {

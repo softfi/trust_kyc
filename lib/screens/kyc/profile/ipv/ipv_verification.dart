@@ -11,7 +11,7 @@ import 'package:trust_money/screens/animated_screens/vedio_page.dart';
 import 'package:trust_money/screens/kyc/profile/ipv/vedio_preview.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';

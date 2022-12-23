@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 
-import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../getx_controller/profile/personal_details_controller.dart';
 
 class PersonalBottomSheet {
   static closeApplicationBottomSheet(BuildContext context) {

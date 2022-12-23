@@ -11,11 +11,12 @@ import '../../../screens/kyc/profile/personal_detals/my_personal_details.dart';
 import '../../../utils/colorsConstant.dart';
 import '../../../utils/images.dart';
 import '../../../utils/sharedPreference.dart';
-import '../../personal_details_controller.dart';
+import '../../kra/kra_controller.dart';
+import '../../profile/personal_details_controller.dart';
 
 class PanCardUserDeatils extends GetxController {
-  PanStatusModel? panDataModal;
   RxString panName = "".obs;
+  var panDataModal = Rxn<PanStatusModel>();
   Rx<TextEditingController> panNumber = TextEditingController().obs;
 
   verifyPan() async {
@@ -23,14 +24,16 @@ class PanCardUserDeatils extends GetxController {
       image: "assets/images/loding.mp4",
       onClick: () {},
       title: "We Are Verifying \nYour PAN",
-      subTitle: "We are validating your ID and Username with the authorities, this may take some time.",
+      subTitle:
+          "We are validating your ID and Username with the authorities, this may take some time.",
     ));
     var response = await APiProvider().verfiyPanNumber(panNumber.value.text);
     if (response != null) {
       Get.back();
       PanStatusModel modal = response;
-      panDataModal = response;
-      panName.value = "${modal..panFname} ${modal..panMname} ${modal..panLname}";
+      panDataModal.value = response;
+      panName.value =
+          "${modal..panFname} ${modal..panMname} ${modal..panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
           Get.to(Digilocker());
@@ -50,7 +53,9 @@ class PanCardUserDeatils extends GetxController {
     }
   }
 
-  void bottomSheet(String msg,) {
+  void bottomSheet(
+    String msg,
+  ) {
     Get.bottomSheet(
         Wrap(
           children: [

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
-import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
 import '../getx_controller/ipv/ipv_controller.dart';
@@ -28,7 +28,7 @@ class APiProvider extends GetConnect {
       var token = await HelperFunctions.getToken();
       debugPrint("======token $token");
       var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, headers: {
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
@@ -37,7 +37,7 @@ class APiProvider extends GetConnect {
       debugPrint(response.body.toString());
       if (response.statusCode == 200) {
         GetPersonalDetailModel model =
-        GetPersonalDetailModel.fromJson(response.body);
+            GetPersonalDetailModel.fromJson(response.body);
         debugPrint("======getProfile1212121 ${response.body.toString()}");
         return model;
       }
@@ -50,87 +50,93 @@ class APiProvider extends GetConnect {
   updatePersonalDeatil() async {
     IPVController _ipvController = Get.put(IPVController());
     PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
+        Get.put(PersonalDetailsController());
     KRAController _kRAController = Get.put(KRAController());
     var token = await HelperFunctions.getToken();
     String correctedDate =
-        "${_controller.currentStartDate.value.day}-${_controller
-        .currentStartDate.value.month}-${_controller.currentStartDate.value
-        .year}";
-    debugPrint(correctedDate);
+        "${_controller.currentStartDate.value.day}-${_controller.currentStartDate.value.month}-${_controller.currentStartDate.value.year}";
+    debugPrint((_kRAController.maidenName != null)
+        ? "${_kRAController.maidenName.value.text}"
+        : "");
+
     var body = {
-      "firstname": "${_controller.firstName.value.text}",
-      "lastname": "${_controller.lastName.value.text}",
-      "dob": "$correctedDate",
+      "firstname": _controller.firstName.value.text ?? "",
+      "lastname": _controller.lastName.value.text ?? "",
+      "dob": correctedDate,
       "smart_card_required": 0,
       "smart_card_number": "string",
       "smart_card_PIN": "string",
-      "gender": _kRAController.isGenderSelect.value,
-      "married_status": _kRAController.isMaritalSelect.value,
-      "mothers_maiden_name": "${_kRAController.maidenName.value.text}",
-      "annual_income": _kRAController.isEnComeSelect.value,
-      "trading_experience": _kRAController.isExperienceSelect.value,
-      "occupation": "${_kRAController.professionId.value}",
+      "gender": _kRAController.isGenderSelect.value ?? 0,
+      "married_status": _kRAController.isMaritalSelect.value ?? 0,
+      "mothers_maiden_name": "string",
+      "annual_income": _kRAController.isEnComeSelect.value ?? 0,
+      "trading_experience": _kRAController.isExperienceSelect.value ?? 0,
+      "occupation": "String",
       "lifestyle": "string",
       "geogriphical_code": "string",
       "education_degree": "string",
-      "address_line_1": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.landmark}"
-          : "",
-      "address_line_2": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.location}"
-          : "",
-      "address_line_3": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.villageTownCity}"
-          : "",
-      "address_zip": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.pincode}"
-          : "",
+      "address_line_1": "string",
+      "address_line_2": "string",
+      "address_line_3": "string",
+      "address_zip": "string",
       "address_state_code": "string",
-      "address_state": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.state}"
-          : "",
-      "address_city": (_kRAController.digiLockerDetailModel != null)
-          ? "${_kRAController.digiLockerDetailModel!.district}"
-          : "",
+      "address_state": "string",
+      "address_city": "string",
       "city_sequence_no": "string",
       "family_account": "string",
       "mental_disability": "string",
       "profile_image": "string",
-      "verification_video": _ipvController.fileLink.value ?? "",
+      "verification_video": "string",
+      /*_ipvController.fileLink.value ?? */
       "proof_type": "string",
       "proof_front_image": "string",
       "proof_back_image": "string",
       "manager_id": 0,
       "is_politically_exposed": _controller.potentiallyExposedStatusInt.value,
-      "filled_itr_last_2years": _kRAController.isRTRInt.value,
+      "filled_itr_last_2years": _kRAController.isRTRInt.value ?? 0,
       "would_you_like_to_activate": _controller.activateFutureInt.value,
       "check_box_share_data_with_company": _controller.isCheckedInt1.value,
       "check_box_share_data_with_govt": _controller.isCheckedInt2.value
     };
+
+    print("_kRAController.maidenName" + body.toString());
     try {
-      var response = await put(
-          TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, body,
+      var response = await http.put(
+          Uri.parse("https://trust-api.trustmony.com/api/v1/personal_details"),
+          body: jsonEncode(body),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
+      var response1 = await put(
+          TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, jsonEncode(body),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("correctedDate ${response.statusCode}");
+      debugPrint("correctedDate ${response.body.toString()}");
+      var res = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        return response.body["message"];
+        debugPrint("correctedDate1222 ${response.body.toString()}");
+        return res["message"];
       } else {
         Get.back();
-        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"],
+        ShowCustomSnackBar().ErrorSnackBar(
+          res["errors"],
         );
       }
     } catch (e) {
+      debugPrint("correctedDate22222 ${e.toString()}");
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 
   SendKycEmailOtp(String email, bool isResend) async {
     PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
+        Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     try {
       var body = {
@@ -140,7 +146,7 @@ class APiProvider extends GetConnect {
       };
 
       var response = await post(
-          TrustKycUrl.baseUrl + TrustKycUrl.sentEmailOTP, body,
+          TrustKycUrl.baseUrl + TrustKycUrl.sentEmailOTP, jsonEncode(body),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -181,7 +187,7 @@ class APiProvider extends GetConnect {
 
   verifyGoogleGmail() async {
     PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
+        Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     var body = {"email_id": _controller.mail.value, "is_verified": true};
     debugPrint(_controller.mail.value);
@@ -212,7 +218,8 @@ class APiProvider extends GetConnect {
     debugPrint("======PAN ${token}");
     try {
       var response = await http.get(
-          Uri.parse("https://trust-api.trustmony.com/api/v1/pan_verify?pan_no=$PAN"),
+          Uri.parse(
+              "https://trust-api.trustmony.com/api/v1/pan_verify?pan_no=$PAN"),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -220,12 +227,10 @@ class APiProvider extends GetConnect {
           });
       debugPrint("======PAN ${response.statusCode}");
       if (response.statusCode == 200) {
-        PanStatusModel modal = PanStatusModel.fromJson(jsonDecode(response.body));
+        PanStatusModel modal =
+            PanStatusModel.fromJson(jsonDecode(response.body));
         debugPrint("======PAN12 ${response.body.toString()}");
         return modal;
-      } else {
-        Get.back();
-      //  ShowCustomSnackBar().ErrorSnackBar(response.body["errors"].toString());
       }
     } catch (e) {
       debugPrint("======PAN123 ${e.toString()}");
@@ -237,21 +242,23 @@ class APiProvider extends GetConnect {
     try {
       var token = await HelperFunctions.getToken();
       var response = await http.get(
-          Uri.parse("https://trust-api.trustmony.com/api/v1/authentication_digilocker?platform=mobile"),
+          Uri.parse(
+              "https://trust-api.trustmony.com/api/v1/authentication_digilocker?platform=mobile"),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
-      debugPrint("response.statusCode " +response.statusCode.toString());
-      debugPrint("response.statusCode " +response.body.toString());
+      debugPrint("response.statusCode " + response.statusCode.toString());
+      debugPrint("response.statusCode " + response.body.toString());
       if (response.statusCode == 200) {
-        DigiLockerModel model = DigiLockerModel.fromJson(jsonDecode(response.body));
-        debugPrint("response.statusCode12 " +response.body.toString());
+        DigiLockerModel model =
+            DigiLockerModel.fromJson(jsonDecode(response.body));
+        debugPrint("response.statusCode12 " + response.body.toString());
         return model;
       }
     } catch (e) {
-      debugPrint("response.statusCode1234 " +e.toString());
+      debugPrint("response.statusCode1234 " + e.toString());
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
@@ -260,7 +267,7 @@ class APiProvider extends GetConnect {
     try {
       var token = await HelperFunctions.getToken();
       var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
@@ -269,7 +276,7 @@ class APiProvider extends GetConnect {
       debugPrint("=======res ${response.statusCode}");
       if (response.statusCode == 200) {
         DigiLockerDetailModel model =
-        DigiLockerDetailModel.fromJson(response.body);
+            DigiLockerDetailModel.fromJson(response.body);
         return model;
       }
     } catch (e) {
@@ -282,7 +289,7 @@ class APiProvider extends GetConnect {
       List<ProfessionModel> temp = List.empty(growable: true);
       var token = await HelperFunctions.getToken();
       var response =
-      await get(TrustKycUrl.baseUrl + TrustKycUrl.profession, headers: {
+          await get(TrustKycUrl.baseUrl + TrustKycUrl.profession, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
@@ -344,7 +351,7 @@ class APiProvider extends GetConnect {
           });
       if (response.statusCode == 200) {
         CodeVerificationModel model =
-        CodeVerificationModel.fromJson(response.body);
+            CodeVerificationModel.fromJson(response.body);
         return model;
       }
     } catch (e) {
@@ -359,7 +366,7 @@ class APiProvider extends GetConnect {
           "?isin=$isinNo&number_of_bonds=$bondNo");
       if (response.statusCode == 200) {
         InvestmentCalculatorModal modal =
-        InvestmentCalculatorModal.fromJson(response.body);
+            InvestmentCalculatorModal.fromJson(response.body);
         return modal;
       }
     } catch (e) {

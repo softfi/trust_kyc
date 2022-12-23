@@ -12,7 +12,7 @@ import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
 
-import '../../../getx_controller/personal_details_controller.dart';
+import '../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../getx_controller/profile/profile_controller.dart';
 
 // class MyProfile extends StatefulWidget {

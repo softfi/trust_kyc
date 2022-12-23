@@ -105,8 +105,9 @@ class Digilocker extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () async {
+                    _kRAController.authenticatDigilocker();
                     if (_kRAController.isChecked.value == true) {
-                      // debugPrint("========url ${_kRAController.urlLink.value}");
+                      debugPrint("===99999999999urlLInk ${_kRAController.urlLink.value}");
                       Get.to(MyWebView(url: _kRAController.urlLink.value));
                     } else {
                       Fluttertoast.showToast(

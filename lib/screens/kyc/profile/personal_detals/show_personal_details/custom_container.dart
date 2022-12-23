@@ -2,6 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class DesableTitleText extends StatelessWidget {
+  DesableTitleText({Key? key, required this.title}) : super(key: key);
+
+  String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: GoogleFonts.sourceSansPro(
+        textStyle: const TextStyle(
+            color: Color(0xff22263D),
+            letterSpacing: 2,
+            fontWeight: FontWeight.w500,
+            fontSize: 16),
+      ),
+    );
+  }
+}
+
 class MyContainer {
   static verifiedContainer() {
     return Container(

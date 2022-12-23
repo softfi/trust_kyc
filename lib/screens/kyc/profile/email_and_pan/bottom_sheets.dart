@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/api/apiClient.dart';
-import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/images.dart';
@@ -331,6 +331,7 @@ class EmailPANBottomSheet {
       ));
       var response = await APiProvider().verifyOtp(email, otp);
       if (response != null) {
+        _personalDetailsController.getPersonalDetails();
         Get.back();
         Get.back();
         _personalDetailsController.isShowing.value = 3;

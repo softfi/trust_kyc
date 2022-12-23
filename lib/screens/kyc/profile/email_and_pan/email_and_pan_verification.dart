@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/bottom_sheets.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import '../../../../getx_controller/auth/pan/pan_controller.dart';
-import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../utils/google_sign_in.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/styles.dart';

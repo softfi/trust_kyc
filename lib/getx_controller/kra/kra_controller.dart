@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/utils/helper_widget/custom_snsckbar.dart';
 import '../../api/apiClient.dart';
 import '../../model/digiLocker_response_data.dart';
@@ -13,18 +13,17 @@ class KRAController extends GetxController {
   RxBool isChecked = false.obs;
   RxBool isRTR = false.obs;
   RxString professionId = "".obs;
+  RxString motherName = "".obs;
   RxInt isRTRInt = 0.obs;
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
   RxInt isExperienceSelect = 0.obs;
   var maidenName = TextEditingController();
-  DigiLockerDetailModel? digiLockerDetailModel;
-  PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());//list sa=[]
-  ProfessionModel? _professionModel;
+  var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController()); //list sa=[]
   RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
-RxList newProfessionalList=List.empty(growable: true).obs;
+  RxList newProfessionalList = List.empty(growable: true).obs;
 
   @override
   void onInit() {
@@ -34,12 +33,18 @@ RxList newProfessionalList=List.empty(growable: true).obs;
   }
 
   void authenticatDigilocker() async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
     var response = await APiProvider().authenticateDigilocker();
     if (response != null) {
-      DigiLockerModel digiLockerModel = response;
-      urlLink.value = digiLockerModel.link;
+      Get.back();
       getDigilockerData();
+      DigiLockerModel digiLockerModel = response;
+      urlLink.value = digiLockerModel.link.toString();
       debugPrint("======== ${urlLink.value}");
+    }else{
+      Get.back();
     }
   }
 
@@ -47,7 +52,7 @@ RxList newProfessionalList=List.empty(growable: true).obs;
     var response = await APiProvider().digilockerData();
     if (response != null) {
       DigiLockerDetailModel digiLockerModel = response;
-      digiLockerDetailModel = response;
+      digiLockerDetailModel.value = response;
       if (digiLockerModel.gender == "M") {
         isGenderSelect.value = 1;
       } else if (digiLockerModel.gender == "F") {
@@ -61,9 +66,10 @@ RxList newProfessionalList=List.empty(growable: true).obs;
   void getProfessionList() async {
     var response = await APiProvider().getOccupationList();
     if (response != null) {
-      professionList.value=response;
-      professionList.value.forEach((element) {newProfessionalList.value.add(element.professionName);});
-
+      professionList.value = response;
+      professionList.value.forEach((element) {
+        newProfessionalList.value.add(element.professionName);
+      });
     }
   }
 
@@ -74,17 +80,17 @@ RxList newProfessionalList=List.empty(growable: true).obs;
       ShowCustomSnackBar().ErrorSnackBar("Select Your Marital Status");
     } else if (isEnComeSelect == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Select Your Annual Income");
-    }else if (professionId.value == null) {
+    } else if (professionId.value == null) {
       ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
-    }  else if (isExperienceSelect == 0) {
+    } else if (isExperienceSelect == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Select Your Experience");
-    }else if (maidenName.text.isEmpty) {
+    } else if (maidenName.text.isEmpty) {
       ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
-    }else{
+    } else {
+      motherName.value = maidenName.value.text;
       updateData();
     }
   }
-
   void updateData() async {
     Get.dialog(const Center(
       child: CircularProgressIndicator(),

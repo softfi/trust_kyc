@@ -2,7 +2,7 @@ import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
 import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
@@ -14,7 +14,9 @@ import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 
 class MyPersonalDetails extends StatelessWidget {
-  MyPersonalDetails({Key? key,}) : super(key: key);
+  MyPersonalDetails({
+    Key? key,
+  }) : super(key: key);
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController());
 
@@ -106,11 +108,11 @@ class MyPersonalDetails extends StatelessWidget {
                 ),
                 _space1,
                 Obx(() => AppTextField(
-                      textCapitalization: TextCapitalization.words,
-                      hint: ' ',
-                      controller: _personalDetailsController.lastName.value,
-                      textInputType: TextInputType.text,
-                    )),
+                  textCapitalization: TextCapitalization.words,
+                  hint: ' ',
+                  controller: _personalDetailsController.lastName.value,
+                  textInputType: TextInputType.text,
+                )),
                 _space,
                 AppText(
                   title: 'Mobile Name* ',
@@ -171,7 +173,8 @@ class MyPersonalDetails extends StatelessWidget {
                           value: _personalDetailsController
                               .potentiallyExposedStatus.value,
                           onChanged: (value) {
-                            _personalDetailsController.potentiallyExposedStatus.value = value;
+                            _personalDetailsController
+                                .potentiallyExposedStatus.value = value;
                             if (value == true) {
                               _personalDetailsController
                                   .potentiallyExposedStatusInt.value = 1;
@@ -284,9 +287,11 @@ class MyPersonalDetails extends StatelessWidget {
                               _personalDetailsController.isChecked2.value =
                                   value!;
                               if (value == true) {
-                                _personalDetailsController.isCheckedInt2.value = 1;
+                                _personalDetailsController.isCheckedInt2.value =
+                                    1;
                               } else {
-                                _personalDetailsController.isCheckedInt2.value = 0;
+                                _personalDetailsController.isCheckedInt2.value =
+                                    0;
                               }
                             },
                           )),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/getx_controller/personal_details_controller.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
@@ -30,7 +30,7 @@ class PANVerified extends StatelessWidget {
             ),
           ),
           Text(
-              "Hi ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panMname} ${_panCardUserDeatils.panDataModal!.panLname}",
+              "Hi ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panMname} ${_panCardUserDeatils.panDataModal.value!.panLname}",
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 18,
@@ -53,7 +53,7 @@ class PANVerified extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       bottom: 6.0, left: 4, right: 4, top: 6),
                   child: Text(
-                    "I confirm to open the account in the same name of \n ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panMname} ${_panCardUserDeatils.panDataModal!.panLname} ",
+                    "I confirm to open the account in the same name of \n ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panMname} ${_panCardUserDeatils.panDataModal.value!.panLname} ",
                     textAlign: TextAlign.center,
                     maxLines: 3,
                     style: GoogleFonts.sourceSansPro(
@@ -75,7 +75,7 @@ class PANVerified extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: InkWell(
               onTap: () {
-               Get.back();
+                Get.back();
               },
               child: Container(
                 height: 45,

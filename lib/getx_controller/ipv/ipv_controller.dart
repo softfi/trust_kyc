@@ -14,7 +14,7 @@ import '../../screens/animated_screens/verified_animation.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/images.dart';
 import '../auth/pan/pan_controller.dart';
-import '../personal_details_controller.dart';
+import '../profile/personal_details_controller.dart';
 
 class IPVController extends GetxController {
   var newCameraController = Rxn<CameraController>();
@@ -32,16 +32,11 @@ class IPVController extends GetxController {
   RxString fileLink = "".obs;
   PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
-
   var videoPlayerController = Rxn<VideoPlayerController>();
-
   set videoPlayController1(value) => videoPlayerController.value = value;
-
   get videoPlayController1 => videoPlayerController.value;
   var cameraController = Rx<CameraController?>(null);
-
   set cameraController1(value) => cameraController.value = value;
-
   get cameraController1 => cameraController.value;
 
   @override
@@ -152,7 +147,7 @@ class IPVController extends GetxController {
       updateData();
       Get.back();
       Get.to(CustomCongratulations(
-        title: 'Congratulations! ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panFname} ${_panCardUserDeatils.panDataModal!.panFname} \nIdentity Verification \ncompleted Successfully',
+        title: 'Congratulations! ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panFname} \nIdentity Verification \ncompleted Successfully',
         image: ConstantImage.profile,
       ))!.then((value) {
         Future.delayed(const Duration(seconds: 4), () {

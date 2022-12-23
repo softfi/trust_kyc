@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/profession_response_data.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/filterChip.dart';
+import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
-import '../../../../getx_controller/personal_details_controller.dart';
+import '../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/styles.dart';
@@ -38,9 +39,9 @@ class chipModel {
 
 class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
   KRAController _kRAController = Get.put(KRAController());
+  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   RxBool isButtonClick = false.obs;
   RxList<String> genderList = [
     "",
@@ -135,7 +136,7 @@ class KRARecord extends StatelessWidget {
       _space,
       Text(
         /*${_panCardUserDeatils.panName}*/
-        "Hey, Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey, ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panMname} ${_panCardUserDeatils.panDataModal.value!.panLname} Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,
@@ -146,7 +147,7 @@ class KRARecord extends StatelessWidget {
       TextContainer(
         color: Color(0xffF7F7FA),
         titleText: (_kRAController.digiLockerDetailModel != null)
-            ? _kRAController.digiLockerDetailModel!.aadharNumber
+            ? _kRAController.digiLockerDetailModel.value!.aadharNumber
             : "",
         perfixIcon: Container(),
         postfixIcon: Container(),
@@ -167,7 +168,7 @@ class KRARecord extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: Text(
             (_kRAController.digiLockerDetailModel != null)
-                ? "${_kRAController.digiLockerDetailModel!.location}, ${_kRAController.digiLockerDetailModel!.villageTownCity}, \n${_kRAController.digiLockerDetailModel!.district}, \n${_kRAController.digiLockerDetailModel!.state},  \n${_kRAController.digiLockerDetailModel!.pincode}"
+                ? "${_kRAController.digiLockerDetailModel.value!.location}, ${_kRAController.digiLockerDetailModel.value!.villageTownCity}, \n${_kRAController.digiLockerDetailModel.value!.district}, \n${_kRAController.digiLockerDetailModel.value!.state},  \n${_kRAController.digiLockerDetailModel.value!.pincode}"
                 : "",
             style: GoogleFonts.sourceSansPro(
               textStyle: const TextStyle(

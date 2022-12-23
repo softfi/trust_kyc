@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
-import '../../../../../getx_controller/personal_details_controller.dart';
+import '../../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../../utils/strings.dart';
 import '../../../../../utils/styles.dart';
 import '../app_textfield.dart';
@@ -1253,7 +1253,6 @@ class ShowPersonalDetails extends StatelessWidget {
           ],
         ),
         _space,
-
         _space,
         DesableAppText(
           title: 'IPV',
@@ -1314,22 +1313,4 @@ class ShowPersonalDetails extends StatelessWidget {
   Widget get _space1 => const SizedBox(height: 5);
 }
 
-class DesableTitleText extends StatelessWidget {
-  DesableTitleText({Key? key, required this.title}) : super(key: key);
 
-  String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: GoogleFonts.sourceSansPro(
-        textStyle: const TextStyle(
-            color: Color(0xff22263D),
-            letterSpacing: 2,
-            fontWeight: FontWeight.w500,
-            fontSize: 16),
-      ),
-    );
-  }
-}

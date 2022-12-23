@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/utils/helper_widget/custom_snsckbar.dart';
 
-import '../getx_controller/personal_details_controller.dart';
+import '../getx_controller/profile/personal_details_controller.dart';
 import '../screens/Congratulations/email_congratulations.dart';
 import '../screens/animated_screens/verified_animation.dart';
 
