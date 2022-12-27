@@ -74,10 +74,12 @@ class EmailVeryfication extends StatelessWidget {
               ),
               Obx(() => Visibility(
                   visible: _personalDetailsController.isShowing.value == 1,
-                  child: _personalDetailsController
-                              .modaltest.value!.isEmailVerified ==
-                          1
-                      ? verifiedEmail(context)
+                  child: _personalDetailsController.modaltest.value != null
+                      ? _personalDetailsController
+                                  .modaltest.value!.isEmailVerified ==
+                              1
+                          ? verifiedEmail(context)
+                          : emailWidget(context)
                       : emailWidget(context))),
               // Obx(() => Visibility(
               //       visible: _personalDetailsController.isShowing.value == 1,
@@ -120,11 +122,11 @@ class EmailVeryfication extends StatelessWidget {
               builder: (context, snapshot) {
                 //we will handle the different state like islogging in or is logged out
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (snapshot.hasError) {
-                  return Center(
+                  return const Center(
                     child: Text("Something went wrong"),
                   );
                 } else {
@@ -177,7 +179,6 @@ class EmailVeryfication extends StatelessWidget {
                   context,
                   _personalDetailsController.emailID.value,
                 );
-                //onEmailAddedBottomSheet();
               },
               child: Container(
                   height: 55,
@@ -247,12 +248,14 @@ class EmailVeryfication extends StatelessWidget {
         GestureDetector(
           onTap: () {
             isButtonClick.value = true;
-            _personalDetailsController.modaltest.value!.isPanVerified == 1 &&
-                    _personalDetailsController
-                            .modaltest.value!.isAadharVerified ==
-                        1
-                ? _personalDetailsController.isVisible.value = 3
-                : _personalDetailsController.isShowing.value = 3;
+            if (_personalDetailsController.modaltest.value != null) {
+              _personalDetailsController.modaltest.value!.isPanVerified == 1 &&
+                      _personalDetailsController
+                              .modaltest.value!.isAadharVerified ==
+                          1
+                  ? _personalDetailsController.isVisible.value = 3
+                  : _personalDetailsController.isShowing.value = 3;
+            }
           },
           child: Container(
             height: 45,

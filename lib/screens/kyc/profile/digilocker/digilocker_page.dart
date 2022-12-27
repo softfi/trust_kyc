@@ -9,13 +9,13 @@ import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../model/digiLocker_response_data.dart';
 import '../../../../repositories/profile_repository.dart';
 import '../../../../utils/colorsConstant.dart';
+import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';
 import '../../../../utils/styles.dart';
 
 class Digilocker extends StatelessWidget {
   Digilocker({Key? key}) : super(key: key);
-
   KRAController _kRAController = Get.put(KRAController());
 
   @override
@@ -105,13 +105,11 @@ class Digilocker extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    _kRAController.authenticatDigilocker();
                     if (_kRAController.isChecked.value == true) {
-                      debugPrint("===99999999999urlLInk ${_kRAController.urlLink.value}");
-                      Get.to(MyWebView(url: _kRAController.urlLink.value));
+                      Get.to(() => MyWebView());
                     } else {
-                      Fluttertoast.showToast(
-                          msg: "Please check the agreement first");
+                      ShowCustomSnackBar()
+                          .ErrorSnackBar("Please check the agreement first");
                     }
                   },
                   child: const Text(

@@ -333,8 +333,7 @@ class EmailPANBottomSheet {
       if (response != null) {
         _personalDetailsController.getPersonalDetails();
         Get.back();
-        Get.back();
-        _personalDetailsController.isShowing.value = 3;
+        Get.back();_personalDetailsController.isShowing.value = 3;
         Get.to(const EmailComplete());
       }
     } else {

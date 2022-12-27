@@ -9,53 +9,53 @@ import '../../model/profession_response_data.dart';
 
 class KRAController extends GetxController {
   RxInt isVisible = 1.obs;
-  RxString urlLink = "".obs;
   RxBool isChecked = false.obs;
   RxBool isRTR = false.obs;
   RxString professionId = "".obs;
   RxString motherName = "".obs;
+  RxString urlLink = "".obs;
+  RxString adhaarNumber = "".obs;
+  RxString adhaarAddress = "".obs;
   RxInt isRTRInt = 0.obs;
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
+var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   RxInt isExperienceSelect = 0.obs;
-  var maidenName = TextEditingController();
-  var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController()); //list sa=[]
-  RxList<ProfessionModel> professionList = List<ProfessionModel>.empty(growable: true).obs;
+  Rx<TextEditingController> maidenName = TextEditingController().obs;
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController()); //list sa=[]
+  RxList<ProfessionModel> professionList =
+      List<ProfessionModel>.empty(growable: true).obs;
   RxList newProfessionalList = List.empty(growable: true).obs;
 
   @override
   void onInit() {
     getProfessionList();
-    debugPrint("======== ======================${urlLink.value}");
+    authenticatDigilocker();
     super.onInit();
   }
 
   void authenticatDigilocker() async {
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
     var response = await APiProvider().authenticateDigilocker();
     if (response != null) {
-      Get.back();
-      getDigilockerData();
-      DigiLockerModel digiLockerModel = response;
-      urlLink.value = digiLockerModel.link.toString();
-      debugPrint("======== ${urlLink.value}");
-    }else{
-      Get.back();
+      DigiLockerModel model = response;
+      urlLink.value = model.link.toString();
+      debugPrint("urlLink444444=============>${urlLink.value.toString()}");
     }
   }
 
   void getDigilockerData() async {
     var response = await APiProvider().digilockerData();
     if (response != null) {
-      DigiLockerDetailModel digiLockerModel = response;
+      DigiLockerDetailModel model = response;
       digiLockerDetailModel.value = response;
-      if (digiLockerModel.gender == "M") {
+      _personalDetailsController.getPersonalDetails();
+      adhaarNumber.value = model.aadharNumber;
+      adhaarAddress.value ="${model.landmark} ${model.location} ${model.villageTownCity} ${model.district} ${model.state} ${model.pincode}";
+      if (model.gender == "M") {
         isGenderSelect.value = 1;
-      } else if (digiLockerModel.gender == "F") {
+      } else if (model.gender == "F") {
         isGenderSelect.value = 2;
       } else {
         isGenderSelect.value = 3;
@@ -84,13 +84,14 @@ class KRAController extends GetxController {
       ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
     } else if (isExperienceSelect == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Select Your Experience");
-    } else if (maidenName.text.isEmpty) {
+    } else if (maidenName.value.text.isEmpty) {
       ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
     } else {
       motherName.value = maidenName.value.text;
       updateData();
     }
   }
+
   void updateData() async {
     Get.dialog(const Center(
       child: CircularProgressIndicator(),

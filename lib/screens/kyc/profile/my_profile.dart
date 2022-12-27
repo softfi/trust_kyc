@@ -356,13 +356,6 @@ class MyProfile extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            // await Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => ProfileAnimation()));
-            // setState(() {
-            //   selectedIndex = 1;
-            // });
             Obx(() => IndexedStack(
                   index: _profileController.selectedIndex.value,
                   children: <Widget>[
@@ -392,6 +385,7 @@ class MyProfile extends StatelessWidget {
   }
 
   Widget orderTimeLine() {
+    debugPrint("000000000000 ${_profileController.selectedIndex.value}");
     return Container(
       height: 80,
       decoration: const BoxDecoration(color: Colors.white),
@@ -437,10 +431,10 @@ class MyProfile extends StatelessWidget {
             ),
             SizedBox(
               width: 281,
-              child: Obx(() => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Row(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                   Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
@@ -452,52 +446,48 @@ class MyProfile extends StatelessWidget {
                             ),
                             child: const Text(""),
                           ),
-                          Container(
+                          Obx(() =>  Container(
                             width: 121,
                             height: 04,
                             decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value ==
-                                          1 ||
-                                      _profileController.selectedIndex.value ==
-                                          2
-                                  ? const Color(0xffFF405A)
-                                  : const Color(0xffc8c7ce),
+                              color: _profileController.selectedIndex.value == 1
+                                  ?  Color(0xffFF405A)
+                                  :  Color(0xffc8c7ce),
                               shape: BoxShape.rectangle,
                             ),
-                          ),
+                          )),
                         ],
                       ),
-                      Row(
+                  Obx(() => Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Container(
                             width: 12,
                             height: 12,
                             decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value ==
-                                          1 ||
-                                      _profileController.selectedIndex.value ==
-                                          2
+                              color: _profileController.selectedIndex.value == 1 || _profileController.selectedIndex.value == 2
                                   ? const Color(0xffFF405A)
                                   : const Color(0xffc8c7ce),
+                              // color: Color(0xffff405a),
                               shape: BoxShape.circle,
                             ),
                             child: const Text(""),
                           ),
-                          Container(
-                            width: 121,
-                            height: 04,
-                            decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value == 2
-                                  ? const Color(0xffFF405A)
-                                  : const Color(0xffc8c7ce),
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: const Text(""),
-                          ),
+                          Obx(() => Container(
+                                width: 121,
+                                height: 04,
+                                decoration: BoxDecoration(
+                                  color: _profileController.selectedIndex.value == 1 && _profileController.selectedIndex.value == 2
+                                      ? const Color(0xffFF405A)
+                                      : const Color(0xffc8c7ce),
+                                  // color: Color(0xffc8c7ce),
+                                  shape: BoxShape.rectangle,
+                                ),
+                                child: const Text(""),
+                              )),
                         ],
-                      ),
-                      Row(
+                      )),
+                  Obx(() => Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
@@ -507,6 +497,7 @@ class MyProfile extends StatelessWidget {
                               color: _profileController.selectedIndex.value == 2
                                   ? const Color(0xffFF405A)
                                   : const Color(0xffc8c7ce),
+                              // color: Color(0xffc8c7ce),
                               shape: BoxShape.circle,
                             ),
                             child: const Text(""),
@@ -521,9 +512,9 @@ class MyProfile extends StatelessWidget {
                             child: const Text(""),
                           ),
                         ],
-                      ),
-                    ],
-                  )),
+                      )),
+                ],
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -543,13 +534,6 @@ class MyProfile extends StatelessWidget {
                         onClick: () async {
                           Get.to(const BankAnimation());
                           _profileController.selectedIndex.value = 2;
-                          // await Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const BankAnimation()));
-                          // setState(() {
-                          //   selectedIndex = 2;
-                          // });
                         },
                       ),
                     ),

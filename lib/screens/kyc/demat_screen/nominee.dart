@@ -533,8 +533,7 @@ class _NomineeState extends State<Nominee> {
                                         )),
                                     items: nomineeproof_list.map((item) {
                                       return DropdownMenuItem(
-                                          value: item.nomineeIdentificationId
-                                              .toString(),
+                                          value: item.nomineeIdentificationId.toString(),
                                           child: Text(
                                             item.addressProof.toString(),
                                             //Names that the api dropdown contains
@@ -545,13 +544,6 @@ class _NomineeState extends State<Nominee> {
                                     }).toList(),
                                     onChanged: (String? newVal) {
                                       setState(() {
-                                        //   nomineeproof_list.map((item){
-                                        //   nomineeProofID =  newVal;
-                                        //   nomineeID = item.nomineeIdentificationId;
-                                        //   print(nomineeProofID.toString());
-                                        //   print(nomineeID.toString());
-                                        //   isidentitySelected = true;
-                                        // }).toList();
                                         nomineeProofID = newVal;
                                         print(nomineeProofID.toString());
                                         print(newVal.toString());

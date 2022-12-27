@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
@@ -55,54 +54,53 @@ class APiProvider extends GetConnect {
     var token = await HelperFunctions.getToken();
     String correctedDate =
         "${_controller.currentStartDate.value.day}-${_controller.currentStartDate.value.month}-${_controller.currentStartDate.value.year}";
-    debugPrint((_kRAController.maidenName != null)
-        ? "${_kRAController.maidenName.value.text}"
-        : "");
-
+    debugPrint("correctedDate $correctedDate");
     var body = {
       "firstname": _controller.firstName.value.text ?? "",
       "lastname": _controller.lastName.value.text ?? "",
       "dob": correctedDate,
       "smart_card_required": 0,
-      "smart_card_number": "string",
-      "smart_card_PIN": "string",
+      "smart_card_number": "",
+      "smart_card_PIN": "",
       "gender": _kRAController.isGenderSelect.value ?? 0,
       "married_status": _kRAController.isMaritalSelect.value ?? 0,
-      "mothers_maiden_name": "string",
+      "mothers_maiden_name": "",
       "annual_income": _kRAController.isEnComeSelect.value ?? 0,
       "trading_experience": _kRAController.isExperienceSelect.value ?? 0,
-      "occupation": "String",
-      "lifestyle": "string",
-      "geogriphical_code": "string",
-      "education_degree": "string",
-      "address_line_1": "string",
-      "address_line_2": "string",
-      "address_line_3": "string",
-      "address_zip": "string",
-      "address_state_code": "string",
-      "address_state": "string",
-      "address_city": "string",
-      "city_sequence_no": "string",
-      "family_account": "string",
-      "mental_disability": "string",
-      "profile_image": "string",
-      "verification_video": "string",
-      /*_ipvController.fileLink.value ?? */
-      "proof_type": "string",
-      "proof_front_image": "string",
-      "proof_back_image": "string",
+      "occupation": "",
+      "lifestyle": "",
+      "geogriphical_code": "",
+      "education_degree": "",
+      "address_line_1":
+         _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.landmark:"",
+      "address_line_2":
+      _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.location:"",
+      "address_line_3":
+      _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.villageTownCity:"",
+      "address_zip": _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.pincode:"",
+      "address_state_code": "",
+      "address_state":  _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.state:"",
+      "address_city":  _kRAController.digiLockerDetailModel.value !=null?_kRAController.digiLockerDetailModel.value!.district:"",
+      "city_sequence_no": "",
+      "family_account": "",
+      "mental_disability": "",
+      "profile_image": "",
+      "verification_video": _ipvController.fileLink.value,
+      "proof_type": "",
+      "proof_front_image": "",
+      "proof_back_image": "",
       "manager_id": 0,
-      "is_politically_exposed": _controller.potentiallyExposedStatusInt.value,
+      "is_politically_exposed": _controller.potentiallyExposedStatusInt.value ?? 0,
       "filled_itr_last_2years": _kRAController.isRTRInt.value ?? 0,
-      "would_you_like_to_activate": _controller.activateFutureInt.value,
-      "check_box_share_data_with_company": _controller.isCheckedInt1.value,
-      "check_box_share_data_with_govt": _controller.isCheckedInt2.value
+      "would_you_like_to_activate": _controller.activateFutureInt.value ?? 0,
+      "check_box_share_data_with_company": _controller.isCheckedInt1.value ?? 0,
+      "check_box_share_data_with_govt": _controller.isCheckedInt2.value ?? 0
     };
 
-    print("_kRAController.maidenName" + body.toString());
+    print("_kRAController.maidenName ${jsonEncode(body)}");
     try {
       var response = await http.put(
-          Uri.parse("https://trust-api.trustmony.com/api/v1/personal_details"),
+          Uri.parse(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail),
           body: jsonEncode(body),
           headers: {
             'Content-Type': 'application/json',
@@ -123,10 +121,7 @@ class APiProvider extends GetConnect {
         debugPrint("correctedDate1222 ${response.body.toString()}");
         return res["message"];
       } else {
-        Get.back();
-        ShowCustomSnackBar().ErrorSnackBar(
-          res["errors"],
-        );
+        ShowCustomSnackBar().ErrorSnackBar(res["errors"]);
       }
     } catch (e) {
       debugPrint("correctedDate22222 ${e.toString()}");
@@ -219,7 +214,7 @@ class APiProvider extends GetConnect {
     try {
       var response = await http.get(
           Uri.parse(
-              "https://trust-api.trustmony.com/api/v1/pan_verify?pan_no=$PAN"),
+              "${TrustKycUrl.baseUrl}${TrustKycUrl.getPANCard}?pan_no=$PAN"),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -243,22 +238,21 @@ class APiProvider extends GetConnect {
       var token = await HelperFunctions.getToken();
       var response = await http.get(
           Uri.parse(
-              "https://trust-api.trustmony.com/api/v1/authentication_digilocker?platform=mobile"),
+              "${TrustKycUrl.baseUrl}${TrustKycUrl.authenticateDigilocker}?platform=mobile"),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
       debugPrint("response.statusCode " + response.statusCode.toString());
-      debugPrint("response.statusCode " + response.body.toString());
+      var res = jsonDecode(response.body);
       if (response.statusCode == 200) {
         DigiLockerModel model =
             DigiLockerModel.fromJson(jsonDecode(response.body));
-        debugPrint("response.statusCode12 " + response.body.toString());
+        debugPrint("urlLink ${response.body}");
         return model;
       }
     } catch (e) {
-      debugPrint("response.statusCode1234 " + e.toString());
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
@@ -275,8 +269,7 @@ class APiProvider extends GetConnect {
       debugPrint("=======res ${response.body}");
       debugPrint("=======res ${response.statusCode}");
       if (response.statusCode == 200) {
-        DigiLockerDetailModel model =
-            DigiLockerDetailModel.fromJson(response.body);
+        DigiLockerDetailModel model = DigiLockerDetailModel.fromJson(response.body);
         return model;
       }
     } catch (e) {
@@ -294,7 +287,6 @@ class APiProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': token,
       });
-      debugPrint("000000000000000000000000022323232332323230");
       if (response.statusCode == 200) {
         response.body.forEach((e) {
           temp.add(ProfessionModel.fromJson(e));
@@ -309,9 +301,8 @@ class APiProvider extends GetConnect {
 
   bondList() async {
     try {
-      var response = await get(TrustKycUrl.baseUrl +
-          TrustKycUrl.bondList +
-          "?page_number=1&limit=11");
+      var response =
+          await get("${TrustKycUrl.bondList}?page_number=1&limit=11");
       if (response != null) {
         if (response.statusCode == 200) {
           AllBondList modal = AllBondList.fromJson((response.body));
@@ -327,9 +318,8 @@ class APiProvider extends GetConnect {
 
   getBondDetails(String isisnNo) async {
     try {
-      var response = await get(TrustKycUrl.baseUrl +
-          TrustKycUrl.specificBondsList +
-          "?bond_isin_number=$isisnNo");
+      var response = await get(
+          "${TrustKycUrl.specificBondsList}?bond_isin_number=$isisnNo");
       if (response.statusCode == 200) {
         BondDetails modal = BondDetails.fromJson((response.body));
         return modal;
@@ -361,9 +351,8 @@ class APiProvider extends GetConnect {
 
   getInvestmentCalculatonResult(String isinNo, int bondNo) async {
     try {
-      var response = await get(TrustKycUrl.baseUrl +
-          TrustKycUrl.inestmentCalculator +
-          "?isin=$isinNo&number_of_bonds=$bondNo");
+      var response = await get(
+          "{TrustKycUrl.inestmentCalculator}?isin=$isinNo&number_of_bonds=$bondNo");
       if (response.statusCode == 200) {
         InvestmentCalculatorModal modal =
             InvestmentCalculatorModal.fromJson(response.body);

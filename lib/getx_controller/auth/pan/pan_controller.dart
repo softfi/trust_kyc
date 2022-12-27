@@ -32,8 +32,7 @@ class PanCardUserDeatils extends GetxController {
       Get.back();
       PanStatusModel modal = response;
       panDataModal.value = response;
-      panName.value =
-          "${modal..panFname} ${modal..panMname} ${modal..panLname}";
+      panName.value = "${modal..panFname} ${modal..panMname} ${modal..panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
           Get.to(Digilocker());

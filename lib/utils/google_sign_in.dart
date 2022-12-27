@@ -74,7 +74,6 @@ class GoogleSignInProvider extends ChangeNotifier {
     if (response) {
       Get.back();
       Get.to(EmailComplete());
-
       _personalDetailsController.getPersonalDetails();
       // _personalDetailsController.isVisible.value = 2;
     }

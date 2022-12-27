@@ -351,7 +351,7 @@ class MyPersonalDetails extends StatelessWidget {
                                       ? AppColors.textColor
                                       : Color(0xffE1E0E6)
                                   : Color(0xffFF405A)),
-                          color: isButtonClick == false
+                          color: isButtonClick.value  == false
                               ? Colors.white
                               : Color(0xffFF405A),
                         ),

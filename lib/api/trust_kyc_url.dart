@@ -1,5 +1,9 @@
 class TrustKycUrl {
-  static const baseUrl = 'https://trust-api.trustmony.com/';
+  //live url
+  //static const baseUrl = 'https://api.trustmony.com/';
+
+  //dev url
+   static const baseUrl = 'https://trust-api.trustmony.com/';
 
   //sign up
   static const signUpUrl = 'api/v1/send_otp_mobile';
@@ -51,20 +55,21 @@ class TrustKycUrl {
   //upload images
   static const signatureUpload = 'api/v1/signature_image_upload';
   static const proofImage = 'api/v1/proof_image_upload';
-      static const personVerification = 'api/v1/in_person_video_verification_video';
+  static const personVerification = 'api/v1/in_person_video_verification_video';
 
   //digilocker
   static const authenticateDigilocker = 'api/v1/authentication_digilocker';
   static const getDigiLocker = 'api/v1/digilocker_details';
 
-  //bond
+  //update bar
   static const updateBarStatus = '${baseUrl}api/v1/kyc_progressbar_status';
+
   //pan card
   static const getPANCard = 'api/v1/pan_verify';
   static const cvlKRA = 'api/v1/cvl_kra';
 
   //bond
- static const bondList="api/v1/bonds_list";
- static const specificBondsList="/api/v1/specific_bonds_list";
- static const inestmentCalculator="/api/v1/investment_calculator";
+  static const bondList = "${baseUrl}api/v1/bonds_list";
+  static const specificBondsList = "${baseUrl}/api/v1/specific_bonds_list";
+  static const inestmentCalculator = "${baseUrl}/api/v1/investment_calculator";
 }

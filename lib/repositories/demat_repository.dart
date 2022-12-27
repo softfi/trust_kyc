@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logging/logging.dart';
 import 'package:trust_money/model/all_demat_response_data.dart';
@@ -21,7 +22,9 @@ import '../utils/sharedPreference.dart';
 
 class DematDetailRepository {
   final logger = Logger("DematDetailRepository");
+
   DematDetailRepository();
+
   Future<AllDematAccountModel?> getAllDematDetails() async {
     //List<AllDematAccountModel> dematList = [];
     await NetworkUtility.checkNetworkStatus();
@@ -58,7 +61,8 @@ class DematDetailRepository {
     dataq["dp_resident_india"] = taxResidency;
     dataq["dp_resident_usa"] = USAcitizen;
     dataq["check_box_terms_selected"] = check_box_terms_selected;
-    dataq["check_box_account_statement_electronic"] = check_box_account_statement_electronic;
+    dataq["check_box_account_statement_electronic"] =
+        check_box_account_statement_electronic;
     dataq["demat_signature_image"] = signatureImage;
     dataq["born_place"] = Bornregion;
     dataq["primary_source"] = wealth;
@@ -138,8 +142,10 @@ class DematDetailRepository {
       "image": await MultipartFile.fromFile(file.path),
     });
     var token = await HelperFunctions.getToken();
-    var response = await TrustKycDioClient(token)
-        .upload(endpoint: TrustKycUrl.signatureUpload, data: formData,);
+    var response = await TrustKycDioClient(token).upload(
+      endpoint: TrustKycUrl.signatureUpload,
+      data: formData,
+    );
     if (response.statusCode == 201) {
       print("ImageString${response.data["message"].toString()}");
       await HelperFunctions.saveBackImage(response.data['message']);
@@ -188,21 +194,20 @@ class DematDetailRepository {
   }
 
   uploadVideo(File file) async {
+    debugPrint("9886866 $file");
     var token = await HelperFunctions.getToken();
     FormData formData = FormData.fromMap({
-      "video": await MultipartFile.fromFile(file.path,filename: file.path.split('/').last),
+      "video": await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last),
     });
     try {
-      var response= await TrustKycDioClient(token)
+      var response = await TrustKycDioClient(token)
           .upload(endpoint: TrustKycUrl.personVerification, data: formData);
       if (response.statusCode == 201) {
         return response.data.toString();
       }
-
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
-
-
 }

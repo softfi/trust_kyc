@@ -46,7 +46,7 @@ class VideoPreview extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.70,
             child: FutureBuilder(
-              future: _ipvController.initVideoPlayerPerviview(),
+              future: _ipvController.initVideoPlayerPreview(),
               builder: (context, state) {
                 AspectRatio(
                   aspectRatio: _ipvController.videoPlayerController12.value.aspectRatio,

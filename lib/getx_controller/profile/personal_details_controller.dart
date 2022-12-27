@@ -8,7 +8,7 @@ import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
-  Rx<TextEditingController> emailID = TextEditingController().obs;
+
   RxInt isVisible = 1.obs;
   RxInt isShowing = 1.obs;
   RxString mobileNumber = "".obs;
@@ -31,8 +31,8 @@ class PersonalDetailsController extends GetxController {
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
-  Rx<DateTime> currentStartDate =
-      DateTime.now().subtract(const Duration(days: 6574)).obs;
+  Rx<TextEditingController> emailID = TextEditingController().obs;
+  Rx<DateTime> currentStartDate = DateTime.now().subtract(const Duration(days: 6574)).obs;
   var modaltest = Rxn<GetPersonalDetailModel>();
 
   //GetPersonalDetailModel? modaltest;
@@ -62,9 +62,6 @@ class PersonalDetailsController extends GetxController {
       //GetPersonalDetailModel modal = response;
       modaltest.value = response;
       debugPrint("=======0009089 $response");
-      // firstName.value.text = modal.firstname;
-      // lastName.value.text = modal.lastname;
-      // mobileNumber.value = modal.mobileNumber;
       emailID.value.text = modaltest.value!.emailId.toString();
       checkProfileStatus.value = modaltest.value!.mothersMaidenName.toString();
       await HelperFunctions.saveFirstName(
@@ -142,7 +139,7 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().getProgressBar();
     if (response != null) {
       barStatusModel.value = response;
-     // ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message == 1 ? "Success" : "Failed");
+      // ShowCustomSnackBar().SuccessSnackBar(barStatusModel.value!.message == 1 ? "Success" : "Failed");
     }
   }
 }

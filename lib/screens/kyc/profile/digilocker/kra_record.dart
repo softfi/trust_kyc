@@ -39,9 +39,11 @@ class chipModel {
 
 class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
   KRAController _kRAController = Get.put(KRAController());
-  PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
+
+  //PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   RxBool isButtonClick = false.obs;
   RxList<String> genderList = [
     "",
@@ -135,8 +137,7 @@ class KRARecord extends StatelessWidget {
       ),
       _space,
       Text(
-        /*${_panCardUserDeatils.panName}*/
-        "Hey, ${_panCardUserDeatils.panDataModal.value!.panFname} ${_panCardUserDeatils.panDataModal.value!.panMname} ${_panCardUserDeatils.panDataModal.value!.panLname} Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey ${_personalDetailsController.modaltest.value!.panName ?? ""} Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
         style: ConstStyle.quickMedium,
       ),
       _space,
@@ -146,9 +147,7 @@ class KRARecord extends StatelessWidget {
       _space1,
       TextContainer(
         color: Color(0xffF7F7FA),
-        titleText: (_kRAController.digiLockerDetailModel != null)
-            ? _kRAController.digiLockerDetailModel.value!.aadharNumber
-            : "",
+        titleText: _personalDetailsController.modaltest.value!.aadharNumber,
         perfixIcon: Container(),
         postfixIcon: Container(),
       ),
@@ -167,9 +166,12 @@ class KRARecord extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
           child: Text(
-            (_kRAController.digiLockerDetailModel != null)
-                ? "${_kRAController.digiLockerDetailModel.value!.location}, ${_kRAController.digiLockerDetailModel.value!.villageTownCity}, \n${_kRAController.digiLockerDetailModel.value!.district}, \n${_kRAController.digiLockerDetailModel.value!.state},  \n${_kRAController.digiLockerDetailModel.value!.pincode}"
-                : "",
+            "${_personalDetailsController.modaltest.value!.addressLine1}"
+                " ${_personalDetailsController.modaltest.value!.addressLine2}"
+                " ${_personalDetailsController.modaltest.value!.addressLine3}"
+                " ${_personalDetailsController.modaltest.value!.addressCity}"
+                " ${_personalDetailsController.modaltest.value!.addressState}"
+                " ${_personalDetailsController.modaltest.value!.addressZip}",
             style: GoogleFonts.sourceSansPro(
               textStyle: const TextStyle(
                   color: Color(0xff22263D),
@@ -275,23 +277,24 @@ class KRARecord extends StatelessWidget {
         title: 'Mother’s Maiden Name',
       ),
       _space1,
-      AppTextField(
-        textCapitalization: TextCapitalization.words,
-        hint: 'Enter Maiden Name',
-        controller: _kRAController.maidenName,
-        textInputType: TextInputType.text,
-      ),
+      Obx(() => AppTextField(
+            textCapitalization: TextCapitalization.words,
+            hint: 'Enter Maiden Name',
+            controller: _kRAController.maidenName.value,
+            textInputType: TextInputType.text,
+          )),
       _space,
       _space,
       _space,
-      Obx(() => InkWell(
-            onTap: () {
-              if (_kRAController.maidenName.text != "") {
-                isButtonClick.value = true;
-                _kRAController.update_personal_details();
-              }
-            },
-            child: Container(
+      InkWell(
+          onTap: () {
+            if (_kRAController.maidenName.value.text != "") {
+              isButtonClick.value = true;
+              _kRAController.update_personal_details();
+            }
+          },
+          child: Obx(
+            () => Container(
               height: 45,
               decoration: BoxDecoration(
                 boxShadow: const [
@@ -303,12 +306,13 @@ class KRARecord extends StatelessWidget {
                 border: Border.all(
                     width: 2,
                     color: isButtonClick.value == false
-                        ? (_kRAController.maidenName.text != "")
+                        ? (_kRAController.maidenName.value.text.isNotEmpty)
                             ? AppColors.textColor
                             : Color(0xffE1E0E6)
                         : Color(0xffFF405A)),
-                color:
-                    isButtonClick == false ? Colors.white : Color(0xffFF405A),
+                color: isButtonClick.value == false
+                    ? Colors.white
+                    : Color(0xffFF405A),
               ),
               child: Center(
                   child: Text(
@@ -316,7 +320,7 @@ class KRARecord extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   textStyle: TextStyle(
                       color: isButtonClick.value == false
-                          ? (_kRAController.maidenName.text != "")
+                          ? (_kRAController.maidenName.value.text.isNotEmpty)
                               ? AppColors.textColor
                               : Color(0xffE1E0E6)
                           : Colors.white,
@@ -326,74 +330,6 @@ class KRARecord extends StatelessWidget {
               )),
             ),
           )),
-      // InkWell(
-      //   onTap: () {
-      //     if (_kRAController.maidenName.text.isNotEmpty) {
-      //        isButtonClick.value = true;
-      //       _kRAController.update_personal_details();
-      //     }
-      //   },
-      //   child: Container(
-      //     height: 45,
-      //     decoration: BoxDecoration(
-      //       boxShadow: const [
-      //         BoxShadow(
-      //           color: Color(0x29000000),
-      //           blurRadius: 3.0,
-      //         ),
-      //       ],
-      //       border: Border.all(
-      //           width: 2,
-      //           color: !isButtonClick.value
-      //               ? _kRAController.maidenName.text.isNotEmpty
-      //                   ? AppColors.textColor
-      //                   : Color(0xffE1E0E6)
-      //               : Color(0xffFF405A)),
-      //       color: !isButtonClick.value ? Colors.white : Color(0xffFF405A),
-      //     ),
-      //     child: Center(
-      //         child: Text(
-      //       "Continue",
-      //       style: GoogleFonts.quicksand(
-      //         textStyle: TextStyle(
-      //             color: !isButtonClick.value
-      //                 ? _kRAController.maidenName.text.isNotEmpty
-      //                     ? AppColors.textColor
-      //                     : Color(0xffE1E0E6)
-      //                 : Colors.white,
-      //             fontWeight: FontWeight.w500,
-      //             fontSize: 15),
-      //       ),
-      //     )),
-      //   ),
-      //   /*Container(
-      //     height: 45,
-      //     decoration: BoxDecoration(
-      //       boxShadow: const [
-      //         BoxShadow(
-      //           color: Color(0x29000000),
-      //           blurRadius: 4.0,
-      //         ),
-      //       ],
-      //       border: Border.all(
-      //           width: 2,
-      //           color: isButtonClick == false
-      //               ? AppColors.textColor
-      //               : const Color(0xffE1E0E6)),
-      //       color: isButtonClick == false ? Colors.white : Color(0xffFF405A),
-      //     ),
-      //     child: Center(
-      //         child: Text(
-      //       "Continue",
-      //       style: GoogleFonts.quicksand(
-      //         textStyle: const TextStyle(
-      //             color: Color(0xff22263D),
-      //             fontWeight: FontWeight.w500,
-      //             fontSize: 15),
-      //       ),
-      //     )),
-      //   ),*/
-      // ),
       _space,
       InkWell(
         onTap: () {
@@ -417,41 +353,6 @@ class KRARecord extends StatelessWidget {
       ),
     ]);
   }
-
-/*  List<Widget> helpChips(List<Help> list) {
-    List<Widget> chips = [];
-    for (int i = 0; i < list.length; i++) {
-      Widget item = FilterChip(
-        label: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(list[i].label),
-        ),
-        labelStyle: GoogleFonts.quicksand(
-          textStyle: const TextStyle(
-              fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-        backgroundColor: list[i].color,
-        selected: _kRAController.selectedChip == i,
-        //list[i].isSelected,
-        onSelected: (bool selected) {
-          _kRAController.selectedChip = selected ? i : null;
-          // firestoreController.onInit();
-          // firestoreController.getLaptops(
-          //     LaptopBrand.values[chipController.selectedChip]);
-        },
-        // onSelected: (bool val) {
-        //   _kRAController.isSelected.value = val;
-        //   // setState(() {
-        //   //   _chipsList[i].isSelected = value;
-        //   // });
-        // },
-        showCheckmark: false,
-      );
-      chips.add(item);
-    }
-    return chips;
-  }*/
 
   Widget get _space => const SizedBox(height: 16);
 
