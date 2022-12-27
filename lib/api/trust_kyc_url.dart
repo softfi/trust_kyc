@@ -1,9 +1,9 @@
 class TrustKycUrl {
   //live url
-  //static const baseUrl = 'https://api.trustmony.com/';
+  static const baseUrl = 'https://api.trustmony.com/';
 
   //dev url
-   static const baseUrl = 'https://trust-api.trustmony.com/';
+   //static const baseUrl = 'https://trust-api.trustmony.com/';
 
   //sign up
   static const signUpUrl = 'api/v1/send_otp_mobile';

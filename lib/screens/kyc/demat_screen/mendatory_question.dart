@@ -3,56 +3,55 @@ import 'dart:io';
 import 'package:custom_switch/custom_switch.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:trust_money/model/born_dropdown_response_data.dart';
 import 'package:trust_money/model/wealth_dropdown_response_data.dart';
 import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
+import 'package:trust_money/utils/helper_widget/custom_snsckbar.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../../getx_controller/demat/demat_controller.dart';
+import '../../../getx_controller/profile/personal_details_controller.dart';
+
 class MandatoryQuestion extends StatefulWidget {
   final void Function()? onClick1;
-  const MandatoryQuestion({Key? key,required this.onClick1}) : super(key: key);
+
+  const MandatoryQuestion({Key? key, required this.onClick1}) : super(key: key);
 
   @override
   State<MandatoryQuestion> createState() => _MandatoryQuestionState();
 }
 
 class _MandatoryQuestionState extends State<MandatoryQuestion> {
-  bool citizen_OfThe_USA = false;
-  int citizen_OfThe_USAInt = 0;
-  bool Country_Residency = true;
-  int Country_ResidencyInt = 0;
-  bool isMandatory = true;
-  bool isAware = false;
-  int isAwareInt = 0;
-  bool aceeptTerm = false;
-  int aceeptTermInt = 0;
-  bool awareButtonClick = false;
+  // bool citizen_OfThe_USA = false;
+  // int citizen_OfThe_USAInt = 0;
+  // bool Country_Residency = true;
+  // int Country_ResidencyInt = 0;
+  // bool isMandatory = true;
+  // bool isAware = false;
+  // int isAwareInt = 0;
+  // bool aceeptTerm = false;
+  // int aceeptTermInt = 0;
+  // bool awareButtonClick = false;
   String? wealthID;
   String? bornID;
   List<WealthModel> wealth_list = [];
   List<BornModel> born_list = [];
-  String? userfName;
   bool isUpload = false;
   bool isReplace = false;
   bool isSignatureUpdate = false;
   File? signatureImage;
-  bool _isLoaderVisible = false;
-
   final _picker = ImagePicker();
-
-  getPreferences() async {
-    userfName = await HelperFunctions.getPanName();
-    print("object $userfName");
-    setState(() {});
-  }
+  PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
+  DematController _dematController =
+  Get.put(DematController());
 
   wealthList() async {
     var data1 = await DematDetailRepository().wealthDropdown();
@@ -76,7 +75,6 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
 
   @override
   void initState() {
-    getPreferences();
     wealthList();
     bornList();
     super.initState();
@@ -86,14 +84,14 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Visibility(visible: isMandatory, child: mandatoryWidget()),
+        Visibility(visible: _dematController.isMandatory.value, child: mandatoryWidget()),
         Visibility(visible: isUpload, child: uploadImageWidget()),
       ],
     );
   }
 
-  Widget mandatoryWidget(){
-    return  Padding(
+  Widget mandatoryWidget() {
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -104,41 +102,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  height: 25,
-                  width: 70,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          bottomRight: Radius.circular(5)),
-                      color: AppColors.textColor),
-                  child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.highlight_remove,
-                            color: Colors.white,
-                            size: 14,
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            "Close",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ],
-                      )),
-                ),
-              ),
+            const SizedBox(
+              height: 14,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,6 +140,9 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 5,
             ),
             const Divider(
               thickness: 1,
@@ -252,9 +220,9 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                     ),
                                   ));
                             }).toList(),
-                            onChanged: (String? newVal) {
+                            onChanged: (newVal) {
                               setState(() {
-                                bornID = newVal;
+                                bornID = newVal.toString();
                                 print(bornID.toString());
                               });
                             },
@@ -279,17 +247,17 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           )),
                       CustomSwitch(
                         activeColor: Colors.green,
-                        value: citizen_OfThe_USA,
+                        value: _dematController.citizen_OfThe_USA.value,
                         onChanged: (value) {
                           print("VALUE : $value");
                           setState(() {
-                            citizen_OfThe_USA = value;
+                            _dematController.citizen_OfThe_USA.value = value;
                             if (value == true) {
-                              citizen_OfThe_USAInt = 1;
+                              _dematController.citizen_OfThe_USAInt.value = 1;
                             } else {
-                              citizen_OfThe_USAInt = 0;
+                              _dematController.citizen_OfThe_USAInt.value = 0;
                             }
-                            print("VALUE : $citizen_OfThe_USAInt");
+                            print("VALUE : $_dematController.citizen_OfThe_USAInt.value");
                           });
                         },
                       )
@@ -304,8 +272,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width / 1.5,
-                        child:
-                        Text("Is Your Country Of Tax Residency, India?",
+                        child: Text("Is Your Country Of Tax Residency, India?",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: Color(0xff22263D),
@@ -315,17 +282,17 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       ),
                       CustomSwitch(
                         activeColor: Colors.green,
-                        value: Country_Residency,
+                        value: _dematController.Country_Residency.value,
                         onChanged: (value) {
                           print("VALUE : $value");
                           setState(() {
-                            Country_Residency = value;
+                            _dematController.Country_Residency.value = value;
                             if (value == true) {
-                              Country_ResidencyInt = 1;
+                              _dematController.Country_ResidencyInt.value = 1;
                             } else {
-                              Country_ResidencyInt = 0;
+                              _dematController.Country_ResidencyInt.value = 0;
                             }
-                            print("VALUE : $Country_ResidencyInt");
+                            print("VALUE : ${_dematController.Country_ResidencyInt.value}");
                           });
                         },
                       ),
@@ -367,8 +334,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                             ),
                             items: wealth_list.map((item) {
                               return DropdownMenuItem(
-                                  value: item.primarySourceOfWealthName
-                                      .toString(),
+                                  value:
+                                      item.primarySourceOfWealthName.toString(),
                                   child: Text(
                                     item.primarySourceOfWealthName != null
                                         ? item.primarySourceOfWealthName
@@ -378,9 +345,9 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                     ),
                                   ));
                             }).toList(),
-                            onChanged: (String? newVal) {
+                            onChanged: (newVal) {
                               setState(() {
-                                wealthID = newVal;
+                                wealthID = newVal.toString();
                                 print(wealthID.toString());
                               });
                             },
@@ -405,12 +372,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         ),
                         // color of tick Mark
                         activeColor: AppColors.primaryColor,
-                        value: isAware,
+                        value: _dematController.isAware.value,
                         onChanged: (bool? value) {
                           setState(() {
-                            isAware = value!;
-                            isAwareInt = 1;
-                            print("=======int $isAwareInt");
+                            _dematController.isAware.value = value!;
+                            _dematController.isAwareInt.value = 1;
+                            print("=======int ${_dematController.isAwareInt.value}");
                           });
                         },
                       ),
@@ -435,7 +402,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                       color: Color(0xffFF405A))),
                               TextSpan(
                                   text:
-                                  "will be in electronic & I do not require a ",
+                                      "will be in electronic & I do not require a ",
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: Color(0xff22263D),
@@ -468,12 +435,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       ),
                       // color of tick Mark
                       activeColor: AppColors.primaryColor,
-                      value: aceeptTerm,
+                      value: _dematController.aceeptTerm.value,
                       onChanged: (bool? value) {
                         setState(() {
-                          aceeptTerm = value!;
-                          aceeptTermInt = 1;
-                          print("=======aceeptTermInt $aceeptTermInt");
+                          _dematController.aceeptTerm.value = value!;
+                          _dematController.aceeptTermInt.value = 1;
+                          print("=======aceeptTermInt ${_dematController.aceeptTermInt.value}t");
                         });
                       },
                     ),
@@ -505,13 +472,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                   onTap: () {
                     if (bornID != null &&
                         wealthID != null &&
-                        isAware == true &&
-                        aceeptTerm == true) {
-
+                        _dematController.isAware.value == true &&
+                        _dematController.aceeptTerm.value == true) {
                       setState(() {
-                         isMandatory = false;
-                         isUpload = true;
-                         awareButtonClick = true;
+                        _dematController.isMandatory.value = false;
+                        isUpload = true;
+                        _dematController.awareButtonClick.value = true;
                       });
                     }
                   },
@@ -530,33 +496,33 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         ],
                         border: Border.all(
                             width: 2,
-                            color: awareButtonClick == false
+                            color:  _dematController.awareButtonClick.value == false
                                 ? (bornID != null &&
                                 wealthID != null &&
-                                isAware &&
-                                aceeptTerm)
-                                ? AppColors.textColor
-                                : Color(0xffE1E0E6)
+                                _dematController.isAware.value == true &&
+                                _dematController.aceeptTerm.value == true)
+                                    ? AppColors.textColor
+                                    : Color(0xffE1E0E6)
                                 : Color(0xffFF405A)),
-                        color: awareButtonClick == false
+                        color: _dematController.awareButtonClick.value == false
                             ? Colors.white
                             : Color(0xffFF405A),
                       ),
                       child: Center(
                           child: Text(
-                            "Continue",
-                            style: TextStyle(
-                                color: awareButtonClick == false
-                                    ? (bornID != null &&
-                                    wealthID != null &&
-                                    isAware &&
-                                    aceeptTerm)
+                        "Continue",
+                        style: TextStyle(
+                            color: _dematController.awareButtonClick.value == false
+                                ? (bornID != null &&
+                                wealthID != null &&
+                                _dematController.isAware.value == true &&
+                                _dematController.aceeptTerm.value == true)
                                     ? AppColors.textColor
                                     : Color(0xffE1E0E6)
-                                    : Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15),
-                          )),
+                                : Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      )),
                     ),
                   ),
                 ),
@@ -569,8 +535,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
     );
   }
 
-  Widget uploadImageWidget(){
-    return  Padding(
+  Widget uploadImageWidget() {
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -585,7 +551,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
               onTap: () {
                 setState(() {
                   isUpload = false;
-                  isMandatory = true;
+                  _dematController.isMandatory.value = true;
                 });
               },
               child: Padding(
@@ -602,25 +568,25 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         color: AppColors.textColor),
                     child: Center(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.highlight_remove,
-                              color: Colors.white,
-                              size: 14,
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              "Close",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          Icons.highlight_remove,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "Close",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
+                      ],
+                    )),
                   ),
                 ),
               ),
@@ -702,8 +668,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                              width: 0.5, color: Color(0xff707070))),
+                          border:
+                              Border.all(width: 0.5, color: Color(0xff707070))),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -739,13 +705,13 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                               signatureExampleBottomSheet();
                             },
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0),
                               child: RichText(
                                 text: const TextSpan(children: [
                                   TextSpan(
                                       text:
-                                      "Ensure that you sign on a blank paper in a Clearly ",
+                                          "Ensure that you sign on a blank paper in a Clearly ",
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
@@ -753,8 +719,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                   TextSpan(
                                       text: "see example ",
                                       style: TextStyle(
-                                          decoration:
-                                          TextDecoration.underline,
+                                          decoration: TextDecoration.underline,
                                           fontSize: 12,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w400,
@@ -772,54 +737,51 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                   width: 300,
                                   child: signatureImage != null
                                       ? Image.file(
-                                    signatureImage!,
-                                    fit: BoxFit.cover,
-                                  )
+                                          signatureImage!,
+                                          fit: BoxFit.cover,
+                                        )
                                       : InkWell(
-                                    onTap: () async {
-                                      final pickedFile =
-                                      await _picker.getImage(
-                                          source:
-                                          ImageSource.camera,
-                                          imageQuality: 70);
-                                      if (pickedFile != null) {
-                                        setState(() {
-                                          signatureImage =
-                                              File(pickedFile.path);
-                                          isReplace = true;
-                                          isSignatureUpdate = true;
-                                        });
-                                      }
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: SvgPicture.asset(
-                                            ConstantImage.upload,
-                                            height: 50,
+                                          onTap: () async {
+                                            final pickedFile =
+                                                await _picker.getImage(
+                                                    source: ImageSource.camera,
+                                                    imageQuality: 70);
+                                            if (pickedFile != null) {
+                                              setState(() {
+                                                signatureImage =
+                                                    File(pickedFile.path);
+                                                isReplace = true;
+                                                isSignatureUpdate = true;
+                                              });
+                                            }
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Center(
+                                                child: SvgPicture.asset(
+                                                  ConstantImage.upload,
+                                                  height: 50,
+                                                ),
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  "Upload Your Signature ",
+                                                  style:
+                                                      GoogleFonts.sourceSansPro(
+                                                    textStyle: const TextStyle(
+                                                        color:
+                                                            Color(0xff22263D),
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Center(
-                                          child: Text(
-                                            "Upload Your Signature ",
-                                            style: GoogleFonts
-                                                .sourceSansPro(
-                                              textStyle:
-                                              const TextStyle(
-                                                  color: Color(
-                                                      0xff22263D),
-                                                  fontWeight:
-                                                  FontWeight
-                                                      .w500,
-                                                  fontSize: 15),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ),
                               ),
                               Positioned(
@@ -831,8 +793,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                         source: ImageSource.camera);
                                     if (pickedFile != null) {
                                       setState(() {
-                                        signatureImage =
-                                            File(pickedFile.path);
+                                        signatureImage = File(pickedFile.path);
                                       });
                                     }
                                   },
@@ -844,9 +805,9 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                       color: AppColors.primaryColor,
                                       child: Center(
                                           child: Text(
-                                            "Replace",
-                                            style: ConstStyle.quickStandSmall,
-                                          )),
+                                        "Replace",
+                                        style: ConstStyle.quickStandSmall,
+                                      )),
                                     ),
                                   ),
                                 ),
@@ -917,31 +878,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       horizontal: 12.0, vertical: 15),
                   child: InkWell(
                     onTap: () async {
-                      EasyLoading.show(status: 'loading...');
                       if (isSignatureUpdate == true) {
-                        if (signatureImage != null) {
-                          var res = await DematDetailRepository()
-                              .uploadSignature(file: signatureImage!);
-                          if (res != "") {
-                            var addDematDetailModel =
-                            await DematDetailRepository().addNewDematAccount(
-                                Bornregion: bornID!,
-                                USAcitizen: citizen_OfThe_USAInt,
-                                taxResidency: Country_ResidencyInt,
-                                wealth: wealthID!,
-                                check_box_terms_selected:
-                                aceeptTermInt,
-                                check_box_account_statement_electronic:
-                                isAwareInt);
-                            if (addDematDetailModel != "") {
-                              EasyLoading.dismiss();
-                              await HelperFunctions.saveuserkyccompleted(true);
-                              uploadSignatureBottomSheet();
-                            }
-                          }
-                        } else {
-                          Fluttertoast.showToast(msg: "Select signature image first");
-                        }
+                        _dematController.checkValidation(signatureImage!,bornID!,wealthID!);
                       }
                     },
                     child: Container(
@@ -961,16 +899,16 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           color: Colors.white),
                       child: Center(
                           child: Text(
-                            "Continue",
-                            style: GoogleFonts.quicksand(
-                              textStyle: TextStyle(
-                                  color: isSignatureUpdate
-                                      ? AppColors.textColor
-                                      : Color(0xffE1E0E6),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15),
-                            ),
-                          )),
+                        "Continue",
+                        style: GoogleFonts.quicksand(
+                          textStyle: TextStyle(
+                              color: isSignatureUpdate
+                                  ? AppColors.textColor
+                                  : Color(0xffE1E0E6),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15),
+                        ),
+                      )),
                     ),
                   ),
                 ),
@@ -1053,16 +991,16 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           height: 45,
                           decoration: BoxDecoration(
                               border:
-                              Border.all(width: 1.5, color: Colors.white)),
+                                  Border.all(width: 1.5, color: Colors.white)),
                           child: Center(
                               child: Text(
-                                "Close",
-                                style: GoogleFonts.quicksand(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500)),
-                              )),
+                            "Close",
+                            style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500)),
+                          )),
                         ),
                       ),
                     ),
@@ -1088,18 +1026,13 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
             builder: (BuildContext context) {
               return StatefulBuilder(builder: (BuildContext context, State) {
                 return GestureDetector(
-                  onTap: ()  {
+                  onTap: () {
                     setState(() {
                       isUpload = false;
-                      isMandatory = false;
+                      _dematController.isMandatory.value  = false;
                     });
                     widget.onClick1!();
                     Navigator.pop(context);
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => NewDematAnimation()));
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.30,
@@ -1126,7 +1059,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         ),
                         Center(
                           child: Text(
-                            "Congratulations! $userfName Signature Uploaded Successfully",
+                            "Congratulations! ${_personalDetailsController.modaltest.value!.panName} Signature Uploaded Successfully",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.quicksand(
                               textStyle: const TextStyle(

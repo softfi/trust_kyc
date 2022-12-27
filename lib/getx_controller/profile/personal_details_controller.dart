@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
+import 'package:trust_money/model/perosnal_details/nominee_details_response.dart';
 import '../../model/status_bar/progress_status_bar.dart';
+import '../../screens/kyc/profile/personal_detals/show_personal_details/nominee_details.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/sharedPreference.dart';
 
@@ -28,6 +30,7 @@ class PersonalDetailsController extends GetxController {
   RxInt selectedIndex = 0.obs;
   RxBool barLine = true.obs;
   RxBool tabVisible = false.obs;
+  var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
@@ -41,7 +44,7 @@ class PersonalDetailsController extends GetxController {
   @override
   void onInit() {
     getKycStatus();
-    getPersonalDetails();
+    //getPersonalDetails();
     getPerferences();
     super.onInit();
   }
@@ -72,6 +75,17 @@ class PersonalDetailsController extends GetxController {
       dob.value = DateFormat('dd-MM-yyyy').format(modaltest.value!.dob);
     }
   }
+
+  getNomineeDetails() async {
+    var response = await APiProvider().nomineeDetail();
+    debugPrint("Nominasdfasda"+response.toString());
+    if (response != null) {
+      nomineeDetails.value=response;
+      debugPrint("Nominasdfasda"+nomineeDetails.value.toString());
+
+    }
+  }
+
 
   void getPerferences() async {
     mail.value = await HelperFunctions.getEmailId();

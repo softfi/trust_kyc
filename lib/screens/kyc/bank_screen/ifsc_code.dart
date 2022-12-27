@@ -5,6 +5,8 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../../utils/app_bar.dart';
+
 class SearchIFSC extends StatefulWidget {
   const SearchIFSC({Key? key}) : super(key: key);
 
@@ -40,7 +42,22 @@ class _SearchIFSCState extends State<SearchIFSC> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
+      appBar: AppToolbar.appBar(
+          "Search for IFSC",
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          IconButton(
+            icon: Container(
+                padding: const EdgeInsets.all(1),
+                decoration: const BoxDecoration(
+                    color: Colors.transparent, shape: BoxShape.circle),
+                child: const Icon(Icons.person,
+                    size: 20, color: Colors.transparent)),
+            onPressed: () {},
+          )),
+ /*     appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: Column(
           children: [
@@ -161,7 +178,7 @@ class _SearchIFSCState extends State<SearchIFSC> {
               ),),
           ],
         ),
-      ),
+      ),*/
       body: Stack(
         fit: StackFit.expand,
         children: [

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
+import '../../getx_controller/profile/personal_details_controller.dart';
 import '../../utils/images.dart';
 
 class BankComplete extends StatefulWidget {
@@ -14,20 +16,14 @@ class BankComplete extends StatefulWidget {
 
 class _BankCompleteState extends State<BankComplete> {
 
-  String panNumber = "";
+  PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
 
-  getPreferences() async {
-    panNumber = await HelperFunctions.getPanName();
-    print("============Email $panNumber");
-    setState(() {});
-  }
 
   @override
   void initState() {
-    getPreferences();
     Future.delayed(Duration(seconds: 5), () {
       Navigator.pop(context);
-     // Navigator.pop(context);
     });
     super.initState();
   }
@@ -50,7 +46,7 @@ class _BankCompleteState extends State<BankComplete> {
         SizedBox(
           width: MediaQuery.of(context).size.width/1.3,
           child: Text(
-            "Congratulations! $panNumber Bank Account Added Successfully",
+            "Congratulations! ${_personalDetailsController.modaltest.value!.panName} Bank Account Added Successfully",
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
               textStyle: const TextStyle(

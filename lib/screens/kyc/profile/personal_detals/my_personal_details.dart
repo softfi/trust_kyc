@@ -1,5 +1,6 @@
 import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
@@ -8,6 +9,7 @@ import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_veri
 import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/show_personal_details.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
@@ -31,6 +33,7 @@ class MyPersonalDetails extends StatelessWidget {
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 1,
             child: personaDetail(context))),
+            //child: ShowPersonalDetails())),
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 2,
             child: EmailVeryfication())),
@@ -96,43 +99,43 @@ class MyPersonalDetails extends StatelessWidget {
                   title: 'First Name* ',
                 ),
                 _space1,
-                Obx(() => AppTextField(
-                      textCapitalization: TextCapitalization.words,
-                      hint: ' ',
-                      controller: _personalDetailsController.firstName.value,
-                      textInputType: TextInputType.text,
-                    )),
+                AppTextField(
+                  textCapitalization: TextCapitalization.words,
+                  hint: '',
+                  controller: _personalDetailsController.firstName.value,
+                  lengthFormater: LengthLimitingTextInputFormatter(36),
+                  textInputType: TextInputType.text,
+                ),
                 _space,
                 AppText(
                   title: 'Last Name* ',
                 ),
                 _space1,
-                Obx(() => AppTextField(
+                AppTextField(
                   textCapitalization: TextCapitalization.words,
-                  hint: ' ',
+                  hint: '',
                   controller: _personalDetailsController.lastName.value,
+                  lengthFormater: LengthLimitingTextInputFormatter(36),
                   textInputType: TextInputType.text,
-                )),
+                ),
                 _space,
                 AppText(
                   title: 'Mobile Name* ',
                 ),
                 _space1,
-                Obx(
-                  () => TextContainer(
-                    titleText:
-                        ' +91 ${_personalDetailsController.mobileNumber.toString()}',
-                    perfixIcon: Image.asset(
-                      "assets/images/india.png",
-                      scale: 4,
-                    ),
-                    postfixIcon: Image.asset(
-                      "assets/images/done1.png",
-                      color: Colors.green,
-                      scale: 6,
-                    ),
-                    color: Color(0xffF7F7FA),
+                TextContainer(
+                  titleText:
+                      ' +91 ${_personalDetailsController.mobileNumber.toString()}',
+                  perfixIcon: Image.asset(
+                    "assets/images/india.png",
+                    scale: 4,
                   ),
+                  postfixIcon: Image.asset(
+                    "assets/images/done1.png",
+                    color: Colors.green,
+                    scale: 6,
+                  ),
+                  color: Color(0xffF7F7FA),
                 ),
                 _space,
                 AppText(
@@ -170,20 +173,16 @@ class MyPersonalDetails extends StatelessWidget {
                     ),
                     Obx(() => CustomSwitch(
                           activeColor: Colors.green,
-                          value: _personalDetailsController
-                              .potentiallyExposedStatus.value,
+                          value: _personalDetailsController.potentiallyExposedStatus.value,
                           onChanged: (value) {
-                            _personalDetailsController
-                                .potentiallyExposedStatus.value = value;
-                            if (value == true) {
-                              _personalDetailsController
-                                  .potentiallyExposedStatusInt.value = 1;
-                              PersonalBottomSheet.closeApplicationBottomSheet(
-                                  context);
-                            } else {
-                              _personalDetailsController
-                                  .potentiallyExposedStatusInt.value = 0;
-                            }
+                            PersonalBottomSheet.closeApplicationBottomSheet(context);
+                            _personalDetailsController.potentiallyExposedStatus.value = false;
+                            // if (value == true) {
+                            //   _personalDetailsController.potentiallyExposedStatusInt.value = 1;
+                            //   PersonalBottomSheet.closeApplicationBottomSheet(context);
+                            // } else {
+                            //   _personalDetailsController.potentiallyExposedStatusInt.value = 0;
+                            // }
                           },
                         )),
                   ],
@@ -351,7 +350,7 @@ class MyPersonalDetails extends StatelessWidget {
                                       ? AppColors.textColor
                                       : Color(0xffE1E0E6)
                                   : Color(0xffFF405A)),
-                          color: isButtonClick.value  == false
+                          color: isButtonClick.value == false
                               ? Colors.white
                               : Color(0xffFF405A),
                         ),

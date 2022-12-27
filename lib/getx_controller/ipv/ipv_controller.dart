@@ -71,7 +71,8 @@ class IPVController extends GetxController {
   }
 
   Future initVideoPlayerPreview() async {
-    videoPlayerController12 = VideoPlayerController.file(File(file.value!.path));
+    videoPlayerController12 =
+        VideoPlayerController.file(File(file.value!.path));
     await videoPlayerController12.initialize();
     await videoPlayerController12.play();
     await videoPlayerController12.setLooping(true);
@@ -120,9 +121,9 @@ class IPVController extends GetxController {
     if (response != null) {
       CodeVerificationModel modal = response;
       randumNumber1.value = modal.randomNumber[0];
-      randumNumber2.value = modal.randomNumber[0];
-      randumNumber3.value = modal.randomNumber[0];
-      randumNumber4.value = modal.randomNumber[0];
+      randumNumber2.value = modal.randomNumber[1];
+      randumNumber3.value = modal.randomNumber[2];
+      randumNumber4.value = modal.randomNumber[3];
     }
   }
 
@@ -156,7 +157,8 @@ class IPVController extends GetxController {
       // fileLink.value = model.video;
       fileLink.value = response;
       Get.to(() => CustomCongratulations(
-                title: 'Congratulations! ${_personalDetailsController.modaltest.value!.panName} Identity Verification \ncompleted Successfully',
+                title:
+                    'Congratulations! ${_personalDetailsController.modaltest.value!.panName} Identity Verification \ncompleted Successfully',
                 image: ConstantImage.profile,
               ))!
           .then((value) {

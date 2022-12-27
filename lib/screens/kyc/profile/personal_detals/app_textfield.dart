@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/styles.dart';
 
@@ -10,9 +11,12 @@ class AppTextField extends StatelessWidget {
       required this.hint,
       required this.textInputType,
       required this.textCapitalization,
-      required this.controller})
+      required this.controller,
+      this.lengthFormater,
+      })
       : super(key: key);
   String hint;
+  LengthLimitingTextInputFormatter? lengthFormater;
   TextCapitalization textCapitalization;
   TextInputType textInputType;
   TextEditingController controller;
@@ -30,6 +34,9 @@ class AppTextField extends StatelessWidget {
         controller: controller,
         autofocus: false,
         style: ConstStyle.sourceSans5,
+        inputFormatters: [
+          lengthFormater!,
+        ],
         textCapitalization: textCapitalization,
         keyboardType: textInputType,
         maxLines: 1,

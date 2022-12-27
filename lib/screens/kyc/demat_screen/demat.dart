@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/all_demat_response_data.dart';
 import 'package:trust_money/model/get_demate_account_response_data.dart';
 import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/screens/animated_screens/existing_demat_animation.dart';
+import 'package:trust_money/screens/kyc/demat_screen/demat_bottom_sheets.dart';
 import 'package:trust_money/screens/kyc/demat_screen/e_sign_pdf.dart';
 import 'package:trust_money/screens/kyc/demat_screen/mendatory_question.dart';
 import 'package:trust_money/screens/kyc/demat_screen/nominee.dart';
@@ -16,6 +18,9 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
+
+import '../../../getx_controller/profile/personal_details_controller.dart';
+import '../profile/personal_detals/app_textfield.dart';
 
 class DematAccount extends StatefulWidget {
   DematAccount({Key? key}) : super(key: key);
@@ -25,6 +30,8 @@ class DematAccount extends StatefulWidget {
 }
 
 class _DematAccountState extends State<DematAccount> {
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
   bool existingDematAccountDetails = false;
   bool addNewDematAccounts = false;
   bool dematDetails = true;
@@ -35,28 +42,23 @@ class _DematAccountState extends State<DematAccount> {
   bool isExistingDematFill = false;
   bool isDisable = false;
   List<DematDetailModel> dematList = [];
-  String? userfName;
   String Enble = "Enable";
   var dp_id = TextEditingController();
   var benificiary_id = TextEditingController();
   var dp_name = TextEditingController();
   AllDematAccountModel? alldematList;
   String? nsdlItemsvalue;
+  String customerID = "";
 
   var nsdlItems = [
     'NSDL',
     'CSDL',
   ];
 
-  getPreferences() async {
-    userfName = await HelperFunctions.getPanName();
-    print("object $userfName");
-    setState(() {});
-  }
-
   getDematDetails() async {
     var res1 = await DematDetailRepository().getAllDematDetails();
     print("printdetmatres $res1");
+    customerID = await HelperFunctions.getCustomerID();
     setState(() {
       alldematList = res1;
       addNewDematAccounts = false;
@@ -77,29 +79,44 @@ class _DematAccountState extends State<DematAccount> {
       Fluttertoast.showToast(msg: "Enter Your DP Name");
       return;
     } else {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
       final adddematDetailModel =
           await DematDetailRepository().addExistingDemat(
         nsdlItemsvalue!,
+        customerID,
         dp_id.text.toString(),
         benificiary_id.text.toString(),
         dp_name.text.toString(),
       );
-      if (adddematDetailModel != " ") {
-        EasyLoading.dismiss();
+      if (adddematDetailModel != null) {
+        Get.back();
+        Get.to(() => const ExistingDematAnimation());
         await HelperFunctions.saveuserkyccompleted(true);
-        await Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ExistingDematAnimation()));
         setState(() {
           existingDematAccountDetails = false;
         });
         // onBankAddedBottomSheet();
+      } else {
+        Get.back();
       }
+    }
+  }
+
+  deleteDematAccount(int dematID) async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var res = await DematDetailRepository().deleteDematExistingDetails(dematID);
+    if (res != null) {
+      Get.back();
+      getDematDetails();
     }
   }
 
   @override
   void initState() {
-    getPreferences();
     getDematDetails();
     super.initState();
   }
@@ -535,13 +552,11 @@ class _DematAccountState extends State<DematAccount> {
                                   ),
                                   InkWell(
                                     onTap: () async {
-                                      var res = await DematDetailRepository()
-                                          .deleteDematExistingDetails(
-                                              alldematList!
-                                                  .existDemat[index].id);
-                                      if (res != null) {
-                                        getDematDetails();
-                                      }
+                                      DematBottomSheet()
+                                          .confirmationBottomSheet(onClick: () {
+                                        deleteDematAccount(
+                                            alldematList!.existDemat[index].id);
+                                      });
                                     },
                                     child: Image.asset(
                                       "assets/images/delete.png",
@@ -865,7 +880,7 @@ class _DematAccountState extends State<DematAccount> {
                 height: 10,
               ),
               Text(
-                "Hey $userfName, Enter Your Demat Account Information",
+                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -982,7 +997,7 @@ class _DematAccountState extends State<DematAccount> {
                 height: 10,
               ),
               Text(
-                "Hey $userfName, Enter Your Demat Account Information",
+                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -1034,100 +1049,32 @@ class _DematAccountState extends State<DematAccount> {
                       ))),
               _space1,
               _space,
-              Text(
-                "DP-ID* ",
-                style: GoogleFonts.sourceSansPro(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12),
-                ),
+              AppText(
+                title: 'DP-ID* ',
               ),
               _space1,
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(width: 1.1, color: AppColors.borderColor),
-                  color: Colors.white,
-                ),
-                child: TextField(
-                  controller: dp_id,
-                  autofocus: false,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(16),
-                  ],
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 19,
-                        letterSpacing: 3),
-                  ),
-                  decoration: const InputDecoration(
-                    hintText: "Enter DP-ID",
-                    hintStyle:
-                        TextStyle(color: Color(0xffC8C7CE), letterSpacing: 3),
-                    border: InputBorder.none,
-                    fillColor: Colors.white,
-                    contentPadding:
-                        EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0),
-                  ),
-                ),
+              AppTextField(
+                textCapitalization: TextCapitalization.none,
+                hint: 'Enter DP-ID ',
+                controller: dp_id,
+                lengthFormater: LengthLimitingTextInputFormatter(16),
+                textInputType: TextInputType.number,
               ),
               _space,
-              Text(
-                "Re-enter DP-Id*  ",
-                style: GoogleFonts.sourceSansPro(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12),
-                ),
+              AppText(
+                title: 'Re-enter DP-Id*  ',
               ),
               _space1,
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(width: 1.1, color: AppColors.borderColor),
-                  color: Colors.white,
-                ),
-                child: TextField(
-                  controller: benificiary_id,
-                  autofocus: false,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(16),
-                  ],
-                  style: GoogleFonts.sourceSansPro(
-                    textStyle: const TextStyle(
-                        color: Color(0xff22263D),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 19,
-                        letterSpacing: 3),
-                  ),
-                  decoration: const InputDecoration(
-                    hintText: "Re-enter DP-ID",
-                    hintStyle:
-                        TextStyle(color: Color(0xffC8C7CE), letterSpacing: 3),
-                    border: InputBorder.none,
-                    fillColor: Colors.white,
-                    contentPadding:
-                        EdgeInsets.only(left: 14.0, bottom: 7.0, top: 5.0),
-                  ),
-                ),
+              AppTextField(
+                textCapitalization: TextCapitalization.none,
+                hint: 'Re-enter DP-ID',
+                controller: benificiary_id,
+                lengthFormater: LengthLimitingTextInputFormatter(16),
+                textInputType: TextInputType.number,
               ),
               _space,
-              Text(
-                "DP-Name*  ",
-                style: GoogleFonts.sourceSansPro(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12),
-                ),
+              AppText(
+                title: 'DP-Name*',
               ),
               _space1,
               Container(
@@ -1175,7 +1122,6 @@ class _DematAccountState extends State<DematAccount> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: InkWell(
                   onTap: () async {
-                    EasyLoading.show(status: 'loading...');
                     if (nsdlItemsvalue != null &&
                         dp_id.text.isNotEmpty &&
                         benificiary_id.text.isNotEmpty &&

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/screens/Congratulations/existing_demat_status.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
+import '../../getx_controller/profile/personal_details_controller.dart';
 import '../../utils/images.dart';
 
 class DematAccountComplete extends StatefulWidget {
@@ -14,17 +16,13 @@ class DematAccountComplete extends StatefulWidget {
 }
 
 class _DematAccountCompleteState extends State<DematAccountComplete> {
-  String panNumber = "";
 
-  getPreferences() async {
-    print("============pName $panNumber");
-    setState(() {});
-  }
 
+  PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
 
   @override
   void initState() {
-    getPreferences();
     Future.delayed(const Duration(seconds: 3), () async{
       await Navigator.push(context,
           MaterialPageRoute(builder: (context) => const DematStatus()));
@@ -50,7 +48,7 @@ class _DematAccountCompleteState extends State<DematAccountComplete> {
           SizedBox(
             width: MediaQuery.of(context).size.width/1.3,
             child: Text(
-              "Congratulations! $panNumber Demat Account Added Successfully",
+              "Congratulations!${_personalDetailsController.modaltest.value!.panName} Demat Account Added Successfully",
               textAlign: TextAlign.center,
               style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(

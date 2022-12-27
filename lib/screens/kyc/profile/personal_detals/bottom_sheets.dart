@@ -11,6 +11,8 @@ import '../../../../getx_controller/profile/personal_details_controller.dart';
 
 class PersonalBottomSheet {
   static closeApplicationBottomSheet(BuildContext context) {
+    PersonalDetailsController _personalDetailsController =
+        Get.put(PersonalDetailsController());
     showModalBottomSheet(
       context: context,
       isDismissible: false,
@@ -129,7 +131,7 @@ class PersonalBottomSheet {
 
   static saveAndCompleteBottomSheet() {
     PersonalDetailsController _personalDetailsController =
-    Get.put(PersonalDetailsController());
+        Get.put(PersonalDetailsController());
     Get.bottomSheet(
         Wrap(
           children: [
@@ -245,5 +247,4 @@ class PersonalBottomSheet {
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(30), topLeft: Radius.circular(30))));
   }
-
 }

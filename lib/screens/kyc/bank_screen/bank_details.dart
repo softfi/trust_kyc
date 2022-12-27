@@ -4,15 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/get_bank_detail_response_data.dart';
 import 'package:trust_money/screens/kyc/bank_screen/ifsc_code.dart';
 import 'package:trust_money/utils/images.dart';
-import 'package:trust_money/utils/sharedPreference.dart';
 
+import '../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../model/get_ifsc_code_response_data.dart';
 import '../../../repositories/bank_detail_repository.dart';
 import '../../../utils/colorsConstant.dart';
+import 'bank_bottom_sheets.dart';
 
 class BankAccounts extends StatefulWidget {
   const BankAccounts({
@@ -20,12 +22,14 @@ class BankAccounts extends StatefulWidget {
     this.onClick,
   }) : super(key: key);
   final void Function()? onClick;
+
   @override
   State<BankAccounts> createState() => _BankAccountsState();
 }
 
 class _BankAccountsState extends State<BankAccounts> {
-  String? userfName;
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
   String enable = "Enable";
   bool inCheckCancelled = false;
   bool isDisable = false;
@@ -44,23 +48,22 @@ class _BankAccountsState extends State<BankAccounts> {
   List<BankDetailModel> bank_detail_list = [];
   GetIfscCdeModel? getIfscCdeModel;
 
-  getPreferences() async {
-    userfName = await HelperFunctions.getPanName();
-    setState(() {});
-  }
-
   getbankDetail() async {
     var data = await BankDetailRepository().getBankDetails();
     setState(() {
       bank_detail_list = data;
-      print("============143 $data");
+      debugPrint("============143 $data");
     });
   }
 
   getIFSC(String ifsc) async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
     getIfscCdeModel = await BankDetailRepository().getIFSCCode(ifsc);
     print("======>1122 $getIfscCdeModel");
-    if (getIfscCdeModel != "") {
+    if (getIfscCdeModel != null) {
+      Get.back();
       setState(() {
         showBankDetail = true;
       });
@@ -77,29 +80,42 @@ class _BankAccountsState extends State<BankAccounts> {
       return;
     } else if (bankAccountNo.text.toString() !=
         confirmBankAcc.text.toString()) {
-      bankAccountNotMatchedBottomSheet();
+      BankBottomSheet().bankAccountNotMatchedBottomSheet(context);
     } else if (savingIndex == 0) {
       Fluttertoast.showToast(msg: 'Choose your account type1!');
     } else if (jointIndex == 0) {
       Fluttertoast.showToast(msg: 'Choose your account type2!');
     } else {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
       final addBankDetailModel = await BankDetailRepository().addbankDetails(
           ifscCode.text.toString(),
           bankAccountNo.text.toString(),
           savingIndex,
           jointIndex);
-      if (addBankDetailModel != "") {
-        EasyLoading.dismiss();
+      if (addBankDetailModel != null) {
+        Get.back();
         widget.onClick!();
       } else {
-        uploadCancelledChequeBottomSheet();
+        BankBottomSheet().uploadCancelledChequeBottomSheet(context, inCheckCancelled);
       }
+    }
+  }
+
+  deleteBankAccount(int bankDetailsId) async {
+    Get.dialog(const Center(
+      child: CircularProgressIndicator(),
+    ));
+    var res = await BankDetailRepository().deleteBankDetails(bankDetailsId);
+    if (res != null) {
+      Get.back();
+      getbankDetail();
     }
   }
 
   @override
   void initState() {
-    getPreferences();
     getbankDetail();
     super.initState();
   }
@@ -507,13 +523,15 @@ class _BankAccountsState extends State<BankAccounts> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          var res = await BankDetailRepository()
-                                              .deleteBankDetails(
-                                                  bank_detail_list[index]
-                                                      .bankDetailsId);
-                                          if (res != "") {
-                                            getbankDetail();
-                                          }
+                                          BankBottomSheet()
+                                              .confirmationBottomSheet(
+                                                  onClick: () {
+                                            debugPrint(
+                                                "========================");
+                                            deleteBankAccount(
+                                                bank_detail_list[index]
+                                                    .bankDetailsId);
+                                          });
                                         },
                                         child: Image.asset(
                                           "assets/images/delete.png",
@@ -577,7 +595,7 @@ class _BankAccountsState extends State<BankAccounts> {
               ),
               _space,
               Text(
-                "Hey $userfName, Enter Your Bank Details",
+                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Bank Details",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -1160,7 +1178,6 @@ class _BankAccountsState extends State<BankAccounts> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: InkWell(
                   onTap: () async {
-                    EasyLoading.show(status: 'loading...');
                     if (ifscCode.text.isNotEmpty &&
                         bankAccountNo.text.isNotEmpty) {
                       checkValidation();
@@ -1361,301 +1378,11 @@ class _BankAccountsState extends State<BankAccounts> {
         });
   }
 
-  void bankAccountNotMatchedBottomSheet() {
-    showModalBottomSheet(
-        context: context,
-        isDismissible: false,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(35),
-          ),
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (context) {
-          Future.delayed(Duration(seconds: 5), () {
-            Navigator.pop(context);
-          });
-          return BottomSheet(
-            builder: (BuildContext context) {
-              return StatefulBuilder(builder: (BuildContext context, State) {
-                return Container(
-                  height: MediaQuery.of(context).size.height * 0.27,
-                  decoration: const BoxDecoration(
-                    color: AppColors.textColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(35),
-                      topRight: Radius.circular(35),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 35,
-                      ),
-                      Image.asset(
-                        ConstantImage.error,
-                        width: 75,
-                        height: 75,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: Text(
-                          "Your Bank Account does not match. \nPlease try again.",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.quicksand(
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                    ],
-                  ),
-                );
-              });
-            },
-            onClosing: () {},
-          );
-        });
-  }
-
-  void uploadCancelledChequeBottomSheet() {
-    showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(35),
-          ),
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        builder: (context) {
-          return BottomSheet(
-            builder: (BuildContext context) {
-              return StatefulBuilder(builder: (BuildContext context, State) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      Navigator.pop(context);
-                    });
-                  },
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.90,
-                    decoration: const BoxDecoration(
-                      color: AppColors.textColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(35.0),
-                        topRight: const Radius.circular(35.0),
-                      ),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          Text(
-                            "Upload cancelled cheque",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.quicksand(
-                              textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Center(
-                            child: Container(
-                              height: 270,
-                              width: MediaQuery.of(context).size.width / 1.12,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      width: 0.5, color: Color(0xff707070))),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 45,
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15),
-                                      ),
-                                      color: Color(0xffE1E0E7),
-                                      border: Border.all(
-                                          width: 0.5, color: Color(0xff707070)),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Upload Preview",
-                                        style: GoogleFonts.sourceSansPro(
-                                          textStyle: const TextStyle(
-                                              color: Color(0xff22263D),
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 15),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  _space,
-                                  _space,
-                                  _space,
-                                  Center(
-                                    child: SvgPicture.asset(
-                                      ConstantImage.upload,
-                                      height: 50,
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      "Upload Cancelled Cheque ",
-                                      style: GoogleFonts.sourceSansPro(
-                                        textStyle: const TextStyle(
-                                            color: Color(0xff22263D),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15),
-                                      ),
-                                    ),
-                                  ),
-                                  _space,
-                                  _space,
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0),
-                                    child: RichText(
-                                      text: const TextSpan(children: [
-                                        TextSpan(
-                                            text: "upload your Signature ",
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xff22263D))),
-                                        TextSpan(
-                                            text: "JPG, JPEG ",
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.italic,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xffFF405A))),
-                                        TextSpan(
-                                            text: "or ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontStyle: FontStyle.italic,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xff22263D))),
-                                        TextSpan(
-                                            text: "PNG ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontStyle: FontStyle.italic,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xffFF405A))),
-                                        TextSpan(
-                                            text: "in less than ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontStyle: FontStyle.italic,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xff22263D))),
-                                        TextSpan(
-                                            text: "10 MB ",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontStyle: FontStyle.italic,
-                                                fontWeight: FontWeight.w400,
-                                                color: Color(0xffFF405A))),
-                                      ]),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: 8.0, left: 30, right: 30),
-                            child: Text(
-                              "Note : if you do not have your Cheque book with you for the cancelled cheque , you can upload a copy of your Bank Statement or Bank Passbook ",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                    fontStyle: FontStyle.normal,
-                                    color: Color(0xffFFC440),
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 10),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 25.0, right: 25),
-                            child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  Navigator.pop(context);
-                                  inCheckCancelled = true;
-                                });
-                              },
-                              child: Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1.5, color: Colors.white)),
-                                child: Center(
-                                    child: Text(
-                                  "Submit",
-                                  style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500)),
-                                )),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              });
-            },
-            onClosing: () {},
-          );
-        });
-  }
-
   Widget get _space => const SizedBox(height: 20);
 
   Widget get _space1 => const SizedBox(height: 3);
 
-  Future<bool> _onBackPressed() async{
+  Future<bool> _onBackPressed() async {
     if (addBankView) {
       setState(() {
         cardView = true;

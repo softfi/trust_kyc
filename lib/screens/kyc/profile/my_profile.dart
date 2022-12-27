@@ -3,17 +3,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/animated_screens/complete_bank_detail_animation.dart';
-import 'package:trust_money/screens/animated_screens/complete_profile_animation.dart';
 import 'package:trust_money/screens/kyc/bank_screen/bank_details.dart';
 import 'package:trust_money/screens/kyc/demat_screen/demat.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/my_personal_details.dart';
-import 'package:trust_money/screens/kyc/profile/personal_profile_detals.dart';
 import 'package:trust_money/utils/app_bar.dart';
-import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
-
 import '../../../getx_controller/profile/personal_details_controller.dart';
-import '../../../getx_controller/profile/profile_controller.dart';
 
 // class MyProfile extends StatefulWidget {
 //   const MyProfile({Key? key}) : super(key: key);
@@ -206,8 +201,7 @@ class MyProfile extends StatelessWidget {
         initialIndex: 0,
         child: SingleChildScrollView(
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <
-                  Widget>[
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
             Obx(() => TabBar(
                   onTap: (int index) {
                     _profileController.selectedIndex.value = index;

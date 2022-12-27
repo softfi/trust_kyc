@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_switch/custom_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/profession_response_data.dart';
@@ -277,12 +278,13 @@ class KRARecord extends StatelessWidget {
         title: 'Mother’s Maiden Name',
       ),
       _space1,
-      Obx(() => AppTextField(
-            textCapitalization: TextCapitalization.words,
-            hint: 'Enter Maiden Name',
-            controller: _kRAController.maidenName.value,
-            textInputType: TextInputType.text,
-          )),
+      AppTextField(
+        textCapitalization: TextCapitalization.words,
+        hint: 'Enter Maiden Name',
+        controller: _kRAController.maidenName.value,
+        lengthFormater: LengthLimitingTextInputFormatter(36),
+        textInputType: TextInputType.text,
+      ),
       _space,
       _space,
       _space,

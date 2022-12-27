@@ -883,8 +883,7 @@ class _NomineeState extends State<Nominee> {
                                         onChanged: (String? newVal) {
                                           setState(() {
                                             alternatenomineeStatedId = newVal;
-                                            getCityList(
-                                                alternatenomineeStatedId!);
+                                            getCityList(alternatenomineeStatedId!);
                                           });
                                         },
                                         value: alternatenomineeStatedId,
