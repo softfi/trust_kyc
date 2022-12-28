@@ -4,7 +4,7 @@ import '../../api/apiClient.dart';
 import '../../model/bond/bond_list_modal.dart';
 
 class BondListData extends GetxController{
-  RxList<Output> bondList=List<Output>.empty(growable: true).obs;
+  RxList<BondsList> bondList=List<BondsList>.empty(growable: true).obs;
 
 
 
@@ -19,7 +19,7 @@ class BondListData extends GetxController{
     var response=await  APiProvider().bondList();
     if(response !=null){
       AllBondList modal=response;
-      bondList.value=modal.message.output;
+      bondList.value=modal.bondsList;
     }
     debugPrint(bondList.value.toString());
     debugPrint("bondList.value.toString()");

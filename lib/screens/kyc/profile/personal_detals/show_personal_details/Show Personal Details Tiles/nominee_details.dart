@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
-import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/AddNomineeScreen.dart';
-import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/custom_container.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/add%20nominee/AddNomineeScreen.dart';
+
+import '../../../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../../../utils/colorsConstant.dart';
 import '../../../../../../utils/images.dart';
 import '../../../../../../utils/styles.dart';
-import '../../../../../getx_controller/profile/personal_details_controller.dart';
+import '../../app_textfield.dart';
+import '../custom_container.dart';
+import '../show_personal_details.dart';
 
 class NomineeDetails extends StatelessWidget {
    NomineeDetails({Key? key}) : super(key: key);
@@ -60,7 +62,7 @@ class NomineeDetails extends StatelessWidget {
                         child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children:  const [
+                              children:  [
                                  Image(
                                   image: AssetImage(
                                     ConstantImage.edit,

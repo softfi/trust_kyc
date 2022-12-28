@@ -10,7 +10,6 @@ import '../../../../getx_controller/auth/pan/pan_controller.dart';
 import '../../../../getx_controller/kra/kra_controller.dart';
 import '../../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../../utils/colorsConstant.dart';
-import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/styles.dart';
 import '../personal_detals/app_textfield.dart';
 import '../personal_detals/bottom_sheets.dart';

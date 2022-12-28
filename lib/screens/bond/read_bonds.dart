@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:trust_money/screens/bond/gold_bond.dart';
@@ -10,6 +11,8 @@ import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/styles.dart';
 
 import '../../bottom_navigation/bottom_navigation.dart';
+import '../../getx_controller/bond/bond_list_data_controller.dart';
+import '../../getx_controller/bond/read_more_bond_controller.dart';
 import '../../utils/app_bar.dart';
 
 class ReadBonds extends StatefulWidget {
@@ -25,7 +28,8 @@ class _ReadBondsState extends State<ReadBonds> {
   int yieldIndex = 0;
   int tenureIndex = 0;
   int paymentIndex = 0;
-
+  BondListData _bondListData=Get.put(BondListData());
+  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -213,7 +217,7 @@ class _ReadBondsState extends State<ReadBonds> {
 
   Widget bondList() {
     return ListView.builder(
-        itemCount: data.length,
+        itemCount: _bondListData.bondList.value.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -256,10 +260,10 @@ class _ReadBondsState extends State<ReadBonds> {
                                 Container(
                                   height: 50,
                                   width: 50,
-                                  child: Image.asset(
+                                  child: Image.network(_bondListData.bondList.value[index].bondLogo,fit: BoxFit.cover,errorBuilder: (context, error, stackTrace) => Image.asset(
                                     (ConstantImage.orderImg),
                                     fit: BoxFit.cover,
-                                  ),
+                                  )),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     // image: DecorationImage(image: AssetImage(ConstantImage.collection_container_bg))
@@ -280,7 +284,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width / 2,
-                                  child: Text("${data[index][0]}",
+                                  child: Text("${_bondListData.bondList.value[index].bondIssuerName}",
                                       maxLines: 2,
                                       softWrap: true,
                                       style: GoogleFonts.quicksand(
@@ -359,7 +363,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 height: 4,
                                               ),
                                               Text(
-                                                "8.00%",
+                                                "${_bondListData.bondList.value[index].bondCouponRate}",
                                                 style:
                                                     GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
@@ -389,7 +393,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                               height: 4,
                                             ),
                                             Text(
-                                              "10.60%",
+                                              "${_bondListData.bondList.value[index].bondsYeild??"N/A"}",
                                               style: GoogleFonts.sourceSansPro(
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
@@ -437,7 +441,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 height: 4,
                                               ),
                                               Text(
-                                                "Annual",
+                                                "${_bondListData.bondList.value[index].bondInterestFrequency}",
                                                 style:
                                                     GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
@@ -467,7 +471,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                               height: 4,
                                             ),
                                             Text(
-                                              "Annual",
+                                              "${_bondListData.bondList.value[index].bondMinimumApplication}",
                                               style: GoogleFonts.sourceSansPro(
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
@@ -504,7 +508,7 @@ class _ReadBondsState extends State<ReadBonds> {
                             SizedBox(
                               width: 35,
                               child: Text(
-                                "${data[index][1]}",
+                                _bondListData.bondList.value[index].bondType==1?"IPO":"",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: Color(0xffFF405A),
@@ -515,8 +519,9 @@ class _ReadBondsState extends State<ReadBonds> {
                             ),
                             InkWell(
                               onTap: () {
-                                data[index][0] ==
-                                        "Sovereign Gold Bonds Scheme 2021-22 - Series "
+                                debugPrint(_bondListData.bondList.value[index].bondId.toString());
+                                _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
+                                _bondListData.bondList.value[index].bondIsinNumber=="4"
                                     ? Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -526,8 +531,8 @@ class _ReadBondsState extends State<ReadBonds> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => ReadMoreBonds(
-                                                  isIPO: data[index][1],
-                                              isinNo: "121212121211",
+                                                  isIPO: _bondListData.bondList.value[index].bondType,
+                                              isinNo: _bondListData.bondList.value[index].bondIsinNumber,
                                                 )));
                               },
                               child: Container(

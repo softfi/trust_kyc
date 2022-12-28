@@ -89,6 +89,8 @@ class TrustKycDioClient {
     try {
       var response = await _dio.post(endpoint, data: body, queryParameters: query);
       print("statusCode " + response.statusCode.toString());
+      logger.info(
+          "TOKEN+ ${_dio.options.headers[HttpHeaders.authorizationHeader]}");
       return response;
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
@@ -114,6 +116,10 @@ class TrustKycDioClient {
   // }
 
   Future<Response> put({required String endpoint, Map<String, dynamic>? body, Map<String, dynamic>? query}) async {
+
+    logger.info(
+        "TOKEN+ ${_dio.options.headers[HttpHeaders.authorizationHeader]}");
+
     try {
       var response = await _dio.put(endpoint, data: body, queryParameters: query);
       return response;
@@ -135,6 +141,9 @@ class TrustKycDioClient {
   }
 
   Future<Response> delete({required String endpoint,Map<String, dynamic>? body, Map<String, dynamic>? query}) async {
+
+    logger.info(
+        "TOKEN+ ${_dio.options.headers[HttpHeaders.authorizationHeader]}");
     try {
       var response =  _dio.delete(endpoint, data: body, queryParameters: query);
       return response;
@@ -161,6 +170,8 @@ class TrustKycDioClient {
   // }
 
   Future<Response> upload({required String endpoint, FormData? data}) async {
+    logger.info(
+    "TOKEN+ ${_dio.options.headers[HttpHeaders.authorizationHeader]}");
     return await _dio.post(endpoint, data: data);
   }
 }

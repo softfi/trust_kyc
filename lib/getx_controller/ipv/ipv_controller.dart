@@ -45,7 +45,8 @@ class IPVController extends GetxController {
 
   @override
   void onInit() {
-    initCamera();
+    // newCameraController.value!.initialize().then((value) => debugPrint("098765432211234567890"));
+    initCamera().then((value) =>     newCameraController.value!.initialize().then((value) {}));
     getIPVCode();
     Timer(Duration(seconds: 15), () {
       debugPrint("11111111111111111111111111111111111111");
@@ -80,12 +81,20 @@ class IPVController extends GetxController {
 
   Future<String> initCamera() async {
     newCameraController.value = CameraController(
+        imageFormatGroup: ImageFormatGroup.yuv420,
         const CameraDescription(
             name: "1",
             lensDirection: CameraLensDirection.front,
             sensorOrientation: 1),
         ResolutionPreset.low);
-    newCameraController.value!.initialize().then((value) {});
+
+
+newCameraController.value!.initialize().then((value) {});
+
+
+
+
+
     // final cameras = await availableCameras();
     // final front = cameras.firstWhere(
     //     (camera) => camera.lensDirection == CameraLensDirection.front);

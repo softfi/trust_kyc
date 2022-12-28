@@ -14,7 +14,6 @@ class NomineeRepository {
 
   Future<List<RelationShipModel>> relationShip() async {
     List<RelationShipModel> relationShipList = [];
-    print("=================> called");
     //logger.info("getStateResponse: ==============");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
