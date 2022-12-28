@@ -12,6 +12,7 @@ import '../../../animated_screens/verified_animation.dart';
 
 class EmailPANBottomSheet {
   static emailBottomSheet(BuildContext context, TextEditingController emailId) {
+    emailId.clear();
     Get.bottomSheet(
         Wrap(
           children: [
@@ -71,11 +72,9 @@ class EmailPANBottomSheet {
                             width: 1,
                           ),
                         ),
-                        labelStyle: TextStyle(
-                            color: AppColors.textColor, letterSpacing: 4),
+                        labelStyle: TextStyle(color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
-                        hintStyle: TextStyle(
-                            color: Color(0xff22263D), letterSpacing: 4),
+                        hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                         hintText: "Enter Email id",
                         contentPadding: EdgeInsets.only(left: 14.0, top: 0.0),
                       ),
@@ -175,19 +174,16 @@ class EmailPANBottomSheet {
                       keyboardType: TextInputType.number,
                       autofocus: false,
                       style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(
-                            letterSpacing: 4,
+                        textStyle: const TextStyle(letterSpacing: 4,
                             color: Color(0xff22263D),
                             fontWeight: FontWeight.w400,
                             fontSize: 18),
                       ),
                       decoration: const InputDecoration(
-                        labelStyle: TextStyle(
-                            color: AppColors.textColor, letterSpacing: 4),
+                        labelStyle: TextStyle(color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
-                        hintStyle: TextStyle(
-                            color: Color(0xff22263d), letterSpacing: 4),
-                        hintText: "******",
+                        hintStyle: TextStyle(color: Color(0xffC8C7CE)),
+                        hintText: "Enter Your OTP",
                         fillColor: Colors.white,
                         filled: true,
                         contentPadding: EdgeInsets.only(left: 14.0, top: 0.0),

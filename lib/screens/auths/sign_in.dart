@@ -41,38 +41,24 @@ class _SignInState extends State<SignIn> {
           "resend_otp": isResendOtp
         }),
       );
-
-      JsonDecoder _decoder = new JsonDecoder();
-      dynamic collectUseData = _decoder.convert(response.body);
-
-      print("userinfois");
-      print(collectUseData['hash_key'].toString());
-      print(collectUseData['message'].toString());
-
+      // JsonDecoder _decoder = new JsonDecoder();
+      // dynamic collectUseData = _decoder.convert(response.body);
       resopnsmap = json.decode(response.body);
-
+      print(resopnsmap['hash_key'].toString());
+      print(resopnsmap['message'].toString());
       print("StatusCode" + response.statusCode.toString());
       if (response.statusCode == 200) {
         print(response.statusCode.toString());
         await HelperFunctions.savePhoneNumber(loginphone.text.toString());
-
-        await HelperFunctions.savehashkey(
-            collectUseData['hash_key'].toString());
-
+        await HelperFunctions.savehashkey(resopnsmap['hash_key'].toString());
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return OTPLoginVerify(mobno, collectUseData['hash_key'].toString());
+          return OTPLoginVerify(mobno, resopnsmap['hash_key'].toString());
         }));
       } else if (response.statusCode > 201) {
-        if (collectUseData['errors'].toString() ==
-            "mobile number already register please login") {
-          Fluttertoast.showToast(
-              msg: 'mobile number already register please login');
+        if (resopnsmap['errors'].toString() == "mobile number already register please login") {
+          Fluttertoast.showToast(msg: 'mobile number already register please login');
         }
-        print("Registration failed");
-        Fluttertoast.showToast(msg: collectUseData['errors'].toString());
-
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> SignUpWidget() ));
-
+        Fluttertoast.showToast(msg: resopnsmap['errors'].toString());
       }
     } catch (e) {
       print(e.toString());
