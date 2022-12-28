@@ -132,8 +132,7 @@ class MyPersonalDetails extends StatelessWidget {
                 ),
                 _space1,
                 TextContainer(
-                  titleText:
-                      ' +91 ${_personalDetailsController.mobileNumber.toString()}',
+                  titleText: ' +91 ${_personalDetailsController.mobileNumber.toString()}',
                   perfixIcon: Image.asset(
                     "assets/images/india.png",
                     scale: 4,
@@ -179,23 +178,28 @@ class MyPersonalDetails extends StatelessWidget {
                             fontSize: 15),
                       ),
                     ),
-                    Obx(() => CustomSwitch(
+                    Obx(() => Stack(
+                      children:[
+                        CustomSwitch(
                           activeColor: Colors.green,
-                          value: _personalDetailsController
-                              .potentiallyExposedStatus.value,
+                          value: _personalDetailsController.potentiallyExposedStatus.value,
                           onChanged: (value) {
-                            PersonalBottomSheet.closeApplicationBottomSheet(
-                                context);
-                            _personalDetailsController
-                                .potentiallyExposedStatus.value = false;
-                            // if (value == true) {
-                            //   _personalDetailsController.potentiallyExposedStatusInt.value = 1;
-                            //   PersonalBottomSheet.closeApplicationBottomSheet(context);
-                            // } else {
-                            //   _personalDetailsController.potentiallyExposedStatusInt.value = 0;
-                            // }
+                            _personalDetailsController.potentiallyExposedStatusInt.value = 0;
+                            debugPrint(_personalDetailsController.potentiallyExposedStatus.value.toString());
+                            PersonalBottomSheet.closeApplicationBottomSheet(context);
                           },
-                        )),
+                        ),
+                        InkWell(
+                          onTap: (){
+                            PersonalBottomSheet.closeApplicationBottomSheet(context);
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 70,
+                          ),
+                        )
+                      ],
+                    )),
                   ],
                 ),
                 _space,
