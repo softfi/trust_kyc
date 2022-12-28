@@ -98,7 +98,6 @@ class MyWebView extends StatelessWidget {
             _personalDetailsController.getPersonalDetails();
             Navigator.pop(context);
             Navigator.pop(context);
-            Navigator.pop(context);
             _personalDetailsController.isVisible.value= 6;
            // _personalDetailsController.isVisible.value = 3;
           }
