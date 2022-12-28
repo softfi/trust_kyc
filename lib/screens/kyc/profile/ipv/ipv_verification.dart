@@ -47,6 +47,12 @@ class IPVVerification extends StatelessWidget {
   }
 
   Widget ipvWidget(BuildContext context) {
+    _ipvController.newCameraController.value!.initialize().then((value) {
+      debugPrint("89843493483848938498949434489489389");
+      debugPrint(_ipvController.newCameraController.value!.value.aspectRatio.toString());
+    });
+    // debugPrint(_ipvController.newCameraController.value!.value.toString());
+    debugPrint("_ipvController.newCameraController.value!.value.toString()");
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.all(4.0),
@@ -141,27 +147,31 @@ class IPVVerification extends StatelessWidget {
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: AspectRatio(
-                                    aspectRatio: _ipvController
-                                        .newCameraController
-                                        .value!
-                                        .value
-                                        .aspectRatio,
-                                    child: CameraPreview(_ipvController
+                                    aspectRatio: 1.3333333333333333
+                                    // _ipvController
+                                    //     .newCameraController
+                                    //     .value!
+                                    //     .value
+                                    //     .aspectRatio
+                                    ,
+                                    child: Obx(()=>CameraPreview(_ipvController
                                         .newCameraController.value!)),
-                              )
+                ))
                             : Container()
                         : _ipvController.isLoading.value == 3
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: AspectRatio(
-                                    aspectRatio: _ipvController
-                                        .newCameraController
-                                        .value!
-                                        .value
-                                        .aspectRatio,
-                                    child: CameraPreview(_ipvController
+                                    aspectRatio: 1.3333333333333
+                                    // _ipvController
+                                    //     .newCameraController
+                                    //     .value!
+                                    //     .value
+                                    //     .aspectRatio
+                                    ,
+                                    child: Obx(()=>(CameraPreview(_ipvController
                                         .newCameraController.value!)),
-                              )
+                              )))
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Stack(
@@ -234,10 +244,14 @@ class IPVVerification extends StatelessWidget {
       Obx(
         () => _ipvController.isLoading.value == 1
             ? GestureDetector(
-                onTap: () {
-                  _ipvController.initCamera().then((dfdf) {
+                onTap: () {debugPrint("continue Continue Continue");
+                  _ipvController.newCameraController.value!.initialize().then((value){
+                    debugPrint("continue Continue Continue continue Continue Continue");
                     _ipvController.newCameraController.value!
                         .prepareForVideoRecording();
+                  });
+                debugPrint("continue Continue Continue");
+                  _ipvController.initCamera().then((dfdf) {
                     _ipvController.isLoading.value = 2;
                   });
                   // _ipvController.newCameraController.value!.prepareForVideoRecording();
@@ -265,8 +279,9 @@ class IPVVerification extends StatelessWidget {
             : _ipvController.isLoading.value == 2
                 ? InkWell(
                     onTap: () async {
-                      _ipvController.newCameraController.value!
-                          .startVideoRecording();
+                      _ipvController.newCameraController.value!.initialize().then((value) {_ipvController.newCameraController.value!
+                          .startVideoRecording();});
+
                       _ipvController.isLoading.value = 3;
                       // _ipvController.recordVideo();
                       // _ipvController.isLoading.value = false;

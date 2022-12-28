@@ -88,7 +88,7 @@ class ReadMoreList extends StatelessWidget {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 14.0),
-                                child: Text("${_bondListData.bondList.value[index].bondBondsName}",
+                                child: Text("${_bondListData.bondList.value[index].bondIssuerName}",
                                     style: GoogleFonts.quicksand(
                                       textStyle: const TextStyle(
                                         color: Color(0xff22263D),
@@ -175,7 +175,7 @@ class ReadMoreList extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Text(
-                                    "www",
+                                    "${_bondListData.bondList.value[index].bondsYeild??"N/A"}",
                                     style: GoogleFonts.sourceSansPro(
                                       textStyle: const TextStyle(
                                           color: Color(0xffFF405A),
@@ -242,7 +242,7 @@ class ReadMoreList extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Text(
-                                    "www",
+                                    "${_bondListData.bondList.value[index].bondMinimumApplication}",
                                     style: GoogleFonts.sourceSansPro(
                                       textStyle: const TextStyle(
                                           color: Color(0xffFF405A),
@@ -284,6 +284,8 @@ class ReadMoreList extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                // debugPrint("0909999009000090090000090909");
+                                // debugPrint(_bondListData.bondList.value[index].bondIsinNumber);
                                 _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
                                 // Navigator.push(
                                 //     context,

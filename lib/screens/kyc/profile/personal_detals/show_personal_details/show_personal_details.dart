@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/Show%20Personal%20Details%20Tiles/fACTA_details.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/Show%20Personal%20Details%20Tiles/nominee_details.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/Show%20Personal%20Details%20Tiles/tm_account_details.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../../../../getx_controller/profile/personal_details_controller.dart';
@@ -18,44 +21,53 @@ class ShowPersonalDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 15),
-      child: Container(
-        padding: const EdgeInsets.all(14),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: const Color(0xffF7F7FA).withOpacity(0.35),
-            border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 15),
+          child: Container(
+            padding: const EdgeInsets.all(14),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: const Color(0xffF7F7FA).withOpacity(0.35),
+                border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Personal Details",
-                  style: ConstStyle.quickMedium,
+                Column(
+                  children: [
+                    Text(
+                      "Personal Details",
+                      style: ConstStyle.quickMedium,
+                    ),
+                  ],
                 ),
+                _space1,
+                Container(
+                  height: 3,
+                  width: 150,
+                  color: AppColors.textColor,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                showDetails()
               ],
             ),
-            _space1,
-            Container(
-              height: 3,
-              width: 170,
-              color: AppColors.textColor,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            showDetails()
-          ],
+          ),
         ),
-      ),
+        NomineeDetails(),
+        FactaDetails(),
+        TmAccountDetails()
+
+
+      ],
     );
   }
 
   Widget showDetails() {
-    return Column(
+    return _personalDetailsController.modaltest.value!=null?Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _space,
@@ -65,7 +77,7 @@ class ShowPersonalDetails extends StatelessWidget {
         _space1,
         DesableTitleText(
           title:
-              "${_personalDetailsController.modaltest.value!.firstname} ${_personalDetailsController.modaltest.value!.firstname}",
+              "${_personalDetailsController.modaltest.value?.firstname ??""} ${_personalDetailsController.modaltest.value?.firstname??""}",
         ),
         _space,
         DesableAppText(
@@ -85,7 +97,7 @@ class ShowPersonalDetails extends StatelessWidget {
             ),
             DesableTitleText(
               title:
-                  "+91 ${_personalDetailsController.modaltest.value!.mobileNumber}",
+                  "+91 ${_personalDetailsController.modaltest.value?.mobileNumber??""}",
             ),
             const SizedBox(
               width: 15,
@@ -101,7 +113,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: "${_personalDetailsController.modaltest.value!.emailId}",
+              title: _personalDetailsController.modaltest.value!=null?"${_personalDetailsController.modaltest.value!.emailId??""}":"",
             ),
             const SizedBox(
               width: 15,
@@ -117,7 +129,7 @@ class ShowPersonalDetails extends StatelessWidget {
           title: 'Date of Birth - Should be as per Aadhar',
         ),
         DesableTitleText(
-          title: _personalDetailsController.dob.value,
+          title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.dob.value:"",
         ),
         _space,
         DesableAppText(
@@ -127,7 +139,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: "${_personalDetailsController.modaltest.value!.panNumber}",
+              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.panNumber:"",
             ),
             const SizedBox(
               width: 15,
@@ -143,7 +155,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: "${_personalDetailsController.modaltest.value!.aadharNumber ?? ""}",
+              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber : "",
             ),
             const SizedBox(
               width: 15,
@@ -159,7 +171,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: "${_personalDetailsController.modaltest.value!.aadharNumber ?? ""}",
+              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber :"",
             ),
             const SizedBox(
               width: 15,
@@ -1174,8 +1186,7 @@ class ShowPersonalDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-              width: 250,
+            Expanded(
               child: Text(
                 Strings.active_check,
                 style: GoogleFonts.sourceSansPro(
@@ -1194,6 +1205,7 @@ class ShowPersonalDetails extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(width: 5,),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 5),
               height: 40,
@@ -1305,7 +1317,7 @@ class ShowPersonalDetails extends StatelessWidget {
         ),
         _space,
       ],
-    );
+    ):Container();
   }
 
   Widget get _space => const SizedBox(height: 16);
