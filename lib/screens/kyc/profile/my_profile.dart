@@ -471,7 +471,7 @@ class MyProfile extends StatelessWidget {
                                 width: 121,
                                 height: 04,
                                 decoration: BoxDecoration(
-                                  color: _profileController.selectedIndex.value == 1 && _profileController.selectedIndex.value == 2
+                                  color: _profileController.selectedIndex.value == 1 || _profileController.selectedIndex.value == 2
                                       ? const Color(0xffFF405A)
                                       : const Color(0xffc8c7ce),
                                   // color: Color(0xffc8c7ce),
