@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+//Nominee model
 List<NomineeDetailModel> nomineeDetailsFromJson(String str) => List<NomineeDetailModel>.from(json.decode(str).map((x) => NomineeDetailModel.fromJson(x)));
 
 String nomineeDetailsToJson(List<NomineeDetailModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
