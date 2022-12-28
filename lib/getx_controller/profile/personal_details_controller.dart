@@ -10,7 +10,6 @@ import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/sharedPreference.dart';
 
 class PersonalDetailsController extends GetxController {
-
   RxInt isVisible = 1.obs;
   RxInt isShowing = 1.obs;
   RxString mobileNumber = "".obs;
@@ -28,14 +27,15 @@ class PersonalDetailsController extends GetxController {
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
   RxInt selectedIndex = 0.obs;
-  RxBool barLine = true.obs;
-  RxBool tabVisible = false.obs;
+  RxBool barLine = false.obs;
+  RxBool tabVisible = true.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
   Rx<TextEditingController> lastName = TextEditingController().obs;
   Rx<TextEditingController> emailID = TextEditingController().obs;
-  Rx<DateTime> currentStartDate = DateTime.now().subtract(const Duration(days: 6574)).obs;
+  Rx<DateTime> currentStartDate =
+      DateTime.now().subtract(const Duration(days: 6574)).obs;
   var modaltest = Rxn<GetPersonalDetailModel>();
 
   //GetPersonalDetailModel? modaltest;
@@ -44,7 +44,7 @@ class PersonalDetailsController extends GetxController {
   @override
   void onInit() {
     getKycStatus();
-    //getPersonalDetails();
+    getPersonalDetails();
     getPerferences();
     super.onInit();
   }
@@ -67,7 +67,8 @@ class PersonalDetailsController extends GetxController {
       debugPrint("=======0009089 $response");
       emailID.value.text = modaltest.value!.emailId.toString();
       checkProfileStatus.value = modaltest.value!.mothersMaidenName.toString();
-      await HelperFunctions.saveFirstName(modaltest.value!.firstname.toString());
+      await HelperFunctions.saveFirstName(
+          modaltest.value!.firstname.toString());
       await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
@@ -77,14 +78,12 @@ class PersonalDetailsController extends GetxController {
 
   getNomineeDetails() async {
     var response = await APiProvider().nomineeDetail();
-    debugPrint("Nominasdfasda"+response.toString());
+    debugPrint("Nominasdfasda" + response.toString());
     if (response != null) {
-      nomineeDetails.value=response;
-      debugPrint("Nominasdfasda"+nomineeDetails.value.toString());
-
+      nomineeDetails.value = response;
+      debugPrint("Nominasdfasda" + nomineeDetails.value.toString());
     }
   }
-
 
   void getPerferences() async {
     mail.value = await HelperFunctions.getEmailId();
@@ -134,7 +133,6 @@ class PersonalDetailsController extends GetxController {
       Get.back();
       ShowCustomSnackBar().SuccessSnackBar(response.toString());
     }
-
   }
 
   void updateStatusBar() async {
