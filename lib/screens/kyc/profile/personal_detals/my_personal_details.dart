@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/authenticate_adhaar.dart';
 import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/show_adhaar_details.dart';
 import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_verification.dart';
 import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
@@ -33,7 +35,7 @@ class MyPersonalDetails extends StatelessWidget {
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 1,
             child: personaDetail(context))),
-            //child: ShowPersonalDetails())),
+        //child: ShowPersonalDetails())),
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 2,
             child: EmailVeryfication())),
@@ -43,6 +45,12 @@ class MyPersonalDetails extends StatelessWidget {
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 4,
             child: IPVVerification())),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 5,
+            child: AuthenticateAdhaar())),
+        Obx(() => Visibility(
+            visible: _personalDetailsController.isVisible.value == 6,
+            child: ShowAdhaarDetails())),
       ],
     );
     // : ShowPersonalDetails();
@@ -173,10 +181,13 @@ class MyPersonalDetails extends StatelessWidget {
                     ),
                     Obx(() => CustomSwitch(
                           activeColor: Colors.green,
-                          value: _personalDetailsController.potentiallyExposedStatus.value,
+                          value: _personalDetailsController
+                              .potentiallyExposedStatus.value,
                           onChanged: (value) {
-                            PersonalBottomSheet.closeApplicationBottomSheet(context);
-                            _personalDetailsController.potentiallyExposedStatus.value = false;
+                            PersonalBottomSheet.closeApplicationBottomSheet(
+                                context);
+                            _personalDetailsController
+                                .potentiallyExposedStatus.value = false;
                             // if (value == true) {
                             //   _personalDetailsController.potentiallyExposedStatusInt.value = 1;
                             //   PersonalBottomSheet.closeApplicationBottomSheet(context);

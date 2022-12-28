@@ -67,8 +67,7 @@ class PersonalDetailsController extends GetxController {
       debugPrint("=======0009089 $response");
       emailID.value.text = modaltest.value!.emailId.toString();
       checkProfileStatus.value = modaltest.value!.mothersMaidenName.toString();
-      await HelperFunctions.saveFirstName(
-          modaltest.value!.firstname.toString());
+      await HelperFunctions.saveFirstName(modaltest.value!.firstname.toString());
       await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
@@ -130,11 +129,12 @@ class PersonalDetailsController extends GetxController {
     var response = await APiProvider().updatePersonalDeatil();
     debugPrint("=======00090893asdsdadasd3333 $response");
     if (response != null) {
-      isVisible.value = 2;
       getPersonalDetails();
+      isVisible.value = 2;
       Get.back();
+      ShowCustomSnackBar().SuccessSnackBar(response.toString());
     }
-    ShowCustomSnackBar().SuccessSnackBar(response.toString());
+
   }
 
   void updateStatusBar() async {
