@@ -10,19 +10,33 @@ import '../../model/profession_response_data.dart';
 class KRAController extends GetxController {
   RxInt isVisible = 1.obs;
   RxBool isChecked = false.obs;
+  RxBool isAddressAdd = false.obs;
   RxBool isRTR = false.obs;
+  RxBool isUploadScansShow = true.obs;
+  RxBool scansView = false.obs;
+  RxBool isFrontImageClick = false.obs;
+  RxBool isBackImageClick = false.obs;
   RxString professionId = "".obs;
   RxString motherName = "".obs;
   RxString urlLink = "".obs;
+  RxString fileName1 = "".obs;
+  RxString fileName2 = "".obs;
   RxString adhaarNumber = "".obs;
   RxString adhaarAddress = "".obs;
+  RxString frontImage = "".obs;
+  RxString backImage = "".obs;
   RxInt isRTRInt = 0.obs;
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
+
+
 var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   RxInt isExperienceSelect = 0.obs;
   Rx<TextEditingController> maidenName = TextEditingController().obs;
+  Rx<TextEditingController> addressline1 = TextEditingController().obs;
+  Rx<TextEditingController> addressline2 = TextEditingController().obs;
+  Rx<TextEditingController> pinCode = TextEditingController().obs;
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController()); //list sa=[]
   RxList<ProfessionModel> professionList =

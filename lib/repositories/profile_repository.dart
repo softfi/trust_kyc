@@ -16,6 +16,7 @@ import '../model/get_digilocker_response_data.dart';
 import '../model/get_pan_response_data.dart';
 import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/state_response_data.dart';
+import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -224,23 +225,21 @@ class ProfileRepository {
       });
       var token = await HelperFunctions.getToken();
       var dio = Dio();
-      var response = await dio.post(
-          "https://trust-api.trustmony.com/api/v1/proof_image_upload?proof_type=$proofType",
+      var response = await dio.post("${TrustKycUrl.baseUrl}${TrustKycUrl.proofImage}?proof_type=$proofType",
           data: formData,
           options: Options(headers: {
             'accept': 'application/json',
             'authorization': token,
           }));
-
       if (response.statusCode == 201) {
         await HelperFunctions.saveFrontImage(response.data['front-image']);
         await HelperFunctions.saveBackImage(response.data['back-image']);
         return response;
       } else {
-        Fluttertoast.showToast(msg: "Something Went Wrong \n try again");
+        ShowCustomSnackBar().ErrorSnackBar(response.data["errors"]);
       }
     } catch (e) {
-      print("===========>  $e");
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
 

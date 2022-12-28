@@ -75,19 +75,10 @@ class EmailVeryfication extends StatelessWidget {
               Obx(() => Visibility(
                   visible: _personalDetailsController.isShowing.value == 1,
                   child: _personalDetailsController.modaltest.value != null
-                      ? _personalDetailsController
-                                  .modaltest.value!.isEmailVerified ==
-                              1
+                      ? _personalDetailsController.modaltest.value!.isEmailVerified == 1
                           ? verifiedEmail(context)
                           : emailWidget(context)
                       : emailWidget(context))),
-              // Obx(() => Visibility(
-              //       visible: _personalDetailsController.isShowing.value == 1,
-              //       child: emailWidget(context),
-              //     )),
-              // Obx(() => Visibility(
-              //     visible: _personalDetailsController.isShowing.value == 2,
-              //     child: verifiedEmail(context))),
               Obx(() => Visibility(
                   visible: _personalDetailsController.isShowing.value == 3,
                   child: panWidget(context))),
@@ -117,10 +108,8 @@ class EmailVeryfication extends StatelessWidget {
             _space,
             _space,
             StreamBuilder(
-              //this will detect the change in the user
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
-                //we will handle the different state like islogging in or is logged out
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(),
@@ -132,9 +121,10 @@ class EmailVeryfication extends StatelessWidget {
                 } else {
                   return InkWell(
                     onTap: () {
-                      (snapshot.hasData)
+                    /*  (snapshot.hasData)
                           ? GoogleSignInProvider().logout()
-                          : GoogleSignInProvider().googleLogin();
+                          :*/
+                      GoogleSignInProvider().googleLogin();
                     },
                     child: Container(
                         height: 55,
@@ -249,11 +239,8 @@ class EmailVeryfication extends StatelessWidget {
           onTap: () {
             isButtonClick.value = true;
             if (_personalDetailsController.modaltest.value != null) {
-              _personalDetailsController.modaltest.value!.isPanVerified == 1 &&
-                      _personalDetailsController
-                              .modaltest.value!.isAadharVerified ==
-                          1
-                  ? _personalDetailsController.isVisible.value = 3
+              _personalDetailsController.modaltest.value!.isPanVerified == 1
+                  ? _personalDetailsController.isVisible.value = 5
                   : _personalDetailsController.isShowing.value = 3;
             }
           },
@@ -350,7 +337,8 @@ class EmailVeryfication extends StatelessWidget {
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
                         onTap: () {
-                          _panCardUserDeatils.verifyPan();
+                         _panCardUserDeatils.verifyPan();
+
                         },
                         child: Container(
                           width: 80,

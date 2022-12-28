@@ -22,6 +22,7 @@ import '../model/perosnal_details/get_personal_detail_response.dart';
 import '../model/perosnal_details/nominee_details_response.dart';
 import '../model/profession_response_data.dart';
 import '../model/status_bar/progress_status_bar.dart';
+import '../screens/animated_screens/verified_animation.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
@@ -147,8 +148,7 @@ class APiProvider extends GetConnect {
   }
 
   SendKycEmailOtp(String email, bool isResend) async {
-    PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
+    PersonalDetailsController _controller = Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     try {
       var body = {
@@ -156,7 +156,9 @@ class APiProvider extends GetConnect {
         "email_id": email,
         "resend_otp": isResend
       };
-
+      Get.dialog(Center(
+        child: CircularProgressIndicator(),
+      ));
       var response = await post(
           TrustKycUrl.baseUrl + TrustKycUrl.sentEmailOTP, jsonEncode(body),
           headers: {
@@ -165,10 +167,14 @@ class APiProvider extends GetConnect {
             'Authorization': token,
           });
       if (response.statusCode == 200) {
-        debugPrint("=======res ${response.body["message"]}");
+        Get.back();
         return response.body["message"];
+      }else{
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
       }
     } catch (e) {
+      Get.back();
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
@@ -177,6 +183,12 @@ class APiProvider extends GetConnect {
     var token = await HelperFunctions.getToken();
     var body = {"email_id": email, "otp": otp};
     try {
+      Get.dialog(VerifiedAnim(
+        image: "assets/images/loding.mp4",
+        onClick: () {},
+        title: "We Are Verifying Your Email ID",
+        subTitle: "We are validating your ID and Username with the service provider, this may take some time.",
+      ));
       var response = await post(
           TrustKycUrl.baseUrl + TrustKycUrl.verifyEmailOtp, body,
           headers: {
@@ -185,14 +197,17 @@ class APiProvider extends GetConnect {
             'Authorization': token,
           });
       if (response.statusCode == 200) {
+        Get.back();
         if (response.body["is_email_verified"] == 1) {
           await HelperFunctions.saveEmail(response.body["email_id"].toString());
           return response.body["message"];
         }
       } else {
-        ShowCustomSnackBar().ErrorSnackBar(response.body["message"]);
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
       }
     } catch (e) {
+      Get.back();
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }

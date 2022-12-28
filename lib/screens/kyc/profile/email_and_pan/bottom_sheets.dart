@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/styles.dart';
+import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/strings.dart';
 import '../../../Congratulations/email_congratulations.dart';
@@ -17,7 +19,7 @@ class EmailPANBottomSheet {
         Wrap(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -30,7 +32,7 @@ class EmailPANBottomSheet {
                           fontSize: 18,
                           color: Colors.white)),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Form(
                     autovalidateMode: AutovalidateMode.always,
@@ -72,7 +74,8 @@ class EmailPANBottomSheet {
                             width: 1,
                           ),
                         ),
-                        labelStyle: TextStyle(color: AppColors.textColor, letterSpacing: 4),
+                        labelStyle: TextStyle(
+                            color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
                         hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                         hintText: "Enter Email id",
@@ -174,13 +177,21 @@ class EmailPANBottomSheet {
                       keyboardType: TextInputType.number,
                       autofocus: false,
                       style: GoogleFonts.sourceSansPro(
-                        textStyle: const TextStyle(letterSpacing: 4,
+                        textStyle: const TextStyle(
+                            letterSpacing: 4,
                             color: Color(0xff22263D),
                             fontWeight: FontWeight.w400,
                             fontSize: 18),
                       ),
+                      onChanged: (text) {
+                        if (optController.text.length > 6) {
+                          FocusScope.of(context).unfocus();
+                        }
+                      },
+                      inputFormatters: [LengthLimitingTextInputFormatter(6)],
                       decoration: const InputDecoration(
-                        labelStyle: TextStyle(color: AppColors.textColor, letterSpacing: 4),
+                        labelStyle: TextStyle(
+                            color: AppColors.textColor, letterSpacing: 4),
                         border: InputBorder.none,
                         hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                         hintText: "Enter Your OTP",
@@ -258,59 +269,27 @@ class EmailPANBottomSheet {
   }
 
   static void validateAndSendOtp(String text) async {
-    debugPrint(text);
     if (text.isNotEmpty) {
       bool isOk = text.isValidEmail();
       if (isOk) {
-        Get.dialog(Center(
-          child: CircularProgressIndicator(),
-        ));
         var response = await APiProvider().SendKycEmailOtp(text, false);
         if (response != null) {
-          Get.back();
           Get.back();
           onOtpAddedBottomSheet(Get.context!, text);
         }
       } else {
-        Get.showSnackbar(GetSnackBar(
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Enter a valid email",
-            style: TextStyle(color: Colors.white),
-          ),
-        ));
+        ShowCustomSnackBar().ErrorSnackBar("Enter a valid email");
       }
     } else {
-      Get.showSnackbar(GetSnackBar(
-        backgroundColor: Colors.red,
-        duration: Duration(seconds: 2),
-        messageText: Text(
-          "Enter email first",
-          style: TextStyle(color: Colors.white),
-        ),
-      ));
+      ShowCustomSnackBar().ErrorSnackBar("Enter email first");
     }
-
-    // show this  when otp is sent
   }
 
   static void validateAndResendSendOtp(String email_id) async {
     if (email_id.isNotEmpty) {
-      Get.dialog(Center(
-        child: CircularProgressIndicator(),
-      ));
       var response = await APiProvider().SendKycEmailOtp(email_id, true);
       if (response != null) {
-        Get.back();
-        Get.showSnackbar(GetSnackBar(
-          backgroundColor: Colors.green,
-          duration: Duration(seconds: 2),
-          messageText: Text(
-            response.toString(),
-            style: TextStyle(color: Colors.white),
-          ),
-        ));
+        ShowCustomSnackBar().SuccessSnackBar(response.toString());
       }
     }
   }
@@ -319,23 +298,15 @@ class EmailPANBottomSheet {
     PersonalDetailsController _personalDetailsController =
         Get.put(PersonalDetailsController());
     if (otp.isNotEmpty) {
-      Get.dialog(VerifiedAnim(
-        image: "assets/images/loding.mp4",
-        onClick: () {},
-        title: "We Are Verifying Your Email ID",
-        subTitle: "We are validating your ID and Username with the service provider, this may take some time.",
-      ));
       var response = await APiProvider().verifyOtp(email, otp);
       if (response != null) {
-        _personalDetailsController.getPersonalDetails();
         Get.back();
-        Get.back();_personalDetailsController.isShowing.value = 3;
+        _personalDetailsController.getPersonalDetails();
+        _personalDetailsController.isShowing.value = 3;
         Get.to(const EmailComplete());
       }
     } else {
-      Get.showSnackbar(const GetSnackBar(
-        messageText: Text("Enter OTP first"),
-      ));
+      ShowCustomSnackBar().SuccessSnackBar("Enter OTP first");
     }
   }
 }

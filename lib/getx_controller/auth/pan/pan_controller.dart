@@ -18,10 +18,12 @@ class PanCardUserDeatils extends GetxController {
   RxString panName = "".obs;
   var panDataModal = Rxn<PanStatusModel>();
   Rx<TextEditingController> panNumber = TextEditingController().obs;
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
 
   verifyPan() async {
     Get.dialog(VerifiedAnim(
-      image: "assets/images/loding.mp4",
+      image: "assets/images/pan.mp4",
       onClick: () {},
       title: "We Are Verifying \nYour PAN",
       subTitle:
@@ -32,12 +34,10 @@ class PanCardUserDeatils extends GetxController {
       Get.back();
       PanStatusModel modal = response;
       panDataModal.value = response;
-      panName.value = "${modal..panFname} ${modal..panMname} ${modal..panLname}";
+      panName.value = "${modal.panFname} ${modal.panMname} ${modal.panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
-          Get.to(Digilocker());
-          //_personalDetailsController.isVisible.value = 3;
-          // Get.back();
+          _personalDetailsController.isVisible.value = 5;
         }));
       } else if (modal.panStatus == "X") {
         bottomSheet("DEACTIVATED");
@@ -72,8 +72,9 @@ class PanCardUserDeatils extends GetxController {
                 const SizedBox(
                   height: 10,
                 ),
-                Text("Hi, [$panName]",
-                    style: TextStyle(
+                Text(
+                    "Hi, [${panName.value != null ? panName.value : "${_personalDetailsController.modaltest.value!.firstname} ${_personalDetailsController.modaltest.value!.lastname}"}]",
+                    style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 18,
                         color: Colors.white)),
@@ -85,8 +86,8 @@ class PanCardUserDeatils extends GetxController {
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                         color: Colors.white)),
-                Text("$msg",
-                    style: TextStyle(
+                Text(msg,
+                    style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                         letterSpacing: 2,
