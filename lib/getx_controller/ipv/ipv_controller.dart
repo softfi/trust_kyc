@@ -89,10 +89,15 @@ class IPVController extends GetxController {
         ResolutionPreset.low);
 
 
-newCameraController.value!.initialize().then((value) {});
+var a=await newCameraController.value!.initialize().then((value) {
+  debugPrint("099999999999dwwwwwwwwwwwwwwwwwwwwwwwssssssssssssssssss");
+  debugPrint(newCameraController.value!.description.toString());});
+debugPrint(a.toString());
+debugPrint("a.toString()");
 
-
-
+debugPrint("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+debugPrint(newCameraController.value!.description.toString());
+debugPrint(newCameraController.value!.toString());
 
 
     // final cameras = await availableCameras();

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/gestures.dart';
@@ -20,6 +21,23 @@ class IPVVerification extends StatelessWidget {
       Get.put(PersonalDetailsController());
   IPVController _ipvController = Get.put(IPVController());
   RxBool isButtonClick = false.obs;
+RxInt time=0.obs;
+
+  startTimer()async{
+   var a= await Timer.periodic(Duration(seconds: 1), (timer) async{ time.value++;
+    if(time.value==15){
+      _ipvController.isLoading.value = 4;
+      var temp = await (_ipvController
+          .newCameraController.value!
+          .stopVideoRecording())
+          .then((XFile? file) {
+        _ipvController.file.value = File(file!.path);
+      });
+      debugPrint(temp.toString());
+    }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +65,10 @@ class IPVVerification extends StatelessWidget {
   }
 
   Widget ipvWidget(BuildContext context) {
-    _ipvController.newCameraController.value!.initialize().then((value) {
-      debugPrint("89843493483848938498949434489489389");
-      debugPrint(_ipvController.newCameraController.value!.value.aspectRatio.toString());
-    });
+    // _ipvController.newCameraController.value!.initialize().then((value) {
+    //   debugPrint("89843493483848938498949434489489389");
+    //   debugPrint(_ipvController.newCameraController.value!.value.aspectRatio.toString());
+    // });
     // debugPrint(_ipvController.newCameraController.value!.value.toString());
     debugPrint("_ipvController.newCameraController.value!.value.toString()");
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -121,123 +139,129 @@ class IPVVerification extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Center(
-          child: Obx(() => Container(
-                height: 250,
-                width: 340,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                      width: 3,
-                      color: _ipvController.isLoading.value == 1
-                          ? AppColors.primaryColor
-                          : const Color(0xff66DC65)),
-                ),
-                child: _ipvController.isLoading.value == 1
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(28.0),
-                          child: SvgPicture.asset(
-                            ConstantImage.profile_pic,
-                          ),
-                        ),
-                      )
-                    : _ipvController.isLoading.value == 2
-                        ? (_ipvController.newCameraController.value != null)
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: AspectRatio(
-                                    aspectRatio: 1.3333333333333333
-                                    // _ipvController
-                                    //     .newCameraController
-                                    //     .value!
-                                    //     .value
-                                    //     .aspectRatio
-                                    ,
-                                    child: Obx(()=>CameraPreview(_ipvController
-                                        .newCameraController.value!)),
-                ))
-                            : Container()
-                        : _ipvController.isLoading.value == 3
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: AspectRatio(
-                                    aspectRatio: 1.3333333333333
-                                    // _ipvController
-                                    //     .newCameraController
-                                    //     .value!
-                                    //     .value
-                                    //     .aspectRatio
-                                    ,
-                                    child: Obx(()=>(CameraPreview(_ipvController
-                                        .newCameraController.value!)),
-                              )))
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Stack(
-                                  children: [
-                                    FutureBuilder(
-                                      future: _ipvController.initVideoPlayer(),
-                                      builder: (context, state) {
-                                        if (state.connectionState ==
-                                            ConnectionState.waiting) {
-                                          return const Center(
-                                              child:
-                                                  CircularProgressIndicator());
-                                        } else {
-                                          return (_ipvController
-                                                      .videoPlayerController
-                                                      .value !=
-                                                  null)
-                                              ? VideoPlayer(_ipvController
-                                                  .videoPlayerController.value!)
-                                              : Center(
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              28.0),
-                                                      child: SvgPicture.asset(
-                                                        ConstantImage
-                                                            .profile_pic,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                        }
-                                      },
-                                    ),
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      width: MediaQuery.of(context).size.width,
-                                      alignment: Alignment.center,
-                                      child: Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 0.5, color: Colors.white),
-                                          borderRadius:
-                                              BorderRadius.circular(35),
-                                          color: Color(0xffffffff)
-                                              .withOpacity(0.20),
-                                        ),
-                                        child: const Center(
-                                            child: Icon(
-                                          Icons.play_arrow,
-                                          size: 30,
-                                          color: Colors.white,
-                                        )),
-                                      ),
-                                    )
-                                  ],
-                                ),
+          child: Obx(() => Column(
+            children: [
+              _ipvController.isLoading.value==3?Obx(()=>Text("00:00:${time.value}")):Container(),
+              SizedBox(height: 5,),
+              Container(
+                    height: 250,
+                    width: 340,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          width: 3,
+                          color: _ipvController.isLoading.value == 1
+                              ? AppColors.primaryColor
+                              : const Color(0xff66DC65)),
+                    ),
+                    child: _ipvController.isLoading.value == 1
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(28.0),
+                              child: SvgPicture.asset(
+                                ConstantImage.profile_pic,
                               ),
-              )),
+                            ),
+                          )
+                        : _ipvController.isLoading.value == 2
+                            ? (_ipvController.newCameraController.value != null)
+                                ?Obx(()=> ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: AspectRatio(
+                                        aspectRatio: 1.3333333333333333
+                                        // _ipvController
+                                        //     .newCameraController
+                                        //     .value!
+                                        //     .value
+                                        //     .aspectRatio
+                                        ,
+                                        child: CameraPreview(_ipvController
+                                            .newCameraController.value!)),
+                    ))
+                                : Container()
+                            : _ipvController.isLoading.value == 3
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: AspectRatio(
+                                        aspectRatio: 1.3333333333333
+                                        // _ipvController
+                                        //     .newCameraController
+                                        //     .value!
+                                        //     .value
+                                        //     .aspectRatio
+                                        ,
+                                        child: Obx(()=>(CameraPreview(_ipvController
+                                            .newCameraController.value!)),
+                                  )))
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Stack(
+                                      children: [
+                                        FutureBuilder(
+                                          future: _ipvController.initVideoPlayer(),
+                                          builder: (context, state) {
+                                            if (state.connectionState ==
+                                                ConnectionState.waiting) {
+                                              return const Center(
+                                                  child:
+                                                      CircularProgressIndicator());
+                                            } else {
+                                              return (_ipvController
+                                                          .videoPlayerController
+                                                          .value !=
+                                                      null)
+                                                  ? VideoPlayer(_ipvController
+                                                      .videoPlayerController.value!)
+                                                  : Center(
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  28.0),
+                                                          child: SvgPicture.asset(
+                                                            ConstantImage
+                                                                .profile_pic,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                            }
+                                          },
+                                        ),
+                                        Container(
+                                          height:
+                                              MediaQuery.of(context).size.height,
+                                          width: MediaQuery.of(context).size.width,
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 0.5, color: Colors.white),
+                                              borderRadius:
+                                                  BorderRadius.circular(35),
+                                              color: Color(0xffffffff)
+                                                  .withOpacity(0.20),
+                                            ),
+                                            child: const Center(
+                                                child: Icon(
+                                              Icons.play_arrow,
+                                              size: 30,
+                                              color: Colors.white,
+                                            )),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                  ),
+            ],
+          )),
         ),
       ),
       _space,
@@ -245,15 +269,17 @@ class IPVVerification extends StatelessWidget {
         () => _ipvController.isLoading.value == 1
             ? GestureDetector(
                 onTap: () {debugPrint("continue Continue Continue");
-                  _ipvController.newCameraController.value!.initialize().then((value){
-                    debugPrint("continue Continue Continue continue Continue Continue");
-                    _ipvController.newCameraController.value!
-                        .prepareForVideoRecording();
-                  });
-                debugPrint("continue Continue Continue");
-                  _ipvController.initCamera().then((dfdf) {
-                    _ipvController.isLoading.value = 2;
-                  });
+                //   _ipvController.newCameraController.value!.initialize().then((value){
+                //     debugPrint("continue Continue Continue continue Continue Continue");
+                //
+                //   });
+                // debugPrint("continue Continue Continue");
+                //   _ipvController.initCamera().then((dfdf) {
+                //
+                //   });
+                _ipvController.isLoading.value = 2;
+                _ipvController.newCameraController.value!
+                    .prepareForVideoRecording();
                   // _ipvController.newCameraController.value!.prepareForVideoRecording();
                 },
                 child: Center(
@@ -279,9 +305,12 @@ class IPVVerification extends StatelessWidget {
             : _ipvController.isLoading.value == 2
                 ? InkWell(
                     onTap: () async {
-                      _ipvController.newCameraController.value!.initialize().then((value) {_ipvController.newCameraController.value!
-                          .startVideoRecording();});
-
+                      startTimer();
+                      // _ipvController.newCameraController.value!.initialize().then((value) {
+                      //
+                      //   ;});
+                      _ipvController.newCameraController.value!
+                          .startVideoRecording();
                       _ipvController.isLoading.value = 3;
                       // _ipvController.recordVideo();
                       // _ipvController.isLoading.value = false;
@@ -317,8 +346,10 @@ class IPVVerification extends StatelessWidget {
                                   .newCameraController.value!
                                   .stopVideoRecording())
                               .then((XFile? file) {
+                                debugPrint(file.toString());
                             _ipvController.file.value = File(file!.path);
                           });
+                          debugPrint(temp.toString());
                         },
                         child: Center(
                           child: Container(
@@ -343,7 +374,7 @@ class IPVVerification extends StatelessWidget {
                     : _ipvController.isLoading.value == 4
                         ? InkWell(
                             onTap: () async {
-                              _ipvController.isLoading.value = 1;
+                              // _ipvController.isLoading.value = 1;
                               Get.dialog(VideoPreview());
                               // final route = MaterialPageRoute(
                               //   fullscreenDialog: true,
