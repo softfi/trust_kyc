@@ -83,8 +83,8 @@ class AuthenticateAdhaar extends StatelessWidget {
               InkWell(
                 onTap: () {
                   isButtonClick.value = true;
-                  _personalDetailsController.isVisible.value= 6;
-                 // Get.to(()=>Digilocker());
+                  //_personalDetailsController.isVisible.value= 6;
+                   Get.to(()=>Digilocker());
                 },
                 child: Obx(() => Container(
                       height: 45,

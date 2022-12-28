@@ -30,7 +30,6 @@ class KRAController extends GetxController {
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
 
-
 var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   RxInt isExperienceSelect = 0.obs;
   Rx<TextEditingController> maidenName = TextEditingController().obs;

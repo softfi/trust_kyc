@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_switch/custom_switch.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -137,51 +138,10 @@ class KRARecord extends StatelessWidget {
       ),
       _space,
       Text(
-        "Hey ${_personalDetailsController.modaltest.value!.panName ?? ""} Please Verify, We Fetched This Information From Pan And KRA Records, As Provided By You.",
+        "Hey ${_personalDetailsController.modaltest.value!.panName ?? ""}, We Need Some Additional Information, It Won’t Take Long.",
         style: ConstStyle.quickMedium,
       ),
       _space,
-      AppText(
-        title: 'Aadhaar Number ',
-      ),
-      _space1,
-      TextContainer(
-        color: Color(0xffF7F7FA),
-        titleText: _personalDetailsController.modaltest.value!.aadharNumber,
-        perfixIcon: Container(),
-        postfixIcon: Container(),
-      ),
-      _space,
-      AppText(
-        title: 'Address (As per records in KRA)',
-      ),
-      _space1,
-      Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(width: 1.1, color: AppColors.borderColor),
-          color: Color(0xffF7F7FA),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-          child: Text(
-            "${_personalDetailsController.modaltest.value!.addressLine1}"
-                " ${_personalDetailsController.modaltest.value!.addressLine2}"
-                " ${_personalDetailsController.modaltest.value!.addressLine3}"
-                " ${_personalDetailsController.modaltest.value!.addressCity}"
-                " ${_personalDetailsController.modaltest.value!.addressState}"
-                " ${_personalDetailsController.modaltest.value!.addressZip}",
-            style: GoogleFonts.sourceSansPro(
-              textStyle: const TextStyle(
-                  color: Color(0xff22263D),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                  letterSpacing: 1),
-            ),
-          ),
-        ),
-      ),
       _space,
       AppText(
         title: 'What is your gender?',
@@ -215,7 +175,47 @@ class KRARecord extends StatelessWidget {
         title: 'What is your Occupaion',
       ),
       _space1,
-      Obx(() => Container(
+ /*     Obx(() => Container(
+          height: 45,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 1.1, color: AppColors.borderColor),
+            color: Colors.white,
+          ),
+          child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2(
+                  hint: const Text("Select Profession",
+                      style: TextStyle(
+                          color: Color(0xffC8C7CE), letterSpacing: 2)),
+                  items: _kRAController.professionList.value.map((item) {
+                    return DropdownMenuItem(
+                      value: item.professionName,
+                      child: Text(
+                        item.professionName,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) {
+                    var a = _kRAController.professionList.value
+                        .where((element) {
+                      if (element.id == newValue.toString()) {
+                        _kRAController.professionId.value = element.id.toString();
+                      }
+                      return true;
+                    });
+                    debugPrint(a.toString());
+                    debugPrint(_kRAController.professionId.value.toString());
+                    debugPrint("a.toString()");
+                    _kRAController.professionId.value = newValue.toString();
+                  },
+                  value: _kRAController.professionId.value,
+                ),
+              )))),*/
+
+       Obx(() => Container(
           height: 50,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(

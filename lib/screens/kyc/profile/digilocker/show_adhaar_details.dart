@@ -83,24 +83,22 @@ class ShowAdhaarDetails extends StatelessWidget {
                 title: 'Aadhaar Number ',
               ),
               _space1,
-              TextContainer(
+             Obx(() => TextContainer(
                 color: Color(0xffF7F7FA),
-                titleText:
-                    _personalDetailsController.modaltest.value!.aadharNumber ??
-                        "",
+                titleText: _kraController.adhaarNumber.value ?? "",
                 perfixIcon: Container(),
                 postfixIcon: Image.asset(
                   "assets/images/done1.png",
                   color: Colors.green,
                   scale: 6,
                 ),
-              ),
+              )),
               _space,
               AppText(
                 title: 'Address (As per records in KRA)',
               ),
               _space1,
-              Container(
+              Obx(() => Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -111,12 +109,7 @@ class ShowAdhaarDetails extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
                   child: Text(
-                    "${_personalDetailsController.modaltest.value!.addressLine1}"
-                    " ${_personalDetailsController.modaltest.value!.addressLine2}"
-                    " ${_personalDetailsController.modaltest.value!.addressLine3}"
-                    " ${_personalDetailsController.modaltest.value!.addressCity}"
-                    " ${_personalDetailsController.modaltest.value!.addressState}"
-                    " ${_personalDetailsController.modaltest.value!.addressZip}",
+                    _kraController.adhaarAddress.value,
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
                           color: Color(0xff22263D),
@@ -126,7 +119,7 @@ class ShowAdhaarDetails extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+              )),
               _space,
               _space,
               InkWell(
@@ -170,29 +163,29 @@ class ShowAdhaarDetails extends StatelessWidget {
               InkWell(
                 onTap: () {
                   isButtonClick.value = true;
-                 // _personalDetailsController.isVisible.value= 6;
+                   _personalDetailsController.isVisible.value= 3;
                   // Get.to(()=>Digilocker());
                 },
                 child: Obx(() => Container(
-                  height: 45,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x29000000),
-                        blurRadius: 4.0,
-                      ),
-                    ],
-                    border: Border.all(
-                        width: 1.4,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x29000000),
+                            blurRadius: 4.0,
+                          ),
+                        ],
+                        border: Border.all(
+                            width: 1.4,
+                            color: isButtonClick.value == false
+                                ? AppColors.textColor
+                                : const Color(0xffE1E0E6)),
                         color: isButtonClick.value == false
-                            ? AppColors.textColor
-                            : const Color(0xffE1E0E6)),
-                    color: isButtonClick.value == false
-                        ? Colors.white
-                        : Color(0xffFF405A),
-                  ),
-                  child: Center(
-                      child: Text(
+                            ? Colors.white
+                            : Color(0xffFF405A),
+                      ),
+                      child: Center(
+                          child: Text(
                         "Continue",
                         style: GoogleFonts.quicksand(
                           textStyle: TextStyle(
@@ -203,7 +196,7 @@ class ShowAdhaarDetails extends StatelessWidget {
                               fontSize: 15),
                         ),
                       )),
-                )),
+                    )),
               ),
               _space,
               _space1,
@@ -213,8 +206,6 @@ class ShowAdhaarDetails extends StatelessWidget {
       ),
     );
   }
-
-
 
   Widget get _space => const SizedBox(height: 16);
 

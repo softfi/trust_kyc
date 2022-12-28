@@ -37,6 +37,7 @@ class PanCardUserDeatils extends GetxController {
       panName.value = "${modal.panFname} ${modal.panMname} ${modal.panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
+           Get.back();
           _personalDetailsController.isVisible.value = 5;
         }));
       } else if (modal.panStatus == "X") {
