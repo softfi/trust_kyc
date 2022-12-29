@@ -70,7 +70,7 @@ class AuthenticateAdhaar extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "Hey ${_personalDetailsController.firstName.value.text}dfhjdksydsf suyyui8ytrweyuiryt, Let’s Authenticate Your AADHAAR",
+                "Hey ${_personalDetailsController.firstName.value.text}, Let’s Authenticate Your AADHAAR",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),

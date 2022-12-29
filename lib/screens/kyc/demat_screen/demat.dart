@@ -53,21 +53,22 @@ class _DematAccountState extends State<DematAccount> {
   String? nsdlItemsvalue;
   int nsdlItemsvalueInt = 1;
   String customerID = "";
-
   var nsdlItems = [
     'NSDL',
     'CSDL',
   ];
 
   getDematDetails() async {
-    var res1 = await DematDetailRepository().getAllDematDetails();
-    print("printdetmatres $res1");
     customerID = await HelperFunctions.getCustomerID();
-    setState(() {
-      alldematList = res1;
-      addNewDematAccounts = false;
-      dematDetails = true;
-    });
+    var response = await APiProvider().getAllDematAccounts();
+    debugPrint(response.toString());
+    if (response != null) {
+      alldematList = response;
+      setState((){
+        addNewDematAccounts = false;
+        dematDetails = true;
+      });
+    }
   }
 
   checkValidation() async {
@@ -92,7 +93,6 @@ class _DematAccountState extends State<DematAccount> {
         );
         debugPrint("Nominasdata $response");
         if (response != null) {
-          // await HelperFunctions.saveuserkyccompleted(true);
           setState(() {
             existingDematAccountDetails = false;
             formShow = true;
@@ -119,6 +119,7 @@ class _DematAccountState extends State<DematAccount> {
 
   deleteDematAccount(int dematID) async {
     var response = await APiProvider().deletExistingDematAccount(dematID);
+    debugPrint("==============89345678 $response");
     if (response != null) {
       getDematDetails();
     }
@@ -455,7 +456,7 @@ class _DematAccountState extends State<DematAccount> {
                                         child: Text(
                                           alldematList != null
                                               ? alldematList!
-                                                  .existDemat[index].dpId
+                                                  .existDemat[index].beneficiaryId
                                               : " ",
                                           style: GoogleFonts.sourceSansPro(
                                             textStyle: TextStyle(
@@ -465,6 +466,7 @@ class _DematAccountState extends State<DematAccount> {
                                                   ? AppColors.textColor
                                                   : Color(0xff8F919D),
                                               fontWeight: FontWeight.w400,
+                                              letterSpacing: 1.2,
                                               fontSize: 18,
                                             ),
                                           ),
@@ -724,14 +726,9 @@ class _DematAccountState extends State<DematAccount> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.40,
+                                        width: MediaQuery.of(context).size.width * 0.40,
                                         child: Text(
-                                          alldematList != null
-                                              ? alldematList!.newDemat[index]
-                                                  .dpAccountNumber
-                                              : " ",
+                                          alldematList != null ? alldematList!.newDemat[index].dpAccountNumber : " ",
                                           style: GoogleFonts.sourceSansPro(
                                             textStyle: const TextStyle(
                                               color: Color(0xff22263D),
@@ -893,15 +890,15 @@ class _DematAccountState extends State<DematAccount> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                "Hey, Enter Your Demat Account Information",
+             Obx(() =>  Text(
+                "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""}, Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
                       fontWeight: FontWeight.w500,
                       fontSize: 18),
                 ),
-              ),
+              )),
               _space,
               _space,
               InkWell(
@@ -1010,15 +1007,15 @@ class _DematAccountState extends State<DematAccount> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                "Hey,${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""} Enter Your Demat Account Information",
+             Obx(() =>  Text(
+                "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""} Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
                       fontWeight: FontWeight.w500,
                       fontSize: 18),
                 ),
-              ),
+              )),
               const SizedBox(
                 height: 10,
               ),

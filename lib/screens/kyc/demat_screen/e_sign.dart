@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class ESign extends StatefulWidget {
-  const ESign({Key? key}) : super(key: key);
+   ESign({Key? key,required this.response}) : super(key: key);
+  var response;
   @override
   State<ESign> createState() => _ESignState();
 }
@@ -37,14 +38,14 @@ mmnAL6+FmxZdJ0IHm5CSXr31cklHhyoS7CnyB+t9XDB+HOK6vaoVk/o9DhvY2oKBsfxLmWJUMIqW&#13
 DMIbnd8ObHwRGPj2JbDbTp5zIDzpX0ju/SOSuDufxBVVJI6FxuKBXMbcZAi8W2XL9vY=</X509Certificate></X509Data></KeyInfo></Signature></Esign>
 ' />
             </form>""";
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Html(
-          data: htmlData,
+          data: widget.response,
           tagsList: Html.tags..addAll(["bird", "flutter"])),
       ),
     );

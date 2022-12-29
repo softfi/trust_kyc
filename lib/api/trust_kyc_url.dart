@@ -50,7 +50,11 @@ class TrustKycUrl {
   static const existingDemat = 'api/v1/existing_demat_account_details';
   static const addNomineeDetail = 'api/v1/nominee_details';
   static const alldemat = 'api/v1/all_demat_account_get';
-  static const eSign = 'api/v1/esign_pdf?platform=mobile';
+
+
+  //dopwnload pdf
+   static const eSign = '${baseUrl}api/v1/esign_pdf?platform=mobile';
+   static const downloadPDF = '${baseUrl}api/v1/e_sign_pdf_download';
 
   //upload images
   static const signatureUpload = 'api/v1/signature_image_upload';
@@ -72,4 +76,5 @@ class TrustKycUrl {
   static const bondList = "${baseUrl}api/v1/bonds_list";
   static const specificBondsList = "${baseUrl}/api/v1/specific_bonds_list";
   static const inestmentCalculator = "${baseUrl}/api/v1/investment_calculator";
+   static const specificBondsListByIdForIPO="${baseUrl}/api/v1/ipo";
 }

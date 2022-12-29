@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../../api/apiClient.dart';
+import '../../../utils/sharedPreference.dart';
+import 'e_sign.dart';
 
 class ESignPDF extends StatefulWidget {
   const ESignPDF({Key? key}) : super(key: key);
@@ -164,10 +167,12 @@ class _ESignPDFState extends State<ESignPDF> {
                       onTap: () async {
                         var response = await APiProvider().eSignPdf();
                         if (response != null) {
+                          await HelperFunctions.saveuserkyccompleted(true);
+                          Get.to(()=> ESign(response: response));
                         }
-                        var res = await DematDetailRepository().eSign();
-                        print("=======123 $res");
-                        if (res != null) {}
+                        // var res = await DematDetailRepository().eSign();
+                        // print("=======123 $res");
+                        // if (res != null) {}
                       },
                       child:  Container(
                         height: 45,

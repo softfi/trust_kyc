@@ -1,12 +1,38 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:math';
 
+import 'package:dio/dio.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
+import '../../../../../api/apiClient.dart';
 import '../../../../../utils/colorsConstant.dart';
+import '../../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../../utils/styles.dart';
 
 class FormView extends StatelessWidget {
-   FormView({Key? key,required this.onClick1}) : super(key: key);
-   final void Function()? onClick1;
+  FormView({Key? key, required this.onClick1}) : super(key: key);
+  final void Function()? onClick1;
+
+  void _download(String url,int randomPortName) async {
+    final status = await Permission.storage.request();
+
+    if(status.isGranted) {
+      final externalDir = await getExternalStorageDirectory();
+      final id = await FlutterDownloader.enqueue(fileName: "$randomPortName",
+        url: url,
+        savedDir: externalDir!.path,
+        showNotification: true,
+        openFileFromNotification: true,
+      );
+    } else {
+      print('Permission Denied');
+    }
+  }
+
 
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +45,8 @@ class FormView extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             color: const Color(0xffF7F7FA).withOpacity(0.35),
             border: Border.all(width: 1.2, color: const Color(0xffbcbcbc))),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 3),
@@ -47,35 +74,50 @@ class FormView extends StatelessWidget {
             ),
             _space,
             _space,
-            Container(
-              height: 45,
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    blurRadius: 4.0,
-                  ),
-                ],
-                border: Border.all(width: 1.4, color: AppColors.textColor),
-                color: Colors.white,
-              ),
-              child: Center(
-                  child: Text(
-                "Download Your Application Form",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: AppColors.textColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
+            InkWell(
+              onTap: () async {
+                var response = await APiProvider().downloadPDF();
+                if (response != null) {
+                  Random random = new Random();
+                  int random_number = random.nextInt(1000000);
+                  _download(response,random_number);
+                  Fluttertoast.showToast(msg: "Downloading Started");
+                 // downloadPdf(response);
+                  // await HelperFunctions.saveuserkyccompleted(true);
+                  // Get.back();
+                }
+              },
+              child: Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x29000000),
+                      blurRadius: 4.0,
+                    ),
+                  ],
+                  border: Border.all(width: 1.4, color: AppColors.textColor),
+                  color: Colors.white,
                 ),
-              )),
+                child: Center(
+                    child: Text(
+                  "Download Your Application Form",
+                  style: GoogleFonts.quicksand(
+                    textStyle: const TextStyle(
+                        color: AppColors.textColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15),
+                  ),
+                )),
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 2.85,
             ),
-            InkWell(onTap: (){
-            onClick1!();
-            },
+            InkWell(
+              onTap: () {
+               onClick1!();
+              },
               child: Container(
                 height: 45,
                 decoration: BoxDecoration(

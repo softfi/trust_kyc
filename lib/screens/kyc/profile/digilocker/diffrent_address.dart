@@ -8,7 +8,6 @@ import 'package:trust_money/getx_controller/profile/add_nominee_controller.dart'
 import 'package:trust_money/screens/kyc/profile/digilocker/upload_scans_bottomsheet.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/utils/helper_widget/custom_snsckbar.dart';
-
 import '../../../../utils/colorsConstant.dart';
 
 class DifferentAddress extends StatelessWidget {

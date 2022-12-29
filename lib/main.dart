@@ -2,19 +2,16 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
-import 'package:trust_money/screens/auths/sign_up.dart';
-import 'package:trust_money/screens/home/home_page.dart';
-import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:video_player/video_player.dart';
-
 import 'bottom_navigation/bottom_navigation.dart';
 
 void main() async {
+  await FlutterDownloader.initialize();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());

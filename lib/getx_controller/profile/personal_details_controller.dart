@@ -71,7 +71,7 @@ class PersonalDetailsController extends GetxController {
       await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
-      dob.value = modaltest.value!.dob!=null?DateFormat('dd-MM-yyyy').format(modaltest.value!.dob):"DD/MM/YYYY";
+      dob.value = modaltest.value!.dob != null ? DateFormat('dd-MM-yyyy').format(modaltest.value!.dob):"DD-MM-YYYY";
     }
   }
 
