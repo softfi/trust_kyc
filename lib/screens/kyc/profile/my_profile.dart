@@ -201,7 +201,8 @@ class MyProfile extends StatelessWidget {
         initialIndex: 0,
         child: SingleChildScrollView(
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <
+                  Widget>[
             Obx(() => TabBar(
                   onTap: (int index) {
                     _profileController.selectedIndex.value = index;
@@ -428,30 +429,33 @@ class MyProfile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                   Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            width: 12,
-                            height: 12,
-                            decoration: const BoxDecoration(
-                              color: Color(0xffff405a),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Text(""),
-                          ),
-                          Obx(() =>  Container(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 12,
+                        height: 12,
+                        decoration: const BoxDecoration(
+                          color: Color(0xffff405a),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Text(""),
+                      ),
+                      Obx(() => Container(
                             width: 121,
                             height: 04,
                             decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value == 1 ||_profileController.selectedIndex.value == 2
-                                  ?  Color(0xffFF405A)
-                                  :  Color(0xffc8c7ce),
+                              color: _profileController.selectedIndex.value ==
+                                          1 ||
+                                      _profileController.selectedIndex.value ==
+                                          2
+                                  ? Color(0xffFF405A)
+                                  : Color(0xffc8c7ce),
                               shape: BoxShape.rectangle,
                             ),
                           )),
-                        ],
-                      ),
+                    ],
+                  ),
                   Obx(() => Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -459,7 +463,10 @@ class MyProfile extends StatelessWidget {
                             width: 12,
                             height: 12,
                             decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value == 1 || _profileController.selectedIndex.value == 2
+                              color: _profileController.selectedIndex.value ==
+                                          1 ||
+                                      _profileController.selectedIndex.value ==
+                                          2
                                   ? const Color(0xffFF405A)
                                   : const Color(0xffc8c7ce),
                               // color: Color(0xffff405a),
@@ -471,9 +478,11 @@ class MyProfile extends StatelessWidget {
                                 width: 121,
                                 height: 04,
                                 decoration: BoxDecoration(
-                                  color: _profileController.selectedIndex.value == 1 || _profileController.selectedIndex.value == 2
-                                      ? const Color(0xffFF405A)
-                                      : const Color(0xffc8c7ce),
+                                  color:
+                                      _profileController.selectedIndex.value == 1 ||
+                                              _profileController.selectedIndex.value == 2
+                                          ? const Color(0xffFF405A)
+                                          : const Color(0xffc8c7ce),
                                   // color: Color(0xffc8c7ce),
                                   shape: BoxShape.rectangle,
                                 ),

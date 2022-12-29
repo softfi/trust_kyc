@@ -65,8 +65,7 @@ class DifferentAddress extends StatelessWidget {
                       debugPrint("a.toString()");
                       _addNomineeController.selectedNomineeIndentitiy.value = newValue.toString();
                     },
-                    value:
-                        _addNomineeController.selectedNomineeIndentitiy.value,
+                    value: _addNomineeController.selectedNomineeIndentitiy.value,
                   ),
                 )))),
         _space1,

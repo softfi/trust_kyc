@@ -75,7 +75,7 @@ class _BankAccountsState extends State<BankAccounts> {
       Fluttertoast.showToast(msg: 'Enter Your Valid IFSC Code');
       return;
     } else if (bankAccountNo.text.isEmpty ||
-        bankAccountNo.text.toString().length < 10) {
+        bankAccountNo.text.toString().length < 8) {
       Fluttertoast.showToast(msg: 'Enter Your Valid Account Number');
       return;
     } else if (bankAccountNo.text.toString() !=
@@ -893,7 +893,7 @@ class _BankAccountsState extends State<BankAccounts> {
                   ),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    hintText: "Enter 16 Digit Account Number",
+                    hintText: "Enter Account Number",
                     hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                     border: InputBorder.none,
                     fillColor: Colors.white,
@@ -936,7 +936,7 @@ class _BankAccountsState extends State<BankAccounts> {
                   ),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    hintText: "Enter 16 Digit Re-Account number",
+                    hintText: "Enter Re-Account Number",
                     hintStyle: TextStyle(color: Color(0xffC8C7CE)),
                     labelStyle:
                         TextStyle(color: AppColors.textColor, letterSpacing: 4),
@@ -1178,8 +1178,7 @@ class _BankAccountsState extends State<BankAccounts> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: InkWell(
                   onTap: () async {
-                    if (ifscCode.text.isNotEmpty &&
-                        bankAccountNo.text.isNotEmpty) {
+                    if (ifscCode.text.isNotEmpty && bankAccountNo.text.isNotEmpty) {
                       checkValidation();
                       setState(() {
                         isBankAdded = true;

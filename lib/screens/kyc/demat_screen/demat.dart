@@ -2,7 +2,6 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -555,7 +554,7 @@ class _DematAccountState extends State<DematAccount> {
                                       DematBottomSheet()
                                           .confirmationBottomSheet(onClick: () {
                                         deleteDematAccount(
-                                            alldematList!.existDemat[index].id);
+                                            alldematList!.existDemat[index].existDematId??"");
                                       });
                                     },
                                     child: Image.asset(
@@ -816,7 +815,7 @@ class _DematAccountState extends State<DematAccount> {
                                     onTap: () async {
                                       var res = await DematDetailRepository()
                                           .deleteDematDetails(
-                                              alldematList!.newDemat[index].id);
+                                              alldematList!.newDemat[index].newDematId ??"");
                                       if (res != null) {
                                         getDematDetails();
                                       }
@@ -880,7 +879,7 @@ class _DematAccountState extends State<DematAccount> {
                 height: 10,
               ),
               Text(
-                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Demat Account Information",
+                "Hey, Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -997,7 +996,7 @@ class _DematAccountState extends State<DematAccount> {
                 height: 10,
               ),
               Text(
-                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Demat Account Information",
+                "Hey, Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
