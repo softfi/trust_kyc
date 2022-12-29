@@ -13,6 +13,7 @@ import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../screens/auths/choose_screen.dart';
 import '../screens/home/home_page.dart';
+import '../utils/google_sign_in.dart';
 import '../utils/images.dart';
 import '../utils/sharedPreference.dart';
 
@@ -145,6 +146,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                   SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                   await preferences.clear();
+                                  GoogleSignInProvider().logout();
+
+
+                                  //alokalokalokalokalokalok
                                   Get.offAll(HomePage());
                                   // Navigator.push(
                                   //     context,

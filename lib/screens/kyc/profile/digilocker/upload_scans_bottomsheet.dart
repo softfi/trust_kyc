@@ -20,7 +20,7 @@ class UploadScansBottomSheet {
     AddNomineeController _addNomineeController =
         Get.put(AddNomineeController());
     final KRAController _kraController = Get.put(KRAController());
-    File? backImage, frontImage;
+
     final _picker = ImagePicker();
     Get.bottomSheet(
        SizedBox(
@@ -92,9 +92,9 @@ class UploadScansBottomSheet {
                                child: Container(
                                  height: 160,
                                  width: 300,
-                                 child: frontImage != null
+                                 child: _kraController.frontImageFile != null
                                      ? Image.file(
-                                   frontImage!,
+                                   _kraController.frontImageFile!,
                                    fit: BoxFit.cover,
                                  )
                                      : InkWell(
@@ -105,7 +105,7 @@ class UploadScansBottomSheet {
                                          ImageSource.camera,
                                          imageQuality: 50);
                                      if (pickedFile != null) {
-                                       frontImage =
+                                       _kraController.frontImageFile =
                                            File(pickedFile.path);
                                        _kraController.isFrontImageClick
                                            .value = true;
@@ -150,7 +150,7 @@ class UploadScansBottomSheet {
                                    final pickedFile = await _picker.getImage(
                                        source: ImageSource.camera);
                                    if (pickedFile != null) {
-                                     frontImage = File(pickedFile.path);
+                                     _kraController.frontImageFile = File(pickedFile.path);
                                    }
                                  },
                                  child: Obx(() => Visibility(
@@ -276,9 +276,9 @@ class UploadScansBottomSheet {
                                child: Container(
                                  height: 160,
                                  width: 300,
-                                 child: backImage != null
+                                 child: _kraController.backImageFile != null
                                      ? Image.file(
-                                   backImage!,
+                                   _kraController.backImageFile!,
                                    fit: BoxFit.cover,
                                  )
                                      : InkWell(
@@ -289,7 +289,7 @@ class UploadScansBottomSheet {
                                          ImageSource.camera,
                                          imageQuality: 50);
                                      if (pickedFile != null) {
-                                       backImage = File(
+                                       _kraController.backImageFile = File(
                                          pickedFile.path,
                                        );
                                        _kraController.isBackImageClick
@@ -335,7 +335,7 @@ class UploadScansBottomSheet {
                                    final pickedFile = await _picker.getImage(
                                        source: ImageSource.camera);
                                    if (pickedFile != null) {
-                                     backImage = File(pickedFile.path);
+                                     _kraController.backImageFile = File(pickedFile.path);
                                    }
                                  },
                                  child: Obx(() => Visibility(
@@ -430,18 +430,18 @@ class UploadScansBottomSheet {
                  const SizedBox(height: 30,),
                  InkWell(
                    onTap: () async {
-                     if (frontImage != null && backImage != null) {
+                     if (_kraController.frontImageFile != null && _kraController.backImageFile != null) {
                        _kraController.fileName1.value =
-                           frontImage!.path.split('-').last;
+                           _kraController.frontImageFile!.path.split('-').last;
                        _kraController.fileName2.value =
-                           backImage!.path.split('-').last;
+                           _kraController.backImageFile!.path.split('-').last;
                        Get.dialog(const Center(
                          child: CircularProgressIndicator(),
                        ));
                        var res = await ProfileRepository().uploadScans(
                            proofType: _addNomineeController.relationshipID.value!,
-                           file1: frontImage!,
-                           file2: backImage!);
+                           file1: _kraController.frontImageFile!,
+                           file2: _kraController.backImageFile!);
                        if (res != null) {
                          Get.back();
                          Get.back();

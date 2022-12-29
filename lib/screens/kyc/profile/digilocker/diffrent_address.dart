@@ -102,7 +102,7 @@ class DifferentAddress extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                "Upload ${_addNomineeController.selectedNomineeIndentitiy.value} Scans",
+                "Upload ${_addNomineeController.selectedNomineeIndentitiy.value??"Identity"} Scans",
                 style: GoogleFonts.quicksand(
                   textStyle: TextStyle(
                       color: AppColors.textColor,
@@ -221,7 +221,7 @@ class DifferentAddress extends StatelessWidget {
                         debugPrint(element.stateId.toString());
                         debugPrint("element.stateId.toString()");
                         if (element.stateName == newValue.toString()) {
-                          _addNomineeController.selectedStateId.value =
+                          _kraController.selectedSate.value =
                               element.stateId;
                         }
                         return true;
@@ -264,7 +264,7 @@ class DifferentAddress extends StatelessWidget {
                           return DropdownMenuItem(
                             value: item.cityName,
                             child: SizedBox(
-                              width: 300,
+                              width: MediaQuery.of(context).size.width-100,
                               child: Text(
                                 item.cityName,
                               ),
@@ -272,7 +272,7 @@ class DifferentAddress extends StatelessWidget {
                           );
                         }).toList(),
                         onChanged: (newValue) {
-                          _addNomineeController.SelectedCity.value =
+                          _kraController.selectedCity.value =
                               newValue.toString();
                         },
                         value: _addNomineeController.SelectedCity.value,

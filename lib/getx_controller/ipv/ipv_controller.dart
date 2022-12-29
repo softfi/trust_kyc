@@ -66,6 +66,7 @@ class IPVController extends GetxController {
 
   void dispose() {
     newCameraController.value!.dispose();
+    debugPrint("new camera controller is disposed hurrey!!!😁😁😁😁");
     videoPlayerController12.dispose();
     videoPlayerController12.pause();
     super.dispose();

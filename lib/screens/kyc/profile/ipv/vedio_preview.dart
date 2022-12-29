@@ -35,6 +35,7 @@ class VideoPreview extends StatelessWidget {
             ),
             onPressed: () {
               Get.back();
+              _ipvController.videoPlayerController12.dispose();
             },
           )
         ],

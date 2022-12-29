@@ -35,7 +35,8 @@ class MyPersonalDetails extends StatelessWidget {
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 1,
             child: personaDetail(context))),
-        //child: ShowPersonalDetails())),
+            // child: IPVVerification())),
+
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 2,
             child: EmailVeryfication())),

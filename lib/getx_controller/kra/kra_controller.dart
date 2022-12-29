@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
@@ -29,13 +31,15 @@ class KRAController extends GetxController {
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
-
+  File? backImageFile, frontImageFile;
 var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   RxInt isExperienceSelect = 0.obs;
   Rx<TextEditingController> maidenName = TextEditingController().obs;
   Rx<TextEditingController> addressline1 = TextEditingController().obs;
   Rx<TextEditingController> addressline2 = TextEditingController().obs;
   Rx<TextEditingController> pinCode = TextEditingController().obs;
+  Rxn selectedSate=Rxn();
+  Rxn selectedCity=Rxn();
   PersonalDetailsController _personalDetailsController =
       Get.put(PersonalDetailsController()); //list sa=[]
   RxList<ProfessionModel> professionList =

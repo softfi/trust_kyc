@@ -8,6 +8,7 @@ import 'package:trust_money/api/trust_kyc_url.dart';
 import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/model/get_digilocker_response_data.dart';
 import 'package:trust_money/model/get_pan_response_data.dart';
+import 'package:trust_money/screens/kyc/profile/digilocker/kra_record.dart';
 import '../getx_controller/demat/demat_controller.dart';
 import '../getx_controller/ipv/ipv_controller.dart';
 import '../getx_controller/kra/kra_controller.dart';
@@ -54,9 +55,9 @@ class APiProvider extends GetConnect {
 
   updatePersonalDeatil() async {
     IPVController _ipvController = Get.put(IPVController());
-    PersonalDetailsController _controller =
-    Get.put(PersonalDetailsController());
+    PersonalDetailsController _controller = Get.put(PersonalDetailsController());
     KRAController _kRAController = Get.put(KRAController());
+AddNomineeController _addNomineeController =Get.put(AddNomineeController());
     var token = await HelperFunctions.getToken();
     String correctedDate =
         "${_controller.currentStartDate.value.day}-${_controller
@@ -79,23 +80,23 @@ class APiProvider extends GetConnect {
       "lifestyle": "",
       "geogriphical_code": "",
       "education_degree": "",
-      "address_line_1": _kRAController.digiLockerDetailModel.value != null
+      "address_line_1": _kRAController.isAddressAdd.value?_kRAController.addressline1.value:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.landmark
           : "",
-      "address_line_2": _kRAController.digiLockerDetailModel.value != null
+      "address_line_2": _kRAController.isAddressAdd.value?_kRAController.addressline2.value:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.location
           : "",
-      "address_line_3": _kRAController.digiLockerDetailModel.value != null
+      "address_line_3": _kRAController.isAddressAdd.value?"":_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.villageTownCity
           : "",
-      "address_zip": _kRAController.digiLockerDetailModel.value != null
+      "address_zip": _kRAController.isAddressAdd.value?_kRAController.pinCode.value:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.pincode
           : "",
       "address_state_code": "",
-      "address_state": _kRAController.digiLockerDetailModel.value != null
+      "address_state": _kRAController.isAddressAdd.value?_kRAController.selectedSate.value:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.state
           : "",
-      "address_city": _kRAController.digiLockerDetailModel.value != null
+      "address_city":  _kRAController.isAddressAdd.value?_kRAController.selectedCity.value:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.district
           : "",
       "city_sequence_no": "",
@@ -103,9 +104,9 @@ class APiProvider extends GetConnect {
       "mental_disability": "",
       "profile_image": "",
       "verification_video": _ipvController.fileLink.value,
-      "proof_type": "",
-      "proof_front_image": "",
-      "proof_back_image": "",
+      "proof_type":_addNomineeController.selectedNomonneeIdentificationId.value,
+      "proof_front_image": await HelperFunctions.getFrontImage(),
+      "proof_back_image": await HelperFunctions.getBackImage(),
       "manager_id": 0,
       "is_politically_exposed":
       _controller.potentiallyExposedStatusInt.value ?? 0,
