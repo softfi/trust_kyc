@@ -20,8 +20,7 @@ class AddNomineeController extends GetxController {
   Rx<TextEditingController> fullNomineeName = TextEditingController().obs;
   Rx<TextEditingController> addressLine2 = TextEditingController().obs;
   Rx<TextEditingController> pincode = TextEditingController().obs;
-  RxList<RelationShipModel> relationShipList =
-      List<RelationShipModel>.empty(growable: true).obs;
+  RxList<RelationShipModel> relationShipList = List<RelationShipModel>.empty(growable: true).obs;
   Rxn<String>  relationshipID=Rxn() ;
   RxBool isAddressAdd = false.obs;
   Rxn<String> mrsValue = Rxn();

@@ -18,8 +18,11 @@ import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../../api/apiClient.dart';
 import '../../../getx_controller/profile/personal_details_controller.dart';
+import '../../Congratulations/demat_success_congratulations.dart';
 import '../profile/personal_detals/app_textfield.dart';
+import 'existing_demat/download_demat_form/demat_form_view.dart';
 
 class DematAccount extends StatefulWidget {
   DematAccount({Key? key}) : super(key: key);
@@ -37,6 +40,7 @@ class _DematAccountState extends State<DematAccount> {
   bool isNewDemat = false;
   bool isMandatory = true;
   bool isSignInDemat = false;
+  bool formShow = false;
   bool isAddNominee = false;
   bool isExistingDematFill = false;
   bool isDisable = false;
@@ -47,6 +51,7 @@ class _DematAccountState extends State<DematAccount> {
   var dp_name = TextEditingController();
   AllDematAccountModel? alldematList;
   String? nsdlItemsvalue;
+  int nsdlItemsvalueInt = 1;
   String customerID = "";
 
   var nsdlItems = [
@@ -78,38 +83,43 @@ class _DematAccountState extends State<DematAccount> {
       Fluttertoast.showToast(msg: "Enter Your DP Name");
       return;
     } else {
-      Get.dialog(const Center(
-        child: CircularProgressIndicator(),
-      ));
-      final adddematDetailModel =
-          await DematDetailRepository().addExistingDemat(
-        nsdlItemsvalue!,
-        customerID,
-        dp_id.text.toString(),
-        benificiary_id.text.toString(),
-        dp_name.text.toString(),
-      );
-      if (adddematDetailModel != null) {
-        Get.back();
-        Get.to(() => const ExistingDematAnimation());
-        await HelperFunctions.saveuserkyccompleted(true);
-        setState(() {
-          existingDematAccountDetails = false;
-        });
-        // onBankAddedBottomSheet();
-      } else {
-        Get.back();
-      }
+        var response = await APiProvider().addExistingDemat(
+          nsdlItemsvalueInt,
+          customerID,
+          dp_id.text.toString(),
+          benificiary_id.text.toString(),
+          dp_name.text.toString(),
+        );
+        debugPrint("Nominasdata $response");
+        if (response != null) {
+          // await HelperFunctions.saveuserkyccompleted(true);
+          setState(() {
+            existingDematAccountDetails = false;
+            formShow = true;
+          });
+         // Get.to(const DematAccountComplete());
+        }
+      // final adddematDetailModel = await DematDetailRepository().addExistingDemat(
+      //   nsdlItemsvalueInt,
+      //   customerID,
+      //   dp_id.text.toString(),
+      //   benificiary_id.text.toString(),
+      //   dp_name.text.toString(),
+      // );
+      // if (adddematDetailModel != null) {
+      //   Get.back();
+      //   Get.to(() => const ExistingDematAnimation());
+      //   await HelperFunctions.saveuserkyccompleted(true);
+      //   setState(() {existingDematAccountDetails = false;});
+      // } else {
+      //   Get.back();
+      // }
     }
   }
 
   deleteDematAccount(int dematID) async {
-    Get.dialog(const Center(
-      child: CircularProgressIndicator(),
-    ));
-    var res = await DematDetailRepository().deleteDematExistingDetails(dematID);
-    if (res != null) {
-      Get.back();
+    var response = await APiProvider().deletExistingDematAccount(dematID);
+    if (response != null) {
       getDematDetails();
     }
   }
@@ -155,6 +165,12 @@ class _DematAccountState extends State<DematAccount> {
                 },
               )),
           Visibility(visible: isSignInDemat, child: const ESignPDF()),
+          Visibility(visible: formShow, child:  FormView(onClick1: () {
+            setState((){
+              isSignInDemat = true;
+              formShow = false;
+            });
+          },)),
         ],
       ),
     );
@@ -553,8 +569,9 @@ class _DematAccountState extends State<DematAccount> {
                                     onTap: () async {
                                       DematBottomSheet()
                                           .confirmationBottomSheet(onClick: () {
-                                        deleteDematAccount(
-                                            alldematList!.existDemat[index].existDematId??"");
+                                        deleteDematAccount(alldematList!
+                                                .existDemat[index]
+                                                .existDematId ?? "");
                                       });
                                     },
                                     child: Image.asset(
@@ -813,10 +830,8 @@ class _DematAccountState extends State<DematAccount> {
                                   ),
                                   InkWell(
                                     onTap: () async {
-                                      var res = await DematDetailRepository()
-                                          .deleteDematDetails(
-                                              alldematList!.newDemat[index].newDematId ??"");
-                                      if (res != null) {
+                                      var response = await APiProvider().deletNewDematAccount(alldematList!.newDemat[index].newDematId ?? "");
+                                      if (response != null) {
                                         getDematDetails();
                                       }
                                     },
@@ -996,7 +1011,7 @@ class _DematAccountState extends State<DematAccount> {
                 height: 10,
               ),
               Text(
-                "Hey, Enter Your Demat Account Information",
+                "Hey,${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""} Enter Your Demat Account Information",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),
@@ -1041,6 +1056,13 @@ class _DematAccountState extends State<DematAccount> {
                             setState(() {
                               nsdlItemsvalue = newVal;
                               print(nsdlItemsvalue.toString());
+                              if (nsdlItemsvalue == "NSDL") {
+                                nsdlItemsvalueInt = 1;
+                                print(nsdlItemsvalueInt.toString());
+                              } else {
+                                nsdlItemsvalueInt = 2;
+                                print(nsdlItemsvalueInt.toString());
+                              }
                             });
                           },
                           value: nsdlItemsvalue,

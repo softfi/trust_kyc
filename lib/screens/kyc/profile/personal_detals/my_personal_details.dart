@@ -11,18 +11,15 @@ import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_veri
 import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.dart';
-import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/show_personal_details.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 
 class MyPersonalDetails extends StatelessWidget {
-  MyPersonalDetails({
-    Key? key,
-  }) : super(key: key);
-  PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+  MyPersonalDetails({Key? key,}) : super(key: key);
+
+  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
 
   RxBool isButtonClick = false.obs;
   String dateOfBirth1 = "";
@@ -36,7 +33,6 @@ class MyPersonalDetails extends StatelessWidget {
             visible: _personalDetailsController.isVisible.value == 1,
             child: personaDetail(context))),
             // child: IPVVerification())),
-
         Obx(() => Visibility(
             visible: _personalDetailsController.isVisible.value == 2,
             child: EmailVeryfication())),

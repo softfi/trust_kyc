@@ -13,11 +13,7 @@ import '../api/network_utility.dart';
 import '../api/trust_kyc_dio_client.dart';
 import '../api/trust_kyc_url.dart';
 import '../model/add_demat_response_data.dart';
-import '../model/add_nominee_response_data.dart';
 import '../model/born_dropdown_response_data.dart';
-import '../model/get_demat_response_data.dart';
-import '../model/nominee_identify_dropdown_response_data.dart';
-import '../model/relationship_dropdown_response_data.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
@@ -31,7 +27,7 @@ class DematDetailRepository {
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.alldemat);
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.alldemat);
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       return AllDematAccountModel.fromJson(data);
@@ -72,24 +68,20 @@ class DematDetailRepository {
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
         .post(endpoint: TrustKycUrl.dematDetail, body: dataq);
-    logger.info("dematDetailResponse: ${response.data}");
-    print("dematDetail1223234: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 201) {
-      Fluttertoast.showToast(
-          msg: 'Demat account added successfully', timeInSecForIosWeb: 3);
+      ShowCustomSnackBar().SuccessSnackBar("Demat account added successfully");
     }
     return AddDematDetailModel.fromJson(data);
+
   }
 
   Future<List<WealthModel>> wealthDropdown() async {
     List<WealthModel> wealthList = [];
-    print("=================> called");
-    //logger.info("getStateResponse: ==============");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.wealth);
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.wealth);
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         wealthList.add(WealthModel.fromJson(element));
@@ -100,12 +92,10 @@ class DematDetailRepository {
 
   Future<List<BornModel>> bornDropdown() async {
     List<BornModel> bornList = [];
-    print("=================> called");
-    //logger.info("getStateResponse: ==============");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response =
-    await TrustKycDioClient(token).get(endpoint: TrustKycUrl.born);
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.born);
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         bornList.add(BornModel.fromJson(element));
@@ -114,100 +104,93 @@ class DematDetailRepository {
     return bornList;
   }
 
-  addExistingDemat(String selectdepositrty,
-      String dpid,
-      String customerID,
-      String benificiaryid,
-      String dpname) async {
+  addExistingDemat(int selectdepositrty, String dpid, String customerID,
+      String benificiaryid, String dpname) async {
     final Map<String, dynamic> dataq = <String, dynamic>{};
     dataq["depository"] = selectdepositrty;
     dataq["dp_id"] = dpid;
     dataq["client_id"] = customerID;
     dataq["beneficiary_id"] = benificiaryid;
     dataq["dp_name"] = dpname;
+    debugPrint("=====dataq $dataq");
     await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token).post(endpoint: TrustKycUrl.existingDemat, body: dataq);
-    debugPrint("=====dataq $dataq");
     debugPrint("=====dataq $response");
     debugPrint("=====dataq ${response.statusCode}");
     var data = NetworkUtility.responseHandler(jsonDecode(response.data));
     if (response.statusCode == 201) {
+      ShowCustomSnackBar().SuccessSnackBar(data['message']);
       return data;
+    }else{
+      ShowCustomSnackBar().ErrorSnackBar(data['errors']);
     }
-}
-
-Future uploadSignature({required File file}) async {
-  FormData formData = FormData.fromMap({
-    "image": await MultipartFile.fromFile(file.path),
-  });
-  var token = await HelperFunctions.getToken();
-  var response = await TrustKycDioClient(token).upload(
-    endpoint: TrustKycUrl.signatureUpload,
-    data: formData,
-  );
-  if (response.statusCode == 201) {
-    print("ImageString${response.data["message"].toString()}");
-    await HelperFunctions.saveBackImage(response.data['message']);
-    return response;
-  } else {
-    Fluttertoast.showToast(msg: "Something Went Wrong \n try again");
   }
-}
 
-Future<DeleteDematDetailModel> deleteDematDetails(int accountID) async {
-  await NetworkUtility.checkNetworkStatus();
-  var token = await HelperFunctions.getToken();
-  var response = await TrustKycDioClient(token)
-      .delete(endpoint: "${TrustKycUrl.deleteDemat}?demat_id=$accountID");
-  var data = NetworkUtility.responseHandler(response);
-  if (response.statusCode == 200) {
-    //Fluttertoast.showToast(msg: 'Demat account deleted successfully');
-  }
-  return DeleteDematDetailModel.fromJson(data);
-}
-
-Future<DeleteDematDetailModel> deleteDematExistingDetails(int accountID) async {
-  await NetworkUtility.checkNetworkStatus();
-  var token = await HelperFunctions.getToken();
-  var response = await TrustKycDioClient(token)
-      .delete(endpoint: "${TrustKycUrl.deleteExixtingDemat}?id=$accountID");
-  var data = NetworkUtility.responseHandler(response);
-  if (response.statusCode == 200) {
-    //Fluttertoast.showToast(msg: 'Demat account deleted successfully');
-  }
-  return DeleteDematDetailModel.fromJson(data);
-}
-
-Future<Response<dynamic>?> eSign() async {
-  await NetworkUtility.checkNetworkStatus();
-  var token = await HelperFunctions.getToken();
-  var response =
-  await TrustKycDioClient(token).get(endpoint: TrustKycUrl.eSign);
-  print("========543 ${response}");
-  //var data = NetworkUtility.responseHandler(response);
-  if (response.statusCode == 200) {
-    print("========542 ${response}");
-    return response;
-  }
-}
-
-uploadVideo(File file) async {
-  debugPrint("9886866 $file");
-  var token = await HelperFunctions.getToken();
-  FormData formData = FormData.fromMap({
-    "video": await MultipartFile.fromFile(file.path,
-        filename: file.path
-            .split('/')
-            .last),
-  });
-  try {
-    var response = await TrustKycDioClient(token)
-        .upload(endpoint: TrustKycUrl.personVerification, data: formData);
+  Future uploadSignature({required File file}) async {
+    FormData formData = FormData.fromMap({
+      "image": await MultipartFile.fromFile(file.path),
+    });
+    var token = await HelperFunctions.getToken();
+    var response = await TrustKycDioClient(token).upload(
+      endpoint: TrustKycUrl.signatureUpload,
+      data: formData,
+    );
     if (response.statusCode == 201) {
-      return response.data.toString();
+      print("ImageString${response.data["message"].toString()}");
+      await HelperFunctions.saveBackImage(response.data['message']);
+      return response;
     }
-  } catch (e) {
-    ShowCustomSnackBar().ErrorSnackBar(e.toString());
   }
-}}
+
+  Future<DeleteDematDetailModel> deleteDematDetails(int accountID) async {
+    await NetworkUtility.checkNetworkStatus();
+    var token = await HelperFunctions.getToken();
+    var response = await TrustKycDioClient(token)
+        .delete(endpoint: "${TrustKycUrl.deleteDemat}?demat_id=$accountID");
+    var data = NetworkUtility.responseHandler(response);
+    if (response.statusCode == 200) {
+    }
+    return DeleteDematDetailModel.fromJson(data);
+  }
+
+  Future<DeleteDematDetailModel> deleteDematExistingDetails(
+      int accountID) async {
+    await NetworkUtility.checkNetworkStatus();
+    var token = await HelperFunctions.getToken();
+    var response = await TrustKycDioClient(token)
+        .delete(endpoint: "${TrustKycUrl.deleteExixtingDemat}?id=$accountID");
+    var data = NetworkUtility.responseHandler(response);
+    if (response.statusCode == 200) {
+    }
+    return DeleteDematDetailModel.fromJson(data);
+  }
+
+  Future<Response<dynamic>?> eSign() async {
+    await NetworkUtility.checkNetworkStatus();
+    var token = await HelperFunctions.getToken();
+    var response =
+        await TrustKycDioClient(token).get(endpoint: TrustKycUrl.eSign);
+    if (response.statusCode == 200) {
+      return response;
+    }
+  }
+
+  uploadVideo(File file) async {
+    debugPrint("9886866 $file");
+    var token = await HelperFunctions.getToken();
+    FormData formData = FormData.fromMap({
+      "video": await MultipartFile.fromFile(file.path,
+          filename: file.path.split('/').last),
+    });
+    try {
+      var response = await TrustKycDioClient(token)
+          .upload(endpoint: TrustKycUrl.personVerification, data: formData);
+      if (response.statusCode == 201) {
+        return response.data.toString();
+      }
+    } catch (e) {
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+}

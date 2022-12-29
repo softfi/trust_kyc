@@ -24,8 +24,7 @@ class _DematAccountCompleteState extends State<DematAccountComplete> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3), () async{
-      await Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const DematStatus()));
+      await Navigator.push(context, MaterialPageRoute(builder: (context) => const DematStatus()));
     });
     super.initState();
   }

@@ -43,6 +43,7 @@ Rxn SelectedState=Rxn();
 Rxn SelectedCity=Rxn();
 RxInt selectedStateId=0.obs;
 RxInt selectedNomonneeIdentificationId=0.obs;
+
   @override
   void onInit() {
     getList();

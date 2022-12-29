@@ -616,4 +616,133 @@ AddNomineeController _addNomineeController =Get.put(AddNomineeController());
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
+
+  addExistingDemat(int DepositoryID, String DPID, String customerID,
+      String beniID, String DPName) async {
+    var token = await HelperFunctions.getToken();
+    var body = {
+      "depository": DepositoryID,
+      "dp_id": DPID,
+      "client_id": customerID,
+      "beneficiary_id": beniID,
+      "dp_name": DPName,
+    };
+    debugPrint("===========8786 ${body}");
+    try {
+      Get.dialog(VerifiedAnim(
+        image: "assets/images/demat.mp4",
+        onClick: () {},
+        title: "We Are Verifying Your Demat Details",
+        subTitle: "We are validating your ID and Username with the authorities, this may take some time.",
+      ));
+      var response = await post(
+          TrustKycUrl.baseUrl + TrustKycUrl.existingDemat, body,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("===========8786 ${response.statusCode}");
+      if (response.statusCode == 201) {
+         Get.back();
+         ShowCustomSnackBar().SuccessSnackBar(response.body["message"]);
+         return response.body["message"];
+      } else {
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
+      }
+    } catch (e) {
+      Get.back();
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  deletExistingDematAccount( int accountID)async{
+    var token = await HelperFunctions.getToken();
+    debugPrint("======PAN $accountID");
+    try {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
+      var response = await delete(
+          "${TrustKycUrl.baseUrl}${TrustKycUrl.deleteExixtingDemat}?exist_demat_id=${accountID}",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("======PAN ${response.statusCode}");
+      if (response.statusCode == 200) {
+        Get.back();
+        ShowCustomSnackBar().SuccessSnackBar(response.body["message"]);
+        return response.body["message"];
+      }else{
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
+      }
+    } catch (e) {
+      Get.back();
+      debugPrint("======23 ${e.toString()}");
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  deletNewDematAccount(int accountID)async{
+    var token = await HelperFunctions.getToken();
+    debugPrint("======deletNewDematAccount $accountID");
+    try {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
+      var response = await delete(
+          "${TrustKycUrl.baseUrl}${TrustKycUrl.deleteDemat}?new_demat_id=${accountID}",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("======deletNewDematAccount ${response.statusCode}");
+      if (response.statusCode == 200) {
+        Get.back();
+        ShowCustomSnackBar().SuccessSnackBar(response.body["message"]);
+        return response.body["message"];
+      }else{
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
+      }
+    } catch (e) {
+      Get.back();
+      debugPrint("======23 ${e.toString()}");
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
+
+  eSignPdf()async{
+    var token = await HelperFunctions.getToken();
+    try {
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
+      var response = await delete(
+          "${TrustKycUrl.baseUrl}${TrustKycUrl.eSign}",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': token,
+          });
+      debugPrint("======deletNewDematAccount ${response.statusCode}");
+      if (response.statusCode == 200) {
+        Get.back();
+        return response.body;
+      }else{
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
+      }
+    } catch (e) {
+      Get.back();
+      debugPrint("======23 ${e.toString()}");
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    }
+  }
 }
+

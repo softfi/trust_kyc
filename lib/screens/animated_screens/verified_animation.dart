@@ -27,10 +27,6 @@ class _VerifiedAnimState extends State<VerifiedAnim> {
         _controller.setLooping(true);
         setState(() {});
       });
-    // Future.delayed(const Duration(seconds: 5), () async {
-    //   Navigator.pop(context);
-    //   widget.onClick!();
-    // });
     super.initState();
   }
 

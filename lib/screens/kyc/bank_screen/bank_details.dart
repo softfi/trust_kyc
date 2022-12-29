@@ -78,8 +78,7 @@ class _BankAccountsState extends State<BankAccounts> {
         bankAccountNo.text.toString().length < 8) {
       Fluttertoast.showToast(msg: 'Enter Your Valid Account Number');
       return;
-    } else if (bankAccountNo.text.toString() !=
-        confirmBankAcc.text.toString()) {
+    } else if (bankAccountNo.text.toString() != confirmBankAcc.text.toString()) {
       BankBottomSheet().bankAccountNotMatchedBottomSheet(context);
     } else if (savingIndex == 0) {
       Fluttertoast.showToast(msg: 'Choose your account type1!');
@@ -595,7 +594,7 @@ class _BankAccountsState extends State<BankAccounts> {
               ),
               _space,
               Text(
-                "Hey ${_personalDetailsController.modaltest.value!.panName}, Enter Your Bank Details",
+                "Hey ${_personalDetailsController.modaltest.value !=null ?_personalDetailsController.modaltest.value!.panName:""}, Enter Your Bank Details",
                 style: GoogleFonts.quicksand(
                   textStyle: const TextStyle(
                       color: Color(0xff22263D),

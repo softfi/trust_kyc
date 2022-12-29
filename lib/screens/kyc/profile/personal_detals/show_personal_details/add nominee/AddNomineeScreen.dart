@@ -129,54 +129,6 @@ class AddNominee extends StatelessWidget {
           title: 'Title',
         ),
         _space1,
-        /*  Container(
-            height: 45,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1.1, color: AppColors.borderColor),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: Obx(() => DropdownButtonHideUnderline(
-                    child: DropdownButton2(
-                      value: _addNomineeController.mrsValue.value,
-                      // Down Arrow Icon
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      // Array list of items
-                      items:
-                          _addNomineeController.items.value.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
-                      onChanged: (newValue) {
-                        _addNomineeController.mrsValue.value =
-                            newValue.toString();
-                      },
-                    ),
-                  )),
-            )),*/
-     /*   Obx(() => Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 1.1, color: AppColors.borderColor),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                child: DropDownContainer(
-                  dropdownHeading: "Select Title",
-                  dropDownInitialValue:
-                  "Mr".obs,
-                  dropDownList: ["Mr","Mrs"],
-                  on_drop_down_change: (val) {
-                    _addNomineeController.Relationshipwithapplication.value=val.toString();
-                  },
-                )))),*/
-
 
         Obx(()=>Container(
             height: 45,
