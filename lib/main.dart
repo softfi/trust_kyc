@@ -11,8 +11,9 @@ import 'package:video_player/video_player.dart';
 import 'bottom_navigation/bottom_navigation.dart';
 
 void main() async {
-  await FlutterDownloader.initialize();
+
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
   await Firebase.initializeApp();
   runApp(MyApp());
 }

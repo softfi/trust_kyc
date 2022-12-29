@@ -11,6 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../../../api/apiClient.dart';
 import '../../../../../utils/colorsConstant.dart';
 import '../../../../../utils/helper_widget/custom_snsckbar.dart';
+import '../../../../../utils/sharedPreference.dart';
 import '../../../../../utils/styles.dart';
 
 class FormView extends StatelessWidget {
@@ -82,9 +83,8 @@ class FormView extends StatelessWidget {
                   int random_number = random.nextInt(1000000);
                   _download(response,random_number);
                   Fluttertoast.showToast(msg: "Downloading Started");
-                 // downloadPdf(response);
-                  // await HelperFunctions.saveuserkyccompleted(true);
-                  // Get.back();
+                  await HelperFunctions.saveuserkyccompleted(true);
+                  Get.back();
                 }
               },
               child: Container(
