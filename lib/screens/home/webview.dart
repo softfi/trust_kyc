@@ -94,6 +94,7 @@ class MyWebView extends StatelessWidget {
           final uri = Uri.parse(url);
           final path = uri.path;
           if (path == "/callback") {
+            debugPrint("calling function in callback");
             _kRAController.getDigilockerData();
             _personalDetailsController.getPersonalDetails();
             Navigator.pop(context);

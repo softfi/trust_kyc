@@ -188,6 +188,7 @@ class EmailPANBottomSheet {
                           FocusScope.of(context).unfocus();
                         }
                       },
+                      obscureText: true,
                       inputFormatters: [LengthLimitingTextInputFormatter(6)],
                       decoration: const InputDecoration(
                         labelStyle: TextStyle(

@@ -77,6 +77,7 @@ class GoogleSignInProvider extends ChangeNotifier {
       _personalDetailsController.getPersonalDetails();
       // _personalDetailsController.isVisible.value = 2;
     }
+    Get.back();
     ShowCustomSnackBar().ErrorSnackBar("email is already register");
   }
 }

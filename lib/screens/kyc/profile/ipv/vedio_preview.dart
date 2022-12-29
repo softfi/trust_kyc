@@ -66,6 +66,7 @@ class VideoPreview extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
+              _ipvController.videoPlayerController12.dispose();
               confirmationBottomSheet();
             },
             child: Container(
@@ -148,6 +149,7 @@ class VideoPreview extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
+                            Get.back();
                             Get.back();
                           },
                           child: Container(

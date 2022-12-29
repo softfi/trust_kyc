@@ -15,10 +15,11 @@ class KRAController extends GetxController {
   RxBool isAddressAdd = false.obs;
   RxBool isRTR = false.obs;
   RxBool isUploadScansShow = true.obs;
+  RxInt selectedNomonneeIdentificationId=0.obs;
   RxBool scansView = false.obs;
   RxBool isFrontImageClick = false.obs;
   RxBool isBackImageClick = false.obs;
-  RxString professionId = "".obs;
+  Rxn professionId = Rxn();
   RxString motherName = "".obs;
   RxString urlLink = "".obs;
   RxString fileName1 = "".obs;
@@ -31,7 +32,7 @@ class KRAController extends GetxController {
   RxInt isGenderSelect = 0.obs;
   RxInt isMaritalSelect = 0.obs;
   RxInt isEnComeSelect = 0.obs;
-  File? backImageFile, frontImageFile;
+  Rx<File> backImageFile=File("").obs, frontImageFile=File("").obs;
 var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   RxInt isExperienceSelect = 0.obs;
   Rx<TextEditingController> maidenName = TextEditingController().obs;
@@ -68,8 +69,10 @@ var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
       DigiLockerDetailModel model = response;
       digiLockerDetailModel.value = response;
       _personalDetailsController.getPersonalDetails();
+      debugPrint(model.toString());
+      debugPrint("1235647777974521464779878645");
       adhaarNumber.value = model.aadharNumber;
-      adhaarAddress.value ="${model.landmark} ${model.location} ${model.villageTownCity} ${model.district} ${model.state} ${model.pincode}";
+      adhaarAddress.value ="${model.landmark!="null"?model.landmark:""} ${model.location??""} ${model.villageTownCity} ${model.district} ${model.state} ${model.pincode}";
       if (model.gender == "M") {
         isGenderSelect.value = 1;
       } else if (model.gender == "F") {
@@ -97,7 +100,10 @@ var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
       ShowCustomSnackBar().ErrorSnackBar("Select Your Marital Status");
     } else if (isEnComeSelect == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Select Your Annual Income");
-    } else if (professionId.value == null) {
+    }else if(professionId.value ==null || professionId.value==""){
+      ShowCustomSnackBar().ErrorSnackBar("Select occupation");
+    }
+    else if (professionId.value == null) {
       ShowCustomSnackBar().ErrorSnackBar("Enter Your Maiden Name");
     } else if (isExperienceSelect == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Select Your Experience");

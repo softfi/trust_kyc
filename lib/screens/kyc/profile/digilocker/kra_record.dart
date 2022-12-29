@@ -215,7 +215,48 @@ class KRARecord extends StatelessWidget {
                 ),
               )))),*/
 
-       Obx(() => Container(
+      Container(
+          height: 50,
+          // width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 1.1, color: AppColors.borderColor),
+            color: Colors.white,
+          ),
+          child:    Obx(() =>Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2(
+                  dropdownFullScreen: true,
+                  dropdownOverButton: true,
+                  buttonWidth: double.infinity,
+                  hint: const Text("Select Occupation",
+                      style: TextStyle(
+                          color: Color(0xffC8C7CE), letterSpacing: 2)),
+                  items:_kRAController.professionList.value.map
+                    ((e){
+                    return DropdownMenuItem(
+                      value: e.professionName,
+                      child: Text(
+                        e.professionName,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) {
+                    List<ProfessionModel> temp = _kRAController
+                        .professionList.value
+                        .where((element) => element.professionName == newValue)
+                        .toList();
+                    _kRAController.professionId.value = newValue.toString();
+
+                  },
+                  value: _kRAController.professionId.value,
+                ),
+              )))),
+
+
+
+     /*  Obx(() => Container(
           height: 50,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -226,17 +267,13 @@ class KRARecord extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: DropDownContainer(
                 dropdownHeading: "Select Occupation",
-                dropDownInitialValue:
-                    "${_kRAController.newProfessionalList.value[0]}".obs,
+                dropDownInitialValue:,
+                    // "${_kRAController.newProfessionalList.value[0]}".obs,
                 dropDownList: _kRAController.newProfessionalList.value,
                 on_drop_down_change: (val) {
-                  List<ProfessionModel> temp = _kRAController
-                      .professionList.value
-                      .where((element) => element.professionName == val)
-                      .toList();
-                  _kRAController.professionId.value = temp[0].id.toString();
+
                 },
-              )))),
+              )))),*/
       _space,
       AppText(
         title: 'What is your trading experience?',

@@ -18,6 +18,8 @@ class DifferentAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(_addNomineeController.selectedNomineeIndentitiy.value.toString());
+    debugPrint("_addNomineeController.selectedNomineeIndentitiy.value.toString()_addNomineeController.selectedNomineeIndentitiy.value.toString()");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,7 +39,7 @@ class DifferentAddress extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton2(
-                    hint: const Text("Select Identifaction",
+                    hint: const Text("Select Identification",
                         style: TextStyle(
                             color: Color(0xffC8C7CE), letterSpacing: 2)),
                     items: _addNomineeController.nomineeIdentifiactionList.value
@@ -54,7 +56,7 @@ class DifferentAddress extends StatelessWidget {
                           .nomineeIdentifiactionList.value
                           .where((element) {
                         if (element.addressProof == newValue.toString()) {
-                          _addNomineeController.selectedNomonneeIdentificationId
+                          _kraController.selectedNomonneeIdentificationId
                               .value = element.nomineeIdentificationId;
                         }
                         return true;
@@ -125,10 +127,14 @@ class DifferentAddress extends StatelessWidget {
                color: Color(0xffF7F7FA),
                titleText: _kraController.fileName1.value,
                perfixIcon: Container(),
-               postfixIcon: Image.asset(
-                 "assets/images/edit.png",
-                 color: AppColors.textColor,
-                 scale: 4,
+               postfixIcon: InkWell(onTap: (){
+                 UploadScansBottomSheet.uploadScanBottomSheet(context);
+               },
+                 child: Image.asset(
+                   "assets/images/edit.png",
+                   color: AppColors.textColor,
+                   scale: 4,
+                 ),
                ),
              ),
              _space,
@@ -141,10 +147,14 @@ class DifferentAddress extends StatelessWidget {
                color: Color(0xffF7F7FA),
                titleText: _kraController.fileName2.value,
                perfixIcon: Container(),
-               postfixIcon: Image.asset(
-                 "assets/images/edit.png",
-                 color: AppColors.textColor,
-                 scale: 4,
+               postfixIcon: InkWell(onTap: (){
+                 UploadScansBottomSheet.uploadScanBottomSheet(context);
+               },
+                 child: Image.asset(
+                   "assets/images/edit.png",
+                   color: AppColors.textColor,
+                   scale: 4,
+                 ),
                ),
              ),
            ],
@@ -187,7 +197,7 @@ class DifferentAddress extends StatelessWidget {
           title: 'Select State',
         ),
         _space1,
-        Obx(() => Container(
+      Container(
             height: 50,
             // width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
@@ -195,7 +205,7 @@ class DifferentAddress extends StatelessWidget {
               border: Border.all(width: 1.1, color: AppColors.borderColor),
               color: Colors.white,
             ),
-            child: Padding(
+            child:    Obx(() =>Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14.0),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton2(
@@ -223,12 +233,17 @@ class DifferentAddress extends StatelessWidget {
                         if (element.stateName == newValue.toString()) {
                           _kraController.selectedSate.value =
                               element.stateId;
+                          _addNomineeController.selectedStateId.value=element.stateId;
                         }
                         return true;
                       });
                       debugPrint(a.toString());
+
+                      debugPrint(_kraController.selectedSate.value.toString());
+                      debugPrint("a.toString()a.toString()a.toString()");
                       _addNomineeController.SelectedState.value =
                           newValue.toString();
+                      _kraController.selectedCity=Rxn();
                       _addNomineeController.getCity();
                     },
                     value: _addNomineeController.SelectedState.value,
@@ -274,8 +289,10 @@ class DifferentAddress extends StatelessWidget {
                         onChanged: (newValue) {
                           _kraController.selectedCity.value =
                               newValue.toString();
+                          debugPrint(_kraController.selectedCity.value.toString());
+                          debugPrint("_kraController.selectedCity.value.toString()_kraController.selectedCity.value.toString()");
                         },
-                        value: _addNomineeController.SelectedCity.value,
+                        value: _kraController.selectedCity.value,
                       ),
                     )))
             : Container()),

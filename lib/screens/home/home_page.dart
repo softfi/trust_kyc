@@ -71,7 +71,8 @@ getLoggedInState() async {
             endDrawer: const DrawerWidget(),
             drawerEnableOpenDragGesture: false,
             endDrawerEnableOpenDragGesture: false,
-            body: CustomScrollView(slivers: [
+            body: CustomScrollView(
+                slivers: [
               SliverAppBar(
                 snap: false,
                 pinned: false,

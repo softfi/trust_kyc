@@ -80,16 +80,16 @@ AddNomineeController _addNomineeController =Get.put(AddNomineeController());
       "lifestyle": "",
       "geogriphical_code": "",
       "education_degree": "",
-      "address_line_1": _kRAController.isAddressAdd.value?_kRAController.addressline1.value:_kRAController.digiLockerDetailModel.value != null
+      "address_line_1": _kRAController.isAddressAdd.value?_kRAController.addressline1.value.text:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.landmark
           : "",
-      "address_line_2": _kRAController.isAddressAdd.value?_kRAController.addressline2.value:_kRAController.digiLockerDetailModel.value != null
+      "address_line_2": _kRAController.isAddressAdd.value?_kRAController.addressline2.value.text:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.location
           : "",
       "address_line_3": _kRAController.isAddressAdd.value?"":_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.villageTownCity
           : "",
-      "address_zip": _kRAController.isAddressAdd.value?_kRAController.pinCode.value:_kRAController.digiLockerDetailModel.value != null
+      "address_zip": _kRAController.isAddressAdd.value?_kRAController.pinCode.value.text:_kRAController.digiLockerDetailModel.value != null
           ? _kRAController.digiLockerDetailModel.value!.pincode
           : "",
       "address_state_code": "",
@@ -116,7 +116,7 @@ AddNomineeController _addNomineeController =Get.put(AddNomineeController());
       "check_box_share_data_with_govt": _controller.isCheckedInt2.value ?? 0
     };
 
-    print("_kRAController.maidenName ${jsonEncode(body)}");
+    // print("_kRAController.maidenName ${jsonEncode(body)}");
     try {
       var response = await http.put(
           Uri.parse(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail),
@@ -126,13 +126,12 @@ AddNomineeController _addNomineeController =Get.put(AddNomineeController());
             'Accept': 'application/json',
             'Authorization': token,
           });
-      var response1 = await put(
-          TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, jsonEncode(body),
-          headers: {
+      var response1 = await put(TrustKycUrl.baseUrl + TrustKycUrl.personalDetail, jsonEncode(body), headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
+      // debugPrint(response1.toString());
       debugPrint("correctedDate ${response.statusCode}");
       debugPrint("correctedDate ${response.body.toString()}");
       var res = jsonDecode(response.body);

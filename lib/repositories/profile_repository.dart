@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logging/logging.dart';
 import 'package:trust_money/model/address_proof_response_data.dart';
@@ -231,6 +232,8 @@ class ProfileRepository {
             'accept': 'application/json',
             'authorization': token,
           }));
+      debugPrint(response.data.toString());
+      debugPrint("0000000000000+++++000000000000");
       if (response.statusCode == 201) {
         await HelperFunctions.saveFrontImage(response.data['front-image']);
         await HelperFunctions.saveBackImage(response.data['back-image']);

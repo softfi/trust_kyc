@@ -120,7 +120,7 @@ class PersonalDetailsController extends GetxController {
     }
   }
 
-  void updateData() async {
+  Future<String> updateData() async {
     Get.dialog(const Center(
       child: CircularProgressIndicator(),
     ));
@@ -132,6 +132,7 @@ class PersonalDetailsController extends GetxController {
       Get.back();
       ShowCustomSnackBar().SuccessSnackBar(response.toString());
     }
+    return "done";
   }
 
   void updateStatusBar() async {
