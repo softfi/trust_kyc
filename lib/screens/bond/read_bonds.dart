@@ -206,14 +206,6 @@ class _ReadBondsState extends State<ReadBonds> {
     );
   }
 
-  List data = [
-    ["MAHINDRA & MAHINDRA FINANCIAL", ""],
-    ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
-    ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
-    ["MAHINDRA & MAHINDRA FINANCIAL", ""],
-    ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
-    ["Sovereign Gold Bonds Scheme 2021-22 - Series ", "IPO"],
-  ];
 
   Widget bondList() {
     return ListView.builder(
@@ -520,7 +512,14 @@ class _ReadBondsState extends State<ReadBonds> {
                             InkWell(
                               onTap: () {
                                 debugPrint(_bondListData.bondList.value[index].bondId.toString());
+
+                                if(_bondListData.bondList.value[index].bondType==1){
+                                  _readMoreBond.getReadMoreBondDetailsByBondID(_bondListData.bondList.value[index].bondId.toString());
+                                }
+
+
                                 _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
+
                                 _bondListData.bondList.value[index].bondIsinNumber=="4"
                                     ? Navigator.push(
                                         context,

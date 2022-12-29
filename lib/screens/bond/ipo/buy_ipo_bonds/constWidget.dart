@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
 import '../../../../model/bond/bond_details_modal.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../Congratulations/alert_dialog.dart';
 
 class ConstWidget {
-  static keyPoints(BuildContext context,BondDetails _bondDetails) {
+  static keyPoints(BuildContext context,AllBondListOfIpoByBondId _bondDetails) {
     return Column(
       children: [
         Container(
@@ -37,7 +38,9 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                      (_bondDetails.message.bondDetails.bondOpeningDate!=null)?"${_bondDetails.message.bondDetails.bondOpeningDate}":"N/A",
+                      (_bondDetails.bondOpeningDate!=null)?"${_bondDetails.bondOpeningDate}":"N/A",
+                       overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -64,7 +67,7 @@ class ConstWidget {
                       height: 8,
                     ),
                     Text(
-                      (_bondDetails.message.bondDetails.bondCloserDate!=null)?"${_bondDetails.message.bondDetails.bondCloserDate}":"N/A",
+                      (_bondDetails.bondCloserDate!=null)?"${_bondDetails.bondCloserDate}":"N/A",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -104,7 +107,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-    (_bondDetails.message.bondDetails.bondFaceValue!=null)?"₹ ${_bondDetails.message.bondDetails.bondFaceValue}":"N/A",
+    (_bondDetails.bondFaceValue!=null)?"₹ ${_bondDetails.bondFaceValue}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -133,7 +136,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-    (_bondDetails.message.bondDetails.bondMinimumApplication!=null)?"₹ ${_bondDetails.message.bondDetails.bondMinimumApplication}":"N/A",
+    (_bondDetails.bondMinimumApplication!=null)?"₹ ${_bondDetails.bondMinimumApplication}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -177,7 +180,7 @@ class ConstWidget {
                             height: 8,
                           ),
                           Text(
-                            (_bondDetails.message.bondDetails.bondListing!=null)?"${_bondDetails.message.bondDetails.bondListing}":"N/A",
+                            (_bondDetails.bondListing!=null)?"${_bondDetails.bondListing}":"N/A",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -207,7 +210,7 @@ class ConstWidget {
                             height: 8,
                           ),
                           Text(
-                            (_bondDetails.message.bondDetails.bondIssueSize!=null)?"₹${_bondDetails.message.bondDetails.bondIssueSize}":"N/A",
+                            (_bondDetails.bondIssueSize!=null)?"₹${_bondDetails.bondIssueSize}":"N/A",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -232,7 +235,7 @@ class ConstWidget {
     );
   }
 
-  static tableWidget(BondDetails _bondDetails) {
+  static tableWidget(AllBondListOfIpoByBondId _bondDetails) {
     return Container(
         color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 2),
@@ -350,7 +353,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-    (_bondDetails.message.bondDetails.bondCategoryInstitutional!=null)?"${_bondDetails.message.bondDetails.bondCategoryInstitutional}":"N/A",
+    (_bondDetails.bondCategoryInstitutional!=null)?"${_bondDetails.bondCategoryInstitutional}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -364,7 +367,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-    (_bondDetails.message.bondDetails.bondCategoryNonInstitutional!=null)?"${_bondDetails.message.bondDetails.bondCategoryNonInstitutional}":"N/A",
+    (_bondDetails.bondCategoryNonInstitutional!=null)?"${_bondDetails.bondCategoryNonInstitutional}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -378,7 +381,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-    (_bondDetails.message.bondDetails.bondCategoryHni !=null)?"${_bondDetails.message.bondDetails.bondCategoryHni}":"N/A",
+    (_bondDetails.bondCategoryHni !=null)?"${_bondDetails.bondCategoryHni}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -392,7 +395,7 @@ class ConstWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-    (_bondDetails.message.bondDetails.bondCategoryRetail!=null)?"${_bondDetails.message.bondDetails.bondCategoryRetail}":"N/A",
+    (_bondDetails.bondCategoryRetail!=null)?"${_bondDetails.bondCategoryRetail}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,

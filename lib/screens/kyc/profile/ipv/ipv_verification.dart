@@ -22,9 +22,9 @@ class IPVVerification extends StatelessWidget {
   IPVController _ipvController = Get.put(IPVController());
   RxBool isButtonClick = false.obs;
 RxInt time=0.obs;
-
+var a;
   startTimer()async{
-   var a= await Timer.periodic(Duration(seconds: 1), (timer) async{ time.value++;
+    a= await Timer.periodic(Duration(seconds: 1), (timer) async{ time.value++;
     if(time.value==15){
       _ipvController.isLoading.value = 4;
       var temp = await (_ipvController
@@ -32,6 +32,7 @@ RxInt time=0.obs;
           .stopVideoRecording())
           .then((XFile? file) {
         _ipvController.file.value = File(file!.path);
+        time.value=0;
       });
       debugPrint(temp.toString());
     }
@@ -201,6 +202,8 @@ RxInt time=0.obs;
                                         FutureBuilder(
                                           future: _ipvController.initVideoPlayer(),
                                           builder: (context, state) {
+                                            a.cancel();
+                                            time.value=0;
                                             if (state.connectionState ==
                                                 ConnectionState.waiting) {
                                               return const Center(

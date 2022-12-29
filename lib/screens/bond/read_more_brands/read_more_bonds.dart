@@ -61,10 +61,10 @@ RxInt a=1.obs;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>((_readMoreBond.specificBondDataDetails.value !=null))?Scaffold(
+    return Obx(()=>((_readMoreBond.allBondListOfIpoByBondId.value !=null))?Scaffold(
         backgroundColor: Colors.white,
         appBar: AppToolbar.appBar(
-            "${_readMoreBond.specificBondDataDetails.value!.message.bondDetails.bondBondsName}",
+            "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName??""}",
             IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
@@ -74,7 +74,7 @@ RxInt a=1.obs;
             )),
         body:
         Obx((){
-          return (a.value==1)?(_readMoreBond.specificBondDataDetails.value !=null)?SingleChildScrollView(
+          return (_readMoreBond.allBondListOfIpoByBondId.value !=null)?SingleChildScrollView(
                     child: Column(
                       children: [
                         Padding(
@@ -120,7 +120,7 @@ RxInt a=1.obs;
                         CommonWidget.needHelp(),
                       ],
                     ),
-                  ):Center(child: CircularProgressIndicator()):CircularProgressIndicator();
+                  ):Center(child: CircularProgressIndicator());
         })):Center(child: CircularProgressIndicator(),));
   }
 
@@ -148,14 +148,12 @@ RxInt a=1.obs;
               children: [
                 Container(
                   height: 60,
-                  width: 60,
+                  width: 50,
                   decoration: BoxDecoration(shape: BoxShape.circle),
-                  child: (_readMoreBond.specificBondDataDetails.value!.message
-                              .bondDetails.bondLogo !=
+                  child: (_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo !=
                           null)
                       ? Image.network(
-                          _readMoreBond.specificBondDataDetails.value!.message
-                              .bondDetails.bondLogo,
+                      _readMoreBond.allBondListOfIpoByBondId.value!.bondLogo,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(ConstantImage.orderImg))
                       : Image.asset(ConstantImage.orderImg),
@@ -166,7 +164,7 @@ RxInt a=1.obs;
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      "${_readMoreBond.specificBondDataDetails.value!.message.bondDetails.bondBondsName}",
+                      "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -238,8 +236,7 @@ RxInt a=1.obs;
                                   ),
                                 )),
                             TextSpan(
-                                text: "${_readMoreBond.specificBondDataDetails.value!.message
-                                    .bondDetails.bondIsinNumber}",
+                                text: "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                     color: AppColors.textColor,
@@ -451,8 +448,8 @@ RxInt a=1.obs;
                 ? ConstWidget.keyPointsConsider(
                     context,_readMoreBond.specificBondDataDetails.value!
                   )
-                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails.value!),
-          ),
+                : ConstWidget.keyPoints(context,_readMoreBond.allBondListOfIpoByBondId.value!),
+          ),     //_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo
           const SizedBox(
             height: 20,
           ),
@@ -672,14 +669,14 @@ RxInt a=1.obs;
         SizedBox(
           height: 10,
         ),
-        Visibility(
+        /*Visibility(
             visible: widget.isIPO == 3 || widget.isIPO==2,
             child:Column(
     children: [
                 BuyNonIpoBonds.nonIPOInvestCalculator(userIsLoggedIn, context,_readMoreBond.specificBondDataDetails.value!,true),
       BuyNonIpoBonds.whatIWillEarn(userIsLoggedIn, context,_readMoreBond.specificBondDataDetails.value!),
     ],
-    )),
+    )),*/
 
         const SizedBox(
           height: 25,

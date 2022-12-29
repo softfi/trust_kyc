@@ -122,10 +122,10 @@ class TextContainer extends StatelessWidget {
               children: [
                 perfixIcon,
                 const SizedBox(
-                  width: 2,
-                ),
+              width: 2,
+            ),
                 SizedBox(
-                  width:MediaQuery.of(context).size.width/1.5,
+                  width:MediaQuery.of(context).size.width/1.8,
                   child: Text(
                     titleText,
                     style: ConstStyle.sourceSansmob,
