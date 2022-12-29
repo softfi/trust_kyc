@@ -5,7 +5,6 @@ import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/model/perosnal_details/get_personal_detail_response.dart';
 import 'package:trust_money/model/perosnal_details/nominee_details_response.dart';
 import '../../model/status_bar/progress_status_bar.dart';
-import '../../screens/kyc/profile/personal_detals/show_personal_details/nominee_details.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/sharedPreference.dart';
 
@@ -27,8 +26,8 @@ class PersonalDetailsController extends GetxController {
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
   RxInt selectedIndex = 0.obs;
-  RxBool barLine = false.obs;
-  RxBool tabVisible = true.obs;
+  RxBool barLine = true.obs;
+  RxBool tabVisible = false.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
