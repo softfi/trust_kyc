@@ -124,8 +124,8 @@ class TextContainer extends StatelessWidget {
                 const SizedBox(
                   width: 2,
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width-100,
+                SizedBox(
+                  width:MediaQuery.of(context).size.width/1.5,
                   child: Text(
                     titleText,
                     style: ConstStyle.sourceSansmob,
