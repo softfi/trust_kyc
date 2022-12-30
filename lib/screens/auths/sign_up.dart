@@ -1,16 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:logging/logging.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/screens/auths/verify_otp.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/strings.dart';
 import '../../repositories/login_repository.dart';
+import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/styles.dart';
 
 class SignUp extends StatefulWidget {
@@ -21,7 +21,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final logger = Logger("LoginStateNotifier");
   bool isChecked = false;
   bool isChecked1 = false;
   bool isChecked2 = false;
@@ -45,26 +44,25 @@ class _SignUpState extends State<SignUp> {
         }));
       }
     } catch (e) {
-      logger.warning(e.toString());
       SnackBar(content: Text(e.toString()));
     }
   }
 
   signUpValidation() async {
     if (firstName.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter first name');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter first name");
       return;
     } else if (lastName.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter last name');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter last name");
       return;
     } else if (phoneNumber.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter mobile number');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter mobile number");
       return;
     } else if (phoneNumber.text.toString().length < 10) {
-      Fluttertoast.showToast(msg: 'Enter 10 digit mobile number');
+      ShowCustomSnackBar().ErrorSnackBar("Enter 10 digit mobile number");
       return;
     } else if (isChecked != true && isChecked2 != true) {
-      Fluttertoast.showToast(msg: 'Check term & conditions!');
+      ShowCustomSnackBar().ErrorSnackBar("Check term & conditions!");
     } else {
       sendOTP(firstName.text.toString(), lastName.text.toString(),
           phoneNumber.text.toString(), partnerInt);

@@ -1,17 +1,12 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:logging/logging.dart';
 import 'package:trust_money/api/trust_kyc_url.dart';
 import '../utils/helper_widget/custom_snsckbar.dart';
-import '../utils/sharedPreference.dart';
 import 'network_exception.dart';
 
 class TrustKycDioClient {
-  final logger = Logger("TrustKycDioClient");
   late Dio _dio;
-
   TrustKycDioClient(String token) {
     Map<String, dynamic> headers = {
       HttpHeaders.contentTypeHeader: Headers.jsonContentType,
@@ -51,8 +46,7 @@ class TrustKycDioClient {
       Map<String, dynamic>? query}) async {
     try {
       var response = await _dio.post(endpoint, data: body, queryParameters: query);
-      logger.info(
-          "TOKEN+ ${_dio.options.headers[HttpHeaders.authorizationHeader]}");
+
       return response;
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {

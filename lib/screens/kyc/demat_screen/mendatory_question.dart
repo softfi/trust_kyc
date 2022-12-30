@@ -16,6 +16,7 @@ import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
 
+import '../../../api/apiClient.dart';
 import '../../../getx_controller/demat/demat_controller.dart';
 import '../../../getx_controller/profile/personal_details_controller.dart';
 
@@ -29,16 +30,16 @@ class MandatoryQuestion extends StatefulWidget {
 }
 
 class _MandatoryQuestionState extends State<MandatoryQuestion> {
-  // bool citizen_OfThe_USA = false;
-  // int citizen_OfThe_USAInt = 0;
-  // bool Country_Residency = true;
-  // int Country_ResidencyInt = 0;
-  // bool isMandatory = true;
-  // bool isAware = false;
-  // int isAwareInt = 0;
-  // bool aceeptTerm = false;
-  // int aceeptTermInt = 0;
-  // bool awareButtonClick = false;
+  bool citizen_OfThe_USA = false;
+  int citizen_OfThe_USAInt = 0;
+  bool Country_Residency = true;
+  int Country_ResidencyInt = 0;
+  bool isMandatory = true;
+  bool isAware = false;
+  int isAwareInt = 0;
+  bool aceeptTerm = false;
+  int aceeptTermInt = 0;
+  bool awareButtonClick = false;
   String? wealthID;
   String? bornID;
   List<WealthModel> wealth_list = [];
@@ -49,9 +50,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
   File? signatureImage;
   final _picker = ImagePicker();
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
-  DematController _dematController =
-  Get.put(DematController());
+      Get.put(PersonalDetailsController());
 
   wealthList() async {
     var data1 = await DematDetailRepository().wealthDropdown();
@@ -84,7 +83,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Visibility(visible: _dematController.isMandatory.value, child: mandatoryWidget()),
+        Visibility(visible: isMandatory, child: mandatoryWidget()),
         Visibility(visible: isUpload, child: uploadImageWidget()),
       ],
     );
@@ -247,17 +246,17 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           )),
                       CustomSwitch(
                         activeColor: Colors.green,
-                        value: _dematController.citizen_OfThe_USA.value,
+                        value: citizen_OfThe_USA,
                         onChanged: (value) {
                           print("VALUE : $value");
                           setState(() {
-                            _dematController.citizen_OfThe_USA.value = value;
+                            citizen_OfThe_USA = value;
                             if (value == true) {
-                              _dematController.citizen_OfThe_USAInt.value = 1;
+                              citizen_OfThe_USAInt = 1;
                             } else {
-                              _dematController.citizen_OfThe_USAInt.value = 0;
+                              citizen_OfThe_USAInt = 0;
                             }
-                            print("VALUE : $_dematController.citizen_OfThe_USAInt.value");
+                            print("VALUE : ${citizen_OfThe_USAInt}");
                           });
                         },
                       )
@@ -282,17 +281,17 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       ),
                       CustomSwitch(
                         activeColor: Colors.green,
-                        value: _dematController.Country_Residency.value,
+                        value: Country_Residency,
                         onChanged: (value) {
                           print("VALUE : $value");
                           setState(() {
-                            _dematController.Country_Residency.value = value;
+                            Country_Residency = value;
                             if (value == true) {
-                              _dematController.Country_ResidencyInt.value = 1;
+                              Country_ResidencyInt = 1;
                             } else {
-                              _dematController.Country_ResidencyInt.value = 0;
+                              Country_ResidencyInt = 0;
                             }
-                            print("VALUE : ${_dematController.Country_ResidencyInt.value}");
+                            print("VALUE : ${Country_ResidencyInt}");
                           });
                         },
                       ),
@@ -372,12 +371,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         ),
                         // color of tick Mark
                         activeColor: AppColors.primaryColor,
-                        value: _dematController.isAware.value,
+                        value: isAware,
                         onChanged: (bool? value) {
                           setState(() {
-                            _dematController.isAware.value = value!;
-                            _dematController.isAwareInt.value = 1;
-                            print("=======int ${_dematController.isAwareInt.value}");
+                            isAware = value!;
+                            isAwareInt = 1;
+                            print("=======int ${isAwareInt}");
                           });
                         },
                       ),
@@ -435,12 +434,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                       ),
                       // color of tick Mark
                       activeColor: AppColors.primaryColor,
-                      value: _dematController.aceeptTerm.value,
+                      value: aceeptTerm,
                       onChanged: (bool? value) {
                         setState(() {
-                          _dematController.aceeptTerm.value = value!;
-                          _dematController.aceeptTermInt.value = 1;
-                          print("=======aceeptTermInt ${_dematController.aceeptTermInt.value}t");
+                          aceeptTerm = value!;
+                          aceeptTermInt = 1;
+                          print("=======aceeptTermInt ${aceeptTermInt}");
                         });
                       },
                     ),
@@ -472,12 +471,12 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                   onTap: () {
                     if (bornID != null &&
                         wealthID != null &&
-                        _dematController.isAware.value == true &&
-                        _dematController.aceeptTerm.value == true) {
+                        isAware == true &&
+                        aceeptTerm == true) {
                       setState(() {
-                        _dematController.isMandatory.value = false;
+                        isMandatory = false;
                         isUpload = true;
-                        _dematController.awareButtonClick.value = true;
+                        awareButtonClick = true;
                       });
                     }
                   },
@@ -496,15 +495,15 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                         ],
                         border: Border.all(
                             width: 2,
-                            color:  _dematController.awareButtonClick.value == false
+                            color: awareButtonClick == false
                                 ? (bornID != null &&
-                                wealthID != null &&
-                                _dematController.isAware.value == true &&
-                                _dematController.aceeptTerm.value == true)
+                                        wealthID != null &&
+                                        isAware == true &&
+                                        aceeptTerm == true)
                                     ? AppColors.textColor
                                     : Color(0xffE1E0E6)
                                 : Color(0xffFF405A)),
-                        color: _dematController.awareButtonClick.value == false
+                        color: awareButtonClick == false
                             ? Colors.white
                             : Color(0xffFF405A),
                       ),
@@ -512,11 +511,11 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           child: Text(
                         "Continue",
                         style: TextStyle(
-                            color: _dematController.awareButtonClick.value == false
+                            color: awareButtonClick == false
                                 ? (bornID != null &&
-                                wealthID != null &&
-                                _dematController.isAware.value == true &&
-                                _dematController.aceeptTerm.value == true)
+                                        wealthID != null &&
+                                        isAware == true &&
+                                        aceeptTerm == true)
                                     ? AppColors.textColor
                                     : Color(0xffE1E0E6)
                                 : Colors.white,
@@ -551,7 +550,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
               onTap: () {
                 setState(() {
                   isUpload = false;
-                  _dematController.isMandatory.value = true;
+                  isMandatory = true;
                 });
               },
               child: Padding(
@@ -879,7 +878,34 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                   child: InkWell(
                     onTap: () async {
                       if (isSignatureUpdate == true) {
-                        _dematController.checkValidation(signatureImage!,bornID!,wealthID!);
+                        if (signatureImage != null) {
+                          Get.dialog(const Center(
+                            child: CircularProgressIndicator(),
+                          ));
+                          var response = await DematDetailRepository()
+                              .uploadSignature(file: signatureImage!);
+                          if (response != null) {
+                            var res = await DematDetailRepository()
+                                .addNewDematAccount1(
+                                    check_box_account_statement_electronic:
+                                        isAwareInt,
+                                    USAcitizen: citizen_OfThe_USAInt,
+                                    taxResidency: Country_ResidencyInt,
+                                    check_box_terms_selected: aceeptTermInt,
+                                    wealth: wealthID.toString(),
+                                    Bornregion: bornID.toString());
+                            if (res != null) {
+                              Get.back();
+                              ShowCustomSnackBar().SuccessSnackBar(
+                                  "Demat account added successfully");
+                              widget.onClick1!();
+                            }
+                          }
+                        } else {
+                          Get.back();
+                          ShowCustomSnackBar()
+                              .ErrorSnackBar("Select signature image first");
+                        }
                       }
                     },
                     child: Container(
@@ -1029,7 +1055,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                   onTap: () {
                     setState(() {
                       isUpload = false;
-                      _dematController.isMandatory.value  = false;
+                      isMandatory = false;
                     });
                     widget.onClick1!();
                     Navigator.pop(context);

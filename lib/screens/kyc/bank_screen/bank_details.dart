@@ -1,9 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/get_bank_detail_response_data.dart';
@@ -14,6 +11,7 @@ import '../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../model/get_ifsc_code_response_data.dart';
 import '../../../repositories/bank_detail_repository.dart';
 import '../../../utils/colorsConstant.dart';
+import '../../../utils/helper_widget/custom_snsckbar.dart';
 import 'bank_bottom_sheets.dart';
 
 class BankAccounts extends StatefulWidget {
@@ -72,18 +70,18 @@ class _BankAccountsState extends State<BankAccounts> {
 
   checkValidation() async {
     if (ifscCode.text.isEmpty || ifscCode.text.toString().length < 10) {
-      Fluttertoast.showToast(msg: 'Enter Your Valid IFSC Code');
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your Valid IFSC Code");
       return;
     } else if (bankAccountNo.text.isEmpty ||
         bankAccountNo.text.toString().length < 8) {
-      Fluttertoast.showToast(msg: 'Enter Your Valid Account Number');
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your Valid Account Number");
       return;
     } else if (bankAccountNo.text.toString() != confirmBankAcc.text.toString()) {
       BankBottomSheet().bankAccountNotMatchedBottomSheet(context);
     } else if (savingIndex == 0) {
-      Fluttertoast.showToast(msg: 'Choose your account type1!');
+      ShowCustomSnackBar().ErrorSnackBar("Choose your Bank Account Type1!");
     } else if (jointIndex == 0) {
-      Fluttertoast.showToast(msg: 'Choose your account type2!');
+      ShowCustomSnackBar().ErrorSnackBar("Choose your Bank Account Type2!");
     } else {
       Get.dialog(const Center(
         child: CircularProgressIndicator(),

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -11,7 +10,8 @@ import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/auths/verify_login_otp.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
-import '../../api/url_constant.dart';
+import '../../api/trust_kyc_url.dart';
+import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/styles.dart';
 
 class SignIn extends StatefulWidget {
@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
     print('start working');
     try {
       Response response = await post(
-        Uri.parse(LoginOtp),
+        Uri.parse(TrustKycUrl.verifyEmail),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -56,9 +56,9 @@ class _SignInState extends State<SignIn> {
         }));
       } else if (response.statusCode > 201) {
         if (resopnsmap['errors'].toString() == "mobile number already register please login") {
-          Fluttertoast.showToast(msg: 'mobile number already register please login');
+          ShowCustomSnackBar().ErrorSnackBar("mobile number already register please login");
         }
-        Fluttertoast.showToast(msg: resopnsmap['errors'].toString());
+        ShowCustomSnackBar().ErrorSnackBar(resopnsmap['errors'].toString());
       }
     } catch (e) {
       print(e.toString());
@@ -68,10 +68,10 @@ class _SignInState extends State<SignIn> {
 
   signInValidation() async {
     if (loginphone.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter Mobile No');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter Mobile No");
       return;
     } else if (loginphone.text.toString().length < 10) {
-      Fluttertoast.showToast(msg: 'Enter 10 digit mobile number');
+      ShowCustomSnackBar().ErrorSnackBar("Enter 10 digit mobile number");
       return;
     } else {
       _signIn(loginphone.text.toString(), isResendOtp);

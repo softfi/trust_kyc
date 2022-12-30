@@ -2,14 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:trust_money/api/url_constant.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/utils/strings.dart';
+import '../../api/trust_kyc_url.dart';
 import '../../repositories/veriify_otp_repository.dart';
 import '../../utils/colorsConstant.dart';
+import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
 import 'choose_screen.dart';
@@ -50,7 +50,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
 
   verifyotplogin() async {
     if (otplogin.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter otp first');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter otp first");
       return;
     } else {
       final res = await verifyOtps()
@@ -68,7 +68,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
     print('start working resend  login otp');
     try {
       Response response = await post(
-        Uri.parse(LoginOtp),
+        Uri.parse(TrustKycUrl.verifyEmail),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -82,10 +82,10 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
       dynamic collectUseData = _decoder.convert(response.body);
       resopnsmap = json.decode(response.body);
       if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: 'OTP Resend Successfully');
+        ShowCustomSnackBar().SuccessSnackBar("OTP Resend Successfully");
       } else if (response.statusCode != 200) {
         print("Registration failed");
-        Fluttertoast.showToast(msg: collectUseData['errors'].toString());
+        ShowCustomSnackBar().ErrorSnackBar( collectUseData['errors'].toString());
       }
     } catch (e) {
       print(e.toString());

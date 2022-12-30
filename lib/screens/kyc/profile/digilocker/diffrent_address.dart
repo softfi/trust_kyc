@@ -51,8 +51,7 @@ class DifferentAddress extends StatelessWidget {
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      var a = _addNomineeController
-                          .nomineeIdentifiactionList.value
+                      var a = _addNomineeController.nomineeIdentifiactionList.value
                           .where((element) {
                         if (element.addressProof == newValue.toString()) {
                           _kraController.selectedNomonneeIdentificationId
@@ -250,9 +249,7 @@ class DifferentAddress extends StatelessWidget {
                 )))),
         _space,
         Obx(() => _addNomineeController.SelectedState.value != null
-            ? AppText(
-                title: 'Select City',
-              )
+            ? AppText(title: 'Select City',)
             : Container()),
         Obx(() => _addNomineeController.SelectedState.value != null
             ? _space1

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trust_money/screens/auths/sign_in.dart';
-import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/kyc/profile/my_profile.dart';
 import 'package:trust_money/screens/kyc/profile/setting.dart';
 import 'package:trust_money/screens/order/my_order.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
+import '../getx_controller/profile/personal_details_controller.dart';
 import '../screens/auths/choose_screen.dart';
 import '../screens/home/home_page.dart';
 import '../utils/google_sign_in.dart';
@@ -31,6 +30,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   String customerID = "";
   String userName = "";
   bool isKYCPending = true;
+
+  PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
 
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {

@@ -57,9 +57,9 @@ class ShowPersonalDetails extends StatelessWidget {
             ),
           ),
         ),
-        NomineeDetails(),
-        FactaDetails(),
-        TmAccountDetails()
+        // NomineeDetails(),
+        // FactaDetails(),
+        // TmAccountDetails()
 
 
       ],
@@ -156,22 +156,6 @@ class ShowPersonalDetails extends StatelessWidget {
           children: [
             DesableTitleText(
               title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber : "",
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            MyContainer.verifiedContainer()
-          ],
-        ),
-        _space,
-        DesableAppText(
-          title: 'Aadhaar Number',
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            DesableTitleText(
-              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber :"",
             ),
             const SizedBox(
               width: 15,
@@ -500,6 +484,14 @@ class ShowPersonalDetails extends StatelessWidget {
           title: 'What is your Occupaion',
         ),
         _space1,
+        DesableTitleText(
+          title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.occupation :"",
+        ),
+        _space,
+        DesableAppText(
+          title: 'Address (Same as per Aadhaar)',
+        ),
+        _space1,
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -510,7 +502,7 @@ class ShowPersonalDetails extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
             child: Text(
-              "A 1XX4, XXXXX XXXXX XXX, XXXXX XXXXX XXXXX, XXXXX - XXXXX, XXXXX - XXXX64, XXXXXXXXXX, XXXXX.",
+              "${_personalDetailsController.modaltest.value!.addressLine1 ?? ""} ${_personalDetailsController.modaltest.value!.addressLine1 ?? ""} ${_personalDetailsController.modaltest.value!.addressCity ?? ""}, ${_personalDetailsController.modaltest.value!.addressState ?? ""}, ${_personalDetailsController.modaltest.value!.addressZip ?? ""}",
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),

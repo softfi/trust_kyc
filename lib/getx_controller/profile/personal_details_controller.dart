@@ -7,6 +7,8 @@ import 'package:trust_money/model/perosnal_details/nominee_details_response.dart
 import '../../model/status_bar/progress_status_bar.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/sharedPreference.dart';
+import '../kra/kra_controller.dart';
+import '../personal details controller/add_nominee_controller.dart';
 
 class PersonalDetailsController extends GetxController {
   RxInt isVisible = 1.obs;
@@ -27,7 +29,9 @@ class PersonalDetailsController extends GetxController {
   RxInt activateFutureInt = 0.obs;
   RxInt selectedIndex = 0.obs;
   RxBool barLine = true.obs;
-  RxBool tabVisible = true.obs;
+  RxBool tabVisible = false.obs;
+  RxBool userIsLoggedIn = false.obs;
+  RxBool isKYCPending = true.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
@@ -36,9 +40,9 @@ class PersonalDetailsController extends GetxController {
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
   var modaltest = Rxn<GetPersonalDetailModel>();
-
-  //GetPersonalDetailModel? modaltest;
   var barStatusModel = Rxn<StatusBarModel>();
+
+
 
   @override
   void onInit() {
@@ -49,10 +53,14 @@ class PersonalDetailsController extends GetxController {
   }
 
   getKycStatus() async {
+    await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
+      userIsLoggedIn.value = value!;
+    });
     var isKyc = await HelperFunctions.getUserKycCompleted();
     if (isKyc == true) {
       tabVisible.value = true;
       barLine.value = false;
+      isKYCPending.value = false;
     }
   }
 
@@ -66,8 +74,7 @@ class PersonalDetailsController extends GetxController {
       debugPrint("=======0009089 $response");
       emailID.value.text = modaltest.value!.emailId.toString();
       checkProfileStatus.value = modaltest.value!.mothersMaidenName.toString();
-      await HelperFunctions.saveFirstName(
-          modaltest.value!.firstname.toString());
+      await HelperFunctions.saveFirstName(modaltest.value!.firstname.toString());
       await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
@@ -109,14 +116,27 @@ class PersonalDetailsController extends GetxController {
     if (dob.value != "DD/MM/YYYY") {
       updateData();
     } else {
-      Get.showSnackbar(const GetSnackBar(
-        messageText: Text(
-          "Select date first",
-          style: TextStyle(color: Colors.white),
-        ),
-        duration: Duration(seconds: 2),
-        backgroundColor: Colors.red,
-      ));
+      ShowCustomSnackBar().ErrorSnackBar("Select date first");
+    }
+  }
+
+  validateDifferentAddress()async {
+    AddNomineeController _addNomineeController = Get.put(AddNomineeController());
+    final KRAController _kraController = Get.put(KRAController());
+    if( _addNomineeController.selectedNomineeIndentitiy.value == null){
+      ShowCustomSnackBar().ErrorSnackBar("Select Address Proof First");
+    }else if(_kraController.addressline1.value.text.isEmpty){
+      ShowCustomSnackBar().ErrorSnackBar("Enter Address line 1");
+    }else if(_kraController.addressline2.value.text.isEmpty){
+      ShowCustomSnackBar().ErrorSnackBar("Enter Address line 2");
+    } else if(_kraController.pinCode.value.text .isEmpty){
+      ShowCustomSnackBar().ErrorSnackBar("Select date first");
+    } else if(_addNomineeController.selectedStateId.value == null){
+      ShowCustomSnackBar().ErrorSnackBar("Select State first");
+    } else if(_addNomineeController.cityList.value.isEmpty){
+      ShowCustomSnackBar().ErrorSnackBar("Select City first");
+    }else{
+      updateData();
     }
   }
 

@@ -10,114 +10,9 @@ import 'package:trust_money/utils/app_bar.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../getx_controller/profile/personal_details_controller.dart';
 
-// class MyProfile extends StatefulWidget {
-//   const MyProfile({Key? key}) : super(key: key);
-//   @override
-//   State<MyProfile> createState() => _MyProfileState();
-// }
-//
-// class _MyProfileState extends State<MyProfile> {
-//   TabController? tabController;
-//   int selectedIndex = 0;
-//   bool barLine = false;
-//   bool tabVisible = true;
-//
-//   getKycStatus() async {
-//     var isKyc = await HelperFunctions.getUserKycCompleted();
-//     if (isKyc == true) {
-//       setState(() {
-//         tabVisible = true;
-//         barLine = false;
-//       });
-//     }
-//   }
-//
-//   @override
-//   void initState() {
-//     getKycStatus();
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       appBar: AppToolbar.appBar(
-//           "Profile",
-//           IconButton(
-//             icon: const Icon(Icons.arrow_back, color: Colors.white),
-//             onPressed: () => Navigator.of(context).pop(),
-//           ),
-//           IconButton(
-//             icon: Container(
-//                 padding: const EdgeInsets.all(1),
-//                 decoration: const BoxDecoration(
-//                     color: Colors.transparent, shape: BoxShape.circle),
-//                 child: const Icon(Icons.person,
-//                     size: 20, color: Colors.transparent)),
-//             onPressed: () {},
-//           )),
-//       body: Stack(
-//         fit: StackFit.expand,
-//         children: [
-//           Positioned(
-//             left: 0,
-//             bottom: 0,
-//             child: RotatedBox(
-//               quarterTurns: 2,
-//               child: Material(
-//                 elevation: 0,
-//                 child: Container(
-//                   padding: const EdgeInsets.all(12),
-//                   decoration: const BoxDecoration(
-//                     color: Colors.white,
-//                   ),
-//                   foregroundDecoration: const RotatedCornerDecoration(
-//                     color: Colors.redAccent,
-//                     geometry:
-//                         BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-//                   ),
-//                   child: Container(),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Positioned(
-//             right: 0,
-//             bottom: 0,
-//             child: RotatedBox(
-//               quarterTurns: 1,
-//               child: Material(
-//                 elevation: 0,
-//                 child: Container(
-//                   padding: const EdgeInsets.all(12),
-//                   decoration: const BoxDecoration(
-//                     color: Colors.white,
-//                   ),
-//                   foregroundDecoration: const RotatedCornerDecoration(
-//                     color: Colors.redAccent,
-//                     geometry:
-//                         BadgeGeometry(width: 22, height: 22, cornerRadius: 0),
-//                   ),
-//                   child: Container(),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Padding(
-//               padding: const EdgeInsets.only(bottom: 35.0),
-//               child: barLine ? orderTimeLine() : tabWidget()),
-//         ],
-//       ),
-//     );
-//   }
-//
-// }
-
 class MyProfile extends StatelessWidget {
   MyProfile({Key? key}) : super(key: key);
-  PersonalDetailsController _profileController =
-      Get.put(PersonalDetailsController());
+  PersonalDetailsController _profileController = Get.put(PersonalDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -442,80 +337,80 @@ class MyProfile extends StatelessWidget {
                         child: const Text(""),
                       ),
                       Obx(() => Container(
-                            width: 121,
-                            height: 04,
-                            decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value ==
-                                          1 ||
-                                      _profileController.selectedIndex.value ==
-                                          2
-                                  ? Color(0xffFF405A)
-                                  : Color(0xffc8c7ce),
-                              shape: BoxShape.rectangle,
-                            ),
-                          )),
+                        width: 121,
+                        height: 04,
+                        decoration: BoxDecoration(
+                          color: _profileController.selectedIndex.value ==
+                              1 ||
+                              _profileController.selectedIndex.value ==
+                                  2
+                              ? Color(0xffFF405A)
+                              : Color(0xffc8c7ce),
+                          shape: BoxShape.rectangle,
+                        ),
+                      )),
                     ],
                   ),
                   Obx(() => Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            width: 12,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value ==
-                                          1 ||
-                                      _profileController.selectedIndex.value ==
-                                          2
-                                  ? const Color(0xffFF405A)
-                                  : const Color(0xffc8c7ce),
-                              // color: Color(0xffff405a),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Text(""),
-                          ),
-                          Obx(() => Container(
-                                width: 121,
-                                height: 04,
-                                decoration: BoxDecoration(
-                                  color:
-                                      // _profileController.selectedIndex.value == 1 &&
-                                              _profileController.selectedIndex.value == 2
-                                          ? const Color(0xffFF405A)
-                                          : const Color(0xffc8c7ce),
-                                  // color: Color(0xffc8c7ce),
-                                  shape: BoxShape.rectangle,
-                                ),
-                                child: const Text(""),
-                              )),
-                        ],
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: _profileController.selectedIndex.value ==
+                              1 ||
+                              _profileController.selectedIndex.value ==
+                                  2
+                              ? const Color(0xffFF405A)
+                              : const Color(0xffc8c7ce),
+                          // color: Color(0xffff405a),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Text(""),
+                      ),
+                      Obx(() => Container(
+                        width: 121,
+                        height: 04,
+                        decoration: BoxDecoration(
+                          color:
+                          // _profileController.selectedIndex.value == 1 &&
+                          _profileController.selectedIndex.value == 2
+                              ? const Color(0xffFF405A)
+                              : const Color(0xffc8c7ce),
+                          // color: Color(0xffc8c7ce),
+                          shape: BoxShape.rectangle,
+                        ),
+                        child: const Text(""),
                       )),
+                    ],
+                  )),
                   Obx(() => Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            width: 12,
-                            height: 12,
-                            decoration: BoxDecoration(
-                              color: _profileController.selectedIndex.value == 2
-                                  ? const Color(0xffFF405A)
-                                  : const Color(0xffc8c7ce),
-                              // color: Color(0xffc8c7ce),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Text(""),
-                          ),
-                          Container(
-                            width: 3,
-                            height: 20,
-                            decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: const Text(""),
-                          ),
-                        ],
-                      )),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: _profileController.selectedIndex.value == 2
+                              ? const Color(0xffFF405A)
+                              : const Color(0xffc8c7ce),
+                          // color: Color(0xffc8c7ce),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Text(""),
+                      ),
+                      Container(
+                        width: 3,
+                        height: 20,
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          shape: BoxShape.rectangle,
+                        ),
+                        child: const Text(""),
+                      ),
+                    ],
+                  )),
                 ],
               ),
             ),
@@ -523,29 +418,29 @@ class MyProfile extends StatelessWidget {
               height: 20,
             ),
             Obx(() => IndexedStack(
-                  index: _profileController.selectedIndex.value,
-                  children: <Widget>[
-                    Visibility(
-                      visible: _profileController.selectedIndex.value == 0,
-                      maintainState: false,
-                      child: MyPersonalDetails(),
-                    ),
-                    Visibility(
-                      visible: _profileController.selectedIndex.value == 1,
-                      maintainState: false,
-                      child: BankAccounts(
-                        onClick: () async {
-                          Get.to(const BankAnimation());
-                          _profileController.selectedIndex.value = 2;
-                        },
-                      ),
-                    ),
-                    Visibility(
-                        visible: _profileController.selectedIndex.value == 2,
-                        maintainState: false,
-                        child: DematAccount()),
-                  ],
-                )),
+              index: _profileController.selectedIndex.value,
+              children: <Widget>[
+                Visibility(
+                  visible: _profileController.selectedIndex.value == 0,
+                  maintainState: false,
+                  child: MyPersonalDetails(),
+                ),
+                Visibility(
+                  visible: _profileController.selectedIndex.value == 1,
+                  maintainState: false,
+                  child: BankAccounts(
+                    onClick: () async {
+                      Get.to(const BankAnimation());
+                      _profileController.selectedIndex.value = 2;
+                    },
+                  ),
+                ),
+                Visibility(
+                    visible: _profileController.selectedIndex.value == 2,
+                    maintainState: false,
+                    child: DematAccount()),
+              ],
+            )),
           ],
         ),
       ),

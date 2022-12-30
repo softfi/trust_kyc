@@ -11,45 +11,51 @@ import 'package:trust_money/screens/kyc/profile/email_and_pan/email_and_pan_veri
 import 'package:trust_money/screens/kyc/profile/ipv/ipv_verification.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/app_textfield.dart';
 import 'package:trust_money/screens/kyc/profile/personal_detals/bottom_sheets.dart';
+import 'package:trust_money/screens/kyc/profile/personal_detals/show_personal_details/show_personal_details.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/strings.dart';
 import 'package:trust_money/utils/styles.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 
 class MyPersonalDetails extends StatelessWidget {
-  MyPersonalDetails({Key? key,}) : super(key: key);
+  MyPersonalDetails({
+    Key? key,
+  }) : super(key: key);
 
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
 
   RxBool isButtonClick = false.obs;
   String dateOfBirth1 = "";
 
   @override
   Widget build(BuildContext context) {
-    _personalDetailsController.onInit();
-    return Column(
-      children: [
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 1,
-            child: personaDetail(context))),
-            // child: IPVVerification())),
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 2,
-            child: EmailVeryfication())),
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 3,
-            child: KRARecord())),
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 4,
-            child: IPVVerification())),
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 5,
-            child: AuthenticateAdhaar())),
-        Obx(() => Visibility(
-            visible: _personalDetailsController.isVisible.value == 6,
-            child: ShowAdhaarDetails())),
-      ],
-    );
+    _personalDetailsController.onInit(); //ShowPersonalDetails
+    return Obx(() => _personalDetailsController.isKYCPending.value
+        ? Column(
+            children: [
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 1,
+                  child: personaDetail(context))),
+              // child: IPVVerification())),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 2,
+                  child: EmailVeryfication())),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 3,
+                  child: KRARecord())),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 4,
+                  child: IPVVerification())),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 5,
+                  child: AuthenticateAdhaar())),
+              Obx(() => Visibility(
+                  visible: _personalDetailsController.isVisible.value == 6,
+                  child: ShowAdhaarDetails())),
+            ],
+          )
+        : Visibility(child: ShowPersonalDetails()));
     // : ShowPersonalDetails();
   }
 
@@ -129,7 +135,8 @@ class MyPersonalDetails extends StatelessWidget {
                 ),
                 _space1,
                 TextContainer(
-                  titleText: ' +91 ${_personalDetailsController.mobileNumber.toString()}',
+                  titleText:
+                      ' +91 ${_personalDetailsController.mobileNumber.toString()}',
                   perfixIcon: Image.asset(
                     "assets/images/india.png",
                     scale: 4,
@@ -176,27 +183,33 @@ class MyPersonalDetails extends StatelessWidget {
                       ),
                     ),
                     Obx(() => Stack(
-                      children:[
-                        CustomSwitch(
-                          activeColor: Colors.green,
-                          value: _personalDetailsController.potentiallyExposedStatus.value,
-                          onChanged: (value) {
-                            _personalDetailsController.potentiallyExposedStatusInt.value = 0;
-                            debugPrint(_personalDetailsController.potentiallyExposedStatus.value.toString());
-                            PersonalBottomSheet.closeApplicationBottomSheet(context);
-                          },
-                        ),
-                        InkWell(
-                          onTap: (){
-                            PersonalBottomSheet.closeApplicationBottomSheet(context);
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 70,
-                          ),
-                        )
-                      ],
-                    )),
+                          children: [
+                            CustomSwitch(
+                              activeColor: Colors.green,
+                              value: _personalDetailsController
+                                  .potentiallyExposedStatus.value,
+                              onChanged: (value) {
+                                _personalDetailsController
+                                    .potentiallyExposedStatusInt.value = 0;
+                                debugPrint(_personalDetailsController
+                                    .potentiallyExposedStatus.value
+                                    .toString());
+                                PersonalBottomSheet.closeApplicationBottomSheet(
+                                    context);
+                              },
+                            ),
+                            InkWell(
+                              onTap: () {
+                                PersonalBottomSheet.closeApplicationBottomSheet(
+                                    context);
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 70,
+                              ),
+                            )
+                          ],
+                        )),
                   ],
                 ),
                 _space,

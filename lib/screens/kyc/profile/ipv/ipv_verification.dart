@@ -271,12 +271,11 @@ var a;
       Obx(
         () => _ipvController.isLoading.value == 1
             ? GestureDetector(
-                onTap: () {debugPrint("continue Continue Continue");
+                onTap: () {;
                 //   _ipvController.newCameraController.value!.initialize().then((value){
-                //     debugPrint("continue Continue Continue continue Continue Continue");
                 //
                 //   });
-                // debugPrint("continue Continue Continue");
+
                 //   _ipvController.initCamera().then((dfdf) {
                 //
                 //   });

@@ -46,7 +46,7 @@ class IPVController extends GetxController {
   @override
   void onInit() {
     // newCameraController.value!.initialize().then((value) => debugPrint("098765432211234567890"));
-    initCamera().then((value) =>     newCameraController.value!.initialize().then((value) {}));
+    initCamera().then((value) =>  newCameraController.value!.initialize().then((value) {}));
     getIPVCode();
     Timer(Duration(seconds: 15), () {
       debugPrint("11111111111111111111111111111111111111");
@@ -73,8 +73,7 @@ class IPVController extends GetxController {
   }
 
   Future initVideoPlayerPreview() async {
-    videoPlayerController12 =
-        VideoPlayerController.file(File(file.value!.path));
+    videoPlayerController12 = VideoPlayerController.file(File(file.value!.path));
     await videoPlayerController12.initialize();
     await videoPlayerController12.play();
     await videoPlayerController12.setLooping(true);
@@ -85,6 +84,7 @@ class IPVController extends GetxController {
         imageFormatGroup: ImageFormatGroup.yuv420,
         const CameraDescription(
             name: "1",
+
             lensDirection: CameraLensDirection.front,
             sensorOrientation: 1),
         ResolutionPreset.low);
@@ -177,9 +177,7 @@ debugPrint(newCameraController.value!.toString());
                 image: ConstantImage.profile,
               ))!
           .then((value) {
-        Future.delayed(const Duration(seconds: 4), () {
-          _personalDetailsController.selectedIndex.value = 1;
-        });
+        _personalDetailsController.selectedIndex.value = 1;
       });
       updateData();
       Get.back();

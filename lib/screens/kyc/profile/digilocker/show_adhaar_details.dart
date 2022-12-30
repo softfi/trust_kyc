@@ -85,7 +85,7 @@ class ShowAdhaarDetails extends StatelessWidget {
               _space1,
              Obx(() => TextContainer(
                 color: Color(0xffF7F7FA),
-                titleText: _kraController.adhaarNumber.value ?? "",
+                titleText: _kraController.adhaarNumber.value,
                 perfixIcon: Container(),
                 postfixIcon: Image.asset(
                   "assets/images/done1.png",
@@ -98,7 +98,7 @@ class ShowAdhaarDetails extends StatelessWidget {
                 title: 'Address (As per records in KRA)',
               ),
               _space1,
-               Container(
+              Obx(() =>Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -108,7 +108,7 @@ class ShowAdhaarDetails extends StatelessWidget {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-                  child: Obx(() =>Text(
+                  child: Text(
                     _kraController.adhaarAddress.value,
                     style: GoogleFonts.sourceSansPro(
                       textStyle: const TextStyle(
@@ -163,11 +163,20 @@ class ShowAdhaarDetails extends StatelessWidget {
               InkWell(
                 onTap: () {
 
-                  _personalDetailsController.updateData().then((val){
-                    debugPrint("donedone done doen");
-                    isButtonClick.value = true;
-                    _personalDetailsController.isVisible.value= 3;
-                  });
+                    debugPrint("0000000000000 jsdfjd");
+                    _personalDetailsController.updateData().then((val){
+                      isButtonClick.value = true;
+                      _personalDetailsController.isVisible.value= 3;
+                    });
+                  // }else{
+                  //   isButtonClick.value = true;
+                  //   _personalDetailsController.isVisible.value= 3;
+                  // }
+                  // _personalDetailsController.updateData().then((val){
+                  //   debugPrint("donedone done doen");
+                  //   isButtonClick.value = true;
+                  //   _personalDetailsController.isVisible.value= 3;
+                  // });
                   // Get.to(()=>Digilocker());
                 },
                 child: Obx(() => Container(
