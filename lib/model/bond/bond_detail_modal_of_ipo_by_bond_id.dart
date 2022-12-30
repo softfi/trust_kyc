@@ -10,112 +10,112 @@ String allBondListOfIpoByBondIdToJson(AllBondListOfIpoByBondId data) => json.enc
 
 class AllBondListOfIpoByBondId {
   AllBondListOfIpoByBondId({
-   required this.bondAboutThisIpo,
-   required this.bondAllotmentDate,
-   required this.bondAppNoSeries,
-   required this.bondArrangerName,
-   required this.bondAsbaAppNoSeries1,
-   required this.bondAsbaAppNoSeries2,
-   required this.bondAsbaDetails,
-   required this.bondBrandTags,
-   required this.bondBrokerageDetails,
-   required this.bondBrokerageDetailsStatus,
-   required this.bondBrokerageStructure,
-   required this.bondCalcIntOnHolidays,
-   required this.bondCallDetails,
-   required this.bondCategoryHni,
-   required this.bondCategoryInstitutional,
-   required this.bondCategoryInstructions,
-   required this.bondCategoryNonInstitutional,
-   required this.bondCategoryRetail,
-   required this.bondCloserDate,
-   required this.bondClosingDate,
-   required this.bondCouponAmount,
-   required this.bondCouponDate,
-   required this.bondCouponOn,
-   required this.bondCouponRate,
-   required this.bondCreatedAt,
-   required this.bondDepository,
-   required this.bondDisclaimer,
-   required this.bondDmatBookCloserDate,
-   required this.bondEFormIncentive,
-   required this.bondEarlyBirdIncentive,
-   required this.bondEffortBasis,
-   required this.bondEligibleInvestors,
-   required this.bondExchange,
-   required this.bondFaceValue,
-   required this.bondFinalIssueAmount,
-   required this.bondGovtGuranatee,
-   required this.bondGreenShoe,
-   required this.bondGreenShoeSize,
-   required this.bondGst,
-   required this.bondGuarantedBy,
-   required this.bondId,
-   required this.bondIntOnAppMoney,
-   required this.bondIntOnMaturity,
-   required this.bondIntOnRefundMoney,
-   required this.bondInterestDays,
-   required this.bondInterestFrequency,
-   required this.bondInterestType,
-   required this.bondIpDate,
-   required this.bondIpoSellWindowsDays,
-   required this.bondIsinNumber,
-   required this.bondIssueDate,
-   required this.bondIssueDocument,
-   required this.bondIssuePrice,
-   required this.bondIssueSize,
-   required this.bondIssueStatus,
-   required this.bondIssuerDetails,
-   required this.bondIssuerName,
-   required this.bondKeyHighlights,
-   required this.bondListing,
-   required this.bondListingCircle,
-   required this.bondLogo,
-   required this.bondMaturityAmount,
-   required this.bondMaturityDate,
-   required this.bondMinimumApplication,
-   required this.bondName,
-   required this.bondNatureOfInstrument,
-   required this.bondNcdAvailable,
-   required this.bondNcdSeries,
-   required this.bondNcdStatus,
-   required this.bondOpeningDate,
-   required this.bondOtherIncentive,
-   required this.bondOurStatus,
-   required this.bondPricePerBond,
-   required this.bondProcurementAmount,
-   required this.bondProductNote,
-   required this.bondPurchaseLimit,
-   required this.bondPurchaseLimitMetric,
-   required this.bondPutDetails,
-   required this.bondRatingDetails,
-   required this.bondRbiLoanCode,
-   required this.bondRegistrar,
-   required this.bondScriptId,
-   required this.bondSecurityCode,
-   required this.bondSecurityType,
-   required this.bondSecurityTypeCode,
-   required this.bondSeriesInstructions,
-   required this.bondSt,
-   required this.bondSubCategoryCode,
-   required this.bondTermConditionLink,
-   required this.bondTrustee,
-   required this.bondType,
-   required this.bondUpdatedAt,
-   required this.bondUpiAppNoSeries1,
-   required this.bondUpiAppNoSeries2,
-   required this.bondsBannerContentImage,
-   required this.bondsBannerContentSubTitle,
-   required this.bondsBannerContentTitle,
-   required this.bondsBannerRcbNoticeLink,
-   required this.bondsNextInterestPaymentDate,
-   required this.bondsPricePerGram,
-   required this.bondsYeild,
-   required this.exitOptionAvailable,
+ required  this.bondAboutThisIpo,
+ required  this.bondAllotmentDate,
+ required  this.bondAppNoSeries,
+ required  this.bondArrangerName,
+ required  this.bondAsbaAppNoSeries1,
+ required  this.bondAsbaAppNoSeries2,
+ required  this.bondAsbaDetails,
+ required  this.bondBrandTags,
+ required  this.bondBrokerageDetails,
+ required  this.bondBrokerageDetailsStatus,
+ required  this.bondBrokerageStructure,
+ required  this.bondCalcIntOnHolidays,
+ required  this.bondCallDetails,
+ required  this.bondCategoryHni,
+ required  this.bondCategoryInstitutional,
+ required  this.bondCategoryInstructions,
+ required  this.bondCategoryNonInstitutional,
+ required  this.bondCategoryRetail,
+ required  this.bondCloserDate,
+ required  this.bondClosingDate,
+ required  this.bondCouponAmount,
+ required  this.bondCouponDate,
+ required  this.bondCouponOn,
+ required  this.bondCouponRate,
+ required  this.bondCreatedAt,
+ required  this.bondDepository,
+ required  this.bondDisclaimer,
+ required  this.bondDmatBookCloserDate,
+ required  this.bondEFormIncentive,
+ required  this.bondEarlyBirdIncentive,
+ required  this.bondEffortBasis,
+ required  this.bondEligibleInvestors,
+ required  this.bondExchange,
+ required  this.bondFaceValue,
+ required  this.bondFinalIssueAmount,
+ required  this.bondGovtGuranatee,
+ required  this.bondGreenShoe,
+ required  this.bondGreenShoeSize,
+ required  this.bondGst,
+ required  this.bondGuarantedBy,
+ required  this.bondId,
+ required  this.bondIntOnAppMoney,
+ required  this.bondIntOnMaturity,
+ required  this.bondIntOnRefundMoney,
+ required  this.bondInterestDays,
+ required  this.bondInterestFrequency,
+ required  this.bondInterestType,
+ required  this.bondIpDate,
+ required  this.bondIpoSellWindowsDays,
+ required  this.bondIsinNumber,
+ required  this.bondIssueDate,
+ required  this.bondIssueDocument,
+ required  this.bondIssuePrice,
+ required  this.bondIssueSize,
+ required  this.bondIssueStatus,
+ required  this.bondIssuerDetails,
+ required  this.bondIssuerName,
+ required  this.bondKeyHighlights,
+ required  this.bondListing,
+ required  this.bondListingCircle,
+ required  this.bondLogo,
+ required  this.bondMaturityAmount,
+ required  this.bondMaturityDate,
+ required  this.bondMinimumApplication,
+ required  this.bondName,
+ required  this.bondNatureOfInstrument,
+ required  this.bondNcdAvailable,
+ required  this.bondNcdSeries,
+ required  this.bondNcdStatus,
+ required  this.bondOpeningDate,
+ required  this.bondOtherIncentive,
+ required  this.bondOurStatus,
+ required  this.bondPricePerBond,
+ required  this.bondProcurementAmount,
+ required  this.bondProductNote,
+ required  this.bondPurchaseLimit,
+ required  this.bondPurchaseLimitMetric,
+ required  this.bondPutDetails,
+ required  this.bondRatingDetails,
+ required  this.bondRbiLoanCode,
+ required  this.bondRegistrar,
+ required  this.bondScriptId,
+ required  this.bondSecurityCode,
+ required  this.bondSecurityType,
+ required  this.bondSecurityTypeCode,
+ required  this.bondSeriesInstructions,
+ required  this.bondSt,
+ required  this.bondSubCategoryCode,
+ required  this.bondTermConditionLink,
+ required  this.bondTrustee,
+ required  this.bondType,
+ required  this.bondUpdatedAt,
+ required  this.bondUpiAppNoSeries1,
+ required  this.bondUpiAppNoSeries2,
+ required  this.bondsBannerContentImage,
+ required  this.bondsBannerContentSubTitle,
+ required  this.bondsBannerContentTitle,
+ required  this.bondsBannerRcbNoticeLink,
+ required  this.bondsNextInterestPaymentDate,
+ required  this.bondsPricePerGram,
+ required  this.bondsYeild,
+ required  this.exitOptionAvailable,
   });
 
   String bondAboutThisIpo;
-  DateTime bondAllotmentDate;
+  String bondAllotmentDate;
   String bondAppNoSeries;
   dynamic bondArrangerName;
   String bondAsbaAppNoSeries1;
@@ -132,16 +132,16 @@ class AllBondListOfIpoByBondId {
   String bondCategoryInstructions;
   dynamic bondCategoryNonInstitutional;
   dynamic bondCategoryRetail;
-  DateTime bondCloserDate;
-  DateTime bondClosingDate;
+  String bondCloserDate;
+  String bondClosingDate;
   dynamic bondCouponAmount;
-  DateTime bondCouponDate;
+  String bondCouponDate;
   String bondCouponOn;
   String bondCouponRate;
-  DateTime bondCreatedAt;
+  String bondCreatedAt;
   dynamic bondDepository;
   String bondDisclaimer;
-  DateTime bondDmatBookCloserDate;
+  String bondDmatBookCloserDate;
   dynamic bondEFormIncentive;
   dynamic bondEarlyBirdIncentive;
   int bondEffortBasis;
@@ -161,10 +161,10 @@ class AllBondListOfIpoByBondId {
   String bondInterestDays;
   String bondInterestFrequency;
   String bondInterestType;
-  DateTime bondIpDate;
+  String bondIpDate;
   int bondIpoSellWindowsDays;
   String bondIsinNumber;
-  DateTime bondIssueDate;
+  String bondIssueDate;
   dynamic bondIssueDocument;
   dynamic bondIssuePrice;
   String bondIssueSize;
@@ -176,14 +176,14 @@ class AllBondListOfIpoByBondId {
   String bondListingCircle;
   String bondLogo;
   dynamic bondMaturityAmount;
-  DateTime bondMaturityDate;
+  String bondMaturityDate;
   String bondMinimumApplication;
   dynamic bondName;
   int bondNatureOfInstrument;
   List<BondNcdAvailable> bondNcdAvailable;
   List<BondNcdSery> bondNcdSeries;
   int bondNcdStatus;
-  DateTime bondOpeningDate;
+  String bondOpeningDate;
   dynamic bondOtherIncentive;
   int bondOurStatus;
   dynamic bondPricePerBond;
@@ -205,7 +205,7 @@ class AllBondListOfIpoByBondId {
   String bondTermConditionLink;
   dynamic bondTrustee;
   int bondType;
-  DateTime bondUpdatedAt;
+  String bondUpdatedAt;
   String bondUpiAppNoSeries1;
   String bondUpiAppNoSeries2;
   dynamic bondsBannerContentImage;
@@ -219,7 +219,7 @@ class AllBondListOfIpoByBondId {
 
   factory AllBondListOfIpoByBondId.fromJson(Map<String, dynamic> json) => AllBondListOfIpoByBondId(
     bondAboutThisIpo: json["bond_about_this_ipo"],
-    bondAllotmentDate: DateTime.parse(json["bond_allotment_date"]),
+    bondAllotmentDate: json["bond_allotment_date"],
     bondAppNoSeries: json["bond_app_no_series"],
     bondArrangerName: json["bond_arranger_name"],
     bondAsbaAppNoSeries1: json["bond_asba_app_no_series_1"],
@@ -236,16 +236,16 @@ class AllBondListOfIpoByBondId {
     bondCategoryInstructions: json["bond_category_instructions"],
     bondCategoryNonInstitutional: json["bond_category_non_institutional"],
     bondCategoryRetail: json["bond_category_retail"],
-    bondCloserDate: DateTime.parse(json["bond_closer_date"]),
-    bondClosingDate: DateTime.parse(json["bond_closing_date"]),
+    bondCloserDate: json["bond_closer_date"],
+    bondClosingDate: json["bond_closing_date"],
     bondCouponAmount: json["bond_coupon_amount"],
-    bondCouponDate: DateTime.parse(json["bond_coupon_date"]),
+    bondCouponDate: json["bond_coupon_date"],
     bondCouponOn: json["bond_coupon_on"],
     bondCouponRate: json["bond_coupon_rate"],
-    bondCreatedAt: DateTime.parse(json["bond_created_at"]),
+    bondCreatedAt: json["bond_created_at"],
     bondDepository: json["bond_depository"],
     bondDisclaimer: json["bond_disclaimer"],
-    bondDmatBookCloserDate: DateTime.parse(json["bond_dmat_book_closer_date"]),
+    bondDmatBookCloserDate: json["bond_dmat_book_closer_date"],
     bondEFormIncentive: json["bond_e_form_incentive"],
     bondEarlyBirdIncentive: json["bond_early_bird_incentive"],
     bondEffortBasis: json["bond_effort_basis"],
@@ -265,10 +265,10 @@ class AllBondListOfIpoByBondId {
     bondInterestDays: json["bond_interest_days"],
     bondInterestFrequency: json["bond_interest_frequency"],
     bondInterestType: json["bond_interest_type"],
-    bondIpDate: DateTime.parse(json["bond_ip_date"]),
+    bondIpDate: json["bond_ip_date"],
     bondIpoSellWindowsDays: json["bond_ipo_sell_windows_days"],
     bondIsinNumber: json["bond_isin_number"],
-    bondIssueDate: DateTime.parse(json["bond_issue_date"]),
+    bondIssueDate: json["bond_issue_date"],
     bondIssueDocument: json["bond_issue_document"],
     bondIssuePrice: json["bond_issue_price"],
     bondIssueSize: json["bond_issue_size"],
@@ -280,14 +280,14 @@ class AllBondListOfIpoByBondId {
     bondListingCircle: json["bond_listing_circle"],
     bondLogo: json["bond_logo"],
     bondMaturityAmount: json["bond_maturity_amount"],
-    bondMaturityDate: DateTime.parse(json["bond_maturity_date"]),
+    bondMaturityDate: json["bond_maturity_date"],
     bondMinimumApplication: json["bond_minimum_application"],
     bondName: json["bond_name"],
     bondNatureOfInstrument: json["bond_nature_of_instrument"],
     bondNcdAvailable: List<BondNcdAvailable>.from(json["bond_ncd_available"].map((x) => BondNcdAvailable.fromJson(x))),
     bondNcdSeries: List<BondNcdSery>.from(json["bond_ncd_series"].map((x) => BondNcdSery.fromJson(x))),
     bondNcdStatus: json["bond_ncd_status"],
-    bondOpeningDate: DateTime.parse(json["bond_opening_date"]),
+    bondOpeningDate: json["bond_opening_date"],
     bondOtherIncentive: json["bond_other_incentive"],
     bondOurStatus: json["bond_our_status"],
     bondPricePerBond: json["bond_price_per_bond"],
@@ -309,7 +309,7 @@ class AllBondListOfIpoByBondId {
     bondTermConditionLink: json["bond_term_condition_link"],
     bondTrustee: json["bond_trustee"],
     bondType: json["bond_type"],
-    bondUpdatedAt: DateTime.parse(json["bond_updated_at"]),
+    bondUpdatedAt: json["bond_updated_at"],
     bondUpiAppNoSeries1: json["bond_upi_app_no_series_1"],
     bondUpiAppNoSeries2: json["bond_upi_app_no_series_2"],
     bondsBannerContentImage: json["bonds_banner_content_image"],
@@ -324,7 +324,7 @@ class AllBondListOfIpoByBondId {
 
   Map<String, dynamic> toJson() => {
     "bond_about_this_ipo": bondAboutThisIpo,
-    "bond_allotment_date": "${bondAllotmentDate.year.toString().padLeft(4, '0')}-${bondAllotmentDate.month.toString().padLeft(2, '0')}-${bondAllotmentDate.day.toString().padLeft(2, '0')}",
+    "bond_allotment_date": bondAllotmentDate,
     "bond_app_no_series": bondAppNoSeries,
     "bond_arranger_name": bondArrangerName,
     "bond_asba_app_no_series_1": bondAsbaAppNoSeries1,
@@ -341,16 +341,16 @@ class AllBondListOfIpoByBondId {
     "bond_category_instructions": bondCategoryInstructions,
     "bond_category_non_institutional": bondCategoryNonInstitutional,
     "bond_category_retail": bondCategoryRetail,
-    "bond_closer_date": "${bondCloserDate.year.toString().padLeft(4, '0')}-${bondCloserDate.month.toString().padLeft(2, '0')}-${bondCloserDate.day.toString().padLeft(2, '0')}",
-    "bond_closing_date": "${bondClosingDate.year.toString().padLeft(4, '0')}-${bondClosingDate.month.toString().padLeft(2, '0')}-${bondClosingDate.day.toString().padLeft(2, '0')}",
+    "bond_closer_date": bondCloserDate,
+    "bond_closing_date": bondClosingDate,
     "bond_coupon_amount": bondCouponAmount,
-    "bond_coupon_date": "${bondCouponDate.year.toString().padLeft(4, '0')}-${bondCouponDate.month.toString().padLeft(2, '0')}-${bondCouponDate.day.toString().padLeft(2, '0')}",
+    "bond_coupon_date": bondCouponDate,
     "bond_coupon_on": bondCouponOn,
     "bond_coupon_rate": bondCouponRate,
-    "bond_created_at": bondCreatedAt.toIso8601String(),
+    "bond_created_at": bondCreatedAt,
     "bond_depository": bondDepository,
     "bond_disclaimer": bondDisclaimer,
-    "bond_dmat_book_closer_date": "${bondDmatBookCloserDate.year.toString().padLeft(4, '0')}-${bondDmatBookCloserDate.month.toString().padLeft(2, '0')}-${bondDmatBookCloserDate.day.toString().padLeft(2, '0')}",
+    "bond_dmat_book_closer_date": bondDmatBookCloserDate,
     "bond_e_form_incentive": bondEFormIncentive,
     "bond_early_bird_incentive": bondEarlyBirdIncentive,
     "bond_effort_basis": bondEffortBasis,
@@ -370,10 +370,10 @@ class AllBondListOfIpoByBondId {
     "bond_interest_days": bondInterestDays,
     "bond_interest_frequency": bondInterestFrequency,
     "bond_interest_type": bondInterestType,
-    "bond_ip_date": "${bondIpDate.year.toString().padLeft(4, '0')}-${bondIpDate.month.toString().padLeft(2, '0')}-${bondIpDate.day.toString().padLeft(2, '0')}",
+    "bond_ip_date": bondIpDate,
     "bond_ipo_sell_windows_days": bondIpoSellWindowsDays,
     "bond_isin_number": bondIsinNumber,
-    "bond_issue_date": "${bondIssueDate.year.toString().padLeft(4, '0')}-${bondIssueDate.month.toString().padLeft(2, '0')}-${bondIssueDate.day.toString().padLeft(2, '0')}",
+    "bond_issue_date": bondIssueDate,
     "bond_issue_document": bondIssueDocument,
     "bond_issue_price": bondIssuePrice,
     "bond_issue_size": bondIssueSize,
@@ -385,14 +385,14 @@ class AllBondListOfIpoByBondId {
     "bond_listing_circle": bondListingCircle,
     "bond_logo": bondLogo,
     "bond_maturity_amount": bondMaturityAmount,
-    "bond_maturity_date": "${bondMaturityDate.year.toString().padLeft(4, '0')}-${bondMaturityDate.month.toString().padLeft(2, '0')}-${bondMaturityDate.day.toString().padLeft(2, '0')}",
+    "bond_maturity_date": bondMaturityDate,
     "bond_minimum_application": bondMinimumApplication,
     "bond_name": bondName,
     "bond_nature_of_instrument": bondNatureOfInstrument,
     "bond_ncd_available": List<dynamic>.from(bondNcdAvailable.map((x) => x.toJson())),
     "bond_ncd_series": List<dynamic>.from(bondNcdSeries.map((x) => x.toJson())),
     "bond_ncd_status": bondNcdStatus,
-    "bond_opening_date": "${bondOpeningDate.year.toString().padLeft(4, '0')}-${bondOpeningDate.month.toString().padLeft(2, '0')}-${bondOpeningDate.day.toString().padLeft(2, '0')}",
+    "bond_opening_date": bondOpeningDate,
     "bond_other_incentive": bondOtherIncentive,
     "bond_our_status": bondOurStatus,
     "bond_price_per_bond": bondPricePerBond,
@@ -414,7 +414,7 @@ class AllBondListOfIpoByBondId {
     "bond_term_condition_link": bondTermConditionLink,
     "bond_trustee": bondTrustee,
     "bond_type": bondType,
-    "bond_updated_at": bondUpdatedAt.toIso8601String(),
+    "bond_updated_at": bondUpdatedAt,
     "bond_upi_app_no_series_1": bondUpiAppNoSeries1,
     "bond_upi_app_no_series_2": bondUpiAppNoSeries2,
     "bonds_banner_content_image": bondsBannerContentImage,
@@ -442,7 +442,7 @@ class BondBrokerageDetail {
 
   dynamic bondBreakageSeriesNumber;
   int bondBrokerageCategoryId;
-  DateTime bondBrokerageDetailCreatedAt;
+  String bondBrokerageDetailCreatedAt;
   int bondBrokerageDetailId;
   dynamic bondBrokerageDetailUpdatedAt;
   String bondBrokerageValue;
@@ -452,7 +452,7 @@ class BondBrokerageDetail {
   factory BondBrokerageDetail.fromJson(Map<String, dynamic> json) => BondBrokerageDetail(
     bondBreakageSeriesNumber: json["bond_breakage_series_number"],
     bondBrokerageCategoryId: json["bond_brokerage_category_id"],
-    bondBrokerageDetailCreatedAt: DateTime.parse(json["bond_brokerage_detail_created_at"]),
+    bondBrokerageDetailCreatedAt: json["bond_brokerage_detail_created_at"],
     bondBrokerageDetailId: json["bond_brokerage_detail_id"],
     bondBrokerageDetailUpdatedAt: json["bond_brokerage_detail_updated_at"],
     bondBrokerageValue: json["bond_brokerage_value"],
@@ -463,7 +463,7 @@ class BondBrokerageDetail {
   Map<String, dynamic> toJson() => {
     "bond_breakage_series_number": bondBreakageSeriesNumber,
     "bond_brokerage_category_id": bondBrokerageCategoryId,
-    "bond_brokerage_detail_created_at": bondBrokerageDetailCreatedAt.toIso8601String(),
+    "bond_brokerage_detail_created_at": bondBrokerageDetailCreatedAt,
     "bond_brokerage_detail_id": bondBrokerageDetailId,
     "bond_brokerage_detail_updated_at": bondBrokerageDetailUpdatedAt,
     "bond_brokerage_value": bondBrokerageValue,
@@ -474,25 +474,25 @@ class BondBrokerageDetail {
 
 class BondCallDetail {
   BondCallDetail({
-  required this.bondCallDetailAmount,
-  required this.bondCallDetailCreatedAt,
-  required this.bondCallDetailDatetime,
-  required this.bondCallDetailId,
-  required this.bondCallDetailUpdatedAt,
-  required this.bondId,
+  required  this.bondCallDetailAmount,
+  required  this.bondCallDetailCreatedAt,
+  required  this.bondCallDetailDatetime,
+  required  this.bondCallDetailId,
+  required  this.bondCallDetailUpdatedAt,
+  required  this.bondId,
   });
 
   String bondCallDetailAmount;
-  DateTime bondCallDetailCreatedAt;
-  DateTime bondCallDetailDatetime;
+  String bondCallDetailCreatedAt;
+  String bondCallDetailDatetime;
   int bondCallDetailId;
   dynamic bondCallDetailUpdatedAt;
   int bondId;
 
   factory BondCallDetail.fromJson(Map<String, dynamic> json) => BondCallDetail(
     bondCallDetailAmount: json["bond_call_detail_amount"],
-    bondCallDetailCreatedAt: DateTime.parse(json["bond_call_detail_created_at"]),
-    bondCallDetailDatetime: DateTime.parse(json["bond_call_detail_datetime"]),
+    bondCallDetailCreatedAt: json["bond_call_detail_created_at"],
+    bondCallDetailDatetime: json["bond_call_detail_datetime"],
     bondCallDetailId: json["bond_call_detail_id"],
     bondCallDetailUpdatedAt: json["bond_call_detail_updated_at"],
     bondId: json["bond_id"],
@@ -500,8 +500,8 @@ class BondCallDetail {
 
   Map<String, dynamic> toJson() => {
     "bond_call_detail_amount": bondCallDetailAmount,
-    "bond_call_detail_created_at": bondCallDetailCreatedAt.toIso8601String(),
-    "bond_call_detail_datetime": "${bondCallDetailDatetime.year.toString().padLeft(4, '0')}-${bondCallDetailDatetime.month.toString().padLeft(2, '0')}-${bondCallDetailDatetime.day.toString().padLeft(2, '0')}",
+    "bond_call_detail_created_at": bondCallDetailCreatedAt,
+    "bond_call_detail_datetime": bondCallDetailDatetime,
     "bond_call_detail_id": bondCallDetailId,
     "bond_call_detail_updated_at": bondCallDetailUpdatedAt,
     "bond_id": bondId,
@@ -510,28 +510,28 @@ class BondCallDetail {
 
 class BondIssuerDetail {
   BondIssuerDetail({
-  required  this.bondId,
-  required  this.bondIssuerAbout,
-  required  this.bondIssuerCouponType,
-  required  this.bondIssuerCreatedAt,
-  required  this.bondIssuerDocuments,
-  required  this.bondIssuerEffectiveYield,
-  required  this.bondIssuerFinanceDetails,
-  required  this.bondIssuerFirstIpDate,
-  required  this.bondIssuerFrequencyOfInterest,
-  required  this.bondIssuerHeadOffice,
-  required  this.bondIssuerId,
-  required  this.bondIssuerIndustry,
-  required  this.bondIssuerIpDates,
-  required  this.bondIssuerIsinNumber,
-  required  this.bondIssuerProfileLink,
-  required  this.bondIssuerSeries,
-  required  this.bondIssuerTenor,
-  required  this.bondIssuerTotalAnnualRevenue,
-  required  this.bondIssuerType,
-  required  this.bondIssuerUpdatedAt,
-  required  this.bondIssuerYearOfInception,
-  required  this.bondTypeOfIssuer,
+   required this.bondId,
+   required this.bondIssuerAbout,
+   required this.bondIssuerCouponType,
+   required this.bondIssuerCreatedAt,
+   required this.bondIssuerDocuments,
+   required this.bondIssuerEffectiveYield,
+   required this.bondIssuerFinanceDetails,
+   required this.bondIssuerFirstIpDate,
+   required this.bondIssuerFrequencyOfInterest,
+   required this.bondIssuerHeadOffice,
+   required this.bondIssuerId,
+   required this.bondIssuerIndustry,
+   required this.bondIssuerIpDates,
+   required this.bondIssuerIsinNumber,
+   required this.bondIssuerProfileLink,
+   required this.bondIssuerSeries,
+   required this.bondIssuerTenor,
+   required this.bondIssuerTotalAnnualRevenue,
+   required this.bondIssuerType,
+   required this.bondIssuerUpdatedAt,
+   required this.bondIssuerYearOfInception,
+   required this.bondTypeOfIssuer,
   });
 
   int bondId;
@@ -541,7 +541,7 @@ class BondIssuerDetail {
   String bondIssuerDocuments;
   String bondIssuerEffectiveYield;
   String bondIssuerFinanceDetails;
-  DateTime bondIssuerFirstIpDate;
+  String bondIssuerFirstIpDate;
   int bondIssuerFrequencyOfInterest;
   String bondIssuerHeadOffice;
   int bondIssuerId;
@@ -565,7 +565,7 @@ class BondIssuerDetail {
     bondIssuerDocuments: json["bond_issuer_documents"],
     bondIssuerEffectiveYield: json["bond_issuer_effective_yield"],
     bondIssuerFinanceDetails: json["bond_issuer_finance_details"],
-    bondIssuerFirstIpDate: DateTime.parse(json["bond_issuer_first_ip_date"]),
+    bondIssuerFirstIpDate: json["bond_issuer_first_ip_date"],
     bondIssuerFrequencyOfInterest: json["bond_issuer_frequency_of_interest"],
     bondIssuerHeadOffice: json["bond_issuer_head_office"],
     bondIssuerId: json["bond_issuer_id"],
@@ -590,7 +590,7 @@ class BondIssuerDetail {
     "bond_issuer_documents": bondIssuerDocuments,
     "bond_issuer_effective_yield": bondIssuerEffectiveYield,
     "bond_issuer_finance_details": bondIssuerFinanceDetails,
-    "bond_issuer_first_ip_date": "${bondIssuerFirstIpDate.year.toString().padLeft(4, '0')}-${bondIssuerFirstIpDate.month.toString().padLeft(2, '0')}-${bondIssuerFirstIpDate.day.toString().padLeft(2, '0')}",
+    "bond_issuer_first_ip_date": bondIssuerFirstIpDate,
     "bond_issuer_frequency_of_interest": bondIssuerFrequencyOfInterest,
     "bond_issuer_head_office": bondIssuerHeadOffice,
     "bond_issuer_id": bondIssuerId,
@@ -627,7 +627,7 @@ class BondNcdAvailable {
 
   int bondId;
   int bondNcdCoupon;
-  DateTime bondNcdCreatedAt;
+  String bondNcdCreatedAt;
   int bondNcdEffectiveYield;
   int bondNcdFrequencyOfInterestPayment;
   int bondNcdId;
@@ -642,7 +642,7 @@ class BondNcdAvailable {
   factory BondNcdAvailable.fromJson(Map<String, dynamic> json) => BondNcdAvailable(
     bondId: json["bond_id"],
     bondNcdCoupon: json["bond_ncd_coupon"],
-    bondNcdCreatedAt: DateTime.parse(json["bond_ncd_created_at"]),
+    bondNcdCreatedAt: json["bond_ncd_created_at"],
     bondNcdEffectiveYield: json["bond_ncd_effective_yield"],
     bondNcdFrequencyOfInterestPayment: json["bond_ncd_frequency_of_interest_payment"],
     bondNcdId: json["bond_ncd_id"],
@@ -658,7 +658,7 @@ class BondNcdAvailable {
   Map<String, dynamic> toJson() => {
     "bond_id": bondId,
     "bond_ncd_coupon": bondNcdCoupon,
-    "bond_ncd_created_at": bondNcdCreatedAt.toIso8601String(),
+    "bond_ncd_created_at": bondNcdCreatedAt,
     "bond_ncd_effective_yield": bondNcdEffectiveYield,
     "bond_ncd_frequency_of_interest_payment": bondNcdFrequencyOfInterestPayment,
     "bond_ncd_id": bondNcdId,
@@ -674,20 +674,20 @@ class BondNcdAvailable {
 
 class BondNcdSery {
   BondNcdSery({
-  required this.bondId,
-  required this.bondNcdCoupon,
-  required this.bondNcdEffectiveYield,
-  required this.bondNcdFrequencyOfInterestPayment,
-  required this.bondNcdInMultipleTermsOfThereafter,
-  required this.bondNcdIssuePriceOfNcd,
-  required this.bondNcdMinimumApplication,
-  required this.bondNcdModeOfInterestPayment,
-  required this.bondNcdPutAndOption,
-  required this.bondNcdRedemptionAmount,
-  required this.bondNcdSeriesCreatedAt,
-  required this.bondNcdSeriesId,
-  required this.bondNcdSeriesNumber,
-  required this.bondNcdTenor,
+   required this.bondId,
+   required this.bondNcdCoupon,
+   required this.bondNcdEffectiveYield,
+   required this.bondNcdFrequencyOfInterestPayment,
+   required this.bondNcdInMultipleTermsOfThereafter,
+   required this.bondNcdIssuePriceOfNcd,
+   required this.bondNcdMinimumApplication,
+   required this.bondNcdModeOfInterestPayment,
+   required this.bondNcdPutAndOption,
+   required this.bondNcdRedemptionAmount,
+   required this.bondNcdSeriesCreatedAt,
+   required this.bondNcdSeriesId,
+   required this.bondNcdSeriesNumber,
+   required this.bondNcdTenor,
   });
 
   int bondId;
@@ -742,26 +742,26 @@ class BondNcdSery {
 
 class BondPutDetail {
   BondPutDetail({
-  required  this.bondId,
-  required  this.bondPutDetailAmount,
-  required  this.bondPutDetailCreatedAt,
-  required  this.bondPutDetailDatetime,
-  required  this.bondPutDetailId,
-  required  this.bondPutDetailUpdatedAt,
+   required this.bondId,
+   required this.bondPutDetailAmount,
+   required this.bondPutDetailCreatedAt,
+   required this.bondPutDetailDatetime,
+   required this.bondPutDetailId,
+   required this.bondPutDetailUpdatedAt,
   });
 
   int bondId;
   dynamic bondPutDetailAmount;
-  DateTime bondPutDetailCreatedAt;
-  DateTime bondPutDetailDatetime;
+  String bondPutDetailCreatedAt;
+  String bondPutDetailDatetime;
   int bondPutDetailId;
   dynamic bondPutDetailUpdatedAt;
 
   factory BondPutDetail.fromJson(Map<String, dynamic> json) => BondPutDetail(
     bondId: json["bond_id"],
     bondPutDetailAmount: json["bond_put_detail_amount"],
-    bondPutDetailCreatedAt: DateTime.parse(json["bond_put_detail_created_at"]),
-    bondPutDetailDatetime: DateTime.parse(json["bond_put_detail_datetime"]),
+    bondPutDetailCreatedAt: json["bond_put_detail_created_at"],
+    bondPutDetailDatetime: json["bond_put_detail_datetime"],
     bondPutDetailId: json["bond_put_detail_id"],
     bondPutDetailUpdatedAt: json["bond_put_detail_updated_at"],
   );
@@ -769,8 +769,8 @@ class BondPutDetail {
   Map<String, dynamic> toJson() => {
     "bond_id": bondId,
     "bond_put_detail_amount": bondPutDetailAmount,
-    "bond_put_detail_created_at": bondPutDetailCreatedAt.toIso8601String(),
-    "bond_put_detail_datetime": "${bondPutDetailDatetime.year.toString().padLeft(4, '0')}-${bondPutDetailDatetime.month.toString().padLeft(2, '0')}-${bondPutDetailDatetime.day.toString().padLeft(2, '0')}",
+    "bond_put_detail_created_at": bondPutDetailCreatedAt,
+    "bond_put_detail_datetime": bondPutDetailDatetime,
     "bond_put_detail_id": bondPutDetailId,
     "bond_put_detail_updated_at": bondPutDetailUpdatedAt,
   };
@@ -778,20 +778,20 @@ class BondPutDetail {
 
 class BondRatingDetail {
   BondRatingDetail({
-  required this.bondCareLongRating,
-  required this.bondCareRatingAgency,
-  required this.bondCareRatingCertificate,
-  required this.bondCareRatingImage,
-  required this.bondCareShortRating,
-  required this.bondCrisilLongRating,
-  required this.bondCrisilRatingAgency,
-  required this.bondCrisilRatingCertificate,
-  required this.bondCrisilRatingImage,
-  required this.bondCrisilShortRating,
-  required this.bondId,
-  required this.bondRatingDetailsCreatedAt,
-  required this.bondRatingDetailsUpdatedAt,
-  required this.bondRatingId,
+   required this.bondCareLongRating,
+   required this.bondCareRatingAgency,
+   required this.bondCareRatingCertificate,
+   required this.bondCareRatingImage,
+   required this.bondCareShortRating,
+   required this.bondCrisilLongRating,
+   required this.bondCrisilRatingAgency,
+   required this.bondCrisilRatingCertificate,
+   required this.bondCrisilRatingImage,
+   required this.bondCrisilShortRating,
+   required this.bondId,
+   required this.bondRatingDetailsCreatedAt,
+   required this.bondRatingDetailsUpdatedAt,
+   required this.bondRatingId,
   });
 
   String bondCareLongRating;
@@ -805,7 +805,7 @@ class BondRatingDetail {
   String bondCrisilRatingImage;
   String bondCrisilShortRating;
   int bondId;
-  DateTime bondRatingDetailsCreatedAt;
+  String bondRatingDetailsCreatedAt;
   dynamic bondRatingDetailsUpdatedAt;
   int bondRatingId;
 
@@ -821,7 +821,7 @@ class BondRatingDetail {
     bondCrisilRatingImage: json["bond_crisil_rating_image"],
     bondCrisilShortRating: json["bond_crisil_short_rating"],
     bondId: json["bond_id"],
-    bondRatingDetailsCreatedAt: DateTime.parse(json["bond_rating_details_created_at"]),
+    bondRatingDetailsCreatedAt: json["bond_rating_details_created_at"],
     bondRatingDetailsUpdatedAt: json["bond_rating_details_updated_at"],
     bondRatingId: json["bond_rating_id"],
   );
@@ -838,7 +838,7 @@ class BondRatingDetail {
     "bond_crisil_rating_image": bondCrisilRatingImage,
     "bond_crisil_short_rating": bondCrisilShortRating,
     "bond_id": bondId,
-    "bond_rating_details_created_at": bondRatingDetailsCreatedAt.toIso8601String(),
+    "bond_rating_details_created_at": bondRatingDetailsCreatedAt,
     "bond_rating_details_updated_at": bondRatingDetailsUpdatedAt,
     "bond_rating_id": bondRatingId,
   };

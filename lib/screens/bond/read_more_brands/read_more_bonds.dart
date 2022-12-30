@@ -164,7 +164,7 @@ RxInt a=1.obs;
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName}",
+                      "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName??""}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(

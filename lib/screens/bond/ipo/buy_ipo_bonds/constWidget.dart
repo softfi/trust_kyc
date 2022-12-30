@@ -38,7 +38,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                      (_bondDetails.bondOpeningDate!=null)?"${_bondDetails.bondOpeningDate}":"N/A",
+                      (_bondDetails.bondOpeningDate.toString()!=null)?"${_bondDetails.bondOpeningDate.toString().padLeft(10)}":"N/A",
                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: GoogleFonts.sourceSansPro(
@@ -67,7 +67,7 @@ class ConstWidget {
                       height: 8,
                     ),
                     Text(
-                      (_bondDetails.bondCloserDate!=null)?"${_bondDetails.bondCloserDate}":"N/A",
+                      (_bondDetails.bondCloserDate!=null)?"${_bondDetails.bondCloserDate.toString().padLeft(10)}":"N/A",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -136,7 +136,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-    (_bondDetails.bondMinimumApplication!=null)?"₹ ${_bondDetails.bondMinimumApplication}":"N/A",
+    (_bondDetails.bondMinimumApplication!=null &&_bondDetails.bondMinimumApplication!="")?"₹ ${_bondDetails.bondMinimumApplication}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -210,7 +210,7 @@ class ConstWidget {
                             height: 8,
                           ),
                           Text(
-                            (_bondDetails.bondIssueSize!=null)?"₹${_bondDetails.bondIssueSize}":"N/A",
+                            (_bondDetails.bondIssueSize!=null && _bondDetails.bondIssueSize!="")?"₹${_bondDetails.bondIssueSize}":"N/A",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
