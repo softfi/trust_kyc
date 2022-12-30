@@ -28,8 +28,8 @@ class PersonalDetailsController extends GetxController {
   RxInt potentiallyExposedStatusInt = 0.obs;
   RxInt activateFutureInt = 0.obs;
   RxInt selectedIndex = 0.obs;
-  RxBool barLine = false.obs;
-  RxBool tabVisible = true.obs;
+  RxBool barLine = true.obs;
+  RxBool tabVisible = false.obs;
   RxBool userIsLoggedIn = false.obs;
   RxBool isKYCPending = true.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
