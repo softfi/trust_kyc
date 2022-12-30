@@ -9,7 +9,7 @@ import '../../../../utils/images.dart';
 import '../../../Congratulations/alert_dialog.dart';
 
 class ConstWidget {
-  static keyPoints(BuildContext context,BondDetails _bondDetails) {
+  static keyPoints(BuildContext context,AllBondListOfIpoByBondId _bondDetails) {
     return Column(
       children: [
         Container(
@@ -235,7 +235,7 @@ class ConstWidget {
     );
   }
 
-  static tableWidget(BondDetails _bondDetails) {
+  static tableWidget(AllBondListOfIpoByBondId _bondDetails) {
     return Container(
         color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 2),
@@ -410,7 +410,7 @@ class ConstWidget {
         ));
   }
 
-  static keyPointsConsider(BuildContext context,BondDetails _bondDetails ) {
+  static keyPointsConsider(BuildContext context,AllBondListOfIpoByBondId _bondDetails ) {
     return Column(
       children: [
         Container(

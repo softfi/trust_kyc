@@ -284,7 +284,7 @@ class ReadMoreList extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                // debugPrint("0909999009000090090000090909");
+                               /* // debugPrint("0909999009000090090000090909");
                                 // debugPrint(_bondListData.bondList.value[index].bondIsinNumber);
                                 _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
                                 // Navigator.push(
@@ -306,6 +306,46 @@ class ReadMoreList extends StatelessWidget {
                                         builder: (context) => ReadMoreBonds(
                                           isIPO:  _bondListData.bondList.value[index].bondType,
                                           isinNo: _bondListData.bondList.value[index].bondIsinNumber,
+                                        )));*/
+                                debugPrint("(_bondListData.bondList.value[index].bondId.toString()"+_bondListData
+                                    .bondList.value[index].bondType
+                                    .toString());
+
+                                if (_bondListData
+                                    .bondList.value[index].bondType ==
+                                    1) {
+                                  _readMoreBond.getReadMoreBondDetailsByBondID(
+                                      _bondListData.bondList.value[index].bondId
+                                          .toString());
+                                } else if (_bondListData
+                                    .bondList.value[index].bondType == 2 || _bondListData.bondList.value[index].bondType == 3) {
+                                  _readMoreBond.getReadMoreBondDetails(
+                                      _bondListData.bondList.value[index]
+                                          .bondIsinNumber);
+                                }
+                                /*_readMoreBond.getReadMoreBondDetails(
+                                   "INE296A07SD9");*/
+
+                                _bondListData.bondList.value[index]
+                                    .bondIsinNumber ==
+                                    "4"
+                                    ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const GoldBond()))
+                                    : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ReadMoreBonds(
+                                          /*isIPO: _bondListData.bondList
+                                                      .value[index].bondType,*/
+                                          isIPO: _bondListData
+                                              .bondList.value[index].bondType,
+                                          isinNo: _bondListData
+                                              .bondList
+                                              .value[index]
+                                              .bondIsinNumber,
                                         )));
                               },
                               child: Container(

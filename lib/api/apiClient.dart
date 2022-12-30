@@ -350,21 +350,30 @@ class APiProvider extends GetConnect {
     }
   }
 
-  bondList() async {
+  bondList(String search) async {
+
     try {
+
+
       var response =
-          await get("${TrustKycUrl.bondList}?page_number=1&limit=11");
+          await http.get(Uri.parse("${TrustKycUrl.bondList}?page_number=1"));
+
+
+      debugPrint("bondbond"+response.body.toString());
       if (response != null) {
         if (response.statusCode == 200) {
-          AllBondList modal = AllBondList.fromJson((response.body));
+          AllBondList modal = AllBondList.fromJson(jsonDecode(response.body));
+
           return modal;
         } else {
+
           ShowCustomSnackBar().ErrorSnackBar(response.statusCode.toString());
         }
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
+
   }
 
   getBondDetails(String isisnNo) async {
@@ -373,7 +382,7 @@ class APiProvider extends GetConnect {
           Uri.parse("${TrustKycUrl.specificBondsList}?bond_isin_number=$isisnNo"));
       debugPrint("getBondDetails=========>"+response.body);
       if (response.statusCode == 200) {
-        BondDetails modal = BondDetails.fromJson(jsonDecode(response.body));
+        AllBondListOfIpoByBondId modal = AllBondListOfIpoByBondId.fromJson(jsonDecode(response.body));
         return modal;
       }
     // } catch (e) {
@@ -402,9 +411,14 @@ class APiProvider extends GetConnect {
   }
 
   getInvestmentCalculatonResult(String isinNo, int bondNo) async {
+
+    debugPrint("StringStringStringStringString $isinNo");
+    debugPrint("StringStringStringStringString $bondNo");
     try {
       var response = await get(
-          "{TrustKycUrl.inestmentCalculator}?isin=$isinNo&number_of_bonds=$bondNo");
+          "${TrustKycUrl.inestmentCalculator}?isin=$isinNo&number_of_bonds=$bondNo");
+      debugPrint("StringStringStringStringString ${response.body}");
+
       if (response.statusCode == 200) {
         InvestmentCalculatorModal modal =
             InvestmentCalculatorModal.fromJson(response.body);

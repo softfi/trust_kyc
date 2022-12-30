@@ -64,7 +64,7 @@ RxInt a=1.obs;
     return Obx(()=>((_readMoreBond.allBondListOfIpoByBondId.value !=null))?Scaffold(
         backgroundColor: Colors.white,
         appBar: AppToolbar.appBar(
-            "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName??""}",
+            "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIssuerName??""}",
             IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
@@ -164,7 +164,7 @@ RxInt a=1.obs;
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      "${_readMoreBond.allBondListOfIpoByBondId.value!.bondName??""}",
+                      "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIssuerName??""}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -446,9 +446,9 @@ RxInt a=1.obs;
           Visibility(
             child: widget.isIPO == 3 || widget.isIPO==2
                 ? ConstWidget.keyPointsConsider(
-                    context,_readMoreBond.specificBondDataDetails.value!
+                    context,_readMoreBond.allBondListOfIpoByBondId.value!
                   )
-                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails.value!),
+                : ConstWidget.keyPoints(context,_readMoreBond.allBondListOfIpoByBondId.value!),
           ),     //_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo
           const SizedBox(
             height: 20,
@@ -685,12 +685,12 @@ RxInt a=1.obs;
           visible: widget.isIPO == 3 || widget.isIPO==2,
           child: InkWell(
             onTap: () {
-/*              (isKycDone.value)?*/Navigator.push(
+              (isKycDone.value)?Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BuyIPOBond(
                             isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                          )))/*:ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container())*/;
+                          ))):ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
             },
             child: ViewAllWidget(
               title: 'Buy this BOND now!',

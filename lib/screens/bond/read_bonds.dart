@@ -84,6 +84,7 @@ class _ReadBondsState extends State<ReadBonds> {
             ),
           ], color: Colors.white),
           child: TextFormField(
+            controller:_bondListData.searchController.value ,
             decoration: InputDecoration(
                 fillColor: Colors.white54,
                 filled: true,
@@ -101,7 +102,11 @@ class _ReadBondsState extends State<ReadBonds> {
                   color: Color(0xffC8C7CD),
                 ),
                 suffixIcon: InkWell(
-                  onTap: () {},
+                  onTap: () {
+
+
+                    _bondListData.getAllBOndList();
+                  },
                   child: Container(
                     width: 100,
                     decoration: const BoxDecoration(
@@ -208,7 +213,7 @@ class _ReadBondsState extends State<ReadBonds> {
   }
 
   Widget bondList() {
-    return ListView.builder(
+    return Obx(() => ListView.builder(
         itemCount: _bondListData.bondList.value.length,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -258,11 +263,11 @@ class _ReadBondsState extends State<ReadBonds> {
                                     fit: BoxFit.cover,
 
 
-                                  errorBuilder:  (context, error, stackTrace) =>
-                                      Image.asset(
-                                        (ConstantImage.orderImg),
-                                        fit: BoxFit.cover,
-                                      ),
+                                    errorBuilder:  (context, error, stackTrace) =>
+                                        Image.asset(
+                                          (ConstantImage.orderImg),
+                                          fit: BoxFit.cover,
+                                        ),
 
                                   ):Image.asset(
                                     (ConstantImage.orderImg),
@@ -285,7 +290,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width / 2,
                                   child: Text(
-                                      "${_bondListData.bondList.value[index].bondIssuerName}",
+                                      _bondListData.bondList.value[index].bondIssuerName??"---",
                                       maxLines: 2,
                                       softWrap: true,
                                       style: GoogleFonts.quicksand(
@@ -332,31 +337,31 @@ class _ReadBondsState extends State<ReadBonds> {
                               children: [
                                 Container(
                                   color:
-                                      const Color(0xffD67278).withOpacity(0.11),
+                                  const Color(0xffD67278).withOpacity(0.11),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15.0, vertical: 10),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         SizedBox(
                                           width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                              .size
+                                              .width *
                                               0.28,
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Coupon",
                                                 style:
-                                                    GoogleFonts.sourceSansPro(
+                                                GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xff1D2B84),
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 12),
                                                 ),
                                               ),
@@ -364,13 +369,13 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 height: 4,
                                               ),
                                               Text(
-                                                "${_bondListData.bondList.value[index].bondCouponRate}",
+                                                _bondListData.bondList.value[index].bondCouponRate??"N/A",
                                                 style:
-                                                    GoogleFonts.sourceSansPro(
+                                                GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xffFF405A),
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 14),
                                                 ),
                                               ),
@@ -379,7 +384,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Yield",
@@ -410,31 +415,31 @@ class _ReadBondsState extends State<ReadBonds> {
                                 ),
                                 Container(
                                   color:
-                                      const Color(0xff9BA9AD).withOpacity(0.11),
+                                  const Color(0xff9BA9AD).withOpacity(0.11),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15.0, vertical: 10),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         SizedBox(
                                           width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
+                                              .size
+                                              .width *
                                               0.28,
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Interest Payment",
                                                 style:
-                                                    GoogleFonts.sourceSansPro(
+                                                GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xff1D2B84),
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 12),
                                                 ),
                                               ),
@@ -444,11 +449,11 @@ class _ReadBondsState extends State<ReadBonds> {
                                               Text(
                                                 "${_bondListData.bondList.value[index].bondInterestFrequency}",
                                                 style:
-                                                    GoogleFonts.sourceSansPro(
+                                                GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
                                                       color: Color(0xffFF405A),
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                      FontWeight.bold,
                                                       fontSize: 14),
                                                 ),
                                               ),
@@ -457,7 +462,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                         ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Min. Invest",
@@ -472,7 +477,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                               height: 4,
                                             ),
                                             Text(
-                                              "${_bondListData.bondList.value[index].bondMinimumApplication}",
+                                              "${_bondListData.bondList.value[index].bondMinimumApplication??"N/A"}",
                                               style: GoogleFonts.sourceSansPro(
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
@@ -510,7 +515,7 @@ class _ReadBondsState extends State<ReadBonds> {
                               width: 35,
                               child: Text(
                                 _bondListData.bondList.value[index].bondType ==
-                                        1
+                                    1
                                     ? "IPO"
                                     : "",
                                 style: GoogleFonts.sourceSansPro(
@@ -528,13 +533,13 @@ class _ReadBondsState extends State<ReadBonds> {
                                     .toString());
 
                                 if (_bondListData
-                                        .bondList.value[index].bondType ==
+                                    .bondList.value[index].bondType ==
                                     1) {
                                   _readMoreBond.getReadMoreBondDetailsByBondID(
                                       _bondListData.bondList.value[index].bondId
                                           .toString());
                                 } else if (_bondListData
-                                            .bondList.value[index].bondType == 2 || _bondListData.bondList.value[index].bondType == 3) {
+                                    .bondList.value[index].bondType == 2 || _bondListData.bondList.value[index].bondType == 3) {
                                   _readMoreBond.getReadMoreBondDetails(
                                       _bondListData.bondList.value[index]
                                           .bondIsinNumber);
@@ -543,26 +548,26 @@ class _ReadBondsState extends State<ReadBonds> {
                                    "INE296A07SD9");*/
 
                                 _bondListData.bondList.value[index]
-                                            .bondIsinNumber ==
-                                        "4"
+                                    .bondIsinNumber ==
+                                    "4"
                                     ? Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const GoldBond()))
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const GoldBond()))
                                     : Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => ReadMoreBonds(
-                                                  /*isIPO: _bondListData.bondList
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ReadMoreBonds(
+                                          /*isIPO: _bondListData.bondList
                                                       .value[index].bondType,*/
-                                              isIPO: _bondListData
-                                                  .bondList.value[index].bondType,
-                                                  isinNo: _bondListData
-                                                      .bondList
-                                                      .value[index]
-                                                      .bondIsinNumber,
-                                                )));
+                                          isIPO: _bondListData
+                                              .bondList.value[index].bondType,
+                                          isinNo: _bondListData
+                                              .bondList
+                                              .value[index]
+                                              .bondIsinNumber,
+                                        )));
                               },
                               child: Container(
                                 height: 35,
@@ -575,28 +580,28 @@ class _ReadBondsState extends State<ReadBonds> {
                                       ),
                                     ],
                                     color: Color(0xffFF405A)
-                                    // gradient: const LinearGradient(
-                                    //   colors: [
-                                    //     Color(0xffEC515F),
-                                    //     Color(0xffC4414D),
-                                    //   ],
-                                    //   begin: Alignment.centerRight,
-                                    //   end: Alignment.centerLeft,
-                                    // ),
-                                    ),
+                                  // gradient: const LinearGradient(
+                                  //   colors: [
+                                  //     Color(0xffEC515F),
+                                  //     Color(0xffC4414D),
+                                  //   ],
+                                  //   begin: Alignment.centerRight,
+                                  //   end: Alignment.centerLeft,
+                                  // ),
+                                ),
                                 child: Center(
                                     child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 40.0),
-                                  child: Text("Read More",
-                                      style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                        ),
-                                      )),
-                                )),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 40.0),
+                                      child: Text("Read More",
+                                          style: GoogleFonts.quicksand(
+                                            textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                            ),
+                                          )),
+                                    )),
                               ),
                             ),
                             Container(
@@ -614,6 +619,6 @@ class _ReadBondsState extends State<ReadBonds> {
               ),
             ),
           );
-        });
+        }));
   }
 }

@@ -8,16 +8,21 @@ class ReadMoreBond extends GetxController{
  var specificBondDataDetails =Rxn<BondDetails>();
 
 
- var allBondListOfIpoByBondId =Rxn<BondDetails>();
+ var allBondListOfIpoByBondId =Rxn<AllBondListOfIpoByBondId>();
   RxList<BrokerageDetail> bondCashflowdetails=List<BrokerageDetail>.empty(growable: true).obs;
+
+
+
+  RxList<BondBrokerageDetail> bondBrokerageDetail=List<BondBrokerageDetail>.empty(growable: true).obs;
 
 
   void getReadMoreBondDetails(String isisnNo)async{
     var response=await APiProvider().getBondDetails(isisnNo);
     if(response !=null){
-      BondDetails modal=response;
-      specificBondDataDetails.value = modal;
-      bondCashflowdetails.value=modal.bondBrokerageDetails;
+      AllBondListOfIpoByBondId modal=response;
+      allBondListOfIpoByBondId.value =response;
+     // specificBondDataDetails.value = modal;
+      bondBrokerageDetail.value=modal.bondBrokerageDetails;
     }
   }
 

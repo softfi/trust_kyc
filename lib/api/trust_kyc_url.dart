@@ -71,7 +71,6 @@ class TrustKycUrl {
   //pan card
   static const getPANCard = 'api/v1/pan_verify';
   static const cvlKRA = 'api/v1/cvl_kra';
-
   //bond
   static const bondList = "${baseUrl}api/v1/bonds_list";
   static const specificBondsList = "${baseUrl}/api/v1/specific_bond_details";

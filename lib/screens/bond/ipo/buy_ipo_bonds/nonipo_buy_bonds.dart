@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trust_money/model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import '../../../../bottom_sheets/bottom_sheet.dart';
 import '../../../../getx_controller/bond/inestment_calculator_controller.dart';
@@ -452,7 +453,7 @@ class BuyNonIpoBonds extends GetxController{
     );
   }
 
-  static nonIPOInvestCalculator(bool userIsLoggedIn, BuildContext context, BondDetails _bondDetails,bool isFirstPage){
+  static nonIPOInvestCalculator(bool userIsLoggedIn, BuildContext context, AllBondListOfIpoByBondId _bondDetails,bool isFirstPage){
     InvestmentCalculatorController _investmentCalculator =
         Get.put(InvestmentCalculatorController());
     _investmentCalculator.getInvestmentCalculatorData(

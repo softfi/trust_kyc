@@ -6,6 +6,8 @@ import '../../model/bond/bond_list_modal.dart';
 class BondListData extends GetxController{
   RxList<BondsList> bondList=List<BondsList>.empty(growable: true).obs;
 
+ Rx <TextEditingController> searchController=TextEditingController().obs;
+
 
 
   @override
@@ -16,7 +18,7 @@ class BondListData extends GetxController{
   }
 
   void getAllBOndList()async{
-    var response=await  APiProvider().bondList();
+    var response=await  APiProvider().bondList(searchController.value.text);
     if(response !=null){
       AllBondList modal=response;
       bondList.value=modal.bondsList;

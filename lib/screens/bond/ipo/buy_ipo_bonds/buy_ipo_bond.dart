@@ -61,7 +61,7 @@ class BuyIPOBond extends StatelessWidget {
                       child: BuyNonIpoBonds.nonIPOInvestCalculator(
                           true,
                           context,
-                          _readMoreBond.specificBondDataDetails.value!,false),
+                          _readMoreBond.allBondListOfIpoByBondId.value!,false),
                     )
                   : Column(
                       children: [
@@ -266,11 +266,11 @@ class BuyIPOBond extends StatelessWidget {
                   height: 60,
                   width: 60,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
-                  child: (_readMoreBond.specificBondDataDetails.value!.bondLogo ==
+                  child: (_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo ==
                           null)
                       ? Image.asset(ConstantImage.orderImg)
                       : Image.network(
-                          _readMoreBond.specificBondDataDetails.value!.bondLogo,
+                          _readMoreBond.allBondListOfIpoByBondId.value!.bondLogo,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(ConstantImage.orderImg),
                         ),
@@ -281,7 +281,7 @@ class BuyIPOBond extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
                   child: Text(
-                      _readMoreBond.specificBondDataDetails.value!.bondName,
+                      _readMoreBond.allBondListOfIpoByBondId.value!.bondIssuerName??"",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: GoogleFonts.quicksand(
@@ -351,7 +351,7 @@ class BuyIPOBond extends StatelessWidget {
                                     color: Color(0xffFF405A))),
                             TextSpan(
                                 text:
-                                    "${_readMoreBond.specificBondDataDetails.value!.bondIsinNumber}",
+                                    "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}",
                                 style: TextStyle(
                                     fontSize: 10,
                                     fontStyle: FontStyle.normal,
