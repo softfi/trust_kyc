@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
     print('start working');
     try {
       Response response = await post(
-        Uri.parse(TrustKycUrl.verifyEmail),
+        Uri.parse(TrustKycUrl.LoginOtp),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

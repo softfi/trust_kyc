@@ -45,7 +45,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     print('start working resend  login otp');
     try {
       var response = await post(
-        Uri.parse(TrustKycUrl.verifyEmail),
+        Uri.parse(TrustKycUrl.LoginOtp),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

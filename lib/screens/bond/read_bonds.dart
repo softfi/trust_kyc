@@ -43,7 +43,7 @@ class _ReadBondsState extends State<ReadBonds> {
                     )));
       },
       child: Scaffold(
-        backgroundColor: const Color(0xffffffff).withOpacity(0.50),
+        backgroundColor:Colors.white,
         appBar: AppToolbar.appBar(
             "EXPLORE BONDS",
             IconButton(

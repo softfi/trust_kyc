@@ -32,7 +32,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   bool isKYCPending = true;
 
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+      Get.put(PersonalDetailsController());
 
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
@@ -148,9 +148,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                   SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                   await preferences.clear();
+
                                   GoogleSignInProvider().logout();
-
-
                                   //alokalokalokalokalokalok
                                   Get.offAll(HomePage());
                                   // Navigator.push(
@@ -328,7 +327,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                           MyProfile()));
+                                                          MyProfile()));
                                             },
                                             child: Container(
                                               height: 35,

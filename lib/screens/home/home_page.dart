@@ -89,7 +89,7 @@ getLoggedInState() async {
                   width: 50,
                 ),
                 actions: [
-                  userIsLoggedIn == null
+                  userIsLoggedIn == null || userIsLoggedIn ==false
                       ? InkWell(
                           onTap: () {
                             Navigator.push(

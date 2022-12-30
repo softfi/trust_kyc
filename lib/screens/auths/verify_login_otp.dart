@@ -68,7 +68,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
     print('start working resend  login otp');
     try {
       Response response = await post(
-        Uri.parse(TrustKycUrl.verifyEmail),
+        Uri.parse(TrustKycUrl.LoginOtp),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

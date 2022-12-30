@@ -18,7 +18,7 @@ class TrustKycUrl {
   static const verifyEmailOtp = 'api/v1/verify_otp_email';
 
   //verifyEmail
-  static const verifyEmail = 'api/v1/oauth2_verify_email';
+  static const verifyEmail = '${baseUrl}api/v1/oauth2_verify_email';
    static const LoginOtp = '${baseUrl}api/v1/login_mobile_otp_send';
 
 
