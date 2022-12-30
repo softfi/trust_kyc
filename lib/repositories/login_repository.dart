@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:logging/logging.dart';
 import '../api/network_utility.dart';
 import '../api/trust_kyc_dio_client.dart';
 import '../api/trust_kyc_url.dart';
 import '../model/otp_verify_response_data.dart';
-import '../model/sendOtpEmailModel.dart';
 import '../model/sign_up_response.dart';
+import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class LoginRepository {
-  final logger = Logger("LoginRepository");
+
 
   LoginRepository();
 
@@ -26,7 +24,6 @@ class LoginRepository {
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
         .post(endpoint: TrustKycUrl.signUpUrl, body: dataq);
-    logger.info("SIGNUPResponse: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       print("==============hashKEY ${data["hash_key"]}");
@@ -52,7 +49,6 @@ class LoginRepository {
 
     var response = await TrustKycDioClient(token)
         .post(endpoint: TrustKycUrl.verifyOtp, body: dataq);
-    logger.info("OTPResponse: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       SnackBar(content: Text("OTP verify successfully"));
@@ -76,33 +72,13 @@ class LoginRepository {
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
         .post(endpoint: TrustKycUrl.signUpUrl, body: dataq);
-    logger.info("SIGNUPResponse: ${response.data}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       await HelperFunctions.savehashkey(data["hash_key"].toString());
-      Fluttertoast.showToast(
-          msg: 'OTP Resend Successfully', timeInSecForIosWeb: 3);
+      ShowCustomSnackBar().SuccessSnackBar("OTP Resend Successfully");
     }
     return SignUpModel.fromJson(data);
   }
 
-  Future<SendOtpEmailModule?> sentOtpToEmail(
-      String mobnumber, String emailid, bool isResendOtp) async {
-    await NetworkUtility.checkNetworkStatus();
-    var token = await HelperFunctions.getToken();
-    final Map<String, dynamic> dataq = Map<String, dynamic>();
-    dataq["mobile_number"] = mobnumber;
-    dataq["email_id"] = emailid;
-    dataq["resend_otp"] = isResendOtp;
-    var response = await TrustKycDioClient(token)
-        .post(endpoint: TrustKycUrl.sentEmailOTP, body: dataq);
-    logger.info("getProfileResponse: ${response.data}");
-    var data = NetworkUtility.responseHandler(response);
-    if (response.statusCode == 200) {
-      Fluttertoast.showToast(msg: 'Otp send Successfully to email!');
-    } else if (response.statusCode == 400) {
-      Fluttertoast.showToast(msg: 'personal_details not found');
-    }
-    return SendOtpEmailModule.fromJson(data);
-  }
+
 }

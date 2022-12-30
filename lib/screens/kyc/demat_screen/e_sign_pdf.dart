@@ -1,12 +1,18 @@
+import 'dart:math';
+
+import 'package:dio/dio.dart';
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/repositories/demat_repository.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../../api/apiClient.dart';
 import '../../../getx_controller/profile/personal_details_controller.dart';
+import '../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../utils/sharedPreference.dart';
+import 'collect_docs_page.dart';
 import 'e_sign.dart';
 
 class ESignPDF extends StatefulWidget {
@@ -30,7 +36,6 @@ class _ESignPDFState extends State<ESignPDF> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 1.35,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -81,9 +86,9 @@ class _ESignPDFState extends State<ESignPDF> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _space,
+                    _space1,
                     Obx(() => Text(
-                      "Hey, ${_personalDetailsController.modaltest.value!.panName ?? ""} Let's E-Sign Your Application",
+                      "Hey, ${_personalDetailsController.modaltest.value!.panName ?? ""}",
                       style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
@@ -93,6 +98,91 @@ class _ESignPDFState extends State<ESignPDF> {
                     )),
                     _space1,
                     _space1,
+                    Text(
+                      "You can download your application form and cross-check it at your convenience.",
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15),
+                      ),
+                    ),
+                    _space,
+                    _space1,
+                    InkWell(
+                      onTap: () async {
+                        var response = await APiProvider().downloadPDF();
+                        await HelperFunctions.saveuserkyccompleted(true);
+                        if (response != null) {
+                          Map<Permission, PermissionStatus> statuses = await [
+                            Permission.storage,
+                          ].request();
+                          if (statuses[Permission.storage]!.isGranted) {
+                            var dir = await DownloadsPathProvider.downloadsDirectory;
+                            if (dir != null) {
+                              Random random = new Random();
+                              int random_number = random.nextInt(1000000);
+                              String savePath = dir.path + "/e-sign_$random_number.pdf";
+                              print(savePath);
+                              try {
+                                var downloadProgress;
+                                await Dio().download(response, savePath,
+                                    onReceiveProgress: (received, total) {
+                                      if (total != -1) {
+                                         downloadProgress = (received / total * 100).toStringAsFixed(0) + "%";
+                                        if ((received / total * 100).toStringAsFixed(0) +
+                                            "%" ==
+                                            "100") {}
+                                      }
+                                    });
+                                ShowCustomSnackBar().SuccessSnackBar(
+                                    "File is saved to download folder e-sign_$random_number.pdf");
+                                Get.back();
+                              } on DioError catch (e) {
+                                ShowCustomSnackBar().ErrorSnackBar(e.toString());
+                              }
+                            }
+                          } else {
+                            ShowCustomSnackBar().ErrorSnackBar("No permission to read and write.");
+                          }
+                          ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
+                        }
+                      },
+                      child:  Container(
+                        height: 45,
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x29000000),
+                              blurRadius: 4.0,
+                            ),
+                          ],
+                          border: Border.all(width: 1.7, color: AppColors.textColor),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                            child: Text(
+                              "Download Your Application Form",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: AppColors.textColor,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15),
+                              ),
+                            )),
+                      ),
+                    ),
+                    _space,
+                    _space1,
+                    Text(
+                      "E-Sign Your Application.",
+                      style: GoogleFonts.quicksand(
+                        textStyle: const TextStyle(
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20),
+                      ),
+                    ),
                     Text(
                       "As per mandate every applicant needs to E-sign the application as per SEBI guidelines",
                       style: GoogleFonts.sourceSansPro(
@@ -168,11 +258,12 @@ class _ESignPDFState extends State<ESignPDF> {
                     _space1,
                     InkWell(
                       onTap: () async {
-                        var response = await APiProvider().eSignPdf();
-                        if (response != null) {
-                          await HelperFunctions.saveuserkyccompleted(true);
-                          Get.to(()=> ESign(response: response));
-                        }
+                        Get.to(()=>const AllDocsView());
+                        // var response = await APiProvider().eSignPdf();
+                        // if (response != null) {
+                        //   await HelperFunctions.saveuserkyccompleted(true);
+                        //   Get.to(()=> ESign(response: response));
+                        // }
                         // var res = await DematDetailRepository().eSign();
                         // print("=======123 $res");
                         // if (res != null) {}
@@ -186,7 +277,7 @@ class _ESignPDFState extends State<ESignPDF> {
                               blurRadius: 4.0,
                             ),
                           ],
-                          border: Border.all(width: 1.4, color: AppColors.textColor),
+                          border: Border.all(width: 1.7, color: AppColors.textColor),
                           color: Colors.white,
                         ),
                         child: Center(

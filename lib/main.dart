@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/images.dart';
@@ -39,7 +38,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      builder: EasyLoading.init(),
     );
   }
 }
@@ -75,18 +73,6 @@ class SplashScreenState extends State<MyPage> {
     });
 
     Future.delayed(const Duration(seconds: 7), () {
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) =>
-      //       userIsLoggedIn != null
-      //           ? userIsLoggedIn!
-      //           ? const HomePage()
-      //           : HomePage()
-      //           : const Center(
-      //         child: HomePage(),
-      //       ),
-      //     ), (e) => false);
 
       Navigator.pushAndRemoveUntil(
           context,

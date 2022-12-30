@@ -1,4 +1,3 @@
-import 'package:fluttertoast/fluttertoast.dart';
 
 class DataLayerException implements Exception {
   final String _message;

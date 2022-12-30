@@ -2,13 +2,11 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/model/all_demat_response_data.dart';
 import 'package:trust_money/model/get_demate_account_response_data.dart';
-import 'package:trust_money/repositories/demat_repository.dart';
-import 'package:trust_money/screens/animated_screens/existing_demat_animation.dart';
+import 'package:trust_money/screens/animated_screens/verified_animation.dart';
 import 'package:trust_money/screens/kyc/demat_screen/demat_bottom_sheets.dart';
 import 'package:trust_money/screens/kyc/demat_screen/e_sign_pdf.dart';
 import 'package:trust_money/screens/kyc/demat_screen/mendatory_question.dart';
@@ -18,10 +16,9 @@ import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/styles.dart';
-
 import '../../../api/apiClient.dart';
 import '../../../getx_controller/profile/personal_details_controller.dart';
-import '../../Congratulations/demat_success_congratulations.dart';
+import '../../../utils/helper_widget/custom_snsckbar.dart';
 import '../profile/personal_detals/app_textfield.dart';
 import 'existing_demat/download_demat_form/demat_form_view.dart';
 
@@ -74,17 +71,24 @@ class _DematAccountState extends State<DematAccount> {
 
   checkValidation() async {
     if (nsdlItemsvalue == null) {
-      Fluttertoast.showToast(msg: 'Select Your Depository');
+      ShowCustomSnackBar().ErrorSnackBar("Select Your Depository");
       return;
     } else if (dp_id.text.isEmpty || dp_id.text.toString().length < 6) {
-      Fluttertoast.showToast(msg: "Enter Your DP ID");
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your DP Name");
       return;
     } else if (dp_id.text.toString() != benificiary_id.text.toString()) {
       DPIDNotMatchedBottomSheet();
     } else if (dp_name.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Enter Your DP Name");
+      ShowCustomSnackBar().ErrorSnackBar("Enter Your DP Name");
       return;
     } else {
+      Get.dialog(VerifiedAnim(
+        image: "assets/images/demat.mp4",
+        onClick: () {},
+        title: "We Are Verifying Your Demat Details",
+        subTitle:
+        "We are validating your ID and Username with the authorities, this may take some time.",
+      ));
       var response = await APiProvider().addExistingDemat(
         nsdlItemsvalueInt,
         customerID,
@@ -95,6 +99,7 @@ class _DematAccountState extends State<DematAccount> {
       debugPrint("Nominasdata $response");
       if (response != null) {
         setState(() {
+          Get.back();
           existingDematAccountDetails = false;
           formShow = true;
         });

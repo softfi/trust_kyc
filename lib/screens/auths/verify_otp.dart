@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:trust_money/screens/auths/alright_screent.dart';
@@ -10,9 +9,10 @@ import 'package:trust_money/screens/auths/choose_screen.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/utils/strings.dart';
-import '../../api/url_constant.dart';
+import '../../api/trust_kyc_url.dart';
 import '../../repositories/login_repository.dart';
 import '../../utils/colorsConstant.dart';
+import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/images.dart';
 import '../../utils/styles.dart';
 
@@ -45,7 +45,7 @@ class _OtpVerificationState extends State<OtpVerification> {
     print('start working resend  login otp');
     try {
       var response = await post(
-        Uri.parse(LoginOtp),
+        Uri.parse(TrustKycUrl.verifyEmail),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -59,10 +59,10 @@ class _OtpVerificationState extends State<OtpVerification> {
       dynamic collectUseData = _decoder.convert(response.body);
       resopnsmap = json.decode(response.body);
       if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: 'OTP Resend Successfully');
+        ShowCustomSnackBar().SuccessSnackBar("OTP Resend Successfully");
       } else if (response.statusCode != 200) {
         print("Registration failed");
-        Fluttertoast.showToast(msg: collectUseData['errors'].toString());
+        ShowCustomSnackBar().ErrorSnackBar(collectUseData['errors'].toString());
 
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> SignUpWidget() ));
 
@@ -76,7 +76,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   checkValidation() async {
     hashKey = await HelperFunctions.getHashKey();
     if (otpText.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter your OTP');
+      ShowCustomSnackBar().ErrorSnackBar("Please enter your OTP");
       return;
     } else {
       final otpVerifyModel = await LoginRepository().verifyOTP(

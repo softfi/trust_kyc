@@ -66,17 +66,17 @@ class APiProvider extends GetConnect {
         "${_controller.currentStartDate.value.day}-${_controller.currentStartDate.value.month}-${_controller.currentStartDate.value.year}";
     debugPrint("correctedDate $correctedDate");
     var body = {
-      "firstname": _controller.firstName.value.text ?? "",
-      "lastname": _controller.lastName.value.text ?? "",
+      "firstname": _controller.firstName.value.text,
+      "lastname": _controller.lastName.value.text,
       "dob": correctedDate,
       "smart_card_required": 0,
       "smart_card_number": "",
       "smart_card_PIN": "",
-      "gender": _kRAController.isGenderSelect.value ?? 0,
-      "married_status": _kRAController.isMaritalSelect.value ?? 0,
-      "mothers_maiden_name": _kRAController.maidenName.value.text ?? "",
-      "annual_income": _kRAController.isEnComeSelect.value ?? 0,
-      "trading_experience": _kRAController.isExperienceSelect.value ?? 0,
+      "gender": _kRAController.isGenderSelect.value,
+      "married_status": _kRAController.isMaritalSelect.value,
+      "mothers_maiden_name": _kRAController.maidenName.value.text,
+      "annual_income": _kRAController.isEnComeSelect.value,
+      "trading_experience": _kRAController.isExperienceSelect.value,
       "occupation": _kRAController.professionId.value ?? 0,
       "lifestyle": "",
       "geogriphical_code": "",
@@ -123,11 +123,11 @@ class APiProvider extends GetConnect {
       "proof_back_image": await HelperFunctions.getBackImage(),
       "manager_id": 0,
       "is_politically_exposed":
-          _controller.potentiallyExposedStatusInt.value ?? 0,
-      "filled_itr_last_2years": _kRAController.isRTRInt.value ?? 0,
-      "would_you_like_to_activate": _controller.activateFutureInt.value ?? 0,
-      "check_box_share_data_with_company": _controller.isCheckedInt1.value ?? 0,
-      "check_box_share_data_with_govt": _controller.isCheckedInt2.value ?? 0
+          _controller.potentiallyExposedStatusInt.value,
+      "filled_itr_last_2years": _kRAController.isRTRInt.value,
+      "would_you_like_to_activate": _controller.activateFutureInt.value,
+      "check_box_share_data_with_company": _controller.isCheckedInt1.value,
+      "check_box_share_data_with_govt": _controller.isCheckedInt2.value
     };
 
     // print("_kRAController.maidenName ${jsonEncode(body)}");
@@ -258,27 +258,36 @@ class APiProvider extends GetConnect {
   }
 
   verfiyPanNumber(String PAN) async {
-    // PersonalDetailsController _controller = Get.put(PersonalDetailsController());
     var token = await HelperFunctions.getToken();
     debugPrint("======PAN ${token}");
     try {
+      Get.dialog(VerifiedAnim(
+        image: "assets/images/pan.mp4",
+        onClick: () {},
+        title: "We Are Verifying \nYour PAN",
+        subTitle:
+        "We are validating your ID and Username with the authorities, this may take some time.",
+      ));
       var response = await http.get(
-          Uri.parse(
-              "${TrustKycUrl.baseUrl}${TrustKycUrl.getPANCard}?pan_no=$PAN"),
+          Uri.parse("${TrustKycUrl.baseUrl}${TrustKycUrl.getPANCard}?pan_no=$PAN"),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
       debugPrint("======PAN ${response.statusCode}");
+      var res = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        PanStatusModel modal =
-            PanStatusModel.fromJson(jsonDecode(response.body));
+        Get.back();
+        PanStatusModel modal = PanStatusModel.fromJson(jsonDecode(response.body));
         debugPrint("======PAN12 ${response.body.toString()}");
         return modal;
+      }else{
+        Get.back();
+        ShowCustomSnackBar().ErrorSnackBar(res["errors"].toString());
       }
     } catch (e) {
-      debugPrint("======PAN123 ${e.toString()}");
+      Get.back();
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
@@ -310,8 +319,7 @@ class APiProvider extends GetConnect {
   digilockerData() async {
     try {
       var token = await HelperFunctions.getToken();
-      var response =
-          await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
+      var response = await get(TrustKycUrl.baseUrl + TrustKycUrl.getDigiLocker, headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token,
@@ -545,9 +553,9 @@ class APiProvider extends GetConnect {
     var body = {
       "nominee_details_allocation": 0,
       "nominee_details_title": _addnomineeController.mrsValue.value,
-      "nominee_details_fname": temp[0].toString() ?? "",
-      "nominee_details_mname": temp[1].toString() ?? "",
-      "nominee_details_lname": temp[2].toString() ?? "",
+      "nominee_details_fname": temp[0].toString(),
+      "nominee_details_mname": temp[1].toString(),
+      "nominee_details_lname": temp[2].toString(),
       "nominee_details_relationship":
           _addnomineeController.relationshipID.value.toString(),
       "nominee_details_identification": int.parse(_addnomineeController
@@ -665,13 +673,6 @@ class APiProvider extends GetConnect {
     };
     debugPrint("===========8786 ${body}");
     try {
-      Get.dialog(VerifiedAnim(
-        image: "assets/images/demat.mp4",
-        onClick: () {},
-        title: "We Are Verifying Your Demat Details",
-        subTitle:
-            "We are validating your ID and Username with the authorities, this may take some time.",
-      ));
       var response = await post(
           TrustKycUrl.baseUrl + TrustKycUrl.existingDemat, body,
           headers: {
@@ -681,15 +682,12 @@ class APiProvider extends GetConnect {
           });
       debugPrint("===========8786 ${response.statusCode}");
       if (response.statusCode == 201) {
-        Get.back();
         ShowCustomSnackBar().SuccessSnackBar(response.body["message"]);
         return response.body["message"];
       } else {
-        Get.back();
         ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
       }
     } catch (e) {
-      Get.back();
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }

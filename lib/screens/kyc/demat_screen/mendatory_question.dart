@@ -22,7 +22,9 @@ import '../../../getx_controller/profile/personal_details_controller.dart';
 
 class MandatoryQuestion extends StatefulWidget {
   final void Function()? onClick1;
+
   const MandatoryQuestion({Key? key, required this.onClick1}) : super(key: key);
+
   @override
   State<MandatoryQuestion> createState() => _MandatoryQuestionState();
 }
@@ -47,7 +49,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
   bool isSignatureUpdate = false;
   File? signatureImage;
   final _picker = ImagePicker();
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController =
+      Get.put(PersonalDetailsController());
 
   wealthList() async {
     var data1 = await DematDetailRepository().wealthDropdown();
@@ -884,7 +887,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                           if (response != null) {
                             var res = await DematDetailRepository()
                                 .addNewDematAccount1(
-                                    check_box_account_statement_electronic: isAwareInt,
+                                    check_box_account_statement_electronic:
+                                        isAwareInt,
                                     USAcitizen: citizen_OfThe_USAInt,
                                     taxResidency: Country_ResidencyInt,
                                     check_box_terms_selected: aceeptTermInt,
@@ -892,7 +896,8 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
                                     Bornregion: bornID.toString());
                             if (res != null) {
                               Get.back();
-                              ShowCustomSnackBar().SuccessSnackBar("Demat account added successfully");
+                              ShowCustomSnackBar().SuccessSnackBar(
+                                  "Demat account added successfully");
                               widget.onClick1!();
                             }
                           }

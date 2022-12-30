@@ -16,27 +16,6 @@ import '../personal_detals/app_textfield.dart';
 import '../personal_detals/bottom_sheets.dart';
 import 'custom_dropdown.dart';
 
-class Help {
-  String label;
-  Color color;
-
-  Help(
-    this.label,
-    this.color,
-  );
-}
-
-class chipModel {
-  String? name;
-  String? color;
-
-  chipModel(this.name, this.color);
-
-  chipModel.fromDocumentSnapshot(QueryDocumentSnapshot snapshot) {
-    name = snapshot.get('name');
-    color = snapshot.get('color');
-  }
-}
 
 class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
@@ -175,46 +154,6 @@ class KRARecord extends StatelessWidget {
         title: 'What is your Occupaion',
       ),
       _space1,
- /*     Obx(() => Container(
-          height: 45,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1.1, color: AppColors.borderColor),
-            color: Colors.white,
-          ),
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton2(
-                  hint: const Text("Select Profession",
-                      style: TextStyle(
-                          color: Color(0xffC8C7CE), letterSpacing: 2)),
-                  items: _kRAController.professionList.value.map((item) {
-                    return DropdownMenuItem(
-                      value: item.professionName,
-                      child: Text(
-                        item.professionName,
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (newValue) {
-                    var a = _kRAController.professionList.value
-                        .where((element) {
-                      if (element.id == newValue.toString()) {
-                        _kRAController.professionId.value = element.id.toString();
-                      }
-                      return true;
-                    });
-                    debugPrint(a.toString());
-                    debugPrint(_kRAController.professionId.value.toString());
-                    debugPrint("a.toString()");
-                    _kRAController.professionId.value = newValue.toString();
-                  },
-                  value: _kRAController.professionId.value,
-                ),
-              )))),*/
-
       Container(
           height: 50,
           // width: MediaQuery.of(context).size.width,
@@ -253,27 +192,6 @@ class KRARecord extends StatelessWidget {
                   value: _kRAController.professionId.value,
                 ),
               )))),
-
-
-
-     /*  Obx(() => Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1.1, color: AppColors.borderColor),
-          ),
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: DropDownContainer(
-                dropdownHeading: "Select Occupation",
-                dropDownInitialValue:,
-                    // "${_kRAController.newProfessionalList.value[0]}".obs,
-                dropDownList: _kRAController.newProfessionalList.value,
-                on_drop_down_change: (val) {
-
-                },
-              )))),*/
       _space,
       AppText(
         title: 'What is your trading experience?',

@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:trust_money/screens/home/webview.dart';
-
 import '../../../../getx_controller/kra/kra_controller.dart';
-import '../../../../model/digiLocker_response_data.dart';
-import '../../../../repositories/profile_repository.dart';
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../utils/images.dart';

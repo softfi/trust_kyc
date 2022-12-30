@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:trust_money/utils/colorsConstant.dart';
-
-import 'dimensions.dart';
 
 class ConstStyle {
   static var quickStandMediumsubtile = GoogleFonts.quicksand(

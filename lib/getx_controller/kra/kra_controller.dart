@@ -72,7 +72,7 @@ var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
       debugPrint(model.toString());
       debugPrint("1235647777974521464779878645");
       adhaarNumber.value = model.aadharNumber;
-      adhaarAddress.value ="${model.landmark!="null"?model.landmark:""} ${model.location??""} ${model.villageTownCity} ${model.district} ${model.state} ${model.pincode}";
+      adhaarAddress.value = "${model.landmark ?? ""} ${model.location ??""} ${model.villageTownCity} ${model.district} ${model.state} ${model.pincode}";
       if (model.gender == "M") {
         isGenderSelect.value = 1;
       } else if (model.gender == "F") {

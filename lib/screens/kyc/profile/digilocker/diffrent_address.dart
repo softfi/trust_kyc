@@ -249,9 +249,7 @@ class DifferentAddress extends StatelessWidget {
                 )))),
         _space,
         Obx(() => _addNomineeController.SelectedState.value != null
-            ? AppText(
-                title: 'Select City',
-              )
+            ? AppText(title: 'Select City',)
             : Container()),
         Obx(() => _addNomineeController.SelectedState.value != null
             ? _space1

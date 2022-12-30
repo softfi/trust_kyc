@@ -22,22 +22,16 @@ class PanCardUserDeatils extends GetxController {
       Get.put(PersonalDetailsController());
 
   verifyPan() async {
-    Get.dialog(VerifiedAnim(
-      image: "assets/images/pan.mp4",
-      onClick: () {},
-      title: "We Are Verifying \nYour PAN",
-      subTitle:
-          "We are validating your ID and Username with the authorities, this may take some time.",
-    ));
     var response = await APiProvider().verfiyPanNumber(panNumber.value.text);
     if (response != null) {
-      Get.back();
       PanStatusModel modal = response;
       panDataModal.value = response;
+      await HelperFunctions.saveFirstName("${modal.panFname} ${modal.panMname}".toString());
+      await HelperFunctions.saveLastName(modal.panLname.toString());
       panName.value = "${modal.panFname} ${modal.panMname} ${modal.panLname}";
       if (modal.panStatus == "E") {
         Get.to(PANVerified(onClick: () {
-           Get.back();
+          Get.back();
           _personalDetailsController.isVisible.value = 5;
         }));
       } else if (modal.panStatus == "X") {

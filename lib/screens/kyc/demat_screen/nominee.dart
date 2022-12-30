@@ -1434,7 +1434,7 @@ class DematNomineeDetail extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
             child: Text(
-              "${_personalDetailsController.modaltest.value!.addressLine1 ?? ""} ${_personalDetailsController.modaltest.value!.addressLine1 ?? ""} ${_personalDetailsController.modaltest.value!.addressCity ?? ""}, ${_personalDetailsController.modaltest.value!.addressState ?? ""}, ${_personalDetailsController.modaltest.value!.addressZip ?? ""}",
+              "${_personalDetailsController.modaltest.value!.addressLine1 ?? ""} ${_personalDetailsController.modaltest.value!.addressLine1} ${_personalDetailsController.modaltest.value!.addressCity ?? ""}, ${_personalDetailsController.modaltest.value!.addressState ?? ""}, ${_personalDetailsController.modaltest.value!.addressZip ?? ""}",
               style: GoogleFonts.sourceSansPro(
                 textStyle: const TextStyle(
                     color: Color(0xff22263D),
