@@ -236,7 +236,7 @@ RxInt a=1.obs;
                                   ),
                                 )),
                             TextSpan(
-                                text: "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}",
+                                text: _readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber,
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                     color: AppColors.textColor,
@@ -448,7 +448,7 @@ RxInt a=1.obs;
                 ? ConstWidget.keyPointsConsider(
                     context,_readMoreBond.specificBondDataDetails.value!
                   )
-                : ConstWidget.keyPoints(context,_readMoreBond.allBondListOfIpoByBondId.value!),
+                : ConstWidget.keyPoints(context,_readMoreBond.specificBondDataDetails.value!),
           ),     //_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo
           const SizedBox(
             height: 20,
@@ -685,12 +685,12 @@ RxInt a=1.obs;
           visible: widget.isIPO == 3 || widget.isIPO==2,
           child: InkWell(
             onTap: () {
-              (isKycDone.value)?Navigator.push(
+/*              (isKycDone.value)?*/Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BuyIPOBond(
                             isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                          ))):ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
+                          )))/*:ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container())*/;
             },
             child: ViewAllWidget(
               title: 'Buy this BOND now!',

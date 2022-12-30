@@ -368,16 +368,17 @@ class APiProvider extends GetConnect {
   }
 
   getBondDetails(String isisnNo) async {
-    try {
-      var response = await get(
-          "${TrustKycUrl.specificBondsList}?bond_isin_number=$isisnNo");
+    // try {
+      var response = await http.get(
+          Uri.parse("${TrustKycUrl.specificBondsList}?bond_isin_number=$isisnNo"));
+      debugPrint("getBondDetails=========>"+response.body);
       if (response.statusCode == 200) {
-        BondDetails modal = BondDetails.fromJson((response.body));
+        BondDetails modal = BondDetails.fromJson(jsonDecode(response.body));
         return modal;
       }
-    } catch (e) {
-      ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    }
+    // } catch (e) {
+    //   ShowCustomSnackBar().ErrorSnackBar(e.toString());
+    // }
   }
 
   getIPVCode() async {

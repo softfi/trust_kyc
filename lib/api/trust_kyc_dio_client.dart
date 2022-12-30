@@ -59,6 +59,7 @@ class TrustKycDioClient {
       } else if (e.response?.statusCode == 400) {
         var resData = e.response?.data as Map<String, dynamic>;
         ShowCustomSnackBar().ErrorSnackBar(resData['errors']);
+
         throw RequestException(resData['errors']);
       }
       throw ServerException(e.response?.data);

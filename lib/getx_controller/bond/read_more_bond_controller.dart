@@ -8,8 +8,8 @@ class ReadMoreBond extends GetxController{
  var specificBondDataDetails =Rxn<BondDetails>();
 
 
- var allBondListOfIpoByBondId =Rxn<AllBondListOfIpoByBondId>();
-  RxList<BondCashflowDetail> bondCashflowdetails=List<BondCashflowDetail>.empty(growable: true).obs;
+ var allBondListOfIpoByBondId =Rxn<BondDetails>();
+  RxList<BrokerageDetail> bondCashflowdetails=List<BrokerageDetail>.empty(growable: true).obs;
 
 
   void getReadMoreBondDetails(String isisnNo)async{
@@ -17,7 +17,7 @@ class ReadMoreBond extends GetxController{
     if(response !=null){
       BondDetails modal=response;
       specificBondDataDetails.value = modal;
-      bondCashflowdetails.value=modal.message.bondCashflowDetails;
+      bondCashflowdetails.value=modal.bondBrokerageDetails;
     }
   }
 

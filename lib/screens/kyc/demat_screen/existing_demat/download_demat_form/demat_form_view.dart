@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -17,17 +19,53 @@ class FormView extends StatelessWidget {
   FormView({Key? key, required this.onClick1}) : super(key: key);
   final void Function()? onClick1;
 
-  void _download(String url,int randomPortName) async {
+
+  Future download2(Dio dio, String url, String savePath) async {
+    try {
+      var response = await dio.get(
+        url,
+        onReceiveProgress: showDownloadProgress,
+        //Received data with List<int>
+        options: Options(
+            responseType: ResponseType.bytes,
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! < 500;
+            }),
+      );
+      print("Yha h natak"+response.data.toString());
+      print("Yha h natak"+savePath);
+      File file = File(savePath);
+      var raf = file.openSync(mode: FileMode.write);
+      // response.data is List<int> type
+      raf.writeFromSync(response.data);
+      await raf.close();
+    } catch (e) {
+      print(e);
+    }
+  }var dio = Dio();
+
+  void showDownloadProgress(received, total) {
+    if (total != -1) {
+      print((received / total * 100).toStringAsFixed(0) + "%");
+    }
+  }
+
+  void _download(String url,int randomPortName,String savePath) async {
     final status = await Permission.storage.request();
 
     if(status.isGranted) {
       final externalDir = await getExternalStorageDirectory();
-      final id = await FlutterDownloader.enqueue(fileName: "$randomPortName",
-        url: url,
-        savedDir: externalDir!.path,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
+   try{
+     final id = await FlutterDownloader.enqueue(fileName: "$randomPortName",
+       url: url,
+       savedDir: externalDir!=null?externalDir.path:"",
+       showNotification: true,
+       openFileFromNotification: true,
+     );
+   }catch(e){
+     ShowCustomSnackBar().ErrorSnackBar(e.toString());
+   }
     } else {
       print('Permission Denied');
     }
@@ -78,9 +116,64 @@ class FormView extends StatelessWidget {
               onTap: () async {
                 var response = await APiProvider().downloadPDF();
                 if (response != null) {
-                  Random random = new Random();
+                  // final externalDir = await getExternalStorageDirectory();
+
+                 /* var tempDir = await getTemporaryDirectory();
+                  String fullPath = tempDir.path + "/boo2.pdf'";
+                  print('full path ${fullPath}');*/
+
+                  // download2(dio, response,  externalDir!.path);
+                 /* Random random = new Random();
                   int random_number = random.nextInt(1000000);
-                  _download(response,random_number);
+                  _download(response,random_number);*/
+
+
+
+                  Map<Permission, PermissionStatus> statuses = await [
+                    Permission.storage,
+                    //add more permission to request here.
+                  ].request();
+
+                  if(statuses[Permission.storage]!.isGranted){
+                    var dir = await DownloadsPathProvider.downloadsDirectory;
+                    if(dir != null){ Random random = new Random();
+                    int random_number = random.nextInt(1000000);
+                      String savename = "file.pdf";
+                      String savePath = dir.path + "/e-sign_$random_number.pdf";
+                      print(savePath);
+                      //output:  /storage/emulated/0/Download/banner.png
+
+                      try {
+var downloadProgress;
+                 // _download(response,random_number,savePath);
+                        await Dio().download(
+                            response,
+                            savePath,
+                            onReceiveProgress: (received, total) {
+                              if (total != -1) {
+                                downloadProgress=(received / total * 100).toStringAsFixed(0) + "%";
+                                print("asdasd"+
+                                    downloadProgress
+                                );
+
+                                //you can build progressbar feature too
+                                if((received / total * 100).toStringAsFixed(0) + "%"=="100"){
+
+                                }
+
+                              }
+                            });
+                        ShowCustomSnackBar().SuccessSnackBar("File is saved to download folder.");
+                        print("File is saved to download folder.");
+                      } on DioError catch (e) {
+                        ShowCustomSnackBar().ErrorSnackBar(e.toString());
+                      }
+                    }
+                  }else{
+                    print("No permission to read and write.");
+                  }
+
+
                   Fluttertoast.showToast(msg: "Downloading Started");
                  // downloadPdf(response);
                   // await HelperFunctions.saveuserkyccompleted(true);

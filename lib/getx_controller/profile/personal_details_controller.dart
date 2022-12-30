@@ -27,7 +27,7 @@ class PersonalDetailsController extends GetxController {
   RxInt activateFutureInt = 0.obs;
   RxInt selectedIndex = 0.obs;
   RxBool barLine = true.obs;
-  RxBool tabVisible = false.obs;
+  RxBool tabVisible = true.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;

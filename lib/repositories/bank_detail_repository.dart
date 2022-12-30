@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logging/logging.dart';
 import 'package:trust_money/model/get_bank_detail_response_data.dart';
@@ -34,12 +35,13 @@ class BankDetailRepository {
     var token = await HelperFunctions.getToken();
     var response = await TrustKycDioClient(token)
         .post(endpoint: TrustKycUrl.bankDetail, body: dataq);
-    logger.info("bankDetailResponse: ${response.data}");
     print("============2332 ${response.statusCode}");
+    debugPrint("bankDetailResponse: ${response.data}");
+
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
       Fluttertoast.showToast(
-          msg: 'bank details added successfully');
+          msg: 'Bank details added successfully');
     }else if(response.statusCode == 400){
       Fluttertoast.showToast(
           msg: 'Invalid IFSC code, Please enter valid IFSC code', timeInSecForIosWeb: 3);

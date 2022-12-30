@@ -456,7 +456,7 @@ class BuyNonIpoBonds extends GetxController{
     InvestmentCalculatorController _investmentCalculator =
         Get.put(InvestmentCalculatorController());
     _investmentCalculator.getInvestmentCalculatorData(
-        _bondDetails.message.bondDetails.bondIsinNumber,
+        _bondDetails.bondIsinNumber,
         _investmentCalculator.bondNoValue.value,false);
 
     fn();
@@ -642,8 +642,7 @@ class BuyNonIpoBonds extends GetxController{
                                     onTap: () =>
                                         _investmentCalculator.updateBondNumber(
                                             "Sub",
-                                            _bondDetails.message.bondDetails
-                                                .bondIsinNumber),
+                                            _bondDetails.bondIsinNumber),
                                     child: AbsorbPointer(
                                       child: Container(
                                         height: 45,
@@ -706,8 +705,7 @@ class BuyNonIpoBonds extends GetxController{
                                     onTap: () =>
                                         _investmentCalculator.updateBondNumber(
                                             "Add",
-                                            _bondDetails.message.bondDetails
-                                                .bondIsinNumber),
+                                            _bondDetails .bondIsinNumber),
                                     child: Container(
                                       height: 45,
                                       width: 37,
@@ -923,7 +921,7 @@ class BuyNonIpoBonds extends GetxController{
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => BuyIPOBond(
-                                      isNonIPO: _bondDetails.message.bondDetails.bondType == 3 || _bondDetails.message.bondDetails.bondType==2,
+                                      isNonIPO: _bondDetails.bondType == 3 || _bondDetails.bondType==2,
                                     ))):
                             Navigator.push(context, MaterialPageRoute(builder: (context) => PayIPO()))):
                             ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container()),

@@ -93,12 +93,16 @@ class _BankAccountsState extends State<BankAccounts> {
           bankAccountNo.text.toString(),
           savingIndex,
           jointIndex);
+
+      debugPrint("yhaaaa"+addBankDetailModel.toString());
       if (addBankDetailModel != null) {
         Get.back();
         widget.onClick!();
       } else {
         BankBottomSheet().uploadCancelledChequeBottomSheet(context, inCheckCancelled);
       }
+
+
     }
   }
 

@@ -9,7 +9,7 @@ import '../../../../utils/images.dart';
 import '../../../Congratulations/alert_dialog.dart';
 
 class ConstWidget {
-  static keyPoints(BuildContext context,AllBondListOfIpoByBondId _bondDetails) {
+  static keyPoints(BuildContext context,BondDetails _bondDetails) {
     return Column(
       children: [
         Container(
@@ -235,7 +235,7 @@ class ConstWidget {
     );
   }
 
-  static tableWidget(AllBondListOfIpoByBondId _bondDetails) {
+  static tableWidget(BondDetails _bondDetails) {
     return Container(
         color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 2),
@@ -439,7 +439,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                       (_bondDetails.message.bondDetails.bondCouponRate!=null)?"${_bondDetails.message.bondDetails.bondCouponRate}":"N/A",
+                       (_bondDetails.bondCouponRate!=null)?"${_bondDetails.bondCouponRate}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -506,7 +506,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-    (_bondDetails.message.bondDetails.bondFaceValue!=null)?"${_bondDetails.message.bondDetails.bondFaceValue}":"N/A",
+    (_bondDetails.bondFaceValue!=null)?"${_bondDetails.bondFaceValue}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -535,7 +535,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-    (_bondDetails.message.bondDetails.bondIssueSize!=null)?"${_bondDetails.message.bondDetails.bondIssueSize}":"N/A",
+    (_bondDetails.bondIssueSize!=null)?"${_bondDetails.bondIssueSize}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -576,7 +576,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                        (_bondDetails.message.bondDetails.bondInterestFrequency!=null)? "${_bondDetails.message.bondDetails.bondInterestFrequency}":"N/A",
+                        (_bondDetails.bondInterestFrequency!=null)? "${_bondDetails.bondInterestFrequency}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -605,7 +605,7 @@ class ConstWidget {
                         height: 8,
                       ),
                       Text(
-                      (_bondDetails.message.bondDetails.bondMaturityDate!=null)?"${_bondDetails.message.bondDetails.bondMaturityDate}":"N/A",
+                      (_bondDetails.bondMaturityDate!=null)?"${_bondDetails.bondMaturityDate}":"N/A",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
