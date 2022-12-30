@@ -41,12 +41,17 @@ DMIbnd8ObHwRGPj2JbDbTp5zIDzpX0ju/SOSuDufxBVVJI6FxuKBXMbcZAi8W2XL9vY=</X509Certif
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("================ yu3truwertg ${widget.response}");
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Html(
-          data: widget.response,
-          tagsList: Html.tags..addAll(["bird", "flutter"])),
+            data: widget.response,
+            shrinkWrap: true,
+            tagsList: Html.tags..addAll(["Trust KYC", "flutter"])),
+        // child: Html(
+        //   data: widget.response,
+        //   tagsList: Html.tags..addAll(["bird", "flutter"])),
       ),
     );
   }

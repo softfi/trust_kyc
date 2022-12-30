@@ -24,6 +24,8 @@ class AddNomineeController extends GetxController {
   Rxn<String>  relationshipID=Rxn() ;
   RxBool isAddressAdd = false.obs;
   Rxn<String> mrsValue = Rxn();
+  RxBool addNominee = false.obs;
+  RxInt addNomineeInt = 0.obs;
   RxList<NomineeIdentyModel> nomineeIdentifiactionList=List<NomineeIdentyModel>.empty(growable: true).obs;
   Rxn<String>  selectedNomineeIndentitiy=Rxn();
   Rx<TextEditingController> nominneeIdProof = TextEditingController().obs;
@@ -95,7 +97,7 @@ getCity()async{
     }
 }
 
-addNomineeDetail()async{
+addNomineeDetail(void Function()? onClick1)async{
     if(mrsValue.value.toString()==null){
       ShowCustomSnackBar().ErrorSnackBar("Select title first");
     }else if(fullNomineeName.value.text.isEmpty){

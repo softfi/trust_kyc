@@ -38,7 +38,7 @@ class DematDetailRepository {
     //return AllDematAccountModel.fromJson(data);
   }
 
-  Future<AddDematDetailModel> addNewDematAccount({
+addNewDematAccount1({
     required int check_box_account_statement_electronic,
     required int USAcitizen,
     required int taxResidency,
@@ -58,21 +58,21 @@ class DematDetailRepository {
     dataq["dp_resident_india"] = taxResidency;
     dataq["dp_resident_usa"] = USAcitizen;
     dataq["check_box_terms_selected"] = check_box_terms_selected;
-    dataq["check_box_account_statement_electronic"] =
-        check_box_account_statement_electronic;
+    dataq["check_box_account_statement_electronic"] = check_box_account_statement_electronic;
     dataq["demat_signature_image"] = signatureImage;
     dataq["born_place"] = Bornregion;
     dataq["primary_source"] = wealth;
-    print("=================45363 $dataq");
-    await NetworkUtility.checkNetworkStatus();
+    // await NetworkUtility.checkNetworkStatus();
     var token = await HelperFunctions.getToken();
-    var response = await TrustKycDioClient(token)
-        .post(endpoint: TrustKycUrl.dematDetail, body: dataq);
-    var data = NetworkUtility.responseHandler(response);
+    var response = await TrustKycDioClient(token).post(endpoint: TrustKycUrl.dematDetail, body: dataq);
+    // var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 201) {
-      ShowCustomSnackBar().SuccessSnackBar("Demat account added successfully");
+      AddDematDetailModel model = AddDematDetailModel.fromJson(response.data);
+      return model;
+    }else{
+      debugPrint("dp_resident_indiaelse ${response.data["errors"]}");
+      ShowCustomSnackBar().ErrorSnackBar(response.data["errors"]);
     }
-    return AddDematDetailModel.fromJson(data);
 
   }
 

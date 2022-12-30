@@ -74,10 +74,10 @@ class APiProvider extends GetConnect {
       "smart_card_PIN": "",
       "gender": _kRAController.isGenderSelect.value ?? 0,
       "married_status": _kRAController.isMaritalSelect.value ?? 0,
-      "mothers_maiden_name": "",
+      "mothers_maiden_name": _kRAController.maidenName.value.text ?? "",
       "annual_income": _kRAController.isEnComeSelect.value ?? 0,
       "trading_experience": _kRAController.isExperienceSelect.value ?? 0,
-      "occupation": "",
+      "occupation": _kRAController.professionId.value ?? 0,
       "lifestyle": "",
       "geogriphical_code": "",
       "education_degree": "",
@@ -457,7 +457,7 @@ class APiProvider extends GetConnect {
     }
   }
 
-  uploadImage(File signatureImage, String bornID, String wealthID) async {
+/*  uploadImage(File signatureImage, String bornID, String wealthID) async {
     var token = await HelperFunctions.getToken();
     debugPrint("=============$signatureImage");
     debugPrint(
@@ -491,32 +491,45 @@ class APiProvider extends GetConnect {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }
+  */
 
-  addDematAccount(String url, String bornID, String wealthID) async {
-    DematController _dematController = Get.put(DematController());
+  addNewDematAcount({
+    required int check_box_account_statement_electronic,
+    required int USAcitizen,
+    required int taxResidency,
+    required int check_box_terms_selected,
+    required String wealth,
+    required String Bornregion,
+  }) async {
+    final signatureImage = await HelperFunctions.getSignatureImage();
     var token = await HelperFunctions.getToken();
     var body = {
-      "dp_resident_india": _dematController.Country_Residency.value,
-      "dp_resident_usa": _dematController.citizen_OfThe_USA.value,
-      "check_box_terms_selected": _dematController.aceeptTerm.value,
-      "check_box_account_statement_electronic": _dematController.isAware.value,
-      "demat_signature_image": url,
-      "born_place": bornID,
-      "primary_source": wealthID
+      "dp_resident_india": taxResidency,
+      "dp_resident_usa": USAcitizen,
+      "check_box_terms_selected": check_box_terms_selected,
+      "check_box_account_statement_electronic": check_box_account_statement_electronic,
+      "demat_signature_image": signatureImage,
+      "born_place": wealth,
+      "primary_source": Bornregion
     };
-    print("body- ${jsonEncode(body)}");
+    debugPrint("dp_resident_usa $body");
     try {
       var response = await post(
-          TrustKycUrl.baseUrl + TrustKycUrl.dematDetail, jsonEncode(body),
+          TrustKycUrl.baseUrl + TrustKycUrl.dematDetail, body,
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': token,
           });
+      debugPrint("dp_resident_india ${response.statusCode}");
       if (response.statusCode == 201) {
         return response.body["message"];
+      }else{
+        debugPrint("dp_resident_indiaelse ${response.body["errors"]}");
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
       }
     } catch (e) {
+      debugPrint("dp_resident_indiacatch ${e.toString()}");
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
   }

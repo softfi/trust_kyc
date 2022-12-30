@@ -5,6 +5,7 @@ import 'package:trust_money/repositories/demat_repository.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
 import '../../../api/apiClient.dart';
+import '../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../utils/sharedPreference.dart';
 import 'e_sign.dart';
 
@@ -17,6 +18,8 @@ class ESignPDF extends StatefulWidget {
 
 class _ESignPDFState extends State<ESignPDF> {
   bool isSignInDemat = true;
+  final PersonalDetailsController _personalDetailsController =
+  Get.put(PersonalDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -79,15 +82,15 @@ class _ESignPDFState extends State<ESignPDF> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _space,
-                    Text(
-                      "Hey, Jairaj Let's E-Sign Your Application",
+                    Obx(() => Text(
+                      "Hey, ${_personalDetailsController.modaltest.value!.panName ?? ""} Let's E-Sign Your Application",
                       style: GoogleFonts.quicksand(
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
                             fontWeight: FontWeight.w500,
                             fontSize: 20),
                       ),
-                    ),
+                    )),
                     _space1,
                     _space1,
                     Text(
@@ -205,7 +208,7 @@ class _ESignPDFState extends State<ESignPDF> {
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: Color(0xff22263D),
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             fontSize: 18),
                       ),
                     ),

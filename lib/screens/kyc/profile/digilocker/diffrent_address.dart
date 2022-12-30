@@ -51,8 +51,7 @@ class DifferentAddress extends StatelessWidget {
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      var a = _addNomineeController
-                          .nomineeIdentifiactionList.value
+                      var a = _addNomineeController.nomineeIdentifiactionList.value
                           .where((element) {
                         if (element.addressProof == newValue.toString()) {
                           _kraController.selectedNomonneeIdentificationId

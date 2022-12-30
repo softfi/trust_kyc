@@ -5,17 +5,18 @@ import '../../api/apiClient.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 
 class DematController extends GetxController {
-  RxString imageURL = "".obs;
-  RxBool citizen_OfThe_USA = false.obs;
-  RxInt citizen_OfThe_USAInt = 0.obs;
-  RxBool Country_Residency = true.obs;
-  RxInt Country_ResidencyInt = 0.obs;
-  RxBool isMandatory = true.obs;
-  RxBool isAware = false.obs;
-  RxInt isAwareInt = 0.obs;
-  RxBool aceeptTerm = false.obs;
-  RxInt aceeptTermInt = 0.obs;
-  RxBool awareButtonClick = false.obs;
+  // RxString imageURL = "".obs;
+  // RxBool citizen_OfThe_USA = false.obs;
+  // RxInt citizen_OfThe_USAInt = 0.obs;
+  // RxBool Country_Residency = true.obs;
+  // RxInt Country_ResidencyInt = 0.obs;
+  // RxBool isMandatory = true.obs;
+  // RxBool isAware = false.obs;
+  // RxInt isAwareInt = 0.obs;
+  // RxBool aceeptTerm = false.obs;
+  // RxInt aceeptTermInt = 0.obs;
+  // RxBool awareButtonClick = false.obs;
+/*
 
   void checkValidation(File signatureImage, String bornID,String wealthID) {
     if (signatureImage != null) {
@@ -36,6 +37,7 @@ class DematController extends GetxController {
     }
     ShowCustomSnackBar().SuccessSnackBar(response.toString());
   }
+*/
 
 // void addNewDematAccount() async {
 //   var response = await APiProvider().addDematAccount(

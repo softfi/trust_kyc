@@ -162,7 +162,6 @@ class ShowAdhaarDetails extends StatelessWidget {
               _space,
               InkWell(
                 onTap: () {
-
                   _personalDetailsController.updateData().then((val){
                     debugPrint("donedone done doen");
                     isButtonClick.value = true;

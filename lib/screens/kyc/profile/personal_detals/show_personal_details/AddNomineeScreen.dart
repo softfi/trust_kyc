@@ -528,7 +528,7 @@ class AddNominee extends StatelessWidget {
         _space,
          InkWell(
           onTap: () {
-            _addNomineeController.addNomineeDetail();
+            _addNomineeController.addNomineeDetail(() => null,);
             // if (_kRAController.maidenName.text != "") {
             //   //isButtonClick.value = true;
             //
@@ -577,7 +577,7 @@ class AddNominee extends StatelessWidget {
     );
   }
 
-Widget addNomineeAddressWidget(){
+  Widget addNomineeAddressWidget(){
     return Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppText(

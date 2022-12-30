@@ -13,6 +13,7 @@ import 'package:trust_money/screens/kyc/demat_screen/demat_bottom_sheets.dart';
 import 'package:trust_money/screens/kyc/demat_screen/e_sign_pdf.dart';
 import 'package:trust_money/screens/kyc/demat_screen/mendatory_question.dart';
 import 'package:trust_money/screens/kyc/demat_screen/nominee.dart';
+import 'package:trust_money/screens/kyc/profile/my_profile.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
@@ -64,7 +65,7 @@ class _DematAccountState extends State<DematAccount> {
     debugPrint(response.toString());
     if (response != null) {
       alldematList = response;
-      setState((){
+      setState(() {
         addNewDematAccounts = false;
         dematDetails = true;
       });
@@ -84,21 +85,21 @@ class _DematAccountState extends State<DematAccount> {
       Fluttertoast.showToast(msg: "Enter Your DP Name");
       return;
     } else {
-        var response = await APiProvider().addExistingDemat(
-          nsdlItemsvalueInt,
-          customerID,
-          dp_id.text.toString(),
-          benificiary_id.text.toString(),
-          dp_name.text.toString(),
-        );
-        debugPrint("Nominasdata $response");
-        if (response != null) {
-          setState(() {
-            existingDematAccountDetails = false;
-            formShow = true;
-          });
-         // Get.to(const DematAccountComplete());
-        }
+      var response = await APiProvider().addExistingDemat(
+        nsdlItemsvalueInt,
+        customerID,
+        dp_id.text.toString(),
+        benificiary_id.text.toString(),
+        dp_name.text.toString(),
+      );
+      debugPrint("Nominasdata $response");
+      if (response != null) {
+        setState(() {
+          existingDematAccountDetails = false;
+          formShow = true;
+        });
+        // Get.to(const DematAccountComplete());
+      }
       // final adddematDetailModel = await DematDetailRepository().addExistingDemat(
       //   nsdlItemsvalueInt,
       //   customerID,
@@ -120,6 +121,13 @@ class _DematAccountState extends State<DematAccount> {
   deleteDematAccount(int dematID) async {
     var response = await APiProvider().deletExistingDematAccount(dematID);
     debugPrint("==============89345678 $response");
+    if (response != null) {
+      getDematDetails();
+    }
+  }
+
+  deleteNewDematAccount(int dematID) async {
+    var response = await APiProvider().deletNewDematAccount(dematID);
     if (response != null) {
       getDematDetails();
     }
@@ -156,7 +164,7 @@ class _DematAccountState extends State<DematAccount> {
               )),
           Visibility(
               visible: isAddNominee,
-              child: Nominee(
+              child: DematNomineeDetail(
                 onClick1: () {
                   setState(() {
                     isSignInDemat = true;
@@ -166,12 +174,22 @@ class _DematAccountState extends State<DematAccount> {
                 },
               )),
           Visibility(visible: isSignInDemat, child: const ESignPDF()),
-          Visibility(visible: formShow, child:  FormView(onClick1: () {
-            setState((){
-              isSignInDemat = true;
-              formShow = false;
-            });
-          },)),
+          Visibility(
+              visible: formShow,
+              child: FormView(
+                onClick1: () {
+                  setState(() {
+                    isSignInDemat = true;
+                    formShow = false;
+                  });
+                },
+                onClick: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyProfile()),
+                      (e) => false);
+                },
+              )),
         ],
       ),
     );
@@ -220,6 +238,7 @@ class _DematAccountState extends State<DematAccount> {
                     ),
                     InkWell(
                       onTap: () {
+                        // if(alldematList!.length >3)
                         setState(() {
                           addNewDematAccounts = true;
                           dematDetails = false;
@@ -455,8 +474,8 @@ class _DematAccountState extends State<DematAccount> {
                                                 0.40,
                                         child: Text(
                                           alldematList != null
-                                              ? alldematList!
-                                                  .existDemat[index].beneficiaryId
+                                              ? alldematList!.existDemat[index]
+                                                  .beneficiaryId
                                               : " ",
                                           style: GoogleFonts.sourceSansPro(
                                             textStyle: TextStyle(
@@ -573,7 +592,8 @@ class _DematAccountState extends State<DematAccount> {
                                           .confirmationBottomSheet(onClick: () {
                                         deleteDematAccount(alldematList!
                                                 .existDemat[index]
-                                                .existDematId ?? "");
+                                                .existDematId ??
+                                            "");
                                       });
                                     },
                                     child: Image.asset(
@@ -680,8 +700,7 @@ class _DematAccountState extends State<DematAccount> {
                                                     .width *
                                                 0.30,
                                             child: Text(
-                                              alldematList!.newDemat[index]
-                                                  .primarySource,
+                                              "${alldematList!.newDemat[index].fname} ${alldematList!.newDemat[index].lname}",
                                               style: ConstStyle.sourceSansbname,
                                             ),
                                           ),
@@ -694,12 +713,13 @@ class _DematAccountState extends State<DematAccount> {
                                                       Radius.circular(5)),
                                               color: AppColors.textColor,
                                             ),
-                                            child: const Padding(
+                                            child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 8.0),
                                               child: Center(
                                                   child: Text(
-                                                "NSDL",
+                                                alldematList!
+                                                    .newDemat[index].depository,
                                                 style: TextStyle(
                                                     fontSize: 8,
                                                     fontWeight: FontWeight.w500,
@@ -726,9 +746,14 @@ class _DematAccountState extends State<DematAccount> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.40,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
                                         child: Text(
-                                          alldematList != null ? alldematList!.newDemat[index].dpAccountNumber : " ",
+                                          alldematList != null
+                                              ? alldematList!.newDemat[index]
+                                                  .dpAccountNumber
+                                              : " ",
                                           style: GoogleFonts.sourceSansPro(
                                             textStyle: const TextStyle(
                                               color: Color(0xff22263D),
@@ -827,10 +852,12 @@ class _DematAccountState extends State<DematAccount> {
                                   ),
                                   InkWell(
                                     onTap: () async {
-                                      var response = await APiProvider().deletNewDematAccount(alldematList!.newDemat[index].newDematId ?? "");
-                                      if (response != null) {
-                                        getDematDetails();
-                                      }
+                                      DematBottomSheet()
+                                          .confirmationBottomSheet(onClick: () {
+                                        deleteNewDematAccount(alldematList!
+                                                .newDemat[index].newDematId ??
+                                            "");
+                                      });
                                     },
                                     child: Image.asset(
                                       "assets/images/delete.png",
@@ -890,15 +917,15 @@ class _DematAccountState extends State<DematAccount> {
               const SizedBox(
                 height: 10,
               ),
-             Obx(() =>  Text(
-                "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""}, Enter Your Demat Account Information",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18),
-                ),
-              )),
+              Obx(() => Text(
+                    "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""}, Enter Your Demat Account Information",
+                    style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18),
+                    ),
+                  )),
               _space,
               _space,
               InkWell(
@@ -1007,15 +1034,15 @@ class _DematAccountState extends State<DematAccount> {
               const SizedBox(
                 height: 10,
               ),
-             Obx(() =>  Text(
-                "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""} Enter Your Demat Account Information",
-                style: GoogleFonts.quicksand(
-                  textStyle: const TextStyle(
-                      color: Color(0xff22263D),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18),
-                ),
-              )),
+              Obx(() => Text(
+                    "Hey ${_personalDetailsController.modaltest.value != null ? _personalDetailsController.modaltest.value!.panName : ""} Enter Your Demat Account Information",
+                    style: GoogleFonts.quicksand(
+                      textStyle: const TextStyle(
+                          color: Color(0xff22263D),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18),
+                    ),
+                  )),
               const SizedBox(
                 height: 10,
               ),

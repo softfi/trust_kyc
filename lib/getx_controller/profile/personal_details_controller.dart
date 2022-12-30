@@ -28,6 +28,8 @@ class PersonalDetailsController extends GetxController {
   RxInt selectedIndex = 0.obs;
   RxBool barLine = true.obs;
   RxBool tabVisible = false.obs;
+  RxBool userIsLoggedIn = false.obs;
+  RxBool isKYCPending = true.obs;
   var nomineeDetails = Rxn<NomineeDetailModel>();
   var tabController = Rxn<TabController>();
   Rx<TextEditingController> firstName = TextEditingController().obs;
@@ -36,8 +38,6 @@ class PersonalDetailsController extends GetxController {
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
   var modaltest = Rxn<GetPersonalDetailModel>();
-
-  //GetPersonalDetailModel? modaltest;
   var barStatusModel = Rxn<StatusBarModel>();
 
   @override
@@ -49,10 +49,14 @@ class PersonalDetailsController extends GetxController {
   }
 
   getKycStatus() async {
+    await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
+      userIsLoggedIn.value = value!;
+    });
     var isKyc = await HelperFunctions.getUserKycCompleted();
     if (isKyc == true) {
       tabVisible.value = true;
       barLine.value = false;
+      isKYCPending.value = false;
     }
   }
 

@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,25 +13,9 @@ import '../../../../../utils/sharedPreference.dart';
 import '../../../../../utils/styles.dart';
 
 class FormView extends StatelessWidget {
-  FormView({Key? key, required this.onClick1}) : super(key: key);
+  FormView({Key? key, required this.onClick,required this.onClick1}) : super(key: key);
+  final void Function()? onClick;
   final void Function()? onClick1;
-
-  void _download(String url,int randomPortName) async {
-    final status = await Permission.storage.request();
-
-    if(status.isGranted) {
-      final externalDir = await getExternalStorageDirectory();
-      final id = await FlutterDownloader.enqueue(fileName: "$randomPortName",
-        url: url,
-        savedDir: externalDir!.path,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
-    } else {
-      print('Permission Denied');
-    }
-  }
-
 
   Widget build(BuildContext context) {
     return Padding(
@@ -78,13 +60,43 @@ class FormView extends StatelessWidget {
             InkWell(
               onTap: () async {
                 var response = await APiProvider().downloadPDF();
+                await HelperFunctions.saveuserkyccompleted(true);
                 if (response != null) {
-                  Random random = new Random();
-                  int random_number = random.nextInt(1000000);
-                  _download(response,random_number);
-                  Fluttertoast.showToast(msg: "Downloading Started");
-                  await HelperFunctions.saveuserkyccompleted(true);
-                  Get.back();
+                  Map<Permission, PermissionStatus> statuses = await [
+                    Permission.storage,
+                  ].request();
+                  if (statuses[Permission.storage]!.isGranted) {
+                    var dir = await DownloadsPathProvider.downloadsDirectory;
+                    if (dir != null) {
+                      Random random = new Random();
+                      int random_number = random.nextInt(1000000);
+                      String savePath = dir.path + "/e-sign_$random_number.pdf";
+                      print(savePath);
+                      try {
+                        var downloadProgress;
+                        await Dio().download(response, savePath,
+                            onReceiveProgress: (received, total) {
+                          if (total != -1) {
+                            downloadProgress =
+                                (received / total * 100).toStringAsFixed(0) + "%";
+                            if ((received / total * 100).toStringAsFixed(0) +
+                                    "%" ==
+                                "100") {}
+                          }
+                        });
+                        ShowCustomSnackBar().SuccessSnackBar(
+                            "File is saved to download folder e-sign_$random_number.pdf");
+                        Get.back();
+                      } on DioError catch (e) {
+                        ShowCustomSnackBar().ErrorSnackBar(e.toString());
+                      }
+                    }
+                  } else {
+                    ShowCustomSnackBar()
+                        .ErrorSnackBar("No permission to read and write.");
+                  }
+                   ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
+                  onClick!();
                 }
               },
               child: Container(
@@ -116,7 +128,7 @@ class FormView extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-               onClick1!();
+                onClick1!();
               },
               child: Container(
                 height: 45,

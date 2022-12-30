@@ -25,6 +25,8 @@ class AddNomineeController extends GetxController {
   Rxn<String>  relationshipID=Rxn() ;
   RxBool isAddressAdd = false.obs;
   Rxn<String> mrsValue = Rxn();
+  RxBool addNominee = false.obs;
+  RxInt addNomineeInt = 0.obs;
   RxList<NomineeIdentyModel> nomineeIdentifiactionList=List<NomineeIdentyModel>.empty(growable: true).obs;
   Rxn<String>  selectedNomineeIndentitiy=Rxn();
   Rx<TextEditingController> nominneeIdProof = TextEditingController().obs;
@@ -36,7 +38,7 @@ class AddNomineeController extends GetxController {
   RxString Relationshipwithapplication = "".obs;
   Rx<DateTime> currentStartDate =
       DateTime.now().subtract(const Duration(days: 6574)).obs;
-  RxString dob = "Select DOB".obs;
+  RxString dob = "DD-MM-YYYY".obs;
 RxList<GetStateModel>  stateList=List<GetStateModel>.empty(growable:true).obs;
 RxList<GetCityModel>  cityList=List<GetCityModel>.empty(growable:true).obs;
 Rxn SelectedState=Rxn();
@@ -97,7 +99,7 @@ getCity()async{
     }
 }
 
-addNomineeDetail()async{
+addNomineeDetail(void Function()? onClick1)async{
     if(mrsValue.value.toString()==null){
       ShowCustomSnackBar().ErrorSnackBar("Select title first");
     }else if(fullNomineeName.value.text.isEmpty){
@@ -110,13 +112,13 @@ addNomineeDetail()async{
       ShowCustomSnackBar().ErrorSnackBar("Enter identity number first");
     }else if(nominneeMobileNumber.value ==null){
       ShowCustomSnackBar().ErrorSnackBar("Enter mobile number  first");
-    }else if(dob.value =="Select DOB"){
+    }else if(dob.value =="DD-MM-YYYY"){
       ShowCustomSnackBar().ErrorSnackBar("Select dob first");
     }else {
       Get.dialog(Center(child: CircularProgressIndicator(),));
       var response=await APiProvider().updateNomineeDetail();
       if(response !=null){
-        Get.back();
+        onClick1!();
         Get.back();
         AddNomineeModel modla=response;
         ShowCustomSnackBar().SuccessSnackBar(modla.message.toString());
