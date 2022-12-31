@@ -76,6 +76,7 @@ class TrustKycUrl {
   //bond
   static const bondList = "${baseUrl}api/v1/bonds_list";
   static const specificBondsList = "${baseUrl}/api/v1/specific_bond_details";
+   static const goldBondDetails = "${baseUrl}/api/v1/specific_sgb_details";
   static const inestmentCalculator = "${baseUrl}/api/v1/investment_calculator";
    static const specificBondsListByIdForIPO="${baseUrl}/api/v1/ipo";
 }

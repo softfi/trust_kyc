@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import '../model/bond/gold_bond.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -405,6 +405,22 @@ class APiProvider extends GetConnect {
     }
   }
 
+
+
+  getGoldBondDetail(String isisnNo) async {
+    debugPrint("GetBondDetails====>"+isisnNo);
+    var response = await http.get(
+        Uri.parse("${TrustKycUrl.goldBondDetails}?bond_isin_number=$isisnNo"));
+    debugPrint("GetBondDetails====>"+response.body);
+    debugPrint("GetBondDetails====>"+response.statusCode.toString());
+
+
+    if (response.statusCode == 200) {
+      GoldBondDetails modal = GoldBondDetails.fromJson(jsonDecode(response.body));
+      return modal;
+    }
+
+  }
   getBondDetails(String isisnNo) async {
     debugPrint("GetBondDetails====>"+isisnNo);
       var response = await http.get(

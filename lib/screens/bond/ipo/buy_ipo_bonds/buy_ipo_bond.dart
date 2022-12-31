@@ -21,7 +21,7 @@ class BuyIPOBond extends StatelessWidget {
   BuyIPOBond({Key? key, required this.isNonIPO}) : super(key: key);
   bool isNonIPO;
   RxBool isChecked1 = false.obs;
-  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
+  ReadMoreBondDetails _readMoreBond = Get.put(ReadMoreBondDetails());
 
   @override
   Widget build(BuildContext context) {
@@ -57,81 +57,81 @@ class BuyIPOBond extends StatelessWidget {
             Visibility(
               child: isNonIPO
                   ? Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 12),
-                      child: BuyNonIpoBonds.nonIPOInvestCalculator(
-                          true,
-                          context,
-                          _readMoreBond.allBondListOfIpoByBondId.value!,false),
-                    )
+                padding:  EdgeInsets.symmetric(horizontal: 12),
+                child: BuyNonIpoBonds.nonIPOInvestCalculator(
+                    true,
+                    context,
+                    _readMoreBond.allBondListOfIpoByBondId.value!,false),
+              )
                   : Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Container(
+                        color: const Color(0xffE3D9D9).withOpacity(0.65),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CategoryTable(),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: IPOsInvestor(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: NCDsSeries(isShow: false),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 12),
+                    color: Color(0xff00C6D8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Container(
-                              color: const Color(0xffE3D9D9).withOpacity(0.65),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: CategoryTable(),
-                              )),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: IPOsInvestor(),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: NCDsSeries(isShow: false),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 12),
-                          color: Color(0xff00C6D8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Grand Total (₹) ",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                  Text(
-                                    "( A+B+C+D+E+F)",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12),
-                                    ),
-                                  ),
-                                ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Grand Total (₹) ",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
-                              Text(
-                                "2,00,000",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
+                            ),
+                            Text(
+                              "( A+B+C+D+E+F)",
+                              style: GoogleFonts.quicksand(
+                                textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
                               ),
-                            ],
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "2,00,000",
+                          style: GoogleFonts.quicksand(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                       ],
                     ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -218,16 +218,16 @@ class BuyIPOBond extends StatelessWidget {
                   ),
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text("Continue to Buy",
-                        style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                            color: Color(0xffFfffff),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                          ),
-                        )),
-                  )),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Text("Continue to Buy",
+                            style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                color: Color(0xffFfffff),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                              ),
+                            )),
+                      )),
                 ),
               ),
             ),
@@ -267,13 +267,13 @@ class BuyIPOBond extends StatelessWidget {
                   width: 60,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
                   child: (_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo ==
-                          null)
+                      null)
                       ? Image.asset(ConstantImage.orderImg)
                       : Image.network(
-                          _readMoreBond.allBondListOfIpoByBondId.value!.bondLogo,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Image.asset(ConstantImage.orderImg),
-                        ),
+                    _readMoreBond.allBondListOfIpoByBondId.value!.bondLogo,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Image.asset(ConstantImage.orderImg),
+                  ),
                 ),
                 const SizedBox(
                   width: 13,
@@ -305,27 +305,27 @@ class BuyIPOBond extends StatelessWidget {
               children: [
                 isNonIPO
                     ? Container(
-                        height: 35,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(12)),
-                            color: AppColors.greenColor),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Center(
-                            child: Text(
-                              "Returns Based On Gold Prices",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(12)),
+                      color: AppColors.greenColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Center(
+                      child: Text(
+                        "Returns Based On Gold Prices",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
                           ),
                         ),
-                      )
+                      ),
+                    ),
+                  ),
+                )
                     : Container(),
                 const SizedBox(
                   width: 10,
@@ -334,7 +334,7 @@ class BuyIPOBond extends StatelessWidget {
                   height: 35,
                   decoration: const BoxDecoration(
                       borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(12)),
+                      BorderRadius.only(bottomRight: Radius.circular(12)),
                       color: AppColors.greyColor),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -351,7 +351,7 @@ class BuyIPOBond extends StatelessWidget {
                                     color: Color(0xffFF405A))),
                             TextSpan(
                                 text:
-                                    "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}",
+                                "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}",
                                 style: TextStyle(
                                     fontSize: 10,
                                     fontStyle: FontStyle.normal,

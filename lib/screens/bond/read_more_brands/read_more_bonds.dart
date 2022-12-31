@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/bottom_sheets/bottom_sheet.dart';
@@ -8,8 +9,10 @@ import 'package:trust_money/screens/bond/ipo/buy_ipo_bonds/nonipo_buy_bonds.dart
 import 'package:trust_money/screens/bond/tringle.dart';
 import 'dart:math' as math;
 import '../../../getx_controller/bond/read_more_bond_controller.dart';
+import '../../../getx_controller/profile/personal_details_controller.dart';
 import '../../../utils/app_bar.dart';
 import '../../../utils/colorsConstant.dart';
+import '../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../utils/images.dart';
 import '../../../utils/sharedPreference.dart';
 import '../../home/custom_listtile.dart';
@@ -40,9 +43,12 @@ class _ReadMoreBondsState extends State<ReadMoreBonds> {
     "It is rated A- by IND with STABLE outlook.",
   ];
 
+  final PersonalDetailsController _personalDetailsController =
+  Get.find<PersonalDetailsController>();
+
   bool userIsLoggedIn = false;
-  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
-RxInt a=1.obs;
+  ReadMoreBondDetails _readMoreBond = Get.put(ReadMoreBondDetails());
+  RxInt a=1.obs;
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
       setState(() {
@@ -61,7 +67,8 @@ RxInt a=1.obs;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>((_readMoreBond.allBondListOfIpoByBondId.value !=null))?Scaffold(
+    return Obx(()=>((_readMoreBond.allBondListOfIpoByBondId.value !=null))?
+    Scaffold(
         backgroundColor: Colors.white,
         appBar: AppToolbar.appBar(
             "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIssuerName??""}",
@@ -75,52 +82,52 @@ RxInt a=1.obs;
         body:
         Obx((){
           return (_readMoreBond.allBondListOfIpoByBondId.value !=null)?SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Color(0x29000000),
-                                      blurRadius: 5.0,
-                                    ),
-                                  ],
-                                  color: Colors.white),
-                              child: readBondWidget()),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: keyHighlightWidget() //investment(),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x29000000),
+                              blurRadius: 5.0,
                             ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0),
-                          child: CommonWidget.issuer(context),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CommonWidget.invest(),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CommonWidget.subscribe(),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CommonWidget.needHelp(),
-                      ],
-                    ),
-                  ):Center(child: CircularProgressIndicator());
+                          ],
+                          color: Colors.white),
+                      child: readBondWidget()),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                    padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: keyHighlightWidget() //investment(),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: CommonWidget.issuer(context),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CommonWidget.invest(),
+                const SizedBox(
+                  height: 30,
+                ),
+                CommonWidget.subscribe(),
+                const SizedBox(
+                  height: 30,
+                ),
+                CommonWidget.needHelp(),
+              ],
+            ),
+          ):Center(child: CircularProgressIndicator());
         })):Center(child: CircularProgressIndicator(),));
   }
 
@@ -151,11 +158,11 @@ RxInt a=1.obs;
                   width: 50,
                   decoration: BoxDecoration(shape: BoxShape.circle),
                   child: (_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo !=
-                          null)
+                      null)
                       ? Image.network(
                       _readMoreBond.allBondListOfIpoByBondId.value!.bondLogo,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Image.asset(ConstantImage.orderImg))
+                      errorBuilder: (context, error, stackTrace) =>
+                          Image.asset(ConstantImage.orderImg))
                       : Image.asset(ConstantImage.orderImg),
                 ),
                 const SizedBox(
@@ -188,73 +195,79 @@ RxInt a=1.obs;
               children: [
                 widget.isIPO == 3 || widget.isIPO==2
                     ? Container(
-                        height: 35,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(12)),
-                            color: AppColors.greenColor),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Center(
-                            child: Text(
-                              "Returns Based On Gold Prices",
-                              style: GoogleFonts.sourceSansPro(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
+                  height: 35,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(12)),
+                      color: AppColors.greenColor),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Center(
+                      child: Text(
+                        "Returns Based On Gold Prices",
+                        style: GoogleFonts.sourceSansPro(
+                          textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
                           ),
                         ),
-                      )
+                      ),
+                    ),
+                  ),
+                )
                     : Container(),
                 const SizedBox(
                   width: 10,
                 ),
-                Container(
-                  height: 35,
-                  decoration: const BoxDecoration(
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(12)),
-                      color: AppColors.greyColor),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                                text: "ISIN: ",
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                    color: Color(0xffFF405A),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 10,
-                                  ),
-                                )),
-                            TextSpan(
-                                text: _readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber,
-                                style: GoogleFonts.sourceSansPro(
-                                  textStyle: const TextStyle(
-                                    color: AppColors.textColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 10,
-                                  ),
-                                )),
-                          ]),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.file_copy,
-                          color: Color(0xffFF405A),
-                          size: 12,
-                        )
-                      ],
+                InkWell(onTap: ()async{
+                  await Clipboard.setData(ClipboardData(text: "${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber}"));
+                  ShowCustomSnackBar().SuccessSnackBar("Copy to clipboard :${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber} ");
+                  debugPrint("Copy to clipboard :${_readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber} ");
+                },
+                  child: Container(
+                    height: 35,
+                    decoration: const BoxDecoration(
+                        borderRadius:
+                        BorderRadius.only(bottomRight: Radius.circular(12)),
+                        color: AppColors.greyColor),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                  text: "ISIN: ",
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: Color(0xffFF405A),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                    ),
+                                  )),
+                              TextSpan(
+                                  text: _readMoreBond.allBondListOfIpoByBondId.value!.bondIsinNumber,
+                                  style: GoogleFonts.sourceSansPro(
+                                    textStyle: const TextStyle(
+                                      color: AppColors.textColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                    ),
+                                  )),
+                            ]),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.file_copy,
+                            color: Color(0xffFF405A),
+                            size: 12,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -446,8 +459,8 @@ RxInt a=1.obs;
           Visibility(
             child: widget.isIPO == 3 || widget.isIPO==2
                 ? ConstWidget.keyPointsConsider(
-                    context,_readMoreBond.allBondListOfIpoByBondId.value!
-                  )
+                context,_readMoreBond.allBondListOfIpoByBondId.value!
+            )
                 : ConstWidget.keyPoints(context,_readMoreBond.allBondListOfIpoByBondId.value!),
           ),     //_readMoreBond.allBondListOfIpoByBondId.value!.bondLogo
           const SizedBox(
@@ -579,11 +592,11 @@ RxInt a=1.obs;
         ),
         InkWell(
           onTap: () {
-            (isKycDone.value)?
+            (_personalDetailsController.modaltest.value?.ekycApplicationStatus ?? "") == "1" ?
             Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => BuyIPOBond(
-                          isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                        ))):
+                builder: (context) => BuyIPOBond(
+                  isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
+                ))):
             ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
           },
           child: Center(
@@ -596,16 +609,16 @@ RxInt a=1.obs;
               ),
               child: Center(
                   child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text("Buy this BOND now!",
-                    style: GoogleFonts.quicksand(
-                      textStyle: const TextStyle(
-                        color: Color(0xffFfffff),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                    )),
-              )),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text("Buy this BOND now!",
+                        style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                            color: Color(0xffFfffff),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        )),
+                  )),
             ),
           ),
         ),
@@ -643,7 +656,7 @@ RxInt a=1.obs;
                 contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
                 dense: true,
                 visualDensity:
-                    const VisualDensity(vertical: -2, horizontal: -4),
+                const VisualDensity(vertical: -2, horizontal: -4),
                 leading: const Icon(
                   Icons.done,
                   size: 20,
@@ -685,12 +698,12 @@ RxInt a=1.obs;
           visible: widget.isIPO == 3 || widget.isIPO==2,
           child: InkWell(
             onTap: () {
-              (isKycDone.value)?Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => BuyIPOBond(
-                            isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
-                          ))):ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
+              (_personalDetailsController.modaltest.value?.ekycApplicationStatus ?? "") == "1" ?
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => BuyIPOBond(
+                    isNonIPO: widget.isIPO == 3 || widget.isIPO==2,
+                  ))):
+              ShowBottomSheet().CommomBottomSheet(context, "Complete your kyc first","",Container());
             },
             child: ViewAllWidget(
               title: 'Buy this BOND now!',
@@ -716,28 +729,28 @@ RxInt a=1.obs;
         ),
         RichText(
             text: TextSpan(children: [
-          TextSpan(
-            text: "Credit Access Grameen Limited ",
-            style: GoogleFonts.sourceSansPro(
-              textStyle: const TextStyle(
-                color: Color(0xff000000),
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-          ),
-          TextSpan(
-              text:
-                  "is a multi-billion dollar, transnational conglomerate. The Group’s activities span three core areas: Investment Banking, International Trading and Global Investments. It also supports charitable and philanthropic activities across the world through the Mahindra & Mahindra Foundation.",
-              style: GoogleFonts.sourceSansPro(
-                textStyle: const TextStyle(
-                  height: 1.1,
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15,
+              TextSpan(
+                text: "Credit Access Grameen Limited ",
+                style: GoogleFonts.sourceSansPro(
+                  textStyle: const TextStyle(
+                    color: Color(0xff000000),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
-              )),
-        ])),
+              ),
+              TextSpan(
+                  text:
+                  "is a multi-billion dollar, transnational conglomerate. The Group’s activities span three core areas: Investment Banking, International Trading and Global Investments. It also supports charitable and philanthropic activities across the world through the Mahindra & Mahindra Foundation.",
+                  style: GoogleFonts.sourceSansPro(
+                    textStyle: const TextStyle(
+                      height: 1.1,
+                      color: AppColors.textColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
+                  )),
+            ])),
       ],
     );
   }
@@ -862,7 +875,7 @@ RxInt a=1.obs;
                             ),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              const EdgeInsets.symmetric(horizontal: 14.0),
                               child: Center(
                                   child: Text("Set Alert",
                                       style: GoogleFonts.sourceSansPro(
@@ -898,7 +911,7 @@ RxInt a=1.obs;
                             ),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              const EdgeInsets.symmetric(horizontal: 14.0),
                               child: Center(
                                   child: Text("Set Alert",
                                       style: GoogleFonts.sourceSansPro(
@@ -1045,7 +1058,7 @@ RxInt a=1.obs;
                             ),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              const EdgeInsets.symmetric(horizontal: 14.0),
                               child: Center(
                                   child: Text("Set Alert",
                                       style: GoogleFonts.sourceSansPro(
@@ -1081,7 +1094,7 @@ RxInt a=1.obs;
                             ),
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 14.0),
+                              const EdgeInsets.symmetric(horizontal: 14.0),
                               child: Center(
                                   child: Text("Set Alert",
                                       style: GoogleFonts.sourceSansPro(

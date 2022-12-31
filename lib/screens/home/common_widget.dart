@@ -14,7 +14,7 @@ import 'custom_listtile.dart';
 class ReadMoreList extends StatelessWidget {
   ReadMoreList({Key? key}) : super(key: key);
   BondListData _bondListData=Get.put(BondListData());
-  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
+  ReadMoreBondDetails _readMoreBond = Get.put(ReadMoreBondDetails());
   List data = [
     ["MAHINDRA & MAHINDRA FINANCIAL", ""],
     ["CREDITACCESS GRAMEEN LIMITED", "IPO"],
@@ -36,7 +36,7 @@ class ReadMoreList extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding:
-                const EdgeInsets.only(right: 4.0, top: 2, bottom: 2, left: 12),
+            const EdgeInsets.only(right: 4.0, top: 2, bottom: 2, left: 12),
             child: Container(
               width: 290,
               decoration: BoxDecoration(boxShadow: const [
@@ -74,11 +74,11 @@ class ReadMoreList extends StatelessWidget {
                                     color: const Color(0xff58C3D5)
                                         .withOpacity(0.35)),
                                 child: Center(
-                                  child: (_bondListData.bondList.value[index].bondLogo!=null)?Image.network(_bondListData.bondList.value[index].bondLogo,errorBuilder: (context, error, stackTrace) => Image.asset(
-                                      ConstantImage.orderImg
-                                  ),):Image.asset(
-                                      ConstantImage.orderImg
-                                  )
+                                    child: (_bondListData.bondList.value[index].bondLogo!=null)?Image.network(_bondListData.bondList.value[index].bondLogo,errorBuilder: (context, error, stackTrace) => Image.asset(
+                                        ConstantImage.orderImg
+                                    ),):Image.asset(
+                                        ConstantImage.orderImg
+                                    )
                                 ),
                               ),
                             ),
@@ -284,7 +284,7 @@ class ReadMoreList extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                               /* // debugPrint("0909999009000090090000090909");
+                                /* // debugPrint("0909999009000090090000090909");
                                 // debugPrint(_bondListData.bondList.value[index].bondIsinNumber);
                                 _readMoreBond.getReadMoreBondDetails(_bondListData.bondList.value[index].bondIsinNumber);
                                 // Navigator.push(
@@ -369,17 +369,17 @@ class ReadMoreList extends StatelessWidget {
                                 ),
                                 child: Center(
                                     child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 35.0, vertical: 12),
-                                  child: Text("Read More",
-                                      style: GoogleFonts.quicksand(
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 12,
-                                        ),
-                                      )),
-                                )),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 35.0, vertical: 12),
+                                      child: Text("Read More",
+                                          style: GoogleFonts.quicksand(
+                                            textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                            ),
+                                          )),
+                                    )),
                               ),
                             ),
                             const SizedBox(
@@ -463,7 +463,7 @@ class SeekhoWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+              const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
               child: Container(
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(

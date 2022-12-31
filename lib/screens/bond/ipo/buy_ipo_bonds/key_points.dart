@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 
+import '../../../../model/bond/gold_bond.dart';
+
 class KeyPoints extends StatelessWidget {
   const KeyPoints({Key? key}) : super(key: key);
 
@@ -441,10 +443,11 @@ class KeyPoints extends StatelessWidget {
 }
 
 class GoldKeyPoints extends StatelessWidget {
-  const GoldKeyPoints({Key? key}) : super(key: key);
-
+  const GoldKeyPoints( this._goldBondDetails, {Key? key}) : super(key: key);
+  final GoldBondDetails? _goldBondDetails;
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Container(
@@ -473,7 +476,7 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "2.5%",
+                        "${_goldBondDetails!.bondCouponAmount??"N/A"}%",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -500,7 +503,7 @@ class GoldKeyPoints extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "10.60%",
+                      "${_goldBondDetails!.bondsYeild??"N/A"}%",
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
                             color: AppColors.textColor,
@@ -540,7 +543,7 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "Mar 08, 2022",
+                        "${_goldBondDetails!.bondAllotmentDate??"N/A"}",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -569,7 +572,7 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "Feb 28-Mar 04, 2022",
+                        "${_goldBondDetails!.bondOpeningDate??"N/A"} - ${_goldBondDetails!.bondClosingDate??"N/A"}",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -610,7 +613,7 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "Sep 07, 2022",
+                        "${_goldBondDetails!.bondsNextInterestPaymentDate??"N/A"}",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -641,7 +644,7 @@ class GoldKeyPoints extends StatelessWidget {
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Semi-Annually",
+                            "${_goldBondDetails!.bondInterestFrequency??"N/A"}",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -649,7 +652,7 @@ class GoldKeyPoints extends StatelessWidget {
                                   fontSize: 15),
                             ),
                           ),
-                          Text(
+                          /*   Text(
                             "Every 6 Months",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
@@ -657,7 +660,7 @@ class GoldKeyPoints extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 10),
                             ),
-                          ),
+                          ),*/
                         ],
                       ),
                     ],
@@ -695,7 +698,7 @@ class GoldKeyPoints extends StatelessWidget {
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Mar 07, 2027 ",
+                            "${_goldBondDetails!.bondMaturityDate??"N/A"}",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -737,7 +740,7 @@ class GoldKeyPoints extends StatelessWidget {
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "4 Kg/4000 units ",
+                            "${_goldBondDetails!.bondPurchaseLimit??"N/A"}KG/${_goldBondDetails!.bondPurchaseLimitMetric??"N/A"} units ",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -789,7 +792,7 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "Government of India  ",
+                        "${_goldBondDetails!.bondIssuerName??"N/A"}",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
                               color: AppColors.textColor,
@@ -818,10 +821,10 @@ class GoldKeyPoints extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "https://www.rbi.org.in",
+                        "${_goldBondDetails!.bondsBannerRcbNoticeLink??"N/A"}",
                         style: GoogleFonts.sourceSansPro(
                           textStyle: const TextStyle(
-                            decoration: TextDecoration.underline,
+                              decoration: TextDecoration.underline,
                               color: AppColors.btnColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 15),
@@ -863,7 +866,7 @@ class GoldKeyPoints extends StatelessWidget {
                             height: 8,
                           ),
                           Text(
-                            "No",
+                            "${_goldBondDetails!.bondGovtGuranatee??"N/A"}",
                             style: GoogleFonts.sourceSansPro(
                               textStyle: const TextStyle(
                                   color: AppColors.textColor,
@@ -895,7 +898,7 @@ class GoldKeyPoints extends StatelessWidget {
                           Column(crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Yes",
+                                "{_goldBondDetails!.bondPurchaseLimit??}",
                                 style: GoogleFonts.sourceSansPro(
                                   textStyle: const TextStyle(
                                       color: AppColors.textColor,

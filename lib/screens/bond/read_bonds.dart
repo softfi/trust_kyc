@@ -29,7 +29,7 @@ class _ReadBondsState extends State<ReadBonds> {
   int tenureIndex = 0;
   int paymentIndex = 0;
   BondListData _bondListData = Get.put(BondListData());
-  ReadMoreBond _readMoreBond = Get.put(ReadMoreBond());
+  ReadMoreBondDetails _readMoreBond = Get.put(ReadMoreBondDetails());
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,11 @@ class _ReadBondsState extends State<ReadBonds> {
             context,
             MaterialPageRoute(
                 builder: (context) => CustomBottomNavigation(
-                      currentIndex: 0,
-                    )));
+                  currentIndex: 0,
+                )));
       },
       child: Scaffold(
-        backgroundColor:Colors.white,
+        backgroundColor: Colors.white,
         appBar: AppToolbar.appBar(
             "EXPLORE BONDS",
             IconButton(
@@ -84,7 +84,7 @@ class _ReadBondsState extends State<ReadBonds> {
             ),
           ], color: Colors.white),
           child: TextFormField(
-            controller:_bondListData.searchController.value ,
+            controller: _bondListData.searchController.value,
             decoration: InputDecoration(
                 fillColor: Colors.white54,
                 filled: true,
@@ -103,8 +103,6 @@ class _ReadBondsState extends State<ReadBonds> {
                 ),
                 suffixIcon: InkWell(
                   onTap: () {
-
-
                     _bondListData.getAllBOndList();
                   },
                   child: Container(
@@ -115,12 +113,12 @@ class _ReadBondsState extends State<ReadBonds> {
                     ),
                     child: Center(
                         child: Text(
-                      "Search",
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle:
+                          "Search",
+                          style: GoogleFonts.sourceSansPro(
+                            textStyle:
                             const TextStyle(color: Colors.white, fontSize: 15),
-                      ),
-                    )),
+                          ),
+                        )),
                   ),
                 )),
           ),
@@ -258,18 +256,20 @@ class _ReadBondsState extends State<ReadBonds> {
                                   height: 50,
                                   width: 50,
                                   child: _bondListData
-                                      .bondList.value[index].bondLogo!=null?Image.network( _bondListData
-                                      .bondList.value[index].bondLogo,
+                                      .bondList.value[index].bondLogo !=
+                                      null
+                                      ? Image.network(
+                                    _bondListData
+                                        .bondList.value[index].bondLogo,
                                     fit: BoxFit.cover,
-
-
-                                    errorBuilder:  (context, error, stackTrace) =>
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
                                         Image.asset(
                                           (ConstantImage.orderImg),
                                           fit: BoxFit.cover,
                                         ),
-
-                                  ):Image.asset(
+                                  )
+                                      : Image.asset(
                                     (ConstantImage.orderImg),
                                     fit: BoxFit.cover,
                                   ),
@@ -290,7 +290,9 @@ class _ReadBondsState extends State<ReadBonds> {
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width / 2,
                                   child: Text(
-                                      _bondListData.bondList.value[index].bondIssuerName??"---",
+                                      _bondListData.bondList.value[index]
+                                          .bondName ??
+                                          "---",
                                       maxLines: 2,
                                       softWrap: true,
                                       style: GoogleFonts.quicksand(
@@ -369,7 +371,11 @@ class _ReadBondsState extends State<ReadBonds> {
                                                 height: 4,
                                               ),
                                               Text(
-                                                _bondListData.bondList.value[index].bondCouponRate??"N/A",
+                                                _bondListData
+                                                    .bondList
+                                                    .value[index]
+                                                    .bondCouponRate ??
+                                                    "N/A",
                                                 style:
                                                 GoogleFonts.sourceSansPro(
                                                   textStyle: const TextStyle(
@@ -477,7 +483,7 @@ class _ReadBondsState extends State<ReadBonds> {
                                               height: 4,
                                             ),
                                             Text(
-                                              "${_bondListData.bondList.value[index].bondMinimumApplication??"N/A"}",
+                                              "${_bondListData.bondList.value[index].bondMinimumApplication ?? "N/A"}",
                                               style: GoogleFonts.sourceSansPro(
                                                 textStyle: const TextStyle(
                                                     color: Color(0xffFF405A),
@@ -528,9 +534,11 @@ class _ReadBondsState extends State<ReadBonds> {
                             ),
                             InkWell(
                               onTap: () {
-                                debugPrint("(_bondListData.bondList.value[index].bondId.toString()"+_bondListData
-                                    .bondList.value[index].bondType
-                                    .toString());
+                                print(
+                                    "(_bondListData.bondList.value[index].bondId.toString()" +
+                                        _bondListData
+                                            .bondList.value[index].bondType
+                                            .toString());
 
                                 if (_bondListData
                                     .bondList.value[index].bondType ==
@@ -539,18 +547,29 @@ class _ReadBondsState extends State<ReadBonds> {
                                       _bondListData.bondList.value[index].bondId
                                           .toString());
                                 } else if (_bondListData
-                                    .bondList.value[index].bondType == 2 || _bondListData.bondList.value[index].bondType == 3) {
+                                    .bondList.value[index].bondType ==
+                                    2 ||
+                                    _bondListData
+                                        .bondList.value[index].bondType ==
+                                        3) {
                                   _readMoreBond.getReadMoreBondDetails(
                                       _bondListData.bondList.value[index]
                                           .bondIsinNumber);
+                                } else {
+                                  _readMoreBond.getGoldBondDetails(_bondListData
+                                      .bondList.value[index].bondIsinNumber);
                                 }
+
+                                /* _readMoreBond.getGoldBondDetails("ISIN987456321");*/
+
                                 /*_readMoreBond.getReadMoreBondDetails(
                                    "INE296A07SD9");*/
 
                                 _bondListData.bondList.value[index]
                                     .bondIsinNumber ==
-                                    "4"
-                                    ? Navigator.push(
+                                    4
+                                    ?
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
@@ -559,15 +578,15 @@ class _ReadBondsState extends State<ReadBonds> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ReadMoreBonds(
-                                          /*isIPO: _bondListData.bondList
-                                                      .value[index].bondType,*/
+
                                           isIPO: _bondListData
                                               .bondList.value[index].bondType,
                                           isinNo: _bondListData
                                               .bondList
                                               .value[index]
                                               .bondIsinNumber,
-                                        )));
+                                        )))
+                                ;
                               },
                               child: Container(
                                 height: 35,
