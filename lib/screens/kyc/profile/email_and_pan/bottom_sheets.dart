@@ -135,32 +135,36 @@ class EmailPANBottomSheet {
                   const SizedBox(
                     height: 40,
                   ),
-                  RichText(
-                    text: TextSpan(children: [
-                      const TextSpan(
-                          text:
-                              "Enter the 4 to 6 digits, One Time Password sent on your Email ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              color: Colors.white)),
-                      TextSpan(
-                          text: "${email_id}  ",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                              color: AppColors.btnColor)),
-                      const WidgetSpan(
-                        child: Image(
-                          image: AssetImage(
-                            ConstantImage.edit,
+                  InkWell(onTap: (){
+                    Get.back();
+                  },
+                    child: RichText(
+                      text: TextSpan(children: [
+                        const TextSpan(
+                            text:
+                                "Enter the 4 to 6 digits, One Time Password sent on your Email ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16,
+                                color: Colors.white)),
+                        TextSpan(
+                            text: "${email_id}  ",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: AppColors.btnColor)),
+                        const WidgetSpan(
+                          child: Image(
+                            image: AssetImage(
+                              ConstantImage.edit,
+                            ),
+                            color: AppColors.btnColor,
+                            height: 20,
+                            width: 20,
                           ),
-                          color: AppColors.btnColor,
-                          height: 20,
-                          width: 20,
                         ),
-                      ),
-                    ]),
+                      ]),
+                    ),
                   ),
                   const SizedBox(
                     height: 30,
