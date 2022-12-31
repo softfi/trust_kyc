@@ -7,7 +7,7 @@ import 'package:trust_money/model/bond/bond_detail_modal_of_ipo_by_bond_id.dart'
 import 'package:trust_money/utils/sharedPreference.dart';
 import '../../../../bottom_sheets/bottom_sheet.dart';
 import '../../../../getx_controller/bond/inestment_calculator_controller.dart';
-import '../../../../model/bond/bond_details_modal.dart';
+
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../pay_ipo.dart';
@@ -970,7 +970,8 @@ class BuyNonIpoBonds extends GetxController{
             )));
   }
 
-  static whatIWillEarn(bool userIsLoggedIn, BuildContext context, BondDetails _bondDetails){
+  static whatIWillEarn(bool userIsLoggedIn, BuildContext context, AllBondListOfIpoByBondId _bondDetails){
+
     RxBool isArrowChange = false.obs;
     RxBool isArrow = false.obs;
    return Obx(() => Container(

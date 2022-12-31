@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:trust_money/model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
 
 import '../../api/apiClient.dart';
-import '../../model/bond/bond_details_modal.dart';
+
 class ReadMoreBond extends GetxController{
- var specificBondDataDetails =Rxn<BondDetails>();
+ //var specificBondDataDetails =Rxn<BondDetails>();
 
 
  var allBondListOfIpoByBondId =Rxn<AllBondListOfIpoByBondId>();
-  RxList<BrokerageDetail> bondCashflowdetails=List<BrokerageDetail>.empty(growable: true).obs;
+ // RxList<BrokerageDetail> bondCashflowdetails=List<BrokerageDetail>.empty(growable: true).obs;
 
 
 

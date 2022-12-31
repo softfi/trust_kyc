@@ -16,7 +16,7 @@ import '../getx_controller/kra/kra_controller.dart';
 import '../getx_controller/profile/add_nominee_controller.dart';
 import '../model/add_nominee_response_data.dart';
 import '../model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
-import '../model/bond/bond_details_modal.dart';
+import '../model/bond/bond_details_modal.docx';
 import '../model/bond/bond_list_modal.dart';
 import '../model/bond/investment_caclulator_modal.dart';
 import '../model/code_verification_response_data.dart';
@@ -358,44 +358,35 @@ class APiProvider extends GetConnect {
     }
   }
 
-  bondList(String search) async {
-
+  bondList(String searchText) async {
     try {
-
-
       var response =
-          await http.get(Uri.parse("${TrustKycUrl.bondList}?page_number=1"));
-
-
-      debugPrint("bondbond"+response.body.toString());
+          await get("${TrustKycUrl.bondList}?page_number=1&limit=11");
       if (response != null) {
         if (response.statusCode == 200) {
-          AllBondList modal = AllBondList.fromJson(jsonDecode(response.body));
-
+          AllBondList modal = AllBondList.fromJson((response.body));
           return modal;
         } else {
-
           ShowCustomSnackBar().ErrorSnackBar(response.statusCode.toString());
         }
       }
     } catch (e) {
       ShowCustomSnackBar().ErrorSnackBar(e.toString());
     }
-
   }
 
   getBondDetails(String isisnNo) async {
-    // try {
+    debugPrint("GetBondDetails====>"+isisnNo);
       var response = await http.get(
           Uri.parse("${TrustKycUrl.specificBondsList}?bond_isin_number=$isisnNo"));
-      debugPrint("getBondDetails=========>"+response.body);
+      debugPrint("GetBondDetails====>"+response.body);
+
+
       if (response.statusCode == 200) {
         AllBondListOfIpoByBondId modal = AllBondListOfIpoByBondId.fromJson(jsonDecode(response.body));
         return modal;
       }
-    // } catch (e) {
-    //   ShowCustomSnackBar().ErrorSnackBar(e.toString());
-    // }
+
   }
 
   getIPVCode() async {
@@ -419,14 +410,9 @@ class APiProvider extends GetConnect {
   }
 
   getInvestmentCalculatonResult(String isinNo, int bondNo) async {
-
-    debugPrint("StringStringStringStringString $isinNo");
-    debugPrint("StringStringStringStringString $bondNo");
     try {
       var response = await get(
-          "${TrustKycUrl.inestmentCalculator}?isin=$isinNo&number_of_bonds=$bondNo");
-      debugPrint("StringStringStringStringString ${response.body}");
-
+          "{TrustKycUrl.inestmentCalculator}?isin=$isinNo&number_of_bonds=$bondNo");
       if (response.statusCode == 200) {
         InvestmentCalculatorModal modal =
             InvestmentCalculatorModal.fromJson(response.body);

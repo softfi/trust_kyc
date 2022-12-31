@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
-import '../../../../model/bond/bond_details_modal.dart';
+
 import '../../../../utils/colorsConstant.dart';
 import '../../../../utils/images.dart';
 import '../../../Congratulations/alert_dialog.dart';
