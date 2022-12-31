@@ -23,7 +23,7 @@ class MyPersonalDetails extends StatelessWidget {
   }) : super(key: key);
 
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   RxBool isButtonClick = false.obs;
   String dateOfBirth1 = "";

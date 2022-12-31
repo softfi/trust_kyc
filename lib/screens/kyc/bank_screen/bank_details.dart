@@ -27,7 +27,7 @@ class BankAccounts extends StatefulWidget {
 
 class _BankAccountsState extends State<BankAccounts> {
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   String enable = "Enable";
   bool inCheckCancelled = false;
   bool isDisable = false;
@@ -59,9 +59,9 @@ class _BankAccountsState extends State<BankAccounts> {
       child: CircularProgressIndicator(),
     ));
     getIfscCdeModel = await BankDetailRepository().getIFSCCode(ifsc);
+    Navigator.pop(context);
     print("======>1122 $getIfscCdeModel");
     if (getIfscCdeModel != null) {
-      Get.back();
       setState(() {
         showBankDetail = true;
       });
@@ -83,24 +83,19 @@ class _BankAccountsState extends State<BankAccounts> {
     } else if (jointIndex == 0) {
       ShowCustomSnackBar().ErrorSnackBar("Choose your Bank Account Type2!");
     } else {
-      Get.dialog(const Center(
-        child: CircularProgressIndicator(),
-      ));
+      Get.dialog(const Center(child: CircularProgressIndicator(),));
       final addBankDetailModel = await BankDetailRepository().addbankDetails(
           ifscCode.text.toString(),
           bankAccountNo.text.toString(),
           savingIndex,
           jointIndex);
-
+      Navigator.pop(context);
       debugPrint("yhaaaa"+addBankDetailModel.toString());
       if (addBankDetailModel != null) {
-        Get.back();
         widget.onClick!();
       } else {
         BankBottomSheet().uploadCancelledChequeBottomSheet(context, inCheckCancelled);
       }
-
-
     }
   }
 
@@ -110,7 +105,7 @@ class _BankAccountsState extends State<BankAccounts> {
     ));
     var res = await BankDetailRepository().deleteBankDetails(bankDetailsId);
     if (res != null) {
-      Get.back();
+      Navigator.pop(context);
       getbankDetail();
     }
   }

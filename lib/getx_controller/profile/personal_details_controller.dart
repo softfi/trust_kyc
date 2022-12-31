@@ -46,23 +46,11 @@ class PersonalDetailsController extends GetxController {
 
   @override
   void onInit() {
-    getKycStatus();
     getPersonalDetails();
     getPerferences();
     super.onInit();
   }
 
-  getKycStatus() async {
-    await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
-      userIsLoggedIn.value = value!;
-    });
-    var isKyc = await HelperFunctions.getUserKycCompleted();
-    if (isKyc == true) {
-      tabVisible.value = true;
-      barLine.value = false;
-      isKYCPending.value = false;
-    }
-  }
 
   getPersonalDetails() async {
     var response = await APiProvider().personalDetail();
@@ -78,7 +66,23 @@ class PersonalDetailsController extends GetxController {
       await HelperFunctions.saveLastName(modaltest.value!.lastname.toString());
       debugPrint(firstName.value.text.toString());
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
-      dob.value = modaltest.value!.dob != null ? DateFormat('dd-MM-yyyy').format(modaltest.value!.dob):"DD-MM-YYYY";
+      if(modaltest.value?.dob != null){
+        dob.value = DateFormat('dd-MM-yyyy').format(DateTime.parse(modaltest.value!.dob!));
+      }
+      await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
+        userIsLoggedIn.value = value!;
+      });
+      var isKyc = await HelperFunctions.getUserKycCompleted();
+      if ((modaltest.value?.ekycApplicationStatus ?? "") != "1"  ||  isKyc != true ) {
+        tabVisible.value = false;
+        barLine.value = true;
+        isKYCPending.value = true;
+      }else{
+        tabVisible.value = true;
+        barLine.value = false;
+        isKYCPending.value = false;
+      }
+      //dob.value = modaltest.value!.dob != null ? DateFormat('dd-MM-yyyy').format(modaltest.value!.dob):"DD-MM-YYYY";
     }
   }
 
@@ -122,7 +126,7 @@ class PersonalDetailsController extends GetxController {
 
   validateDifferentAddress()async {
     AddNomineeController _addNomineeController = Get.put(AddNomineeController());
-    final KRAController _kraController = Get.put(KRAController());
+    final KRAController _kraController = Get.find<KRAController>();
     if( _addNomineeController.selectedNomineeIndentitiy.value == null){
       ShowCustomSnackBar().ErrorSnackBar("Select Address Proof First");
     }else if(_kraController.addressline1.value.text.isEmpty){

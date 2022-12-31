@@ -20,8 +20,8 @@ import 'custom_dropdown.dart';
 class KRARecord extends StatelessWidget {
   KRARecord({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
-  KRAController _kRAController = Get.put(KRAController());
+      Get.find<PersonalDetailsController>();
+  KRAController _kRAController = Get.find<KRAController>();
 
   //PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   RxBool isButtonClick = false.obs;

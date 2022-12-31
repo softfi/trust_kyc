@@ -15,6 +15,7 @@ import '../getx_controller/ipv/ipv_controller.dart';
 import '../getx_controller/kra/kra_controller.dart';
 import '../getx_controller/profile/add_nominee_controller.dart';
 import '../model/add_nominee_response_data.dart';
+import '../model/auths/login_response_data.dart';
 import '../model/bond/bond_detail_modal_of_ipo_by_bond_id.dart';
 import '../model/bond/bond_details_modal.docx';
 import '../model/bond/bond_list_modal.dart';
@@ -30,6 +31,35 @@ import '../utils/helper_widget/custom_snsckbar.dart';
 import '../utils/sharedPreference.dart';
 
 class APiProvider extends GetConnect {
+
+  Future<LoginResponseData?> loginwithMobile(String mobno, bool resendOTP) async {
+    try {
+      var body = {
+        "mobile_number": mobno.toString(),
+        "resend_otp": resendOTP
+      };
+
+      debugPrint("===========$body");
+      Get.dialog(const Center(
+        child: CircularProgressIndicator(),
+      ));
+      var response = await post(TrustKycUrl.LoginOtp, jsonEncode(body));
+      Get.back();
+      debugPrint("================ggrg"+response.statusCode.toString());
+      if (response.statusCode == 200) {
+        LoginResponseData model = LoginResponseData.fromJson(response.body);
+        return model;
+      } else {
+        ShowCustomSnackBar().ErrorSnackBar(response.body["errors"]);
+        return null;
+      }
+    } catch (e) {
+      Get.back();
+      ShowCustomSnackBar().ErrorSnackBar(e.toString());
+      return null;
+    }
+  }
+
   personalDetail() async {
     try {
       var token = await HelperFunctions.getToken();
@@ -57,8 +87,8 @@ class APiProvider extends GetConnect {
   updatePersonalDeatil() async {
     IPVController _ipvController = Get.put(IPVController());
     PersonalDetailsController _controller =
-        Get.put(PersonalDetailsController());
-    KRAController _kRAController = Get.put(KRAController());
+        Get.find<PersonalDetailsController>();
+    KRAController _kRAController = Get.find<KRAController>();
     AddNomineeController _addNomineeController =
         Get.put(AddNomineeController());
     var token = await HelperFunctions.getToken();
@@ -165,7 +195,7 @@ class APiProvider extends GetConnect {
 
   SendKycEmailOtp(String email, bool isResend) async {
     PersonalDetailsController _controller =
-        Get.put(PersonalDetailsController());
+    Get.find<PersonalDetailsController>();
     var token = await HelperFunctions.getToken();
     try {
       var body = {
@@ -232,7 +262,7 @@ class APiProvider extends GetConnect {
 
   verifyGoogleGmail() async {
     PersonalDetailsController _controller =
-        Get.put(PersonalDetailsController());
+    Get.find<PersonalDetailsController>();
     var token = await HelperFunctions.getToken();
     var body = {"email_id": _controller.mail.value, "is_verified": true};
     debugPrint(_controller.mail.value);
@@ -548,7 +578,7 @@ class APiProvider extends GetConnect {
     AddNomineeController _addnomineeController =
         Get.put(AddNomineeController());
     PersonalDetailsController _personalController =
-        Get.put(PersonalDetailsController());
+        Get.find<PersonalDetailsController>();
     var temp = _addnomineeController.fullNomineeName.value.text.split(" ");
     debugPrint(temp.toString());
     var body = {

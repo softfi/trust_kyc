@@ -18,7 +18,7 @@ import '../../../../utils/styles.dart';
 class UploadScansBottomSheet {
   static uploadScanBottomSheet(BuildContext context) {
     AddNomineeController _addNomineeController = Get.put(AddNomineeController());
-    final KRAController _kraController = Get.put(KRAController());
+    final KRAController _kraController = Get.find<KRAController>();
     final _picker = ImagePicker();
     Get.bottomSheet(
        SizedBox(

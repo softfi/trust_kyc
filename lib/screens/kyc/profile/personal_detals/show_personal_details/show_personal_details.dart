@@ -17,7 +17,7 @@ class ShowPersonalDetails extends StatelessWidget {
   ShowPersonalDetails({Key? key}) : super(key: key);
 
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.panNumber:"",
+              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.panNumber!:"",
             ),
             const SizedBox(
               width: 15,
@@ -155,7 +155,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber : "",
+              title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.aadharNumber! : "",
             ),
             const SizedBox(
               width: 15,
@@ -485,7 +485,7 @@ class ShowPersonalDetails extends StatelessWidget {
         ),
         _space1,
         DesableTitleText(
-          title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.occupation :"",
+          title: _personalDetailsController.modaltest.value!=null?_personalDetailsController.modaltest.value!.occupation! :"",
         ),
         _space,
         DesableAppText(
@@ -1090,7 +1090,7 @@ class ShowPersonalDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DesableTitleText(
-              title: _personalDetailsController.modaltest.value!.mothersMaidenName,
+              title: _personalDetailsController.modaltest.value!.mothersMaidenName!,
             ),
             const SizedBox(
               width: 15,

@@ -1051,7 +1051,7 @@ class DematNomineeDetail extends StatelessWidget {
 
   AddNomineeController _addNomineeController = Get.put(AddNomineeController());
   final PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   RxBool isAddNominee = false.obs;
 
   @override

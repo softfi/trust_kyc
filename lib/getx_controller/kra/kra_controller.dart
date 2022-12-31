@@ -42,7 +42,7 @@ var digiLockerDetailModel = Rxn<DigiLockerDetailModel>();
   Rxn selectedSate=Rxn();
   Rxn selectedCity=Rxn();
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController()); //list sa=[]
+      Get.find<PersonalDetailsController>(); //list sa=[]
   RxList<ProfessionModel> professionList =
       List<ProfessionModel>.empty(growable: true).obs;
   RxList newProfessionalList = List.empty(growable: true).obs;

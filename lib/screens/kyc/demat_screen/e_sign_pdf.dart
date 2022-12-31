@@ -14,6 +14,7 @@ import '../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../utils/sharedPreference.dart';
 import 'collect_docs_page.dart';
 import 'e_sign.dart';
+import 'html_viewer_screen.dart';
 
 class ESignPDF extends StatefulWidget {
   const ESignPDF({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class ESignPDF extends StatefulWidget {
 class _ESignPDFState extends State<ESignPDF> {
   bool isSignInDemat = true;
   final PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+  Get.find<PersonalDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +119,7 @@ class _ESignPDFState extends State<ESignPDF> {
                             Permission.storage,
                           ].request();
                           if (statuses[Permission.storage]!.isGranted) {
+                            ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
                             var dir = await DownloadsPathProvider.downloadsDirectory;
                             if (dir != null) {
                               Random random = new Random();
@@ -129,7 +131,8 @@ class _ESignPDFState extends State<ESignPDF> {
                                 await Dio().download(response, savePath,
                                     onReceiveProgress: (received, total) {
                                       if (total != -1) {
-                                         downloadProgress = (received / total * 100).toStringAsFixed(0) + "%";
+                                        downloadProgress =
+                                            (received / total * 100).toStringAsFixed(0) + "%";
                                         if ((received / total * 100).toStringAsFixed(0) +
                                             "%" ==
                                             "100") {}
@@ -138,14 +141,17 @@ class _ESignPDFState extends State<ESignPDF> {
                                 ShowCustomSnackBar().SuccessSnackBar(
                                     "File is saved to download folder e-sign_$random_number.pdf");
                                 Get.back();
+                                await HelperFunctions.saveuserkyccompleted(true);
+                                //Get.back();
+                               // onClick!();
                               } on DioError catch (e) {
                                 ShowCustomSnackBar().ErrorSnackBar(e.toString());
                               }
                             }
                           } else {
-                            ShowCustomSnackBar().ErrorSnackBar("No permission to read and write.");
+                            ShowCustomSnackBar()
+                                .ErrorSnackBar("No permission to read and write.");
                           }
-                          ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
                         }
                       },
                       child:  Container(
@@ -258,7 +264,11 @@ class _ESignPDFState extends State<ESignPDF> {
                     _space1,
                     InkWell(
                       onTap: () async {
-                        Get.to(()=>const AllDocsView());
+                        var response = await APiProvider().eSignPdf();
+                        if(response !=null){
+                          // Get.to(()=>ESign(response:response));
+                          Navigator.push(context, MaterialPageRoute(builder: (builder)=>HTMLViewer(response.toString())));
+                        }
                         // var response = await APiProvider().eSignPdf();
                         // if (response != null) {
                         //   await HelperFunctions.saveuserkyccompleted(true);

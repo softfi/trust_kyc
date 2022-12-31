@@ -14,7 +14,7 @@ import '../show_personal_details.dart';
 
 class NomineeDetails extends StatelessWidget {
    NomineeDetails({Key? key}) : super(key: key);
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.find<PersonalDetailsController>();
 
   String title="";
   String fullName="";

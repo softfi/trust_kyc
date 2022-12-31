@@ -11,7 +11,7 @@ import '../../../../utils/styles.dart';
 
 class Digilocker extends StatelessWidget {
   Digilocker({Key? key}) : super(key: key);
-  KRAController _kRAController = Get.put(KRAController());
+  KRAController _kRAController = Get.find<KRAController>();
 
   @override
   Widget build(BuildContext context) {

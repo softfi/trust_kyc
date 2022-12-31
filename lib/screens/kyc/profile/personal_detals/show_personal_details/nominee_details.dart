@@ -12,7 +12,7 @@ import '../../../../../getx_controller/profile/personal_details_controller.dart'
 
 class NomineeDetails extends StatelessWidget {
    NomineeDetails({Key? key}) : super(key: key);
-  PersonalDetailsController _personalDetailsController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _personalDetailsController = Get.find<PersonalDetailsController>();
 
   String title="";
   String fullName="";

@@ -20,9 +20,9 @@ import '../show_personal_details.dart';
 class AddNominee extends StatelessWidget {
   AddNominee({Key? key}) : super(key: key);
   AddNomineeController _addNomineeController = Get.put(AddNomineeController());
-  KRAController _kRAController = Get.put(KRAController());
+  KRAController _kRAController = Get.find<KRAController>();
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   @override
   Widget build(BuildContext context) {

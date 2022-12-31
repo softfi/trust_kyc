@@ -11,7 +11,7 @@ class AuthenticateAdhaar extends StatelessWidget {
   AuthenticateAdhaar({Key? key}) : super(key: key);
 
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   RxBool isButtonClick = false.obs;
 

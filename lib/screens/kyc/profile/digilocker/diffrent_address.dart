@@ -13,7 +13,7 @@ import '../../../../utils/colorsConstant.dart';
 class DifferentAddress extends StatelessWidget {
   DifferentAddress({Key? key}) : super(key: key);
   AddNomineeController _addNomineeController = Get.put(AddNomineeController());
-  final KRAController _kraController = Get.put(KRAController());
+  final KRAController _kraController = Get.find<KRAController>();
 
   @override
   Widget build(BuildContext context) {

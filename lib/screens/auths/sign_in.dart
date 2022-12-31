@@ -5,12 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:trust_money/api/apiClient.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/screens/auths/verify_login_otp.dart';
 import 'package:trust_money/utils/colorsConstant.dart';
 import 'package:trust_money/utils/images.dart';
 import '../../api/trust_kyc_url.dart';
+import '../../model/auths/login_response_data.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
 import '../../utils/styles.dart';
 
@@ -22,14 +24,13 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  bool isResendOtp = true;
+  bool isResendOtp = false;
   bool isButtonClick = false;
   bool isDisable = false;
   late Map resopnsmap;
-  final loginphone = TextEditingController();
+  final TextEditingController loginphone = TextEditingController();
 
-  void _signIn(String mobno, ResendOtp) async {
-    print('start working');
+  /*void _signIn(String mobno, ResendOtp) async {
     try {
       Response response = await post(
         Uri.parse(TrustKycUrl.LoginOtp),
@@ -41,8 +42,6 @@ class _SignInState extends State<SignIn> {
           "resend_otp": isResendOtp
         }),
       );
-      // JsonDecoder _decoder = new JsonDecoder();
-      // dynamic collectUseData = _decoder.convert(response.body);
       resopnsmap = json.decode(response.body);
       print(resopnsmap['hash_key'].toString());
       print(resopnsmap['message'].toString());
@@ -65,7 +64,7 @@ class _SignInState extends State<SignIn> {
     }
     // Do something
   }
-
+*/
   signInValidation() async {
     if (loginphone.text.isEmpty) {
       ShowCustomSnackBar().ErrorSnackBar("Please enter Mobile No");
@@ -74,8 +73,34 @@ class _SignInState extends State<SignIn> {
       ShowCustomSnackBar().ErrorSnackBar("Enter 10 digit mobile number");
       return;
     } else {
-      _signIn(loginphone.text.toString(), isResendOtp);
+      login(isResendOtp);
+      // _signIn(loginphone.text.toString(), isResendOtp);
     }
+  }
+
+  void login(
+    bool isResendOtp,
+  ) async {
+    LoginResponseData? model =
+        await APiProvider().loginwithMobile(loginphone.text.toString(), isResendOtp);
+    if (model != null) {
+      await HelperFunctions.savePhoneNumber(loginphone.text.toString());
+      await HelperFunctions.savehashkey(model.hashKey.toString());
+      navigateToOTPVerification(model.hashKey.toString());
+    }else{
+      debugPrint("Receiving null response");
+    }
+  }
+
+  void navigateToOTPVerification(String hasKey) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return OTPLoginVerify(loginphone.text.toString(), hasKey);
+        },
+      ),
+    );
   }
 
   @override
@@ -95,7 +120,8 @@ class _SignInState extends State<SignIn> {
                 _space,
                 _space,
                 Center(
-                  child: Image.asset(ConstantImage.TrustIcon,
+                  child: Image.asset(
+                    ConstantImage.TrustIcon,
                     height: 100,
                   ),
                 ),
@@ -130,15 +156,15 @@ class _SignInState extends State<SignIn> {
                       invalidNumberMessage: "",
                       onChanged: (text) {
                         setState(() {
-                          if(loginphone.text.length<10){
+                          if (loginphone.text.length < 10) {
                             isDisable = false;
-                          }else{
+                          } else {
                             isDisable = true;
                           }
                         });
                       },
                       validator: (value) {
-                        if (value == null || loginphone.text.length<10) {
+                        if (value == null || loginphone.text.length < 10) {
                           return 'Enter 10 Digit mobile number.';
                         }
                         return null;
@@ -153,7 +179,10 @@ class _SignInState extends State<SignIn> {
                       controller: loginphone,
                       style: GoogleFonts.sourceSansPro(
                         textStyle: const TextStyle(
-                            color: Color(0xff22263D), fontWeight: FontWeight.w400, fontSize: 18,letterSpacing: 4),
+                            color: Color(0xff22263D),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18,
+                            letterSpacing: 4),
                       ),
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(10),
@@ -165,10 +194,11 @@ class _SignInState extends State<SignIn> {
                           width: 1,
                         )),
                         disabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                          color: AppColors.borderColor,
-                          width: 1,
-                        ),),
+                          borderSide: BorderSide(
+                            color: AppColors.borderColor,
+                            width: 1,
+                          ),
+                        ),
                         contentPadding: const EdgeInsets.only(top: 15),
                         hintText: 'Mobile Number',
                         hintStyle: const TextStyle(color: Color(0xffC8C7CE)),
@@ -207,7 +237,7 @@ class _SignInState extends State<SignIn> {
               height: height / 2.2,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 18.0,left: 12,right: 12),
+              padding: const EdgeInsets.only(bottom: 18.0, left: 12, right: 12),
               child: InkWell(
                 onTap: () {
                   if (isDisable == true) {
@@ -217,7 +247,7 @@ class _SignInState extends State<SignIn> {
                     });
                   }
                 },
-                child:Container(
+                child: Container(
                   height: 45,
                   decoration: BoxDecoration(
                     boxShadow: const [
@@ -226,30 +256,31 @@ class _SignInState extends State<SignIn> {
                         blurRadius: 3.0,
                       ),
                     ],
-                    border: Border.all(width: 2, color:isButtonClick == false
-                        ? isDisable
-                        ? AppColors.textColor
-                        : Color(0xffE1E0E6)
-                        : Color(0xffFF405A)),
+                    border: Border.all(
+                        width: 2,
+                        color: isButtonClick == false
+                            ? isDisable
+                                ? AppColors.textColor
+                                : Color(0xffE1E0E6)
+                            : Color(0xffFF405A)),
                     color: isButtonClick == false
                         ? Colors.white
                         : Color(0xffFF405A),
                   ),
                   child: Center(
                       child: Text(
-                        "Verify",
-                        style: GoogleFonts.quicksand(
-                          textStyle: TextStyle(
-                              color: isButtonClick == false
-                                  ? isDisable
+                    "Verify",
+                    style: GoogleFonts.quicksand(
+                      textStyle: TextStyle(
+                          color: isButtonClick == false
+                              ? isDisable
                                   ? AppColors.textColor
                                   : Color(0xffE1E0E6)
-                                  : Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15
-                          ),
-                        ),
-                      )),
+                              : Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 15),
+                    ),
+                  )),
                 ),
               ),
               /*InkWell(

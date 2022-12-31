@@ -18,7 +18,7 @@ import '../../../../utils/styles.dart';
 class IPVVerification extends StatelessWidget {
   IPVVerification({Key? key}) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   IPVController _ipvController = Get.put(IPVController());
   RxBool isButtonClick = false.obs;
 RxInt time=0.obs;
@@ -170,7 +170,7 @@ var a;
                                 ?Obx(()=> ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: AspectRatio(
-                                        aspectRatio: 1.3333333333333333
+                                        aspectRatio: 9/16
                                         // _ipvController
                                         //     .newCameraController
                                         //     .value!

@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:trust_money/screens/kyc/demat_screen/html_viewer_screen.dart';
 import '../../../../../api/apiClient.dart';
 import '../../../../../utils/colorsConstant.dart';
 import '../../../../../utils/helper_widget/custom_snsckbar.dart';
 import '../../../../../utils/sharedPreference.dart';
 import '../../../../../utils/styles.dart';
+import '../../e_sign.dart';
 
 class FormView extends StatelessWidget {
   FormView({Key? key, required this.onClick,required this.onClick1}) : super(key: key);
@@ -66,6 +68,7 @@ class FormView extends StatelessWidget {
                     Permission.storage,
                   ].request();
                   if (statuses[Permission.storage]!.isGranted) {
+                    ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
                     var dir = await DownloadsPathProvider.downloadsDirectory;
                     if (dir != null) {
                       Random random = new Random();
@@ -87,6 +90,8 @@ class FormView extends StatelessWidget {
                         ShowCustomSnackBar().SuccessSnackBar(
                             "File is saved to download folder e-sign_$random_number.pdf");
                         Get.back();
+                        await HelperFunctions.saveuserkyccompleted(true);
+                        onClick!();
                       } on DioError catch (e) {
                         ShowCustomSnackBar().ErrorSnackBar(e.toString());
                       }
@@ -95,8 +100,6 @@ class FormView extends StatelessWidget {
                     ShowCustomSnackBar()
                         .ErrorSnackBar("No permission to read and write.");
                   }
-                   ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
-                  onClick!();
                 }
               },
               child: Container(
@@ -127,8 +130,14 @@ class FormView extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 2.85,
             ),
             InkWell(
-              onTap: () {
-                onClick1!();
+              onTap: () async {
+
+                var response = await APiProvider().eSignPdf();
+                if(response !=null){
+                 // Get.to(()=>ESign(response:response));
+                  Navigator.push(context, MaterialPageRoute(builder: (builder)=>HTMLViewer(response.toString())));
+                }
+               // onClick1!();
               },
               child: Container(
                 height: 45,

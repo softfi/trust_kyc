@@ -11,7 +11,7 @@ import '../screens/animated_screens/verified_animation.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   final googleSignIn = GoogleSignIn();
 
   //this will store all the information relatred the the person who is signined

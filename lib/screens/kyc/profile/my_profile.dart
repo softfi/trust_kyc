@@ -12,7 +12,7 @@ import '../../../getx_controller/profile/personal_details_controller.dart';
 
 class MyProfile extends StatelessWidget {
   MyProfile({Key? key}) : super(key: key);
-  PersonalDetailsController _profileController = Get.put(PersonalDetailsController());
+  PersonalDetailsController _profileController = Get.find<PersonalDetailsController>();
 
   @override
   Widget build(BuildContext context) {

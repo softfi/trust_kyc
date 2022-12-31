@@ -51,13 +51,20 @@ dependencies:
   dio: ^4.0.6
   dropdown_button2: ^1.7.2
   video_player: ^2.4.7
-  webview_flutter: ^3.0.4
   camera: ^0.9.4+3
-  flutter_html: any
   dotted_line: ^3.1.0
   flutter_downloader: ^1.8.3
   permission_handler: ^10.2.0
   downloads_path_provider_28: ^0.1.2
+  webview_flutter: ^4.0.1
+  webview_flutter_wkwebview: ^3.0.1
+  webview_flutter_android: ^3.1.1
+  path_provider: ^2.0.11
+#  webview_flutter: ^4.0.1
+#  webview_flutter_wkwebview: ^3.0.1
+#  webview_flutter_android: ^3.1.1
+#  path_provider: ^2.0.11
+
 
 dev_dependencies:
   flutter_test:

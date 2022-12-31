@@ -31,7 +31,7 @@ class IPVController extends GetxController {
   get file1 => file.value;
   RxString fileLink = "".obs;
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
   var videoPlayerController = Rxn<VideoPlayerController>();
 

@@ -32,7 +32,7 @@ class MandatoryQuestion extends StatefulWidget {
 class _MandatoryQuestionState extends State<MandatoryQuestion> {
   bool citizen_OfThe_USA = false;
   int citizen_OfThe_USAInt = 0;
-  bool Country_Residency = true;
+  bool Country_Residency = false;
   int Country_ResidencyInt = 0;
   bool isMandatory = true;
   bool isAware = false;
@@ -50,7 +50,7 @@ class _MandatoryQuestionState extends State<MandatoryQuestion> {
   File? signatureImage;
   final _picker = ImagePicker();
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   wealthList() async {
     var data1 = await DematDetailRepository().wealthDropdown();

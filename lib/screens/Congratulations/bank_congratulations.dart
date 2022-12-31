@@ -17,7 +17,7 @@ class BankComplete extends StatefulWidget {
 class _BankCompleteState extends State<BankComplete> {
 
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+  Get.find<PersonalDetailsController>();
 
 
   @override

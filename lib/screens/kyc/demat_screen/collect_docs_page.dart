@@ -334,31 +334,31 @@ class AllDocsView extends StatelessWidget {
                         Permission.storage,
                       ].request();
                       if (statuses[Permission.storage]!.isGranted) {
-                        var dir =
-                            await DownloadsPathProvider.downloadsDirectory;
+                        ShowCustomSnackBar().SuccessSnackBar("Downloading Started");
+                        var dir = await DownloadsPathProvider.downloadsDirectory;
                         if (dir != null) {
-                          Random random = Random();
+                          Random random = new Random();
                           int random_number = random.nextInt(1000000);
-                          String savePath =
-                              dir.path + "/e-sign_$random_number.pdf";
+                          String savePath = dir.path + "/e-sign_$random_number.pdf";
                           print(savePath);
                           try {
                             var downloadProgress;
                             await Dio().download(response, savePath,
                                 onReceiveProgress: (received, total) {
-                              if (total != -1) {
-                                downloadProgress = (received / total * 100)
-                                        .toStringAsFixed(0) +
-                                    "%";
-                                if ((received / total * 100)
-                                            .toStringAsFixed(0) +
+                                  if (total != -1) {
+                                    downloadProgress =
+                                        (received / total * 100).toStringAsFixed(0) + "%";
+                                    if ((received / total * 100).toStringAsFixed(0) +
                                         "%" ==
-                                    "100") {}
-                              }
-                            });
+                                        "100") {}
+                                  }
+                                });
                             ShowCustomSnackBar().SuccessSnackBar(
                                 "File is saved to download folder e-sign_$random_number.pdf");
                             Get.back();
+                            Get.back();
+                            await HelperFunctions.saveuserkyccompleted(true);
+                           // onClick!();
                           } on DioError catch (e) {
                             ShowCustomSnackBar().ErrorSnackBar(e.toString());
                           }
@@ -367,8 +367,6 @@ class AllDocsView extends StatelessWidget {
                         ShowCustomSnackBar()
                             .ErrorSnackBar("No permission to read and write.");
                       }
-                      ShowCustomSnackBar()
-                          .SuccessSnackBar("Downloading Started");
                     }
                   },
                   child: Container(

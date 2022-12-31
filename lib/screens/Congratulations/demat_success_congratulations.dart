@@ -19,7 +19,7 @@ class _DematAccountCompleteState extends State<DematAccountComplete> {
 
 
   PersonalDetailsController _personalDetailsController =
-  Get.put(PersonalDetailsController());
+  Get.find<PersonalDetailsController>();
 
   @override
   void initState() {

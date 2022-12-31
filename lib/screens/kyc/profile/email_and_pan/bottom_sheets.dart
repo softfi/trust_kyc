@@ -297,7 +297,7 @@ class EmailPANBottomSheet {
 
   static void verifyKycEmailOTP(String email, String otp) async {
     PersonalDetailsController _personalDetailsController =
-        Get.put(PersonalDetailsController());
+        Get.find<PersonalDetailsController>();
     if (otp.isNotEmpty) {
       var response = await APiProvider().verifyOtp(email, otp);
       if (response != null) {

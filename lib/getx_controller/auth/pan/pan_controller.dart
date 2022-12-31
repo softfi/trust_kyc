@@ -19,7 +19,7 @@ class PanCardUserDeatils extends GetxController {
   var panDataModal = Rxn<PanStatusModel>();
   Rx<TextEditingController> panNumber = TextEditingController().obs;
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   verifyPan() async {
     var response = await APiProvider().verfiyPanNumber(panNumber.value.text);

@@ -31,7 +31,7 @@ class DematAccount extends StatefulWidget {
 
 class _DematAccountState extends State<DematAccount> {
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   bool existingDematAccountDetails = false;
   bool addNewDematAccounts = false;
   bool dematDetails = true;
@@ -98,8 +98,9 @@ class _DematAccountState extends State<DematAccount> {
       );
       debugPrint("Nominasdata $response");
       if (response != null) {
+        Navigator.pop(context);
         setState(() {
-          Get.back();
+         // Get.back();
           existingDematAccountDetails = false;
           formShow = true;
         });

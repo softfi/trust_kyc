@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
+import 'package:trust_money/getx_controller/profile/personal_details_controller.dart';
 import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/utils/images.dart';
 import 'package:video_player/video_player.dart';
 import 'bottom_navigation/bottom_navigation.dart';
+import 'getx_controller/kra/kra_controller.dart';
 
 void main() async {
 
@@ -50,7 +52,7 @@ class MyPage extends StatefulWidget {
 class SplashScreenState extends State<MyPage> {
   bool? userIsLoggedIn;
   bool splashBackgroundColorChange = false;
-  late VideoPlayerController _controller;
+ // late VideoPlayerController _controller;
 
   getLoggedInState() async {
     await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
@@ -63,6 +65,7 @@ class SplashScreenState extends State<MyPage> {
   @override
   void initState() {
     super.initState();
+    initControllers();
     getLoggedInState();
     Future.delayed(const Duration(seconds: 4), () {
       print("==========first $splashBackgroundColorChange");
@@ -84,7 +87,7 @@ class SplashScreenState extends State<MyPage> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+   // _controller.dispose();
   }
 
   @override
@@ -113,5 +116,10 @@ class SplashScreenState extends State<MyPage> {
         ),
       ),
     );
+  }
+
+  void initControllers() {
+    Get.put(PersonalDetailsController());
+    Get.put(KRAController());
   }
 }

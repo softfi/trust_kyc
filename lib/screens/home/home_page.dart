@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   int currentIPOs = 2;
   bool? userIsLoggedIn;
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
 
   BondListData _bondListData=Get.put(BondListData());
 

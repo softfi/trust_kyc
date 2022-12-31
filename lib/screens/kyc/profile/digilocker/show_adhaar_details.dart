@@ -14,8 +14,8 @@ import '../../../../utils/styles.dart';
 class ShowAdhaarDetails extends StatelessWidget {
   ShowAdhaarDetails({Key? key}) : super(key: key);
   final PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
-  final KRAController _kraController = Get.put(KRAController());
+      Get.find<PersonalDetailsController>();
+  final KRAController _kraController = Get.find<KRAController>();
 
   RxBool isButtonClick = false.obs;
 

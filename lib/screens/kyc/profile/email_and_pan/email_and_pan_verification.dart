@@ -16,7 +16,7 @@ class EmailVeryfication extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   PersonalDetailsController _personalDetailsController =
-      Get.put(PersonalDetailsController());
+      Get.find<PersonalDetailsController>();
   RxBool isButtonClick = false.obs;
   PanCardUserDeatils _panCardUserDeatils = Get.put(PanCardUserDeatils());
 
