@@ -34,7 +34,7 @@ class BankDetailRepository {
     print("============2332 ${response.statusCode}");
     var data = NetworkUtility.responseHandler(response);
     if (response.statusCode == 200) {
-      ShowCustomSnackBar().ErrorSnackBar("bank details added successfully");
+     // ShowCustomSnackBar().SuccessSnackBar("bank details added successfully");
     }else if(response.statusCode == 400){
       ShowCustomSnackBar().ErrorSnackBar("Invalid IFSC code, Please enter valid IFSC code");
     }

@@ -160,8 +160,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                                 },
                                 child: Container(
                                   height: 45,
-                                  width:
-                                      MediaQuery.of(context).size.width / 2.4,
+                                  width: MediaQuery.of(context).size.width / 2.4,
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.white),
@@ -239,14 +238,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                             color: const Color(0xff00C6D8)),
                         child: Center(
                             child: Text(
-                              userName != "" ? userName : "",
-                              style: GoogleFonts.quicksand(
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 2)),
-                            )),
+                          userName != "" ? userName : "",
+                          style: GoogleFonts.quicksand(
+                              textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 2)),
+                        )),
                       ),
                     ),
                     Padding(
@@ -271,145 +270,161 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                             const SizedBox(
                               height: 18,
                             ),
-
                             Obx(() {
-                              return (_personalDetailsController.modaltest.value?.ekycApplicationStatus ?? "") != "1" || isKYCPending !=true ? InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            const ChooseScreen()));
-                                  },
-                                  child: Container(
-                                    height: 40,
-                                    width: 190,
-                                    decoration: BoxDecoration(
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color(0x29000000),
-                                            blurRadius: 4.0,
-                                          ),
-                                        ],
-                                        borderRadius:
-                                        BorderRadius.circular(2),
-                                        color: Colors.white),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          "Profile",
-                                          style: GoogleFonts.quicksand(
-                                              textStyle: const TextStyle(
-                                                  color:
-                                                  Color(0xff23263D),
-                                                  fontSize: 14,
-                                                  fontWeight:
-                                                  FontWeight.bold)),
+                              return (_personalDetailsController.modaltest.value
+                                                  ?.ekycApplicationStatus ??
+                                              "") !=
+                                          "1" ||
+                                      isKYCPending != true
+                                  ? InkWell(
+                                      onTap: () {
+                                        (_personalDetailsController
+                                                        .modaltest
+                                                        .value
+                                                        ?.ekycApplicationStatus ??
+                                                    "") !=
+                                                "1"
+                                            ? Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ChooseScreen()))
+                                            : Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MyProfile()));
+                                      },
+                                      child: Container(
+                                        height: 40,
+                                        width: 190,
+                                        decoration: BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color(0x29000000),
+                                                blurRadius: 4.0,
+                                              ),
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(2),
+                                            color: Colors.white),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              "Profile",
+                                              style: GoogleFonts.quicksand(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xff23263D),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ),
+                                            Text(
+                                              Strings.pending,
+                                              style: GoogleFonts.quicksand(
+                                                  textStyle: const TextStyle(
+                                                      color: Color(0xffFF405A),
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                            ),
+                                          ],
                                         ),
-                                        Text(
-                                          Strings.pending,
-                                          style: GoogleFonts.quicksand(
-                                              textStyle: const TextStyle(
-                                                  color:
-                                                  Color(0xffFF405A),
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.w500)),
-                                        ),
-                                      ],
-                                    ),
-                                  ))
+                                      ))
                                   : Row(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MyProfile()));
-                                    },
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      height: 35,
-                                      decoration:
-                                      BoxDecoration(boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x29000000)
-                                              .withOpacity(0.11),
-                                          spreadRadius: 1,
-                                          blurRadius: 11,
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ], color: Colors.white),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                          child: Text(
-                                            "Profile",
-                                            style: GoogleFonts.quicksand(
-                                                textStyle:
-                                                const TextStyle(
-                                                    color: Color(
-                                                        0xff23263D),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .bold)),
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        MyProfile()));
+                                          },
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            height: 35,
+                                            decoration:
+                                                BoxDecoration(boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x29000000)
+                                                    .withOpacity(0.11),
+                                                spreadRadius: 1,
+                                                blurRadius: 11,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ], color: Colors.white),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16.0),
+                                                child: Text(
+                                                  "Profile",
+                                                  style: GoogleFonts.quicksand(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff23263D),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                              const ProfileSetting()));
-                                    },
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      height: 35,
-                                      decoration:
-                                      BoxDecoration(boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x29000000)
-                                              .withOpacity(0.11),
-                                          spreadRadius: 1,
-                                          blurRadius: 11,
-                                          offset: const Offset(0, 3),
+                                        const SizedBox(
+                                          width: 10,
                                         ),
-                                      ], color: Colors.white),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                          child: Text(
-                                            "Setting",
-                                            style: GoogleFonts.quicksand(
-                                                textStyle:
-                                                const TextStyle(
-                                                    color: Color(
-                                                        0xff23263D),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .bold)),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ProfileSetting()));
+                                          },
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            height: 35,
+                                            decoration:
+                                                BoxDecoration(boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x29000000)
+                                                    .withOpacity(0.11),
+                                                spreadRadius: 1,
+                                                blurRadius: 11,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ], color: Colors.white),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16.0),
+                                                child: Text(
+                                                  "Setting",
+                                                  style: GoogleFonts.quicksand(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              color: Color(
+                                                                  0xff23263D),
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold)),
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              );
+                                        )
+                                      ],
+                                    );
                             })
-
                           ],
                         ),
                       ),

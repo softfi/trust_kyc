@@ -68,19 +68,19 @@ class PersonalDetailsController extends GetxController {
       //dob.value = modal.dob.toUtc().toString().replaceRange(10, dob.toString().length + 1, "");
       if(modaltest.value?.dob != null){
         dob.value = DateFormat('dd-MM-yyyy').format(DateTime.parse(modaltest.value!.dob!));
+      }else{
+        dob.value = "DD-MM-YYYY";
       }
       await HelperFunctions.getuserLoggedInSharedPreference().then((value) {
         userIsLoggedIn.value = value!;
       });
       var isKyc = await HelperFunctions.getUserKycCompleted();
-      if ((modaltest.value?.ekycApplicationStatus ?? "") != "1"  ||  isKyc != true ) {
+      if ((modaltest.value?.ekycApplicationStatus ?? "") != "1" ) {
         tabVisible.value = false;
         barLine.value = true;
-        isKYCPending.value = true;
       }else{
         tabVisible.value = true;
         barLine.value = false;
-        isKYCPending.value = false;
       }
       //dob.value = modaltest.value!.dob != null ? DateFormat('dd-MM-yyyy').format(modaltest.value!.dob):"DD-MM-YYYY";
     }

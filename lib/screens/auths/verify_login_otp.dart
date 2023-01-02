@@ -2,11 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:trust_money/screens/auths/sign_in.dart';
 import 'package:trust_money/utils/strings.dart';
 import '../../api/trust_kyc_url.dart';
+import '../../bottom_navigation/bottom_navigation.dart';
+import '../../getx_controller/profile/personal_details_controller.dart';
 import '../../repositories/veriify_otp_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
@@ -41,6 +44,9 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
   bool isResend = false;
   bool isTimer = true;
 
+  PersonalDetailsController _personalDetailsController =
+  Get.find<PersonalDetailsController>();
+
   void _resendCode() {
     setState(() {
       secondsRemaining = 30;
@@ -56,10 +62,18 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
       final res = await verifyOtps()
           .verifyOtpLogin(widget.phoneNumber, otplogin.text, widget.haskkey);
       if (res != null) {
+        (_personalDetailsController.modaltest.value?.ekycApplicationStatus ?? "") == "1"?
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => ChooseScreen()),
-            (e) => false);
+            (e) => false):
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CustomBottomNavigation(
+                  currentIndex: 0,
+                )),
+                (e) => false);
       }
     }
   }
@@ -67,7 +81,7 @@ class _OTPLoginVerifyState extends State<OTPLoginVerify> {
   void _resendOTPLogin(String mobno, ResendOtp) async {
     print('start working resend  login otp');
     try {
-      Response response = await post(
+      var response = await post(
         Uri.parse(TrustKycUrl.LoginOtp),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

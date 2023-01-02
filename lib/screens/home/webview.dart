@@ -54,13 +54,15 @@ class _MyWebViewState extends State<MyWebView> {
                       // Navigator.pop(context);
                       // _personalDetailsController.isVisible.value = 3;
                     }
-                    */ /*final Map<String,String> params = uri.queryParameters;
+                    */
+/*final Map<String,String> params = uri.queryParameters;
                 if(params.containsKey("code")){
                   print("code============>"+params["code"].toString());
                   if(params["code"].toString()=="6356a8aebdce4f484a8ab8fb3802197e2a4fdb7e"){
                     Navigator.pop(context);
                   }
-                }*/ /*
+                }*/
+/*
                   },
                   onWebViewCreated: (controller) {
                     webViewController = controller;
@@ -98,9 +100,8 @@ class _MyWebViewState extends State<MyWebView> {
     }
 
     final WebViewController controller =
-    WebViewController.fromPlatformCreationParams(params);
+        WebViewController.fromPlatformCreationParams(params);
     // #enddocregion platform_features
-
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -122,7 +123,7 @@ class _MyWebViewState extends State<MyWebView> {
               _personalDetailsController.getPersonalDetails();
               Navigator.pop(context);
               Navigator.pop(context);
-              _personalDetailsController.isVisible.value= 6;
+              _personalDetailsController.isVisible.value = 6;
               // _personalDetailsController.isVisible.value = 3;
             }
           },
@@ -136,7 +137,7 @@ Page resource error:
           ''');
           },
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
+            if (request.url.startsWith('https://trustmony.com/profile')) {
               debugPrint('blocking navigation to ${request.url}');
               return NavigationDecision.prevent;
             }
@@ -154,34 +155,27 @@ Page resource error:
         },
       )
       ..loadRequest(
-        Uri.parse(
-            _kRAController.urlLink.value.toString()
-        ),
+        Uri.parse(_kRAController.urlLink.value.toString()),
       );
 
-    // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
       (controller.platform as AndroidWebViewController)
           .setMediaPlaybackRequiresUserGesture(false);
     }
-    // #enddocregion platform_features
-
     _controller = controller;
   }
 
-
-  PersonalDetailsController _personalDetailsController =
-      Get.find<PersonalDetailsController>();
-
+  PersonalDetailsController _personalDetailsController = Get.find<PersonalDetailsController>();
   @override
   Widget build(BuildContext context) {
     debugPrint("onPageStarted9999999=============>${_kRAController.urlLink.value.toString()}");
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          backgroundColor: Colors.white, elevation: 0, leading: Container()),
-      body:  WebViewWidget(controller: _controller)/*WebView(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+            backgroundColor: Colors.white, elevation: 0, leading: Container()),
+        body: WebViewWidget(controller: _controller)
+      /*WebView(
         initialUrl: _kRAController.urlLink.value.toString(),
         //javascriptMode: JavascriptMode.unrestricted,
         gestureNavigationEnabled: true,
@@ -204,6 +198,6 @@ Page resource error:
           }
         },
       ),*/
-    );
+        );
   }
 }

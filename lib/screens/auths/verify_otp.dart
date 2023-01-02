@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:trust_money/screens/auths/alright_screent.dart';
@@ -10,6 +11,8 @@ import 'package:trust_money/utils/sharedPreference.dart';
 import 'package:trust_money/screens/auths/sign_up.dart';
 import 'package:trust_money/utils/strings.dart';
 import '../../api/trust_kyc_url.dart';
+import '../../bottom_navigation/bottom_navigation.dart';
+import '../../getx_controller/profile/personal_details_controller.dart';
 import '../../repositories/login_repository.dart';
 import '../../utils/colorsConstant.dart';
 import '../../utils/helper_widget/custom_snsckbar.dart';
@@ -40,6 +43,9 @@ class _OtpVerificationState extends State<OtpVerification> {
   Timer? timer;
   bool isResend = false;
   bool isTimer = true;
+
+  PersonalDetailsController _personalDetailsController =
+      Get.find<PersonalDetailsController>();
 
   void _resendOTPLogin(String mobno, ResendOtp) async {
     print('start working resend  login otp');
@@ -84,11 +90,20 @@ class _OtpVerificationState extends State<OtpVerification> {
           otpText.text.toString(),
           hashKey.toString());
       if (otpVerifyModel != "" && otpVerifyModel != null) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ChooseScreen()), (e) => false);
-
+        (_personalDetailsController.modaltest.value?.ekycApplicationStatus ??
+                    "") ==
+                "1"
+            ? Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => ChooseScreen()),
+                (e) => false)
+            : Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomBottomNavigation(
+                          currentIndex: 0,
+                        )),
+                (e) => false);
         final userID = otpVerifyModel.customerId.toString();
         final firstName = otpVerifyModel.firstName.toString();
         final lastName = otpVerifyModel.lastName.toString();
@@ -267,7 +282,6 @@ class _OtpVerificationState extends State<OtpVerification> {
                             )),
                       ),
                     ):*/
-
 
                     Row(
                       children: [

@@ -59,9 +59,9 @@ class _BankAccountsState extends State<BankAccounts> {
       child: CircularProgressIndicator(),
     ));
     getIfscCdeModel = await BankDetailRepository().getIFSCCode(ifsc);
-    Navigator.pop(context);
     print("======>1122 $getIfscCdeModel");
     if (getIfscCdeModel != null) {
+      Navigator.pop(context);
       setState(() {
         showBankDetail = true;
       });

@@ -31,7 +31,7 @@ class MyPersonalDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _personalDetailsController.onInit(); //ShowPersonalDetails
-    return Obx(() => _personalDetailsController.isKYCPending.value
+    return Obx(() => (_personalDetailsController.modaltest.value?.ekycApplicationStatus ?? "") !="1"
         ? Column(
             children: [
               Obx(() => Visibility(
